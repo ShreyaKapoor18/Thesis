@@ -5,5 +5,5 @@
            --miniconda create_env=neuro \
                        conda_install="python=3.7 traits" \
                        pip_install="nipype" > Dockerfile
-sudo docker build –-tag thesis:0.1 - < Dockerfile
+sudo docker build --tag thesis:0.1 - < Dockerfile
 sudo docker run -it --rm -p 8888:8888 thesis jupyter notebook
