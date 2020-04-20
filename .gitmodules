@@ -1,3 +1,6 @@
 [submodule "CoBundleMAP"]
 	path = CoBundleMAP
 	url = git@github.com:ShreyaKapoor18/CoBundleMAP.git
+[submodule "gmwcs-solver"]
+	path = gmwcs-solver
+	url = git@github.com:ShreyaKapoor18/gmwcs-solver.git
