@@ -7,3 +7,6 @@
 [submodule "cookiecutter-latex-thesis"]
 	path = cookiecutter-latex-thesis
 	url = git@github.com:ShreyaKapoor18/cookiecutter-latex-thesis.git
+[submodule "dyconnmap_exp"]
+	path = dyconnmap_exp
+	url = git@github.com:ShreyaKapoor18/dyconnmap_exp.git
