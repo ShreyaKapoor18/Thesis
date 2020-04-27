@@ -10,3 +10,6 @@
 [submodule "dyconnmap_exp"]
 	path = dyconnmap_exp
 	url = git@github.com:ShreyaKapoor18/dyconnmap_exp.git
+[submodule "preprocessing"]
+	path = preprocessing
+	url = git@github.com:ShreyaKapoor18/preprocessing.git
