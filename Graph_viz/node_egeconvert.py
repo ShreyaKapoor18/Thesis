@@ -4,7 +4,6 @@ import networkx as nx
 import os.path
 import numpy as np
 from random import randint
-from random import
 #%%
 def make_nodes_edges(filename, subject):
     parent_dir = os.path.abspath(os.path.join(os.getcwd(), os.pardir))
