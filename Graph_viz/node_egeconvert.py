@@ -3,6 +3,7 @@ import pandas as pd
 import networkx as nx
 import os.path
 import numpy as np
+from random import randint
 #%%
 def make_nodes_edges(filename, subject):
     parent_dir = os.path.abspath(os.path.join(os.getcwd(), os.pardir))
@@ -22,7 +23,7 @@ def make_nodes_edges(filename, subject):
     for node in nx.nodes(G):
         if count<=50:
         #print(node)
-                print(str(node)+ ' '+ str(0), file = nodes_file)
+                print(str(node)+ ' '+ str(randint(-5,5)), file = nodes_file)
                 count+=1
                 nodes.append(node)
     print(len(nodes))
