@@ -1,0 +1,6 @@
+.git 
+.cache 
+*.md 
+**/*.class 
+Notes
+fsl_course_data

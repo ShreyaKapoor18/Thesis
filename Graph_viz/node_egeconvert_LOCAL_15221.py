@@ -23,8 +23,7 @@ def make_nodes_edges(filename, subject):
     for node in nx.nodes(G):
         #print(node)
         if G.degree(node) >=2:
-            print(str(node) + ' ' + str(1), file=nodes_file)
-            #print(str(node) + ' ' + str(0), file=nodes_file)
+            print(str(node) + ' ' + str(randint(-5,5)), file=nodes_file)
             nodes.append(node)
             count +=1
             #print(node, 'has degree >=2')
@@ -33,9 +32,8 @@ def make_nodes_edges(filename, subject):
 
     for edge in nx.edges(G):
         if edge[0] in nodes and edge[1] in nodes:
-             print(str(edge[0]) + ' '+ str(edge[1])+ ' '+ str(G.get_edge_data(edge[0], edge[1])['weight']),
+            print(str(edge[0]) + ' '+ str(edge[1])+ ' '+ str(G.get_edge_data(edge[0], edge[1])['weight']),
                   file=edges_file)
-             #print(str(edge[0]) + ' ' + str(edge[1]) + ' ' + str(randint(-5,5)), file = edges_file)
 
 
     #%%
@@ -45,10 +43,9 @@ def make_nodes_edges(filename, subject):
 if __name__ == '__main__':
     mews = '/home/shreya/Desktop/Thesis/gmwcs-solver'
     subject = '128127'
-    files_list = ['mean_FA_connectome_5M']
-    '''files_list = ['mean_FA_connectome_5M', 'mean_FA_connectome_1M_SIFT',
+    files_list = ['mean_FA_connectome_5M', 'mean_FA_connectome_1M_SIFT',
                   'distances_mean_5M', 'distances_mean_1M_SIFT',
-                  'connectome_1M']'''
+                  'connectome_1M']
     for file in files_list:
         print(file, '*'*100)
         make_nodes_edges(file, subject)
