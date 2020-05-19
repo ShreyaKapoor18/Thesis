@@ -46,5 +46,45 @@ big5.describe()
 #%%
 import pandas_profiling
 #%%
-big5.profile_report()
+profile = big5.profile_report()
 #%%
+#profile = pandas_profiling.ProfileReport(big5)
+profile.to_file('./report.html')
+#%%
+data.select_dtypes(include = ['int']).dtypes
+#%%
+whole_profile = data.select_dtypes(include = ['bool']).profile_report()
+whole_profile.to_file('./report-bool.html')
+#%%
+personality_labels = info.loc[info['category']=='Personality', :].index
+personality_labels
+#%%
+computed_subj = data.loc[:, personality_labels]
+personality_profile = computed_subj.profile_report()
+personality_profile.to_file('./report-personality.html')
+#%%
+neuro_labels = info.loc[info['category']=='Psychiatric and Life Function', :].index
+
+#%%
+#computed_subj = data.loc[:, neuro_labels] # These labels are not present in the file
+
+#%%
+print(data.columns.shape) # has less labels than the given info file
+info.shape # has more info labels
+#%%
+len(set(data.columns).intersection(set(info.index)))
+# so we currently have 373 common labels
+#%%
+freesurfer_labels = info.loc[info['category']=='FreeSurfer', :].index
+computed_subj = data.loc[:, freesurfer_labels]
+personality_profile = computed_subj.profile_report()
+personality_profile.to_file('./report-FreeSurfer.html') #notpresent
+#%%
+for category in np.unique(info['category']):
+
+    labels = info.loc[info['category']==category, :].index
+    if set(labels).issubset(set(data.columns)):
+        print(category, ' is present in the data unresctricted')
+        present_subj = data.loc[:, labels]
+        profile = present_subj.profile_report()
+        profile.to_file(f'./report-{category}.html')
