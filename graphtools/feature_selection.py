@@ -21,6 +21,7 @@ for s in glob.glob(f'{input_dir}/*/T1w/Diffusion/mean_FA_connectome_5M.csv'):
             present_subj.append(subject)
 #%%
 data = df.loc[df['Subject'].isin(present_subj), :] #reduced csv files containing data of only computed subj
+data.to_csv('present_subjects.csv')
 #%%
 '''
 5 personality traits that we want to study are:
