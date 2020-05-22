@@ -61,3 +61,16 @@ print(acc)
 y_pred
 #%%
 sum(data['Gender']=='M')/68
+#%%
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.datasets import make_classification
+X, y = make_classification(n_samples= len(data), n_features=len(data.columns),
+                           n_informative=2, n_redundant=0,
+                           random_state=0, shuffle=False)
+clf = RandomForestClassifier(max_depth=2, random_state=0)
+clf.fit(X_train, y_train)
+#%%
+y_pred = clf.predict(X_test)
+acc = sum(y_pred==y_test)/len(y_test)
+print(acc)
+#%%
