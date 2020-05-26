@@ -6,7 +6,7 @@ import numpy as np
 #%%
 print(os.getcwd())
 #%%
-df = pd.read_csv('/home/skapoor/Thesis/Notes/HCP_data/unrestricted_mdkhatami_3_2_2017_5_48_20.csv')
+df = pd.read_csv('/home/skapoor/Thesis/Notes/HCP_data/unrestricted_skapoor_5_22_2020_9_59_26.csv')
 input_dir = '/data/skapoor/HCP/results'
 #%%
 present_subj = []
@@ -34,37 +34,35 @@ NEO-FFI Extraversion (NEOFAC_E)
 info = pd.read_excel('/home/skapoor/Thesis/Notes/HCP_data/HCP_S1200_DataDictionary_April_20_2018.xlsx', dtype ='str')
 info.head()
 #%%
-labels = ['NEOFAC_A', 'NEOFAC_O', 'NEOFAC_C', 'NEOFAC_N', 'NEOFAC_E' ]
+#labels = ['NEOFAC_A', 'NEOFAC_O', 'NEOFAC_C', 'NEOFAC_N', 'NEOFAC_E' ]
 #%%
-info = info.set_index('columnHeader')
+#info = info.set_index('columnHeader')
 #%%
-info.loc[labels]['description']
+#info.loc[labels]['description']
 #%%
 # Extract these labels for our subjects!
-big5 = data.loc[:, labels]
+#big5 = data.loc[:, labels]
 #%%
-big5.describe()
+#big5.describe()
 #%%
 import pandas_profiling
 #%%
-profile = big5.profile_report()
+#profile = big5.profile_report()
 #%%
 #profile = pandas_profiling.ProfileReport(big5)
-profile.to_file('./report.html')
+#profile.to_file('./report.html')
 #%%
+'''
 data.select_dtypes(include = ['int']).dtypes
-#%%
 whole_profile = data.select_dtypes(include = ['bool']).profile_report()
 whole_profile.to_file('./report-bool.html')
-#%%
 personality_labels = info.loc[info['category']=='Personality', :].index
 personality_labels
-#%%
 computed_subj = data.loc[:, personality_labels]
 personality_profile = computed_subj.profile_report()
 personality_profile.to_file('./report-personality.html')
-#%%
 neuro_labels = info.loc[info['category']=='Psychiatric and Life Function', :].index
+'''
 
 #%%
 #computed_subj = data.loc[:, neuro_labels] # These labels are not present in the file
@@ -76,16 +74,19 @@ info.shape # has more info labels
 len(set(data.columns).intersection(set(info.index)))
 # so we currently have 373 common labels
 #%%
-freesurfer_labels = info.loc[info['category']=='FreeSurfer', :].index
+'''freesurfer_labels = info.loc[info['category']=='FreeSurfer', :].index
 computed_subj = data.loc[:, freesurfer_labels]
 personality_profile = computed_subj.profile_report()
-personality_profile.to_file('./report-FreeSurfer.html') #notpresent
+personality_profile.to_file('./report-FreeSurfer.html') #notpresent'''
 #%%
 for category in np.unique(info['category']):
 
     labels = info.loc[info['category']==category, :].index
-    if set(labels).issubset(set(data.columns)):
+    #print(category)
+    if set(labels).issubset(set(data.columns)) or set(labels)==set(data.columns) or \
+            set(data.columns).issubset(set(labels))\
+            or len(set(data.columns).intersection(set(labels)))!=0:
         print(category, ' is present in the data unresctricted')
-        present_subj = data.loc[:, labels]
-        profile = present_subj.profile_report()
-        profile.to_file(f'./report-{category}.html')
+        #present_subj = data.loc[:, labels]
+        #profile = present_subj.profile_report()
+        #profile.to_file(f'./report-{category}.html')
