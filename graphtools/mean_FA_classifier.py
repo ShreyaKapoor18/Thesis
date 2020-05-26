@@ -20,7 +20,6 @@ whole = np.zeros((len(get_subj_ids()),7056))
 j =0
 for subject in get_subj_ids():
     out_diff = f'/data/skapoor/HCP/results/{subject}/T1w/Diffusion'
-
     file = f'{out_diff}/mean_FA_connectome_1M_SIFT.csv'
         #print(file) # we need to make all edges as a feature for each subject!
         # so we will have 84x84 features
@@ -28,6 +27,7 @@ for subject in get_subj_ids():
     # the file shall be number of subjects x 7056
     mean_FA = np.reshape(mean_FA, (7056,))
     whole[j,:] = mean_FA
+    j+=1
 #%%
 np.shape(whole[0])
 #%%
