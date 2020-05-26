@@ -38,7 +38,7 @@ for subject in get_subj_ids():
     # the file shall be number of subjects x 7056
         edge_feature = np.reshape(edge_feature, (7056,))
         whole[j,i,:] = edge_feature
-        print(i,j)
+        #print(i,j)
         i+=1
     j+=1
 #%%
@@ -50,6 +50,18 @@ data = pd.read_csv('present_subjects.csv')
 print(data['NEOFAC_A'].shape)
 print(whole.shape)
 #%%
+from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import Normalizer
+norm = Normalizer()
+#%%
+correlations = np.zeros((7056, 3,3))
 # pearson correlation per edge, lets try for one edge first
-edge = pd.DataFrame(whole[:,:,100])
-edge.corr()
+for j in range(7056):
+    scaler =StandardScaler()
+    edge = pd.DataFrame(whole[:,:,100], columns=['mean FA', 'mean strl length', 'num strl'])
+    #print(edge.head())
+    #print(edge.corr())
+    edge = pd.DataFrame(norm.fit_transform(edge), columns=['mean FA', 'mean strl length', 'num strl'])
+    #print(edge.head())
+    correlations[i,:,:] = edge.corr()
+#%%
