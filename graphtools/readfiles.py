@@ -75,4 +75,4 @@ def get_subj_ids():
             #print(s)
             subject = s.split('/HCP/results/')[1].split('/')[0]
             present_subj.append(suject)
-    return(present_subj)
+    return present_subj

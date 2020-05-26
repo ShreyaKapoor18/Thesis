@@ -1,29 +1,18 @@
 import glob
 import numpy as np
 import pandas as pd
-
-
-def get_subj_ids():
-    input_dir = '/data/skapoor/HCP/results'
-    present_subj = []
-    #Now we need to check for which all subjects the meam_FA_connectome exists!
-    #we get this 1M file containing most biologically important features
-    for s in glob.glob(f'{input_dir}/*/T1w/Diffusion/mean_FA_connectome_1M_SIFT.csv'):
-        if s.split('/HCP/results/')[1][0] in ['1', '2']:
-            #print(s)
-            subject = s.split('/HCP/results/')[1].split('/')[0]
-            present_subj.append(subject)
-    return(present_subj)
+from readfiles import computed_subjects
+from readfiles import get_subj_ids
 #%%
 
-whole = np.zeros((len(get_subj_ids()),3,7056))
-j =0
 '''
-There are three features that we want to add to the files
+There are three features that we want to add to the feature matrix
 1. Mean FA between the two nodes
 2. The mean length of the streamlines between the two nodes
 3. The number of streamlines between the two nodes
 '''
+whole = np.zeros((len(get_subj_ids()),3,7056))
+j =0
 for subject in get_subj_ids():
     out_diff = f'/data/skapoor/HCP/results/{subject}/T1w/Diffusion'
     files = [f'{out_diff}/mean_FA_connectome_1M_SIFT.csv', f'{out_diff}/distances_mean_1M_SIFT.csv',
@@ -39,11 +28,10 @@ for subject in get_subj_ids():
         #print(i,j)
         i+=1
     j+=1
-#%%
-np.shape(whole[0])
+
 #%%
 # Let us take the labels i.e. the ones from unrestricted_files!
-data = pd.read_csv('present_subjects.csv')
+data = computed_subjects()
 #%%
 print(data['NEOFAC_A'].shape)
 print(whole.shape)
@@ -62,21 +50,4 @@ for j in range(7056):
     edge = pd.DataFrame(norm.fit_transform(edge), columns=['mean FA', 'mean strl length', 'num strl'])
     #print(edge.head())
     correlations[j,:,:] = edge.corr()
-#%%
-'''
-5 personality traits that we want to study are:
-NEO-FFI Agreeableness (NEOFAC_A)
-NEO-FFI Openness to Experience (NEOFAC_O)
-NEO-FFI Conscientiousness (NEOFAC_C)
-NEO-FFI Neuroticism (NEOFAC_N)
-NEO-FFI Extraversion (NEOFAC_E)
-'''
-#%%
-# cut and put it into three categories, namely low medium and high
-agreeable = np.array(pd.cut(data['NEOFAC_A'],3,  labels=False, retbins=True, right=False)[0])
-open = np.array(pd.cut(data['NEOFAC_O'],3,  labels=False, retbins=True, right=False)[0])
-consci = np.array(pd.cut(data['NEOFAC_C'],3,  labels=False, retbins=True, right=False)[0])
-neuroti = np.array(pd.cut(data['NEOFAC_N'],3,  labels=False, retbins=True, right=False)[0])
-extrav = np.array(pd.cut(data['NEOFAC_E'],3,  labels=False, retbins=True, right=False)[0])
-
 #%%
