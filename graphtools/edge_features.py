@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-
+# for all the different connectomes that we have used
 def get_subj_ids():
     input_dir = '/data/skapoor/HCP/results'
     present_subj = []
