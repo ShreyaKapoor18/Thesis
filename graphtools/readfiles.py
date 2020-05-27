@@ -74,5 +74,5 @@ def get_subj_ids():
         if s.split('/HCP/results/')[1][0] in ['1', '2']:
             #print(s)
             subject = s.split('/HCP/results/')[1].split('/')[0]
-            present_subj.append(suject)
+            present_subj.append(subject)
     return present_subj
