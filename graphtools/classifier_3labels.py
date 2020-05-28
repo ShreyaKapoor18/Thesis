@@ -65,3 +65,7 @@ plt.show()
 mean_FA_hist = { num_edge: np.histogram(whole[:,0,num_edge]) for num_edge in range(7056)}
 mean_strl_hist = { num_edge: np.histogram(whole[:,1,num_edge]) for num_edge in range(7056)}
 num_strl_hist = { num_edge: np.histogram(whole[:,2,num_edge]) for num_edge in range(7056)}
+#%%
+plt.hist(whole[:,0,100])
+plt.show()
+#%%
