@@ -39,16 +39,18 @@ print(whole.shape)
 #%%
 from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import Normalizer
-norm = Normalizer()
+scaler =StandardScaler() # didn't choose this because the variance for all the variables becomes the same?
+norm = Normalizer() # chose this as it does rescale between zero and one but the relative variances are restored
 #%%
 correlations = np.zeros((7056, 3,3))
 # pearson correlation per edge, lets try for one edge first
 for j in range(7056):
-    scaler =StandardScaler()
+
     edge = pd.DataFrame(whole[:,:,j], columns=['mean FA', 'mean strl length', 'num strl'])
     #print(edge.head())
     #print(edge.corr())
     edge = pd.DataFrame(norm.fit_transform(edge), columns=['mean FA', 'mean strl length', 'num strl'])
+    # scaling shouldn't make a difference but with normalisation it does. With standardisation it doesn't
     #print(edge.head())
     correlations[j,:,:] = edge.corr()
 #%%
