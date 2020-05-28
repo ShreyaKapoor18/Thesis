@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 from readfiles import computed_subjects
 from readfiles import get_subj_ids
+import matplotlib.pyplot as plt
 #%%
 
 '''
@@ -51,3 +52,14 @@ for j in range(7056):
     #print(edge.head())
     correlations[j,:,:] = edge.corr()
 #%%
+#score histogram per type? What is meant by that from what I understood hisogram of FA in one edge across all subjects
+fig, ax = plt.subplots(10,10, figsize=(20,20))
+for i in range(10):
+    for j in range(10):
+        ax[i][j].hist(whole[:,0, i*10+j]) # across all subjects edge number index 3 with mean_FA
+plt.title('mean FA along 100 edges for all subjects')
+plt.show()
+#%%
+mean_FA_hist = { num_edge: np.histogram(whole[:,0,num_edge]) for num_edge in range(7056)}
+mean_strl_hist = { num_edge: np.histogram(whole[:,1,num_edge]) for num_edge in range(7056)}
+num_strl_hist = { num_edge: np.histogram(whole[:,2,num_edge]) for num_edge in range(7056)}

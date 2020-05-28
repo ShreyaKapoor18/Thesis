@@ -6,6 +6,28 @@ import numpy as np
 from readfiles import computed_subjects
 from readfiles import precomputed_subjects
 import pandas_profiling
+
+# %%
+def report_cut(data, cut_type):
+    # cut and put it into three categories, namely low medium and high
+    if cut_type == 'cut':
+        for label in labels:
+            data[label] = pd.Series(pd.cut(data[label], 3, labels=False, retbins=True, right=False)[0])
+        # how balanced are these cuts?
+        big5 = pd.concat([data[label] for label in labels], axis=1)
+        big5.columns = ['Agreeableness', 'Openness', 'Conscientiousness', 'Neuroticism',
+                        'Extraversion']
+        binned_traits = big5.profile_report()
+        binned_traits.to_file('./big5-binned.html')
+    elif cut_type == 'qcut':
+        for label in labels:
+            data[label] = pd.Series(pd.cut(data[label], 3, labels=False, retbins=True, right=False)[0])
+        # how balanced are these cuts?
+        big5 = pd.concat([data[label] for label in labels], axis=1)
+        big5.columns = ['Agreeableness', 'Openness', 'Conscientiousness', 'Neuroticism',
+                        'Extraversion']
+        binned_traits = big5.profile_report()
+        binned_traits.to_file('./big5-binned_qcut.html')
 #%%
 '''
 5 personality traits that we want to study are:
@@ -33,14 +55,5 @@ profile.to_file('./report-big5.html')
 #%%
 data = precomputed_subjects() #reduced csv files containing target values from regina's folder
 data.to_csv('present_subjects_regina.csv')
-# cut and put it into three categories, namely low medium and high
-for label in labels:
-    data[label] = pd.Series(pd.cut(data[label],3,  labels=False, retbins=True, right=False)[0])
-
-#%%
-#how balanced are these cuts?
-big5 = pd.concat([data[label] for label in labels], axis=1)
-big5.columns = ['Agreeableness', 'Openness', 'Conscientiousness', 'Neuroticism',
-                            'Extraversion']
-binned_traits = big5.profile_report()
-binned_traits.to_file('./big5-binned.html')
+report_cut(data, 'cut')
+report_cut(data, 'qcut')
