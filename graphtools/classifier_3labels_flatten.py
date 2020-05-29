@@ -137,7 +137,7 @@ plt.show()
 #%%
 data_edges.isna().any()
 #%%
-arr = {}
+'''arr = {}
 for label in labels:
     arr[label] = {'mean_FA':[] ,'mean strl': [], 'num strl': []}
     for i in range(3):
@@ -145,5 +145,23 @@ for label in labels:
         for edge in range(i,(i+1)*7056):
             if edge not in labels:
                 #print (edge, f_score(data_edges, edge, 'NEOFAC_A'))
-                arr[label][key].append(f_score(data_edges,edge, label))
+                arr[label][key].append(f_score(data_edges,edge, label))'''
 #%%
+for label in labels:
+    Y = np.array(data[label] >= data[label].median()).astype(int)
+    X = whole
+    X_train, X_test, y_train, y_test = train_test_split(X, Y, train_size=0.80)
+    clf = make_pipeline(StandardScaler(), SVC(gamma='auto'))
+    clf.fit(X_train, y_train)
+    y_pred = clf.predict(X_test)
+    acc = sum(y_pred==y_test)/len(y_test)
+    print(acc,'SVM', label)
+    y_predX, y = make_classification(n_samples= len(data), n_features=len(data.columns),
+                           n_informative=2, n_redundant=0,
+                           random_state=0, shuffle=False)
+    clf = RandomForestClassifier(max_depth=2, random_state=0)
+    clf.fit(X_train, y_train)
+    #%%
+    y_pred = clf.predict(X_test)
+    acc = sum(y_pred==y_test)/len(y_test)
+    print(acc, 'RF', label)
