@@ -79,7 +79,7 @@ np.shape(whole[0])
 #%%
 # Let us take the labels i.e. the ones from unrestricted_files!
 data = computed_subjects()
-data.reset_index()
+data.reset_index(inplace= True)
 #%%
 labels = ['NEOFAC_A', 'NEOFAC_O', 'NEOFAC_C', 'NEOFAC_N', 'NEOFAC_E' ]
 edge_names = ['mean_FA', 'mean strl', 'num streamlines']
@@ -103,7 +103,7 @@ for j in range(len(labels)):
 plt.show()
 #%%
 data_edges = pd.DataFrame(whole)
-data_edges.reset_index()
+data_edges.reset_index(inplace=True)
 #%%
 fig, ax = plt.subplots(5,1, figsize = (15,15))
 i = 0
