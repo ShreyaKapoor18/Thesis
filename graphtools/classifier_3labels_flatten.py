@@ -161,7 +161,7 @@ for label in labels:
                            random_state=0, shuffle=False)
     clf = RandomForestClassifier(max_depth=2, random_state=0)
     clf.fit(X_train, y_train)
-    #%%
+    clf.fit(X_train, y_train)
     y_pred = clf.predict(X_test)
     acc = sum(y_pred==y_test)/len(y_test)
     print(acc, 'RF', label)
