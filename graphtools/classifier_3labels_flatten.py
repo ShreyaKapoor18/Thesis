@@ -104,6 +104,8 @@ big5 = ['Agreeableness', 'Openness', 'Conscientiousness', 'Neuroticism',
 fscores = hist_fscore(whole, labels,big5, edge_names)
 hist_correlation(data, whole, labels, edge_names, big5)
 #%%
+fscores
+#%%
 for label in labels:
     Y = np.array(data[label] >= data[label].median()).astype(int)
     X = whole
