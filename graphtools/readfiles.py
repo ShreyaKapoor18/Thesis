@@ -15,7 +15,7 @@ def computed_subjects():
     df = pd.read_csv(f'{notes_path}/unrestricted_mdkhatami_3_2_2017_5_48_20.csv')
     present_subj = []
     #Now we need to check for which all subjects the meam_FA_connectome exists!
-    for s in glob.glob(f'{input_dir}/*/T1w/Diffusion/mean_FA_connectome_5M.csv'):
+    for s in glob.glob(f'{input_dir}/*/T1w/Diffusion/connectivity_matrices_whole.png'):
         if s.split('/HCP/results/')[1][0] in ['1', '2']:
             #print(s)
             subject = s.split('/HCP/results/')[1].split('/')[0]
@@ -69,7 +69,7 @@ def get_subj_ids():
     input_dir = '/data/skapoor/HCP/results'
     present_subj = []
     #Now we need to check for which all subjects the meam_FA_connectome exists!
-    for s in glob.glob(f'{input_dir}/*/T1w/Diffusion/mean_FA_connectome_5M.csv'):
+    for s in glob.glob(f'{input_dir}/*/T1w/Diffusion/connectivity_matrices_whole.png'):
         if s.split('/HCP/results/')[1][0] in ['1', '2']:
             #print(s)
             subject = s.split('/HCP/results/')[1].split('/')[0]
