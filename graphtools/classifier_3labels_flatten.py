@@ -12,7 +12,7 @@ from readfiles import computed_subjects
 import matplotlib.pyplot as plt
 from metrics import fscore
 #%%
-def generate_combined_matrix():
+def generate_combined_matrix(tri):
     '''
     There are three features that we want to add to the matrix for all subjects
     1. Mean FA between the two nodes
@@ -20,7 +20,9 @@ def generate_combined_matrix():
     3. The number of streamlines between the two nodes
     '''
     norm = Normalizer()
-    whole = np.zeros((len(get_subj_ids()), 7056 * 3))
+    whole = np.zeros((len(get_subj_ids()), tri * 3))
+    #but the matrix is upper triangular so we should only take that into account, then number of features will
+    # get reduced
     j = 0
     for subject in get_subj_ids():
         out_diff = f'/data/skapoor/HCP/results/{subject}/T1w/Diffusion'
@@ -32,8 +34,8 @@ def generate_combined_matrix():
             # so we will have 84x84 features
             edge_feature = np.array(pd.read_csv(file, sep =' ', header= None))
             # the file shall be number of subjects x 7056
-            edge_feature = np.reshape(edge_feature, (7056,))
-            whole[j,i*7056:(i+1)*7056] = edge_feature
+            edge_feature = edge_feature[np.triu_indices(84)]
+            whole[j,i*tri:(i+1)*tri] = edge_feature
             #print(i,j)
             i+=1
         j+=1
@@ -43,13 +45,13 @@ def generate_combined_matrix():
     whole = norm.fit_transform(whole)
     return whole
 #%%
-def hist_correlation(data, whole, labels, edge_names, big5):
+def hist_correlation(data, whole, labels, edge_names, big5, tri):
     fig, ax = plt.subplots(5,3, figsize =(10,10))
     for j in range(len(labels)):
         label = np.array(data[labels[j]]).reshape(-1,1)
         # correlation of mean FA edges, mean str length, number of strl with Openness
         for i in range(3):
-            map_o = np.concatenate((whole[:, i*7056:(i+1)*7056], label),axis =1)
+            map_o = np.concatenate((whole[:, i*tri:(i+1)*tri], label),axis =1)
             corr = np.cov(map_o, rowvar=False)
             ax[j][i].hist(corr[-1][:-1], log = True, bins=100)
             ax[j][i].set_title(big5[j]+' '+ edge_names[i])
@@ -58,9 +60,9 @@ def hist_correlation(data, whole, labels, edge_names, big5):
     plt.savefig('reports/correlation_distribution.png')
     plt.show()
 
-def hist_fscore(whole, labels, big5, edge_names):
+def hist_fscore(whole, labels, big5, edge_names, tri):
     #to return the fscore in order to get the best performing features according to fscore
-    fscores = np.zeros((5,3,7056))
+    fscores = np.zeros((5,3, tri))
     fig, ax = plt.subplots(5,3, figsize = (15,15))
     for j in range(len(labels)):
         # thresholding for converting the data to binary format for classification
@@ -68,7 +70,7 @@ def hist_fscore(whole, labels, big5, edge_names):
         bin_label = bin_label.astype(int)
         bin_label.reset_index(drop=True, inplace=True)
         for i in range(3):
-                data_edges = pd.DataFrame(whole[:, i * 7056:(i + 1) * 7056])
+                data_edges = pd.DataFrame(whole[:, i *tri:(i + 1) * tri])
                 data_edges.reset_index(inplace=True, drop= True)
                 #print(bin_label.head())
                 #print('x1', data[label])
@@ -92,7 +94,9 @@ def hist_fscore(whole, labels, big5, edge_names):
 #%%
 data = computed_subjects() # labels for the computed subjects
 data.reset_index(inplace= True)
-whole = generate_combined_matrix()
+num = 84
+tri = int(num * (num + 1) * 0.5)
+whole = generate_combined_matrix(tri)
 # Let us take the labels i.e. the ones from unrestricted_files!
 
 #%%
@@ -101,8 +105,8 @@ edge_names = ['mean_FA', 'mean strl', 'num streamlines']
 big5 = ['Agreeableness', 'Openness', 'Conscientiousness', 'Neuroticism',
                         'Extraversion']
 #%%
-fscores = hist_fscore(whole, labels,big5, edge_names)
-hist_correlation(data, whole, labels, edge_names, big5)
+fscores = hist_fscore(whole, labels,big5, edge_names, tri)
+hist_correlation(data, whole, labels, edge_names, big5, tri)
 #%%
 fscores
 #%%
