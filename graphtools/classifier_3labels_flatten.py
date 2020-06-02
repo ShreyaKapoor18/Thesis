@@ -11,6 +11,7 @@ from readfiles import get_subj_ids
 from readfiles import computed_subjects
 import matplotlib.pyplot as plt
 from metrics import fscore
+from scipy import stats
 #%%
 def generate_combined_matrix(tri):
     '''
@@ -83,6 +84,11 @@ def hist_fscore(whole, labels, big5, edge_names, tri):
                 #print(df.head())
                 #print(fscore(df, label))
                 fscores[j][i] = fscore(df, labels[j])[:-1]
+                if np.isnan(fscores[j][i]).any():
+                    print(j,i)
+                    fscores[j][i][np.isnan(fscores[j][i])] = 0
+                # to do resolve nan values!
+                assert np.isnan(fscores[j][i]).any() == False
                 ax[j][i].hist(np.log1p(fscores[j][i]), log = True, bins=100)
                 ax[j][i].set_title(big5[j] + ' '+edge_names[i])
                 ax[j][i].set_xlabel('F-Score')
@@ -108,23 +114,71 @@ big5 = ['Agreeableness', 'Openness', 'Conscientiousness', 'Neuroticism',
 fscores = hist_fscore(whole, labels,big5, edge_names, tri)
 hist_correlation(data, whole, labels, edge_names, big5, tri)
 #%%
-fscores
+SVM_acc = {}
+RF_acc = {}
+for i in range(5):# different labels
+    print(labels[i], ':', big5[i])
+    SVM_acc[labels[i]] = {}
+    RF_acc[labels[i]] = {}
+    for j in range(3):
+        print(edge_names[j])
+        f_fscores = fscores[i][j] #for the label and the type of edge
+        SVM_acc[labels[i]][edge_names[j]] = {}
+        RF_acc[labels[i]][edge_names[j]] = {}
+        #stats.iqr(f_fscores)
+        for per in [5,10,15,20]:
+            val = np.percentile(f_fscores, 100-per)
+            index = np.where(f_fscores >= val)
+            #print(f'Number of indexes where the values are in the last {per} percentile:', len(index[0]))
+            Y = np.array(data[labels[i]] >= data[labels[i]].median()).astype(int)
+            X = np.reshape(whole, (whole.shape[0], 3,whole.shape[1]//3))[:, j,index[0]]
+            X_train, X_test, y_train, y_test = train_test_split(X, Y, train_size=0.80, test_size=0.2)
+            clf = make_pipeline(Normalizer(), SVC(gamma='auto'))
+            clf.fit(X_train, y_train)
+            y_pred = clf.predict(X_test)
+            acc = sum(y_pred==y_test)/len(y_test)
+            #print(acc,'SVM', label)
+            SVM_acc[labels[i]][edge_names[j]][per] = acc
+            y_predX, y = make_classification(n_samples= len(data), n_features=len(data.columns),
+                                   n_informative=2, n_redundant=0,
+                                   random_state=0, shuffle=False)
+            clf = RandomForestClassifier(max_depth=2, random_state=0)
+            clf.fit(X_train, y_train)
+            clf.fit(X_train, y_train)
+            y_pred = clf.predict(X_test)
+            acc = sum(y_pred==y_test)/len(y_test)
+            RF_acc[labels[i]][edge_names[j]][per] = acc
+            #print(acc, 'RF', label)
 #%%
-for label in labels:
-    Y = np.array(data[label] >= data[label].median()).astype(int)
-    X = whole
-    X_train, X_test, y_train, y_test = train_test_split(X, Y, train_size=0.80)
-    clf = make_pipeline(StandardScaler(), SVC(gamma='auto'))
-    clf.fit(X_train, y_train)
-    y_pred = clf.predict(X_test)
-    acc = sum(y_pred==y_test)/len(y_test)
-    print(acc,'SVM', label)
-    y_predX, y = make_classification(n_samples= len(data), n_features=len(data.columns),
-                           n_informative=2, n_redundant=0,
-                           random_state=0, shuffle=False)
-    clf = RandomForestClassifier(max_depth=2, random_state=0)
-    clf.fit(X_train, y_train)
-    clf.fit(X_train, y_train)
-    y_pred = clf.predict(X_test)
-    acc = sum(y_pred==y_test)/len(y_test)
-    print(acc, 'RF', label)
+# without taking the edge type into consideration
+new_fscores = np.reshape(fscores, (fscores.shape[0], fscores.shape[1]*fscores.shape[2]))
+SVM_acc_2 = {}
+RF_acc_2 = {}
+for i in range(5):# different labels
+    print(labels[i], ':', big5[i])
+    SVM_acc_2[big5[i]] = {}
+    RF_acc_2[big5[i]] = {}
+    #stats.iqr(f_fscores)
+    for per in [5,10,15,20]:
+            val = np.percentile(new_fscores[i], 100-per)
+            index = np.where(new_fscores[i] >= val)
+            #print(f'Number of indexes where the values are in the last {per} percentile:', len(index[0]))
+            Y = np.array(data[labels[i]] >= data[labels[i]].median()).astype(int)
+            X = whole[:,index[0]]
+            X_train, X_test, y_train, y_test = train_test_split(X, Y, train_size=0.90, test_size=0.1)
+            clf = make_pipeline(StandardScaler(), SVC(gamma='auto'))
+            clf.fit(X_train, y_train)
+            y_pred = clf.predict(X_test)
+            acc = sum(y_pred==y_test)/len(y_test)
+            #print(acc,'SVM', label)
+            SVM_acc_2[big5[i]][per] = acc
+            y_predX, y = make_classification(n_samples= len(data), n_features=len(data.columns),
+                                   n_informative=2, n_redundant=0,
+                                   random_state=0, shuffle=False)
+            clf = RandomForestClassifier(max_depth=2, random_state=0)
+            clf.fit(X_train, y_train)
+            clf.fit(X_train, y_train)
+            y_pred = clf.predict(X_test)
+            acc = sum(y_pred==y_test)/len(y_test)
+            RF_acc_2[big5[i]][per] = acc
+            #print(acc, 'RF', label)
