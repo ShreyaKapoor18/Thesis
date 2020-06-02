@@ -36,6 +36,6 @@ def fscore(data, class_col='class'):
     numerator = np.sum((g_means - means) ** 2, axis=0)
     denominator = np.sum(g_vars, axis=0)
     if sum(denominator)!=0:
-        return numerator/denominator
+        return round(numerator/denominator, 3)
     else:
         return np.zeros(numerator.shape)
