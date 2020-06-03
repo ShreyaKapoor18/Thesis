@@ -51,7 +51,6 @@ def make_dictionary_cv(classifier, metrics, labels, data, new_fscores):
                 if classifier =='SVC':
                    clf = SVC(gamma='auto', probability=True)
                    scores = cross_validate(clf, X, Y, cv = 5, scoring = metrics)
-                   #these are only the traning set scores
                 elif classifier== 'RF':
                     rf = RandomForestClassifier(max_depth=10, random_state=10)
                     scores = cross_validate(rf, X, Y, cv = 5, scoring = metrics)
@@ -59,6 +58,14 @@ def make_dictionary_cv(classifier, metrics, labels, data, new_fscores):
                 for metric, score in zip(metrics, scores):
                     metric_score[big5[i]][per][metric] = score
     return metric_score
+#%%
+#%%
+def make_csv(dict_score, filename):
+    cv = pd.concat({
+            k: pd.DataFrame.from_dict(v, 'index') for k, v in dict_score.items()
+        },
+        axis=0)
+    cv.to_csv(filename)
 #%%
 data = computed_subjects() # labels for the computed subjects
 data.reset_index(inplace= True)
@@ -78,26 +85,9 @@ hist_correlation(data, whole, labels, edge_names, big5, tri)
 # without taking the edge type into consideration
 new_fscores = np.reshape(fscores, (fscores.shape[0], fscores.shape[1]*fscores.shape[2]))
 metrics = ['balanced accuracy', 'AUC', 'accuracy', 'F1 score']
-RF_score = make_dictionary('RF', metrics, labels, data, new_fscores)
-SVM_score = make_dictionary('SVC', metrics, labels, data, new_fscores)
-#%%
-RF_scores_cv = make_dictionary_cv('RF', ['balanced_accuracy', 'roc_auc', 'accuracy', 'f1'],
-                                  labels, data, new_fscores)
-#%%
-RF_cv = pd.concat({
-        k: pd.DataFrame.from_dict(v, 'index') for k, v in RF_score.items()
-    },
-    axis=0)
-RF_cv.to_csv('RF_results_cv.csv')
-#%%
-RF = pd.concat({
-        k: pd.DataFrame.from_dict(v, 'index') for k, v in RF_score.items()
-    },
-    axis=0)
-SVM = pd.concat({
-        k: pd.DataFrame.from_dict(v, 'index') for k, v in SVM_score.items()
-    },
-    axis=0)
-#%%
-RF.to_csv('RF_results.csv')
-SVM.to_csv('SVM_results.csv')
+cv_metrics = ['balanced_accuracy', 'roc_auc', 'accuracy', 'f1']
+make_csv(make_dictionary('RF', metrics, labels, data, new_fscores), 'RF_results.csv')
+make_csv(make_dictionary('SVC', metrics, labels, data, new_fscores), 'SVM_results.csv')
+make_csv(make_dictionary_cv('RF', cv_metrics ,labels, data, new_fscores),'RF_results_cv.csv')
+make_csv(make_dictionary_cv('SVC', cv_metrics,labels, data, new_fscores),'SVM_results_cv.csv')
+
