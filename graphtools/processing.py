@@ -1,9 +1,8 @@
-import matplotlib.pyplot as plt
 import numpy as np
 import matplotlib.pyplot as plt
 from metrics import fscore
 from readfiles import get_subj_ids
-from sklearn.preprocessing import Normalizer
+import pandas as pd
 from sklearn.preprocessing import Normalizer
 #%%
 def generate_combined_matrix(tri):
@@ -28,7 +27,7 @@ def generate_combined_matrix(tri):
             # so we will have 84x84 features
             edge_feature = np.array(pd.read_csv(file, sep =' ', header= None))
             # the file shall be number of subjects x 7056
-            edge_feature = edge_feature[np.triu_indices(84)]
+            edge_feature = edge_feature[np.triu_indices(84)] #get only the upper triangular indices
             whole[j,i*tri:(i+1)*tri] = edge_feature
             #print(i,j)
             i+=1
@@ -78,7 +77,7 @@ def hist_fscore(data, whole, labels, big5, edge_names, tri):
                 #print(fscore(df, label))
                 fscores[j][i] = fscore(df, labels[j])[:-1]
                 if np.isnan(fscores[j][i]).any():
-                    print(j,i)
+                    #print(j,i)
                     fscores[j][i][np.isnan(fscores[j][i])] = 0
                 # to do resolve nan values!
                 assert np.isnan(fscores[j][i]).any() == False
