@@ -1,0 +1,21 @@
+,,balanced accuracy,AUC,accuracy,F1 score
+Agreeableness,5,0.929,1.0,0.917,0.923
+Agreeableness,10,0.614,0.6,0.583,0.615
+Agreeableness,15,0.9,0.971,0.917,0.889
+Agreeableness,20,0.857,0.857,0.833,0.833
+Openness,5,0.688,0.703,0.583,0.615
+Openness,10,0.729,0.843,0.75,0.8
+Openness,15,0.729,0.829,0.75,0.8
+Openness,20,0.629,0.571,0.667,0.75
+Conscientiousness,5,0.929,0.943,0.917,0.923
+Conscientiousness,10,0.686,0.757,0.667,0.667
+Conscientiousness,15,0.75,0.875,0.667,0.667
+Conscientiousness,20,0.75,0.719,0.667,0.667
+Neuroticism,5,1.0,1.0,1.0,1.0
+Neuroticism,10,0.757,0.843,0.75,0.769
+Neuroticism,15,0.75,0.833,0.75,0.8
+Neuroticism,20,0.757,0.814,0.75,0.727
+Extraversion,5,0.643,1.0,0.583,0.667
+Extraversion,10,0.667,0.764,0.667,0.75
+Extraversion,15,0.812,0.891,0.75,0.727
+Extraversion,20,0.688,0.781,0.75,0.824
