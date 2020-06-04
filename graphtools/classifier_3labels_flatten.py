@@ -9,8 +9,8 @@ from sklearn.model_selection import cross_validate
 from sklearn.svm import SVC
 from sklearn.ensemble import RandomForestClassifier
 #%%
-def make_dictionary(option, classifier, metrics, labels, data, new_fscores):
-    '''
+def dict_classifier(option, classifier, metrics, labels, data, new_fscores):
+    """
     :param option: if we want the scores with or without cross validation
     :param classifier: the name of the classifier we want to test
     :param metrics: the name of the metrics we want to calculate
@@ -18,7 +18,7 @@ def make_dictionary(option, classifier, metrics, labels, data, new_fscores):
     :param data: the file with contains the labels for all features of all subjects
     :param new_fscores: flattened array of f scores: num_subjects x num edges
     :return: metric_scores: the values to be calculated using permitted keywords
-    '''
+    """
     metric_score = {}
     for i in range(5):# different labels
         #print(labels[i], ':', big5[i])
@@ -32,7 +32,7 @@ def make_dictionary(option, classifier, metrics, labels, data, new_fscores):
                 Y = np.array(data[labels[i]] >= data[labels[i]].median()).astype(int)
                 X = whole[:, index[0]]
 
-                if option == 'cv':
+                if option == 'no':
                     X_train, X_test, y_train, y_test = train_test_split(X, Y, train_size=0.90, test_size=0.1,
                                                                         shuffle=True)
                     if classifier =='SVC':
@@ -40,18 +40,18 @@ def make_dictionary(option, classifier, metrics, labels, data, new_fscores):
                     elif classifier== 'RF':
                         y_pred, y_score = train_RandomForest(X_train, y_train, X_test)
                     scores = compute_scores(y_test, y_pred, y_score)
+                    for metric, score in zip(metrics, scores):
+                        metric_score[big5[i]][per][metric] = round(score, 3)
 
-                if option == 'no':
+                if option == 'cv':
                     if classifier == 'SVC':
                         clf = SVC(gamma='auto', probability=True)
-                        scores = cross_validate(clf, X, Y, cv=5, scoring=metrics)
                     elif classifier == 'RF':
-                        rf = RandomForestClassifier(max_depth=10, random_state=10)
-                        scores = cross_validate(rf, X, Y, cv=5, scoring=metrics)
+                        clf = RandomForestClassifier(max_depth=10, random_state=10)
+                    scores = cross_validate(clf, X, Y, cv=5, scoring=metrics)
+                    for metric, score in zip(metrics, scores):
+                        metric_score[big5[i]][per][metric] = score
 
-                # according to the documentation the score must be for the higher class
-                for metric, score in zip(metrics, scores):
-                    metric_score[big5[i]][per][metric] = round(score, 3)
     return metric_score
 #%%
 def make_csv(dict_score, filename):
@@ -82,8 +82,8 @@ if __name__ == '__main__':
     new_fscores = np.reshape(fscores, (fscores.shape[0], fscores.shape[1]*fscores.shape[2]))
     metrics = ['balanced accuracy', 'AUC', 'accuracy', 'F1 score']
     cv_metrics = ['balanced_accuracy', 'roc_auc', 'accuracy', 'f1']
-    make_csv(make_dictionary('no','RF', metrics, labels, data, new_fscores), 'RF_results.csv')
-    make_csv(make_dictionary('no,'SVC', metrics, labels, data, new_fscores), 'SVM_results.csv')
-    make_csv(make_dictionary('cv','RF', cv_metrics ,labels, data, new_fscores),'RF_results_cv.csv')
-    make_csv(make_dictionary('cv','SVC', cv_metrics,labels, data, new_fscores),'SVM_results_cv.csv')
+    make_csv(dict_classifier('no', 'RF', metrics, labels, data, new_fscores), 'RF_results.csv')
+    make_csv(dict_classifier('no,', 'SVC', metrics, labels, data, new_fscores), 'SVM_results.csv')
+    make_csv(dict_classifier('cv', 'RF', cv_metrics, labels, data, new_fscores), 'RF_results_cv.csv')
+    make_csv(dict_classifier('cv', 'SVC', cv_metrics, labels, data, new_fscores), 'SVM_results_cv.csv')
 
