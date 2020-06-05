@@ -9,8 +9,9 @@ from sklearn.model_selection import cross_validate
 from sklearn.svm import SVC
 from sklearn.ensemble import RandomForestClassifier
 #%%
-def dict_classifier(option, classifier, metrics, labels, data, new_fscores):
+def dict_classifier(whole, option, classifier, metrics, labels,big5, data, new_fscores):
     """
+    :param whole: the matrix containing the edge information for all subjects
     :param option: if we want the scores with or without cross validation
     :param classifier: the name of the classifier we want to test
     :param metrics: the name of the metrics we want to calculate
@@ -49,8 +50,8 @@ def dict_classifier(option, classifier, metrics, labels, data, new_fscores):
                     elif classifier == 'RF':
                         clf = RandomForestClassifier(max_depth=10, random_state=10)
                     scores = cross_validate(clf, X, Y, cv=5, scoring=metrics)
-                    for metric, score in zip(metrics, scores):
-                        metric_score[big5[i]][per][metric] = score
+                    for metric in metrics:
+                        metric_score[big5[i]][per][metric] = scores[f'test_{metric}']
 
     return metric_score
 #%%
@@ -62,28 +63,29 @@ def make_csv(dict_score, filename):
     cv.to_csv(filename)
 
 #%%
-if __name__ == '__main__':
-    data = computed_subjects() # labels for the computed subjects
-    data.reset_index(inplace= True)
-    num = 84 # number of nodes in the graph
-    tri = int(num * (num + 1) * 0.5) #we want only the upper diagonal parts since everything below diagonal is 0
-    whole = generate_combined_matrix(tri)
-    # The labels i.e. the ones from unrestricted_files!
-    #%%
-    labels = ['NEOFAC_A', 'NEOFAC_O', 'NEOFAC_C', 'NEOFAC_N', 'NEOFAC_E' ]
-    edge_names = ['mean_FA', 'mean strl', 'num streamlines']
-    big5 = ['Agreeableness', 'Openness', 'Conscientiousness', 'Neuroticism',
-                            'Extraversion']
-    #%%
-    fscores = hist_fscore(data, whole, labels,big5, edge_names, tri)
-    hist_correlation(data, whole, labels, edge_names, big5, tri)
-    #%%
-    # without taking the edge type into consideration
-    new_fscores = np.reshape(fscores, (fscores.shape[0], fscores.shape[1]*fscores.shape[2]))
-    metrics = ['balanced accuracy', 'AUC', 'accuracy', 'F1 score']
-    cv_metrics = ['balanced_accuracy', 'roc_auc', 'accuracy', 'f1']
-    make_csv(dict_classifier('no', 'RF', metrics, labels, data, new_fscores), 'RF_results.csv')
-    make_csv(dict_classifier('no,', 'SVC', metrics, labels, data, new_fscores), 'SVM_results.csv')
-    make_csv(dict_classifier('cv', 'RF', cv_metrics, labels, data, new_fscores), 'RF_results_cv.csv')
-    make_csv(dict_classifier('cv', 'SVC', cv_metrics, labels, data, new_fscores), 'SVM_results_cv.csv')
+data = computed_subjects() # labels for the computed subjects
+data.reset_index(inplace= True)
+num = 84 # number of nodes in the graph
+tri = int(num * (num + 1) * 0.5) #we want only the upper diagonal parts since everything below diagonal is 0
+whole = generate_combined_matrix(tri)
+# The labels i.e. the ones from unrestricted_files!
+#%%
+labels = ['NEOFAC_A', 'NEOFAC_O', 'NEOFAC_C', 'NEOFAC_N', 'NEOFAC_E' ]
+edge_names = ['mean_FA', 'mean strl', 'num streamlines']
+big5 = ['Agreeableness', 'Openness', 'Conscientiousness', 'Neuroticism',
+                        'Extraversion']
+#%%
+fscores = hist_fscore(data, whole, labels,big5, edge_names, tri)
+hist_correlation(data, whole, labels, edge_names, big5, tri)
+#%%
+# without taking the edge type into consideration
+new_fscores = np.reshape(fscores, (fscores.shape[0], fscores.shape[1]*fscores.shape[2]))
+metrics = ['balanced accuracy', 'AUC', 'accuracy', 'F1 score']
+cv_metrics = ['balanced_accuracy', 'roc_auc', 'accuracy', 'f1']
+#%%
+make_csv(dict_classifier(whole, 'no', 'RF', metrics, labels, big5, data, new_fscores), 'outputs/RF_results.csv')
+make_csv(dict_classifier(whole, 'no,', 'SVC', metrics, labels, big5,  data, new_fscores), 'outputs/SVM_results.csv')
+make_csv(dict_classifier(whole, 'cv', 'RF', cv_metrics, labels, big5, data, new_fscores), 'outputs/RF_results_cv.csv')
+make_csv(dict_classifier(whole, 'cv', 'SVC', cv_metrics, labels, big5, data, new_fscores), 'outputs/SVM_results_cv.csv')
+#%%
 
