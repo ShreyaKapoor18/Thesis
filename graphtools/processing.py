@@ -42,19 +42,27 @@ def generate_combined_matrix(tri):
 
 
 def hist_correlation(data, whole, labels, edge_names, big5, tri):
+    corr = np.zeros((5, 3, tri))
     fig, ax = plt.subplots(5, 3, figsize=(10, 10))
     for j in range(len(labels)):
-        label = np.array(data[labels[j]]).reshape(-1, 1)
+        label = data[labels[j]]
+        # check if the variance of each feature is not zero if it is then remove it
         # correlation of mean FA edges, mean str length, number of strl with Openness
         for i in range(3):
-            map_o = np.concatenate((whole[:, i * tri:(i + 1) * tri], label), axis=1)
-            corr = np.cov(map_o, rowvar=False)
-            ax[j][i].hist(corr[-1][:-1], log=True, bins=100)
+            map_o = pd.concat((pd.DataFrame(whole[:, i * tri:(i + 1) * tri]), label), axis=1)
+            #corr = np.corrcoef(map_o, rowvar=False)
+            corr[j, i, :] = np.array(map_o.drop(labels[j], axis=1).apply(lambda x: x.corr(map_o[labels[j]])))
+            if np.isnan(corr[j][i]).any():
+                # print(j,i)
+                corr[j][i][np.isnan(corr[j][i])] = 0
+            ax[j][i].hist(corr[j,i,:], log=True, bins=100)
             ax[j][i].set_title(big5[j] + ' ' + edge_names[i])
             ax[j][i].set_ylabel('Num edges')
             ax[j][i].set_xlabel('Correlation coeff')
+
     plt.savefig('reports/correlation_distribution.png')
     plt.show()
+    return corr
 
 
 def hist_fscore(data, whole, labels, big5, edge_names, tri):
