@@ -9,7 +9,7 @@ from sklearn.model_selection import cross_validate
 from sklearn.svm import SVC
 from sklearn.ensemble import RandomForestClassifier
 #%%
-def dict_classifier(whole, option, classifier, metrics, labels,big5, data, new_fscores):
+def dict_classifier(whole, classifier, metrics, labels,big5, data, new_fscores):
     """
     :param whole: the matrix containing the edge information for all subjects
     :param option: if we want the scores with or without cross validation
@@ -33,25 +33,13 @@ def dict_classifier(whole, option, classifier, metrics, labels,big5, data, new_f
                 Y = np.array(data[labels[i]] >= data[labels[i]].median()).astype(int)
                 X = whole[:, index[0]]
 
-                if option == 'no':
-                    X_train, X_test, y_train, y_test = train_test_split(X, Y, train_size=0.90, test_size=0.1,
-                                                                        shuffle=True)
-                    if classifier =='SVC':
-                        y_pred, y_score = train_SVC(X_train, y_train, X_test)
-                    elif classifier== 'RF':
-                        y_pred, y_score = train_RandomForest(X_train, y_train, X_test)
-                    scores = compute_scores(y_test, y_pred, y_score)
-                    for metric, score in zip(metrics, scores):
-                        metric_score[big5[i]][per][metric] = round(score, 3)
-
-                if option == 'cv':
-                    if classifier == 'SVC':
-                        clf = SVC(gamma='auto', probability=True)
-                    elif classifier == 'RF':
-                        clf = RandomForestClassifier(max_depth=10, random_state=10)
-                    scores = cross_validate(clf, X, Y, cv=5, scoring=metrics)
-                    for metric in metrics:
-                        metric_score[big5[i]][per][metric] = scores[f'test_{metric}']
+                if classifier == 'SVC':
+                    clf = SVC(gamma='auto', probability=True)
+                elif classifier == 'RF':
+                    clf = RandomForestClassifier(max_depth=10, random_state=10)
+                scores = cross_validate(clf, X, Y, cv=5, scoring=metrics)
+                for metric in metrics:
+                    metric_score[big5[i]][per][metric] = scores[f'test_{metric}']
 
     return metric_score
 #%%
@@ -76,16 +64,13 @@ big5 = ['Agreeableness', 'Openness', 'Conscientiousness', 'Neuroticism',
                         'Extraversion']
 #%%
 fscores = hist_fscore(data, whole, labels,big5, edge_names, tri)
-hist_correlation(data, whole, labels, edge_names, big5, tri)
 #%%
 # without taking the edge type into consideration
 new_fscores = np.reshape(fscores, (fscores.shape[0], fscores.shape[1]*fscores.shape[2]))
 metrics = ['balanced accuracy', 'AUC', 'accuracy', 'F1 score']
 cv_metrics = ['balanced_accuracy', 'roc_auc', 'accuracy', 'f1']
 #%%
-make_csv(dict_classifier(whole, 'no', 'RF', metrics, labels, big5, data, new_fscores), 'outputs/RF_results.csv')
-make_csv(dict_classifier(whole, 'no,', 'SVC', metrics, labels, big5,  data, new_fscores), 'outputs/SVM_results.csv')
-make_csv(dict_classifier(whole, 'cv', 'RF', cv_metrics, labels, big5, data, new_fscores), 'outputs/RF_results_cv.csv')
-make_csv(dict_classifier(whole, 'cv', 'SVC', cv_metrics, labels, big5, data, new_fscores), 'outputs/SVM_results_cv.csv')
+make_csv(dict_classifier(whole,  'RF', cv_metrics, labels, big5, data, new_fscores), 'outputs/RF_results_cv.csv')
+make_csv(dict_classifier(whole, 'SVC', cv_metrics, labels, big5, data, new_fscores), 'outputs/SVM_results_cv.csv')
 #%%
 
