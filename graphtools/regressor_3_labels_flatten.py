@@ -51,8 +51,7 @@ def dict_regressor(whole, metrics, labels, big5, data, new_corr):
     """
 
     for i in range(5):  # different labels
-
-        for per in [5, 10]:
+        for per in [5, 10, 50, 0]: # 0 value runs the model on all the labels
             val = np.percentile(new_corr[i], 100 - per)
             index = np.where(new_corr[i] >= val)
             print('Number of features', len(index[0]))
