@@ -41,7 +41,7 @@ def plot_regression_results(ax, y_true, y_pred, title, scores, elapsed_time):
 
 
 # %%
-def dict_regressor(whole, metrics, labels, big5, data, new_fscores):
+def dict_regressor(whole, metrics, labels, big5, data, new_corr):
     """
     :param metrics: the name of the metrics we want to calculate
     :param labels: the big5 personality labels
@@ -51,15 +51,16 @@ def dict_regressor(whole, metrics, labels, big5, data, new_fscores):
     """
 
     for i in range(5):  # different labels
+
         for per in [5, 10]:
-            val = np.percentile(new_fscores[i], 100 - per)
-            index = np.where(new_fscores[i] >= val)
+            val = np.percentile(new_corr[i], 100 - per)
+            index = np.where(new_corr[i] >= val)
             print('Number of features', len(index[0]))
             y = data[labels[i]]
             X = whole[:, index[0]]
             lasso = LassoCV()
             rf = RandomForestRegressor()
-            gradient = HistGradientBoostingRegressor(max_iter=1000)
+            gradient = HistGradientBoostingRegressor(max_iter=100000)
 
             estimators = [('Random Forest', rf), ('Lasso', lasso), ('Gradient booster', gradient)]
             stacking_regressor = StackingRegressor(estimators=estimators, final_estimator=RidgeCV())
@@ -115,11 +116,9 @@ edge_names = ['mean_FA', 'mean strl', 'num streamlines']
 big5 = ['Agreeableness', 'Openness', 'Conscientiousness', 'Neuroticism',
         'Extraversion']
 # %%
-fscores = hist_fscore(data, whole, labels, big5, edge_names, tri)
-hist_correlation(data, whole, labels, edge_names, big5, tri)
+corr = hist_correlation(data, whole, labels, edge_names, big5, tri)
+new_corr = np.reshape(corr, (corr.shape[0], corr.shape[1]*corr.shape[2]))
 # %%
 # without taking the edge type into consideration
-new_fscores = np.reshape(fscores, (fscores.shape[0], fscores.shape[1] * fscores.shape[2]))
-metrics = ['r2', 'neg_mean_absolute_error']
-cv_metrics = ['balanced_accuracy', 'roc_auc', 'accuracy', 'f1']
-dict_regressor(whole, metrics, labels, big5, data, new_fscores)
+cv_metrics = ['r2', 'neg_mean_absolute_error']
+dict_regressor(whole, cv_metrics, labels, big5, data, new_corr)
