@@ -8,6 +8,7 @@ from sklearn.neural_network import MLPClassifier
 from processing import generate_combined_matrix, hist_fscore
 from readfiles import computed_subjects
 import matplotlib.pyplot as plt
+import time
 # %%
 def dict_classifier(classifier, *args):
     """
@@ -41,6 +42,7 @@ def dict_classifier(classifier, *args):
                                  'gamma': loguniform(1e-4, 1e-2),
                                  'kernel': ['rbf', 'poly', 'sigmoid', 'linear'],
                                  'class_weight': ['balanced', None]}
+                print(f'Executing {clf}')
             elif classifier == 'RF':
                 clf = RandomForestClassifier()
                 distributions = {'bootstrap': [True, False],
@@ -49,6 +51,7 @@ def dict_classifier(classifier, *args):
                                  'min_samples_leaf': [1, 2, 4],
                                  'min_samples_split': [2, 5, 10],
                                  'n_estimators': [200, 400, 600, 800, 1000, 1200, 1400]}
+                print(f'Executing {clf}')
             elif classifier == 'GB':
                 clf = GradientBoostingClassifier()
                 distributions = {'loss': ['deviance', 'exponential'],
@@ -58,6 +61,7 @@ def dict_classifier(classifier, *args):
                                  'min_samples_split': [2, 5, 10],
                                  'n_estimators': [200, 400, 600, 800, 1000, 1200, 1400]
                                  }
+                print(f'Executing {clf}')
             elif classifier == 'MLP':
                 clf = MLPClassifier()
                 distributions = {'hidden_layer_sizes': [(50, 50, 50), (50, 100, 50), (100,)],
@@ -65,6 +69,7 @@ def dict_classifier(classifier, *args):
                                  'solver': ['sgd', 'adam'],
                                  'alpha': [0.0001, 0.05],
                                  'learning_rate': ['constant', 'adaptive']}
+                print(f'Executing {clf}')
 
             rcv = RandomizedSearchCV(clf, distributions, random_state=42, scoring=metrics, refit='roc_auc')
             # scores = cross_validate(clf, X, Y, cv=5, scoring=metrics)
@@ -92,7 +97,7 @@ def visualise_performance(combined):
     #for each label we will visualise the performance of different classifiers
     for i, label in zip(range(5), big5):
         fig, ax = plt.subplots(5, len(metrics))
-        for j, metric in zip(range(len(metrics), metrics)):
+        for j, metric in zip(range(len(metrics)), metrics)):
             l = []
             for clf in combined.keys():
                 l.append(combined[clf][big5][metric])

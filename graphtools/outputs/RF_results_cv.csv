@@ -1,0 +1,6 @@
+,Agreeableness,Agreeableness,Agreeableness,Agreeableness,Openness,Openness,Openness,Openness,Conscientiousness,Conscientiousness,Conscientiousness,Conscientiousness,Neuroticism,Neuroticism,Neuroticism,Neuroticism,Extraversion,Extraversion,Extraversion,Extraversion
+,balanced_accuracy,roc_auc,accuracy,f1,balanced_accuracy,roc_auc,accuracy,f1,balanced_accuracy,roc_auc,accuracy,f1,balanced_accuracy,roc_auc,accuracy,f1,balanced_accuracy,roc_auc,accuracy,f1
+5,0.68,0.759,0.68,0.691,0.69,0.794,0.709,0.764,0.737,0.838,0.741,0.77,0.714,0.779,0.713,0.721,0.682,0.744,0.69,0.732
+10,0.637,0.711,0.637,0.649,0.661,0.763,0.681,0.742,0.696,0.786,0.703,0.745,0.691,0.731,0.691,0.703,0.676,0.731,0.686,0.734
+50,0.493,0.51,0.493,0.506,0.562,0.607,0.59,0.685,0.513,0.506,0.523,0.601,0.598,0.601,0.6,0.633,0.553,0.572,0.574,0.664
+0,0.526,0.556,0.526,0.496,0.547,0.558,0.521,0.438,0.529,0.551,0.539,0.591,0.631,0.662,0.631,0.628,0.564,0.568,0.57,0.614
