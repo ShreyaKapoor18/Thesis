@@ -9,6 +9,8 @@ from processing import generate_combined_matrix, hist_fscore
 from readfiles import computed_subjects
 import matplotlib.pyplot as plt
 import time
+
+
 # %%
 def dict_classifier(classifier, *args):
     """
@@ -55,7 +57,7 @@ def dict_classifier(classifier, *args):
             elif classifier == 'GB':
                 clf = GradientBoostingClassifier()
                 distributions = {'loss': ['deviance', 'exponential'],
-                                 'learning_rate': [0.8,0.9,1],
+                                 'learning_rate': [0.8, 0.9, 1],
                                  'tol': loguniform(1e-4, 1e-2),
                                  'min_samples_leaf': [1, 2, 4],
                                  'min_samples_split': [2, 5, 10],
@@ -80,31 +82,35 @@ def dict_classifier(classifier, *args):
                 metric_score[big5[i]][per][metric] = round(np.mean(scores[f'mean_test_{metric}']), 3)
 
     return {'Metrics': metric_score, 'Parameters': best_params}
+
+
 # %%
 def make_csv(dict_score, filename):
     cv1 = pd.concat({
-            k: pd.DataFrame.from_dict(v, 'index') for k, v in dict_score['Metrics'].items()
-        },
-            axis=1)
+        k: pd.DataFrame.from_dict(v, 'index') for k, v in dict_score['Metrics'].items()
+    },
+        axis=1)
     cv2 = pd.concat({
-            k: pd.DataFrame.from_dict(v, 'index') for k, v in dict_score['Parameters'].items()
-        },
-            axis=1)
+        k: pd.DataFrame.from_dict(v, 'index') for k, v in dict_score['Parameters'].items()
+    },
+        axis=1)
     cv1.to_csv(filename)
     cv2.to_csv(filename.split('.csv')[0] + '_bestparams.csv')
-#%%
-def visualise_performance(combined):
-    #for each label we will visualise the performance of different classifiers
+
+
+# %%
+def visualise_performance(combined, *args):
+    # for each label we will visualise the performance of different classifiers
     for i, label in zip(range(5), big5):
         fig, ax = plt.subplots(5, len(metrics))
-        for j, metric in zip(range(len(metrics)), metrics)):
+        for j, metric in zip(range(len(metrics)), metrics):
             l = []
-            for clf in combined.keys():
-                l.append(combined[clf][big5][metric])
-            ax[i][j].plot(len(combined.keys()), l)
-            ax[i][j].set_xticks(clf)
-            ax[i][j].set_xlabel('Classifier')
-            ax[i][j].set_ylabel(metric)
+        for clf in combined.keys():
+            l.append(combined[clf][big5[i]][metric])
+        ax[i][j].plot(len(combined.keys()), l)
+        ax[i][j].set_xticks(clf)
+        ax[i][j].set_xlabel('Classifier')
+        ax[i][j].set_ylabel(metric)
         plt.savefig(f'outputs/classification_{label}')
 # %%
 data = computed_subjects()  # labels for the computed subjects
@@ -117,7 +123,7 @@ whole = generate_combined_matrix(tri)
 labels = ['NEOFAC_A', 'NEOFAC_O', 'NEOFAC_C', 'NEOFAC_N', 'NEOFAC_E']
 edge_names = ['mean_FA', 'mean strl', 'num streamlines']
 big5 = ['Agreeableness', 'Openness', 'Conscientiousness', 'Neuroticism',
-        'Extraversion']
+'Extraversion']
 # %%
 fscores = hist_fscore(data, whole, labels, big5, edge_names, tri)
 # %%
@@ -128,7 +134,7 @@ metrics = ['balanced_accuracy', 'roc_auc', 'accuracy', 'f1']
 combined = {}
 for clf in ['SVC', 'RF', 'GB', 'MLP']:
     d1 = dict_classifier(clf, whole, metrics, labels, big5, data, new_fscores)
-    make_csv(d1, f'outputs/{clf}_results_cv.csv')
-    combined[clf] = d1['Metrics']
+make_csv(d1, f'outputs/{clf}_results_cv.csv')
+combined[clf] = d1['Metrics']
 # %%
-visualise_performance(combined)
+visualise_performance(combined, big5)
