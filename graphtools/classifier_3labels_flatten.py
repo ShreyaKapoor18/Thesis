@@ -114,7 +114,7 @@ def visualise_performance(combined, big5, metrics, top_per):
                 ax[k][j].scatter(combined.keys(), l)
                 ax[k][j].plot(list(combined.keys()), l)
                 #ax[k][j].set_xticks(list(combined.keys()))
-                ax[k][j].set_title(f'Top {100-top_per[j]}% features')
+                ax[k][j].set_title(f'Top {100-top_per[k]}% features')
                 ax[k][j].set_xlabel('Classifier')
                 ax[k][j].set_ylabel(metrics[j])
         fig.suptitle(big5[i])
