@@ -10,7 +10,6 @@ from readfiles import computed_subjects
 import matplotlib.pyplot as plt
 import time
 
-
 # %%
 def dict_classifier(classifier, *args):
     """
@@ -35,11 +34,12 @@ def dict_classifier(classifier, *args):
             val = np.percentile(new_fscores[i], 100 - per)
             index = np.where(new_fscores[i] >= val)
             # print(f'Number of indexes where the values are in the last {per} percentile:', len(index[0]))
-            Y = np.array(data[labels[i]] >= data[labels[i]].median()).astype(int)
+            #Y = np.array(data[labels[i]] >= data[labels[i]].median()).astype(int)
+            y = np.array(pd.qcut(data[labels[i]], 3, labels=False, retbins=True)[0]) #low medium and high classes
             X = whole[:, index[0]]
 
             if classifier == 'SVC':
-                clf = SVC()
+                clf = SVC(probability=True)
                 distributions = {'C': loguniform(1e0, 1e3),
                                  'gamma': loguniform(1e-4, 1e-2),
                                  'kernel': ['rbf', 'poly', 'sigmoid', 'linear'],
@@ -56,14 +56,14 @@ def dict_classifier(classifier, *args):
 
             elif classifier == 'GB':
                 clf = GradientBoostingClassifier()
-                distributions = {'loss': ['deviance', 'exponential'],
+                distributions = {#'loss': ['deviance', 'exponential']
                                  'learning_rate': [0.8, 0.9, 1],
                                  'tol': loguniform(1e-4, 1e-2),
                                  'min_samples_leaf': [1, 2, 4],
                                  'min_samples_split': [2, 5, 10],
                                  'n_estimators': [200, 400, 600, 800, 1000, 1200, 1400]
                                  }
-
+                #multiclass cannot use losss exponential
             elif classifier == 'MLP':
                 clf = MLPClassifier()
                 distributions = {'hidden_layer_sizes': [(50, 50, 50), (50, 100, 50), (100,)],
@@ -73,9 +73,11 @@ def dict_classifier(classifier, *args):
                                  'learning_rate': ['constant', 'adaptive']}
 
             print(f'Executing {clf}')
-            rcv = RandomizedSearchCV(clf, distributions, random_state=42, scoring=metrics, refit='roc_auc', cv=5)
+            #roc doesn't support multiclass
+            rcv = RandomizedSearchCV(clf, distributions, random_state=42, scoring=metrics,
+                                     refit='roc_auc_ovr_weighted', cv=5)
             # scores = cross_validate(clf, X, Y, cv=5, scoring=metrics)
-            search = rcv.fit(X, Y)
+            search = rcv.fit(X, y)
             scores = search.cv_results_
             best_params[big5[i]][per] = search.best_params_
             for metric in metrics:
@@ -138,9 +140,10 @@ fscores = hist_fscore(data, whole, labels, big5, edge_names, tri)
 # %%
 # without taking the edge type into consideration
 new_fscores = np.reshape(fscores, (fscores.shape[0], fscores.shape[1] * fscores.shape[2]))
-metrics = ['balanced_accuracy', 'roc_auc', 'accuracy', 'f1']
+metrics = ['balanced_accuracy', 'accuracy', 'f1_weighted', 'roc_auc_ovr_weighted']
 # %%
 combined = {}
+#%%
 for clf in ['SVC', 'RF', 'GB', 'MLP']:
     d1 = dict_classifier(clf, whole, metrics, labels, big5, data, new_fscores)
     make_csv(d1, f'outputs/{clf}_results_cv.csv')
