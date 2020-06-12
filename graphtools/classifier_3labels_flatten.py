@@ -102,7 +102,7 @@ def make_csv(dict_score, filename):
 def visualise_performance(combined, big5, metrics, top_per):
     # for each label we will visualise the performance of different classifiers
     for i in range(len(big5)):
-        fig, ax = plt.subplots(len(top_per), len(metrics), figsize=(15,15))
+        fig, ax = plt.subplots(len(top_per), len(metrics), figsize=(20,15))
         for k in range(len(top_per)):
             for j in range(len(metrics)):
                 l = []
