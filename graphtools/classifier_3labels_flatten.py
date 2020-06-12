@@ -44,7 +44,7 @@ def dict_classifier(classifier, *args):
                                  'gamma': loguniform(1e-4, 1e-2),
                                  'kernel': ['rbf', 'poly', 'sigmoid', 'linear'],
                                  'class_weight': ['balanced', None]}
-                print(f'Executing {clf}')
+
             elif classifier == 'RF':
                 clf = RandomForestClassifier()
                 distributions = {'bootstrap': [True, False],
@@ -53,7 +53,7 @@ def dict_classifier(classifier, *args):
                                  'min_samples_leaf': [1, 2, 4],
                                  'min_samples_split': [2, 5, 10],
                                  'n_estimators': [200, 400, 600, 800, 1000, 1200, 1400]}
-                print(f'Executing {clf}')
+
             elif classifier == 'GB':
                 clf = GradientBoostingClassifier()
                 distributions = {'loss': ['deviance', 'exponential'],
@@ -63,7 +63,7 @@ def dict_classifier(classifier, *args):
                                  'min_samples_split': [2, 5, 10],
                                  'n_estimators': [200, 400, 600, 800, 1000, 1200, 1400]
                                  }
-                print(f'Executing {clf}')
+
             elif classifier == 'MLP':
                 clf = MLPClassifier()
                 distributions = {'hidden_layer_sizes': [(50, 50, 50), (50, 100, 50), (100,)],
@@ -71,9 +71,9 @@ def dict_classifier(classifier, *args):
                                  'solver': ['sgd', 'adam'],
                                  'alpha': [0.0001, 0.05],
                                  'learning_rate': ['constant', 'adaptive']}
-                print(f'Executing {clf}')
 
-            rcv = RandomizedSearchCV(clf, distributions, random_state=42, scoring=metrics, refit='roc_auc')
+            print(f'Executing {clf}')
+            rcv = RandomizedSearchCV(clf, distributions, random_state=42, scoring=metrics, refit='roc_auc', cv=5)
             # scores = cross_validate(clf, X, Y, cv=5, scoring=metrics)
             search = rcv.fit(X, Y)
             scores = search.cv_results_
@@ -99,19 +99,27 @@ def make_csv(dict_score, filename):
 
 
 # %%
-def visualise_performance(combined, *args):
+def visualise_performance(combined, big5, metrics, top_per):
     # for each label we will visualise the performance of different classifiers
-    for i, label in zip(range(5), big5):
-        fig, ax = plt.subplots(5, len(metrics))
-        for j, metric in zip(range(len(metrics)), metrics):
-            l = []
-        for clf in combined.keys():
-            l.append(combined[clf][big5[i]][metric])
-        ax[i][j].plot(len(combined.keys()), l)
-        ax[i][j].set_xticks(clf)
-        ax[i][j].set_xlabel('Classifier')
-        ax[i][j].set_ylabel(metric)
-        plt.savefig(f'outputs/classification_{label}')
+    for i in range(len(big5)):
+        fig, ax = plt.subplots(len(top_per), len(metrics), figsize=(15,15))
+        for k in range(len(top_per)):
+            for j in range(len(metrics)):
+                l = []
+                for clf in combined.keys():
+                    l.append(combined[clf][big5[i]][top_per[k]][metrics[j]])
+                    #print(clf, big5[i], top_per[k], metrics[j])
+                    #print(combined[clf][big5[i]][top_per[k]][metrics[j]])
+                #print('xx', len(l))
+                ax[k][j].scatter(combined.keys(), l)
+                ax[k][j].plot(list(combined.keys()), l)
+                #ax[k][j].set_xticks(list(combined.keys()))
+                ax[k][j].set_title(f'Top {100-top_per[j]}% features')
+                ax[k][j].set_xlabel('Classifier')
+                ax[k][j].set_ylabel(metrics[j])
+        fig.suptitle(big5[i])
+        plt.savefig(f'outputs/classification_{big5[i]}')
+        plt.show()
 # %%
 data = computed_subjects()  # labels for the computed subjects
 data.reset_index(inplace=True)
@@ -134,7 +142,7 @@ metrics = ['balanced_accuracy', 'roc_auc', 'accuracy', 'f1']
 combined = {}
 for clf in ['SVC', 'RF', 'GB', 'MLP']:
     d1 = dict_classifier(clf, whole, metrics, labels, big5, data, new_fscores)
-make_csv(d1, f'outputs/{clf}_results_cv.csv')
-combined[clf] = d1['Metrics']
+    make_csv(d1, f'outputs/{clf}_results_cv.csv')
+    combined[clf] = d1['Metrics']
 # %%
-visualise_performance(combined, big5)
+visualise_performance(combined, big5, metrics, [5,10,50,0])
