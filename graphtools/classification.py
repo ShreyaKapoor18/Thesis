@@ -69,7 +69,7 @@ def dict_classifier(classifier, *args):
                 distributions = {'hidden_layer_sizes': [(50, 50, 50), (50, 100, 50), (100,)],
                                  'activation': ['tanh', 'relu'],
                                  'solver': ['sgd', 'adam'],
-                                 'alpha': [0.0001, 0.05],
+                                 'alpha': [0.001, 0.05],
                                  'learning_rate': ['constant', 'adaptive']}
 
             print(f'Executing {clf}')
