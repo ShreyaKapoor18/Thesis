@@ -59,9 +59,9 @@ def hist_correlation(data, whole, labels, edge_names, big5, tri):
             ax[j][i].set_title(big5[j] + ' ' + edge_names[i])
             ax[j][i].set_ylabel('Num edges')
             ax[j][i].set_xlabel('Correlation coeff')
-
+    plt.tight_layout()
     plt.savefig('reports/correlation_distribution.png')
-    plt.show()
+    #plt.show()
     return corr
 
 
@@ -97,6 +97,7 @@ def hist_fscore(data, whole, labels, big5, edge_names, tri):
             ax[j][i].set_title(big5[j] + ' ' + edge_names[i])
             ax[j][i].set_xlabel('F-Score')
             ax[j][i].set_ylabel('Number of edges')
+    plt.tight_layout()
     plt.savefig('reports/fscore_distribution.png')
-    plt.show()
+    #plt.show()
     return fscores

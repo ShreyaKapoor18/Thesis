@@ -122,7 +122,7 @@ def visualise_performance(combined, big5, metrics, top_per):
         fig.suptitle(big5[i])
         plt.tight_layout()
         plt.savefig(f'outputs/classification_{big5[i]}')
-        plt.show()
+        #plt.show()
 # %%
 data = computed_subjects()  # labels for the computed subjects
 data.reset_index(inplace=True)

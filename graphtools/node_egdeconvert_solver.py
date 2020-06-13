@@ -37,8 +37,7 @@ def make_nodes_edges(filename, subject):
                   file=edges_file)
              #print(str(edge[0]) + ' ' + str(edge[1]) + ' ' + str(randint(-5,5)), file = edges_file)
 
-
-    #%%
+#%%
     nodes_file.close()
     edges_file.close()
 #%%
