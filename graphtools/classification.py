@@ -9,6 +9,8 @@ from processing import generate_combined_matrix, hist_fscore
 from readfiles import computed_subjects
 import matplotlib.pyplot as plt
 import time
+import datetime
+
 
 # %%
 def dict_classifier(classifier, *args):
@@ -34,8 +36,8 @@ def dict_classifier(classifier, *args):
             val = np.percentile(new_fscores[i], 100 - per)
             index = np.where(new_fscores[i] >= val)
             # print(f'Number of indexes where the values are in the last {per} percentile:', len(index[0]))
-            #Y = np.array(data[labels[i]] >= data[labels[i]].median()).astype(int)
-            y = np.array(pd.qcut(data[labels[i]], 3, labels=False, retbins=True)[0]) #low medium and high classes
+            # Y = np.array(data[labels[i]] >= data[labels[i]].median()).astype(int)
+            y = np.array(pd.qcut(data[labels[i]], 3, labels=False, retbins=True)[0])  # low medium and high classes
             X = whole[:, index[0]]
 
             if classifier == 'SVC':
@@ -56,24 +58,24 @@ def dict_classifier(classifier, *args):
 
             elif classifier == 'GB':
                 clf = GradientBoostingClassifier()
-                distributions = {#'loss': ['deviance', 'exponential']
-                                 'learning_rate': [0.8, 0.9, 1],
-                                 'tol': loguniform(1e-4, 1e-2),
-                                 'min_samples_leaf': [1, 2, 4],
-                                 'min_samples_split': [2, 5, 10],
-                                 'n_estimators': [200, 400, 600, 800, 1000, 1200, 1400]
-                                 }
-                #multiclass cannot use losss exponential
+                distributions = {  # 'loss': ['deviance', 'exponential']
+                    'learning_rate': [0.8, 0.9, 1],
+                    'tol': loguniform(1e-4, 1e-2),
+                    'min_samples_leaf': [1, 2, 4],
+                    'min_samples_split': [2, 5, 10],
+                    'n_estimators': [200, 400, 600, 800]
+                }
+                # multiclass cannot use losss exponential
             elif classifier == 'MLP':
                 clf = MLPClassifier()
-                distributions = {'hidden_layer_sizes': [(50, 50, 50), (50, 100, 50), (100,)],
+                distributions = {'hidden_layer_sizes': [(50, 100, 100, 50), (50, 100, 50), (100,)],
                                  'activation': ['tanh', 'relu'],
                                  'solver': ['sgd', 'adam'],
                                  'alpha': [0.001, 0.05],
-                                 'learning_rate': ['constant', 'adaptive']}
+                                 'learning_rate': ['adaptive']}
 
             print(f'Executing {clf}')
-            #roc doesn't support multiclass
+            # roc doesn't support multiclass
             rcv = RandomizedSearchCV(clf, distributions, random_state=42, scoring=metrics,
                                      refit='roc_auc_ovr_weighted', cv=5)
             # scores = cross_validate(clf, X, Y, cv=5, scoring=metrics)
@@ -104,49 +106,54 @@ def make_csv(dict_score, filename):
 def visualise_performance(combined, big5, metrics, top_per):
     # for each label we will visualise the performance of different classifiers
     for i in range(len(big5)):
-        fig, ax = plt.subplots(len(top_per), len(metrics), figsize=(25,20))
+        fig, ax = plt.subplots(len(top_per), len(metrics), figsize=(25, 20))
         for k in range(len(top_per)):
             for j in range(len(metrics)):
                 l = []
                 for clf in combined.keys():
                     l.append(combined[clf][big5[i]][top_per[k]][metrics[j]])
-                    #print(clf, big5[i], top_per[k], metrics[j])
-                    #print(combined[clf][big5[i]][top_per[k]][metrics[j]])
-                #print('xx', len(l))
+                    # print(clf, big5[i], top_per[k], metrics[j])
+                    # print(combined[clf][big5[i]][top_per[k]][metrics[j]])
+                # print('xx', len(l))
                 ax[k][j].scatter(combined.keys(), l)
                 ax[k][j].plot(list(combined.keys()), l)
-                #ax[k][j].set_xticks(list(combined.keys()))
-                ax[k][j].set_title(f'Top {100-top_per[k]}% features')
+                # ax[k][j].set_xticks(list(combined.keys()))
+                ax[k][j].set_title(f'Top {100 - top_per[k]}% features')
                 ax[k][j].set_xlabel('Classifier')
                 ax[k][j].set_ylabel(metrics[j])
         fig.suptitle(big5[i])
         plt.tight_layout()
         plt.savefig(f'outputs/classification_{big5[i]}')
-        #plt.show()
+        # plt.show()
+
+
 # %%
-data = computed_subjects()  # labels for the computed subjects
-data.reset_index(inplace=True)
-num = 84  # number of nodes in the graph
-tri = int(num * (num + 1) * 0.5)  # we want only the upper diagonal parts since everything below diagonal is 0
-whole = generate_combined_matrix(tri)
-# The labels i.e. the ones from unrestricted_files!
-# %%
-labels = ['NEOFAC_A', 'NEOFAC_O', 'NEOFAC_C', 'NEOFAC_N', 'NEOFAC_E']
-edge_names = ['mean_FA', 'mean strl', 'num streamlines']
-big5 = ['Agreeableness', 'Openness', 'Conscientiousness', 'Neuroticism',
-'Extraversion']
-# %%
-fscores = hist_fscore(data, whole, labels, big5, edge_names, tri)
-# %%
-# without taking the edge type into consideration
-new_fscores = np.reshape(fscores, (fscores.shape[0], fscores.shape[1] * fscores.shape[2]))
-metrics = ['balanced_accuracy', 'accuracy', 'f1_weighted', 'roc_auc_ovr_weighted']
-# %%
-combined = {}
-#%%
-for clf in ['SVC', 'RF', 'GB', 'MLP']:
-    d1 = dict_classifier(clf, whole, metrics, labels, big5, data, new_fscores)
-    make_csv(d1, f'outputs/{clf}_results_cv.csv')
-    combined[clf] = d1['Metrics']
-# %%
-visualise_performance(combined, big5, metrics, [5,10,50,0])
+if __name__ == "__main__":
+
+    data = computed_subjects()  # labels for the computed subjects
+    data.reset_index(inplace=True)
+    num = 84  # number of nodes in the graph
+    tri = int(num * (num + 1) * 0.5)  # we want only the upper diagonal parts since everything below diagonal is 0
+    whole = generate_combined_matrix(tri)
+    # The labels i.e. the ones from unrestricted_files!
+
+    labels = ['NEOFAC_A', 'NEOFAC_O', 'NEOFAC_C', 'NEOFAC_N', 'NEOFAC_E']
+    edge_names = ['mean_FA', 'mean strl', 'num streamlines']
+    big5 = ['Agreeableness', 'Openness', 'Conscientiousness', 'Neuroticism',
+            'Extraversion']
+
+    fscores = hist_fscore(data, whole, labels, big5, edge_names, tri)
+
+    # without taking the edge type into consideration
+    new_fscores = np.reshape(fscores, (fscores.shape[0], fscores.shape[1] * fscores.shape[2]))
+    metrics = ['balanced_accuracy', 'accuracy', 'f1_weighted', 'roc_auc_ovr_weighted']
+
+    combined = {}
+    for clf in ['SVC', 'RF', 'GB', 'MLP']:
+        start = time.time()
+        d1 = dict_classifier(clf, whole, metrics, labels, big5, data, new_fscores)
+        end = time.time()
+        print(f'Time taken for {clf}: {datetime.timedelta(seconds=end-start)}')
+        make_csv(d1, f'outputs/{clf}_results_cv.csv')
+        combined[clf] = d1['Metrics']
+    visualise_performance(combined, big5, metrics, [5, 10, 50, 0])

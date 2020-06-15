@@ -1,0 +1,606 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="SCOPE_TYPE" value="3" />
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="96a293b3-8c56-42ff-a127-58952144c9ad" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/outputs/RF_results_cv.csv" beforeDir="false" afterPath="$PROJECT_DIR$/outputs/RF_results_cv.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/outputs/RF_results_cv_bestparams.csv" beforeDir="false" afterPath="$PROJECT_DIR$/outputs/RF_results_cv_bestparams.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../preprocessing" beforeDir="false" afterPath="$PROJECT_DIR$/../preprocessing" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="JupyterTrust" id="edbcbcd2-d81a-4387-81f3-78ab951c0b06" />
+  <component name="ProjectId" id="1cOYuUCjZEue5YXFt5EVFOgpP53" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../preprocessing" />
+    <property name="run.code.analysis.last.selected.profile" value="aDefault" />
+    <property name="settings.editor.selected.configurable" value="vcs.Subversion" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/rough_code" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/anaconda3/bin/python" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="classification" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="$USER_HOME$/anaconda3/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/classification.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.classification" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration>$USER_HOME$/.subversion</configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="96a293b3-8c56-42ff-a127-58952144c9ad" name="Default Changelist" comment="" />
+      <created>1590401329919</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1590401329919</updated>
+      <workItem from="1590401332138" duration="931000" />
+      <workItem from="1590484387872" duration="2722000" />
+      <workItem from="1590487227077" duration="2180000" />
+      <workItem from="1590489661904" duration="5585000" />
+      <workItem from="1590500585480" duration="8256000" />
+      <workItem from="1590662472998" duration="12639000" />
+      <workItem from="1590752751946" duration="13776000" />
+      <workItem from="1590917700602" duration="6000" />
+      <workItem from="1591097901797" duration="16055000" />
+      <workItem from="1591269268449" duration="9268000" />
+      <workItem from="1591278951059" duration="1353000" />
+      <workItem from="1591344338413" duration="4061000" />
+      <workItem from="1591364913264" duration="908000" />
+      <workItem from="1591606997981" duration="4907000" />
+      <workItem from="1591612683439" duration="4500000" />
+      <workItem from="1591622294465" duration="3083000" />
+      <workItem from="1591691019928" duration="13538000" />
+      <workItem from="1591805715423" duration="123000" />
+      <workItem from="1591949807811" duration="17737000" />
+      <workItem from="1592207568433" duration="2528000" />
+      <workItem from="1592210492063" duration="4002000" />
+    </task>
+    <task id="LOCAL-00001" summary="restructured folders">
+      <created>1590487434642</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1590487434642</updated>
+    </task>
+    <task id="LOCAL-00002" summary="edge correlation">
+      <created>1590489297204</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1590489297204</updated>
+    </task>
+    <task id="LOCAL-00003" summary="edges for mean FA">
+      <created>1590489674848</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1590489674848</updated>
+    </task>
+    <task id="LOCAL-00004" summary="correlations for all edges">
+      <created>1590496344861</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1590496344861</updated>
+    </task>
+    <task id="LOCAL-00005" summary="big5">
+      <created>1590500516275</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1590500516275</updated>
+    </task>
+    <task id="LOCAL-00006" summary="big5 report and information">
+      <created>1590502657997</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1590502657997</updated>
+    </task>
+    <task id="LOCAL-00007" summary="read all precomputed subjects in regina's folder">
+      <created>1590502690551</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1590502690551</updated>
+    </task>
+    <task id="LOCAL-00008" summary="flattened version edges duplicated but with different infos from files">
+      <created>1590502737473</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1590502737473</updated>
+    </task>
+    <task id="LOCAL-00009" summary="reduced code">
+      <created>1590503017071</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1590503017071</updated>
+    </task>
+    <task id="LOCAL-00010" summary="restructured code">
+      <created>1590504418760</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1590504418760</updated>
+    </task>
+    <task id="LOCAL-00011" summary="correct typo">
+      <created>1590574842502</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1590574842502</updated>
+    </task>
+    <task id="LOCAL-00012" summary="profiles filenames">
+      <created>1590575852524</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1590575852524</updated>
+    </task>
+    <task id="LOCAL-00013" summary="histogram per edge per type (3 types)">
+      <created>1590666341532</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1590666341532</updated>
+    </task>
+    <task id="LOCAL-00014" summary="histograms">
+      <created>1590668949657</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1590668949657</updated>
+    </task>
+    <task id="LOCAL-00015" summary="histograms">
+      <created>1590676150309</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1590676150309</updated>
+    </task>
+    <task id="LOCAL-00016" summary="fscore visualisation">
+      <created>1590765993819</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1590765993819</updated>
+    </task>
+    <task id="LOCAL-00017" summary="in place">
+      <created>1590766566589</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1590766566589</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Random forest and SVM">
+      <created>1590766946821</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1590766946821</updated>
+    </task>
+    <task id="LOCAL-00019" summary="check for preprocessing pipeline completion">
+      <created>1591102841911</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1591102841911</updated>
+    </task>
+    <task id="LOCAL-00020" summary="0 denominator handling for edge">
+      <created>1591103965573</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1591103965573</updated>
+    </task>
+    <task id="LOCAL-00021" summary="round off the f score to 3 decimal places">
+      <created>1591105642768</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1591105642768</updated>
+    </task>
+    <task id="LOCAL-00022" summary="get only upper triangular edges as features">
+      <created>1591105672289</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1591105672289</updated>
+    </task>
+    <task id="LOCAL-00023" summary="classification with and without edge type information">
+      <created>1591115805821</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1591115805821</updated>
+    </task>
+    <task id="LOCAL-00024" summary="removed redundant function">
+      <created>1591269917913</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1591269917913</updated>
+    </task>
+    <task id="LOCAL-00025" summary="stacked regressors">
+      <created>1591276677294</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1591276677294</updated>
+    </task>
+    <task id="LOCAL-00026" summary="rm redundancies">
+      <created>1591276716810</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1591276716810</updated>
+    </task>
+    <task id="LOCAL-00027" summary="organise files">
+      <created>1591276743949</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1591276743949</updated>
+    </task>
+    <task id="LOCAL-00028" summary="new type">
+      <created>1591364936427</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1591364936427</updated>
+    </task>
+    <task id="LOCAL-00029" summary="removed option with no cross validation">
+      <created>1591611017511</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1591611017511</updated>
+    </task>
+    <task id="LOCAL-00030" summary="corrected for correlation instead of covariance">
+      <created>1591611054867</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1591611054867</updated>
+    </task>
+    <task id="LOCAL-00031" summary="correaltion calculation for all files">
+      <created>1591611074592</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1591611074592</updated>
+    </task>
+    <task id="LOCAL-00032" summary="run regressors with correlation coeff and not fscores">
+      <created>1591611107936</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1591611107936</updated>
+    </task>
+    <task id="LOCAL-00033" summary="classifier with randomised search cv">
+      <created>1591618758236</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1591618758236</updated>
+    </task>
+    <task id="LOCAL-00034" summary="add all features selection">
+      <created>1591618930009</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1591618930009</updated>
+    </task>
+    <task id="LOCAL-00035" summary="added more classifiers">
+      <created>1591699815007</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1591699815007</updated>
+    </task>
+    <task id="LOCAL-00036" summary="classification update and results">
+      <created>1591962330191</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1591962330191</updated>
+    </task>
+    <task id="LOCAL-00037" summary="figsize change">
+      <created>1591962780418</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1591962780418</updated>
+    </task>
+    <task id="LOCAL-00038" summary="fix indexing error">
+      <created>1591963037527</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1591963037527</updated>
+    </task>
+    <task id="LOCAL-00039" summary="tight layout">
+      <created>1591963236416</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1591963236416</updated>
+    </task>
+    <task id="LOCAL-00040" summary="multi-class labels cut">
+      <created>1591969894940</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1591969894940</updated>
+    </task>
+    <task id="LOCAL-00041" summary="outputs from quantile run, still need the classification graph update">
+      <created>1592207639919</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1592207639919</updated>
+    </task>
+    <task id="LOCAL-00042" summary="add ReadME.md">
+      <created>1592210684704</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1592210684704</updated>
+    </task>
+    <task id="LOCAL-00043" summary="syntax format">
+      <created>1592210724820</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1592210724820</updated>
+    </task>
+    <task id="LOCAL-00044" summary="cleanup folder">
+      <created>1592210770396</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1592210770396</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="0 denominator handling for edge" />
+    <MESSAGE value="round off the f score to 3 decimal places" />
+    <MESSAGE value="get only upper triangular edges as features" />
+    <MESSAGE value="classification with and without edge type information" />
+    <MESSAGE value="removed redundant function" />
+    <MESSAGE value="stacked regressors" />
+    <MESSAGE value="rm redundancies" />
+    <MESSAGE value="organise files" />
+    <MESSAGE value="new type" />
+    <MESSAGE value="removed option with no cross validation" />
+    <MESSAGE value="corrected for correlation instead of covariance" />
+    <MESSAGE value="correaltion calculation for all files" />
+    <MESSAGE value="run regressors with correlation coeff and not fscores" />
+    <MESSAGE value="classifier with randomised search cv" />
+    <MESSAGE value="add all features selection" />
+    <MESSAGE value="added more classifiers" />
+    <MESSAGE value="classification update and results" />
+    <MESSAGE value="figsize change" />
+    <MESSAGE value="fix indexing error" />
+    <MESSAGE value="tight layout" />
+    <MESSAGE value="multi-class labels cut" />
+    <MESSAGE value="outputs from quantile run, still need the classification graph update" />
+    <MESSAGE value="add ReadME.md" />
+    <MESSAGE value="syntax format" />
+    <MESSAGE value="cleanup folder" />
+    <option name="LAST_COMMIT_MESSAGE" value="cleanup folder" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="1079" y="495" width="394" height="418" key="#Web_Browsers" timestamp="1590662890178">
+      <screen x="0" y="0" width="2560" height="1413" />
+    </state>
+    <state x="1079" y="495" width="394" height="418" key="#Web_Browsers/0.0.2560.1413@0.0.2560.1413" timestamp="1590662890178" />
+    <state x="738" y="364" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1592211507073">
+      <screen x="0" y="0" width="2560" height="1413" />
+    </state>
+    <state x="738" y="364" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1413@0.0.2560.1413" timestamp="1592211507073" />
+    <state x="953" y="452" width="526" height="497" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1591352389342">
+      <screen x="0" y="0" width="2560" height="1413" />
+    </state>
+    <state x="953" y="452" width="526" height="497" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.2560.1413@0.0.2560.1413" timestamp="1591352389342" />
+    <state x="968" y="558" width="496" height="285" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1592210414213">
+      <screen x="0" y="0" width="2560" height="1413" />
+    </state>
+    <state x="968" y="558" width="496" height="285" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.2560.1413@0.0.2560.1413" timestamp="1592210414213" />
+    <state x="1144" y="456" width="264" height="495" key="EnvironmentVariablesDialog" timestamp="1592211484570">
+      <screen x="0" y="0" width="2560" height="1413" />
+    </state>
+    <state x="1144" y="456" width="264" height="495" key="EnvironmentVariablesDialog/0.0.2560.1413@0.0.2560.1413" timestamp="1592211484570" />
+    <state x="1292" y="464" width="426" height="480" key="FileChooserDialogImpl" timestamp="1592214540139">
+      <screen x="0" y="0" width="2560" height="1413" />
+    </state>
+    <state x="1292" y="464" width="426" height="480" key="FileChooserDialogImpl/0.0.2560.1413@0.0.2560.1413" timestamp="1592214540139" />
+    <state width="2514" height="144" key="GridCell.Tab.0.bottom" timestamp="1591278927659">
+      <screen x="0" y="0" width="2560" height="1413" />
+    </state>
+    <state width="2514" height="144" key="GridCell.Tab.0.bottom/0.0.2560.1413@0.0.2560.1413" timestamp="1591278927659" />
+    <state width="2514" height="144" key="GridCell.Tab.0.center" timestamp="1591278927658">
+      <screen x="0" y="0" width="2560" height="1413" />
+    </state>
+    <state width="2514" height="144" key="GridCell.Tab.0.center/0.0.2560.1413@0.0.2560.1413" timestamp="1591278927658" />
+    <state width="2514" height="144" key="GridCell.Tab.0.left" timestamp="1591278927658">
+      <screen x="0" y="0" width="2560" height="1413" />
+    </state>
+    <state width="2514" height="144" key="GridCell.Tab.0.left/0.0.2560.1413@0.0.2560.1413" timestamp="1591278927658" />
+    <state width="2514" height="144" key="GridCell.Tab.0.right" timestamp="1591278927658">
+      <screen x="0" y="0" width="2560" height="1413" />
+    </state>
+    <state width="2514" height="144" key="GridCell.Tab.0.right/0.0.2560.1413@0.0.2560.1413" timestamp="1591278927658" />
+    <state width="2514" height="144" key="GridCell.Tab.1.bottom" timestamp="1591278927659">
+      <screen x="0" y="0" width="2560" height="1413" />
+    </state>
+    <state width="2514" height="144" key="GridCell.Tab.1.bottom/0.0.2560.1413@0.0.2560.1413" timestamp="1591278927659" />
+    <state width="2514" height="144" key="GridCell.Tab.1.center" timestamp="1591278927659">
+      <screen x="0" y="0" width="2560" height="1413" />
+    </state>
+    <state width="2514" height="144" key="GridCell.Tab.1.center/0.0.2560.1413@0.0.2560.1413" timestamp="1591278927659" />
+    <state width="2514" height="144" key="GridCell.Tab.1.left" timestamp="1591278927659">
+      <screen x="0" y="0" width="2560" height="1413" />
+    </state>
+    <state width="2514" height="144" key="GridCell.Tab.1.left/0.0.2560.1413@0.0.2560.1413" timestamp="1591278927659" />
+    <state width="2514" height="144" key="GridCell.Tab.1.right" timestamp="1591278927659">
+      <screen x="0" y="0" width="2560" height="1413" />
+    </state>
+    <state width="2514" height="144" key="GridCell.Tab.1.right/0.0.2560.1413@0.0.2560.1413" timestamp="1591278927659" />
+    <state x="1117" y="420" width="318" height="569" key="RollbackChangesDialog" timestamp="1590766592440">
+      <screen x="0" y="0" width="2560" height="1413" />
+    </state>
+    <state x="1117" y="420" width="318" height="569" key="RollbackChangesDialog/0.0.2560.1413@0.0.2560.1413" timestamp="1590766592440" />
+    <state x="784" y="341" key="SettingsEditor" timestamp="1590489401441">
+      <screen x="0" y="0" width="2560" height="1413" />
+    </state>
+    <state x="784" y="341" key="SettingsEditor/0.0.2560.1413@0.0.2560.1413" timestamp="1590489401441" />
+    <state x="875" y="442" width="802" height="524" key="Vcs.Push.Dialog.v2" timestamp="1592210772298">
+      <screen x="0" y="0" width="2560" height="1413" />
+    </state>
+    <state x="875" y="442" width="802" height="524" key="Vcs.Push.Dialog.v2/0.0.2560.1413@0.0.2560.1413" timestamp="1592210772298" />
+    <state width="1281" height="706" key="XDebugger.FullValuePopup" timestamp="1591115772905">
+      <screen x="0" y="0" width="2560" height="1413" />
+    </state>
+    <state width="1281" height="706" key="XDebugger.FullValuePopup/0.0.2560.1413@0.0.2560.1413" timestamp="1591115772905" />
+    <state x="1094" y="603" width="364" height="202" key="git4idea.ui.GitResetDialog" timestamp="1591102865803">
+      <screen x="0" y="0" width="2560" height="1413" />
+    </state>
+    <state x="1094" y="603" width="364" height="202" key="git4idea.ui.GitResetDialog/0.0.2560.1413@0.0.2560.1413" timestamp="1591102865803" />
+    <state x="1124" y="480" width="303" height="448" key="refactoring.ChangeSignatureDialog" timestamp="1591270077623">
+      <screen x="0" y="0" width="2560" height="1413" />
+    </state>
+    <state x="1124" y="480" width="303" height="448" key="refactoring.ChangeSignatureDialog/0.0.2560.1413@0.0.2560.1413" timestamp="1591270077623" />
+    <state x="1071" y="566" width="402" height="273" key="scopes" timestamp="1591100841362">
+      <screen x="0" y="0" width="2560" height="1413" />
+    </state>
+    <state x="1071" y="566" width="402" height="273" key="scopes/0.0.2560.1413@0.0.2560.1413" timestamp="1591100841362" />
+    <state x="943" y="322" width="672" height="678" key="search.everywhere.popup" timestamp="1592210516470">
+      <screen x="0" y="0" width="2560" height="1413" />
+    </state>
+    <state x="943" y="322" width="672" height="678" key="search.everywhere.popup/0.0.2560.1413@0.0.2560.1413" timestamp="1592210516470" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/graphtools$classifier_3labels_flatten.coverage" NAME="classifier_3labels_flatten Coverage Results" MODIFIED="1591269826429" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/graphtools$readfiles.coverage" NAME="readfiles Coverage Results" MODIFIED="1590758111547" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+</project>
