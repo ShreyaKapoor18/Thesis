@@ -14,10 +14,8 @@ def make_nodes_edges(filename, subject):
     #adj = np.array(df==1).astype(int)
     G = nx.from_numpy_array(df)
     #write these in the format given for the mews file!
-    #%%
     nodes_file = open(f'{filename}_nodes', 'w+')
     edges_file = open(f'{filename}_edges', 'w+')
-    #%%
     nodes = []
     count = 0
     for node in nx.nodes(G):
@@ -36,8 +34,6 @@ def make_nodes_edges(filename, subject):
              print(str(edge[0]) + ' '+ str(edge[1])+ ' '+ str(G.get_edge_data(edge[0], edge[1])['weight']),
                   file=edges_file)
              #print(str(edge[0]) + ' ' + str(edge[1]) + ' ' + str(randint(-5,5)), file = edges_file)
-
-#%%
     nodes_file.close()
     edges_file.close()
 #%%

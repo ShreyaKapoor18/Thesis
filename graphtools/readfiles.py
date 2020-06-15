@@ -4,12 +4,12 @@ import glob
 import pandas_profiling
 
 def computed_subjects():
-    '''
+    """
     :param notes_path: the notes directory
     :param input_dir: the input directory containing the results that have been pre-processed
     :param edge_file: the connectome files that we have already computed
     :return data: the data of only the subjects whose data has been pre-processed
-    '''
+    """
     notes_path = '/home/skapoor/Thesis/Notes/HCP_data'
     input_dir = '/data/skapoor/HCP/results'
     df = pd.read_csv(f'{notes_path}/unrestricted_mdkhatami_3_2_2017_5_48_20.csv')
@@ -26,12 +26,12 @@ def computed_subjects():
     return data
 
 def precomputed_subjects():
-    '''
+    """
     :param notes_path: the notes directory
     :param input_dir: the input directory containing the results that have been pre-processed
     :param edge_file: the connectome files that we have already computed
     :return data: the data of only the subjects whose data has been pre-processed
-    '''
+    """
     notes_path = '/home/skapoor/Thesis/Notes/HCP_data'
     input_dir = '/data/regina/HCP'
     df = pd.read_csv(f'{notes_path}/unrestricted_mdkhatami_3_2_2017_5_48_20.csv')
@@ -49,12 +49,12 @@ def precomputed_subjects():
 
 
 def make_profiles(filename):
-    '''
+    """
     Make html files for the profiles of all label. Filename is either the one from
     my folder or the one from Regina's folder. present_subjects.csv or present_subjects_regina.csv
     :param filename the name of the csv file you want to check subject data
     :return:
-    '''
+    """
     info = pd.read_excel(f'{notes_path}/HCP_S1200_DataDictionary_April_20_2018.xlsx', dtype='str')
     data =pd.read_csv(filename)
     for category in np.unique(info['category']):
