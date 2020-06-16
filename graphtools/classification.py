@@ -10,7 +10,7 @@ from readfiles import computed_subjects
 import matplotlib.pyplot as plt
 import time
 import datetime
-
+import json
 
 # %%
 def dict_classifier(classifier, *args):
@@ -63,7 +63,7 @@ def dict_classifier(classifier, *args):
                     'tol': loguniform(1e-4, 1e-2),
                     'min_samples_leaf': [1, 2, 4],
                     'min_samples_split': [2, 5, 10],
-                    'n_estimators': [200, 400, 600, 800]
+                    'n_estimators': [200, 400] #takes too long to converge
                 }
                 # multiclass cannot use losss exponential
             elif classifier == 'MLP':
@@ -72,7 +72,7 @@ def dict_classifier(classifier, *args):
                                  'activation': ['tanh', 'relu'],
                                  'solver': ['sgd', 'adam'],
                                  'alpha': [0.001, 0.05],
-                                 'learning_rate': ['adaptive']}
+                                 'learning_rate': ['adaptive']} #doesn't converge even with maximum iterations!
 
             print(f'Executing {clf}')
             # roc doesn't support multiclass
@@ -118,7 +118,7 @@ def visualise_performance(combined, big5, metrics, top_per):
                 ax[k][j].scatter(combined.keys(), l)
                 ax[k][j].plot(list(combined.keys()), l)
                 # ax[k][j].set_xticks(list(combined.keys()))
-                ax[k][j].set_title(f'Top {100 - top_per[k]}% features')
+                ax[k][j].set_title(f'{top_per[k]}% features')
                 ax[k][j].set_xlabel('Classifier')
                 ax[k][j].set_ylabel(metrics[j])
         fig.suptitle(big5[i])
@@ -156,4 +156,6 @@ if __name__ == "__main__":
         print(f'Time taken for {clf}: {datetime.timedelta(seconds=end-start)}')
         make_csv(d1, f'outputs/{clf}_results_cv.csv')
         combined[clf] = d1['Metrics']
+    with open('comined_dict.txt', 'w') as f:
+        f.write(json.dumps(combined)) # write the combined dictionary to the file so that this can be read later on
     visualise_performance(combined, big5, metrics, [5, 10, 50, 0])
