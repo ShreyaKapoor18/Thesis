@@ -60,15 +60,15 @@ def dict_classifier(classifier, *args):
                 clf = GradientBoostingClassifier()
                 distributions = {  # 'loss': ['deviance', 'exponential']
                     'learning_rate': [0.8, 0.9, 1],
-                    'tol': loguniform(1e-4, 1e-2),
+                    'tol': [0.01, 0.1],
                     'min_samples_leaf': [1, 2, 4],
                     'min_samples_split': [2, 5, 10],
-                    'n_estimators': [200, 400] #takes too long to converge
+                    'n_estimators': [200, 400] #takes too long to converge if tolerance not specificied
                 }
                 # multiclass cannot use losss exponential
             elif classifier == 'MLP':
                 clf = MLPClassifier()
-                distributions = {'hidden_layer_sizes': [(50, 100, 100, 50), (50, 100, 50), (100,)],
+                distributions = {'hidden_layer_sizes': [(50, 100, 100, 50), (50, 100, 50)],
                                  'activation': ['tanh', 'relu'],
                                  'solver': ['sgd', 'adam'],
                                  'alpha': [0.001, 0.05],
@@ -76,7 +76,7 @@ def dict_classifier(classifier, *args):
 
             print(f'Executing {clf}')
             # roc doesn't support multiclass
-            rcv = RandomizedSearchCV(clf, distributions, random_state=42, scoring=metrics,
+            rcv = RandomizedSearchCV(clf, distributions, random_state=55, scoring=metrics,
                                      refit='roc_auc_ovr_weighted', cv=5)
             # scores = cross_validate(clf, X, Y, cv=5, scoring=metrics)
             search = rcv.fit(X, y)
