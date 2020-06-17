@@ -5,7 +5,6 @@ from readfiles import get_subj_ids
 import pandas as pd
 from sklearn.preprocessing import Normalizer
 
-
 # %%
 def generate_combined_matrix(tri):
     '''
