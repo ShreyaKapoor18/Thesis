@@ -3,8 +3,7 @@ import matplotlib.pyplot as plt
 from metrics import fscore
 from readfiles import get_subj_ids
 import pandas as pd
-from sklearn.preprocessing import Normalizer
-
+from sklearn.preprocessing import Normalizer, StandardScaler
 # %%
 def generate_combined_matrix(tri):
     '''
@@ -13,7 +12,8 @@ def generate_combined_matrix(tri):
     2. The mean length of the streamlines between the two nodes
     3. The number of streamlines between the two nodes
     '''
-    norm = Normalizer()
+    #norm = Normalizer()
+    scale = StandardScaler()
     whole = np.zeros((len(get_subj_ids()), tri * 3))
     # but the matrix is upper triangular so we should only take that into account, then number of features will
     # get reduced
@@ -36,7 +36,9 @@ def generate_combined_matrix(tri):
     '''we need to normalise the data since the scales are different 
     and we still want to retain the variance
     '''
-    whole = norm.fit_transform(whole)
+    #whole = norm.fit_transform(whole) # seems wrong since one subject gets scaled to a unit norm
+    whole = scale.fit_transform(whole)
+
     return whole
 
 
