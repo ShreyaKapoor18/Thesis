@@ -5,7 +5,7 @@ from readfiles import get_subj_ids
 import pandas as pd
 from sklearn.preprocessing import Normalizer, StandardScaler
 # %%
-def generate_combined_matrix(tri):
+def generate_combined_matrix(tri, present_subjects):
     '''
     There are three features that we want to add to the matrix for all subjects
     1. Mean FA between the two nodes
@@ -17,8 +17,11 @@ def generate_combined_matrix(tri):
     whole = np.zeros((len(get_subj_ids()), tri * 3))
     # but the matrix is upper triangular so we should only take that into account, then number of features will
     # get reduced
+    #assert get_subj_ids() == present_subjects # make sure labels are ordered the same way in which we read data
+    order = []
     j = 0
-    for subject in get_subj_ids():
+    for subject in present_subjects:
+        order.append(subject)
         out_diff = f'/data/skapoor/HCP/results/{subject}/T1w/Diffusion'
         files = [f'{out_diff}/mean_FA_connectome_1M_SIFT.csv', f'{out_diff}/distances_mean_1M_SIFT.csv',
                  f'{out_diff}/connectome_1M.csv']
@@ -38,8 +41,8 @@ def generate_combined_matrix(tri):
     '''
     #whole = norm.fit_transform(whole) # seems wrong since one subject gets scaled to a unit norm
     whole = scale.fit_transform(whole)
-
-    return whole
+    #assert order == present_subjects
+    return whole, order
 
 
 def hist_correlation(data, whole, labels, edge_names, big5, tri):

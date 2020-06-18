@@ -15,14 +15,17 @@ def computed_subjects():
     df = pd.read_csv(f'{notes_path}/unrestricted_mdkhatami_3_2_2017_5_48_20.csv')
     present_subj = []
     #Now we need to check for which all subjects the meam_FA_connectome exists!
-    for s in glob.glob(f'{input_dir}/*/T1w/Diffusion/connectivity_matrices_whole.png'):
+    for s in sorted(glob.glob(f'{input_dir}/*/T1w/Diffusion/connectivity_matrices_whole.png')):
         if s.split('/HCP/results/')[1][0] in ['1', '2']:
             #print(s)
             subject = s.split('/HCP/results/')[1].split('/')[0]
             #print(subject)
             if int(subject) in np.array(df['Subject']):
                 present_subj.append(subject)
-    data = df.loc[df['Subject'].isin(present_subj), :]  # reduced csv files containing data of only computed subj
+    data = df.loc[df['Subject'].isin(present_subj), :] # reduced csv files containing data of only computed subj
+    data.reset_index(drop=True, inplace=True) # so that the index goes from 0 to 140
+    data.set_index(data['Subject'], inplace=True)
+
     return data
 
 def precomputed_subjects():
@@ -69,7 +72,7 @@ def get_subj_ids():
     input_dir = '/data/skapoor/HCP/results'
     present_subj = []
     #Now we need to check for which all subjects the meam_FA_connectome exists!
-    for s in glob.glob(f'{input_dir}/*/T1w/Diffusion/connectivity_matrices_whole.png'):
+    for s in sorted(glob.glob(f'{input_dir}/*/T1w/Diffusion/connectivity_matrices_whole.png')):
         if s.split('/HCP/results/')[1][0] in ['1', '2']:
             #print(s)
             subject = s.split('/HCP/results/')[1].split('/')[0]

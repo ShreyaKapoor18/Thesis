@@ -1,6 +1,6 @@
 ,Agreeableness,Agreeableness,Agreeableness,Agreeableness,Openness,Openness,Openness,Openness,Conscientiousness,Conscientiousness,Conscientiousness,Conscientiousness,Neuroticism,Neuroticism,Neuroticism,Neuroticism,Extraversion,Extraversion,Extraversion,Extraversion
 ,balanced_accuracy,accuracy,f1_weighted,roc_auc_ovr_weighted,balanced_accuracy,accuracy,f1_weighted,roc_auc_ovr_weighted,balanced_accuracy,accuracy,f1_weighted,roc_auc_ovr_weighted,balanced_accuracy,accuracy,f1_weighted,roc_auc_ovr_weighted,balanced_accuracy,accuracy,f1_weighted,roc_auc_ovr_weighted
-5,0.507,0.521,0.499,0.681,0.472,0.497,0.467,0.693,0.515,0.528,0.509,0.704,0.451,0.452,0.444,0.653,0.447,0.502,0.441,0.693
-10,0.48,0.495,0.47,0.657,0.43,0.453,0.43,0.663,0.499,0.514,0.487,0.698,0.405,0.406,0.395,0.618,0.439,0.495,0.428,0.675
-50,0.411,0.425,0.398,0.563,0.363,0.387,0.345,0.556,0.368,0.378,0.351,0.555,0.34,0.34,0.328,0.515,0.364,0.411,0.357,0.606
-0,0.445,0.45,0.438,0.609,0.436,0.462,0.418,0.576,0.344,0.361,0.313,0.533,0.333,0.327,0.289,0.477,0.422,0.466,0.433,0.611
+5,0.449,0.468,0.438,0.66,0.406,0.425,0.4,0.636,0.467,0.481,0.455,0.7,0.464,0.464,0.459,0.685,0.413,0.46,0.412,0.623
+10,0.445,0.465,0.436,0.641,0.398,0.421,0.387,0.632,0.474,0.487,0.465,0.674,0.438,0.438,0.433,0.634,0.39,0.44,0.385,0.615
+50,0.386,0.402,0.379,0.56,0.37,0.394,0.357,0.568,0.417,0.432,0.403,0.593,0.38,0.38,0.367,0.544,0.309,0.361,0.283,0.508
+0,0.302,0.304,0.3,0.505,0.396,0.412,0.384,0.555,0.334,0.344,0.331,0.523,0.328,0.328,0.317,0.515,0.368,0.394,0.331,0.514
