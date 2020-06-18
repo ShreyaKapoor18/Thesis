@@ -38,7 +38,7 @@ whole = generate_combined_matrix(tri)
 wholex = np.reshape(whole,(whole.shape[0], whole.shape[1]//3, 3))
 mat = np.triu_indices(84)
 G = []
-#nodes = {x: 1 for x in range(84)}
+nodes = {x: 1 for x in range(84)}
 for i in range(len(wholex)):
     edges = {(0,0)}
     #edges = {}
@@ -48,13 +48,13 @@ for i in range(len(wholex)):
         #edges[(mat[0][j], mat[1][j])] = 1
         edge_attributes[(mat[0][j], mat[1][j])] = wholex[i,j,:]
     #print (edges, edge_attributes)
-    G.append(Graph(edges, edge_labels=edge_attributes))
+    G.append(Graph(edges, edge_labels=edge_attributes, node_labels=nodes))
 
 # Splits the dataset into a training and a test set
 G_train, G_test, y_train, y_test = train_test_split(G, y, test_size=0.1, random_state=42)
 
 # Uses the shortest path kernel to generate the kernel matrices
-gk = ShortestPath(normalize=True, with_labels=False)
+gk = SvmTheta()
 K_train = gk.fit_transform(G_train)
 K_test = gk.transform(G_test)
 
@@ -68,13 +68,13 @@ acc = accuracy_score(y_test, y_pred)
 print("Accuracy:", str(round(acc*100, 2)) + "%")
 #%%
 from grakel.datasets import fetch_dataset
-from grakel.kernels import WeisfeilerLehman, VertexHistogram
+from grakel.kernels import WeisfeilerLehman, VertexHistogram, SvmTheta
 
 # Splits the dataset into a training and a test set
 G_train, G_test, y_train, y_test = train_test_split(G, y, test_size=0.1, random_state=42)
 
 # Uses the Weisfeiler-Lehman subtree kernel to generate the kernel matrices
-gk = WeisfeilerLehman(n_iter=4, base_graph_kernel=VertexHistogram, normalize=True)
+gk = WeisfeilerLehman(n_iter=4, base_graph_kernel=SvmTheta)
 K_train = gk.fit_transform(G_train)
 K_test = gk.transform(G_test)
 
@@ -101,16 +101,18 @@ for i in range(len(wholex)):
         edge_attributes[(mat[0][j], mat[1][j])] = wholex[i,j,:]
     g1.add_nodes_from(node)
     g1.add_edges_from(edges)
-    nx.set_node_attributes(g1, nodes, 'label')
-    nx.set_edge_attributes(g1, edge_attributes, 'labels2')
+    nx.set_node_attributes(g1, nodes, 'nodes')
+    nx.set_edge_attributes(g1, edge_attributes, 'edges')
     G.append(g1)
     #print (edges, edge_attributes)
 
+#%%
+from grakel.kernels import SvmTheta
 G_gr = graph_from_networkx(G, node_labels_tag='label', edge_labels_tag='labels2')
-G_train, G_test, y_train, y_test = train_test_split(G_gr, y, test_size=0.1, random_state=42)
+G_train, G_test, y_train, y_test = train_test_split(G_gr, y, test_size=0.1, random_state=24)
 
 # Uses the graphhopper kernel to generate the kernel matrices
-gk = PropagationAttr(normalize=True)
+gk = SvmTheta()
 K_train = gk.fit_transform(G_train)
 K_test = gk.transform(G_test)
 
