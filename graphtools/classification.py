@@ -178,7 +178,7 @@ if __name__ == "__main__":
     metrics = ['balanced_accuracy', 'accuracy', 'f1_weighted', 'roc_auc_ovr_weighted']
 
     combined = {}
-    for clf in ['SVC', 'RF', 'GB', 'MLP'][:2]: #other ones are taking too long
+    for clf in ['SVC', 'RF', 'GB', 'MLP']: #other ones are taking too long
         start = time.time()
         d1 = dict_classifier(clf, whole, metrics, labels, big5, data, new_fscores)
         end = time.time()
