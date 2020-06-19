@@ -2,8 +2,9 @@ from processing import generate_combined_matrix, hist_fscore
 from readfiles import computed_subjects
 import numpy as np
 import networkx as nx
+from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
+from sklearn.model_selection import train_test_split
 #%%
-
 data = computed_subjects()  # labels for the computed subjects
 y = np.array(data['NEOFAC_A']>=data['NEOFAC_A'].median()).astype(int)
 num = 84  # number of nodes in the graph
@@ -31,5 +32,17 @@ for i in range(len(wholex)):
     #nx.set_node_attributes(g1, nodes, 'nodes')
     nx.set_edge_attributes(g1, edge_attributes, 'edges')
     G.append(g1)
-    #print (edges, edge_attribute
+    #print (edges, edge_attributes)
 #%%
+def train_with_best_params(classifier, params, X, y):
+    if classifier == 'RF':
+        clf = RandomForestClassifier(
+            min_samples_leaf=params['min_samples_leaf'],
+            min_samples_split=params['min_samples_split'],
+            bootstrap =params['bootstrap'],
+            max_features=params['max_features'],
+            n_estimators=params['n_estimators'], max_depth=params['max_depth'])
+        X_train, X_test, y_train, y_test = train_test_split(X,y)
+        clf.fit(X_train, y_train)
+        clf.predict(X_test)
+        return clf.feature_importances_
