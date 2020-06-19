@@ -108,7 +108,7 @@ def visualise_performance(combined, big5, metrics, top_per):
                         test.append(combined[clf][big5[i]][top_per[k]][choice][metrics[j]])
                         # print(clf, big5[i], top_per[k], metrics[j])
                         # print(combined[clf][big5[i]][top_per[k]][metrics[j]])
-                    #ax[k][j].scatter(combined.keys(), train, label=choice))
+                    ax[k][j].scatter(combined.keys(), test)
                     ax[k][j].plot(list(combined.keys()), test, marker='+', label=choice+'_test')
                     # print('xx', len(l))
                 ax[k][j].legend(loc='lower right')
@@ -122,7 +122,7 @@ def visualise_performance(combined, big5, metrics, top_per):
                 ax[k][j].grid()
         fig.suptitle(big5[i])
         plt.tight_layout()
-        plt.savefig(f'outputs/classification_{big5[i]}_test')
+        plt.savefig(f'outputs/classification_{big5[i]}')
         # plt.show()
 
 
@@ -149,13 +149,17 @@ if __name__ == "__main__":
     metrics = ['balanced_accuracy', 'accuracy', 'f1_weighted', 'roc_auc_ovr_weighted']
 
     combined = {}
-    for clf in ['SVC', 'RF', 'GB', 'MLP'][:1]: #other ones are taking too long
+    best_params_combined = {}
+    for clf in ['SVC', 'RF', 'GB', 'MLP']: #other ones are taking too long
         start = time.time()
         d1 = dict_classifier(clf, whole, metrics, labels, big5, data, new_fscores)
         end = time.time()
         print(f'Time taken for {clf}: {datetime.timedelta(seconds=end-start)}')
         make_csv(d1, f'outputs/{clf}_results_cv.csv')
         combined[clf] = d1['Metrics']
+        best_params_combined = d1['Parameters']
     with open('outputs/combined_dict.txt', 'w') as f:
         f.write(json.dumps(combined)) # write the combined dictionary to the file so that this can be read later on
+    with open('outputs/combined_params.txt', 'w') as f:#
+        f.write(json.dumps(best_params_combined))
     visualise_performance(combined, big5, metrics, [5, 10, 50, 100])
