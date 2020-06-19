@@ -74,9 +74,7 @@ def dict_classifier(classifier, *args):
                 scores = search.cv_results_
                 best_params[big5[i]][per][choice] = search.best_params_
                 for metric in metrics:
-                    metric_score[big5[i]][per][choice][metric] = {
-                        'train': round(np.mean(scores[f'mean_train_{metric}']), 3),
-                        'test': round(np.mean(scores[f'mean_test_{metric}']), 3)}
+                    metric_score[big5[i]][per][choice][metric] = round(np.mean(scores[f'mean_test_{metric}']), 3)
 
     return {'Metrics': metric_score, 'Parameters': best_params}
 
@@ -104,15 +102,13 @@ def visualise_performance(combined, big5, metrics, top_per):
             for j in range(len(metrics)):
 
                 for choice in ['qcut', 'median', 'throw median']:
-                    train = []
                     test = []
+
                     for clf in combined.keys():
-                        train.append(combined[clf][big5[i]][top_per[k]][choice][metrics[j]]['train'])
-                        test.append(combined[clf][big5[i]][top_per[k]][choice][metrics[j]]['test'])
+                        test.append(combined[clf][big5[i]][top_per[k]][choice][metrics[j]])
                         # print(clf, big5[i], top_per[k], metrics[j])
                         # print(combined[clf][big5[i]][top_per[k]][metrics[j]])
-                    #ax[k][j].scatter(combined.keys(), train, label=choice)
-                    ax[k][j].plot(list(combined.keys()), train, marker='.', label=choice+'_train')
+                    #ax[k][j].scatter(combined.keys(), train, label=choice))
                     ax[k][j].plot(list(combined.keys()), test, marker='+', label=choice+'_test')
                     # print('xx', len(l))
                 ax[k][j].legend(loc='lower right')
@@ -126,7 +122,7 @@ def visualise_performance(combined, big5, metrics, top_per):
                 ax[k][j].grid()
         fig.suptitle(big5[i])
         plt.tight_layout()
-        plt.savefig(f'outputs/classification_{big5[i]}')
+        plt.savefig(f'outputs/classification_{big5[i]}_test')
         # plt.show()
 
 
@@ -153,7 +149,7 @@ if __name__ == "__main__":
     metrics = ['balanced_accuracy', 'accuracy', 'f1_weighted', 'roc_auc_ovr_weighted']
 
     combined = {}
-    for clf in ['SVC', 'RF', 'GB', 'MLP']: #other ones are taking too long
+    for clf in ['SVC', 'RF', 'GB', 'MLP'][:1]: #other ones are taking too long
         start = time.time()
         d1 = dict_classifier(clf, whole, metrics, labels, big5, data, new_fscores)
         end = time.time()
