@@ -18,10 +18,9 @@ def generate_combined_matrix(tri, present_subjects):
     # but the matrix is upper triangular so we should only take that into account, then number of features will
     # get reduced
     #assert get_subj_ids() == present_subjects # make sure labels are ordered the same way in which we read data
-    order = []
     j = 0
     for subject in present_subjects:
-        order.append(subject)
+
         out_diff = f'/data/skapoor/HCP/results/{subject}/T1w/Diffusion'
         files = [f'{out_diff}/mean_FA_connectome_1M_SIFT.csv', f'{out_diff}/distances_mean_1M_SIFT.csv',
                  f'{out_diff}/connectome_1M.csv']
@@ -41,8 +40,9 @@ def generate_combined_matrix(tri, present_subjects):
     '''
     #whole = norm.fit_transform(whole) # seems wrong since one subject gets scaled to a unit norm
     whole = scale.fit_transform(whole)
-    #assert order == present_subjects
-    return whole, order
+    whole = pd.DataFrame(whole)
+    whole.index = present_subjects
+    return whole
 
 
 def hist_correlation(data, whole, labels, edge_names, big5, tri):
@@ -53,7 +53,7 @@ def hist_correlation(data, whole, labels, edge_names, big5, tri):
         # check if the variance of each feature is not zero if it is then remove it
         # correlation of mean FA edges, mean str length, number of strl with Openness
         for i in range(3):
-            map_o = pd.concat((pd.DataFrame(whole[:, i * tri:(i + 1) * tri]), label), axis=1)
+            map_o = pd.concat((pd.DataFrame(whole.iloc[:, i * tri:(i + 1) * tri]), label), axis=1)
             #corr = np.corrcoef(map_o, rowvar=False)
             corr[j, i, :] = np.array(map_o.drop(labels[j], axis=1).apply(lambda x: x.corr(map_o[labels[j]])))
             if np.isnan(corr[j][i]).any():
@@ -79,7 +79,7 @@ def hist_fscore(data, whole, labels, big5, edge_names, tri):
         bin_label = bin_label.astype(int)
         bin_label.reset_index(drop=True, inplace=True)
         for i in range(3):
-            data_edges = pd.DataFrame(whole[:, i * tri:(i + 1) * tri])
+            data_edges = pd.DataFrame(whole.iloc[:, i * tri:(i + 1) * tri])
             data_edges.reset_index(inplace=True, drop=True)
             # print(bin_label.head())
             # print('x1', data[label])
