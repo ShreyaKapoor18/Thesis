@@ -31,6 +31,7 @@ def data_splitting(choice, i, index, *args, **kwargs):
         #X = whole[y.index, index[0]] don't know why this type of slicing is not working
         X = [whole.loc[i, index[0]] for i in list(y.index)]
         #X = whole.iloc[y.index, index[0]]
+
     return np.array(X), np.array(y)
 
 # %%
@@ -109,7 +110,7 @@ def visualise_performance(combined, big5, metrics, top_per):
                         # print(clf, big5[i], top_per[k], metrics[j])
                         # print(combined[clf][big5[i]][top_per[k]][metrics[j]])
                     ax[k][j].scatter(combined.keys(), test)
-                    ax[k][j].plot(list(combined.keys()), test, marker='+', label=choice+'_test')
+                    ax[k][j].plot(list(combined.keys()), test, marker='+', label=choice+'_test_score')
                     # print('xx', len(l))
                 ax[k][j].legend(loc='lower right')
                 # ax[k][j].set_xticks(list(combined.keys()))
@@ -156,10 +157,14 @@ if __name__ == "__main__":
         end = time.time()
         print(f'Time taken for {clf}: {datetime.timedelta(seconds=end-start)}')
         make_csv(d1, f'outputs/{clf}_results_cv.csv')
+        with open(f'outputs/{clf}_results_cv.json', 'w') as fp:
+            json.dump(d1, fp)
+
         combined[clf] = d1['Metrics']
-        best_params_combined = d1['Parameters']
-    with open('outputs/combined_dict.txt', 'w') as f:
-        f.write(json.dumps(combined)) # write the combined dictionary to the file so that this can be read later on
-    with open('outputs/combined_params.txt', 'w') as f:#
-        f.write(json.dumps(best_params_combined))
+        best_params_combined[clf] = d1['Parameters']
+
+    with open('outputs/combined_dict.json', 'w') as f:
+        json.dump(combined,f, indent=4) # write the combined dictionary to the file so that this can be read later on
+    with open('outputs/combined_params.json', 'w') as f:#
+        json.dump(best_params_combined,f, indent=4)
     visualise_performance(combined, big5, metrics, [5, 10, 50, 100])
