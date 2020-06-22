@@ -35,14 +35,12 @@ for i in range(len(wholex)):
     #print (edges, edge_attributes)
 #%%
 def train_with_best_params(classifier, params, X, y):
+    """
+
+    """
     if classifier == 'RF':
-        clf = RandomForestClassifier(
-            min_samples_leaf=params['min_samples_leaf'],
-            min_samples_split=params['min_samples_split'],
-            bootstrap =params['bootstrap'],
-            max_features=params['max_features'],
-            n_estimators=params['n_estimators'], max_depth=params['max_depth'])
+        clf = RandomForestClassifier(**params) #try if this method works so that don't have to use explicit arguments
         X_train, X_test, y_train, y_test = train_test_split(X,y)
         clf.fit(X_train, y_train)
         clf.predict(X_test)
-        return clf.feature_importances_
+        return clf.feature_importances_ # put this as the edge weight in the graph
