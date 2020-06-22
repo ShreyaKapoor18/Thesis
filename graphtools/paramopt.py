@@ -30,7 +30,7 @@ def get_distributions(classifier):
             'min_samples_split': [2, 5, 10],
             'n_estimators': [200, 400]  # takes too long to converge if tolerance not specificied
         }
-        # multiclass cannot use losss exponential
+        # multiclass cannot use loss exponential
     elif classifier == 'MLP':
         clf = MLPClassifier()
         distributions = {'hidden_layer_sizes': [(50, 100, 100, 50), (50, 100, 50)],
