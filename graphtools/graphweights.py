@@ -36,9 +36,9 @@ fscores = hist_fscore(data, whole, labels, big5, edge_names, tri)
 
 # without taking the edge type into consideration
 new_fscores = np.reshape(fscores, (fscores.shape[0], fscores.shape[1] * fscores.shape[2]))
-whole = np.array(whole)
+
 # Values of C parameter of SVM
-wholex = np.reshape(whole, (whole.shape[0], whole.shape[1] // 3, 3))
+
 mat = np.triu_indices(84)
 
 with open('outputs/combined_params.json', 'r') as f:

@@ -162,7 +162,8 @@ if __name__ == "__main__":
         best_params_combined[clf] = d1['Parameters']
 
     with open('outputs/combined_dict.json', 'w') as f:
-        json.dump(combined,f, indent=4) # write the combined dictionary to the file so that this can be read later on
+        # write the combined dictionary to the file so that this can be read later on
+        json.dump(combined,f, indent=4)
     with open('outputs/combined_params.json', 'w') as f:#
         json.dump(best_params_combined,f, indent=4)
     visualise_performance(combined, big5, metrics, [5, 10, 50, 100])
