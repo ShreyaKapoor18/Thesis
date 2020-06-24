@@ -41,9 +41,10 @@ edge_names = ['mean_FA', 'mean strl', 'num streamlines']
 fscores = hist_fscore(data, whole, labels, big5, edge_names, tri)
 #%%
 corr = hist_correlation(data, whole, labels, edge_names,big5, tri)
+
 #%%
-wholex = np.reshape(np.array(whole), (whole.shape[0],3, whole.shape[1] // 3))
 mat = np.triu_indices(84)
+
 with open('outputs/combined_params.json', 'r') as f:
     best_params = json.load(f)
 
@@ -55,7 +56,7 @@ with open('outputs/combined_params.json', 'r') as f:
             #for choice in ['qcut', 'median', 'throw median'
             # Let's say we only choose the throw median choice, because it is the one that makes more sense
             choice = 'throw median'
-            X, y = data_splitting(choice, i, index, data, whole) # this X is of no use here?
+            X, y = data_splitting(choice, i, index, data, whole, labels) # this X is for random forests training
             params = best_params['RF'][big5[i]][per][choice]
             feature_imp = train_with_best_params('RF', params, X, y)
             feature_imp = np.reshape(feature_imp, (feature_imp.shape[0]//3, 3))

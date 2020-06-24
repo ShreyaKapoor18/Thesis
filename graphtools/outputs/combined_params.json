@@ -1,0 +1,2154 @@
+{
+    "SVC": {
+        "Agreeableness": {
+            "5": {
+                "qcut": {
+                    "C": 387.16057942715855,
+                    "class_weight": null,
+                    "gamma": 0.00027285984401250986,
+                    "kernel": "poly"
+                },
+                "median": {
+                    "C": 200.2074048849186,
+                    "class_weight": "balanced",
+                    "gamma": 0.0008331759812852307,
+                    "kernel": "linear"
+                },
+                "throw median": {
+                    "C": 200.2074048849186,
+                    "class_weight": "balanced",
+                    "gamma": 0.0008331759812852307,
+                    "kernel": "linear"
+                }
+            },
+            "10": {
+                "qcut": {
+                    "C": 19.446430958399628,
+                    "class_weight": null,
+                    "gamma": 0.00029196606098667833,
+                    "kernel": "rbf"
+                },
+                "median": {
+                    "C": 200.2074048849186,
+                    "class_weight": "balanced",
+                    "gamma": 0.0008331759812852307,
+                    "kernel": "linear"
+                },
+                "throw median": {
+                    "C": 85.30444417114474,
+                    "class_weight": "balanced",
+                    "gamma": 0.00027945786941112083,
+                    "kernel": "sigmoid"
+                }
+            },
+            "50": {
+                "qcut": {
+                    "C": 85.30444417114474,
+                    "class_weight": "balanced",
+                    "gamma": 0.00027945786941112083,
+                    "kernel": "sigmoid"
+                },
+                "median": {
+                    "C": 200.2074048849186,
+                    "class_weight": "balanced",
+                    "gamma": 0.0008331759812852307,
+                    "kernel": "linear"
+                },
+                "throw median": {
+                    "C": 200.2074048849186,
+                    "class_weight": "balanced",
+                    "gamma": 0.0008331759812852307,
+                    "kernel": "linear"
+                }
+            },
+            "100": {
+                "qcut": {
+                    "C": 19.446430958399628,
+                    "class_weight": null,
+                    "gamma": 0.00029196606098667833,
+                    "kernel": "rbf"
+                },
+                "median": {
+                    "C": 11.401363110806296,
+                    "class_weight": null,
+                    "gamma": 0.007618344453654781,
+                    "kernel": "sigmoid"
+                },
+                "throw median": {
+                    "C": 11.401363110806296,
+                    "class_weight": null,
+                    "gamma": 0.007618344453654781,
+                    "kernel": "sigmoid"
+                }
+            }
+        },
+        "Openness": {
+            "5": {
+                "qcut": {
+                    "C": 19.446430958399628,
+                    "class_weight": null,
+                    "gamma": 0.00029196606098667833,
+                    "kernel": "rbf"
+                },
+                "median": {
+                    "C": 496.3147348446938,
+                    "class_weight": null,
+                    "gamma": 0.0002439668102812488,
+                    "kernel": "rbf"
+                },
+                "throw median": {
+                    "C": 85.30444417114474,
+                    "class_weight": "balanced",
+                    "gamma": 0.00027945786941112083,
+                    "kernel": "sigmoid"
+                }
+            },
+            "10": {
+                "qcut": {
+                    "C": 19.446430958399628,
+                    "class_weight": null,
+                    "gamma": 0.00029196606098667833,
+                    "kernel": "rbf"
+                },
+                "median": {
+                    "C": 85.30444417114474,
+                    "class_weight": "balanced",
+                    "gamma": 0.00027945786941112083,
+                    "kernel": "sigmoid"
+                },
+                "throw median": {
+                    "C": 496.3147348446938,
+                    "class_weight": null,
+                    "gamma": 0.0002439668102812488,
+                    "kernel": "rbf"
+                }
+            },
+            "50": {
+                "qcut": {
+                    "C": 200.2074048849186,
+                    "class_weight": "balanced",
+                    "gamma": 0.0008331759812852307,
+                    "kernel": "linear"
+                },
+                "median": {
+                    "C": 200.2074048849186,
+                    "class_weight": "balanced",
+                    "gamma": 0.0008331759812852307,
+                    "kernel": "linear"
+                },
+                "throw median": {
+                    "C": 200.2074048849186,
+                    "class_weight": "balanced",
+                    "gamma": 0.0008331759812852307,
+                    "kernel": "linear"
+                }
+            },
+            "100": {
+                "qcut": {
+                    "C": 11.401363110806296,
+                    "class_weight": null,
+                    "gamma": 0.007618344453654781,
+                    "kernel": "sigmoid"
+                },
+                "median": {
+                    "C": 11.401363110806296,
+                    "class_weight": null,
+                    "gamma": 0.007618344453654781,
+                    "kernel": "sigmoid"
+                },
+                "throw median": {
+                    "C": 11.401363110806296,
+                    "class_weight": null,
+                    "gamma": 0.007618344453654781,
+                    "kernel": "sigmoid"
+                }
+            }
+        },
+        "Conscientiousness": {
+            "5": {
+                "qcut": {
+                    "C": 19.446430958399628,
+                    "class_weight": null,
+                    "gamma": 0.00029196606098667833,
+                    "kernel": "rbf"
+                },
+                "median": {
+                    "C": 496.3147348446938,
+                    "class_weight": null,
+                    "gamma": 0.0002439668102812488,
+                    "kernel": "rbf"
+                },
+                "throw median": {
+                    "C": 200.2074048849186,
+                    "class_weight": "balanced",
+                    "gamma": 0.0008331759812852307,
+                    "kernel": "linear"
+                }
+            },
+            "10": {
+                "qcut": {
+                    "C": 496.3147348446938,
+                    "class_weight": null,
+                    "gamma": 0.0002439668102812488,
+                    "kernel": "rbf"
+                },
+                "median": {
+                    "C": 496.3147348446938,
+                    "class_weight": null,
+                    "gamma": 0.0002439668102812488,
+                    "kernel": "rbf"
+                },
+                "throw median": {
+                    "C": 200.2074048849186,
+                    "class_weight": "balanced",
+                    "gamma": 0.0008331759812852307,
+                    "kernel": "linear"
+                }
+            },
+            "50": {
+                "qcut": {
+                    "C": 200.2074048849186,
+                    "class_weight": "balanced",
+                    "gamma": 0.0008331759812852307,
+                    "kernel": "linear"
+                },
+                "median": {
+                    "C": 200.2074048849186,
+                    "class_weight": "balanced",
+                    "gamma": 0.0008331759812852307,
+                    "kernel": "linear"
+                },
+                "throw median": {
+                    "C": 200.2074048849186,
+                    "class_weight": "balanced",
+                    "gamma": 0.0008331759812852307,
+                    "kernel": "linear"
+                }
+            },
+            "100": {
+                "qcut": {
+                    "C": 387.16057942715855,
+                    "class_weight": null,
+                    "gamma": 0.00027285984401250986,
+                    "kernel": "poly"
+                },
+                "median": {
+                    "C": 387.16057942715855,
+                    "class_weight": null,
+                    "gamma": 0.00027285984401250986,
+                    "kernel": "poly"
+                },
+                "throw median": {
+                    "C": 5.340330121389714,
+                    "class_weight": null,
+                    "gamma": 0.002797540672013975,
+                    "kernel": "poly"
+                }
+            }
+        },
+        "Neuroticism": {
+            "5": {
+                "qcut": {
+                    "C": 5.340330121389714,
+                    "class_weight": null,
+                    "gamma": 0.002797540672013975,
+                    "kernel": "poly"
+                },
+                "median": {
+                    "C": 200.2074048849186,
+                    "class_weight": "balanced",
+                    "gamma": 0.0008331759812852307,
+                    "kernel": "linear"
+                },
+                "throw median": {
+                    "C": 200.2074048849186,
+                    "class_weight": "balanced",
+                    "gamma": 0.0008331759812852307,
+                    "kernel": "linear"
+                }
+            },
+            "10": {
+                "qcut": {
+                    "C": 5.340330121389714,
+                    "class_weight": null,
+                    "gamma": 0.002797540672013975,
+                    "kernel": "poly"
+                },
+                "median": {
+                    "C": 200.2074048849186,
+                    "class_weight": "balanced",
+                    "gamma": 0.0008331759812852307,
+                    "kernel": "linear"
+                },
+                "throw median": {
+                    "C": 200.2074048849186,
+                    "class_weight": "balanced",
+                    "gamma": 0.0008331759812852307,
+                    "kernel": "linear"
+                }
+            },
+            "50": {
+                "qcut": {
+                    "C": 1.0651648533989917,
+                    "class_weight": null,
+                    "gamma": 0.00013369310238238336,
+                    "kernel": "linear"
+                },
+                "median": {
+                    "C": 200.2074048849186,
+                    "class_weight": "balanced",
+                    "gamma": 0.0008331759812852307,
+                    "kernel": "linear"
+                },
+                "throw median": {
+                    "C": 200.2074048849186,
+                    "class_weight": "balanced",
+                    "gamma": 0.0008331759812852307,
+                    "kernel": "linear"
+                }
+            },
+            "100": {
+                "qcut": {
+                    "C": 1.0651648533989917,
+                    "class_weight": null,
+                    "gamma": 0.00013369310238238336,
+                    "kernel": "linear"
+                },
+                "median": {
+                    "C": 11.401363110806296,
+                    "class_weight": null,
+                    "gamma": 0.007618344453654781,
+                    "kernel": "sigmoid"
+                },
+                "throw median": {
+                    "C": 85.30444417114474,
+                    "class_weight": "balanced",
+                    "gamma": 0.00027945786941112083,
+                    "kernel": "sigmoid"
+                }
+            }
+        },
+        "Extraversion": {
+            "5": {
+                "qcut": {
+                    "C": 200.2074048849186,
+                    "class_weight": "balanced",
+                    "gamma": 0.0008331759812852307,
+                    "kernel": "linear"
+                },
+                "median": {
+                    "C": 496.3147348446938,
+                    "class_weight": null,
+                    "gamma": 0.0002439668102812488,
+                    "kernel": "rbf"
+                },
+                "throw median": {
+                    "C": 496.3147348446938,
+                    "class_weight": null,
+                    "gamma": 0.0002439668102812488,
+                    "kernel": "rbf"
+                }
+            },
+            "10": {
+                "qcut": {
+                    "C": 1.0651648533989917,
+                    "class_weight": null,
+                    "gamma": 0.00013369310238238336,
+                    "kernel": "linear"
+                },
+                "median": {
+                    "C": 200.2074048849186,
+                    "class_weight": "balanced",
+                    "gamma": 0.0008331759812852307,
+                    "kernel": "linear"
+                },
+                "throw median": {
+                    "C": 200.2074048849186,
+                    "class_weight": "balanced",
+                    "gamma": 0.0008331759812852307,
+                    "kernel": "linear"
+                }
+            },
+            "50": {
+                "qcut": {
+                    "C": 1.0651648533989917,
+                    "class_weight": null,
+                    "gamma": 0.00013369310238238336,
+                    "kernel": "linear"
+                },
+                "median": {
+                    "C": 85.30444417114474,
+                    "class_weight": "balanced",
+                    "gamma": 0.00027945786941112083,
+                    "kernel": "sigmoid"
+                },
+                "throw median": {
+                    "C": 85.30444417114474,
+                    "class_weight": "balanced",
+                    "gamma": 0.00027945786941112083,
+                    "kernel": "sigmoid"
+                }
+            },
+            "100": {
+                "qcut": {
+                    "C": 1.0651648533989917,
+                    "class_weight": null,
+                    "gamma": 0.00013369310238238336,
+                    "kernel": "linear"
+                },
+                "median": {
+                    "C": 200.2074048849186,
+                    "class_weight": "balanced",
+                    "gamma": 0.0008331759812852307,
+                    "kernel": "linear"
+                },
+                "throw median": {
+                    "C": 11.401363110806296,
+                    "class_weight": null,
+                    "gamma": 0.007618344453654781,
+                    "kernel": "sigmoid"
+                }
+            }
+        }
+    },
+    "RF": {
+        "Agreeableness": {
+            "5": {
+                "qcut": {
+                    "n_estimators": 400,
+                    "min_samples_split": 2,
+                    "min_samples_leaf": 4,
+                    "max_features": "auto",
+                    "max_depth": 60,
+                    "bootstrap": true
+                },
+                "median": {
+                    "n_estimators": 1400,
+                    "min_samples_split": 10,
+                    "min_samples_leaf": 1,
+                    "max_features": "sqrt",
+                    "max_depth": 40,
+                    "bootstrap": true
+                },
+                "throw median": {
+                    "n_estimators": 1000,
+                    "min_samples_split": 2,
+                    "min_samples_leaf": 1,
+                    "max_features": "sqrt",
+                    "max_depth": 70,
+                    "bootstrap": true
+                }
+            },
+            "10": {
+                "qcut": {
+                    "n_estimators": 400,
+                    "min_samples_split": 2,
+                    "min_samples_leaf": 4,
+                    "max_features": "auto",
+                    "max_depth": 30,
+                    "bootstrap": true
+                },
+                "median": {
+                    "n_estimators": 1000,
+                    "min_samples_split": 2,
+                    "min_samples_leaf": 1,
+                    "max_features": "sqrt",
+                    "max_depth": 70,
+                    "bootstrap": true
+                },
+                "throw median": {
+                    "n_estimators": 600,
+                    "min_samples_split": 10,
+                    "min_samples_leaf": 2,
+                    "max_features": "auto",
+                    "max_depth": 10,
+                    "bootstrap": true
+                }
+            },
+            "50": {
+                "qcut": {
+                    "n_estimators": 600,
+                    "min_samples_split": 10,
+                    "min_samples_leaf": 2,
+                    "max_features": "auto",
+                    "max_depth": 50,
+                    "bootstrap": true
+                },
+                "median": {
+                    "n_estimators": 1000,
+                    "min_samples_split": 2,
+                    "min_samples_leaf": 1,
+                    "max_features": "sqrt",
+                    "max_depth": 70,
+                    "bootstrap": true
+                },
+                "throw median": {
+                    "n_estimators": 1400,
+                    "min_samples_split": 10,
+                    "min_samples_leaf": 1,
+                    "max_features": "sqrt",
+                    "max_depth": 40,
+                    "bootstrap": true
+                }
+            },
+            "100": {
+                "qcut": {
+                    "n_estimators": 400,
+                    "min_samples_split": 2,
+                    "min_samples_leaf": 4,
+                    "max_features": "auto",
+                    "max_depth": 60,
+                    "bootstrap": true
+                },
+                "median": {
+                    "n_estimators": 400,
+                    "min_samples_split": 10,
+                    "min_samples_leaf": 2,
+                    "max_features": "auto",
+                    "max_depth": 60,
+                    "bootstrap": true
+                },
+                "throw median": {
+                    "n_estimators": 1000,
+                    "min_samples_split": 2,
+                    "min_samples_leaf": 1,
+                    "max_features": "sqrt",
+                    "max_depth": 70,
+                    "bootstrap": true
+                }
+            }
+        },
+        "Openness": {
+            "5": {
+                "qcut": {
+                    "n_estimators": 1000,
+                    "min_samples_split": 2,
+                    "min_samples_leaf": 1,
+                    "max_features": "sqrt",
+                    "max_depth": 70,
+                    "bootstrap": true
+                },
+                "median": {
+                    "n_estimators": 1400,
+                    "min_samples_split": 10,
+                    "min_samples_leaf": 1,
+                    "max_features": "sqrt",
+                    "max_depth": 40,
+                    "bootstrap": true
+                },
+                "throw median": {
+                    "n_estimators": 400,
+                    "min_samples_split": 2,
+                    "min_samples_leaf": 4,
+                    "max_features": "auto",
+                    "max_depth": 30,
+                    "bootstrap": true
+                }
+            },
+            "10": {
+                "qcut": {
+                    "n_estimators": 1400,
+                    "min_samples_split": 10,
+                    "min_samples_leaf": 1,
+                    "max_features": "sqrt",
+                    "max_depth": 40,
+                    "bootstrap": true
+                },
+                "median": {
+                    "n_estimators": 1000,
+                    "min_samples_split": 2,
+                    "min_samples_leaf": 1,
+                    "max_features": "sqrt",
+                    "max_depth": 70,
+                    "bootstrap": true
+                },
+                "throw median": {
+                    "n_estimators": 400,
+                    "min_samples_split": 2,
+                    "min_samples_leaf": 4,
+                    "max_features": "auto",
+                    "max_depth": 30,
+                    "bootstrap": true
+                }
+            },
+            "50": {
+                "qcut": {
+                    "n_estimators": 400,
+                    "min_samples_split": 2,
+                    "min_samples_leaf": 4,
+                    "max_features": "auto",
+                    "max_depth": 30,
+                    "bootstrap": true
+                },
+                "median": {
+                    "n_estimators": 600,
+                    "min_samples_split": 10,
+                    "min_samples_leaf": 2,
+                    "max_features": "auto",
+                    "max_depth": 10,
+                    "bootstrap": true
+                },
+                "throw median": {
+                    "n_estimators": 400,
+                    "min_samples_split": 2,
+                    "min_samples_leaf": 4,
+                    "max_features": "auto",
+                    "max_depth": 30,
+                    "bootstrap": true
+                }
+            },
+            "100": {
+                "qcut": {
+                    "n_estimators": 400,
+                    "min_samples_split": 2,
+                    "min_samples_leaf": 4,
+                    "max_features": "auto",
+                    "max_depth": 60,
+                    "bootstrap": true
+                },
+                "median": {
+                    "n_estimators": 400,
+                    "min_samples_split": 2,
+                    "min_samples_leaf": 4,
+                    "max_features": "auto",
+                    "max_depth": 60,
+                    "bootstrap": true
+                },
+                "throw median": {
+                    "n_estimators": 400,
+                    "min_samples_split": 10,
+                    "min_samples_leaf": 2,
+                    "max_features": "auto",
+                    "max_depth": 60,
+                    "bootstrap": true
+                }
+            }
+        },
+        "Conscientiousness": {
+            "5": {
+                "qcut": {
+                    "n_estimators": 1400,
+                    "min_samples_split": 10,
+                    "min_samples_leaf": 1,
+                    "max_features": "sqrt",
+                    "max_depth": 40,
+                    "bootstrap": true
+                },
+                "median": {
+                    "n_estimators": 1000,
+                    "min_samples_split": 2,
+                    "min_samples_leaf": 1,
+                    "max_features": "sqrt",
+                    "max_depth": 70,
+                    "bootstrap": true
+                },
+                "throw median": {
+                    "n_estimators": 1400,
+                    "min_samples_split": 10,
+                    "min_samples_leaf": 1,
+                    "max_features": "sqrt",
+                    "max_depth": 40,
+                    "bootstrap": true
+                }
+            },
+            "10": {
+                "qcut": {
+                    "n_estimators": 400,
+                    "min_samples_split": 10,
+                    "min_samples_leaf": 2,
+                    "max_features": "auto",
+                    "max_depth": 60,
+                    "bootstrap": true
+                },
+                "median": {
+                    "n_estimators": 1000,
+                    "min_samples_split": 2,
+                    "min_samples_leaf": 1,
+                    "max_features": "sqrt",
+                    "max_depth": 70,
+                    "bootstrap": true
+                },
+                "throw median": {
+                    "n_estimators": 1400,
+                    "min_samples_split": 10,
+                    "min_samples_leaf": 1,
+                    "max_features": "sqrt",
+                    "max_depth": 40,
+                    "bootstrap": true
+                }
+            },
+            "50": {
+                "qcut": {
+                    "n_estimators": 400,
+                    "min_samples_split": 2,
+                    "min_samples_leaf": 4,
+                    "max_features": "auto",
+                    "max_depth": 30,
+                    "bootstrap": true
+                },
+                "median": {
+                    "n_estimators": 1000,
+                    "min_samples_split": 2,
+                    "min_samples_leaf": 1,
+                    "max_features": "sqrt",
+                    "max_depth": 70,
+                    "bootstrap": true
+                },
+                "throw median": {
+                    "n_estimators": 400,
+                    "min_samples_split": 10,
+                    "min_samples_leaf": 2,
+                    "max_features": "auto",
+                    "max_depth": 60,
+                    "bootstrap": true
+                }
+            },
+            "100": {
+                "qcut": {
+                    "n_estimators": 400,
+                    "min_samples_split": 10,
+                    "min_samples_leaf": 2,
+                    "max_features": "auto",
+                    "max_depth": 60,
+                    "bootstrap": true
+                },
+                "median": {
+                    "n_estimators": 400,
+                    "min_samples_split": 2,
+                    "min_samples_leaf": 4,
+                    "max_features": "auto",
+                    "max_depth": 30,
+                    "bootstrap": true
+                },
+                "throw median": {
+                    "n_estimators": 1400,
+                    "min_samples_split": 10,
+                    "min_samples_leaf": 1,
+                    "max_features": "sqrt",
+                    "max_depth": 40,
+                    "bootstrap": true
+                }
+            }
+        },
+        "Neuroticism": {
+            "5": {
+                "qcut": {
+                    "n_estimators": 400,
+                    "min_samples_split": 2,
+                    "min_samples_leaf": 4,
+                    "max_features": "auto",
+                    "max_depth": 60,
+                    "bootstrap": true
+                },
+                "median": {
+                    "n_estimators": 1400,
+                    "min_samples_split": 10,
+                    "min_samples_leaf": 1,
+                    "max_features": "sqrt",
+                    "max_depth": 40,
+                    "bootstrap": true
+                },
+                "throw median": {
+                    "n_estimators": 1000,
+                    "min_samples_split": 2,
+                    "min_samples_leaf": 1,
+                    "max_features": "sqrt",
+                    "max_depth": 70,
+                    "bootstrap": true
+                }
+            },
+            "10": {
+                "qcut": {
+                    "n_estimators": 1000,
+                    "min_samples_split": 2,
+                    "min_samples_leaf": 1,
+                    "max_features": "sqrt",
+                    "max_depth": 70,
+                    "bootstrap": true
+                },
+                "median": {
+                    "n_estimators": 400,
+                    "min_samples_split": 10,
+                    "min_samples_leaf": 2,
+                    "max_features": "auto",
+                    "max_depth": 60,
+                    "bootstrap": true
+                },
+                "throw median": {
+                    "n_estimators": 1000,
+                    "min_samples_split": 2,
+                    "min_samples_leaf": 1,
+                    "max_features": "sqrt",
+                    "max_depth": 70,
+                    "bootstrap": true
+                }
+            },
+            "50": {
+                "qcut": {
+                    "n_estimators": 1200,
+                    "min_samples_split": 5,
+                    "min_samples_leaf": 4,
+                    "max_features": "auto",
+                    "max_depth": 10,
+                    "bootstrap": true
+                },
+                "median": {
+                    "n_estimators": 1000,
+                    "min_samples_split": 2,
+                    "min_samples_leaf": 1,
+                    "max_features": "sqrt",
+                    "max_depth": 70,
+                    "bootstrap": true
+                },
+                "throw median": {
+                    "n_estimators": 1000,
+                    "min_samples_split": 2,
+                    "min_samples_leaf": 1,
+                    "max_features": "sqrt",
+                    "max_depth": 70,
+                    "bootstrap": true
+                }
+            },
+            "100": {
+                "qcut": {
+                    "n_estimators": 1400,
+                    "min_samples_split": 10,
+                    "min_samples_leaf": 1,
+                    "max_features": "sqrt",
+                    "max_depth": 40,
+                    "bootstrap": true
+                },
+                "median": {
+                    "n_estimators": 600,
+                    "min_samples_split": 10,
+                    "min_samples_leaf": 2,
+                    "max_features": "auto",
+                    "max_depth": 50,
+                    "bootstrap": true
+                },
+                "throw median": {
+                    "n_estimators": 1400,
+                    "min_samples_split": 2,
+                    "min_samples_leaf": 4,
+                    "max_features": "sqrt",
+                    "max_depth": 40,
+                    "bootstrap": false
+                }
+            }
+        },
+        "Extraversion": {
+            "5": {
+                "qcut": {
+                    "n_estimators": 600,
+                    "min_samples_split": 10,
+                    "min_samples_leaf": 2,
+                    "max_features": "auto",
+                    "max_depth": 10,
+                    "bootstrap": true
+                },
+                "median": {
+                    "n_estimators": 1000,
+                    "min_samples_split": 2,
+                    "min_samples_leaf": 1,
+                    "max_features": "sqrt",
+                    "max_depth": 70,
+                    "bootstrap": true
+                },
+                "throw median": {
+                    "n_estimators": 1400,
+                    "min_samples_split": 10,
+                    "min_samples_leaf": 1,
+                    "max_features": "sqrt",
+                    "max_depth": 40,
+                    "bootstrap": true
+                }
+            },
+            "10": {
+                "qcut": {
+                    "n_estimators": 400,
+                    "min_samples_split": 10,
+                    "min_samples_leaf": 2,
+                    "max_features": "auto",
+                    "max_depth": 60,
+                    "bootstrap": true
+                },
+                "median": {
+                    "n_estimators": 1400,
+                    "min_samples_split": 10,
+                    "min_samples_leaf": 1,
+                    "max_features": "sqrt",
+                    "max_depth": 40,
+                    "bootstrap": true
+                },
+                "throw median": {
+                    "n_estimators": 1400,
+                    "min_samples_split": 10,
+                    "min_samples_leaf": 1,
+                    "max_features": "sqrt",
+                    "max_depth": 40,
+                    "bootstrap": true
+                }
+            },
+            "50": {
+                "qcut": {
+                    "n_estimators": 1400,
+                    "min_samples_split": 10,
+                    "min_samples_leaf": 1,
+                    "max_features": "sqrt",
+                    "max_depth": 40,
+                    "bootstrap": true
+                },
+                "median": {
+                    "n_estimators": 400,
+                    "min_samples_split": 10,
+                    "min_samples_leaf": 2,
+                    "max_features": "auto",
+                    "max_depth": 60,
+                    "bootstrap": true
+                },
+                "throw median": {
+                    "n_estimators": 1000,
+                    "min_samples_split": 2,
+                    "min_samples_leaf": 1,
+                    "max_features": "sqrt",
+                    "max_depth": 70,
+                    "bootstrap": true
+                }
+            },
+            "100": {
+                "qcut": {
+                    "n_estimators": 400,
+                    "min_samples_split": 10,
+                    "min_samples_leaf": 2,
+                    "max_features": "auto",
+                    "max_depth": 60,
+                    "bootstrap": true
+                },
+                "median": {
+                    "n_estimators": 400,
+                    "min_samples_split": 2,
+                    "min_samples_leaf": 4,
+                    "max_features": "auto",
+                    "max_depth": 30,
+                    "bootstrap": true
+                },
+                "throw median": {
+                    "n_estimators": 600,
+                    "min_samples_split": 10,
+                    "min_samples_leaf": 2,
+                    "max_features": "auto",
+                    "max_depth": 10,
+                    "bootstrap": true
+                }
+            }
+        }
+    },
+    "GB": {
+        "Agreeableness": {
+            "5": {
+                "qcut": {
+                    "tol": 0.01,
+                    "n_estimators": 200,
+                    "min_samples_split": 5,
+                    "min_samples_leaf": 4,
+                    "learning_rate": 0.8
+                },
+                "median": {
+                    "tol": 0.1,
+                    "n_estimators": 400,
+                    "min_samples_split": 5,
+                    "min_samples_leaf": 4,
+                    "learning_rate": 1
+                },
+                "throw median": {
+                    "tol": 0.1,
+                    "n_estimators": 200,
+                    "min_samples_split": 5,
+                    "min_samples_leaf": 2,
+                    "learning_rate": 0.8
+                }
+            },
+            "10": {
+                "qcut": {
+                    "tol": 0.1,
+                    "n_estimators": 400,
+                    "min_samples_split": 5,
+                    "min_samples_leaf": 4,
+                    "learning_rate": 1
+                },
+                "median": {
+                    "tol": 0.01,
+                    "n_estimators": 200,
+                    "min_samples_split": 5,
+                    "min_samples_leaf": 4,
+                    "learning_rate": 0.8
+                },
+                "throw median": {
+                    "tol": 0.1,
+                    "n_estimators": 200,
+                    "min_samples_split": 10,
+                    "min_samples_leaf": 4,
+                    "learning_rate": 1
+                }
+            },
+            "50": {
+                "qcut": {
+                    "tol": 0.01,
+                    "n_estimators": 400,
+                    "min_samples_split": 10,
+                    "min_samples_leaf": 4,
+                    "learning_rate": 1
+                },
+                "median": {
+                    "tol": 0.01,
+                    "n_estimators": 400,
+                    "min_samples_split": 10,
+                    "min_samples_leaf": 2,
+                    "learning_rate": 1
+                },
+                "throw median": {
+                    "tol": 0.01,
+                    "n_estimators": 400,
+                    "min_samples_split": 2,
+                    "min_samples_leaf": 4,
+                    "learning_rate": 1
+                }
+            },
+            "100": {
+                "qcut": {
+                    "tol": 0.1,
+                    "n_estimators": 400,
+                    "min_samples_split": 5,
+                    "min_samples_leaf": 4,
+                    "learning_rate": 1
+                },
+                "median": {
+                    "tol": 0.01,
+                    "n_estimators": 200,
+                    "min_samples_split": 2,
+                    "min_samples_leaf": 1,
+                    "learning_rate": 0.9
+                },
+                "throw median": {
+                    "tol": 0.1,
+                    "n_estimators": 200,
+                    "min_samples_split": 10,
+                    "min_samples_leaf": 4,
+                    "learning_rate": 1
+                }
+            }
+        },
+        "Openness": {
+            "5": {
+                "qcut": {
+                    "tol": 0.1,
+                    "n_estimators": 200,
+                    "min_samples_split": 10,
+                    "min_samples_leaf": 4,
+                    "learning_rate": 1
+                },
+                "median": {
+                    "tol": 0.01,
+                    "n_estimators": 400,
+                    "min_samples_split": 2,
+                    "min_samples_leaf": 4,
+                    "learning_rate": 1
+                },
+                "throw median": {
+                    "tol": 0.01,
+                    "n_estimators": 400,
+                    "min_samples_split": 2,
+                    "min_samples_leaf": 4,
+                    "learning_rate": 1
+                }
+            },
+            "10": {
+                "qcut": {
+                    "tol": 0.01,
+                    "n_estimators": 200,
+                    "min_samples_split": 5,
+                    "min_samples_leaf": 4,
+                    "learning_rate": 0.8
+                },
+                "median": {
+                    "tol": 0.01,
+                    "n_estimators": 200,
+                    "min_samples_split": 5,
+                    "min_samples_leaf": 1,
+                    "learning_rate": 0.9
+                },
+                "throw median": {
+                    "tol": 0.01,
+                    "n_estimators": 400,
+                    "min_samples_split": 2,
+                    "min_samples_leaf": 4,
+                    "learning_rate": 1
+                }
+            },
+            "50": {
+                "qcut": {
+                    "tol": 0.01,
+                    "n_estimators": 400,
+                    "min_samples_split": 10,
+                    "min_samples_leaf": 4,
+                    "learning_rate": 1
+                },
+                "median": {
+                    "tol": 0.01,
+                    "n_estimators": 200,
+                    "min_samples_split": 5,
+                    "min_samples_leaf": 4,
+                    "learning_rate": 0.8
+                },
+                "throw median": {
+                    "tol": 0.1,
+                    "n_estimators": 400,
+                    "min_samples_split": 5,
+                    "min_samples_leaf": 1,
+                    "learning_rate": 1
+                }
+            },
+            "100": {
+                "qcut": {
+                    "tol": 0.01,
+                    "n_estimators": 200,
+                    "min_samples_split": 2,
+                    "min_samples_leaf": 1,
+                    "learning_rate": 0.9
+                },
+                "median": {
+                    "tol": 0.01,
+                    "n_estimators": 400,
+                    "min_samples_split": 10,
+                    "min_samples_leaf": 2,
+                    "learning_rate": 1
+                },
+                "throw median": {
+                    "tol": 0.1,
+                    "n_estimators": 400,
+                    "min_samples_split": 5,
+                    "min_samples_leaf": 1,
+                    "learning_rate": 1
+                }
+            }
+        },
+        "Conscientiousness": {
+            "5": {
+                "qcut": {
+                    "tol": 0.01,
+                    "n_estimators": 400,
+                    "min_samples_split": 10,
+                    "min_samples_leaf": 2,
+                    "learning_rate": 1
+                },
+                "median": {
+                    "tol": 0.01,
+                    "n_estimators": 400,
+                    "min_samples_split": 10,
+                    "min_samples_leaf": 4,
+                    "learning_rate": 1
+                },
+                "throw median": {
+                    "tol": 0.1,
+                    "n_estimators": 200,
+                    "min_samples_split": 10,
+                    "min_samples_leaf": 4,
+                    "learning_rate": 1
+                }
+            },
+            "10": {
+                "qcut": {
+                    "tol": 0.1,
+                    "n_estimators": 400,
+                    "min_samples_split": 5,
+                    "min_samples_leaf": 1,
+                    "learning_rate": 1
+                },
+                "median": {
+                    "tol": 0.1,
+                    "n_estimators": 200,
+                    "min_samples_split": 10,
+                    "min_samples_leaf": 4,
+                    "learning_rate": 1
+                },
+                "throw median": {
+                    "tol": 0.1,
+                    "n_estimators": 400,
+                    "min_samples_split": 5,
+                    "min_samples_leaf": 4,
+                    "learning_rate": 1
+                }
+            },
+            "50": {
+                "qcut": {
+                    "tol": 0.1,
+                    "n_estimators": 400,
+                    "min_samples_split": 5,
+                    "min_samples_leaf": 1,
+                    "learning_rate": 1
+                },
+                "median": {
+                    "tol": 0.1,
+                    "n_estimators": 400,
+                    "min_samples_split": 5,
+                    "min_samples_leaf": 4,
+                    "learning_rate": 1
+                },
+                "throw median": {
+                    "tol": 0.1,
+                    "n_estimators": 400,
+                    "min_samples_split": 5,
+                    "min_samples_leaf": 4,
+                    "learning_rate": 1
+                }
+            },
+            "100": {
+                "qcut": {
+                    "tol": 0.1,
+                    "n_estimators": 200,
+                    "min_samples_split": 10,
+                    "min_samples_leaf": 4,
+                    "learning_rate": 1
+                },
+                "median": {
+                    "tol": 0.1,
+                    "n_estimators": 400,
+                    "min_samples_split": 5,
+                    "min_samples_leaf": 4,
+                    "learning_rate": 1
+                },
+                "throw median": {
+                    "tol": 0.01,
+                    "n_estimators": 200,
+                    "min_samples_split": 5,
+                    "min_samples_leaf": 4,
+                    "learning_rate": 0.8
+                }
+            }
+        },
+        "Neuroticism": {
+            "5": {
+                "qcut": {
+                    "tol": 0.01,
+                    "n_estimators": 200,
+                    "min_samples_split": 5,
+                    "min_samples_leaf": 1,
+                    "learning_rate": 0.9
+                },
+                "median": {
+                    "tol": 0.1,
+                    "n_estimators": 400,
+                    "min_samples_split": 5,
+                    "min_samples_leaf": 4,
+                    "learning_rate": 1
+                },
+                "throw median": {
+                    "tol": 0.1,
+                    "n_estimators": 400,
+                    "min_samples_split": 5,
+                    "min_samples_leaf": 4,
+                    "learning_rate": 1
+                }
+            },
+            "10": {
+                "qcut": {
+                    "tol": 0.01,
+                    "n_estimators": 400,
+                    "min_samples_split": 10,
+                    "min_samples_leaf": 4,
+                    "learning_rate": 1
+                },
+                "median": {
+                    "tol": 0.01,
+                    "n_estimators": 400,
+                    "min_samples_split": 2,
+                    "min_samples_leaf": 4,
+                    "learning_rate": 1
+                },
+                "throw median": {
+                    "tol": 0.1,
+                    "n_estimators": 400,
+                    "min_samples_split": 5,
+                    "min_samples_leaf": 4,
+                    "learning_rate": 1
+                }
+            },
+            "50": {
+                "qcut": {
+                    "tol": 0.01,
+                    "n_estimators": 400,
+                    "min_samples_split": 10,
+                    "min_samples_leaf": 2,
+                    "learning_rate": 1
+                },
+                "median": {
+                    "tol": 0.1,
+                    "n_estimators": 400,
+                    "min_samples_split": 5,
+                    "min_samples_leaf": 4,
+                    "learning_rate": 1
+                },
+                "throw median": {
+                    "tol": 0.1,
+                    "n_estimators": 200,
+                    "min_samples_split": 5,
+                    "min_samples_leaf": 2,
+                    "learning_rate": 0.8
+                }
+            },
+            "100": {
+                "qcut": {
+                    "tol": 0.1,
+                    "n_estimators": 400,
+                    "min_samples_split": 5,
+                    "min_samples_leaf": 4,
+                    "learning_rate": 1
+                },
+                "median": {
+                    "tol": 0.01,
+                    "n_estimators": 400,
+                    "min_samples_split": 10,
+                    "min_samples_leaf": 4,
+                    "learning_rate": 1
+                },
+                "throw median": {
+                    "tol": 0.1,
+                    "n_estimators": 200,
+                    "min_samples_split": 5,
+                    "min_samples_leaf": 2,
+                    "learning_rate": 0.8
+                }
+            }
+        },
+        "Extraversion": {
+            "5": {
+                "qcut": {
+                    "tol": 0.1,
+                    "n_estimators": 400,
+                    "min_samples_split": 5,
+                    "min_samples_leaf": 4,
+                    "learning_rate": 1
+                },
+                "median": {
+                    "tol": 0.01,
+                    "n_estimators": 400,
+                    "min_samples_split": 10,
+                    "min_samples_leaf": 2,
+                    "learning_rate": 1
+                },
+                "throw median": {
+                    "tol": 0.1,
+                    "n_estimators": 200,
+                    "min_samples_split": 10,
+                    "min_samples_leaf": 4,
+                    "learning_rate": 1
+                }
+            },
+            "10": {
+                "qcut": {
+                    "tol": 0.01,
+                    "n_estimators": 400,
+                    "min_samples_split": 2,
+                    "min_samples_leaf": 4,
+                    "learning_rate": 1
+                },
+                "median": {
+                    "tol": 0.1,
+                    "n_estimators": 400,
+                    "min_samples_split": 5,
+                    "min_samples_leaf": 4,
+                    "learning_rate": 1
+                },
+                "throw median": {
+                    "tol": 0.1,
+                    "n_estimators": 200,
+                    "min_samples_split": 10,
+                    "min_samples_leaf": 4,
+                    "learning_rate": 1
+                }
+            },
+            "50": {
+                "qcut": {
+                    "tol": 0.01,
+                    "n_estimators": 400,
+                    "min_samples_split": 10,
+                    "min_samples_leaf": 4,
+                    "learning_rate": 1
+                },
+                "median": {
+                    "tol": 0.01,
+                    "n_estimators": 200,
+                    "min_samples_split": 2,
+                    "min_samples_leaf": 1,
+                    "learning_rate": 0.9
+                },
+                "throw median": {
+                    "tol": 0.1,
+                    "n_estimators": 400,
+                    "min_samples_split": 5,
+                    "min_samples_leaf": 1,
+                    "learning_rate": 1
+                }
+            },
+            "100": {
+                "qcut": {
+                    "tol": 0.1,
+                    "n_estimators": 200,
+                    "min_samples_split": 10,
+                    "min_samples_leaf": 4,
+                    "learning_rate": 1
+                },
+                "median": {
+                    "tol": 0.01,
+                    "n_estimators": 200,
+                    "min_samples_split": 5,
+                    "min_samples_leaf": 4,
+                    "learning_rate": 0.8
+                },
+                "throw median": {
+                    "tol": 0.01,
+                    "n_estimators": 400,
+                    "min_samples_split": 2,
+                    "min_samples_leaf": 4,
+                    "learning_rate": 1
+                }
+            }
+        }
+    },
+    "MLP": {
+        "Agreeableness": {
+            "5": {
+                "qcut": {
+                    "solver": "sgd",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.05,
+                    "activation": "tanh"
+                },
+                "median": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "tanh"
+                },
+                "throw median": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "tanh"
+                }
+            },
+            "10": {
+                "qcut": {
+                    "solver": "sgd",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.05,
+                    "activation": "tanh"
+                },
+                "median": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "tanh"
+                },
+                "throw median": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "tanh"
+                }
+            },
+            "50": {
+                "qcut": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "tanh"
+                },
+                "median": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "tanh"
+                },
+                "throw median": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "tanh"
+                }
+            },
+            "100": {
+                "qcut": {
+                    "solver": "sgd",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.05,
+                    "activation": "tanh"
+                },
+                "median": {
+                    "solver": "sgd",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.05,
+                    "activation": "tanh"
+                },
+                "throw median": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "tanh"
+                }
+            }
+        },
+        "Openness": {
+            "5": {
+                "qcut": {
+                    "solver": "sgd",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "tanh"
+                },
+                "median": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "tanh"
+                },
+                "throw median": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "tanh"
+                }
+            },
+            "10": {
+                "qcut": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "tanh"
+                },
+                "median": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "tanh"
+                },
+                "throw median": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "tanh"
+                }
+            },
+            "50": {
+                "qcut": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "tanh"
+                },
+                "median": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "tanh"
+                },
+                "throw median": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "tanh"
+                }
+            },
+            "100": {
+                "qcut": {
+                    "solver": "sgd",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "tanh"
+                },
+                "median": {
+                    "solver": "sgd",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "tanh"
+                },
+                "throw median": {
+                    "solver": "sgd",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.05,
+                    "activation": "relu"
+                }
+            }
+        },
+        "Conscientiousness": {
+            "5": {
+                "qcut": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "relu"
+                },
+                "median": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "tanh"
+                },
+                "throw median": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "tanh"
+                }
+            },
+            "10": {
+                "qcut": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "relu"
+                },
+                "median": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "tanh"
+                },
+                "throw median": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "tanh"
+                }
+            },
+            "50": {
+                "qcut": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "tanh"
+                },
+                "median": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "tanh"
+                },
+                "throw median": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "tanh"
+                }
+            },
+            "100": {
+                "qcut": {
+                    "solver": "sgd",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.05,
+                    "activation": "tanh"
+                },
+                "median": {
+                    "solver": "sgd",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.05,
+                    "activation": "tanh"
+                },
+                "throw median": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "relu"
+                }
+            }
+        },
+        "Neuroticism": {
+            "5": {
+                "qcut": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "tanh"
+                },
+                "median": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "relu"
+                },
+                "throw median": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "tanh"
+                }
+            },
+            "10": {
+                "qcut": {
+                    "solver": "sgd",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "tanh"
+                },
+                "median": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "tanh"
+                },
+                "throw median": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "tanh"
+                }
+            },
+            "50": {
+                "qcut": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "tanh"
+                },
+                "median": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "tanh"
+                },
+                "throw median": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "tanh"
+                }
+            },
+            "100": {
+                "qcut": {
+                    "solver": "sgd",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.05,
+                    "activation": "tanh"
+                },
+                "median": {
+                    "solver": "sgd",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "tanh"
+                },
+                "throw median": {
+                    "solver": "sgd",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "tanh"
+                }
+            }
+        },
+        "Extraversion": {
+            "5": {
+                "qcut": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "relu"
+                },
+                "median": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "tanh"
+                },
+                "throw median": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "tanh"
+                }
+            },
+            "10": {
+                "qcut": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "tanh"
+                },
+                "median": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "tanh"
+                },
+                "throw median": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "tanh"
+                }
+            },
+            "50": {
+                "qcut": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "tanh"
+                },
+                "median": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "tanh"
+                },
+                "throw median": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "tanh"
+                }
+            },
+            "100": {
+                "qcut": {
+                    "solver": "sgd",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.05,
+                    "activation": "tanh"
+                },
+                "median": {
+                    "solver": "sgd",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.05,
+                    "activation": "relu"
+                },
+                "throw median": {
+                    "solver": "sgd",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "tanh"
+                }
+            }
+        }
+    }
+}

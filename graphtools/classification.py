@@ -8,10 +8,8 @@ import time
 import datetime
 import json
 from paramopt import get_distributions
-
 #%%
-
-def data_splitting(choice, i, index, *args, **kwargs):
+def data_splitting(choice, i, index, data, whole,labels, *args, **kwargs):
     print (choice)
     if choice == 'qcut':
         # choice to cut into three quartiles
@@ -158,7 +156,7 @@ if __name__ == "__main__":
         print(f'Time taken for {clf}: {datetime.timedelta(seconds=end-start)}')
         make_csv(d1, f'outputs/{clf}_results_cv.csv')
         with open(f'outputs/{clf}_results_cv.json', 'w') as fp:
-            json.dump(d1, fp)
+            json.dump(d1, fp, indent=4)
 
         combined[clf] = d1['Metrics']
         best_params_combined[clf] = d1['Parameters']

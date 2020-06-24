@@ -6,12 +6,12 @@ import pandas as pd
 from sklearn.preprocessing import Normalizer, StandardScaler
 # %%
 def generate_combined_matrix(tri, present_subjects):
-    '''
+    """
     There are three features that we want to add to the matrix for all subjects
     1. Mean FA between the two nodes
     2. The mean length of the streamlines between the two nodes
     3. The number of streamlines between the two nodes
-    '''
+    """
     #norm = Normalizer()
     scale = StandardScaler()
     whole = np.zeros((len(get_subj_ids()), tri * 3))
@@ -35,9 +35,10 @@ def generate_combined_matrix(tri, present_subjects):
             # print(i,j)
             i += 1
         j += 1
-    '''we need to normalise the data since the scales are different 
+    """
+    We need to normalise the data since the scales are different 
     and we still want to retain the variance
-    '''
+    """
     #whole = norm.fit_transform(whole) # seems wrong since one subject gets scaled to a unit norm
     whole = scale.fit_transform(whole)
     whole = pd.DataFrame(whole)

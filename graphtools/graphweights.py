@@ -9,7 +9,6 @@ from classification import data_splitting
 import random
 import os
 # %%
-# %%
 def train_with_best_params(classifier, params, X, y):
     """
 
@@ -29,37 +28,33 @@ y = np.array(data['NEOFAC_A'] >= data['NEOFAC_A'].median()).astype(int)
 num = 84  # number of nodes in the graph
 tri = int(num * (num + 1) * 0.5)  # we want only the upper diagonal parts since everything below diagonal is 0
 whole = generate_combined_matrix(tri, data.index)
-whole = np.array(whole)
-# Values of C parameter of SVM
-wholex = np.reshape(whole, (whole.shape[0], whole.shape[1] // 3, 3))
 big5 = ['Agreeableness', 'Openness', 'Conscientiousness', 'Neuroticism',
         'Extraversion']
 labels = ['NEOFAC_A', 'NEOFAC_O', 'NEOFAC_C', 'NEOFAC_N', 'NEOFAC_E']
 edge_names = ['mean_FA', 'mean strl', 'num streamlines']
 fscores = hist_fscore(data, whole, labels, big5, edge_names, tri)
-#%%
+
 # without taking the edge type into consideration
 new_fscores = np.reshape(fscores, (fscores.shape[0], fscores.shape[1] * fscores.shape[2]))
-
+whole = np.array(whole)
+# Values of C parameter of SVM
+wholex = np.reshape(whole, (whole.shape[0], whole.shape[1] // 3, 3))
 mat = np.triu_indices(84)
+
 with open('outputs/combined_params.json', 'r') as f:
     best_params = json.load(f)
-
     for i in range(5):  # different labels
-        # print(labels[i], ':', big5[i])
         for per in [5, 10, 50, 100]: # we actually see that keeping 5-10% of the features is the best option
-
             val = np.percentile(new_fscores[i], 100 - per)
             index = np.where(new_fscores[i] >= val)
-
             for choice in ['qcut', 'median', 'throw median']:
-                X, y = data_splitting(choice, i, index, data, whole)
+                X, y = data_splitting(choice, i, index, data, whole, labels)
                 params = best_params['RF'][big5[i]][per][choice]
                 feature_imp = train_with_best_params('RF', params, X, y)
                 #make a graph with these feature importsances
-            # can we give this weight to each of the columns in the SVM matrix
-            #these graph properties are then needed to be given to the solver?
-#%%
+                 # can we give this weight to each of the columns in the SVM matrix
+                 #these graph properties are then needed to be given to the solver?
+
                 feature_imp2 = np.reshape(feature_imp, (feature_imp.shape[0] // 3, 3)) #first dimension shall be equal to the number of edges
                 mat = np.triu_indices(84)
                 # nodes = {x: 1 for x in range(84)}
@@ -115,7 +110,7 @@ with open('outputs/combined_params.json', 'r') as f:
                          #print(str(edge[0]) + ' ' + str(edge[1]) + ' ' + str(randint(-5,5)), file = edges_file)
                 nodes_file.close()
                 edges_file.close()
-                #%%
+
                 print(filename, '*' * 100)
                 mews = '/home/shreya/Desktop/Thesis/gmwcs-solver'
                 cmd = (f' java -Xss4M -Djava.library.path=/opt/ibm/ILOG/CPLEX_Studio_Community129/cplex/bin/x86-64_linux/ '
@@ -124,8 +119,6 @@ with open('outputs/combined_params.json', 'r') as f:
                        f'-n {filename}_nodes ')
                 os.system(cmd)
 #%%
-#%%
-
 G = []
 # nodes = {x: 1 for x in range(84)}
 node = range(84)
