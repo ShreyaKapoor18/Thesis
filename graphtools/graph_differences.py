@@ -12,6 +12,7 @@ We make one networkx Graph for all sub
 
 Store the values in the a json dictionary
 """
+import os
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import RandomizedSearchCV
@@ -74,14 +75,60 @@ with open('outputs/combined_params.json', 'r') as f:
         g1 = nx.Graph()
         edges = {(0, 1)}
         # edges = {}
-        edge_attributes = {}
-        node_attributes = {x: random.randint(-10, 10) for x in range(84)}
-        for j in range(len(mat[0])):
-            edges.add((mat[0][j], mat[1][j]))
-            edge_attributes[(mat[0][j], mat[1][j])] = [np.mean(fscores[i,:, j]),
-                                                       np.mean(corr[i,:,j]),np.mean(feature_imp[j,:]) ]  # then we should have just one graph for all subjects
+        edge_attributes = []
+        # node_attributes = {x: random.randint(-10, 10) for x in range(84)}
+        for edge in ['fscores', 'pearson', 'feature importance']:
+            # for each edge type we have a different feature
+            for j in range(len(mat[0])):
+                #edges.add((mat[0][j], mat[1][j]))
+                if edge == 'fscores':
+                    edge_attributes.append((mat[0][j], mat[1][j], np.mean(fscores[i, :, j])))
+                if edge == 'pearson':
+                    edge_attributes.append((mat[0][j], mat[1][j], np.mean(corr[i, :, j])))
+                if edge == 'feature importance':
+                    edge_attributes.append((mat[0][j], mat[1][j], np.mean(feature_imp[j, :])))
+                    # then we should have just one graph for all subjects
             # this graph is then needed to be put into the solver in order to get the maximum edge weighted subgraph
-        g1.add_nodes_from(range(84))
-        g1.add_edges_from(edges)
+            g1.add_nodes_from(range(84))
+            #g1.add_edges_from(edges)
+            g1.add_weighted_edges_from(edge_attributes) # shall be a list of tuples
+            for l in range(len(g1.nodes)):
+                g1.nodes[l]['label'] = max([g1[l][k]['weight'] for k in range(len(g1[l]))])
+            #putting this into the different text files
+            filename = f'combined_graph{choice}{big5[i]}{edge}'
+
+            nodes_file = open(f'{filename}_nodes', 'w+')
+            edges_file = open(f'{filename}_edges', 'w+')
+
+            count = 0
+            for x in g1.nodes:
+                # print(node)
+                if g1.degree(x) >= 2:
+                    print(str(x) + ' ' + str(g1.nodes[x]['label']), file=nodes_file)
+                    # print(str(node) + ' ' + str(0), file=nodes_file)
+                    count+=1
+
+                    # print(node, 'has degree >=2')
+            print('Number of nodes having degree>=2', count)
+            # print(len(nodes))
+
+            for x in g1.nodes:
+                #if edge[0] in g1.nodes and edge[1] in g1.nodes:
+                for conn in g1[x]:
+                    print(str(x) + ' ' + str(conn) + ' ' + str(g1[x][conn]['weight']),
+                          file=edges_file)
+                    # print(str(edge[0]) + ' ' + str(edge[1]) + ' ' + str(randint(-5,5)), file = edges_file)
+            nodes_file.close()
+            edges_file.close()
+
+            print(filename, '*' * 100)
+            mews = '/home/shreya/Desktop/Thesis/gmwcs-solver'
+            cmd = (f' java -Xss4M -Djava.library.path=/opt/ibm/ILOG/CPLEX_Studio_Community129/cplex/bin/x86-64_linux/ '
+                   f'-cp /opt/ibm/ILOG/CPLEX_Studio_Community129/cplex/lib/cplex.jar:{mews}/target/gmwcs-solver.jar '
+                   f'ru.ifmo.ctddev.gmwcs.Main -e {filename}_edges '
+                   f'-n {filename}_nodes ')
+            os.system(cmd)
+
+
         # nx.set_node_attributes(g1, nodes, 'nodes')
-        nx.set_edge_attributes(g1, edge_attributes, 'edges')
+        #nx.set_edge_attributes(g1, edge_attributes, 'edges')
