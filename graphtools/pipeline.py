@@ -28,13 +28,13 @@ new_fscores = np.reshape(fscores, (fscores.shape[0], fscores.shape[1] * fscores.
 
 # %%
 mat = np.triu_indices(84)
-mews = '~/Thesis/gmwcs-solver'
+mews = '/home/skapoor/Thesis/gmwcs-solver'
 dict2 = {'whole': whole, 'metrics': metrics, 'big5': big5,
          'data':data, 'new_fscores':new_fscores,'labels' :labels}
 dict3 = {'fscores': fscores, 'mat': mat, 'big5': big5,
          'data': data, 'whole':whole,
          'labels':labels, 'corr': corr, 'mews': mews}
 # %%
-run_classification(**dict2)
-
+#run_classification(**dict2)
+#%%
 different_graphs(**dict3)

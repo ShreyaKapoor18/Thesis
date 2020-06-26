@@ -74,11 +74,12 @@ def different_graphs(fscores, mat,big5, data, whole, labels, corr, mews):
                         #edge_attributes.append((mat[0][j], mat[1][j], np.mean(fscores[i, :, j])))
                         edge_attributes.append((mat[0][j], mat[1][j], fscores[i, 0, j])) # only the first type of information, MEan FA
                     if edge == 'pearson':
+                        #print(corr.shape, 'pearson')
                         #edge_attributes.append((mat[0][j], mat[1][j], np.mean(corr[i, :, j])))
                         edge_attributes.append((mat[0][j], mat[1][j], corr[i,0,j]))
-                    if edge == 'feature importance':
+                    if edge == 'feature_importance':
                         #edge_attributes.append((mat[0][j], mat[1][j], np.mean(feature_imp[j, :])))
-                        edge_attributes.append((mat[0][j], mat[1][j], feature_imp[i, 0, j]))
+                        edge_attributes.append((mat[0][j], mat[1][j], feature_imp[j, 0]))
                         # then we should have just one graph for all subjects
                 # this graph is then needed to be put into the solver in order to get the maximum edge weighted subgraph
                 g1.add_nodes_from(range(84))
@@ -88,7 +89,7 @@ def different_graphs(fscores, mat,big5, data, whole, labels, corr, mews):
                 for l in range(len(g1.nodes)):
                     g1.nodes[l]['label'] = max([g1[l][k]['weight'] for k in range(len(g1[l]))])
                     node_labels.append(g1.nodes[l]['label'])
-                node_labels = scale(node_labels)
+                node_labels = scale(node_labels) # standardizing the node labels
                 for l in range(len(g1.nodes)):
                     g1.nodes[l]['label'] = node_labels[l]
 
@@ -126,7 +127,7 @@ def different_graphs(fscores, mat,big5, data, whole, labels, corr, mews):
                 cmd = (f' java -Xss4M -Djava.library.path=/opt/ibm/ILOG/CPLEX_Studio1210/cplex/bin/x86-64_linux/ '
                        f'-cp /opt/ibm/ILOG/CPLEX_Studio1210/cplex/lib/cplex.jar:target/gmwcs-solver.jar '
                        f'ru.ifmo.ctddev.gmwcs.Main -e outputs/edges/{filename} '
-                       f'-n outputs/nodes/{filename} ')
+                       f'-n outputs/nodes/{filename} > outputs/solver/{filename}')
                 print(cmd)
                 os.system(cmd)
                 os.chdir("/home/skapoor/Thesis/graphtools")
