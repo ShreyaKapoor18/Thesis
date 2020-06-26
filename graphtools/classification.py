@@ -1,8 +1,6 @@
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import RandomizedSearchCV
-from processing import generate_combined_matrix, hist_fscore
-from readfiles import computed_subjects
 import matplotlib.pyplot as plt
 import time
 import datetime
@@ -33,7 +31,7 @@ def data_splitting(choice, i, index, data, whole,labels, *args, **kwargs):
     return np.array(X), np.array(y)
 
 # %%
-def dict_classifier(classifier, *args):
+def dict_classifier(classifier, big5, new_fscores, data, whole, metrics, labels):
     """
     :param whole: the matrix containing the edge information for all subjects
     :param option: if we want the scores with or without cross validation
@@ -62,7 +60,7 @@ def dict_classifier(classifier, *args):
             # Y = np.array(data[labels[i]] >= data[labels[i]].median()).astype(int)
             for choice in ['qcut', 'median', 'throw median']:
                 metric_score[big5[i]][per][choice] = {}
-                X,y = data_splitting(choice, i, index, data, whole)
+                X,y = data_splitting(choice, i, index, data, whole, labels)
                 clf, distributions = get_distributions(classifier)
                 print(f'Executing {clf}')
                 # roc doesn't support multiclass
@@ -126,32 +124,12 @@ def visualise_performance(combined, big5, metrics, top_per):
 
 
 # %%
-if __name__ == "__main__":
-
-    data = computed_subjects()  # labels for the computed subjects, data.index is the subject id
-    num = 84  # number of nodes in the graph
-    tri = int(num * (num + 1) * 0.5)  # we want only the upper diagonal parts since everything below diagonal is 0
-    whole = generate_combined_matrix(tri, list(data.index)) #need to check indices till here then convert to numpy array
-    assert list(whole.index) == list(data.index)
-    # The labels i.e. the ones from unrestricted_files # the order in which the subjects
-    # were traversed is according to that of the index
-
-    labels = ['NEOFAC_A', 'NEOFAC_O', 'NEOFAC_C', 'NEOFAC_N', 'NEOFAC_E']
-    edge_names = ['mean_FA', 'mean strl', 'num streamlines']
-    big5 = ['Agreeableness', 'Openness', 'Conscientiousness', 'Neuroticism',
-            'Extraversion']
-
-    fscores = hist_fscore(data, whole, labels, big5, edge_names, tri)
-
-    # without taking the edge type into consideration
-    new_fscores = np.reshape(fscores, (fscores.shape[0], fscores.shape[1] * fscores.shape[2]))
-    metrics = ['balanced_accuracy', 'accuracy', 'f1_weighted', 'roc_auc_ovr_weighted']
-
+def run_classification(whole, metrics, big5, data, new_fscores, labels):
     combined = {}
     best_params_combined = {}
     for clf in ['SVC', 'RF', 'GB', 'MLP']: #other ones are taking too long
         start = time.time()
-        d1 = dict_classifier(clf, whole, metrics, labels, big5, data, new_fscores)
+        d1 = dict_classifier(clf, big5, new_fscores, data, whole, metrics, labels)
         end = time.time()
         print(f'Time taken for {clf}: {datetime.timedelta(seconds=end-start)}')
         make_csv(d1, f'outputs/{clf}_results_cv.csv')
@@ -163,7 +141,7 @@ if __name__ == "__main__":
 
     with open('outputs/combined_dict.json', 'w') as f:
         # write the combined dictionary to the file so that this can be read later on
-        json.dump(combined,f, indent=4)
+        json.dump(combined, f, indent=4)
     with open('outputs/combined_params.json', 'w') as f:#
-        json.dump(best_params_combined,f, indent=4)
+        json.dump(best_params_combined, f, indent=4)
     visualise_performance(combined, big5, metrics, [5, 10, 50, 100])
