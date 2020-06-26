@@ -14,13 +14,12 @@ Store the values in the a json dictionary
 """
 import os
 import numpy as np
-from processing import generate_combined_matrix, hist_fscore, hist_correlation
-from readfiles import computed_subjects
 import json
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from classification import data_splitting
 import networkx as nx
+from sklearn.preprocessing import scale
 #%%
 def train_with_best_params(classifier, params, X, y):
     """
@@ -46,7 +45,7 @@ def nested_outputdirs(mews):
         os.mkdir(f'{mews}/outputs/solver')
 
 def different_graphs(fscores, mat,big5, data, whole, labels, corr, mews):
-    nested_outputdirs(mews='~/Thesis/gmwcs-solver')
+    nested_outputdirs(mews='/home/skapoor/Thesis/gmwcs-solver')
     with open('outputs/combined_params.json', 'r') as f:
         best_params = json.load(f)
 
@@ -57,7 +56,7 @@ def different_graphs(fscores, mat,big5, data, whole, labels, corr, mews):
             index = np.where(fscores[i].flatten() >= val)
             #for choice in ['qcut', 'median', 'throw median'
             # Let's say we only choose the throw median choice, because it is the one that makes more sense
-            choice = 'throw median'
+            choice = 'throw median' # out of all these we will use these particular choices only!
             X, y = data_splitting(choice, i, index, data, whole, labels) # this X is for random forests training
             params = best_params['RF'][big5[i]]["100"][choice]
             feature_imp = train_with_best_params('RF', params, X, y)
@@ -72,18 +71,27 @@ def different_graphs(fscores, mat,big5, data, whole, labels, corr, mews):
                 for j in range(len(mat[0])):
                     #edges.add((mat[0][j], mat[1][j]))
                     if edge == 'fscores':
-                        edge_attributes.append((mat[0][j], mat[1][j], np.mean(fscores[i, :, j])))
+                        #edge_attributes.append((mat[0][j], mat[1][j], np.mean(fscores[i, :, j])))
+                        edge_attributes.append((mat[0][j], mat[1][j], fscores[i, 0, j])) # only the first type of information, MEan FA
                     if edge == 'pearson':
-                        edge_attributes.append((mat[0][j], mat[1][j], np.mean(corr[i, :, j])))
+                        #edge_attributes.append((mat[0][j], mat[1][j], np.mean(corr[i, :, j])))
+                        edge_attributes.append((mat[0][j], mat[1][j], corr[i,0,j]))
                     if edge == 'feature importance':
-                        edge_attributes.append((mat[0][j], mat[1][j], np.mean(feature_imp[j, :])))
+                        #edge_attributes.append((mat[0][j], mat[1][j], np.mean(feature_imp[j, :])))
+                        edge_attributes.append((mat[0][j], mat[1][j], feature_imp[i, 0, j]))
                         # then we should have just one graph for all subjects
                 # this graph is then needed to be put into the solver in order to get the maximum edge weighted subgraph
                 g1.add_nodes_from(range(84))
                 #g1.add_edges_from(edges)
                 g1.add_weighted_edges_from(edge_attributes) # shall be a list of tuples
+                node_labels = []
                 for l in range(len(g1.nodes)):
                     g1.nodes[l]['label'] = max([g1[l][k]['weight'] for k in range(len(g1[l]))])
+                    node_labels.append(g1.nodes[l]['label'])
+                node_labels = scale(node_labels)
+                for l in range(len(g1.nodes)):
+                    g1.nodes[l]['label'] = node_labels[l]
+
                 #putting this into the different text files
 
 
@@ -111,12 +119,12 @@ def different_graphs(fscores, mat,big5, data, whole, labels, corr, mews):
                 nodes_file.close()
                 edges_file.close()
 
-                print(filename, '*' * 100)
+                print( '*' * 100,'\n', filename)
 
                 os.chdir(mews)
                 print('Current directory', os.getcwd())
-                cmd = (f' java -Xss4M -Djava.library.path=/opt/ibm/ILOG/CPLEX_Studio_Community129/cplex/bin/x86-64_linux/ '
-                       f'-cp /opt/ibm/ILOG/CPLEX_Studio_Community129/cplex/lib/cplex.jar:target/gmwcs-solver.jar '
+                cmd = (f' java -Xss4M -Djava.library.path=/opt/ibm/ILOG/CPLEX_Studio1210/cplex/bin/x86-64_linux/ '
+                       f'-cp /opt/ibm/ILOG/CPLEX_Studio1210/cplex/lib/cplex.jar:target/gmwcs-solver.jar '
                        f'ru.ifmo.ctddev.gmwcs.Main -e outputs/edges/{filename} '
                        f'-n outputs/nodes/{filename} ')
                 print(cmd)

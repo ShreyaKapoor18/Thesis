@@ -1,34 +1,38 @@
+import datetime
+import json
+import time
+import os
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import RandomizedSearchCV
-import matplotlib.pyplot as plt
-import time
-import datetime
-import json
 from paramopt import get_distributions
-#%%
-def data_splitting(choice, i, index, data, whole,labels, *args, **kwargs):
-    print (choice)
+
+
+# %%
+def data_splitting(choice, i, index, data, whole, labels, *args, **kwargs):
+    #print(choice)
     if choice == 'qcut':
         # choice to cut into three quartiles
         y = pd.qcut(data[labels[i]], 3, labels=False, retbins=True)[0]
         X = whole.iloc[:, index[0]]
     if choice == 'median':
         # choice to threshold around the median
-        y = data[labels[i]]>=data[labels[i]].median()
+        y = data[labels[i]] >= data[labels[i]].median()
         X = whole.iloc[:, index[0]]
     if choice == 'throw median':
         y = pd.qcut(data[labels[i]], 5, labels=False, retbins=True)[0]
-        #y.reset_index(drop=True, inplace=True)
-        print(sum(y==2), 'is the number of subjects which have been removed')
-        y = y[y!=2]
-        y = y//3 # 0 and 1 classes get mapped to 0 and 3,4 get mapped to 1
+        # y.reset_index(drop=True, inplace=True)
+        print(sum(y == 2), 'is the number of subjects which have been removed')
+        y = y[y != 2]
+        y = y // 3  # 0 and 1 classes get mapped to 0 and 3,4 get mapped to 1
         print(len(y), 'New number of subjects in our dataset')
-        #X = whole[y.index, index[0]] don't know why this type of slicing is not working
+        # X = whole[y.index, index[0]] don't know why this type of slicing is not working
         X = [whole.loc[i, index[0]] for i in list(y.index)]
-        #X = whole.iloc[y.index, index[0]]
+        # X = whole.iloc[y.index, index[0]]
 
     return np.array(X), np.array(y)
+
 
 # %%
 def dict_classifier(classifier, big5, new_fscores, data, whole, metrics, labels):
@@ -60,7 +64,7 @@ def dict_classifier(classifier, big5, new_fscores, data, whole, metrics, labels)
             # Y = np.array(data[labels[i]] >= data[labels[i]].median()).astype(int)
             for choice in ['qcut', 'median', 'throw median']:
                 metric_score[big5[i]][per][choice] = {}
-                X,y = data_splitting(choice, i, index, data, whole, labels)
+                X, y = data_splitting(choice, i, index, data, whole, labels)
                 clf, distributions = get_distributions(classifier)
                 print(f'Executing {clf}')
                 # roc doesn't support multiclass
@@ -106,7 +110,7 @@ def visualise_performance(combined, big5, metrics, top_per):
                         # print(clf, big5[i], top_per[k], metrics[j])
                         # print(combined[clf][big5[i]][top_per[k]][metrics[j]])
                     ax[k][j].scatter(combined.keys(), test)
-                    ax[k][j].plot(list(combined.keys()), test, marker='+', label=choice+'_test_score')
+                    ax[k][j].plot(list(combined.keys()), test, marker='+', label=choice + '_test_score')
                     # print('xx', len(l))
                 ax[k][j].legend(loc='lower right')
                 # ax[k][j].set_xticks(list(combined.keys()))
@@ -119,7 +123,7 @@ def visualise_performance(combined, big5, metrics, top_per):
                 ax[k][j].grid()
         fig.suptitle(big5[i])
         plt.tight_layout()
-        plt.savefig(f'outputs/classification_{big5[i]}')
+        plt.savefig(f'outputs/figures/classification_{big5[i]}')
         # plt.show()
 
 
@@ -127,21 +131,28 @@ def visualise_performance(combined, big5, metrics, top_per):
 def run_classification(whole, metrics, big5, data, new_fscores, labels):
     combined = {}
     best_params_combined = {}
-    for clf in ['SVC', 'RF', 'GB', 'MLP']: #other ones are taking too long
+    if not os.path.exists('outputs'):
+        os.mkdir('outputs')
+        for folder in ['figures', 'dicts', 'csvs']:
+            if not os.path.exists(f'outputs/{folder}'):
+                os.mkdir(f'outputs/{folder}')
+
+    for clf in ['SVC', 'RF', 'GB', 'MLP']:  # other ones are taking too long
         start = time.time()
         d1 = dict_classifier(clf, big5, new_fscores, data, whole, metrics, labels)
         end = time.time()
-        print(f'Time taken for {clf}: {datetime.timedelta(seconds=end-start)}')
-        make_csv(d1, f'outputs/{clf}_results_cv.csv')
-        with open(f'outputs/{clf}_results_cv.json', 'w') as fp:
+        print(f'Time taken for {clf}: {datetime.timedelta(seconds=end - start)}')
+        make_csv(d1, f'outputs/csvs/{clf}_results_cv.csv')
+
+        with open(f'outputs/dicts/{clf}_results_cv.json', 'w') as fp:
             json.dump(d1, fp, indent=4)
 
         combined[clf] = d1['Metrics']
         best_params_combined[clf] = d1['Parameters']
 
-    with open('outputs/combined_dict.json', 'w') as f:
+    with open('outputs/dicts/combined_dict.json', 'w') as f:
         # write the combined dictionary to the file so that this can be read later on
         json.dump(combined, f, indent=4)
-    with open('outputs/combined_params.json', 'w') as f:#
+    with open('outputs/dicts/combined_params.json', 'w') as f:  #
         json.dump(best_params_combined, f, indent=4)
     visualise_performance(combined, big5, metrics, [5, 10, 50, 100])

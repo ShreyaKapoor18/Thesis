@@ -1,6 +1,8 @@
 from classification import *
 from graph_differences import *
-
+from processing import *
+from paramopt import *
+from readfiles import *
 # %%
 data = computed_subjects()  # labels for the computed subjects, data.index is the subject id
 num = 84  # number of nodes in the graph
@@ -17,7 +19,7 @@ big5 = ['Agreeableness', 'Openness', 'Conscientiousness', 'Neuroticism',
 metrics = ['balanced_accuracy', 'accuracy', 'f1_weighted', 'roc_auc_ovr_weighted']
 
 dict1 = {'data': data, 'whole': whole,'labels': labels,
-    'big5': big5, 'edge_names': edge_names, 'tri': tri}
+        'big5': big5, 'edge_names': edge_names, 'tri': tri}
 fscores = hist_fscore(**dict1)
 corr = hist_correlation(**dict1)
 
@@ -34,4 +36,5 @@ dict3 = {'fscores': fscores, 'mat': mat, 'big5': big5,
          'labels':labels, 'corr': corr, 'mews': mews}
 # %%
 run_classification(**dict2)
+
 different_graphs(**dict3)
