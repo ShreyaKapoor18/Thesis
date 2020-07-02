@@ -3,6 +3,7 @@ from graph_differences import *
 from processing import *
 from paramopt import *
 from readfiles import *
+
 # %%
 data = computed_subjects()  # labels for the computed subjects, data.index is the subject id
 num = 84  # number of nodes in the graph
@@ -38,3 +39,5 @@ dict3 = {'fscores': fscores, 'mat': mat, 'big5': big5,
 #run_classification(**dict2)
 #%%
 different_graphs(**dict3)
+#%%
+# now we have to read these graphs, in order to read these graphs we will have to see which all edges are present

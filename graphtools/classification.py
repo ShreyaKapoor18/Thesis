@@ -15,11 +15,11 @@ def data_splitting(choice, i, index, data, whole, labels, *args, **kwargs):
     if choice == 'qcut':
         # choice to cut into three quartiles
         y = pd.qcut(data[labels[i]], 3, labels=False, retbins=True)[0]
-        X = whole.iloc[:, index[0]]
+        X = whole.iloc[:, index]
     if choice == 'median':
         # choice to threshold around the median
         y = data[labels[i]] >= data[labels[i]].median()
-        X = whole.iloc[:, index[0]]
+        X = whole.iloc[:, index]
     if choice == 'throw median':
         y = pd.qcut(data[labels[i]], 5, labels=False, retbins=True)[0]
         # y.reset_index(drop=True, inplace=True)
@@ -28,7 +28,7 @@ def data_splitting(choice, i, index, data, whole, labels, *args, **kwargs):
         y = y // 3  # 0 and 1 classes get mapped to 0 and 3,4 get mapped to 1
         print(len(y), 'New number of subjects in our dataset')
         # X = whole[y.index, index[0]] don't know why this type of slicing is not working
-        X = [whole.loc[i, index[0]] for i in list(y.index)]
+        X = [whole.loc[i, index] for i in list(y.index)]
         # X = whole.iloc[y.index, index[0]]
 
     return np.array(X), np.array(y)
@@ -64,7 +64,7 @@ def dict_classifier(classifier, big5, new_fscores, data, whole, metrics, labels)
             # Y = np.array(data[labels[i]] >= data[labels[i]].median()).astype(int)
             for choice in ['qcut', 'median', 'throw median']:
                 metric_score[big5[i]][per][choice] = {}
-                X, y = data_splitting(choice, i, index, data, whole, labels)
+                X, y = data_splitting(choice, i, index[0], data, whole, labels)
                 clf, distributions = get_distributions(classifier)
                 print(f'Executing {clf}')
                 # roc doesn't support multiclass
