@@ -42,7 +42,7 @@ for i in range(5):  # different labels
                             if (int(existing_edge[0]), int(existing_edge[1])) == (mat[0][k], mat[1][k]):
                                 feature_indices.add(k)
                                 #all_feature_indices.extend([k, k+tri, k+2*tri]) # for the three types FA, n strl, strlen
-                                all_feature_indices.extend([k])
+                                all_feature_indices.extend([k, k+tri, k+2*tri])
                 #print('Existing nodes', nodes_e)
                 #print('Existing edges', edges_e)
                 #print('Feature indexes, edge indexes', feature_indices)
@@ -51,7 +51,8 @@ for i in range(5):  # different labels
                 for choice in ['qcut', 'median', 'throw median']:
                     if all_feature_indices!= []:
                         X,y = data_splitting(choice, i, all_feature_indices, data, whole, labels)
-                        for classifier in ['SVC', 'RF', 'GB', 'MLP']:
+                        for classifier in ['SVC', 'RF', 'MLP']:
+                            print(choice, classifier)
                             clf, distributions = get_distributions(classifier)
                             rcv = RandomizedSearchCV(clf, distributions, random_state=55, scoring=metrics,
                                                      refit='roc_auc_ovr_weighted', cv=5)

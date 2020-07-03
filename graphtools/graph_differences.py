@@ -9,7 +9,6 @@ We make one networkx Graph for all sub
         i. Pearson Correlation of the edge
         ii. Fscore of the edge
         iii. Random Forest score of the edge
-
 Store the values in the a json dictionary
 """
 import os
@@ -64,29 +63,21 @@ def different_graphs(fscores, mat, big5, data, whole, labels, corr, mews):
             X, y = data_splitting(choice, i, index, data, whole, labels)  # this X is for random forests training
             params = best_params['RF'][big5[i]]["100"][choice]
             feature_imp = train_with_best_params('RF', params, X, y)
-            feature_imp = np.reshape(feature_imp, (feature_imp.shape[0] // 3, 3))
-            g1 = nx.Graph()
+            feature_imp = np.reshape(feature_imp, (3, feature_imp.shape[0] // 3))
+
             edges = {(0, 1)}
             # edges = {}
             edge_attributes = []
             # node_attributes = {x: random.randint(-10, 10) for x in range(84)}
-            for edge in ['fscores', 'pearson', 'feature_importance']:
+            for edge, arr in zip(['fscores', 'pearson', 'feature_importance'], [fscores[i,:,:], corr[i,:,:], feature_imp]):
                 # for each edge type we have a different feature
+                g1 = nx.Graph()
+                thresh = np.percentile(np.absolute(arr), 20) # remove bottom 20 percentile
+                index = np.where(np.absolute(arr) >= thresh)[0]
                 for j in range(len(mat[0])):
-                    # edges.add((mat[0][j], mat[1][j]))
-                    if edge == 'fscores':
-                        # edge_attributes.append((mat[0][j], mat[1][j], np.mean(fscores[i, :, j])))
-                        edge_attributes.append(
-                            (mat[0][j], mat[1][j], fscores[i, 0, j]))  # only the first type of information, MEan FA
-                    if edge == 'pearson':
-                        # print(corr.shape, 'pearson')
-                        # edge_attributes.append((mat[0][j], mat[1][j], np.mean(corr[i, :, j])))
-                        edge_attributes.append((mat[0][j], mat[1][j], corr[i, 0, j]))
-                    if edge == 'feature_importance':
-                        # edge_attributes.append((mat[0][j], mat[1][j], np.mean(feature_imp[j, :])))
-                        edge_attributes.append((mat[0][j], mat[1][j], feature_imp[j, 0]))
-                        # then we should have just one graph for all subjects
-                # this graph is then needed to be put into the solver in order to get the maximum edge weighted subgraph
+                    if j in index:
+                        edge_attributes.append((mat[0][j], mat[1][j], np.mean(arr[:,j])))
+
                 g1.add_nodes_from(range(84))
                 # g1.add_edges_from(edges)
                 g1.add_weighted_edges_from(edge_attributes)  # shall be a list of tuples

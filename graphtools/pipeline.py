@@ -2,8 +2,7 @@ from classification import *
 from graph_differences import *
 from processing import *
 from paramopt import *
-from readfiles import *
-
+from readfiles import computed_subjects
 # %%
 data = computed_subjects()  # labels for the computed subjects, data.index is the subject id
 num = 84  # number of nodes in the graph
