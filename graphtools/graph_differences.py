@@ -61,7 +61,7 @@ def different_graphs(fscores, mat, big5, data, whole, labels, corr, mews):
             # Let's say we only choose the throw median choice, because it is the one that makes more sense
             choice = 'throw median'  # out of all these we will use these particular choices only!
             X, y = data_splitting(choice, i, index, data, whole, labels)  # this X is for random forests training
-            params = best_params['RF'][big5[i]]["100"][choice]
+            params = best_params['RF'][big5[i]]["5"][choice]#maybe use the parameters that work the best for top 5%
             feature_imp = train_with_best_params('RF', params, X, y)
             feature_imp = np.reshape(feature_imp, (3, feature_imp.shape[0] // 3))
 
@@ -90,7 +90,7 @@ def different_graphs(fscores, mat, big5, data, whole, labels, corr, mews):
                         if node_wts == 'max':
                             g1.nodes[l]['label'] = max([g1[l][k]['weight'] for k in range(len(g1[l]))])
                         elif node_wts == 'const':
-                            g1.nodes[l]['label'] = 0
+                            g1.nodes[l]['label'] = 1
                         node_labels.append(g1.nodes[l]['label'])
                     node_labels = scale(node_labels)  # standardizing the node labels
                     for l in range(len(g1.nodes)):
