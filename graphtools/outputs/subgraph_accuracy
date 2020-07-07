@@ -1,0 +1,207 @@
+Agreeableness_fscores_const.out
+****************************************************************************************************
+Number of features selected by the solver 0
+Agreeableness_fscores_max.out
+****************************************************************************************************
+Number of features selected by the solver 9
+22 is the number of subjects which have been removed
+119 New number of subjects in our dataset
+throw median SVC
+mean_test_balanced_accuracy: 0.539
+mean_test_accuracy: 0.606
+mean_test_f1_weighted: 0.515
+mean_test_roc_auc_ovr_weighted: 0.597
+throw median RF
+mean_test_balanced_accuracy: 0.548
+mean_test_accuracy: 0.587
+mean_test_f1_weighted: 0.562
+mean_test_roc_auc_ovr_weighted: 0.516
+throw median MLP
+mean_test_balanced_accuracy: 0.568
+mean_test_accuracy: 0.606
+mean_test_f1_weighted: 0.571
+mean_test_roc_auc_ovr_weighted: 0.58
+Agreeableness_pearson_const.out
+****************************************************************************************************
+Number of features selected by the solver 0
+Agreeableness_pearson_max.out
+****************************************************************************************************
+Number of features selected by the solver 3372
+22 is the number of subjects which have been removed
+119 New number of subjects in our dataset
+throw median SVC
+mean_test_balanced_accuracy: 0.448
+mean_test_accuracy: 0.505
+mean_test_f1_weighted: 0.427
+mean_test_roc_auc_ovr_weighted: 0.564
+throw median RF
+mean_test_balanced_accuracy: 0.474
+mean_test_accuracy: 0.55
+mean_test_f1_weighted: 0.441
+mean_test_roc_auc_ovr_weighted: 0.45
+throw median MLP
+mean_test_balanced_accuracy: 0.447
+mean_test_accuracy: 0.456
+mean_test_f1_weighted: 0.45
+mean_test_roc_auc_ovr_weighted: 0.434
+Agreeableness_feature_importance_const.out
+****************************************************************************************************
+Number of features selected by the solver 0
+Agreeableness_feature_importance_max.out
+****************************************************************************************************
+Number of features selected by the solver 0
+Openness_fscores_const.out
+****************************************************************************************************
+Number of features selected by the solver 0
+Openness_fscores_max.out
+****************************************************************************************************
+Number of features selected by the solver 0
+Openness_pearson_const.out
+Openness_pearson_max.out
+****************************************************************************************************
+Number of features selected by the solver 0
+Openness_feature_importance_const.out
+****************************************************************************************************
+Number of features selected by the solver 0
+Openness_feature_importance_max.out
+****************************************************************************************************
+Number of features selected by the solver 0
+Conscientiousness_fscores_const.out
+****************************************************************************************************
+Number of features selected by the solver 0
+Conscientiousness_fscores_max.out
+****************************************************************************************************
+Number of features selected by the solver 0
+Conscientiousness_pearson_const.out
+****************************************************************************************************
+Number of features selected by the solver 0
+Conscientiousness_pearson_max.out
+****************************************************************************************************
+Number of features selected by the solver 2577
+31 is the number of subjects which have been removed
+110 New number of subjects in our dataset
+throw median SVC
+mean_test_balanced_accuracy: 0.441
+mean_test_accuracy: 0.453
+mean_test_f1_weighted: 0.377
+mean_test_roc_auc_ovr_weighted: 0.553
+throw median RF
+mean_test_balanced_accuracy: 0.515
+mean_test_accuracy: 0.52
+mean_test_f1_weighted: 0.499
+mean_test_roc_auc_ovr_weighted: 0.514
+throw median MLP
+mean_test_balanced_accuracy: 0.423
+mean_test_accuracy: 0.424
+mean_test_f1_weighted: 0.415
+mean_test_roc_auc_ovr_weighted: 0.404
+Conscientiousness_feature_importance_const.out
+****************************************************************************************************
+Number of features selected by the solver 0
+Conscientiousness_feature_importance_max.out
+****************************************************************************************************
+Number of features selected by the solver 0
+Neuroticism_fscores_const.out
+****************************************************************************************************
+Number of features selected by the solver 0
+Neuroticism_fscores_max.out
+****************************************************************************************************
+Number of features selected by the solver 5652
+23 is the number of subjects which have been removed
+118 New number of subjects in our dataset
+throw median SVC
+mean_test_balanced_accuracy: 0.506
+mean_test_accuracy: 0.532
+mean_test_f1_weighted: 0.447
+mean_test_roc_auc_ovr_weighted: 0.436
+throw median RF
+mean_test_balanced_accuracy: 0.494
+mean_test_accuracy: 0.512
+mean_test_f1_weighted: 0.468
+mean_test_roc_auc_ovr_weighted: 0.536
+throw median MLP
+mean_test_balanced_accuracy: 0.55
+mean_test_accuracy: 0.551
+mean_test_f1_weighted: 0.543
+mean_test_roc_auc_ovr_weighted: 0.563
+Neuroticism_pearson_const.out
+****************************************************************************************************
+Number of features selected by the solver 0
+Neuroticism_pearson_max.out
+****************************************************************************************************
+Number of features selected by the solver 4077
+23 is the number of subjects which have been removed
+118 New number of subjects in our dataset
+throw median SVC
+mean_test_balanced_accuracy: 0.423
+mean_test_accuracy: 0.444
+mean_test_f1_weighted: 0.366
+mean_test_roc_auc_ovr_weighted: 0.556
+throw median RF
+mean_test_balanced_accuracy: 0.441
+mean_test_accuracy: 0.453
+mean_test_f1_weighted: 0.419
+mean_test_roc_auc_ovr_weighted: 0.489
+throw median MLP
+mean_test_balanced_accuracy: 0.407
+mean_test_accuracy: 0.41
+mean_test_f1_weighted: 0.399
+mean_test_roc_auc_ovr_weighted: 0.405
+Neuroticism_feature_importance_const.out
+****************************************************************************************************
+Number of features selected by the solver 0
+Neuroticism_feature_importance_max.out
+****************************************************************************************************
+Number of features selected by the solver 0
+Extraversion_fscores_const.out
+****************************************************************************************************
+Number of features selected by the solver 0
+Extraversion_fscores_max.out
+****************************************************************************************************
+Number of features selected by the solver 3504
+23 is the number of subjects which have been removed
+118 New number of subjects in our dataset
+throw median SVC
+mean_test_balanced_accuracy: 0.468
+mean_test_accuracy: 0.484
+mean_test_f1_weighted: 0.424
+mean_test_roc_auc_ovr_weighted: 0.552
+throw median RF
+mean_test_balanced_accuracy: 0.411
+mean_test_accuracy: 0.423
+mean_test_f1_weighted: 0.397
+mean_test_roc_auc_ovr_weighted: 0.388
+throw median MLP
+mean_test_balanced_accuracy: 0.427
+mean_test_accuracy: 0.429
+mean_test_f1_weighted: 0.422
+mean_test_roc_auc_ovr_weighted: 0.426
+Extraversion_pearson_const.out
+****************************************************************************************************
+Number of features selected by the solver 0
+Extraversion_pearson_max.out
+****************************************************************************************************
+Number of features selected by the solver 183
+23 is the number of subjects which have been removed
+118 New number of subjects in our dataset
+throw median SVC
+mean_test_balanced_accuracy: 0.522
+mean_test_accuracy: 0.532
+mean_test_f1_weighted: 0.483
+mean_test_roc_auc_ovr_weighted: 0.493
+throw median RF
+mean_test_balanced_accuracy: 0.395
+mean_test_accuracy: 0.407
+mean_test_f1_weighted: 0.389
+mean_test_roc_auc_ovr_weighted: 0.372
+throw median MLP
+mean_test_balanced_accuracy: 0.5
+mean_test_accuracy: 0.503
+mean_test_f1_weighted: 0.494
+mean_test_roc_auc_ovr_weighted: 0.508
+Extraversion_feature_importance_const.out
+****************************************************************************************************
+Number of features selected by the solver 0
+Extraversion_feature_importance_max.out
+****************************************************************************************************
+Number of features selected by the solver 0

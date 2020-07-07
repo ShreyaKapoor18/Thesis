@@ -1,5 +1,5 @@
 from classification import *
-from graph_differences import *
+from inputgraphs import *
 from processing import *
 from paramopt import *
 from readfiles import computed_subjects
@@ -33,10 +33,14 @@ dict2 = {'whole': whole, 'metrics': metrics, 'big5': big5,
          'data':data, 'new_fscores':new_fscores,'labels' :labels}
 dict3 = {'fscores': fscores, 'mat': mat, 'big5': big5,
          'data': data, 'whole':whole,
-         'labels':labels, 'corr': corr, 'mews': mews}
+         'labels':labels, 'corr': corr, 'mews': mews, 'personality_trait': 'Openness',
+         'edge': 'fscores', 'threshold': 10, 'node_wts': 'max', 'feature': 'mean_FA'}
 # %%
 #run_classification(**dict2)
 #%%
 different_graphs(**dict3)
 #%%
 # now we have to read these graphs, in order to read these graphs we will have to see which all edges are present
+'''
+fscores, mat, big5,personality_trait, data, edge,
+                     whole, labels, corr, mews, threshold, feature, node_wts'''

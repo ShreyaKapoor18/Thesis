@@ -22,13 +22,14 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96a293b3-8c56-42ff-a127-58952144c9ad" name="Default Changelist" comment="visualisation with low medium and high label division. Gradient boosting doing well in this case">
-      <change afterPath="$PROJECT_DIR$/outputs/classification_3qcut.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/plot_pipeline_example.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/trial.py" afterDir="false" />
+    <list default="true" id="96a293b3-8c56-42ff-a127-58952144c9ad" name="Default Changelist" comment="use individual features; FA,meanstrl, num strl">
+      <change afterPath="$PROJECT_DIR$/inputgraphs.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/outputs/subgraph_accuracy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gmwcs-solver" beforeDir="false" afterPath="$PROJECT_DIR$/../gmwcs-solver" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classification.py" beforeDir="false" afterPath="$PROJECT_DIR$/classification.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processing.py" beforeDir="false" afterPath="$PROJECT_DIR$/processing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graph_differences.py" beforeDir="false" afterPath="$PROJECT_DIR$/graph_differences.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/pipeline.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/read_graphs.py" beforeDir="false" afterPath="$PROJECT_DIR$/read_graphs.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,10 +59,11 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="TERMINAL_CUSTOM_COMMANDS_GOT_IT" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="full.screen.before.presentation.mode" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="aDefault" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -73,12 +75,15 @@
     </option>
     <option name="myUseExistingConsole" value="true" />
   </component>
+  <component name="PyCoverageOptionsProvider">
+    <option name="myUseBundledCoveragePy" value="true" />
+  </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/rough_code" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.trial">
+  <component name="RunManager" selected="Python.read_graphs">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -110,7 +115,7 @@
       </envs>
       <option name="SDK_HOME" value="$USER_HOME$/anaconda3/bin/python" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="false" />
+      <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
@@ -123,7 +128,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="kernel" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="inputgraphs" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="graphtools" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -131,12 +136,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="$USER_HOME$/anaconda3/bin/python" />
-      <option name="WORKING_DIRECTORY" value="$USER_HOME$/anaconda3/envs/py37/lib/python3.7/site-packages/grakel/kernels" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$USER_HOME$/anaconda3/envs/py37/lib/python3.7/site-packages/grakel/kernels/kernel.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/inputgraphs.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -145,20 +150,17 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="plot_pipeline_example" type="PythonConfigurationType" factoryName="Python" singleton="false" temporary="true" nameIsGenerated="true">
+    <configuration name="pipeline" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="graphtools" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/plot_pipeline_example.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pipeline.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -167,7 +169,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="trial" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="read_graphs" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="graphtools" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -177,7 +179,29 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/trial.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/read_graphs.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="readfiles" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="graphtools" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/anaconda3/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/readfiles.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -187,19 +211,24 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Python.pipeline" />
       <item itemvalue="Python.classification" />
-      <item itemvalue="Python.plot_pipeline_example" />
-      <item itemvalue="Python.kernel" />
-      <item itemvalue="Python.trial" />
+      <item itemvalue="Python.readfiles" />
+      <item itemvalue="Python.read_graphs" />
+      <item itemvalue="Python.inputgraphs" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.trial" />
-        <item itemvalue="Python.plot_pipeline_example" />
-        <item itemvalue="Python.kernel" />
+        <item itemvalue="Python.read_graphs" />
+        <item itemvalue="Python.pipeline" />
+        <item itemvalue="Python.inputgraphs" />
         <item itemvalue="Python.classification" />
+        <item itemvalue="Python.readfiles" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="StructureViewFactory">
+    <option name="ACTIVE_ACTIONS" value=",SHOW_INHERITED,SHOW_FIELDS" />
   </component>
   <component name="SvnConfiguration">
     <configuration>$USER_HOME$/.subversion</configuration>
@@ -238,175 +267,16 @@
       <workItem from="1592397901729" duration="1869000" />
       <workItem from="1592399783407" duration="1529000" />
       <workItem from="1592405519862" duration="366000" />
-      <workItem from="1592405902294" duration="2164000" />
-    </task>
-    <task id="LOCAL-00001" summary="restructured folders">
-      <created>1590487434642</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1590487434642</updated>
-    </task>
-    <task id="LOCAL-00002" summary="edge correlation">
-      <created>1590489297204</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1590489297204</updated>
-    </task>
-    <task id="LOCAL-00003" summary="edges for mean FA">
-      <created>1590489674848</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1590489674848</updated>
-    </task>
-    <task id="LOCAL-00004" summary="correlations for all edges">
-      <created>1590496344861</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1590496344861</updated>
-    </task>
-    <task id="LOCAL-00005" summary="big5">
-      <created>1590500516275</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1590500516275</updated>
-    </task>
-    <task id="LOCAL-00006" summary="big5 report and information">
-      <created>1590502657997</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1590502657997</updated>
-    </task>
-    <task id="LOCAL-00007" summary="read all precomputed subjects in regina's folder">
-      <created>1590502690551</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1590502690551</updated>
-    </task>
-    <task id="LOCAL-00008" summary="flattened version edges duplicated but with different infos from files">
-      <created>1590502737473</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1590502737473</updated>
-    </task>
-    <task id="LOCAL-00009" summary="reduced code">
-      <created>1590503017071</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1590503017071</updated>
-    </task>
-    <task id="LOCAL-00010" summary="restructured code">
-      <created>1590504418760</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1590504418760</updated>
-    </task>
-    <task id="LOCAL-00011" summary="correct typo">
-      <created>1590574842502</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1590574842502</updated>
-    </task>
-    <task id="LOCAL-00012" summary="profiles filenames">
-      <created>1590575852524</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1590575852524</updated>
-    </task>
-    <task id="LOCAL-00013" summary="histogram per edge per type (3 types)">
-      <created>1590666341532</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1590666341532</updated>
-    </task>
-    <task id="LOCAL-00014" summary="histograms">
-      <created>1590668949657</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1590668949657</updated>
-    </task>
-    <task id="LOCAL-00015" summary="histograms">
-      <created>1590676150309</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1590676150309</updated>
-    </task>
-    <task id="LOCAL-00016" summary="fscore visualisation">
-      <created>1590765993819</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1590765993819</updated>
-    </task>
-    <task id="LOCAL-00017" summary="in place">
-      <created>1590766566589</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1590766566589</updated>
-    </task>
-    <task id="LOCAL-00018" summary="Random forest and SVM">
-      <created>1590766946821</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1590766946821</updated>
-    </task>
-    <task id="LOCAL-00019" summary="check for preprocessing pipeline completion">
-      <created>1591102841911</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1591102841911</updated>
-    </task>
-    <task id="LOCAL-00020" summary="0 denominator handling for edge">
-      <created>1591103965573</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1591103965573</updated>
-    </task>
-    <task id="LOCAL-00021" summary="round off the f score to 3 decimal places">
-      <created>1591105642768</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1591105642768</updated>
-    </task>
-    <task id="LOCAL-00022" summary="get only upper triangular edges as features">
-      <created>1591105672289</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1591105672289</updated>
-    </task>
-    <task id="LOCAL-00023" summary="classification with and without edge type information">
-      <created>1591115805821</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1591115805821</updated>
-    </task>
-    <task id="LOCAL-00024" summary="removed redundant function">
-      <created>1591269917913</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1591269917913</updated>
+      <workItem from="1592405902294" duration="2779000" />
+      <workItem from="1592467351198" duration="70150000" />
+      <workItem from="1593174276355" duration="9548000" />
+      <workItem from="1593694550415" duration="1414000" />
+      <workItem from="1593695989139" duration="6265000" />
+      <workItem from="1593704249919" duration="4867000" />
+      <workItem from="1593771498033" duration="528000" />
+      <workItem from="1593772037872" duration="996000" />
+      <workItem from="1593777401357" duration="27540000" />
+      <workItem from="1594124326614" duration="3804000" />
     </task>
     <task id="LOCAL-00025" summary="stacked regressors">
       <created>1591276677294</created>
@@ -562,7 +432,196 @@
       <option name="project" value="LOCAL" />
       <updated>1592380634599</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="try graph kernel">
+      <created>1592408458540</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1592408458540</updated>
+    </task>
+    <task id="LOCAL-00048" summary="trying to use standardization instead of normalization">
+      <created>1592471223220</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1592471223220</updated>
+    </task>
+    <task id="LOCAL-00049" summary="grakel graphs that give 27% accuracy">
+      <created>1592471274146</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1592471274146</updated>
+    </task>
+    <task id="LOCAL-00050" summary="different label comparison methods working">
+      <created>1592486327806</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1592486327807</updated>
+    </task>
+    <task id="LOCAL-00051" summary="indexes fixed with comparison of different algorithms">
+      <created>1592552238916</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1592552238916</updated>
+    </task>
+    <task id="LOCAL-00052" summary="modularized code with indexing change test">
+      <created>1592570487455</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1592570487456</updated>
+    </task>
+    <task id="LOCAL-00053" summary="train and test curve">
+      <created>1592570682845</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1592570682845</updated>
+    </task>
+    <task id="LOCAL-00054" summary="test metrics not obtained by script">
+      <created>1592571762262</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1592571762262</updated>
+    </task>
+    <task id="LOCAL-00055" summary="adding rf features">
+      <created>1592573351416</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1592573351416</updated>
+    </task>
+    <task id="LOCAL-00056" summary="better visualisation">
+      <created>1592573364049</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1592573364049</updated>
+    </task>
+    <task id="LOCAL-00057" summary="incorporating in graphs">
+      <created>1592574993489</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1592574993489</updated>
+    </task>
+    <task id="LOCAL-00058" summary="properly labelled results">
+      <created>1592817999328</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1592817999328</updated>
+    </task>
+    <task id="LOCAL-00059" summary="added json functionality">
+      <created>1592835973888</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1592835973888</updated>
+    </task>
+    <task id="LOCAL-00060" summary="get best parameters from grid search, feature importances">
+      <created>1592836013029</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1592836013029</updated>
+    </task>
+    <task id="LOCAL-00061" summary="HCP data citations">
+      <created>1592836049014</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1592836049014</updated>
+    </task>
+    <task id="LOCAL-00062" summary="Graph with correlation fscore and feature importances">
+      <created>1592929270821</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1592929270821</updated>
+    </task>
+    <task id="LOCAL-00063" summary="new results">
+      <created>1593008320792</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1593008320792</updated>
+    </task>
+    <task id="LOCAL-00064" summary="different edge parameters">
+      <created>1593012530554</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1593012530554</updated>
+    </task>
+    <task id="LOCAL-00065" summary="creating different graphs for subgraph extraction">
+      <created>1593015665313</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1593015665313</updated>
+    </task>
+    <task id="LOCAL-00066" summary="pipelining first attempt">
+      <created>1593175003042</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1593175003042</updated>
+    </task>
+    <task id="LOCAL-00067" summary="working with academic version IPLEX, able to solve subgraph problem">
+      <created>1593181474002</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1593181474002</updated>
+    </task>
+    <task id="LOCAL-00068" summary="pipeline working">
+      <created>1593185975340</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1593185975340</updated>
+    </task>
+    <task id="LOCAL-00069" summary="subgraph based classification">
+      <created>1593704481176</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1593704481176</updated>
+    </task>
+    <task id="LOCAL-00070" summary="remove features for subgraph extraction, close to 0 values don't make an edge">
+      <created>1593779445245</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1593779445245</updated>
+    </task>
+    <task id="LOCAL-00071" summary="Low accuracy sugraph based classification">
+      <created>1593788974573</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1593788974573</updated>
+    </task>
+    <task id="LOCAL-00072" summary="assigning constant weight 1 instead of 0">
+      <created>1593789401732</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1593789401732</updated>
+    </task>
+    <task id="LOCAL-00073" summary="use individual features; FA,meanstrl, num strl">
+      <created>1594031417261</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1594031417262</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -581,46 +640,53 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="get only upper triangular edges as features" />
-    <MESSAGE value="classification with and without edge type information" />
-    <MESSAGE value="removed redundant function" />
-    <MESSAGE value="stacked regressors" />
-    <MESSAGE value="rm redundancies" />
-    <MESSAGE value="organise files" />
-    <MESSAGE value="new type" />
-    <MESSAGE value="removed option with no cross validation" />
-    <MESSAGE value="corrected for correlation instead of covariance" />
-    <MESSAGE value="correaltion calculation for all files" />
-    <MESSAGE value="run regressors with correlation coeff and not fscores" />
-    <MESSAGE value="classifier with randomised search cv" />
-    <MESSAGE value="add all features selection" />
-    <MESSAGE value="added more classifiers" />
-    <MESSAGE value="classification update and results" />
-    <MESSAGE value="figsize change" />
-    <MESSAGE value="fix indexing error" />
-    <MESSAGE value="tight layout" />
-    <MESSAGE value="multi-class labels cut" />
-    <MESSAGE value="outputs from quantile run, still need the classification graph update" />
-    <MESSAGE value="add ReadME.md" />
-    <MESSAGE value="syntax format" />
-    <MESSAGE value="cleanup folder" />
-    <MESSAGE value="new results but need to change the visualisation" />
-    <MESSAGE value="visualisation with low medium and high label division. Gradient boosting doing well in this case" />
-    <option name="LAST_COMMIT_MESSAGE" value="visualisation with low medium and high label division. Gradient boosting doing well in this case" />
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/gmwcs-solver" />
+    </ignored-roots>
+    <MESSAGE value="grakel graphs that give 27% accuracy" />
+    <MESSAGE value="different label comparison methods working" />
+    <MESSAGE value="indexes fixed with comparison of different algorithms" />
+    <MESSAGE value="modularized code with indexing change test" />
+    <MESSAGE value="train and test curve" />
+    <MESSAGE value="test metrics not obtained by script" />
+    <MESSAGE value="adding rf features" />
+    <MESSAGE value="better visualisation" />
+    <MESSAGE value="incorporating in graphs" />
+    <MESSAGE value="properly labelled results" />
+    <MESSAGE value="added json functionality" />
+    <MESSAGE value="get best parameters from grid search, feature importances" />
+    <MESSAGE value="HCP data citations" />
+    <MESSAGE value="Graph with correlation fscore and feature importances" />
+    <MESSAGE value="new results" />
+    <MESSAGE value="different edge parameters" />
+    <MESSAGE value="creating different graphs for subgraph extraction" />
+    <MESSAGE value="pipelining first attempt" />
+    <MESSAGE value="working with academic version IPLEX, able to solve subgraph problem" />
+    <MESSAGE value="pipeline working" />
+    <MESSAGE value="subgraph based classification" />
+    <MESSAGE value="remove features for subgraph extraction, close to 0 values don't make an edge" />
+    <MESSAGE value="Low accuracy sugraph based classification" />
+    <MESSAGE value="assigning constant weight 1 instead of 0" />
+    <MESSAGE value="use individual features; FA,meanstrl, num strl" />
+    <option name="LAST_COMMIT_MESSAGE" value="use individual features; FA,meanstrl, num strl" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1428" y="394" width="734" height="633" key="#Inspections" timestamp="1592387739554">
+    <state x="1428" y="394" width="734" height="633" key="#Inspections" timestamp="1593791476605">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state x="1428" y="394" width="734" height="633" key="#Inspections/0.0.2560.1413@0.0.2560.1413" timestamp="1592387739554" />
+    <state x="1428" y="394" width="734" height="633" key="#Inspections/0.0.2560.1413@0.0.2560.1413" timestamp="1593791476605" />
     <state x="1079" y="495" width="394" height="418" key="#Web_Browsers" timestamp="1590662890178">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
     <state x="1079" y="495" width="394" height="418" key="#Web_Browsers/0.0.2560.1413@0.0.2560.1413" timestamp="1590662890178" />
-    <state x="738" y="364" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1592387498578">
+    <state x="738" y="364" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1593771551695">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state x="738" y="364" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1413@0.0.2560.1413" timestamp="1592387498578" />
+    <state x="738" y="364" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1413@0.0.2560.1413" timestamp="1593771551695" />
+    <state x="1002" y="510" width="547" height="389" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1593791805827">
+      <screen x="0" y="0" width="2560" height="1413" />
+    </state>
+    <state x="1002" y="510" width="547" height="389" key="#com.intellij.fileTypes.FileTypeChooser/0.0.2560.1413@0.0.2560.1413" timestamp="1593791805827" />
     <state x="953" y="452" width="526" height="497" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1591352389342">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
@@ -641,6 +707,10 @@
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
     <state x="1292" y="464" width="426" height="480" key="FileChooserDialogImpl/0.0.2560.1413@0.0.2560.1413" timestamp="1592387876919" />
+    <state x="1100" y="610" key="Github.CreateGistDialog" timestamp="1594114237336">
+      <screen x="0" y="0" width="2560" height="1413" />
+    </state>
+    <state x="1100" y="610" key="Github.CreateGistDialog/0.0.2560.1413@0.0.2560.1413" timestamp="1594114237336" />
     <state width="1436" height="395" key="GridCell.Tab.0.bottom" timestamp="1592387464685">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
@@ -677,14 +747,14 @@
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
     <state x="1117" y="420" width="318" height="569" key="RollbackChangesDialog/0.0.2560.1413@0.0.2560.1413" timestamp="1590766592440" />
-    <state x="784" y="341" key="SettingsEditor" timestamp="1592405866444">
+    <state x="784" y="341" key="SettingsEditor" timestamp="1593694623017">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state x="784" y="341" key="SettingsEditor/0.0.2560.1413@0.0.2560.1413" timestamp="1592405866444" />
-    <state x="875" y="442" width="802" height="524" key="Vcs.Push.Dialog.v2" timestamp="1592380636454">
+    <state x="784" y="341" key="SettingsEditor/0.0.2560.1413@0.0.2560.1413" timestamp="1593694623017" />
+    <state x="875" y="442" width="802" height="524" key="Vcs.Push.Dialog.v2" timestamp="1594031419447">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state x="875" y="442" width="802" height="524" key="Vcs.Push.Dialog.v2/0.0.2560.1413@0.0.2560.1413" timestamp="1592380636454" />
+    <state x="875" y="442" width="802" height="524" key="Vcs.Push.Dialog.v2/0.0.2560.1413@0.0.2560.1413" timestamp="1594031419447" />
     <state width="1281" height="706" key="XDebugger.FullValuePopup" timestamp="1591115772905">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
@@ -693,22 +763,30 @@
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
     <state x="1280" y="420" width="1029" height="580" key="com.intellij.execution.console.ConsoleHistoryController$MyBrowseAction$1/0.0.2560.1413@0.0.2560.1413" timestamp="1592387776579" />
+    <state x="890" y="320" width="772" height="769" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1593164203502">
+      <screen x="0" y="0" width="2560" height="1413" />
+    </state>
+    <state x="890" y="320" width="772" height="769" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.2560.1413@0.0.2560.1413" timestamp="1593164203502" />
     <state x="1094" y="603" width="364" height="202" key="git4idea.ui.GitResetDialog" timestamp="1591102865803">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
     <state x="1094" y="603" width="364" height="202" key="git4idea.ui.GitResetDialog/0.0.2560.1413@0.0.2560.1413" timestamp="1591102865803" />
-    <state x="1124" y="480" width="303" height="448" key="refactoring.ChangeSignatureDialog" timestamp="1591270077623">
+    <state x="1124" y="480" width="303" height="448" key="refactoring.ChangeSignatureDialog" timestamp="1593173781257">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state x="1124" y="480" width="303" height="448" key="refactoring.ChangeSignatureDialog/0.0.2560.1413@0.0.2560.1413" timestamp="1591270077623" />
+    <state x="1124" y="480" width="303" height="448" key="refactoring.ChangeSignatureDialog/0.0.2560.1413@0.0.2560.1413" timestamp="1593173781257" />
     <state x="1071" y="566" width="402" height="273" key="scopes" timestamp="1591100841362">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
     <state x="1071" y="566" width="402" height="273" key="scopes/0.0.2560.1413@0.0.2560.1413" timestamp="1591100841362" />
-    <state x="943" y="322" width="672" height="678" key="search.everywhere.popup" timestamp="1592405613405">
+    <state x="943" y="322" width="672" height="678" key="search.everywhere.popup" timestamp="1594114310877">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state x="943" y="322" width="672" height="678" key="search.everywhere.popup/0.0.2560.1413@0.0.2560.1413" timestamp="1592405613405" />
+    <state x="943" y="322" width="672" height="678" key="search.everywhere.popup/0.0.2560.1413@0.0.2560.1413" timestamp="1594114310877" />
+    <state x="1005" y="621" width="542" height="167" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1594030051621">
+      <screen x="0" y="0" width="2560" height="1413" />
+    </state>
+    <state x="1005" y="621" width="542" height="167" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/0.0.2560.1413@0.0.2560.1413" timestamp="1594030051621" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

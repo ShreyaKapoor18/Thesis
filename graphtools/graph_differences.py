@@ -38,15 +38,18 @@ def train_with_best_params(classifier, params, X, y):
     return None
 
 
-def nested_outputdirs(mews):
-    if not os.path.exists(f'{mews}/outputs'):
-        os.mkdir(f'{mews}/outputs')
-    if not os.path.exists(f'{mews}/outputs/nodes'):
-        os.mkdir(f'{mews}/outputs/nodes')
-    if not os.path.exists(f'{mews}/outputs/edges'):
-        os.mkdir(f'{mews}/outputs/edges')
-    if not os.path.exists(f'{mews}/outputs/solver'):
-        os.mkdir(f'{mews}/outputs/solver')
+def nested_outputdirs(mews, big5): # make a separate directory for each label, easier to do comparisons
+    for trait in big5:
+        if not os.path.exists(f'{mews}/outputs'):
+            os.mkdir(f'{mews}/outputs')
+        if not os.path.exists(f'{mews}/outputs/nodes'):
+            os.mkdir(f'{mews}/outputs/nodes')
+        if not os.path.exists(f'{mews}/outputs/edges'):
+            os.mkdir(f'{mews}/outputs/edges')
+        if not os.path.exists(f'{mews}/outputs/solver'):
+            os.mkdir(f'{mews}/outputs/solver')
+        if not os.path.exists(f'{mews}/outputs/classification_results'):
+            os.mkdir(f'{mews}/outputs/classification_results')
 
 
 def different_graphs(fscores, mat, big5, data, whole, labels, corr, mews):
@@ -118,7 +121,7 @@ def different_graphs(fscores, mat, big5, data, whole, labels, corr, mews):
                         count = 0
                         for x in g1.nodes:
                             # print(node)
-                            if g1.degree(x) >= 2:
+                            if g1.degree(x) >= 1: # solver documentation, 1 or 2
                                 print(str(x) + ' ' * 3 + str(g1.nodes[x]['label']), file=nodes_file)
                                 # print(str(node) + ' ' + str(0), file=nodes_file)
                                 count += 1
