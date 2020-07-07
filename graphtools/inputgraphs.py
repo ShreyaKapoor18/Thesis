@@ -77,12 +77,15 @@ def different_graphs(fscores, mat, big5,personality_trait, data, edge,
         # for each edge type we have a different feature
 
         thresh = np.percentile(np.absolute(arr), threshold)  # remove bottom ex percent in absolute terms
-        index2 = np.where(np.absolute(arr) < thresh)
+        assert np.percentile(np.absolute(arr), 50) == np.median(np.absolute(arr))
+        # in order to confirm that it actually makes the percentile distribution!
+        print(f'Threshold value according to {threshold} percentile: {thresh}')
+        index2 = np.where(np.absolute(arr) <= thresh)
         print('indexes', index2)
         arr[index2[0], index2[1]] = 0
 
         # try for for different types, one feature at a time maybe and then construct graph?
-
+        nodes = set()
         edge_attributes = []
         for j in range(len(mat[0])):
             if feature == 'mean_FA':
@@ -91,18 +94,20 @@ def different_graphs(fscores, mat, big5,personality_trait, data, edge,
                 value = arr[1,j]
             if feature == 'num_str':
                 value = arr[2,j]
-            if abs(value)>=thresh:
+            if abs(value) > thresh:
                 edge_attributes.append((mat[0][j], mat[1][j], value))
+                nodes.add(mat[0][j]) #add only the nodes which have corresponding edges
+                nodes.add(mat[1][j])
         # mean for the scores of three different labels
 
         g1 = nx.Graph()
-        g1.add_nodes_from(range(84))
+        g1.add_nodes_from(nodes)
         g1.add_weighted_edges_from(edge_attributes)  # shall be a list of tuples
 
         node_labels = []
-        for l in range(len(g1.nodes)):
+        for l in g1.nodes.keys():
             if node_wts == 'max':
-                g1.nodes[l]['label'] = max([g1[l][k]['weight'] for k in range(len(g1[l]))]) #max or max abs?
+                g1.nodes[l]['label'] = max([g1[l][k]['weight'] for k in g1[l].keys()]) #max or max abs?
             elif node_wts == 'const':
                 g1.nodes[l]['label'] = 1
             node_labels.append(g1.nodes[l]['label'])
@@ -149,11 +154,13 @@ def different_graphs(fscores, mat, big5,personality_trait, data, edge,
         for v in edge_wts:
             color.append(mapper.to_rgba(v))
         plt.figure()
-        plt.title(f'Nodes with degree >2, input to the solver:{filename}\n Number of edges {len(g2.edges)}')
+        plt.title(f'Nodes with degree >2, input to the solver: {filename}\n Number of edges {len(g2.edges)}\n'
+                  f'Percentage of features:{100-threshold}, Target: {personality_trait}, Feature:{feature}\n'
+                  f'Edge type:{edge}, Node weighting:{node_wts}')
         nx.draw(g2, **options, edge_color=color)
         plt.show()
         # print(node, 'has degree >=2')
-        print('Number of nodes having degree>=2', count)
+        print('Number of nodes having a degree>=2', count)
         # print(len(nodes))
 
         for x in g1.nodes:

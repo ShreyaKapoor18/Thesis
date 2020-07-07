@@ -34,7 +34,7 @@ dict2 = {'whole': whole, 'metrics': metrics, 'big5': big5,
 dict3 = {'fscores': fscores, 'mat': mat, 'big5': big5,
          'data': data, 'whole':whole,
          'labels':labels, 'corr': corr, 'mews': mews, 'personality_trait': 'Openness',
-         'edge': 'fscores', 'threshold': 10, 'node_wts': 'max', 'feature': 'mean_FA'}
+         'edge': 'fscores', 'threshold': 65 , 'node_wts': 'max', 'feature': 'mean_FA'}
 # %%
 #run_classification(**dict2)
 #%%

@@ -29,7 +29,6 @@ assert list(whole.index) == list(data.index)
 # %%
 personality_trait = 'Openness'
 edge = 'fscores'
-threshold = 10
 node_wts = 'max'
 feature = 'mean_FA'
 i = big5.index(personality_trait)
@@ -80,7 +79,7 @@ if os.path.exists(f'{mews}/outputs/nodes/{filename}.out') \
         }
         edge_wts = []
         for m in g2.edges.data():
-            print(m)
+            #print(m)
             edge_wts.append(m[2]['weight'])
         minima = min(edge_wts)
         maxima = max(edge_wts)
@@ -91,7 +90,9 @@ if os.path.exists(f'{mews}/outputs/nodes/{filename}.out') \
         for v in edge_wts:
             color.append(mapper.to_rgba(v))
         plt.figure()
-        plt.title(f'Nodes with degree >2, output from the solver:{filename}.out\n Number of edges {len(g2.edges)}')
+        plt.title(f'Nodes with degree >2, output from the solver: {filename}.out\n Number of edges {len(g2.edges)}\n'
+                  f'Target: {personality_trait}, Feature:{feature}\n'
+                  f'Edge type:{edge}, Node weighting:{node_wts}')
         nx.draw(g2, **options, edge_color=color)
 
         plt.show()
