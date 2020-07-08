@@ -3,6 +3,7 @@ from inputgraphs import *
 from processing import *
 from paramopt import *
 from readfiles import computed_subjects
+from read_graphs import train_from_combined_graph
 # %%
 data = computed_subjects()  # labels for the computed subjects, data.index is the subject id
 num = 84  # number of nodes in the graph
@@ -34,7 +35,7 @@ dict2 = {'whole': whole, 'metrics': metrics, 'big5': big5,
 dict3 = {'fscores': fscores, 'mat': mat, 'big5': big5,
          'data': data, 'whole': whole,
          'labels': labels, 'corr': corr, 'mews': mews, 'personality_trait': 'Openness',
-         'edge': 'feature_importance', 'threshold': 40, 'node_wts': 'max', 'tri':  tri}
+         'edge': 'feature_importance', 'threshold': 85, 'node_wts': 'max', 'tri':  tri}
 # %%
 #run_classification(**dict2)
 #%%
@@ -44,3 +45,5 @@ different_graphs(**dict3)
 '''
 fscores, mat, big5,personality_trait, data, edge,
                      whole, labels, corr, mews, threshold, feature, node_wts'''
+dict3['metrics'] = metrics
+train_from_combined_graph(**dict3)

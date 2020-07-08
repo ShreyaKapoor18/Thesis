@@ -84,7 +84,7 @@ def different_graphs(fscores, mat, big5,personality_trait, data, edge,
 
             thresh = np.percentile(np.absolute(arr), threshold)  # remove bottom ex percent in absolute terms
             #assert np.percentile(np.absolute(arr), 50) == np.median(np.absolute(arr))
-            #assert np.percentile(np.absolute(arr),10) < np.percentile(np.absolute(arr), 20)
+            assert np.percentile(np.absolute(arr),10) < np.percentile(np.absolute(arr), 20)
             # in order to confirm that it actually makes the percentile distribution!
             print(f'Threshold value according to {threshold} percentile: {thresh}')
             index2 = np.where(np.absolute(arr) <= thresh)
