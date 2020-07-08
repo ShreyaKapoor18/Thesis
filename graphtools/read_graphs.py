@@ -109,4 +109,4 @@ def train_from_combined_graph(metrics, personality_trait, edge, node_wts,mat, me
                     for metric in metrics:
                         print(f'mean_test_{metric}:', round(np.mean(scores[f'mean_test_{metric}']), 3),
                               file=results_file)
-                    print(f'mean_test_{metric}:', round(np.mean(scores[f'mean_test_{metric}']), 3))
+                        print(f'mean_test_{metric}:', round(np.mean(scores[f'mean_test_{metric}']), 3))

@@ -75,23 +75,27 @@ def different_graphs(fscores, mat, big5,personality_trait, data, edge,
             if edge == 'fscores':
                 arr = fscores[i, :, :]
             if edge == 'pearson':
-                arr = corr[i, :, :],
+                arr = corr[i, :, :]
             if edge == 'feature_importance':
                 arr = feature_imp
-
+            #assert type(arr) == np.ndarray
+            print('type of array', type(arr))
+            #print('The array shape is:', arr.shape)
             #assert len(feature_imp) == len(mat[0])
             # for each edge type we have a different feature
 
             thresh = np.percentile(np.absolute(arr), threshold)  # remove bottom ex percent in absolute terms
             #assert np.percentile(np.absolute(arr), 50) == np.median(np.absolute(arr))
-            assert np.percentile(np.absolute(arr),10) < np.percentile(np.absolute(arr), 20)
+            #assert np.percentile(np.absolute(arr),10) < np.percentile(np.absolute(arr), 20)
             # in order to confirm that it actually makes the percentile distribution!
             print(f'Threshold value according to {threshold} percentile: {thresh}')
             index2 = np.where(np.absolute(arr) <= thresh)
             print('indexes', index2)
+            xs = index2[0]
+            ys = index2[1]
             #removed wrong indexing
             for p in range(len(index2[0])):
-                arr[index2[0][p], index2[1][p]] = 0
+                arr[xs[p], ys[p]] = 0
 
             # try for for different types, one feature at a time maybe and then construct graph?
             nodes = set()
@@ -122,7 +126,7 @@ def different_graphs(fscores, mat, big5,personality_trait, data, edge,
                 node_labels.append(g1.nodes[l]['label'])
 
             node_labels = scale(node_labels)  # standardizing the node labels
-            for n in g1.nodes:
+            for n in g1.nodes.keys():
                 g1.nodes[n]['label'] = node_labels[n]
 
             # now we want to have only the nodes which have degree >1
@@ -137,7 +141,7 @@ def different_graphs(fscores, mat, big5,personality_trait, data, edge,
             connected_nodes = []
             for x in g1.nodes:
                 # print(node)
-                if g1.degree(x) >= 2:#solver documentation, 1 or 2
+                if g1.degree(x) >= 1:#solver documentation, 1 or 2
                     print(str(x) + ' ' * 3 + str(g1.nodes[x]['label']), file=nodes_file)
                     connected_nodes.append(x)
                     # print(str(node) + ' ' + str(0), file=nodes_file)
