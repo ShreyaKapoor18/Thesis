@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from metrics import fscore
 from readfiles import get_subj_ids
 import pandas as pd
-from sklearn.preprocessing import Normalizer, StandardScaler
+from sklearn.preprocessing import StandardScaler
 # %%
 def generate_combined_matrix(tri, present_subjects):
     """
@@ -17,7 +17,8 @@ def generate_combined_matrix(tri, present_subjects):
     whole = np.zeros((len(get_subj_ids()), tri * 3))
     # but the matrix is upper triangular so we should only take that into account, then number of features will
     # get reduced
-    #assert get_subj_ids() == present_subjects # make sure labels are ordered the same way in which we read data
+    # assert get_subj_ids() == present_subjects
+    # make sure labels are ordered the same way in which we read data
     j = 0
     for subject in present_subjects:
 
@@ -60,7 +61,7 @@ def hist_correlation(data, whole, labels, edge_names, big5, tri):
             if np.isnan(corr[j][i]).any():
                 # print(j,i)
                 corr[j][i][np.isnan(corr[j][i])] = 0
-            ax[j][i].hist(corr[j,i,:], log=True, bins=100)
+            ax[j][i].hist(corr[j, i, :], log=True, bins=100)
             ax[j][i].set_title(big5[j] + ' ' + edge_names[i])
             ax[j][i].set_ylabel('Num edges')
             ax[j][i].set_xlabel('Correlation coeff')
@@ -90,8 +91,8 @@ def hist_fscore(data, whole, labels, big5, edge_names, tri):
             l1 = list(range(len(data_edges.columns)))
             l1.append(labels[j])
             df.columns = l1
-            # print(df.head())
-            # print(fscore(df, label))
+
+
             fscores[j][i] = fscore(df, labels[j])[:-1]
             if np.isnan(fscores[j][i]).any():
                 # print(j,i)

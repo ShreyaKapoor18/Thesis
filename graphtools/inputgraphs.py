@@ -59,7 +59,7 @@ def different_graphs(fscores, mat, big5,personality_trait, data, edge,
         best_params = json.load(f)
         i = big5.index(personality_trait)
         index = list(range(3*tri))
-        #for choice in ['qcut', 'median', 'throw median'
+        #for choice in ['qcut', 'median', 'throw median']
         # Let's say we only choose the throw median choice, because it is the one that makes more sense
         choice = 'throw median'  # out of all these we will use these particular choices only!
         X, y = data_splitting(choice, i, index, data, whole, labels)  # this X is for random forests training

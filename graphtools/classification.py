@@ -11,7 +11,18 @@ from paramopt import get_distributions
 
 # %%
 def data_splitting(choice, i, index, data, whole, labels, *args, **kwargs):
-    #print(choice)
+    """
+
+    @param choice: the choice of how to split the target values
+    @param i:location of the personality trait
+    @param index: feature indices
+    @param data: dataframe from which we get access to the labels
+    @param whole: training data with three types of features
+    @param labels: original names of the features in the dataset
+    @param args:
+    @param kwargs:
+    @return: X,y the modified data and the target values
+    """
     if choice == 'qcut':
         # choice to cut into three quartiles
         y = pd.qcut(data[labels[i]], 3, labels=False, retbins=True)[0]
@@ -82,6 +93,11 @@ def dict_classifier(classifier, big5, new_fscores, data, whole, metrics, labels)
 
 # %%
 def make_csv(dict_score, filename):
+    """
+
+    @param dict_score: the dictionary of scores
+    @param filename: the name of the file where the csv is stored
+    """
     cv1 = pd.concat({
         k: pd.DataFrame.from_dict(v, 'index') for k, v in dict_score['Metrics'].items()
     },
@@ -96,6 +112,13 @@ def make_csv(dict_score, filename):
 
 # %%
 def visualise_performance(combined, big5, metrics, top_per):
+    """
+
+    @param combined: the dictionary that contains the scores for all possibilities
+    @param big5: the big5 personality traits
+    @param metrics: the metrics we want to calculate for the data
+    @param top_per: the top percentile of the features we want to use
+    """
     # for each label we will visualise the performance of different classifiers
     for i in range(len(big5)):
         fig, ax = plt.subplots(len(top_per), len(metrics), figsize=(25, 20))
@@ -129,6 +152,15 @@ def visualise_performance(combined, big5, metrics, top_per):
 
 # %%
 def run_classification(whole, metrics, big5, data, new_fscores, labels):
+    """
+
+    @param whole: the oriignal data with combined features from all subjects
+    @param metrics: the metrics we want to calculate for the predictions
+    @param big5: the big5 personality traits labels
+    @param data: the labels for the data
+    @param new_fscores: fscores for all features rescaled
+    @param labels: the original labels in the target dataframe
+    """
     combined = {}
     best_params_combined = {}
     if not os.path.exists('outputs'):

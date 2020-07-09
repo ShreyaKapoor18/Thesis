@@ -3,20 +3,37 @@ import numpy as np
 from sklearn.model_selection import RandomizedSearchCV
 from classification import data_splitting
 from paramopt import get_distributions
-from processing import generate_combined_matrix
-from readfiles import computed_subjects
 import networkx as nx
 import matplotlib
 import matplotlib.cm as cm
 import matplotlib.pyplot as plt
-#%%
-#just for the time being
+# %%
+# just for the time being
 import warnings
+
 warnings.filterwarnings("ignore")
+
+
 # %%
 # %%
-def train_from_combined_graph(metrics, personality_trait, edge, node_wts,mat, mews,
+def train_from_combined_graph(metrics, personality_trait, edge, node_wts, mat, mews,
                               big5, labels, data, whole, tri, **kwargs):
+    """
+    For all the features mean FA, mean streamline length and number of streamlines that have
+    been reduced by the solver.  We combine them and then train a classifier on the combined graph.
+    @param metrics: for evaluating the classifier
+    @param personality_trait: the personality trait we want to visualize
+    @param edge:the type of edge we have given input to the solver i.e. fscore, mean FA, mean strl
+    @param node_wts: how we assign the weighting to the nodes
+    @param mat: the upper triangular indices for a nxn matrix
+    @param mews: the directory path
+    @param big5: list personality traits
+    @param labels:the labels in the original dataframe
+    @param data: the original dataframe containing all the labels
+    @param whole: the original matrix containing all feature data for all subjects
+    @param tri: the number of features in the upper triangular form
+    @param kwargs: if keyword arguments needed in future
+    """
     i = big5.index(personality_trait)
     all_feature_indices = []
     for feature in ['mean_FA', 'mean_strl', 'num_strl']:
@@ -44,17 +61,16 @@ def train_from_combined_graph(metrics, personality_trait, edge, node_wts,mat, me
                             if (int(existing_edge[0]), int(existing_edge[1])) == (mat[0][k], mat[1][k]):
                                 feature_indices.add(k)
                                 # all_feature_indices.extend([k, k+tri, k+2*tri]) # for the three types FA, n strl, strlen
-                                #all_feature_indices.extend([k, k + tri, k + 2 * tri])
+                                # all_feature_indices.extend([k, k + tri, k + 2 * tri])
                                 if feature == 'mean_FA':
                                     all_feature_indices.append(k)
-                                    #feature_mat = whole.iloc[:, :tri]
+                                    # feature_mat = whole.iloc[:, :tri]
                                 if feature == 'mean_strl':
-                                    all_feature_indices.append(k+tri)
-                                    #feature_mat = whole.iloc[:, tri:2*tri]
+                                    all_feature_indices.append(k + tri)
+                                    # feature_mat = whole.iloc[:, tri:2*tri]
                                 if feature == 'num_str':
-                                    all_feature_indices.append(k+2*tri)
-                                    #feature_mat = whole.iloc[:, 2*tri:]
-
+                                    all_feature_indices.append(k + 2 * tri)
+                                    # feature_mat = whole.iloc[:, 2*tri:]
 
                 g2 = nx.Graph()
                 g2.add_nodes_from(nodes_e)
@@ -68,9 +84,9 @@ def train_from_combined_graph(metrics, personality_trait, edge, node_wts,mat, me
                 }
                 edge_wts = []
                 for m in g2.edges.data():
-                    #print(m)
+                    # print(m)
                     edge_wts.append(m[2]['weight'])
-                if edge_wts!= []:
+                if edge_wts != []:
                     minima = min(edge_wts)
                     maxima = max(edge_wts)
 
@@ -80,13 +96,13 @@ def train_from_combined_graph(metrics, personality_trait, edge, node_wts,mat, me
                     for v in edge_wts:
                         color.append(mapper.to_rgba(v))
                     plt.figure()
-                    plt.title(f'Nodes with degree >2, output from the solver: {filename}.out\n Number of edges {len(g2.edges)}\n'
-                              f'Target: {personality_trait}, Feature:{feature}\n'
-                              f'Edge type:{edge}, Node weighting:{node_wts}')
+                    plt.title(
+                        f'Nodes with degree >2, output from the solver: {filename}.out\n Number of edges {len(g2.edges)}\n'
+                        f'Target: {personality_trait}, Feature:{feature}\n'
+                        f'Edge type:{edge}, Node weighting:{node_wts}')
                     nx.draw(g2, **options, edge_color=color)
 
                     plt.show()
-
 
                     print('Number of features selected by the solver', len(all_feature_indices))
 
@@ -102,7 +118,8 @@ def train_from_combined_graph(metrics, personality_trait, edge, node_wts,mat, me
                     print('Choice and classifier', choice, classifier)
                     clf, distributions = get_distributions(classifier)
                     rcv = RandomizedSearchCV(clf, distributions, random_state=55, scoring=metrics,
-                                             refit='roc_auc_ovr_weighted', cv=5) # maybe we can train with the best params here
+                                             refit='roc_auc_ovr_weighted',
+                                             cv=5)  # maybe we can train with the best params here
                     # scores = cross_validate(clf, X, Y, cv=5, scoring=metrics)
                     search = rcv.fit(X, y)
                     scores = search.cv_results_
