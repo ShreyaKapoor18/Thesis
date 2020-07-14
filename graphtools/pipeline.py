@@ -35,7 +35,7 @@ dict2 = {'whole': whole, 'metrics': metrics, 'big5': big5,
 dict3 = {'fscores': fscores, 'mat': mat, 'big5': big5,
          'data': data, 'whole': whole,
          'labels': labels, 'corr': corr, 'mews': mews, 'personality_trait': 'Agreeableness',
-         'edge': 'pearson', 'threshold': 85, 'node_wts': 'max', 'tri':  tri}
+         'edge': 'pearson', 'threshold': 85, 'node_wts': 'max', 'tri':tri, 'degree': 1}
 # %%
 #run_classification(**dict2)
 #%%
@@ -45,5 +45,5 @@ different_graphs(**dict3)
 '''
 fscores, mat, big5,personality_trait, data, edge,
                      whole, labels, corr, mews, threshold, feature, node_wts'''
-dict3['metrics'] = metrics
+dict3['metrics'] = metrics # the metrics we want to use
 train_from_combined_graph(**dict3)

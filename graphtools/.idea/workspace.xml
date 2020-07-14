@@ -25,12 +25,9 @@
     <list default="true" id="96a293b3-8c56-42ff-a127-58952144c9ad" name="Default Changelist" comment="rearrange folder structure">
       <change beforePath="$PROJECT_DIR$/../gmwcs-solver" beforeDir="false" afterPath="$PROJECT_DIR$/../gmwcs-solver" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graph_differences.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphweights.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_egdeconvert_solver.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/regression.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/trial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../preprocessing" beforeDir="false" afterPath="$PROJECT_DIR$/../preprocessing" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inputgraphs.py" beforeDir="false" afterPath="$PROJECT_DIR$/inputgraphs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/pipeline.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/read_graphs.py" beforeDir="false" afterPath="$PROJECT_DIR$/read_graphs.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -285,7 +282,7 @@
       <workItem from="1593777401357" duration="27540000" />
       <workItem from="1594124326614" duration="3804000" />
       <workItem from="1594305830730" duration="2688000" />
-      <workItem from="1594732526231" duration="321000" />
+      <workItem from="1594732526231" duration="3196000" />
     </task>
     <task id="LOCAL-00026" summary="rm redundancies">
       <created>1591276716810</created>

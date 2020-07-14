@@ -52,7 +52,7 @@ def nested_outputdirs(mews): # make a separate directory for each label, easier 
 
 
 def different_graphs(fscores, mat, big5,personality_trait, data, edge,
-                     whole, labels, corr, mews, threshold, node_wts, tri):
+                     whole, labels, corr, mews, threshold, node_wts, tri, degree):
     nested_outputdirs(mews='/home/skapoor/Thesis/gmwcs-solver')
     with open('outputs/combined_params.json', 'r') as f:
 
@@ -141,7 +141,7 @@ def different_graphs(fscores, mat, big5,personality_trait, data, edge,
             connected_nodes = []
             for x in g1.nodes:
                 # print(node)
-                if g1.degree(x) >= 1:#solver documentation, 1 or 2
+                if g1.degree(x) >= degree:#solver documentation, 1 or 2
                     print(str(x) + ' ' * 3 + str(g1.nodes[x]['label']), file=nodes_file)
                     connected_nodes.append(x)
                     # print(str(node) + ' ' + str(0), file=nodes_file)
@@ -173,7 +173,7 @@ def different_graphs(fscores, mat, big5,personality_trait, data, edge,
             nx.draw(g2, **options, edge_color=color)
             plt.show()
             # print(node, 'has degree >=2')
-            print('Number of nodes having a degree>=2', count)
+            print(f'Number of nodes having a degree>={degree}', count)
             # print(len(nodes))
 
             for x in g1.nodes:
