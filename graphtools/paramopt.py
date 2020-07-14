@@ -5,6 +5,11 @@ from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
 
 
 def get_distributions(classifier):
+    """
+
+    @param classifier: the classifier that we want to train
+    @return: clf, distributions the classifier with the distributions on which CrossValidation will be run
+    """
     if classifier == 'SVC':
         clf = SVC(probability=True)
         distributions = {'C': loguniform(1e0, 1e3),

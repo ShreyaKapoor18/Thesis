@@ -10,9 +10,12 @@ import random
 import os
 # %%
 def train_with_best_params(classifier, params, X, y):
-    """
-
-    """
+    '''
+    classifier: name of the classifier
+    params: the best parameters obtained from the previous cross validation
+    X: data
+    y: labels
+    '''
     if classifier == 'RF':
         clf = RandomForestClassifier(**params)  # try if this method works so that don't have to use explicit arguments
         X_train, X_test, y_train, y_test = train_test_split(X, y)

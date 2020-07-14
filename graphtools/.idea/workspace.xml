@@ -23,13 +23,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="96a293b3-8c56-42ff-a127-58952144c9ad" name="Default Changelist" comment="use individual features; FA,meanstrl, num strl">
-      <change afterPath="$PROJECT_DIR$/inputgraphs.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/outputs/subgraph_accuracy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CoBundleMAP" beforeDir="false" afterPath="$PROJECT_DIR$/../CoBundleMAP" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../gmwcs-solver" beforeDir="false" afterPath="$PROJECT_DIR$/../gmwcs-solver" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/graphtools.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/graphtools.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graph_differences.py" beforeDir="false" afterPath="$PROJECT_DIR$/graph_differences.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/pipeline.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classification.py" beforeDir="false" afterPath="$PROJECT_DIR$/classification.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphweights.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphweights.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inputgraphs.py" beforeDir="false" afterPath="$PROJECT_DIR$/inputgraphs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/metrics.py" beforeDir="false" afterPath="$PROJECT_DIR$/metrics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_egdeconvert_solver.py" beforeDir="false" afterPath="$PROJECT_DIR$/node_egdeconvert_solver.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paramopt.py" beforeDir="false" afterPath="$PROJECT_DIR$/paramopt.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/processing.py" beforeDir="false" afterPath="$PROJECT_DIR$/processing.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/read_graphs.py" beforeDir="false" afterPath="$PROJECT_DIR$/read_graphs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../preprocessing" beforeDir="false" afterPath="$PROJECT_DIR$/../preprocessing" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,6 +160,9 @@
       <module name="graphtools" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -173,6 +182,9 @@
       <module name="graphtools" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="$USER_HOME$/anaconda3/bin/python" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -277,6 +289,7 @@
       <workItem from="1593772037872" duration="996000" />
       <workItem from="1593777401357" duration="27540000" />
       <workItem from="1594124326614" duration="3804000" />
+      <workItem from="1594305830730" duration="2688000" />
     </task>
     <task id="LOCAL-00025" summary="stacked regressors">
       <created>1591276677294</created>
@@ -671,10 +684,11 @@
     <option name="LAST_COMMIT_MESSAGE" value="use individual features; FA,meanstrl, num strl" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1428" y="394" width="734" height="633" key="#Inspections" timestamp="1593791476605">
-      <screen x="0" y="0" width="2560" height="1413" />
+    <state x="1071" y="302" width="734" height="633" key="#Inspections" timestamp="1594307634830">
+      <screen x="0" y="27" width="1920" height="985" />
     </state>
     <state x="1428" y="394" width="734" height="633" key="#Inspections/0.0.2560.1413@0.0.2560.1413" timestamp="1593791476605" />
+    <state x="1071" y="302" key="#Inspections/0.27.1920.985@0.27.1920.985" timestamp="1594307634830" />
     <state x="1079" y="495" width="394" height="418" key="#Web_Browsers" timestamp="1590662890178">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
@@ -779,10 +793,11 @@
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
     <state x="1071" y="566" width="402" height="273" key="scopes/0.0.2560.1413@0.0.2560.1413" timestamp="1591100841362" />
-    <state x="943" y="322" width="672" height="678" key="search.everywhere.popup" timestamp="1594114310877">
-      <screen x="0" y="0" width="2560" height="1413" />
+    <state x="707" y="251" width="672" height="473" key="search.everywhere.popup" timestamp="1594307618706">
+      <screen x="0" y="27" width="1920" height="985" />
     </state>
     <state x="943" y="322" width="672" height="678" key="search.everywhere.popup/0.0.2560.1413@0.0.2560.1413" timestamp="1594114310877" />
+    <state x="707" y="251" width="672" height="473" key="search.everywhere.popup/0.27.1920.985@0.27.1920.985" timestamp="1594307618706" />
     <state x="1005" y="621" width="542" height="167" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1594030051621">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
@@ -800,8 +815,8 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/graphtools$readfiles.coverage" NAME="readfiles Coverage Results" MODIFIED="1590758111547" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/graphtools$classifier_3labels_flatten.coverage" NAME="classifier_3labels_flatten Coverage Results" MODIFIED="1591269826429" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/graphtools$plot_pipeline_example.coverage" NAME="plot_pipeline_example Coverage Results" MODIFIED="1592387461543" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/graphtools$readfiles.coverage" NAME="readfiles Coverage Results" MODIFIED="1590758111547" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
