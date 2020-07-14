@@ -22,19 +22,14 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96a293b3-8c56-42ff-a127-58952144c9ad" name="Default Changelist" comment="use individual features; FA,meanstrl, num strl">
-      <change beforePath="$PROJECT_DIR$/../CoBundleMAP" beforeDir="false" afterPath="$PROJECT_DIR$/../CoBundleMAP" afterDir="false" />
+    <list default="true" id="96a293b3-8c56-42ff-a127-58952144c9ad" name="Default Changelist" comment="rearrange folder structure">
       <change beforePath="$PROJECT_DIR$/../gmwcs-solver" beforeDir="false" afterPath="$PROJECT_DIR$/../gmwcs-solver" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/graphtools.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/graphtools.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classification.py" beforeDir="false" afterPath="$PROJECT_DIR$/classification.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphweights.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphweights.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inputgraphs.py" beforeDir="false" afterPath="$PROJECT_DIR$/inputgraphs.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/metrics.py" beforeDir="false" afterPath="$PROJECT_DIR$/metrics.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_egdeconvert_solver.py" beforeDir="false" afterPath="$PROJECT_DIR$/node_egdeconvert_solver.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paramopt.py" beforeDir="false" afterPath="$PROJECT_DIR$/paramopt.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processing.py" beforeDir="false" afterPath="$PROJECT_DIR$/processing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/read_graphs.py" beforeDir="false" afterPath="$PROJECT_DIR$/read_graphs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graph_differences.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphweights.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_egdeconvert_solver.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/regression.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/trial.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../preprocessing" beforeDir="false" afterPath="$PROJECT_DIR$/../preprocessing" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -290,13 +285,7 @@
       <workItem from="1593777401357" duration="27540000" />
       <workItem from="1594124326614" duration="3804000" />
       <workItem from="1594305830730" duration="2688000" />
-    </task>
-    <task id="LOCAL-00025" summary="stacked regressors">
-      <created>1591276677294</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1591276677294</updated>
+      <workItem from="1594732526231" duration="321000" />
     </task>
     <task id="LOCAL-00026" summary="rm redundancies">
       <created>1591276716810</created>
@@ -634,7 +623,14 @@
       <option name="project" value="LOCAL" />
       <updated>1594031417262</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="rearrange folder structure">
+      <created>1594732799452</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1594732799452</updated>
+    </task>
+    <option name="localTasksCounter" value="75" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -656,7 +652,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/gmwcs-solver" />
     </ignored-roots>
-    <MESSAGE value="grakel graphs that give 27% accuracy" />
     <MESSAGE value="different label comparison methods working" />
     <MESSAGE value="indexes fixed with comparison of different algorithms" />
     <MESSAGE value="modularized code with indexing change test" />
@@ -681,7 +676,8 @@
     <MESSAGE value="Low accuracy sugraph based classification" />
     <MESSAGE value="assigning constant weight 1 instead of 0" />
     <MESSAGE value="use individual features; FA,meanstrl, num strl" />
-    <option name="LAST_COMMIT_MESSAGE" value="use individual features; FA,meanstrl, num strl" />
+    <MESSAGE value="rearrange folder structure" />
+    <option name="LAST_COMMIT_MESSAGE" value="rearrange folder structure" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1071" y="302" width="734" height="633" key="#Inspections" timestamp="1594307634830">
@@ -757,6 +753,14 @@
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
     <state width="2514" height="144" key="GridCell.Tab.1.right/0.0.2560.1413@0.0.2560.1413" timestamp="1591278927659" />
+    <state x="247" y="125" width="2050" height="1156" key="MergeDialog" timestamp="1594732638236">
+      <screen x="0" y="0" width="2560" height="1413" />
+    </state>
+    <state x="247" y="125" width="2050" height="1156" key="MergeDialog/0.0.2560.1413@0.0.2560.1413" timestamp="1594732638236" />
+    <state x="919" y="470" width="714" height="469" key="MultipleFileMergeDialog" timestamp="1594732638237">
+      <screen x="0" y="0" width="2560" height="1413" />
+    </state>
+    <state x="919" y="470" width="714" height="469" key="MultipleFileMergeDialog/0.0.2560.1413@0.0.2560.1413" timestamp="1594732638237" />
     <state x="1117" y="420" width="318" height="569" key="RollbackChangesDialog" timestamp="1590766592440">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
@@ -765,10 +769,10 @@
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
     <state x="784" y="341" key="SettingsEditor/0.0.2560.1413@0.0.2560.1413" timestamp="1593694623017" />
-    <state x="875" y="442" width="802" height="524" key="Vcs.Push.Dialog.v2" timestamp="1594031419447">
+    <state x="875" y="442" width="802" height="524" key="Vcs.Push.Dialog.v2" timestamp="1594732846470">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state x="875" y="442" width="802" height="524" key="Vcs.Push.Dialog.v2/0.0.2560.1413@0.0.2560.1413" timestamp="1594031419447" />
+    <state x="875" y="442" width="802" height="524" key="Vcs.Push.Dialog.v2/0.0.2560.1413@0.0.2560.1413" timestamp="1594732846470" />
     <state width="1281" height="706" key="XDebugger.FullValuePopup" timestamp="1591115772905">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
@@ -781,6 +785,10 @@
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
     <state x="890" y="320" width="772" height="769" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.2560.1413@0.0.2560.1413" timestamp="1593164203502" />
+    <state x="997" y="496" width="557" height="416" key="git4idea.merge.GitPullDialog" timestamp="1594732649697">
+      <screen x="0" y="0" width="2560" height="1413" />
+    </state>
+    <state x="997" y="496" width="557" height="416" key="git4idea.merge.GitPullDialog/0.0.2560.1413@0.0.2560.1413" timestamp="1594732649697" />
     <state x="1094" y="603" width="364" height="202" key="git4idea.ui.GitResetDialog" timestamp="1591102865803">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
