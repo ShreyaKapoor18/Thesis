@@ -9,6 +9,7 @@ import networkx as nx
 import matplotlib
 import matplotlib.cm as cm
 import matplotlib.pyplot as plt
+from paramopt import graph_options
 # %%
 # just for the time being
 import warnings
@@ -44,13 +45,7 @@ def make_and_visualize(nodes, edges, feature, tri, personality_trait, edge, node
     g2 = nx.Graph()
     g2.add_nodes_from(nodes_e)
     g2.add_weighted_edges_from(edges_e)
-    options = {
-        'node_color': 'black',
-        'node_size': 1,
-        'line_color': 'grey',
-        'linewidths': 0,
-        'width': 0.1,
-    }
+    options = graph_options(color='red', node_size=1, line_color='white', linewidhts=0.1, width=1)
     edge_wts = []
     for m in g2.edges.data():
         # print(m)
@@ -96,7 +91,7 @@ def train_from_combined_graph(metrics, personality_trait, edge, node_wts, mat, m
                 nodes = [x.split('\t') for x in nodes_file.read().split('\n')]
                 edges = [x.split('\t') for x in edges_file.read().split('\n')]
 
-                all_feature_indices.append(make_and_visualize(nodes,edges, feature, tri, personality_trait, edge,
+                all_feature_indices.extend(make_and_visualize(nodes,edges, feature, tri, personality_trait, edge,
                                                               node_wts, mat, filename, degree))
     feature_mat = whole.iloc[:, all_feature_indices]
     with open(f'{mews}/outputs/classification_results/{personality_trait}_{edge}_{node_wts}', 'w+') as results_file:

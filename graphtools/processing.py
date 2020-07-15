@@ -76,7 +76,7 @@ def hist_fscore(data, whole, labels, big5, edge_names, tri):
     fscores = np.zeros((5, 3, tri))
     fig, ax = plt.subplots(5, 3, figsize=(15, 15))
     for j in range(len(labels)):
-        # thresholding for converting the data to binary format for classification
+        # threshold for converting the data to binary format for classification
         bin_label = data[labels[j]] >= data[labels[j]].median()  # this ensures that the labels are balanced?
         bin_label = bin_label.astype(int)
         bin_label.reset_index(drop=True, inplace=True)

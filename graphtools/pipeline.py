@@ -1,7 +1,5 @@
-from classification import *
 from inputgraphs import *
 from processing import *
-from paramopt import *
 from readfiles import computed_subjects
 from read_graphs import train_from_combined_graph
 # %%
@@ -19,31 +17,36 @@ big5 = ['Agreeableness', 'Openness', 'Conscientiousness', 'Neuroticism',
         'Extraversion']
 metrics = ['balanced_accuracy', 'accuracy', 'f1_weighted', 'roc_auc_ovr_weighted']
 
-dict1 = {'data': data, 'whole': whole,'labels': labels,
+options = {'data': data, 'whole': whole, 'labels': labels,
         'big5': big5, 'edge_names': edge_names, 'tri': tri}
-fscores = hist_fscore(**dict1)
-corr = hist_correlation(**dict1)
-
+fscores = hist_fscore(**options)
+corr = hist_correlation(**options)
 # without taking the edge type into consideration
 new_fscores = np.reshape(fscores, (fscores.shape[0], fscores.shape[1] * fscores.shape[2]))
-
 # %%
 mat = np.triu_indices(84)
 mews = '/home/skapoor/Thesis/gmwcs-solver'
-dict2 = {'whole': whole, 'metrics': metrics, 'big5': big5,
-         'data':data, 'new_fscores':new_fscores, 'labels' : labels}
+for k in ['edge_names', 'tri']:
+    del options[k]
+options['new_fscores'], options['metrics'] = new_fscores, metrics
+# %%
+#run_classification(**options)
 dict3 = {'fscores': fscores, 'mat': mat, 'big5': big5,
          'data': data, 'whole': whole,
-         'labels': labels, 'corr': corr, 'mews': mews, 'personality_trait': 'Agreeableness',
+         'labels': labels, 'corr': corr, 'mews': mews}
+hyperparams = {'personality_trait': 'Agreeableness',
          'edge': 'pearson', 'threshold': 85, 'node_wts': 'max', 'tri':tri, 'degree': 1}
-# %%
-#run_classification(**dict2)
+'''
+Here we will need to take the threshold and degree as hyperparameters, change them and compute the result accordingly
+maybe make the dictionary like dict['degree'] = val when the val is in a loop. We shall put all the options differently
+'''
+
 #%%
-different_graphs(**dict3)
+different_graphs(**dict3, **hyperparams)
 #%%
 # now we have to read these graphs, in order to read these graphs we will have to see which all edges are present
 '''
 fscores, mat, big5,personality_trait, data, edge,
                      whole, labels, corr, mews, threshold, feature, node_wts'''
 dict3['metrics'] = metrics # the metrics we want to use
-train_from_combined_graph(**dict3)
+train_from_combined_graph(**dict3, **hyperparams)

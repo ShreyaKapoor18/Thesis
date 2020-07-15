@@ -45,3 +45,13 @@ def get_distributions(classifier):
                          'learning_rate': ['adaptive']}  # doesn't converge even with maximum iterations!
 
     return clf, distributions
+
+def graph_options(color, node_size, line_color, linewidhts, width):
+    options = {
+        'node_color': color,
+        'node_size': node_size,
+        'line_color': line_color,
+        'linewidths': linewidhts,
+        'width': width,
+    }
+    return options
