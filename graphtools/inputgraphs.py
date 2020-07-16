@@ -53,7 +53,7 @@ def nested_outputdirs(mews):  # make a separate directory for each label, easier
 
 
 def make_and_visualize(nodes, edge_attributes, personality_trait, threshold, edge, node_wts,
-                       feature, degree, mews):
+                       feature, degree, mews, plotting_options):
     g1 = nx.Graph()
     g1.add_nodes_from(nodes)
     g1.add_weighted_edges_from(edge_attributes)  # shall be a list of tuples
@@ -106,7 +106,7 @@ def make_and_visualize(nodes, edge_attributes, personality_trait, threshold, edg
     plt.title(f'Nodes with degree >{degree}, input to the solver: {filename}\n Number of edges {len(g2.edges)}\n'
               f'Percentage of features:{100 - threshold}, Target: {personality_trait}, Feature:{feature}\n'
               f'Edge type:{edge}, Node weighting:{node_wts}')
-    nx.draw(g2, **options, edge_color=color)
+    nx.draw(g2, **plotting_options, edge_color=color)
     plt.show()
     # print(node, 'has degree >=2')
     print(f'Number of nodes having a degree>={degree}', count)
@@ -122,19 +122,19 @@ def make_and_visualize(nodes, edge_attributes, personality_trait, threshold, edg
     edges_file.close()
 
 
-def different_graphs(fscores, mat, big5, personality_trait, data, edge,
-                     whole, labels, corr, mews, threshold, node_wts, tri, degree):
+def different_graphs(fscores, mat, big5, target, data, edge,
+                     whole, labels, corr, mews, threshold, node_wts, tri, degree, plotting_options):
     nested_outputdirs(mews='/home/skapoor/Thesis/gmwcs-solver')
     with open('outputs/combined_params.json', 'r') as f:
 
         best_params = json.load(f)
-        i = big5.index(personality_trait)
+        i = big5.index(target)
         index = list(range(3 * tri))
         # for choice in ['qcut', 'median', 'throw median']
         # Let's say we only choose the throw median choice, because it is the one that makes more sense
         choice = 'throw median'  # out of all these we will use these particular choices only!
         X, y = data_splitting(choice, i, index, data, whole, labels)  # this X is for random forests training
-        params = best_params['RF'][personality_trait]["100"][
+        params = best_params['RF'][target]["100"][
             choice]  # maybe use the parameters that work the best for top 5%
         feature_imp = train_with_best_params('RF', params, X, y)
 
@@ -186,9 +186,9 @@ def different_graphs(fscores, mat, big5, personality_trait, data, edge,
                     nodes.add(mat[1][j])
             # mean for the scores of three different labels
             assert nodes != None
-            make_and_visualize(nodes, edge_attributes, personality_trait, threshold, edge, node_wts,
-                               feature, degree, mews)
-            filename = f'{personality_trait}_{edge}_{node_wts}_{feature}'
+            make_and_visualize(nodes, edge_attributes, target, threshold, edge, node_wts,
+                               feature, degree, mews, plotting_options)
+            filename = f'{target}_{edge}_{node_wts}_{feature}'
 
             print('*' * 100, '\n', filename)
             os.chdir(mews)

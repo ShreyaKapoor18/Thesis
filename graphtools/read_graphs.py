@@ -16,7 +16,8 @@ import warnings
 
 warnings.filterwarnings("ignore")
 
-def make_and_visualize(nodes, edges, feature, tri, personality_trait, edge, node_wts, mat, filename, degree):
+def make_and_visualize(nodes, edges, feature, tri, personality_trait, edge, node_wts, mat, filename, degree,
+                       plotting_options):
     nodes_e = set()
     edges_e = set()
     for a in nodes[:-1]:
@@ -45,7 +46,7 @@ def make_and_visualize(nodes, edges, feature, tri, personality_trait, edge, node
     g2 = nx.Graph()
     g2.add_nodes_from(nodes_e)
     g2.add_weighted_edges_from(edges_e)
-    options = graph_options(color='red', node_size=1, line_color='white', linewidhts=0.1, width=1)
+
     edge_wts = []
     for m in g2.edges.data():
         # print(m)
@@ -64,7 +65,7 @@ def make_and_visualize(nodes, edges, feature, tri, personality_trait, edge, node
             f'Nodes with degree >{degree}, output from the solver: {filename}.out\n Number of edges {len(g2.edges)}\n'
             f'Target: {personality_trait}, Feature:{feature}\n'
             f'Edge type:{edge}, Node weighting:{node_wts}')
-        nx.draw(g2, **options, edge_color=color)
+        nx.draw(g2, **plotting_options, edge_color=color)
 
         plt.show()
 
@@ -74,6 +75,12 @@ def make_and_visualize(nodes, edges, feature, tri, personality_trait, edge, node
     else:
         print("The file is empty, the solver didn\'t reduce anything in the network")
         return None
+def summarize_ipop():
+    '''
+    Summarize the input and the output graphs for a particular choice that has been specified for the pipeline
+    @return:
+    '''
+
 
 
 # %%

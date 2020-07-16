@@ -22,9 +22,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96a293b3-8c56-42ff-a127-58952144c9ad" name="Default Changelist" comment="rearrange folder structure">
+    <list default="true" id="96a293b3-8c56-42ff-a127-58952144c9ad" name="Default Changelist" comment="try different coding style for navigation">
       <change beforePath="$PROJECT_DIR$/../gmwcs-solver" beforeDir="false" afterPath="$PROJECT_DIR$/../gmwcs-solver" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classification.py" beforeDir="false" afterPath="$PROJECT_DIR$/classification.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/inputgraphs.py" beforeDir="false" afterPath="$PROJECT_DIR$/inputgraphs.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/pipeline.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/read_graphs.py" beforeDir="false" afterPath="$PROJECT_DIR$/read_graphs.py" afterDir="false" />
@@ -61,7 +62,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="aDefault" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -81,7 +82,7 @@
       <recent name="$PROJECT_DIR$/rough_code" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.read_graphs">
+  <component name="RunManager" selected="Python.pipeline">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -152,9 +153,6 @@
       <module name="graphtools" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -223,8 +221,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.read_graphs" />
         <item itemvalue="Python.pipeline" />
+        <item itemvalue="Python.read_graphs" />
         <item itemvalue="Python.inputgraphs" />
         <item itemvalue="Python.classification" />
         <item itemvalue="Python.readfiles" />
@@ -282,21 +280,7 @@
       <workItem from="1593777401357" duration="27540000" />
       <workItem from="1594124326614" duration="3804000" />
       <workItem from="1594305830730" duration="2688000" />
-      <workItem from="1594732526231" duration="3196000" />
-    </task>
-    <task id="LOCAL-00026" summary="rm redundancies">
-      <created>1591276716810</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1591276716810</updated>
-    </task>
-    <task id="LOCAL-00027" summary="organise files">
-      <created>1591276743949</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1591276743949</updated>
+      <workItem from="1594732526231" duration="10972000" />
     </task>
     <task id="LOCAL-00028" summary="new type">
       <created>1591364936427</created>
@@ -627,7 +611,21 @@
       <option name="project" value="LOCAL" />
       <updated>1594732799452</updated>
     </task>
-    <option name="localTasksCounter" value="75" />
+    <task id="LOCAL-00075" summary="input node degree as parameter">
+      <created>1594743651764</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1594743651764</updated>
+    </task>
+    <task id="LOCAL-00076" summary="try different coding style for navigation">
+      <created>1594819927869</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1594819927869</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -649,8 +647,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/gmwcs-solver" />
     </ignored-roots>
-    <MESSAGE value="different label comparison methods working" />
-    <MESSAGE value="indexes fixed with comparison of different algorithms" />
     <MESSAGE value="modularized code with indexing change test" />
     <MESSAGE value="train and test curve" />
     <MESSAGE value="test metrics not obtained by script" />
@@ -674,7 +670,9 @@
     <MESSAGE value="assigning constant weight 1 instead of 0" />
     <MESSAGE value="use individual features; FA,meanstrl, num strl" />
     <MESSAGE value="rearrange folder structure" />
-    <option name="LAST_COMMIT_MESSAGE" value="rearrange folder structure" />
+    <MESSAGE value="input node degree as parameter" />
+    <MESSAGE value="try different coding style for navigation" />
+    <option name="LAST_COMMIT_MESSAGE" value="try different coding style for navigation" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1071" y="302" width="734" height="633" key="#Inspections" timestamp="1594307634830">
@@ -710,10 +708,10 @@
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
     <state x="1144" y="456" width="529" height="495" key="EnvironmentVariablesDialog/0.0.2560.1413@0.0.2560.1413" timestamp="1592387630711" />
-    <state x="1292" y="464" width="426" height="480" key="FileChooserDialogImpl" timestamp="1592387876919">
+    <state x="1292" y="464" width="426" height="480" key="FileChooserDialogImpl" timestamp="1594817243965">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state x="1292" y="464" width="426" height="480" key="FileChooserDialogImpl/0.0.2560.1413@0.0.2560.1413" timestamp="1592387876919" />
+    <state x="1292" y="464" width="426" height="480" key="FileChooserDialogImpl/0.0.2560.1413@0.0.2560.1413" timestamp="1594817243965" />
     <state x="1100" y="610" key="Github.CreateGistDialog" timestamp="1594114237336">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
@@ -762,14 +760,14 @@
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
     <state x="1117" y="420" width="318" height="569" key="RollbackChangesDialog/0.0.2560.1413@0.0.2560.1413" timestamp="1590766592440" />
-    <state x="784" y="341" key="SettingsEditor" timestamp="1593694623017">
+    <state x="784" y="341" key="SettingsEditor" timestamp="1594817271566">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state x="784" y="341" key="SettingsEditor/0.0.2560.1413@0.0.2560.1413" timestamp="1593694623017" />
-    <state x="875" y="442" width="802" height="524" key="Vcs.Push.Dialog.v2" timestamp="1594732846470">
+    <state x="784" y="341" key="SettingsEditor/0.0.2560.1413@0.0.2560.1413" timestamp="1594817271566" />
+    <state x="875" y="442" width="802" height="524" key="Vcs.Push.Dialog.v2" timestamp="1594819931582">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state x="875" y="442" width="802" height="524" key="Vcs.Push.Dialog.v2/0.0.2560.1413@0.0.2560.1413" timestamp="1594732846470" />
+    <state x="875" y="442" width="802" height="524" key="Vcs.Push.Dialog.v2/0.0.2560.1413@0.0.2560.1413" timestamp="1594819931582" />
     <state width="1281" height="706" key="XDebugger.FullValuePopup" timestamp="1591115772905">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>

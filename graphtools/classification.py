@@ -59,7 +59,7 @@ def dict_classifier(classifier, big5, new_fscores, data, whole, metrics, labels)
     """
     metric_score = {}
     best_params = {}
-    for i in range(5):  # different labels
+    for i in range(len(big5)):  # different labels
         # print(labels[i], ':', big5[i])
         metric_score[big5[i]] = {}
         best_params[big5[i]] = {}
@@ -75,7 +75,7 @@ def dict_classifier(classifier, big5, new_fscores, data, whole, metrics, labels)
             # Y = np.array(data[labels[i]] >= data[labels[i]].median()).astype(int)
             for choice in ['qcut', 'median', 'throw median']:
                 metric_score[big5[i]][per][choice] = {}
-                X, y = data_splitting(choice, i, index[0], data, whole, labels)
+                X, y = data_splitting(choice, labels.index(big5[i]), index[0], data, whole, labels)
                 clf, distributions = get_distributions(classifier)
                 print(f'Executing {clf}')
                 # roc doesn't support multiclass
