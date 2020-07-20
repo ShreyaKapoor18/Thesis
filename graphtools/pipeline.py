@@ -22,12 +22,13 @@ big5 = ['Agreeableness', 'Openness', 'Conscientiousness', 'Neuroticism',
 mapping = {k: v for k, v in zip(big5, labels)}
 # before
 metrics = ['balanced_accuracy', 'accuracy', 'f1_weighted', 'roc_auc_ovr_weighted']
-options = dict(data=data, whole=whole, labels=labels, big5=['Agreeableness'], edge_names=edge_names,
+options= dict(data=data, whole=whole, labels=labels, big5= big5, edge_names=edge_names,
                tri=tri)
 fscores = hist_fscore(**options)
 corr = hist_correlation(**options)
 # without taking the edge type into consideration
 new_fscores = np.reshape(fscores, (fscores.shape[0], fscores.shape[1] * fscores.shape[2]))
+#initial part computed for all together
 # %%
 mat = np.triu_indices(84)
 mews = '/home/skapoor/Thesis/gmwcs-solver'
@@ -35,6 +36,9 @@ for k in ['edge_names', 'tri']:
     del options[k]
 options['new_fscores'], options['metrics'] = new_fscores, metrics
 # %%
+del options['labels']
+options['big5'] = ['Agreaableness']
+options['label'] = mapping[options['big5']] # run only with one target at a time
 run_classification(**options)
 dict3 = {'fscores': fscores, 'mat': mat, 'big5': big5,
          'data': data, 'whole': whole,

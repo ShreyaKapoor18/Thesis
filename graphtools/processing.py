@@ -80,7 +80,7 @@ def hist_fscore(data, whole, labels, big5, edge_names, tri):
         bin_label = data[labels[j]] >= data[labels[j]].median()  # this ensures that the labels are balanced?
         bin_label = bin_label.astype(int)
         bin_label.reset_index(drop=True, inplace=True)
-        for i in range(3):
+        for i in range(len(edge_names)):
             data_edges = pd.DataFrame(whole.iloc[:, i * tri:(i + 1) * tri])
             data_edges.reset_index(inplace=True, drop=True)
             # print(bin_label.head())
