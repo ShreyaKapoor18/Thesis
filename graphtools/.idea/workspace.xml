@@ -22,18 +22,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96a293b3-8c56-42ff-a127-58952144c9ad" name="Default Changelist" comment="try different coding style for navigation">
-      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+    <list default="true" id="96a293b3-8c56-42ff-a127-58952144c9ad" name="Default Changelist" comment="fix label">
       <change beforePath="$PROJECT_DIR$/../CoBundleMAP" beforeDir="false" afterPath="$PROJECT_DIR$/../CoBundleMAP" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dyconnmap_exp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../gmwcs-solver" beforeDir="false" afterPath="$PROJECT_DIR$/../gmwcs-solver" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/graphtools.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/graphtools.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classification.py" beforeDir="false" afterPath="$PROJECT_DIR$/classification.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/pipeline.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/read_graphs.py" beforeDir="false" afterPath="$PROJECT_DIR$/read_graphs.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../preprocessing" beforeDir="false" afterPath="$PROJECT_DIR$/../preprocessing" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -294,21 +286,8 @@
       <workItem from="1594908450870" duration="3239000" />
       <workItem from="1595151800978" duration="1120000" />
       <workItem from="1595232055918" duration="449000" />
-      <workItem from="1595232516794" duration="1858000" />
-    </task>
-    <task id="LOCAL-00028" summary="new type">
-      <created>1591364936427</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1591364936427</updated>
-    </task>
-    <task id="LOCAL-00029" summary="removed option with no cross validation">
-      <created>1591611017511</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1591611017511</updated>
+      <workItem from="1595232516794" duration="3998000" />
+      <workItem from="1595252818871" duration="338000" />
     </task>
     <task id="LOCAL-00030" summary="corrected for correlation instead of covariance">
       <created>1591611054867</created>
@@ -639,7 +618,21 @@
       <option name="project" value="LOCAL" />
       <updated>1594819927869</updated>
     </task>
-    <option name="localTasksCounter" value="77" />
+    <task id="LOCAL-00077" summary="updated pipeline">
+      <created>1595234917904</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1595234917904</updated>
+    </task>
+    <task id="LOCAL-00078" summary="fix label">
+      <created>1595235661332</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1595235661333</updated>
+    </task>
+    <option name="localTasksCounter" value="79" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -661,8 +654,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/gmwcs-solver" />
     </ignored-roots>
-    <MESSAGE value="modularized code with indexing change test" />
-    <MESSAGE value="train and test curve" />
     <MESSAGE value="test metrics not obtained by script" />
     <MESSAGE value="adding rf features" />
     <MESSAGE value="better visualisation" />
@@ -686,13 +677,15 @@
     <MESSAGE value="rearrange folder structure" />
     <MESSAGE value="input node degree as parameter" />
     <MESSAGE value="try different coding style for navigation" />
-    <option name="LAST_COMMIT_MESSAGE" value="try different coding style for navigation" />
+    <MESSAGE value="updated pipeline" />
+    <MESSAGE value="fix label" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix label" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="555" y="181" width="800" height="683" key="#Deployment" timestamp="1594885539184">
+    <state x="555" y="181" width="800" height="683" key="#Deployment" timestamp="1595253160449">
       <screen x="0" y="27" width="1920" height="985" />
     </state>
-    <state x="555" y="181" width="800" height="683" key="#Deployment/0.27.1920.985@0.27.1920.985" timestamp="1594885539184" />
+    <state x="555" y="181" width="800" height="683" key="#Deployment/0.27.1920.985@0.27.1920.985" timestamp="1595253160449" />
     <state x="1071" y="302" width="734" height="633" key="#Inspections" timestamp="1594307634830">
       <screen x="0" y="27" width="1920" height="985" />
     </state>
@@ -786,10 +779,11 @@
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
     <state x="784" y="341" key="SettingsEditor/0.0.2560.1413@0.0.2560.1413" timestamp="1594817271566" />
-    <state x="875" y="442" width="802" height="524" key="Vcs.Push.Dialog.v2" timestamp="1594819931582">
-      <screen x="0" y="0" width="2560" height="1413" />
+    <state x="656" y="335" width="644" height="366" key="Vcs.Push.Dialog.v2" timestamp="1595235663517">
+      <screen x="0" y="27" width="1920" height="985" />
     </state>
     <state x="875" y="442" width="802" height="524" key="Vcs.Push.Dialog.v2/0.0.2560.1413@0.0.2560.1413" timestamp="1594819931582" />
+    <state x="656" y="335" width="644" height="366" key="Vcs.Push.Dialog.v2/0.27.1920.985@0.27.1920.985" timestamp="1595235663517" />
     <state width="1281" height="706" key="XDebugger.FullValuePopup" timestamp="1591115772905">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>

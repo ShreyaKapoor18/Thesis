@@ -14,7 +14,7 @@ assert list(whole.index) == list(data.index)
 # The labels i.e. the ones from unrestricted_files # the order in which the subjects
 # were traversed is according to that of the index
 # %%
-labels: List[str] = ['NEOFAC_A', 'NEOFAC_O', 'NEOFAC_C', 'NEOFAC_N', 'NEOFAC_E']
+labels = ['NEOFAC_A', 'NEOFAC_O', 'NEOFAC_C', 'NEOFAC_N', 'NEOFAC_E']
 edge_names = ['mean_FA', 'mean strl', 'num streamlines']
 big5 = ['Agreeableness', 'Openness', 'Conscientiousness', 'Neuroticism',
         'Extraversion']  # maybe instead of putting these labels together we can put one a time as we are doing in the case
@@ -38,7 +38,7 @@ options['new_fscores'], options['metrics'] = new_fscores, metrics
 # %%
 del options['labels']
 options['big5'] = ['Agreaableness']
-options['label'] = mapping[options['big5']] # run only with one target at a time
+options['label'] = mapping[options['big5'][0]] # run only with one target at a time
 run_classification(**options)
 dict3 = {'fscores': fscores, 'mat': mat, 'big5': big5,
          'data': data, 'whole': whole,
