@@ -1,0 +1,6 @@
+,Agreeableness,Agreeableness,Agreeableness
+,qcut,median,throw median
+5,"{'C': 1.9025008523597733, 'class_weight': None, 'gamma': 0.009068973491620256, 'kernel': 'poly'}","{'C': 200.2074048849186, 'class_weight': 'balanced', 'gamma': 0.0008331759812852307, 'kernel': 'linear'}","{'C': 200.2074048849186, 'class_weight': 'balanced', 'gamma': 0.0008331759812852307, 'kernel': 'linear'}"
+10,"{'C': 496.3147348446938, 'class_weight': None, 'gamma': 0.0002439668102812488, 'kernel': 'rbf'}","{'C': 200.2074048849186, 'class_weight': 'balanced', 'gamma': 0.0008331759812852307, 'kernel': 'linear'}","{'C': 85.30444417114474, 'class_weight': 'balanced', 'gamma': 0.00027945786941112083, 'kernel': 'sigmoid'}"
+50,"{'C': 85.30444417114474, 'class_weight': 'balanced', 'gamma': 0.00027945786941112083, 'kernel': 'sigmoid'}","{'C': 200.2074048849186, 'class_weight': 'balanced', 'gamma': 0.0008331759812852307, 'kernel': 'linear'}","{'C': 200.2074048849186, 'class_weight': 'balanced', 'gamma': 0.0008331759812852307, 'kernel': 'linear'}"
+100,"{'C': 19.446430958399628, 'class_weight': None, 'gamma': 0.00029196606098667833, 'kernel': 'rbf'}","{'C': 11.401363110806296, 'class_weight': None, 'gamma': 0.007618344453654781, 'kernel': 'sigmoid'}","{'C': 11.401363110806296, 'class_weight': None, 'gamma': 0.007618344453654781, 'kernel': 'sigmoid'}"

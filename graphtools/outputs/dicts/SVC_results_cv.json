@@ -1,0 +1,170 @@
+{
+    "Metrics": {
+        "Agreeableness": {
+            "5": {
+                "qcut": {
+                    "balanced_accuracy": 0.434,
+                    "accuracy": 0.46,
+                    "f1_weighted": 0.388,
+                    "roc_auc_ovr_weighted": 0.711
+                },
+                "median": {
+                    "balanced_accuracy": 0.797,
+                    "accuracy": 0.795,
+                    "f1_weighted": 0.755,
+                    "roc_auc_ovr_weighted": 0.964
+                },
+                "throw median": {
+                    "balanced_accuracy": 0.749,
+                    "accuracy": 0.791,
+                    "f1_weighted": 0.732,
+                    "roc_auc_ovr_weighted": 0.96
+                }
+            },
+            "10": {
+                "qcut": {
+                    "balanced_accuracy": 0.45,
+                    "accuracy": 0.476,
+                    "f1_weighted": 0.4,
+                    "roc_auc_ovr_weighted": 0.713
+                },
+                "median": {
+                    "balanced_accuracy": 0.787,
+                    "accuracy": 0.785,
+                    "f1_weighted": 0.74,
+                    "roc_auc_ovr_weighted": 0.95
+                },
+                "throw median": {
+                    "balanced_accuracy": 0.742,
+                    "accuracy": 0.783,
+                    "f1_weighted": 0.725,
+                    "roc_auc_ovr_weighted": 0.944
+                }
+            },
+            "50": {
+                "qcut": {
+                    "balanced_accuracy": 0.415,
+                    "accuracy": 0.441,
+                    "f1_weighted": 0.358,
+                    "roc_auc_ovr_weighted": 0.571
+                },
+                "median": {
+                    "balanced_accuracy": 0.682,
+                    "accuracy": 0.68,
+                    "f1_weighted": 0.634,
+                    "roc_auc_ovr_weighted": 0.774
+                },
+                "throw median": {
+                    "balanced_accuracy": 0.615,
+                    "accuracy": 0.673,
+                    "f1_weighted": 0.59,
+                    "roc_auc_ovr_weighted": 0.658
+                }
+            },
+            "100": {
+                "qcut": {
+                    "balanced_accuracy": 0.346,
+                    "accuracy": 0.375,
+                    "f1_weighted": 0.268,
+                    "roc_auc_ovr_weighted": 0.478
+                },
+                "median": {
+                    "balanced_accuracy": 0.518,
+                    "accuracy": 0.517,
+                    "f1_weighted": 0.482,
+                    "roc_auc_ovr_weighted": 0.446
+                },
+                "throw median": {
+                    "balanced_accuracy": 0.498,
+                    "accuracy": 0.564,
+                    "f1_weighted": 0.465,
+                    "roc_auc_ovr_weighted": 0.494
+                }
+            }
+        }
+    },
+    "Parameters": {
+        "Agreeableness": {
+            "5": {
+                "qcut": {
+                    "C": 1.9025008523597733,
+                    "class_weight": null,
+                    "gamma": 0.009068973491620256,
+                    "kernel": "poly"
+                },
+                "median": {
+                    "C": 200.2074048849186,
+                    "class_weight": "balanced",
+                    "gamma": 0.0008331759812852307,
+                    "kernel": "linear"
+                },
+                "throw median": {
+                    "C": 200.2074048849186,
+                    "class_weight": "balanced",
+                    "gamma": 0.0008331759812852307,
+                    "kernel": "linear"
+                }
+            },
+            "10": {
+                "qcut": {
+                    "C": 496.3147348446938,
+                    "class_weight": null,
+                    "gamma": 0.0002439668102812488,
+                    "kernel": "rbf"
+                },
+                "median": {
+                    "C": 200.2074048849186,
+                    "class_weight": "balanced",
+                    "gamma": 0.0008331759812852307,
+                    "kernel": "linear"
+                },
+                "throw median": {
+                    "C": 85.30444417114474,
+                    "class_weight": "balanced",
+                    "gamma": 0.00027945786941112083,
+                    "kernel": "sigmoid"
+                }
+            },
+            "50": {
+                "qcut": {
+                    "C": 85.30444417114474,
+                    "class_weight": "balanced",
+                    "gamma": 0.00027945786941112083,
+                    "kernel": "sigmoid"
+                },
+                "median": {
+                    "C": 200.2074048849186,
+                    "class_weight": "balanced",
+                    "gamma": 0.0008331759812852307,
+                    "kernel": "linear"
+                },
+                "throw median": {
+                    "C": 200.2074048849186,
+                    "class_weight": "balanced",
+                    "gamma": 0.0008331759812852307,
+                    "kernel": "linear"
+                }
+            },
+            "100": {
+                "qcut": {
+                    "C": 19.446430958399628,
+                    "class_weight": null,
+                    "gamma": 0.00029196606098667833,
+                    "kernel": "rbf"
+                },
+                "median": {
+                    "C": 11.401363110806296,
+                    "class_weight": null,
+                    "gamma": 0.007618344453654781,
+                    "kernel": "sigmoid"
+                },
+                "throw median": {
+                    "C": 11.401363110806296,
+                    "class_weight": null,
+                    "gamma": 0.007618344453654781,
+                    "kernel": "sigmoid"
+                }
+            }
+        }
+    }
+}
