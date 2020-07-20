@@ -10,29 +10,26 @@ from paramopt import get_distributions
 
 
 # %%
-def data_splitting(choice, i, index, data, whole, labels, *args, **kwargs):
+def data_splitting(choice, index, data, whole, label):
     """
-
-    @param choice: the choice of how to split the target values
-    @param i:location of the personality trait
-    @param index: feature indices
-    @param data: dataframe from which we get access to the labels
-    @param whole: training data with three types of features
-    @param labels: original names of the features in the dataset
-    @param args:
-    @param kwargs:
-    @return: X,y the modified data and the target values
-    """
+     @param choice: the choice of how to split the target values
+     @param label: the personality trait label
+     @param index: feature indices
+     @param data: dataframe from which we get access to the labels
+     @param whole: training data with three types of features
+     @param label: original names of the features in the dataset
+     @return: X,y the modified data and the target values
+     """
     if choice == 'qcut':
         # choice to cut into three quartiles
-        y = pd.qcut(data[labels[i]], 3, labels=False, retbins=True)[0]
+        y = pd.qcut(data[label], 3, labels=False, retbins=True)[0]
         X = whole.iloc[:, index]
     if choice == 'median':
         # choice to threshold around the median
-        y = data[labels[i]] >= data[labels[i]].median()
+        y = data[label] >= data[label].median()
         X = whole.iloc[:, index]
     if choice == 'throw median':
-        y = pd.qcut(data[labels[i]], 5, labels=False, retbins=True)[0]
+        y = pd.qcut(data[label], 5, labels=False, retbins=True)[0]
         # y.reset_index(drop=True, inplace=True)
         print(sum(y == 2), 'is the number of subjects which have been removed')
         y = y[y != 2]
@@ -40,13 +37,12 @@ def data_splitting(choice, i, index, data, whole, labels, *args, **kwargs):
         print(len(y), 'New number of subjects in our dataset')
         # X = whole[y.index, index[0]] don't know why this type of slicing is not working
         X = [whole.loc[i, index] for i in list(y.index)]
-        # X = whole.iloc[y.index, index[0]]
 
     return np.array(X), np.array(y)
 
 
 # %%
-def dict_classifier(classifier, big5, new_fscores, data, whole, metrics, labels):
+def dict_classifier(classifier, big5, new_fscores, data, whole, metrics, label):
     """
     :param whole: the matrix containing the edge information for all subjects
     :param option: if we want the scores with or without cross validation
@@ -75,7 +71,7 @@ def dict_classifier(classifier, big5, new_fscores, data, whole, metrics, labels)
             # Y = np.array(data[labels[i]] >= data[labels[i]].median()).astype(int)
             for choice in ['qcut', 'median', 'throw median']:
                 metric_score[big5[i]][per][choice] = {}
-                X, y = data_splitting(choice, labels.index(big5[i]), index[0], data, whole, labels)
+                X, y = data_splitting(choice, index[0], data, whole, label)
                 clf, distributions = get_distributions(classifier)
                 print(f'Executing {clf}')
                 # roc doesn't support multiclass
@@ -147,31 +143,31 @@ def visualise_performance(combined, big5, metrics, top_per):
         fig.suptitle(big5[i])
         plt.tight_layout()
         plt.savefig(f'outputs/figures/classification_{big5[i]}')
-        # plt.show()
+        plt.show()
 
 
 # %%
-def run_classification(whole, metrics, big5, data, new_fscores, labels):
+def run_classification(whole, metrics, big5, data, new_fscores, label):
     """
-
+    @param label: the target variable since we want to run in a pipeline
     @param whole: the oriignal data with combined features from all subjects
     @param metrics: the metrics we want to calculate for the predictions
     @param big5: the big5 personality traits labels
     @param data: the labels for the data
     @param new_fscores: fscores for all features rescaled
-    @param labels: the original labels in the target dataframe
+    @param labels: the original label in the target dataframe
     """
     combined = {}
     best_params_combined = {}
     if not os.path.exists('outputs'):
         os.mkdir('outputs')
-        for folder in ['figures', 'dicts', 'csvs']:
-            if not os.path.exists(f'outputs/{folder}'):
-                os.mkdir(f'outputs/{folder}')
+    for folder in ['figures', 'dicts', 'csvs']:
+        if not os.path.exists(f'outputs/{folder}'):
+            os.mkdir(f'outputs/{folder}')
 
     for clf in ['SVC', 'RF', 'GB', 'MLP']:  # other ones are taking too long
         start = time.time()
-        d1 = dict_classifier(clf, big5, new_fscores, data, whole, metrics, labels)
+        d1 = dict_classifier(clf, big5, new_fscores, data, whole, metrics, label)
         end = time.time()
         print(f'Time taken for {clf}: {datetime.timedelta(seconds=end - start)}')
         make_csv(d1, f'outputs/csvs/{clf}_results_cv.csv')

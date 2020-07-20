@@ -1,0 +1,7 @@
+numpy~=1.18.1
+pandas~=0.25.3
+sklearn~=0.0
+scikit-learn~=0.23.1
+networkx~=2.4
+grakel~=0.1b7
+matplotlib~=3.2.1

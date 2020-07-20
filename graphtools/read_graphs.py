@@ -13,10 +13,10 @@ from paramopt import graph_options
 # %%
 # just for the time being
 import warnings
-
 warnings.filterwarnings("ignore")
 
-def make_and_visualize(nodes, edges, feature, tri, personality_trait, edge, node_wts, mat, filename, degree,
+
+def make_and_visualize(nodes, edges, feature, tri, target, edge, node_wts, mat, filename, degree,
                        plotting_options):
     nodes_e = set()
     edges_e = set()
@@ -63,7 +63,7 @@ def make_and_visualize(nodes, edges, feature, tri, personality_trait, edge, node
         plt.figure()
         plt.title(
             f'Nodes with degree >{degree}, output from the solver: {filename}.out\n Number of edges {len(g2.edges)}\n'
-            f'Target: {personality_trait}, Feature:{feature}\n'
+            f'Target: {target}, Feature:{feature}\n'
             f'Edge type:{edge}, Node weighting:{node_wts}')
         nx.draw(g2, **plotting_options, edge_color=color)
 
@@ -75,21 +75,26 @@ def make_and_visualize(nodes, edges, feature, tri, personality_trait, edge, node
     else:
         print("The file is empty, the solver didn\'t reduce anything in the network")
         return None
-def summarize_ipop():
-    '''
+
+
+'''def summarize_ipop():
     Summarize the input and the output graphs for a particular choice that has been specified for the pipeline
     @return:
-    '''
-
+    
+'''
 
 
 # %%
-def train_from_combined_graph(metrics, personality_trait, edge, node_wts, mat, mews,
-                              big5, labels, data, whole, tri, degree, **kwargs):
-    i = big5.index(personality_trait)
+def train_from_combined_graph(metrics, target, edge, node_wts, mat, mews,
+                              big5, labels, data, whole, tri, degree, plotting_options):
+    """
+
+    @rtype: object
+    """
+    i = big5.index(target)
     all_feature_indices = []
     for feature in ['mean_FA', 'mean_strl', 'num_strl']:
-        filename = f'{personality_trait}_{edge}_{node_wts}_{feature}'  # make more nested directories
+        filename = f'{target}_{edge}_{node_wts}_{feature}'  # make more nested directories
         print(filename + '.out')
         if os.path.exists(f'{mews}/outputs/nodes/{filename}.out') \
                 and os.path.exists(f'{mews}/outputs/edges/{filename}.out'):
@@ -98,12 +103,12 @@ def train_from_combined_graph(metrics, personality_trait, edge, node_wts, mat, m
                 nodes = [x.split('\t') for x in nodes_file.read().split('\n')]
                 edges = [x.split('\t') for x in edges_file.read().split('\n')]
 
-                all_feature_indices.extend(make_and_visualize(nodes,edges, feature, tri, personality_trait, edge,
-                                                              node_wts, mat, filename, degree))
+                all_feature_indices.extend(make_and_visualize(nodes, edges, feature, tri, target, edge,
+                                                              node_wts, mat, filename, degree, plotting_options))
     feature_mat = whole.iloc[:, all_feature_indices]
-    with open(f'{mews}/outputs/classification_results/{personality_trait}_{edge}_{node_wts}', 'w+') as results_file:
+    with open(f'{mews}/outputs/classification_results/{target}_{edge}_{node_wts}', 'w+') as results_file:
         choice = 'throw median'
-        if all_feature_indices != []:
+        if all_feature_indices:
             X, y = data_splitting(choice, i, all_feature_indices, data, feature_mat, labels)
             for classifier in ['SVC', 'RF', 'MLP']:
                 print('Choice and classifier', choice, classifier)
