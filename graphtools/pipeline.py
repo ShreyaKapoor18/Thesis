@@ -22,7 +22,7 @@ big5 = ['Agreeableness', 'Openness', 'Conscientiousness', 'Neuroticism',
 mapping = {k: v for k, v in zip(big5, labels)}
 # before
 metrics = ['balanced_accuracy', 'accuracy', 'f1_weighted', 'roc_auc_ovr_weighted']
-options = dict(data=data, whole=whole, label=mapping['Agreeableness'], big5=['Agreeableness'], edge_names=edge_names,
+options = dict(data=data, whole=whole, labels=labels, big5=['Agreeableness'], edge_names=edge_names,
                tri=tri)
 fscores = hist_fscore(**options)
 corr = hist_correlation(**options)
@@ -55,7 +55,7 @@ different_graphs(**dict3, **hyperparams)
 # %%
 # now we have to read these graphs, in order to read these graphs we will have to see which all edges are present
 '''
-fscores, mat, big5,personality_trait, data, edge,
+git, mat, big5,personality_trait, data, edge,
                      whole, labels, corr, mews, threshold, feature, node_wts'''
 dict3['metrics'] = metrics  # the metrics we want to use
 train_from_combined_graph(**dict3, **hyperparams)
