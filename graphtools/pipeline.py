@@ -37,7 +37,7 @@ for k in ['edge_names', 'tri']:
 options['new_fscores'], options['metrics'] = new_fscores, metrics
 # %%
 del options['labels']
-options['big5'] = ['Agreaableness']
+options['big5'] = ['Agreeableness']
 options['label'] = mapping[options['big5'][0]] # run only with one target at a time
 run_classification(**options)
 dict3 = {'fscores': fscores, 'mat': mat, 'big5': big5,

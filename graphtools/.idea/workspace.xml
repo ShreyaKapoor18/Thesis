@@ -22,7 +22,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96a293b3-8c56-42ff-a127-58952144c9ad" name="Default Changelist" comment="fix label">
+    <list default="true" id="96a293b3-8c56-42ff-a127-58952144c9ad" name="Default Changelist" comment="fix options">
       <change beforePath="$PROJECT_DIR$/../CoBundleMAP" beforeDir="false" afterPath="$PROJECT_DIR$/../CoBundleMAP" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/pipeline.py" afterDir="false" />
@@ -287,14 +287,7 @@
       <workItem from="1595151800978" duration="1120000" />
       <workItem from="1595232055918" duration="449000" />
       <workItem from="1595232516794" duration="3998000" />
-      <workItem from="1595252818871" duration="338000" />
-    </task>
-    <task id="LOCAL-00030" summary="corrected for correlation instead of covariance">
-      <created>1591611054867</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1591611054867</updated>
+      <workItem from="1595252818871" duration="3707000" />
     </task>
     <task id="LOCAL-00031" summary="correaltion calculation for all files">
       <created>1591611074592</created>
@@ -632,7 +625,14 @@
       <option name="project" value="LOCAL" />
       <updated>1595235661333</updated>
     </task>
-    <option name="localTasksCounter" value="79" />
+    <task id="LOCAL-00079" summary="fix options">
+      <created>1595253182534</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1595253182534</updated>
+    </task>
+    <option name="localTasksCounter" value="80" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -654,7 +654,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/gmwcs-solver" />
     </ignored-roots>
-    <MESSAGE value="test metrics not obtained by script" />
     <MESSAGE value="adding rf features" />
     <MESSAGE value="better visualisation" />
     <MESSAGE value="incorporating in graphs" />
@@ -679,7 +678,8 @@
     <MESSAGE value="try different coding style for navigation" />
     <MESSAGE value="updated pipeline" />
     <MESSAGE value="fix label" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix label" />
+    <MESSAGE value="fix options" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix options" />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="181" width="800" height="683" key="#Deployment" timestamp="1595253160449">
@@ -779,11 +779,11 @@
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
     <state x="784" y="341" key="SettingsEditor/0.0.2560.1413@0.0.2560.1413" timestamp="1594817271566" />
-    <state x="656" y="335" width="644" height="366" key="Vcs.Push.Dialog.v2" timestamp="1595235663517">
+    <state x="656" y="335" width="644" height="366" key="Vcs.Push.Dialog.v2" timestamp="1595253185038">
       <screen x="0" y="27" width="1920" height="985" />
     </state>
     <state x="875" y="442" width="802" height="524" key="Vcs.Push.Dialog.v2/0.0.2560.1413@0.0.2560.1413" timestamp="1594819931582" />
-    <state x="656" y="335" width="644" height="366" key="Vcs.Push.Dialog.v2/0.27.1920.985@0.27.1920.985" timestamp="1595235663517" />
+    <state x="656" y="335" width="644" height="366" key="Vcs.Push.Dialog.v2/0.27.1920.985@0.27.1920.985" timestamp="1595253185038" />
     <state width="1281" height="706" key="XDebugger.FullValuePopup" timestamp="1591115772905">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
