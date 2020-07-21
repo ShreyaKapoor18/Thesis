@@ -103,8 +103,8 @@ def make_and_visualize(nodes, edge_attributes, personality_trait, threshold, edg
     for v in edge_wts:
         color.append(mapper.to_rgba(v))
     plt.figure()
-    plt.title(f'Nodes with degree >{degree}, input to the solver: {filename}\n Number of edges {len(g2.edges)}\n'
-              f'Percentage of features:{100 - threshold}, Target: {personality_trait}, Feature:{feature}\n'
+    plt.title(f'Nodes with degree >={degree}, input to the solver: {filename}\n Number of edges {len(g2.edges)}\n'
+              f'Features above percentile: {threshold}, Target: {personality_trait}, Feature:{feature}\n'
               f'Edge type:{edge}, Node weighting:{node_wts}')
     nx.draw(g2, **plotting_options, edge_color=color)
     plt.show()
@@ -122,8 +122,8 @@ def make_and_visualize(nodes, edge_attributes, personality_trait, threshold, edg
     edges_file.close()
 
 
-def different_graphs(fscores, mat, big5, target, data, edge,
-                     whole, labels, corr, mews, threshold, node_wts, tri, degree, plotting_options):
+def different_graphs(fscores, mat, target, data, edge,big5,
+                     whole, label, corr, mews, threshold, node_wts, tri, degree, plotting_options):
     nested_outputdirs(mews='/home/skapoor/Thesis/gmwcs-solver')
     with open('outputs/combined_params.json', 'r') as f:
 
@@ -133,7 +133,7 @@ def different_graphs(fscores, mat, big5, target, data, edge,
         # for choice in ['qcut', 'median', 'throw median']
         # Let's say we only choose the throw median choice, because it is the one that makes more sense
         choice = 'throw median'  # out of all these we will use these particular choices only!
-        X, y = data_splitting(choice, i, index, data, whole, labels)  # this X is for random forests training
+        X, y = data_splitting(choice, index, data, whole, label)  # this X is for random forests training
         params = best_params['RF'][target]["100"][
             choice]  # maybe use the parameters that work the best for top 5%
         feature_imp = train_with_best_params('RF', params, X, y)

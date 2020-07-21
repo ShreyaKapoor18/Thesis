@@ -39,10 +39,9 @@ options['new_fscores'], options['metrics'] = new_fscores, metrics
 del options['labels']
 options['big5'] = ['Agreeableness']
 options['label'] = mapping[options['big5'][0]] # run only with one target at a time
-run_classification(**options)
+#run_classification(**options)
 dict3 = {'fscores': fscores, 'mat': mat, 'big5': big5,
-         'data': data, 'whole': whole,
-         'labels': labels, 'corr': corr, 'mews': mews}
+         'data': data, 'whole': whole, 'corr': corr, 'mews': mews}
 
 plotting_options = graph_options(color='red', node_size=3, line_color='white', linewidhts=0.1, width=1)
 hyperparams = {'target': 'Agreeableness',
@@ -53,8 +52,9 @@ hyperparams = {'target': 'Agreeableness',
 Here we will need to take the threshold and degree as hyperparameters, change them and compute the result accordingly
 maybe make the dictionary like dict['degree'] = val when the val is in a loop. We shall put all the options differently
 '''
-
+#fscores, mat, target, data, edge,whole, label, corr, mews, threshold, node_wts, tri, degree, plotting_options
 # %%
+dict3['label'] = options['label']
 different_graphs(**dict3, **hyperparams)
 # %%
 # now we have to read these graphs, in order to read these graphs we will have to see which all edges are present
@@ -62,6 +62,13 @@ different_graphs(**dict3, **hyperparams)
 git, mat, big5,personality_trait, data, edge,
                      whole, labels, corr, mews, threshold, feature, node_wts'''
 dict3['metrics'] = metrics  # the metrics we want to use
+del dict3['fscores']
+del dict3['corr']
+dict3['metrics'] = metrics
+# metrics, target, edge, node_wts, mat, mews,
+#                               big5, label, data, whole, tri, degree, plotting_options
+del hyperparams['threshold']
+
 train_from_combined_graph(**dict3, **hyperparams)
 '''
 To do:

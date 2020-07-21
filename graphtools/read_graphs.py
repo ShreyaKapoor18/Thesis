@@ -62,7 +62,7 @@ def make_and_visualize(nodes, edges, feature, tri, target, edge, node_wts, mat, 
             color.append(mapper.to_rgba(v))
         plt.figure()
         plt.title(
-            f'Nodes with degree >{degree}, output from the solver: {filename}.out\n Number of edges {len(g2.edges)}\n'
+            f'Nodes with degree >={degree}, output from the solver: {filename}.out\n Number of edges {len(g2.edges)}\n'
             f'Target: {target}, Feature:{feature}\n'
             f'Edge type:{edge}, Node weighting:{node_wts}')
         nx.draw(g2, **plotting_options, edge_color=color)
@@ -86,7 +86,7 @@ def make_and_visualize(nodes, edges, feature, tri, target, edge, node_wts, mat, 
 
 # %%
 def train_from_combined_graph(metrics, target, edge, node_wts, mat, mews,
-                              big5, labels, data, whole, tri, degree, plotting_options):
+                              big5, label, data, whole, tri, degree, plotting_options):
     """
 
     @rtype: object
@@ -105,11 +105,11 @@ def train_from_combined_graph(metrics, target, edge, node_wts, mat, mews,
 
                 all_feature_indices.extend(make_and_visualize(nodes, edges, feature, tri, target, edge,
                                                               node_wts, mat, filename, degree, plotting_options))
-    feature_mat = whole.iloc[:, all_feature_indices]
+    #feature_mat = whole.iloc[:, all_feature_indices]
     with open(f'{mews}/outputs/classification_results/{target}_{edge}_{node_wts}', 'w+') as results_file:
         choice = 'throw median'
         if all_feature_indices:
-            X, y = data_splitting(choice, i, all_feature_indices, data, feature_mat, labels)
+            X, y = data_splitting(choice, all_feature_indices, data, whole, label)
             for classifier in ['SVC', 'RF', 'MLP']:
                 print('Choice and classifier', choice, classifier)
                 clf, distributions = get_distributions(classifier)
