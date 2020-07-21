@@ -35,7 +35,11 @@ def compute_scores(y_test, y_pred, y_score,
     @param y_score: the scores for comparison between test and predicted labels
     @return:
     """
-    scores = [balanced_accuracy_score(y_test,y_pred), 
+    scores = [balanced_accuracy_score(y_test, y_pred),
               accuracy_score(y_test, y_pred), f1_score(y_test, y_pred, average='weighted'),
-                                      roc_auc_score(y_test, y_score, average='weighted')]
+              ]
+    if len(np.unique(y_test)) >= 2:
+            scores.append(roc_auc_score(y_test, y_score, average='weighted', multi_class='ovr'))
+    else:
+        scores.append()
     return {k:v for k,v in zip(metrics,scores)}
