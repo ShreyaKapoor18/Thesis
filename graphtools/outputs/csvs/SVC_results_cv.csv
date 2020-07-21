@@ -1,6 +1,0 @@
-,Agreeableness,Agreeableness,Agreeableness
-,qcut,median,throw median
-5,"{'balanced_accuracy': 0.434, 'accuracy': 0.46, 'f1_weighted': 0.388, 'roc_auc_ovr_weighted': 0.701}","{'balanced_accuracy': 0.797, 'accuracy': 0.795, 'f1_weighted': 0.755, 'roc_auc_ovr_weighted': 0.964}","{'balanced_accuracy': 0.749, 'accuracy': 0.791, 'f1_weighted': 0.732, 'roc_auc_ovr_weighted': 0.96}"
-10,"{'balanced_accuracy': 0.45, 'accuracy': 0.476, 'f1_weighted': 0.4, 'roc_auc_ovr_weighted': 0.715}","{'balanced_accuracy': 0.787, 'accuracy': 0.785, 'f1_weighted': 0.74, 'roc_auc_ovr_weighted': 0.951}","{'balanced_accuracy': 0.742, 'accuracy': 0.783, 'f1_weighted': 0.725, 'roc_auc_ovr_weighted': 0.944}"
-50,"{'balanced_accuracy': 0.415, 'accuracy': 0.441, 'f1_weighted': 0.358, 'roc_auc_ovr_weighted': 0.576}","{'balanced_accuracy': 0.682, 'accuracy': 0.68, 'f1_weighted': 0.634, 'roc_auc_ovr_weighted': 0.763}","{'balanced_accuracy': 0.615, 'accuracy': 0.673, 'f1_weighted': 0.59, 'roc_auc_ovr_weighted': 0.671}"
-100,"{'balanced_accuracy': 0.346, 'accuracy': 0.375, 'f1_weighted': 0.268, 'roc_auc_ovr_weighted': 0.474}","{'balanced_accuracy': 0.518, 'accuracy': 0.517, 'f1_weighted': 0.482, 'roc_auc_ovr_weighted': 0.461}","{'balanced_accuracy': 0.498, 'accuracy': 0.564, 'f1_weighted': 0.465, 'roc_auc_ovr_weighted': 0.475}"

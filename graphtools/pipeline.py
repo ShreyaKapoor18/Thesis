@@ -22,26 +22,28 @@ big5 = ['Agreeableness', 'Openness', 'Conscientiousness', 'Neuroticism',
 mapping = {k: v for k, v in zip(big5, labels)}
 # before
 metrics = ['balanced_accuracy', 'accuracy', 'f1_weighted', 'roc_auc_ovr_weighted']
-options= dict(data=data, whole=whole, labels=labels, big5= big5, edge_names=edge_names,
+options = dict(data=data, whole=whole, labels=labels, big5=big5, edge_names=edge_names,
                tri=tri)
-fscores = hist_fscore(**options)
-corr = hist_correlation(**options)
+#fscores = hist_fscore(**options) not needed now
+# corr = hist_correlation(**options)
 # without taking the edge type into consideration
-new_fscores = np.reshape(fscores, (fscores.shape[0], fscores.shape[1] * fscores.shape[2]))
-#initial part computed for all together
+#new_fscores = np.reshape(fscores, (fscores.shape[0], fscores.shape[1] * fscores.shape[2]))
+# initial part computed for all together
 # %%
 mat = np.triu_indices(84)
 mews = '/home/skapoor/Thesis/gmwcs-solver'
 for k in ['edge_names', 'tri']:
     del options[k]
-options['new_fscores'], options['metrics'] = new_fscores, metrics
+options['metrics'] = metrics
 # %%
 del options['labels']
 options['big5'] = ['Agreeableness']
-options['label'] = mapping[options['big5'][0]] # run only with one target at a time
-#run_classification(**options)
-dict3 = {'fscores': fscores, 'mat': mat, 'big5': big5,
-         'data': data, 'whole': whole, 'corr': corr, 'mews': mews}
+options['label'] = mapping[options['big5'][0]]  # run only with one target at a time
+#%%
+run_classification(whole, metrics, 'Agreeableness', data[mapping['Agreeableness']], 'fscore')
+#%%
+dict3 = { 'mat': mat, 'big5': big5,
+         'data': data, 'whole': whole, 'mews': mews}
 
 plotting_options = graph_options(color='red', node_size=3, line_color='white', linewidhts=0.1, width=1)
 hyperparams = {'target': 'Agreeableness',
@@ -52,7 +54,7 @@ hyperparams = {'target': 'Agreeableness',
 Here we will need to take the threshold and degree as hyperparameters, change them and compute the result accordingly
 maybe make the dictionary like dict['degree'] = val when the val is in a loop. We shall put all the options differently
 '''
-#fscores, mat, target, data, edge,whole, label, corr, mews, threshold, node_wts, tri, degree, plotting_options
+# fscores, mat, target, data, edge,whole, label, corr, mews, threshold, node_wts, tri, degree, plotting_options
 # %%
 dict3['label'] = options['label']
 different_graphs(**dict3, **hyperparams)

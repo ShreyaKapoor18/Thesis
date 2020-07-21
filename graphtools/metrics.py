@@ -1,10 +1,9 @@
 import numpy as np
-import pandas as pd
 from sklearn.metrics import balanced_accuracy_score
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import f1_score
 from sklearn.metrics import roc_auc_score
-
+import pandas as pd #this will be used in the fscore function
 
 # %%
 def fscore(data, class_col='class'):
@@ -26,14 +25,17 @@ def fscore(data, class_col='class'):
         return np.zeros(numerator.shape)
 
 
-def compute_scores(y_test, y_pred, y_score):
+def compute_scores(y_test, y_pred, y_score,
+                   metrics=['balanced_accuracy', 'accuracy', 'f1_weighted', 'roc_auc_ovr_weighted']):
     """
 
+    @type metrics: list
     @param y_test: actual test labels
     @param y_pred: predicted test labels
     @param y_score: the scores for comparison between test and predicted labels
     @return:
     """
-    scores = [balanced_accuracy_score(y_test, y_pred), roc_auc_score(y_test, y_score),
-              accuracy_score(y_test, y_pred), f1_score(y_test, y_pred)]
-    return scores
+    scores = [balanced_accuracy_score(y_test,y_pred), 
+              accuracy_score(y_test, y_pred), f1_score(y_test, y_pred, average='weighted'),
+                                      roc_auc_score(y_test, y_score, average='weighted')]
+    return {k:v for k,v in zip(metrics,scores)}

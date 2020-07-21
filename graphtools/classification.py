@@ -7,42 +7,40 @@ import numpy as np
 import pandas as pd
 from sklearn.model_selection import RandomizedSearchCV
 from paramopt import get_distributions
+from sklearn.model_selection import train_test_split
+from metrics import fscore
 
 
 # %%
-def data_splitting(choice, index, data, whole, label):
+def data_splitting(choice, index, X, y):
     """
      @param choice: the choice of how to split the target values
-     @param label: the personality trait label
      @param index: feature indices
-     @param data: dataframe from which we get access to the labels
-     @param whole: training data with three types of features
-     @param label: original names of the features in the dataset
      @return: X,y the modified data and the target values
      """
     if choice == 'qcut':
         # choice to cut into three quartiles
-        y = pd.qcut(data[label], 3, labels=False, retbins=True)[0]
-        X = whole.iloc[:, index]
+        y = pd.qcut(y, 3, labels=False, retbins=True)[0]
+        X = X.iloc[:, index]
     if choice == 'median':
         # choice to threshold around the median
-        y = data[label] >= data[label].median()
-        X = whole.iloc[:, index]
+        y = y >= y.median()
+        X = X.iloc[:, index]
     if choice == 'throw median':
-        y = pd.qcut(data[label], 5, labels=False, retbins=True)[0]
+        y = pd.qcut(y, 5, labels=False, retbins=True)[0]
         # y.reset_index(drop=True, inplace=True)
         print(sum(y == 2), 'is the number of subjects which have been removed')
         y = y[y != 2]
         y = y // 3  # 0 and 1 classes get mapped to 0 and 3,4 get mapped to 1
         print(len(y), 'New number of subjects in our dataset')
         # X = whole[y.index, index[0]] don't know why this type of slicing is not working
-        X = [whole.loc[i, index] for i in list(y.index)]
+        X = [X.loc[i, index] for i in list(y.index)]
 
     return np.array(X), np.array(y)
 
 
 # %%
-def dict_classifier(classifier, big5, new_fscores, data, whole, metrics, label):
+def dict_classifier(classifier, whole, metrics, target_col, edge):
     """
     :param whole: the matrix containing the edge information for all subjects
     :param option: if we want the scores with or without cross validation
@@ -55,34 +53,58 @@ def dict_classifier(classifier, big5, new_fscores, data, whole, metrics, label):
     """
     metric_score = {}
     best_params = {}
-    for i in range(len(big5)):  # different labels
-        # print(labels[i], ':', big5[i])
-        metric_score[big5[i]] = {}
-        best_params[big5[i]] = {}
+    # note we are running for one label at a time!  # different labels
+    # print(labels[i], ':', big5[i])
+    # print(f'Number of indexes where the values are in the last {per} percentile:', len(index[0]))
+    # Y = np.array(data[labels[i]] >= data[labels[i]].median()).astype(int)
+    for choice in ['qcut', 'median', 'throw median']:
+        metric_score[choice] = {}
+        best_params[choice] = {}
+        clf, distributions = get_distributions(classifier)
+        print(f'Executing {clf}')
+        # roc doesn't support multiclass
+        rcv = RandomizedSearchCV(clf, distributions, random_state=55, scoring=metrics,
+                                 refit='roc_auc_ovr_weighted', cv=5)
+        # scores = cross_validate(clf, X, Y, cv=5, scoring=metrics)
+        # fscores or pearson on the basis of the training data
 
         for per in [5, 10, 50, 100]:
-            print('percentage', per)
-            metric_score[big5[i]][per] = {}
-            best_params[big5[i]][per] = {}
-            val = np.percentile(new_fscores[i], 100 - per)
-            index = np.where(new_fscores[i] >= val)
 
-            # print(f'Number of indexes where the values are in the last {per} percentile:', len(index[0]))
-            # Y = np.array(data[labels[i]] >= data[labels[i]].median()).astype(int)
-            for choice in ['qcut', 'median', 'throw median']:
-                metric_score[big5[i]][per][choice] = {}
-                X, y = data_splitting(choice, index[0], data, whole, label)
-                clf, distributions = get_distributions(classifier)
-                print(f'Executing {clf}')
-                # roc doesn't support multiclass
-                rcv = RandomizedSearchCV(clf, distributions, random_state=55, scoring=metrics,
-                                         refit='roc_auc_ovr_weighted', cv=5)
-                # scores = cross_validate(clf, X, Y, cv=5, scoring=metrics)
-                search = rcv.fit(X, y)
-                scores = search.cv_results_
-                best_params[big5[i]][per][choice] = search.best_params_
-                for metric in metrics:
-                    metric_score[big5[i]][per][choice][metric] = round(np.mean(scores[f'mean_test_{metric}']), 3)
+            print('percentage', per)
+            X_train, X_test, y_train, y_test = train_test_split(whole, target_col, test_size=0.15, random_state=5)
+            assert X_train.index.all() == y_train.index.all()
+            stacked = pd.concat([X_train, y_train], axis=1)
+            print('stacked shape', stacked.shape, stacked.iloc[:,-10:])
+            cols = []
+            cols.extend(range(X_train.shape[1]))
+            cols.append(target_col.name)
+            stacked.columns = cols
+            if edge == 'fscore':
+                arr = fscore(stacked, class_col=target_col.name)[:-1]
+            if edge == 'pearson':
+                arr = stacked.corr().iloc[:,-1]
+            arr.fillna(0, inplace=True)
+            arr = np.array(arr)
+            print(arr)
+            val = np.nanpercentile(arr, 100 - per)
+            print('percentile value or threshold', val)
+            index = np.where(arr >= val)
+            print('Number of features selected', index[0])
+            X_train, y_train = data_splitting(choice, index[0], X_train, y_train)
+            metric_score[choice][per] = {}
+            best_params[choice][per] = {}
+            search = rcv.fit(X_train, y_train)
+            scores = search.cv_results_
+            X_test, y_test = data_splitting(choice, index[0], X_test, y_test)
+            y_pred = rcv.predict(X_test)
+            y_score = rcv.predict_proba(X_test)
+
+            best_params[choice][per] = search.best_params_
+            for metric in metrics:
+                # validation set
+                metric_score[choice][per][metric] = round(np.mean(scores[f'mean_test_{metric}']), 3)
+                # out of bag error
+
 
     return {'Metrics': metric_score, 'Parameters': best_params}
 
@@ -107,7 +129,7 @@ def make_csv(dict_score, filename):
 
 
 # %%
-def visualise_performance(combined, big5, metrics, top_per):
+def visualise_performance(combined, metrics, top_per, target):
     """
 
     @param combined: the dictionary that contains the scores for all possibilities
@@ -116,45 +138,39 @@ def visualise_performance(combined, big5, metrics, top_per):
     @param top_per: the top percentile of the features we want to use
     """
     # for each label we will visualise the performance of different classifiers
-    for i in range(len(big5)):
-        fig, ax = plt.subplots(len(top_per), len(metrics), figsize=(25, 20))
-        for k in range(len(top_per)):
-            for j in range(len(metrics)):
-
-                for choice in ['qcut', 'median', 'throw median']:
-                    test = []
-
-                    for clf in combined.keys():
-                        test.append(combined[clf][big5[i]][top_per[k]][choice][metrics[j]])
-                        # print(clf, big5[i], top_per[k], metrics[j])
-                        # print(combined[clf][big5[i]][top_per[k]][metrics[j]])
-                    ax[k][j].scatter(combined.keys(), test)
-                    ax[k][j].plot(list(combined.keys()), test, marker='+', label=choice + '_test_score')
-                    # print('xx', len(l))
-                ax[k][j].legend(loc='lower right')
-                # ax[k][j].set_xticks(list(combined.keys()))
-                if top_per[k] == 0:
-                    ax[k][j].set_title(f'100% features')
-                else:
-                    ax[k][j].set_title(f'Top {top_per[k]}% features')
-                ax[k][j].set_xlabel('Classifier')
-                ax[k][j].set_ylabel(metrics[j])
-                ax[k][j].grid()
-        fig.suptitle(big5[i])
-        plt.tight_layout()
-        plt.savefig(f'outputs/figures/classification_{big5[i]}')
-        plt.show()
+    fig, ax = plt.subplots(len(top_per), len(metrics), figsize=(20, 20))
+    for k in range(len(top_per)):
+        for j in range(len(metrics)):
+            for choice in ['qcut', 'median', 'throw median']:
+                test = []
+                for clf in combined.keys():
+                    test.append(combined[clf][top_per[k]][choice][metrics[j]])
+                    # print(clf, big5[i], top_per[k], metrics[j])
+                    # print(combined[clf][big5[i]][top_per[k]][metrics[j]])
+                ax[k][j].scatter(combined.keys(), test)
+                ax[k][j].plot(list(combined.keys()), test, marker='+', label=choice + '_test_score')
+                # print('xx', len(l))
+            ax[k][j].legend(loc='lower right')
+            # ax[k][j].set_xticks(list(combined.keys()))
+            if top_per[k] == 0:
+                ax[k][j].set_title(f'100% features')
+            else:
+                ax[k][j].set_title(f'Top {top_per[k]}% features')
+            ax[k][j].set_xlabel('Classifier')
+            ax[k][j].set_ylabel(metrics[j])
+            ax[k][j].grid()
+    fig.suptitle(target)
+    plt.tight_layout()
+    plt.savefig(f'outputs/figures/classification_{target}')
+    plt.show()
 
 
 # %%
-def run_classification(whole, metrics, big5, data, new_fscores, label):
+def run_classification(whole, metrics, target, target_col, edge):
     """
     @param label: the target variable since we want to run in a pipeline
     @param whole: the oriignal data with combined features from all subjects
     @param metrics: the metrics we want to calculate for the predictions
-    @param big5: the big5 personality traits labels
-    @param data: the labels for the data
-    @param new_fscores: fscores for all features rescaled
     @param labels: the original label in the target dataframe
     """
     combined = {}
@@ -167,20 +183,20 @@ def run_classification(whole, metrics, big5, data, new_fscores, label):
 
     for clf in ['SVC', 'RF', 'GB', 'MLP']:  # other ones are taking too long
         start = time.time()
-        d1 = dict_classifier(clf, big5, new_fscores, data, whole, metrics, label)
+        d1 = dict_classifier(clf, whole, metrics, target_col, edge)
         end = time.time()
         print(f'Time taken for {clf}: {datetime.timedelta(seconds=end - start)}')
-        make_csv(d1, f'outputs/csvs/{clf}_results_cv.csv')
+        make_csv(d1, f'outputs/csvs/{target}_{clf}_results_cv.csv')
 
-        with open(f'outputs/dicts/{clf}_results_cv.json', 'w') as fp:
+        with open(f'outputs/dicts/{target}_{clf}_results_cv.json', 'w') as fp:
             json.dump(d1, fp, indent=4)
 
         combined[clf] = d1['Metrics']
         best_params_combined[clf] = d1['Parameters']
 
-    with open('outputs/dicts/combined_dict.json', 'w') as f:
+    with open(f'outputs/dicts/{target}_combined_dict.json', 'w') as f:
         # write the combined dictionary to the file so that this can be read later on
         json.dump(combined, f, indent=4)
-    with open('outputs/dicts/combined_params.json', 'w') as f:  #
+    with open(f'outputs/dicts/{target}_combined_params.json', 'w') as f:  #
         json.dump(best_params_combined, f, indent=4)
-    visualise_performance(combined, big5, metrics, [5, 10, 50, 100])
+    visualise_performance(combined, metrics, [5, 10, 50, 100], target)

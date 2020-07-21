@@ -78,7 +78,7 @@ def hist_fscore(data, whole, labels, big5, edge_names, tri):
     for j in range(len(labels)):
         # threshold for converting the data to binary format for classification
         bin_label = data[labels[j]] >= data[labels[j]].median()  # this ensures that the labels are balanced?
-        bin_label = bin_label.astype(int)
+        bin_label = bin_label.astype(int) # fscore here is based on the binary labelling using median value!
         bin_label.reset_index(drop=True, inplace=True)
         for i in range(len(edge_names)):
             data_edges = pd.DataFrame(whole.iloc[:, i * tri:(i + 1) * tri])
