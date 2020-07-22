@@ -108,7 +108,8 @@ def dict_classifier(classifier, whole, metrics, target_col, edge):
             cols.append(target_col.name)
             stacked.columns = cols
             if edge == 'fscore':
-                arr = fscore(stacked, class_col=target_col.name)[:-1] #fscore shall be computed with the binary value
+                arr = fscore(stacked, class_col=target_col.name)[:-1]
+                #fscore is different for the multiclass and binary case; has been incorporated above
             if edge == 'pearson':
                 arr = stacked.corr().iloc[:,-1]
             arr.fillna(0, inplace=True)
@@ -128,15 +129,20 @@ def dict_classifier(classifier, whole, metrics, target_col, edge):
             assert len(X_test) == len(y_test)
             search = rcv.fit(X_train, y_train)
             scores = search.cv_results_
-
             y_pred = rcv.predict(X_test.iloc[:, index[0]])
             y_score = rcv.predict_proba(X_test.iloc[:, index[0]])
-            test_scores = compute_scores(y_test, y_pred, y_score)
+            print('y_score', y_score)
+
+            if len(y_score[0]) ==2:
+                test_scores = compute_scores(y_test, y_pred, [x[1] for x in y_score], choice)
+            else:
+                test_scores = compute_scores(y_test, y_pred, y_score, choice)
             print('Out of bag scores', test_scores)
             best_params[choice][per] = search.best_params_
             for metric in metrics:
                 # validation set
-                metric_score[choice][per][metric] = round(np.mean(scores[f'mean_test_{metric}']), 3)
+                metric_score[choice][per][metric]['validation'] = round(np.mean(scores[f'mean_test_{metric}']), 3)
+                metric_score[choice][per][metric]['oob'] = round(test_scores[metric],3)
                 print(f'{metric}', round(np.mean(scores[f'mean_test_{metric}']), 3))
                 # out of bag error
 
@@ -177,13 +183,16 @@ def visualise_performance(combined, metrics, top_per, target):
     for k in range(len(top_per)):
         for j in range(len(metrics)):
             for choice in ['qcut', 'median', 'throw median']:
-                test = []
+                validation = []
+                oob = []
                 for clf in combined.keys():
-                    test.append(combined[clf][top_per[k]][choice][metrics[j]])
+                    validation.append(combined[clf][top_per[k]][choice][metrics[j]]['validation'])
+                    oob.append(combined[clf][top_per[k]][choice][metrics[j]]['oob'])
                     # print(clf, big5[i], top_per[k], metrics[j])
                     # print(combined[clf][big5[i]][top_per[k]][metrics[j]])
-                ax[k][j].scatter(combined.keys(), test)
-                ax[k][j].plot(list(combined.keys()), test, marker='+', label=choice + '_test_score')
+                ax[k][j].scatter(combined.keys(), validation)
+                ax[k][j].plot(list(combined.keys()), validation, marker='+', label=choice + '_validation_score')
+                ax[k][j].plot(list(combined.keys()), validation, marker='^', label=choice + '_validation_score')
                 # print('xx', len(l))
             ax[k][j].legend(loc='lower right')
             # ax[k][j].set_xticks(list(combined.keys()))
