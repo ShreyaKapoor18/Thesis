@@ -25,7 +25,7 @@ def fscore(data, class_col='class'):
         return np.zeros(numerator.shape)
 
 
-def compute_scores(y_test, y_pred, y_score,
+def compute_scores(y_test, y_pred, y_score,choice,
                    metrics=['balanced_accuracy', 'accuracy', 'f1_weighted', 'roc_auc_ovr_weighted']):
     """
 
@@ -38,8 +38,8 @@ def compute_scores(y_test, y_pred, y_score,
     scores = [balanced_accuracy_score(y_test, y_pred),
               accuracy_score(y_test, y_pred), f1_score(y_test, y_pred, average='weighted'),
               ]
-    if len(np.unique(y_test)) >= 2:
+    if choice=='qcut':
             scores.append(roc_auc_score(y_test, y_score, average='weighted', multi_class='ovr'))
     else:
-        scores.append()
+        scores.append(roc_auc_score(y_test, y_score, average='weighted'))
     return {k:v for k,v in zip(metrics,scores)}
