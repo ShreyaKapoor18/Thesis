@@ -37,23 +37,55 @@ def data_splitting(choice, index, X, y):
         X = [X.loc[i, index] for i in list(y.index)]
     return np.array(X), np.array(y)
 
-def split_vals(target_label, choice):
-    if choice == 'qcut':
-        # choice to cut into three quartiles
-        y = pd.qcut(target_label, 3, labels=False, retbins=True)[0]
-        return y
-    if choice == 'median':
-        # choice to threshold around the median
-        y = target_label >= target_label.median()
-        return y
-    if choice == 'throw median':
-        y = pd.qcut(target_label, 5, labels=False, retbins=True)[0]
-        # y.reset_index(drop=True, inplace=True)
-        print(sum(y == 2), 'is the number of subjects which have been removed')
-        y = y[y != 2]
-        y = y // 3  # 0 and 1 classes get mapped to 0 and 3,4 get mapped to 1
-        print(len(y), 'New number of subjects in our dataset')
-        return y
+def split_vals(target_label, choice, train_test, train_bins):
+    assert target_label.isna().any() == False
+    if train_test == 'train':
+        if choice == 'qcut':
+            # choice to cut into three quartiles
+            y, bins = pd.qcut(target_label, 3, labels=False, retbins=True)
+            # return the values of these also so that the same ones can be used for the outof bag estimates
+            return y,bins
+        if choice == 'median':
+            # choice to threshold around the median
+            y = target_label >= target_label.median()
+            bins = pd.qcut(target_label, 2, labels=False, retbins=True)[1]
+            return y, bins
+        if choice == 'throw median':
+            y, bins = pd.qcut(target_label, 5, labels=False, retbins=True)
+            # y.reset_index(drop=True, inplace=True)
+            print(sum(y == 2), 'is the number of subjects which have been removed')
+            y = y[y != 2]
+            y = y // 3  # 0 and 1 classes get mapped to 0 and 3,4 get mapped to 1
+            print(len(y), 'New number of subjects in our dataset')
+            return y, bins
+    if train_test == 'test':
+        print('thresholds from the training data', train_bins)
+
+        if choice == 'throw median':
+
+            y = pd.cut(target_label, train_bins, labels=False, include_lowest=True)
+            y = y // 3
+            print('bins extreme',train_bins[0], train_bins[-1])
+            #y[y < train_bins[0]] = 0  # everything below this lower percentile becomes
+            #y[y > train_bins[-1]] = 1
+            #print('test threshold', y)
+            return y
+
+        y = pd.cut(target_label, train_bins, labels=False, include_lowest=True)
+        y[y < train_bins[0]] = 0
+        if choice == 'qcut':
+            y[y > train_bins[-1]] = 2
+            #print(y.isna().any())
+            return y
+        if choice == "median":
+            y[y > train_bins[-1]] = 1
+            #print(y.isna().any())
+            return y
+
+
+
+
+
 
 
 
@@ -91,9 +123,13 @@ def dict_classifier(classifier, whole, metrics, target_col, edge):
             print('percentage', per)
 
             X_train, X_test, y_train, y_test = train_test_split(whole, target_col, test_size=0.1, random_state=5)
-            y_train = split_vals(y_train, choice)
-            print(y_train)
-            y_test = split_vals(y_test, choice)
+            y_train, bins = split_vals(y_train, choice, 'train', None)
+            #print(y_train)
+
+            bins[0] = 0
+            bins[-1] = 100
+            y_test = split_vals(y_test, choice, 'test', bins)
+            print('y_test', y_test)
             if choice == 'throw median':
                 X_train = X_train.loc[y_train.index, :]
                 X_test = X_test.loc[y_test.index, :] # before feature selection
@@ -131,7 +167,7 @@ def dict_classifier(classifier, whole, metrics, target_col, edge):
             scores = search.cv_results_
             y_pred = rcv.predict(X_test.iloc[:, index[0]])
             y_score = rcv.predict_proba(X_test.iloc[:, index[0]])
-            print('y_score', y_score)
+            #print('y_score', y_score)
 
             if len(y_score[0]) ==2:
                 test_scores = compute_scores(y_test, y_pred, [x[1] for x in y_score], choice)
@@ -139,8 +175,10 @@ def dict_classifier(classifier, whole, metrics, target_col, edge):
                 test_scores = compute_scores(y_test, y_pred, y_score, choice)
             print('Out of bag scores', test_scores)
             best_params[choice][per] = search.best_params_
+
             for metric in metrics:
                 # validation set
+                metric_score[choice][per][metric] = {}
                 metric_score[choice][per][metric]['validation'] = round(np.mean(scores[f'mean_test_{metric}']), 3)
                 metric_score[choice][per][metric]['oob'] = round(test_scores[metric],3)
                 print(f'{metric}', round(np.mean(scores[f'mean_test_{metric}']), 3))
@@ -180,22 +218,22 @@ def visualise_performance(combined, metrics, top_per, target):
     """
     # for each label we will visualise the performance of different classifiers
     fig, ax = plt.subplots(len(top_per), len(metrics), figsize=(20, 20))
+    legends = []
+    for choice in ['qcut', 'median', 'throw median']:
+        legends.extend([choice+'_validation_score', choice+'_oob_score'])
     for k in range(len(top_per)):
         for j in range(len(metrics)):
-            for choice in ['qcut', 'median', 'throw median']:
+            for choice, color in zip(['qcut', 'median', 'throw median'], ['orange', 'green', 'pink']):
                 validation = []
                 oob = []
                 for clf in combined.keys():
-                    validation.append(combined[clf][top_per[k]][choice][metrics[j]]['validation'])
-                    oob.append(combined[clf][top_per[k]][choice][metrics[j]]['oob'])
-                    # print(clf, big5[i], top_per[k], metrics[j])
-                    # print(combined[clf][big5[i]][top_per[k]][metrics[j]])
-                ax[k][j].scatter(combined.keys(), validation)
-                ax[k][j].plot(list(combined.keys()), validation, marker='+', label=choice + '_validation_score')
-                ax[k][j].plot(list(combined.keys()), validation, marker='^', label=choice + '_validation_score')
-                # print('xx', len(l))
-            ax[k][j].legend(loc='lower right')
-            # ax[k][j].set_xticks(list(combined.keys()))
+                    validation.append(combined[clf][choice][top_per[k]][metrics[j]]['validation'])
+                    oob.append(combined[clf][choice][top_per[k]][metrics[j]]['oob'])
+
+                ax[k][j].plot(list(combined.keys()), validation, marker='+', label=choice + '_validation_score',
+                              color=color, linestyle='dashed',markersize=12)
+                ax[k][j].plot(list(combined.keys()), oob, marker='*', label=choice + '_oob_score', color=color
+                              ,markersize=12)
             if top_per[k] == 0:
                 ax[k][j].set_title(f'100% features')
             else:
@@ -203,6 +241,8 @@ def visualise_performance(combined, metrics, top_per, target):
             ax[k][j].set_xlabel('Classifier')
             ax[k][j].set_ylabel(metrics[j])
             ax[k][j].grid()
+
+    plt.legend(legends)
     fig.suptitle(target)
     plt.tight_layout()
     plt.savefig(f'outputs/figures/classification_{target}')
@@ -243,4 +283,4 @@ def run_classification(whole, metrics, target, target_col, edge):
         json.dump(combined, f, indent=4)
     with open(f'outputs/dicts/{target}_combined_params.json', 'w') as f:  #
         json.dump(best_params_combined, f, indent=4)
-    visualise_performance(combined, metrics, [5, 10, 50, 100], target)
+    visualise_performance(combined, metrics, ['5', '10', '50', '100'], target)

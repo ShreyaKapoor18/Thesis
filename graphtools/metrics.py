@@ -39,7 +39,7 @@ def compute_scores(y_test, y_pred, y_score,choice,
               accuracy_score(y_test, y_pred), f1_score(y_test, y_pred, average='weighted'),
               ]
     if choice=='qcut':
-            scores.append(roc_auc_score(y_test, y_score, average='weighted', multi_class='ovr'))
+        scores.append(roc_auc_score(y_test, y_score, average='weighted', multi_class='ovr'))
     else:
         scores.append(roc_auc_score(y_test, y_score, average='weighted'))
     return {k:v for k,v in zip(metrics,scores)}
