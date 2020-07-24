@@ -112,13 +112,6 @@ def dict_classifier(classifier, whole, metrics, target_col, edge):
             rcv_scores =[]
             for train_index, val_index in skf.split(X_train_c, y_train_c):
                 print("TRAIN:", len(train_index),train_index, "VALIDATION:", len(val_index), val_index)
-                train_idx = []
-                val_idx = []
-                for idx1, idx2 in zip(train_index, val_index):
-                    train_idx.append(X_train_c.index[idx1])
-                    val_idx.append(X_train_c.index[idx2])
-
-                print("TRAIN:", len(train_idx), train_idx, "VALIDATION:", len(val_index), val_idx)
                 X_train, X_val = X_train_c.iloc[train_index,:], X_train_c.iloc[val_index,:]
                 y_train, y_val = y_train_c.iloc[train_index], y_train_c.iloc[val_index]
                 y_train, bins = split_vals(y_train, choice, 'train', None)
@@ -191,9 +184,9 @@ def dict_classifier(classifier, whole, metrics, target_col, edge):
                 # validation set
                 metric_score[choice][per][metric] = {}
                 metric_score[choice][per][metric]['validation'] = round(np.mean([scores[f'mean_test_{metric}']for scores in rcv_scores]), 3)
-                metric_score[choice][per][metric]['oob'] = round([score[metric] for score in test_scores] ,3)
+                metric_score[choice][per][metric]['oob'] = np.mean([score[metric] for score in test_scores])
                 print('validation error', round(np.mean([scores[f'mean_test_{metric}']for scores in rcv_scores]), 3))
-                print('oob error', round([score[metric] for score in test_scores] ,3))
+                print('oob error',np.mean([score[metric] for score in test_scores]))
                 # out of bag error
 
 

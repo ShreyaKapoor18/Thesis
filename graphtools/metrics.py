@@ -43,4 +43,4 @@ def compute_scores(y_test, y_pred, y_score,choice,
             scores.append(roc_auc_score(y_test, y_score, average='weighted', multi_class='ovr'))
         else:
             scores.append(roc_auc_score(y_test, y_score, average='weighted'))
-    return {k:v for k,v in zip(metrics,scores)}
+    return {k: v for k, v in zip(metrics, scores)}

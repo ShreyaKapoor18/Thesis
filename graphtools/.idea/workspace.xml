@@ -22,16 +22,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96a293b3-8c56-42ff-a127-58952144c9ad" name="Default Changelist" comment="improved visualisation, need to improve title fontsize">
+    <list default="true" id="96a293b3-8c56-42ff-a127-58952144c9ad" name="Default Changelist" comment="need to check for balance of classses in training and test set">
       <change beforePath="$PROJECT_DIR$/../CoBundleMAP" beforeDir="false" afterPath="$PROJECT_DIR$/../CoBundleMAP" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../gmwcs-solver" beforeDir="false" afterPath="$PROJECT_DIR$/../gmwcs-solver" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/graphtools.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/graphtools.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classification.py" beforeDir="false" afterPath="$PROJECT_DIR$/classification.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/metrics.py" beforeDir="false" afterPath="$PROJECT_DIR$/metrics.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/pipeline.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../preprocessing" beforeDir="false" afterPath="$PROJECT_DIR$/../preprocessing" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -285,14 +280,7 @@
       <workItem from="1594305830730" duration="2688000" />
       <workItem from="1594732526231" duration="42476000" />
       <workItem from="1595424110864" duration="23871000" />
-      <workItem from="1595579610255" duration="261000" />
-    </task>
-    <task id="LOCAL-00034" summary="add all features selection">
-      <created>1591618930009</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1591618930009</updated>
+      <workItem from="1595579610255" duration="926000" />
     </task>
     <task id="LOCAL-00035" summary="added more classifiers">
       <created>1591699815007</created>
@@ -630,7 +618,14 @@
       <option name="project" value="LOCAL" />
       <updated>1595498147375</updated>
     </task>
-    <option name="localTasksCounter" value="83" />
+    <task id="LOCAL-00083" summary="need to check for balance of classses in training and test set">
+      <created>1595580015969</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1595580015969</updated>
+    </task>
+    <option name="localTasksCounter" value="84" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -652,7 +647,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/gmwcs-solver" />
     </ignored-roots>
-    <MESSAGE value="added json functionality" />
     <MESSAGE value="get best parameters from grid search, feature importances" />
     <MESSAGE value="HCP data citations" />
     <MESSAGE value="Graph with correlation fscore and feature importances" />
@@ -677,7 +671,8 @@
     <MESSAGE value="added out of bag error visualization" />
     <MESSAGE value="different cases for binary and multiclass" />
     <MESSAGE value="improved visualisation, need to improve title fontsize" />
-    <option name="LAST_COMMIT_MESSAGE" value="improved visualisation, need to improve title fontsize" />
+    <MESSAGE value="need to check for balance of classses in training and test set" />
+    <option name="LAST_COMMIT_MESSAGE" value="need to check for balance of classses in training and test set" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1071" y="302" width="734" height="633" key="#Inspections" timestamp="1594307634830">
@@ -769,10 +764,11 @@
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
     <state x="784" y="341" key="SettingsEditor/0.0.2560.1413@0.0.2560.1413" timestamp="1594817271566" />
-    <state x="875" y="442" width="802" height="524" key="Vcs.Push.Dialog.v2" timestamp="1595410952105">
-      <screen x="0" y="0" width="2560" height="1413" />
+    <state x="656" y="335" width="644" height="366" key="Vcs.Push.Dialog.v2" timestamp="1595580018258">
+      <screen x="0" y="27" width="1920" height="985" />
     </state>
     <state x="875" y="442" width="802" height="524" key="Vcs.Push.Dialog.v2/0.0.2560.1413@0.0.2560.1413" timestamp="1595410952105" />
+    <state x="656" y="335" width="644" height="366" key="Vcs.Push.Dialog.v2/0.27.1920.985@0.27.1920.985" timestamp="1595580018258" />
     <state width="1281" height="706" key="XDebugger.FullValuePopup" timestamp="1591115772905">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
