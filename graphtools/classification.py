@@ -163,7 +163,7 @@ def dict_classifier(classifier, whole, metrics, target_col, edge):
                 y_train_comb = y_train.append(y_val)
                 print('y train c index', y_train_c.shape)
                 y_train_comb.sort_index(inplace=True)
-                X_train_comb = pd.concat([X_train, X_val], axis = 0)
+                X_train_comb = pd.concat([X_train, X_val], axis=0)
                 X_train_comb.sort_index(inplace=True, axis=0)
                 split_index = [-1 if x in X_train.index else 0 for x in X_train_comb.index]
 
@@ -173,7 +173,7 @@ def dict_classifier(classifier, whole, metrics, target_col, edge):
                 rcv = RandomizedSearchCV(clf, distributions, random_state=55, scoring=metrics,
                                          refit='accuracy', cv=pds)
                 print(X_train_comb.index, y_train_comb.index)
-                print('X_train', 'X_val', 'X_combined' ,X_train.shape, X_val.shape, X_train_comb.shape)
+                print('X_train', 'X_val', 'X_combined', X_train.shape, X_val.shape, X_train_comb.shape)
                 print('y_train', 'y_val', 'y_combined', y_train.shape, y_val.shape, y_train_comb.shape)
                 print('reshaped y_train', np.array(y_train_comb).reshape(-1,1).shape)
                 assert X_train.shape[1] == X_val.shape[1]
@@ -182,9 +182,9 @@ def dict_classifier(classifier, whole, metrics, target_col, edge):
                 y_pred = rcv.predict(X_test.iloc[:, index[0]])
                 y_score =rcv.predict_proba(X_test.iloc[:, index[0]])
                 if len(y_score[0]) == 2:
-                    test_scores.append(compute_scores(y_test, y_pred, [x[1] for x in y_score], choice))
+                    test_scores.append(compute_scores(y_test, y_pred, [x[1] for x in y_score], choice, metrics))
                 else:
-                    test_scores.append(compute_scores(y_test, y_pred, y_score, choice))
+                    test_scores.append(compute_scores(y_test, y_pred, y_score, choice, metrics))
                 best_params[choice][per] = search.best_params_ #need to see if this is in cv
 
             for metric in metrics:
