@@ -122,9 +122,9 @@ def dict_classifier(classifier, whole, metrics, target_col, edge):
                 bins[-1] = 100
                 y_val = split_vals(y_val, choice, 'test', bins) #the bins depend on the training data
                 print('y test before splitting', y_test)
-                y_test = split_vals(y_test, choice, 'test', bins)
+                y_test_il = split_vals(y_test, choice, 'test', bins) #each shall be different in a different loop
 
-                print('y_test', y_test, 'y train', y_train, 'y val', y_val)
+                print('y_test in loop', y_test_il, 'y train', y_train, 'y val', y_val)
                 if choice == 'throw median':
                     X_train = X_train.loc[y_train.index, :] # wouldn't need it now
                     X_val = X_val.loc[y_val.index, :] # before feature selection
@@ -143,9 +143,9 @@ def dict_classifier(classifier, whole, metrics, target_col, edge):
                     arr = stacked.corr().iloc[:,-1]
                 arr.fillna(0, inplace=True)
                 arr = np.array(arr)
-                #print(arr)
+
                 val = np.nanpercentile(arr, 100 - per)
-                #print('percentile value or threshold', val)
+
                 index = np.where(arr >= val)
                 X_train = X_train.iloc[:, index[0]]
                 X_val = X_val.iloc[:, index[0]]
@@ -174,9 +174,9 @@ def dict_classifier(classifier, whole, metrics, target_col, edge):
                 y_pred = rcv.predict(X_test.iloc[:, index[0]])
                 y_score =rcv.predict_proba(X_test.iloc[:, index[0]])
                 if len(y_score[0]) == 2:
-                    test_scores.append(compute_scores(y_test, y_pred, [x[1] for x in y_score], choice, metrics))
+                    test_scores.append(compute_scores(y_test_il, y_pred, [x[1] for x in y_score], choice, metrics))
                 else:
-                    test_scores.append(compute_scores(y_test, y_pred, y_score, choice, metrics))
+                    test_scores.append(compute_scores(y_test_il, y_pred, y_score, choice, metrics))
                 best_params[choice][per] = search.best_params_ #need to see if this is in cv
 
             for metric in metrics:
@@ -185,7 +185,7 @@ def dict_classifier(classifier, whole, metrics, target_col, edge):
                 metric_score[choice][per][metric]['validation'] = round(np.mean([scores[f'mean_test_{metric}']for scores in rcv_scores]), 3)
                 metric_score[choice][per][metric]['oob'] = np.mean([score[metric] for score in test_scores])
                 print(f'validation {metric}', round(np.mean([scores[f'mean_test_{metric}']for scores in rcv_scores]), 3))
-                print(f'oob error {metrc}',np.mean([score[metric] for score in test_scores]))
+                print(f'oob error {metric}',np.mean([score[metric] for score in test_scores]))
                 # out of bag error
 
 

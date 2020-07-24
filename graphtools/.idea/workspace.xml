@@ -22,8 +22,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96a293b3-8c56-42ff-a127-58952144c9ad" name="Default Changelist" comment="validation set labels are set to be different from training set labels">
+    <list default="true" id="96a293b3-8c56-42ff-a127-58952144c9ad" name="Default Changelist" comment="delete unwanted lines">
       <change beforePath="$PROJECT_DIR$/../CoBundleMAP" beforeDir="false" afterPath="$PROJECT_DIR$/../CoBundleMAP" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classification.py" beforeDir="false" afterPath="$PROJECT_DIR$/classification.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -278,14 +279,7 @@
       <workItem from="1594305830730" duration="2688000" />
       <workItem from="1594732526231" duration="42476000" />
       <workItem from="1595424110864" duration="23871000" />
-      <workItem from="1595579610255" duration="1212000" />
-    </task>
-    <task id="LOCAL-00036" summary="classification update and results">
-      <created>1591962330191</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1591962330191</updated>
+      <workItem from="1595579610255" duration="2649000" />
     </task>
     <task id="LOCAL-00037" summary="figsize change">
       <created>1591962780418</created>
@@ -623,7 +617,14 @@
       <option name="project" value="LOCAL" />
       <updated>1595580702816</updated>
     </task>
-    <option name="localTasksCounter" value="85" />
+    <task id="LOCAL-00085" summary="delete unwanted lines">
+      <created>1595581052536</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1595581052536</updated>
+    </task>
+    <option name="localTasksCounter" value="86" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -645,7 +646,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/gmwcs-solver" />
     </ignored-roots>
-    <MESSAGE value="HCP data citations" />
     <MESSAGE value="Graph with correlation fscore and feature importances" />
     <MESSAGE value="new results" />
     <MESSAGE value="different edge parameters" />
@@ -670,7 +670,8 @@
     <MESSAGE value="improved visualisation, need to improve title fontsize" />
     <MESSAGE value="need to check for balance of classses in training and test set" />
     <MESSAGE value="validation set labels are set to be different from training set labels" />
-    <option name="LAST_COMMIT_MESSAGE" value="validation set labels are set to be different from training set labels" />
+    <MESSAGE value="delete unwanted lines" />
+    <option name="LAST_COMMIT_MESSAGE" value="delete unwanted lines" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1071" y="302" width="734" height="633" key="#Inspections" timestamp="1594307634830">
@@ -762,11 +763,11 @@
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
     <state x="784" y="341" key="SettingsEditor/0.0.2560.1413@0.0.2560.1413" timestamp="1594817271566" />
-    <state x="656" y="335" width="644" height="366" key="Vcs.Push.Dialog.v2" timestamp="1595580018258">
+    <state x="656" y="335" width="644" height="366" key="Vcs.Push.Dialog.v2" timestamp="1595581054452">
       <screen x="0" y="27" width="1920" height="985" />
     </state>
     <state x="875" y="442" width="802" height="524" key="Vcs.Push.Dialog.v2/0.0.2560.1413@0.0.2560.1413" timestamp="1595410952105" />
-    <state x="656" y="335" width="644" height="366" key="Vcs.Push.Dialog.v2/0.27.1920.985@0.27.1920.985" timestamp="1595580018258" />
+    <state x="656" y="335" width="644" height="366" key="Vcs.Push.Dialog.v2/0.27.1920.985@0.27.1920.985" timestamp="1595581054452" />
     <state width="1281" height="706" key="XDebugger.FullValuePopup" timestamp="1591115772905">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
@@ -814,18 +815,18 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/classification.py</url>
-          <line>175</line>
+          <line>174</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/classification.py</url>
-          <line>167</line>
-          <option name="timeStamp" value="3" />
+          <line>171</line>
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/classification.py</url>
-          <line>172</line>
-          <option name="timeStamp" value="4" />
+          <line>166</line>
+          <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
