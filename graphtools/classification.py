@@ -101,7 +101,7 @@ def dict_classifier(classifier, whole, metrics, target_col, edge):
         print(f'Executing {clf}')
         for per in [5, 10, 50, 100]:
             print('percentage', per)
-            X_train_c, X_test, y_train_c, y_test = train_test_split(whole, target_col, test_size=0.1, random_state=5)
+            X_train_c, X_test, y_train_c, y_test = train_test_split(whole, target_col, test_size=0.1, random_state=55)
             assert len(X_test) == len(y_test)
             skf = StratifiedKFold(n_splits=10)
             skf.get_n_splits(X_train_c, y_train_c)
@@ -121,6 +121,7 @@ def dict_classifier(classifier, whole, metrics, target_col, edge):
                 bins[0] = 0
                 bins[-1] = 100
                 y_val = split_vals(y_val, choice, 'test', bins) #the bins depend on the training data
+                print('y test before splitting', y_test)
                 y_test = split_vals(y_test, choice, 'test', bins)
 
                 print('y_test', y_test, 'y train', y_train, 'y val', y_val)
@@ -146,8 +147,6 @@ def dict_classifier(classifier, whole, metrics, target_col, edge):
                 val = np.nanpercentile(arr, 100 - per)
                 #print('percentile value or threshold', val)
                 index = np.where(arr >= val)
-                #print('Number of features selected', index[0])
-                #X_train_c = X_train_c.iloc[:,index[0]]
                 X_train = X_train.iloc[:, index[0]]
                 X_val = X_val.iloc[:, index[0]]
                 assert len(X_train) == len(y_train)
@@ -185,8 +184,8 @@ def dict_classifier(classifier, whole, metrics, target_col, edge):
                 metric_score[choice][per][metric] = {}
                 metric_score[choice][per][metric]['validation'] = round(np.mean([scores[f'mean_test_{metric}']for scores in rcv_scores]), 3)
                 metric_score[choice][per][metric]['oob'] = np.mean([score[metric] for score in test_scores])
-                print('validation error', round(np.mean([scores[f'mean_test_{metric}']for scores in rcv_scores]), 3))
-                print('oob error',np.mean([score[metric] for score in test_scores]))
+                print(f'validation {metric}', round(np.mean([scores[f'mean_test_{metric}']for scores in rcv_scores]), 3))
+                print(f'oob error {metrc}',np.mean([score[metric] for score in test_scores]))
                 # out of bag error
 
 

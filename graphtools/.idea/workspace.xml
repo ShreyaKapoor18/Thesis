@@ -22,11 +22,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96a293b3-8c56-42ff-a127-58952144c9ad" name="Default Changelist" comment="need to check for balance of classses in training and test set">
+    <list default="true" id="96a293b3-8c56-42ff-a127-58952144c9ad" name="Default Changelist" comment="validation set labels are set to be different from training set labels">
       <change beforePath="$PROJECT_DIR$/../CoBundleMAP" beforeDir="false" afterPath="$PROJECT_DIR$/../CoBundleMAP" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classification.py" beforeDir="false" afterPath="$PROJECT_DIR$/classification.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/metrics.py" beforeDir="false" afterPath="$PROJECT_DIR$/metrics.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -280,14 +278,7 @@
       <workItem from="1594305830730" duration="2688000" />
       <workItem from="1594732526231" duration="42476000" />
       <workItem from="1595424110864" duration="23871000" />
-      <workItem from="1595579610255" duration="926000" />
-    </task>
-    <task id="LOCAL-00035" summary="added more classifiers">
-      <created>1591699815007</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1591699815007</updated>
+      <workItem from="1595579610255" duration="1212000" />
     </task>
     <task id="LOCAL-00036" summary="classification update and results">
       <created>1591962330191</created>
@@ -625,7 +616,14 @@
       <option name="project" value="LOCAL" />
       <updated>1595580015969</updated>
     </task>
-    <option name="localTasksCounter" value="84" />
+    <task id="LOCAL-00084" summary="validation set labels are set to be different from training set labels">
+      <created>1595580702816</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1595580702816</updated>
+    </task>
+    <option name="localTasksCounter" value="85" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -647,7 +645,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/gmwcs-solver" />
     </ignored-roots>
-    <MESSAGE value="get best parameters from grid search, feature importances" />
     <MESSAGE value="HCP data citations" />
     <MESSAGE value="Graph with correlation fscore and feature importances" />
     <MESSAGE value="new results" />
@@ -672,7 +669,8 @@
     <MESSAGE value="different cases for binary and multiclass" />
     <MESSAGE value="improved visualisation, need to improve title fontsize" />
     <MESSAGE value="need to check for balance of classses in training and test set" />
-    <option name="LAST_COMMIT_MESSAGE" value="need to check for balance of classses in training and test set" />
+    <MESSAGE value="validation set labels are set to be different from training set labels" />
+    <option name="LAST_COMMIT_MESSAGE" value="validation set labels are set to be different from training set labels" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1071" y="302" width="734" height="633" key="#Inspections" timestamp="1594307634830">
@@ -816,17 +814,17 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/classification.py</url>
-          <line>182</line>
+          <line>175</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/classification.py</url>
-          <line>174</line>
+          <line>167</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/classification.py</url>
-          <line>179</line>
+          <line>172</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
