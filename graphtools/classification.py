@@ -231,6 +231,7 @@ def visualise_performance(combined, metrics, top_per, target):
                 validation = []
                 oob = []
                 for clf in combined.keys():
+                    print("dictionary", combined[clf][choice])
                     validation.append(combined[clf][choice][top_per[k]][metrics[j]]['validation'])
                     oob.append(combined[clf][choice][top_per[k]][metrics[j]]['oob'])
 
@@ -287,4 +288,4 @@ def run_classification(whole, metrics, target, target_col, edge):
         json.dump(combined, f, indent=4)
     with open(f'outputs/dicts/{target}_combined_params.json', 'w') as f:  #
         json.dump(best_params_combined, f, indent=4)
-    visualise_performance(combined, metrics, ['5', '10', '50', '100'], target)
+    visualise_performance(combined, metrics, ["5", "10", "50", "100"], target)
