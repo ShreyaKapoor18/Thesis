@@ -1,6 +1,6 @@
 ,throw median,throw median,throw median,throw median,throw median,throw median,qcut,qcut,qcut,qcut,qcut,qcut,median,median,median,median,median,median
 ,n_estimators,min_samples_split,min_samples_leaf,max_features,max_depth,bootstrap,n_estimators,min_samples_split,min_samples_leaf,max_features,max_depth,bootstrap,n_estimators,min_samples_split,min_samples_leaf,max_features,max_depth,bootstrap
-5,400,10,2,auto,60,True,400,2,4,auto,30,True,1400,10,1,sqrt,40,True
-10,1400,10,1,sqrt,40,True,600,2,2,sqrt,10,False,1000,2,1,sqrt,70,True
-50,400,2,4,auto,30,True,400,10,2,auto,60,True,1400,10,1,sqrt,40,True
-100,400,10,2,auto,60,True,1000,2,1,sqrt,70,True,400,2,4,auto,60,True
+5,1200,5,4,auto,10,True,400,2,4,auto,30,True,400,10,2,auto,60,True
+10,400,2,4,auto,30,True,400,2,4,auto,60,True,1400,10,1,sqrt,40,True
+50,600,2,2,sqrt,10,False,400,10,2,auto,60,True,400,2,4,auto,30,True
+100,400,2,4,auto,60,True,600,10,2,auto,10,True,600,10,2,auto,50,True

@@ -2,36 +2,36 @@
     "SVC": {
         "throw median": {
             "5": {
-                "C": 1.9025008523597733,
+                "C": 19.446430958399628,
                 "class_weight": null,
-                "gamma": 0.009068973491620256,
-                "kernel": "poly"
+                "gamma": 0.00029196606098667833,
+                "kernel": "rbf"
             },
             "10": {
-                "C": 1.9025008523597733,
+                "C": 11.401363110806296,
                 "class_weight": null,
-                "gamma": 0.009068973491620256,
-                "kernel": "poly"
+                "gamma": 0.007618344453654781,
+                "kernel": "sigmoid"
             },
             "50": {
-                "C": 1.9025008523597733,
-                "class_weight": null,
-                "gamma": 0.009068973491620256,
-                "kernel": "poly"
+                "C": 200.2074048849186,
+                "class_weight": "balanced",
+                "gamma": 0.0008331759812852307,
+                "kernel": "linear"
             },
             "100": {
-                "C": 496.3147348446938,
-                "class_weight": null,
-                "gamma": 0.0002439668102812488,
-                "kernel": "rbf"
+                "C": 200.2074048849186,
+                "class_weight": "balanced",
+                "gamma": 0.0008331759812852307,
+                "kernel": "linear"
             }
         },
         "qcut": {
             "5": {
-                "C": 200.2074048849186,
-                "class_weight": "balanced",
-                "gamma": 0.0008331759812852307,
-                "kernel": "linear"
+                "C": 11.401363110806296,
+                "class_weight": null,
+                "gamma": 0.007618344453654781,
+                "kernel": "sigmoid"
             },
             "10": {
                 "C": 11.401363110806296,
@@ -40,42 +40,146 @@
                 "kernel": "sigmoid"
             },
             "50": {
-                "C": 200.2074048849186,
-                "class_weight": "balanced",
-                "gamma": 0.0008331759812852307,
-                "kernel": "linear"
-            },
-            "100": {
-                "C": 11.401363110806296,
-                "class_weight": null,
-                "gamma": 0.007618344453654781,
-                "kernel": "sigmoid"
-            }
-        },
-        "median": {
-            "5": {
                 "C": 496.3147348446938,
                 "class_weight": null,
                 "gamma": 0.0002439668102812488,
                 "kernel": "rbf"
             },
-            "10": {
-                "C": 11.401363110806296,
+            "100": {
+                "C": 19.446430958399628,
                 "class_weight": null,
-                "gamma": 0.007618344453654781,
-                "kernel": "sigmoid"
+                "gamma": 0.00029196606098667833,
+                "kernel": "rbf"
+            }
+        },
+        "median": {
+            "5": {
+                "C": 200.2074048849186,
+                "class_weight": "balanced",
+                "gamma": 0.0008331759812852307,
+                "kernel": "linear"
+            },
+            "10": {
+                "C": 496.3147348446938,
+                "class_weight": null,
+                "gamma": 0.0002439668102812488,
+                "kernel": "rbf"
             },
             "50": {
+                "C": 496.3147348446938,
+                "class_weight": null,
+                "gamma": 0.0002439668102812488,
+                "kernel": "rbf"
+            },
+            "100": {
                 "C": 1.9025008523597733,
                 "class_weight": null,
                 "gamma": 0.009068973491620256,
                 "kernel": "poly"
+            }
+        }
+    },
+    "RF": {
+        "throw median": {
+            "5": {
+                "n_estimators": 1200,
+                "min_samples_split": 5,
+                "min_samples_leaf": 4,
+                "max_features": "auto",
+                "max_depth": 10,
+                "bootstrap": true
+            },
+            "10": {
+                "n_estimators": 400,
+                "min_samples_split": 2,
+                "min_samples_leaf": 4,
+                "max_features": "auto",
+                "max_depth": 30,
+                "bootstrap": true
+            },
+            "50": {
+                "n_estimators": 600,
+                "min_samples_split": 2,
+                "min_samples_leaf": 2,
+                "max_features": "sqrt",
+                "max_depth": 10,
+                "bootstrap": false
             },
             "100": {
-                "C": 11.401363110806296,
-                "class_weight": null,
-                "gamma": 0.007618344453654781,
-                "kernel": "sigmoid"
+                "n_estimators": 400,
+                "min_samples_split": 2,
+                "min_samples_leaf": 4,
+                "max_features": "auto",
+                "max_depth": 60,
+                "bootstrap": true
+            }
+        },
+        "qcut": {
+            "5": {
+                "n_estimators": 400,
+                "min_samples_split": 2,
+                "min_samples_leaf": 4,
+                "max_features": "auto",
+                "max_depth": 30,
+                "bootstrap": true
+            },
+            "10": {
+                "n_estimators": 400,
+                "min_samples_split": 2,
+                "min_samples_leaf": 4,
+                "max_features": "auto",
+                "max_depth": 60,
+                "bootstrap": true
+            },
+            "50": {
+                "n_estimators": 400,
+                "min_samples_split": 10,
+                "min_samples_leaf": 2,
+                "max_features": "auto",
+                "max_depth": 60,
+                "bootstrap": true
+            },
+            "100": {
+                "n_estimators": 600,
+                "min_samples_split": 10,
+                "min_samples_leaf": 2,
+                "max_features": "auto",
+                "max_depth": 10,
+                "bootstrap": true
+            }
+        },
+        "median": {
+            "5": {
+                "n_estimators": 400,
+                "min_samples_split": 10,
+                "min_samples_leaf": 2,
+                "max_features": "auto",
+                "max_depth": 60,
+                "bootstrap": true
+            },
+            "10": {
+                "n_estimators": 1400,
+                "min_samples_split": 10,
+                "min_samples_leaf": 1,
+                "max_features": "sqrt",
+                "max_depth": 40,
+                "bootstrap": true
+            },
+            "50": {
+                "n_estimators": 400,
+                "min_samples_split": 2,
+                "min_samples_leaf": 4,
+                "max_features": "auto",
+                "max_depth": 30,
+                "bootstrap": true
+            },
+            "100": {
+                "n_estimators": 600,
+                "min_samples_split": 10,
+                "min_samples_leaf": 2,
+                "max_features": "auto",
+                "max_depth": 50,
+                "bootstrap": true
             }
         }
     }
