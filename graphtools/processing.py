@@ -73,7 +73,7 @@ def hist_correlation(data, whole, labels, edge_names, big5, tri):
 
 def hist_fscore(data, whole, labels, big5, edge_names, tri):
     # to return the fscore in order to get the best performing features according to fscore
-    fscores = np.zeros((5, 3, tri))
+    fscores = np.zeros((5, 3, tri)) # 5 is for the big5 personality traits, 3 is for the three different edge names
     fig, ax = plt.subplots(5, 3, figsize=(15, 15))
     for j in range(len(labels)):
         # threshold for converting the data to binary format for classification

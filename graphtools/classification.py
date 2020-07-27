@@ -28,7 +28,7 @@ def data_splitting(choice, index, X, y):
         X = X.iloc[:, index]
     if choice == 'throw median':
         y = pd.qcut(y, 5, labels=False, retbins=True)[0]
-        # y.reset_index(drop=True, inplace=True)
+
         print(sum(y == 2), 'is the number of subjects which have been removed')
         y = y[y != 2]
         y = y // 3  # 0 and 1 classes get mapped to 0 and 3,4 get mapped to 1
@@ -79,7 +79,7 @@ def split_vals(target_label, choice, train_test, train_bins):
             return y
 
 # %%
-def dict_classifier(classifier, whole, metrics, target_col, edge):
+def dict_classifier(classifier, whole, metrics, target_col, edge, percent):
     """
     :param whole: the matrix containing the edge information for all subjects
     :param option: if we want the scores with or without cross validation
@@ -98,33 +98,34 @@ def dict_classifier(classifier, whole, metrics, target_col, edge):
         best_params[choice] = {}
         clf, distributions = get_distributions(classifier)
         print(f'Executing {clf}')
-        for per in [5, 10, 50, 100]:
+        for per in percent:
             print('percentage', per)
             X_train_c, X_test, y_train_c, y_test = train_test_split(whole, target_col, test_size=0.1, random_state=55)
-            assert len(X_test) == len(y_test)
-            skf = StratifiedKFold(n_splits=10)
+            #probably would need to put this in cross validation loop
+
+            skf = StratifiedKFold(n_splits=5)
             skf.get_n_splits(X_train_c, y_train_c)
-            print('Splits', skf)
+            #print('Splits', skf)
             metric_score[choice][per] = {}
             best_params[choice][per] = {}
             test_scores = []
             rcv_scores =[]
             for train_index, val_index in skf.split(X_train_c, y_train_c):
-                print("TRAIN:", len(train_index),train_index, "VALIDATION:", len(val_index), val_index)
+                #print("TRAIN:", len(train_index),train_index, "VALIDATION:", len(val_index), val_index)
                 X_train, X_val = X_train_c.iloc[train_index,:], X_train_c.iloc[val_index,:]
                 y_train, y_val = y_train_c.iloc[train_index], y_train_c.iloc[val_index]
                 y_train, bins = split_vals(y_train, choice, 'train', None)
                 # need to split training into training and validation set
-                print('Y train shape after splitting values', y_train.shape)
-                print('Y value shape', y_val.shape)
+                #print('Y train shape after splitting values', y_train.shape)
+               # print('Y value shape', y_val.shape)
                 bins[0] = 0
                 bins[-1] = 100
                 y_val = split_vals(y_val, choice, 'test', bins) #the bins depend on the training data
-                print('y test before splitting', y_test)
+                #print('y test before splitting', y_test)
                 y_test_il = split_vals(y_test, choice, 'test', bins) #each shall be different in a different loop
 
-                print('y_test in loop', y_test_il, 'y train', y_train, 'y val', y_val)
-                if choice == 'throw median':
+                #print('y_test in loop', y_test_il, 'y train', y_train, 'y val', y_val)
+                if choice == 'throw median': #only in this case are we throwing away some subjects
                     X_train = X_train.loc[y_train.index, :] # wouldn't need it now
                     X_val = X_val.loc[y_val.index, :] # before feature selection
 
@@ -132,7 +133,7 @@ def dict_classifier(classifier, whole, metrics, target_col, edge):
                 stacked = pd.concat([X_train, y_train], axis=1)
 
                 cols = []
-                cols.extend(range(X_train.shape[1]))
+                cols.extend(range(X_train.shape[1])) # the values zero to the number of columns
                 cols.append(target_col.name)
                 stacked.columns = cols
                 if edge == 'fscore':
@@ -141,18 +142,18 @@ def dict_classifier(classifier, whole, metrics, target_col, edge):
                 if edge == 'pearson':
                     arr = stacked.corr().iloc[:,-1]
                 arr.fillna(0, inplace=True)
+
                 arr = np.array(arr)
-
                 val = np.nanpercentile(arr, 100 - per)
-
                 index = np.where(arr >= val)
                 X_train = X_train.iloc[:, index[0]]
-                X_val = X_val.iloc[:, index[0]]
+                X_val = X_val.iloc[:, index[0]] #feature selection based on fscore or pearson correlation coefficient
+
                 assert len(X_train) == len(y_train)
                 assert len(X_val) == len(y_val)
 
                 y_train_comb = y_train.append(y_val)
-                print('y train c index', y_train_c.shape)
+                #print('y train c index', y_train_c.shape)
                 y_train_comb.sort_index(inplace=True)
                 X_train_comb = pd.concat([X_train, X_val], axis=0)
                 X_train_comb.sort_index(inplace=True, axis=0)
@@ -162,7 +163,7 @@ def dict_classifier(classifier, whole, metrics, target_col, edge):
                 pds = PredefinedSplit(test_fold=split_index)
 
                 rcv = RandomizedSearchCV(clf, distributions, random_state=55, scoring=metrics,
-                                         refit='balanced_accuracy', cv=pds)
+                                         refit='balanced_accuracy', cv=pds) #this is only doing one fold right?
                 print(X_train_comb.index, y_train_comb.index)
                 print('X_train', 'X_val', 'X_combined', X_train.shape, X_val.shape, X_train_comb.shape)
                 print('y_train', 'y_val', 'y_combined', y_train.shape, y_val.shape, y_train_comb.shape)
@@ -171,8 +172,8 @@ def dict_classifier(classifier, whole, metrics, target_col, edge):
                 search = rcv.fit(np.array(X_train_comb), np.array(y_train_comb))
                 rcv_scores.append(search.cv_results_)
                 y_pred = rcv.predict(X_test.iloc[:, index[0]])
-                y_score =rcv.predict_proba(X_test.iloc[:, index[0]])
-                if len(y_score[0]) == 2:
+                y_score = rcv.predict_proba(X_test.iloc[:, index[0]])
+                if len(y_score[0]) == 2: #number of classes in the y_score
                     test_scores.append(compute_scores(y_test_il, y_pred, [x[1] for x in y_score], choice, metrics))
                 else:
                     test_scores.append(compute_scores(y_test_il, y_pred, y_score, choice, metrics))
@@ -186,7 +187,6 @@ def dict_classifier(classifier, whole, metrics, target_col, edge):
                 print(f'validation {metric}', round(np.mean([scores[f'mean_test_{metric}']for scores in rcv_scores]), 3))
                 print(f'oob error {metric}',np.mean([score[metric] for score in test_scores]))
                 # out of bag error
-
 
     return {'Metrics': metric_score, 'Parameters': best_params}
 
@@ -269,9 +269,9 @@ def run_classification(whole, metrics, target, target_col, edge):
         if not os.path.exists(f'outputs/{folder}'):
             os.mkdir(f'outputs/{folder}')
 
-    for clf in ['SVC', 'RF', 'GB', 'MLP'][:2]:  # other ones are taking too long
+    for clf in ['SVC', 'RF', 'GB', 'MLP']:  # other ones are taking too long
         start = time.time()
-        d1 = dict_classifier(clf, whole, metrics, target_col, edge)
+        d1 = dict_classifier(clf, whole, metrics, target_col, edge, [5, 10, 50, 100])
         end = time.time()
         print(f'Time taken for {clf}: {datetime.timedelta(seconds=end - start)}')
         make_csv(d1, f'outputs/csvs/{target}_{clf}_results_cv.csv')

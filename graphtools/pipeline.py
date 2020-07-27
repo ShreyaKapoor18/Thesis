@@ -1,51 +1,44 @@
-from typing import List
 from inputgraphs import *  # for importing the function names exactly
 from processing import *
 from readfiles import computed_subjects
-from read_graphs import train_from_combined_graph
+from read_graphs import train_from_reduced_graph
 from classification import run_classification
 
 # %%
+'''Data computed for all 5 personality traits at once'''
 data = computed_subjects()  # labels for the computed subjects, data.index is the subject id
 num = 84  # number of nodes in the graph
 tri = int(num * (num + 1) * 0.5)  # we want only the upper diagonal parts since everything below diagonal is 0
 whole = generate_combined_matrix(tri, list(data.index))  # need to check indices till here then convert to numpy array
 assert list(whole.index) == list(data.index)
-# The labels i.e. the ones from unrestricted_files # the order in which the subjects
-# were traversed is according to that of the index
-# %%
 labels = ['NEOFAC_A', 'NEOFAC_O', 'NEOFAC_C', 'NEOFAC_N', 'NEOFAC_E']
-edge_names = ['mean_FA', 'mean strl', 'num streamlines']
+edge_names = ['mean_FA', 'mean_strl', 'num_streamlines']
 big5 = ['Agreeableness', 'Openness', 'Conscientiousness', 'Neuroticism',
-        'Extraversion']  # maybe instead of putting these labels together we can put one a time as we are doing in the case
-
+        'Extraversion']
 mapping = {k: v for k, v in zip(big5, labels)}
-# before
-metrics = ['balanced_accuracy', 'accuracy', 'f1_weighted', 'roc_auc_ovr_weighted'][:-1]
-options = dict(data=data, whole=whole, labels=labels, big5=big5, edge_names=edge_names,
-               tri=tri)
-
-# %%
 mat = np.triu_indices(84)
 mews = '/home/skapoor/Thesis/gmwcs-solver'
-for k in ['edge_names', 'tri']:
-    del options[k]
-options['metrics'] = metrics
-# %%
-del options['labels']
-options['big5'] = ['Agreeableness']
-options['label'] = mapping[options['big5'][0]]  # run only with one target at a time
+# before
+metrics = ['balanced_accuracy', 'accuracy', 'f1_weighted', 'roc_auc_ovr_weighted']
+fscores = hist_fscore(data, whole, labels, big5, edge_names, tri)
+corr = hist_correlation(data, whole, labels, edge_names, big5, tri)
+#%%
+feature_type = 'mean_FA'
+if feature_type == 'mean_FA':
+    whole = whole.iloc[:, :tri]
+elif feature_type == 'mean_strl':
+    whole = whole.iloc[:, tri:2*tri]
+elif feature_type == 'num_streamlines':
+    whole = whole.iloc[:, 2*tri:] # input one feature at a time
+# The labels i.e. the ones from unrestricted_files # the order in which the subjects
 #%%
 run_classification(whole, metrics, 'Agreeableness', data[mapping['Agreeableness']], 'fscore')
 #%%
-corr = hist_correlation(data, whole, labels, edge_names, big5, tri)
-fscores = hist_fscore(data, whole, labels, big5, edge_names, tri)
-dict3 = { 'mat': mat, 'big5': big5,
-         'data': data, 'whole': whole, 'mews': mews, 'fscores':fscores, "corr":corr}
+#add choice for the features we want to use and slice the whole matrix accordingly, no need to change the processing.py
 
-plotting_options = graph_options(color='red', node_size=3, line_color='white', linewidhts=0.1, width=1)
+plotting_options = graph_options(color='red', node_size=5, line_color='white', linewidhts=0.1, width=1)
 hyperparams = {'target': 'Agreeableness',
-               'edge': 'pearson', 'threshold': 85, 'node_wts': 'max', 'tri': tri, 'degree': 1,
+               'edge': 'pearson', 'threshold': 50, 'node_wts': 'max', 'tri': tri, 'degree': 1,
                'plotting_options': plotting_options}
 # based on these hyperparameters, search the input files, the output files and the reduced number of edges and nodes
 '''
@@ -54,22 +47,18 @@ maybe make the dictionary like dict['degree'] = val when the val is in a loop. W
 '''
 # fscores, mat, target, data, edge,whole, label, corr, mews, threshold, node_wts, tri, degree, plotting_options
 # %%
-dict3['label'] = options['label']
-different_graphs(**dict3, **hyperparams)
+'''This one is generating graphs for all three feature types at once maybe we can reduce this'''
+different_graphs(fscores=fscores, mat=mat, big5=big5, whole=whole, corr=corr, mews=mews, target_col=data[mapping['Agreeableness']],
+                 **hyperparams)
+#also compute the fscores for the training data only here, make sure here also the splitting and the training data, random state is the same
 # %%
 # now we have to read these graphs, in order to read these graphs we will have to see which all edges are present
-'''
-git, mat, big5,personality_trait, data, edge,
-                     whole, labels, corr, mews, threshold, feature, node_wts'''
-dict3['metrics'] = metrics  # the metrics we want to use
-del dict3['fscores']
-del dict3['corr']
-dict3['metrics'] = metrics
-# metrics, target, edge, node_wts, mat, mews,
-#                               big5, label, data, whole, tri, degree, plotting_options
 del hyperparams['threshold']
-
-train_from_combined_graph(**dict3, **hyperparams)
+del hyperparams['tri']
+#%%
+hyperparams['feature_type'] = feature_type
+train_from_reduced_graph(metrics=metrics, target_col=data[mapping['Agreeableness']],
+                          mat=mat, big5=big5, whole=whole, mews=mews, **hyperparams)
 '''
 To do:
 def pipeline_summary():

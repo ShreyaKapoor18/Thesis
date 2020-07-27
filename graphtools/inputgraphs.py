@@ -13,16 +13,20 @@ Store the values in the a json dictionary
 """
 import json
 import os
+
+import matplotlib
+import matplotlib.cm as cm
+import matplotlib.pyplot as plt
 import networkx as nx
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import scale
-import matplotlib.pyplot as plt
+from sklearn.preprocessing import StandardScaler
 from classification import data_splitting
-import matplotlib
-import matplotlib.cm as cm
 from paramopt import graph_options
+
+
 # %%
 def train_with_best_params(classifier, params, X, y):
     """
@@ -53,7 +57,7 @@ def nested_outputdirs(mews):  # make a separate directory for each label, easier
 
 
 def make_and_visualize(nodes, edge_attributes, personality_trait, threshold, edge, node_wts,
-                       feature, degree, mews, plotting_options):
+                       feature_type, degree, mews, plotting_options):
     g1 = nx.Graph()
     g1.add_nodes_from(nodes)
     g1.add_weighted_edges_from(edge_attributes)  # shall be a list of tuples
@@ -74,7 +78,7 @@ def make_and_visualize(nodes, edge_attributes, personality_trait, threshold, edg
 
     # putting this into the different text files
 
-    filename = f'{personality_trait}_{edge}_{node_wts}_{feature}'  # make more nested directories
+    filename = f'{personality_trait}_{edge}_{node_wts}_{feature_type}'  # make more nested directories
     nodes_file = open(f'{mews}/outputs/nodes/{filename}', 'w')
     edges_file = open(f'{mews}/outputs/edges/{filename}', 'w')
     print(filename)
@@ -122,20 +126,19 @@ def make_and_visualize(nodes, edge_attributes, personality_trait, threshold, edg
     edges_file.close()
 
 
-def different_graphs(fscores, mat, target, data, edge,big5,
-                     whole, label, corr, mews, threshold, node_wts, tri, degree, plotting_options):
+def different_graphs(fscores, mat, target, target_col, edge, big5, feature_type,
+                     whole, corr, mews, threshold, node_wts, tri, degree, plotting_options):
     nested_outputdirs(mews='/home/skapoor/Thesis/gmwcs-solver')
     with open('outputs/combined_params.json', 'r') as f:
 
         best_params = json.load(f)
         i = big5.index(target)
-        index = list(range(3 * tri))
+        index = list(range(tri))  # since we are using one feature at a time
         # for choice in ['qcut', 'median', 'throw median']
         # Let's say we only choose the throw median choice, because it is the one that makes more sense
         choice = 'throw median'  # out of all these we will use these particular choices only!
-        X, y = data_splitting(choice, index, data, whole, label)  # this X is for random forests training
-        params = best_params['RF'][target]["100"][
-            choice]  # maybe use the parameters that work the best for top 5%
+        X, y = data_splitting(choice, index, whole, target_col)  # this X is for random forests training
+        params = best_params['RF'][target]["100"][choice]  # maybe use the parameters that work the best for top 5%
         feature_imp = train_with_best_params('RF', params, X, y)
 
         assert len(feature_imp) == len(X[0])
@@ -144,61 +147,62 @@ def different_graphs(fscores, mat, target, data, edge,big5,
         print('X:', X.shape)
         print('feature importance:', feature_imp.shape, 'len mat', len(mat[0]))
 
-        for feature in ['mean_FA', 'mean_strl', 'num_str']:
-            if edge == 'fscores':
-                arr = fscores[i, :, :]
-            if edge == 'pearson':
-                arr = corr[i, :, :]
-            if edge == 'feature_importance':
-                arr = feature_imp
+        if edge == 'fscores':
+            arr = fscores[i, :, :]
+        if edge == 'pearson':
+            arr = corr[i, :, :]
+        if edge == 'feature_importance':
+            arr = feature_imp
             # assert type(arr) == np.ndarray
-            print('type of array', type(arr))
-            # print('The array shape is:', arr.shape)
-            # assert len(feature_imp) == len(mat[0])
-            # for each edge type we have a different feature
+        print('type of array', type(arr))
+        # print('The array shape is:', arr.shape)
+        # assert len(feature_imp) == len(mat[0])
+        # for each edge type we have a different feature
+        arr = np.absolute(arr)  # need to standardize after taking the absolute value
+        thresh = np.percentile(arr, threshold)  # remove bottom ex percent in absolute terms
+        # assert np.percentile(np.absolute(arr), 50) == np.median(np.absolute(arr))
+        # assert np.percentile(np.absolute(arr),10) < np.percentile(np.absolute(arr), 20)
+        # in order to confirm that it actually makes the percentile distribution!
+        print(f'Threshold value according to {threshold} percentile: {thresh}')
+        index2 = np.where(arr <= thresh)
+        print('indexes', index2)
+        xs = index2[0]
+        ys = index2[1]
+        # removed wrong indexing
+        for p in range(len(index2[0])):
+            arr[xs[p], ys[p]] = 0
+        # we want to standardize the whole array together
+        # the values are x.y and the values in itself
+        arr = (arr - arr.mean())/arr.std() # standardization of the array itself
+        # try for for different types, one feature at a time maybe and then construct graph?
+        nodes = set()
+        edge_attributes = []
+        for j in range(len(mat[0])):
+            if feature_type == 'mean_FA':
+                value = arr[0, j]
+            if feature_type == 'mean_strl':
+                value = arr[1, j]
+            if feature_type == 'num_str':
+                value = arr[2, j]
+            if abs(value) > thresh:
+                edge_attributes.append((mat[0][j], mat[1][j], value))
+                nodes.add(mat[0][j])  # add only the nodes which have corresponding edges
+                nodes.add(mat[1][j])
+        # mean for the scores of three different labels
+        assert nodes != None
+        make_and_visualize(nodes, edge_attributes, target, threshold, edge, node_wts,
+                           feature_type, degree, mews, plotting_options)
+        filename = f'{target}_{edge}_{node_wts}_{feature_type}'
 
-            thresh = np.percentile(np.absolute(arr), threshold)  # remove bottom ex percent in absolute terms
-            # assert np.percentile(np.absolute(arr), 50) == np.median(np.absolute(arr))
-            # assert np.percentile(np.absolute(arr),10) < np.percentile(np.absolute(arr), 20)
-            # in order to confirm that it actually makes the percentile distribution!
-            print(f'Threshold value according to {threshold} percentile: {thresh}')
-            index2 = np.where(np.absolute(arr) <= thresh)
-            print('indexes', index2)
-            xs = index2[0]
-            ys = index2[1]
-            # removed wrong indexing
-            for p in range(len(index2[0])):
-                arr[xs[p], ys[p]] = 0
-
-            # try for for different types, one feature at a time maybe and then construct graph?
-            nodes = set()
-            edge_attributes = []
-            for j in range(len(mat[0])):
-                if feature == 'mean_FA':
-                    value = arr[0, j]
-                if feature == 'mean_strl':
-                    value = arr[1, j]
-                if feature == 'num_str':
-                    value = arr[2, j]
-                if abs(value) > thresh:
-                    edge_attributes.append((mat[0][j], mat[1][j], value))
-                    nodes.add(mat[0][j])  # add only the nodes which have corresponding edges
-                    nodes.add(mat[1][j])
-            # mean for the scores of three different labels
-            assert nodes != None
-            make_and_visualize(nodes, edge_attributes, target, threshold, edge, node_wts,
-                               feature, degree, mews, plotting_options)
-            filename = f'{target}_{edge}_{node_wts}_{feature}'
-
-            print('*' * 100, '\n', filename)
-            os.chdir(mews)
-            print('Current directory', os.getcwd())
-            cmd = (
-                f' java -Xss4M -Djava.library.path=/opt/ibm/ILOG/CPLEX_Studio1210/cplex/bin/x86-64_linux/ '
-                f'-cp /opt/ibm/ILOG/CPLEX_Studio1210/cplex/lib/cplex.jar:target/gmwcs-solver.jar '
-                f'ru.ifmo.ctddev.gmwcs.Main -e outputs/edges/{filename} '
-                f'-n outputs/nodes/{filename} > outputs/solver/{filename}')
-            print(cmd)
-            os.system(cmd)
-            os.chdir("/home/skapoor/Thesis/graphtools")
-            print('Current directory', os.getcwd())
+        print('*' * 100, '\n', filename)
+        os.chdir(mews)
+        print('Current directory', os.getcwd())
+        cmd = (
+            f' java -Xss4M -Djava.library.path=/opt/ibm/ILOG/CPLEX_Studio1210/cplex/bin/x86-64_linux/ '
+            f'-cp /opt/ibm/ILOG/CPLEX_Studio1210/cplex/lib/cplex.jar:target/gmwcs-solver.jar '
+            f'ru.ifmo.ctddev.gmwcs.Main -e outputs/edges/{filename} '
+            f'-n outputs/nodes/{filename} > outputs/solver/{filename}')
+        print(cmd)
+        os.system(cmd)
+        os.chdir("/home/skapoor/Thesis/graphtools")
+        print('Current directory', os.getcwd())
