@@ -38,8 +38,10 @@ options['label'] = mapping[options['big5'][0]]  # run only with one target at a 
 #%%
 run_classification(whole, metrics, 'Agreeableness', data[mapping['Agreeableness']], 'fscore')
 #%%
+corr = hist_correlation(data, whole, labels, edge_names, big5, tri)
+fscores = hist_fscore(data, whole, labels, big5, edge_names, tri)
 dict3 = { 'mat': mat, 'big5': big5,
-         'data': data, 'whole': whole, 'mews': mews}
+         'data': data, 'whole': whole, 'mews': mews, 'fscores':fscores, "corr":corr}
 
 plotting_options = graph_options(color='red', node_size=3, line_color='white', linewidhts=0.1, width=1)
 hyperparams = {'target': 'Agreeableness',

@@ -1,0 +1,82 @@
+{
+    "SVC": {
+        "throw median": {
+            "5": {
+                "C": 1.9025008523597733,
+                "class_weight": null,
+                "gamma": 0.009068973491620256,
+                "kernel": "poly"
+            },
+            "10": {
+                "C": 1.9025008523597733,
+                "class_weight": null,
+                "gamma": 0.009068973491620256,
+                "kernel": "poly"
+            },
+            "50": {
+                "C": 1.9025008523597733,
+                "class_weight": null,
+                "gamma": 0.009068973491620256,
+                "kernel": "poly"
+            },
+            "100": {
+                "C": 496.3147348446938,
+                "class_weight": null,
+                "gamma": 0.0002439668102812488,
+                "kernel": "rbf"
+            }
+        },
+        "qcut": {
+            "5": {
+                "C": 200.2074048849186,
+                "class_weight": "balanced",
+                "gamma": 0.0008331759812852307,
+                "kernel": "linear"
+            },
+            "10": {
+                "C": 11.401363110806296,
+                "class_weight": null,
+                "gamma": 0.007618344453654781,
+                "kernel": "sigmoid"
+            },
+            "50": {
+                "C": 200.2074048849186,
+                "class_weight": "balanced",
+                "gamma": 0.0008331759812852307,
+                "kernel": "linear"
+            },
+            "100": {
+                "C": 11.401363110806296,
+                "class_weight": null,
+                "gamma": 0.007618344453654781,
+                "kernel": "sigmoid"
+            }
+        },
+        "median": {
+            "5": {
+                "C": 496.3147348446938,
+                "class_weight": null,
+                "gamma": 0.0002439668102812488,
+                "kernel": "rbf"
+            },
+            "10": {
+                "C": 11.401363110806296,
+                "class_weight": null,
+                "gamma": 0.007618344453654781,
+                "kernel": "sigmoid"
+            },
+            "50": {
+                "C": 1.9025008523597733,
+                "class_weight": null,
+                "gamma": 0.009068973491620256,
+                "kernel": "poly"
+            },
+            "100": {
+                "C": 11.401363110806296,
+                "class_weight": null,
+                "gamma": 0.007618344453654781,
+                "kernel": "sigmoid"
+            }
+        }
+    }
+}

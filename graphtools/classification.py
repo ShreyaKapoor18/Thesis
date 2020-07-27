@@ -65,7 +65,7 @@ def split_vals(target_label, choice, train_test, train_bins):
 
             y = pd.cut(target_label, train_bins, labels=False, include_lowest=True)
             y = y // 3
-            print('bins extreme',train_bins[0], train_bins[-1])
+            print('bins extreme', train_bins[0], train_bins[-1])
             return y
 
         y = pd.cut(target_label, train_bins, labels=False, include_lowest=True)
@@ -76,7 +76,6 @@ def split_vals(target_label, choice, train_test, train_bins):
             return y
         if choice == "median":
             y[y > train_bins[-1]] = 1
-            #print(y.isna().any())
             return y
 
 # %%
@@ -163,7 +162,7 @@ def dict_classifier(classifier, whole, metrics, target_col, edge):
                 pds = PredefinedSplit(test_fold=split_index)
 
                 rcv = RandomizedSearchCV(clf, distributions, random_state=55, scoring=metrics,
-                                         refit='accuracy', cv=pds)
+                                         refit='balanced_accuracy', cv=pds)
                 print(X_train_comb.index, y_train_comb.index)
                 print('X_train', 'X_val', 'X_combined', X_train.shape, X_val.shape, X_train_comb.shape)
                 print('y_train', 'y_val', 'y_combined', y_train.shape, y_val.shape, y_train_comb.shape)
@@ -288,4 +287,12 @@ def run_classification(whole, metrics, target, target_col, edge):
         json.dump(combined, f, indent=4)
     with open(f'outputs/dicts/{target}_combined_params.json', 'w') as f:  #
         json.dump(best_params_combined, f, indent=4)
-    visualise_performance(combined, metrics, ["5", "10", "50", "100"], target)
+    try:
+        visualise_performance(combined, metrics, [5, 10, 50, 100], target)
+    except KeyError:
+        print("There was a key value error in the first case")
+        try:
+            visualise_performance(combined, metrics, ['5', '10', '50', '100'], target)
+        except KeyError:
+            print("Again couldn't visualize")
+
