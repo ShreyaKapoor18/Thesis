@@ -3,7 +3,6 @@ import matplotlib.pyplot as plt
 from metrics import fscore
 from readfiles import get_subj_ids
 import pandas as pd
-from sklearn.preprocessing import StandardScaler
 # %%
 def generate_combined_matrix(tri, present_subjects):
     """
@@ -12,8 +11,6 @@ def generate_combined_matrix(tri, present_subjects):
     2. The mean length of the streamlines between the two nodes
     3. The number of streamlines between the two nodes
     """
-    #norm = Normalizer()
-    scale = StandardScaler()
     whole = np.zeros((len(get_subj_ids()), tri * 3))
     # but the matrix is upper triangular so we should only take that into account, then number of features will
     # get reduced
@@ -36,12 +33,7 @@ def generate_combined_matrix(tri, present_subjects):
             # print(i,j)
             i += 1
         j += 1
-    """
-    We need to normalise the data since the scales are different 
-    and we still want to retain the variance
-    """
-    #whole = norm.fit_transform(whole) # seems wrong since one subject gets scaled to a unit norm
-    whole = scale.fit_transform(whole)
+    # scaling will be done according to the training and test data
     whole = pd.DataFrame(whole)
     whole.index = present_subjects
     return whole
@@ -53,7 +45,6 @@ def hist_correlation(data, whole, labels, edge_names, big5, tri):
     for j in range(len(labels)):
         label = data[labels[j]]
         # check if the variance of each feature is not zero if it is then remove it
-        # correlation of mean FA edges, mean str length, number of strl with Openness
         for i in range(3):
             map_o = pd.concat((pd.DataFrame(whole.iloc[:, i * tri:(i + 1) * tri]), label), axis=1)
             #corr = np.corrcoef(map_o, rowvar=False)

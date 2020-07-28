@@ -11,6 +11,8 @@ from sklearn.model_selection import train_test_split
 from metrics import fscore, compute_scores
 from sklearn.model_selection import StratifiedKFold
 from sklearn.model_selection import PredefinedSplit
+from sklearn.preprocessing import StandardScaler
+from PIL import Image
 # %%
 def data_splitting(choice, index, X, y):
     """
@@ -34,53 +36,13 @@ def data_splitting(choice, index, X, y):
         y = y // 3  # 0 and 1 classes get mapped to 0 and 3,4 get mapped to 1
         print(len(y), 'New number of subjects in our dataset')
         # X = whole[y.index, index[0]] don't know why this type of slicing is not working
-        X = [X.loc[i, index] for i in list(y.index)]
-    return np.array(X), np.array(y)
-
-def split_vals(target_label, choice, train_test, train_bins):
-    assert target_label.isna().any() == False
-    if train_test == 'train':
-        if choice == 'qcut':
-            # choice to cut into three quartiles
-            y, bins = pd.qcut(target_label, 3, labels=False, retbins=True)
-            # return the values of these also so that the same ones can be used for the outof bag estimates
-            return y,bins
-        if choice == 'median':
-            # choice to threshold around the median
-            y = target_label >= target_label.median()
-            bins = pd.qcut(target_label, 2, labels=False, retbins=True)[1]
-            return y, bins
-        if choice == 'throw median':
-            y, bins = pd.qcut(target_label, 5, labels=False, retbins=True)
-            # y.reset_index(drop=True, inplace=True)
-            print(sum(y == 2), 'is the number of subjects which have been removed')
-            y = y[y != 2]
-            y = y // 3  # 0 and 1 classes get mapped to 0 and 3,4 get mapped to 1
-            print(len(y), 'New number of subjects in our dataset')
-            return y, bins
-    if train_test == 'test':
-        print('thresholds from the training data', train_bins)
-
-        if choice == 'throw median':
-
-            y = pd.cut(target_label, train_bins, labels=False, include_lowest=True)
-            y = y // 3
-            print('bins extreme', train_bins[0], train_bins[-1])
-            return y
-
-        y = pd.cut(target_label, train_bins, labels=False, include_lowest=True)
-        y[y < train_bins[0]] = 0
-        if choice == 'qcut':
-            y[y > train_bins[-1]] = 2
-            #print(y.isna().any())
-            return y
-        if choice == "median":
-            y[y > train_bins[-1]] = 1
-            return y
+        X = pd.DataFrame([X.loc[i, index] for i in list(y.index)])
+    return X,y
 
 # %%
 def dict_classifier(classifier, whole, metrics, target_col, edge, percent):
     """
+    Nested Cross validation is needed, the hyperparmeters are obtained from the inner cross validation
     :param whole: the matrix containing the edge information for all subjects
     :param option: if we want the scores with or without cross validation
     :param classifier: the name of the classifier we want to test
@@ -90,6 +52,8 @@ def dict_classifier(classifier, whole, metrics, target_col, edge, percent):
     :param new_fscores: flattened array of f scores: num_subjects x num edges
     :return: metric_scores: the values to be calculated using permitted keywords
     """
+    myImage = Image.open("support/algo_nested_cv.png")
+    myImage.show()
     metric_score = {}
     best_params = {}
     # note we are running for one label at a time!  # different labels
@@ -97,98 +61,125 @@ def dict_classifier(classifier, whole, metrics, target_col, edge, percent):
         metric_score[choice] = {}
         best_params[choice] = {}
         clf, distributions = get_distributions(classifier)
+        X,y = data_splitting(choice, range(whole.shape[1]), whole, target_col)
         print(f'Executing {clf}')
         for per in percent:
             print('percentage', per)
-            X_train_c, X_test, y_train_c, y_test = train_test_split(whole, target_col, test_size=0.1, random_state=55)
-            #probably would need to put this in cross validation loop
+            outer_cv = StratifiedKFold(n_splits=10)
+            inner_cv = StratifiedKFold(n_splits=5)
 
-            skf = StratifiedKFold(n_splits=5)
-            skf.get_n_splits(X_train_c, y_train_c)
-            #print('Splits', skf)
             metric_score[choice][per] = {}
             best_params[choice][per] = {}
-            test_scores = []
-            rcv_scores =[]
-            for train_index, val_index in skf.split(X_train_c, y_train_c):
-                #print("TRAIN:", len(train_index),train_index, "VALIDATION:", len(val_index), val_index)
-                X_train, X_val = X_train_c.iloc[train_index,:], X_train_c.iloc[val_index,:]
-                y_train, y_val = y_train_c.iloc[train_index], y_train_c.iloc[val_index]
-                y_train, bins = split_vals(y_train, choice, 'train', None)
-                # need to split training into training and validation set
-                #print('Y train shape after splitting values', y_train.shape)
-               # print('Y value shape', y_val.shape)
-                bins[0] = 0
-                bins[-1] = 100
-                y_val = split_vals(y_val, choice, 'test', bins) #the bins depend on the training data
-                #print('y test before splitting', y_test)
-                y_test_il = split_vals(y_test, choice, 'test', bins) #each shall be different in a different loop
+            outer_cv_scores = []
+            outer_cv_params = []
+            for train_index, test_index in outer_cv.split(X,y):
+                print('X', X.shape)
+                X_train_c, X_test = X.iloc[train_index,:], X.iloc[test_index,:]
+                y_train_c, y_test = y.iloc[train_index], y.iloc[test_index]
+                print('X_train_c', X_train_c.shape, 'y_train_c', y_train_c.shape)
+                print('X_test', X_test.shape, 'y_train_c', y_test.shape)
+                inner_cv_scores = []
+                inner_cv_params = []
+                for train_idx, val_idx in inner_cv.split(X_train_c, y_train_c):
+                    X_train, X_val = X_train_c.iloc[train_idx,:], X_train_c.iloc[val_idx,:]
+                    y_train, y_val = y_train_c.iloc[train_idx], y_train_c.iloc[val_idx]
+                    if choice == 'throw median': #only in this case are we throwing away some subjects
+                        X_train = X_train.loc[y_train.index, :] # wouldn't need it now
+                        X_val = X_val.loc[y_val.index, :] # before feature selection
 
-                #print('y_test in loop', y_test_il, 'y train', y_train, 'y val', y_val)
-                if choice == 'throw median': #only in this case are we throwing away some subjects
-                    X_train = X_train.loc[y_train.index, :] # wouldn't need it now
-                    X_val = X_val.loc[y_val.index, :] # before feature selection
 
-                assert X_train.index.all() == y_train.index.all()
-                stacked = pd.concat([X_train, y_train], axis=1)
+                    scalar = StandardScaler()
+                    X_train = pd.DataFrame(scalar.fit_transform(X_train), index= X_train.index)
+                    X_val = pd.DataFrame(scalar.transform(X_val), index = X_val.index)
+                    assert X_train.index.all() == y_train.index.all()
 
+                    stacked = pd.concat([X_train, y_train], axis=1)
+                    cols = []
+                    cols.extend(range(X_train.shape[1])) # the values zero to the number of columns
+                    cols.append(target_col.name)
+                    stacked.columns = cols
+                    if edge == 'fscore':
+                        arr = fscore(stacked, class_col=target_col.name)[:-1]
+                        #fscore is different for the multiclass and binary case; has been incorporated above
+                    if edge == 'pearson':
+                        arr = stacked.corr().iloc[:,-1]
+
+                    arr.fillna(0, inplace=True)
+                    arr = np.array(arr)
+                    val = np.nanpercentile(arr, 100 - per)
+                    index = np.where(arr >= val)
+                    X_train = X_train.iloc[:, index[0]]
+                    X_val = X_val.iloc[:, index[0]]
+
+                    #feature selection based on fscore or pearson correlation coefficient
+                    assert len(X_train) == len(y_train)
+                    assert len(X_val) == len(y_val)
+
+                    y_train_comb = y_train.append(y_val)
+                    y_train_comb.sort_index(inplace=True)
+                    X_train_comb = pd.concat([X_train, X_val], axis=0)
+                    X_train_comb.sort_index(inplace=True, axis=0)
+                    split_index = [-1 if x in X_train.index else 0 for x in X_train_comb.index]
+                    print('split index',split_index, 'need to check if this is correct or not')
+                    # Use the list to create PredefinedSplit
+                    pds = PredefinedSplit(test_fold=split_index)
+
+                    rcv = RandomizedSearchCV(clf, distributions, random_state=55, scoring=metrics,
+                                             refit='balanced_accuracy', cv=pds) #this is already producing 5 folds so we need to do something different?
+                    # both the training and the validation set shall be passed since we have passed the indices of the validation set
+
+                    assert X_train.shape[1] == X_val.shape[1]
+                    search = rcv.fit(np.array(X_train_comb), np.array(y_train_comb))
+                    inner_cv_params.append(search.best_params_)
+                    inner_cv_scores.append(np.mean(search.cv_results_['mean_test_balanced_accuracy']))
+                    # select the parameters which correspond to the best results, fscores also depend on the split which is the best one, need to store that
+                assert len(inner_cv_params) == len(inner_cv_scores)
+                print('scores and parameters',inner_cv_scores, inner_cv_params)
+                bestp_index = np.argmax(inner_cv_scores)
+                bestincv_params = inner_cv_params[bestp_index]
+                print('best internal cv params', bestincv_params)
+                scalar = StandardScaler()
+                X_train_c = pd.DataFrame(scalar.fit_transform(X_train_c))
+                X_test = pd.DataFrame(scalar.transform(X_test))
+                stacked = pd.concat([X_train_c, y_train_c], axis=1)
                 cols = []
-                cols.extend(range(X_train.shape[1])) # the values zero to the number of columns
+                cols.extend(range(X_train_c.shape[1]))  # the values zero to the number of columns
                 cols.append(target_col.name)
                 stacked.columns = cols
                 if edge == 'fscore':
-                    arr = fscore(stacked, class_col=target_col.name)[:-1]
-                    #fscore is different for the multiclass and binary case; has been incorporated above
+                    arr_outer = fscore(stacked, class_col=target_col.name)[:-1]
+                    # fscore is different for the multiclass and binary case; has been incorporated above
                 if edge == 'pearson':
-                    arr = stacked.corr().iloc[:,-1]
-                arr.fillna(0, inplace=True)
+                    arr_outer = stacked.corr().iloc[:, -1]
+                arr_outer.fillna(0, inplace=True)
 
-                arr = np.array(arr)
-                val = np.nanpercentile(arr, 100 - per)
-                index = np.where(arr >= val)
-                X_train = X_train.iloc[:, index[0]]
-                X_val = X_val.iloc[:, index[0]] #feature selection based on fscore or pearson correlation coefficient
+                arr_outer = np.array(arr_outer)
+                val = np.nanpercentile(arr_outer, 100 - per)
+                index = np.where(arr_outer >= val)
 
-                assert len(X_train) == len(y_train)
-                assert len(X_val) == len(y_val)
+                X_train = X_train_c.iloc[:, index[0]]
+                X_test = X_test.iloc[:, index[0]]
+                if classifier == 'SVC':
 
-                y_train_comb = y_train.append(y_val)
-                #print('y train c index', y_train_c.shape)
-                y_train_comb.sort_index(inplace=True)
-                X_train_comb = pd.concat([X_train, X_val], axis=0)
-                X_train_comb.sort_index(inplace=True, axis=0)
-                split_index = [-1 if x in X_train.index else 0 for x in X_train_comb.index]
+                    clf.fit(X_train, y_train)
+                y_pred = clf.predict(X_test)
+                y_score = clf.predict_proba(X_test)
 
-                # Use the list to create PredefinedSplit
-                pds = PredefinedSplit(test_fold=split_index)
-
-                rcv = RandomizedSearchCV(clf, distributions, random_state=55, scoring=metrics,
-                                         refit='balanced_accuracy', cv=pds) #this is only doing one fold right?
-                print(X_train_comb.index, y_train_comb.index)
-                print('X_train', 'X_val', 'X_combined', X_train.shape, X_val.shape, X_train_comb.shape)
-                print('y_train', 'y_val', 'y_combined', y_train.shape, y_val.shape, y_train_comb.shape)
-                print('reshaped y_train', np.array(y_train_comb).reshape(-1,1).shape)
-                assert X_train.shape[1] == X_val.shape[1]
-                search = rcv.fit(np.array(X_train_comb), np.array(y_train_comb))
-                rcv_scores.append(search.cv_results_)
-                y_pred = rcv.predict(X_test.iloc[:, index[0]])
-                y_score = rcv.predict_proba(X_test.iloc[:, index[0]])
                 if len(y_score[0]) == 2: #number of classes in the y_score
-                    test_scores.append(compute_scores(y_test_il, y_pred, [x[1] for x in y_score], choice, metrics))
+                    outer_cv_scores.append(compute_scores(y_test, y_pred, [x[1] for x in y_score], choice, metrics))
                 else:
-                    test_scores.append(compute_scores(y_test_il, y_pred, y_score, choice, metrics))
-                best_params[choice][per] = search.best_params_ #need to see if this is in cv
+                    outer_cv_scores.append(compute_scores(y_test, y_pred, y_score, choice, metrics))
+                outer_cv_params.append(bestincv_params)
+
+            best_params[choice][per] = outer_cv_params[np.argmax(outer_cv_scores['balanced_accuracy'])]#need to see if this is in cv
 
             for metric in metrics:
                 # validation set
                 metric_score[choice][per][metric] = {}
-                metric_score[choice][per][metric]['validation'] = round(np.mean([scores[f'mean_test_{metric}']for scores in rcv_scores]), 3)
-                metric_score[choice][per][metric]['oob'] = np.mean([score[metric] for score in test_scores])
-                print(f'validation {metric}', round(np.mean([scores[f'mean_test_{metric}']for scores in rcv_scores]), 3))
-                print(f'oob error {metric}',np.mean([score[metric] for score in test_scores]))
+                metric_score[choice][per][metric] = round(np.mean([scores[f'{metric}']for scores in outer_cv_scores]), 3)
+                print(f'{metric}',np.mean([score[metric] for score in outer_cv_scores]))
                 # out of bag error
-
-    return {'Metrics': metric_score, 'Parameters': best_params}
+    return {'Metrics': metric_score,'Parameters': best_params}
 
 
 # %%
@@ -208,8 +199,6 @@ def make_csv(dict_score, filename):
         axis=1)
     cv1.to_csv(filename)
     cv2.to_csv(filename.split('.csv')[0] + '_bestparams.csv')
-
-
 # %%
 def visualise_performance(combined, metrics, top_per, target):
     """
@@ -228,16 +217,12 @@ def visualise_performance(combined, metrics, top_per, target):
         for j in range(len(metrics)):
             for choice, color in zip(['qcut', 'median', 'throw median'], ['orange', 'green', 'pink']):
                 validation = []
-                oob = []
                 for clf in combined.keys():
                     print("dictionary", combined[clf][choice])
-                    validation.append(combined[clf][choice][top_per[k]][metrics[j]]['validation'])
-                    oob.append(combined[clf][choice][top_per[k]][metrics[j]]['oob'])
+                    validation.append(combined[clf][choice][top_per[k]][metrics[j]])
 
-                ax[k][j].plot(list(combined.keys()), validation, marker='+', label=choice + '_validation_score',
+                ax[k][j].plot(list(combined.keys()), validation, marker='+', label=choice,
                               color=color, linestyle='dashed',markersize=12)
-                ax[k][j].plot(list(combined.keys()), oob, marker='*', label=choice + '_oob_score', color=color
-                              ,markersize=12)
             if top_per[k] == 0:
                 ax[k][j].set_title(f'100% features')
             else:

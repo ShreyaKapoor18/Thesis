@@ -22,7 +22,7 @@ def fscore(data, class_col='class'):
     if sum(denominator) != 0:
         return round(numerator / denominator, 3)
     else:
-        return np.zeros(numerator.shape)
+        return pd.DataFrame(np.zeros(numerator.shape)) #all options shall return the same datatype
 
 
 def compute_scores(y_test, y_pred, y_score,choice,

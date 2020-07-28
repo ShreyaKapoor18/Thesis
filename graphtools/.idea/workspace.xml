@@ -22,26 +22,16 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96a293b3-8c56-42ff-a127-58952144c9ad" name="Default Changelist" comment="add results to vcs">
-      <change afterPath="$PROJECT_DIR$/classification_copy" afterDir="false" />
+    <list default="true" id="96a293b3-8c56-42ff-a127-58952144c9ad" name="Default Changelist" comment="tentative results with inner cv">
+      <change afterPath="$PROJECT_DIR$/subgraphclass.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../gmwcs-solver" beforeDir="false" afterPath="$PROJECT_DIR$/../gmwcs-solver" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classification.py" beforeDir="false" afterPath="$PROJECT_DIR$/classification.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/inputgraphs.py" beforeDir="false" afterPath="$PROJECT_DIR$/inputgraphs.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/outputs/csvs/Agreeableness_RF_results_cv.csv" beforeDir="false" afterPath="$PROJECT_DIR$/outputs/csvs/Agreeableness_RF_results_cv.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/outputs/csvs/Agreeableness_RF_results_cv_bestparams.csv" beforeDir="false" afterPath="$PROJECT_DIR$/outputs/csvs/Agreeableness_RF_results_cv_bestparams.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/outputs/csvs/Agreeableness_SVC_results_cv.csv" beforeDir="false" afterPath="$PROJECT_DIR$/outputs/csvs/Agreeableness_SVC_results_cv.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/outputs/csvs/Agreeableness_SVC_results_cv_bestparams.csv" beforeDir="false" afterPath="$PROJECT_DIR$/outputs/csvs/Agreeableness_SVC_results_cv_bestparams.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/outputs/dicts/Agreeableness_RF_results_cv.json" beforeDir="false" afterPath="$PROJECT_DIR$/outputs/dicts/Agreeableness_RF_results_cv.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/outputs/dicts/Agreeableness_SVC_results_cv.json" beforeDir="false" afterPath="$PROJECT_DIR$/outputs/dicts/Agreeableness_SVC_results_cv.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/outputs/dicts/Agreeableness_combined_dict.json" beforeDir="false" afterPath="$PROJECT_DIR$/outputs/dicts/Agreeableness_combined_dict.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/outputs/dicts/Agreeableness_combined_params.json" beforeDir="false" afterPath="$PROJECT_DIR$/outputs/dicts/Agreeableness_combined_params.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/outputs/figures/classification_Agreeableness.png" beforeDir="false" afterPath="$PROJECT_DIR$/outputs/figures/classification_Agreeableness.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/metrics.py" beforeDir="false" afterPath="$PROJECT_DIR$/metrics.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/pipeline.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/processing.py" beforeDir="false" afterPath="$PROJECT_DIR$/processing.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/read_graphs.py" beforeDir="false" afterPath="$PROJECT_DIR$/read_graphs.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports/correlation_distribution.png" beforeDir="false" afterPath="$PROJECT_DIR$/reports/correlation_distribution.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports/fscore_distribution.png" beforeDir="false" afterPath="$PROJECT_DIR$/reports/fscore_distribution.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,9 +91,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Python.pipeline">
-    <configuration name="pipeline.py" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http:///pipeline.py">
-      <method v="2" />
-    </configuration>
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -152,9 +139,6 @@
       <module name="graphtools" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="$USER_HOME$/anaconda3/bin/python" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -189,20 +173,36 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="read_graphs" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="processing" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="graphtools" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="$USER_HOME$/anaconda3/bin/python" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/read_graphs.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/processing.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="subgraphclass" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="graphtools" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="$USER_HOME$/anaconda3/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/subgraphclass.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -212,19 +212,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="JavaScript Debug.pipeline.py" />
       <item itemvalue="Python.pipeline" />
       <item itemvalue="Python.classification" />
-      <item itemvalue="Python.read_graphs" />
       <item itemvalue="Python.inputgraphs" />
+      <item itemvalue="Python.subgraphclass" />
+      <item itemvalue="Python.processing" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.pipeline" />
-        <item itemvalue="Python.classification" />
-        <item itemvalue="JavaScript Debug.pipeline.py" />
-        <item itemvalue="Python.read_graphs" />
+        <item itemvalue="Python.processing" />
+        <item itemvalue="Python.subgraphclass" />
         <item itemvalue="Python.inputgraphs" />
+        <item itemvalue="Python.classification" />
       </list>
     </recent_temporary>
   </component>
@@ -283,28 +283,7 @@
       <workItem from="1595424110864" duration="23871000" />
       <workItem from="1595579610255" duration="5527000" />
       <workItem from="1595681284424" duration="7899000" />
-      <workItem from="1595842883867" duration="12159000" />
-    </task>
-    <task id="LOCAL-00039" summary="tight layout">
-      <created>1591963236416</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1591963236416</updated>
-    </task>
-    <task id="LOCAL-00040" summary="multi-class labels cut">
-      <created>1591969894940</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1591969894940</updated>
-    </task>
-    <task id="LOCAL-00041" summary="outputs from quantile run, still need the classification graph update">
-      <created>1592207639919</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1592207639919</updated>
+      <workItem from="1595842883867" duration="29945000" />
     </task>
     <task id="LOCAL-00042" summary="add ReadME.md">
       <created>1592210684704</created>
@@ -628,7 +607,28 @@
       <option name="project" value="LOCAL" />
       <updated>1595845058414</updated>
     </task>
-    <option name="localTasksCounter" value="88" />
+    <task id="LOCAL-00088" summary="extra file for modification">
+      <created>1595864463864</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1595864463864</updated>
+    </task>
+    <task id="LOCAL-00089" summary="pipeline- according to one label, need to focus on model training">
+      <created>1595864513962</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1595864513962</updated>
+    </task>
+    <task id="LOCAL-00090" summary="tentative results with inner cv">
+      <created>1595864539297</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1595864539297</updated>
+    </task>
+    <option name="localTasksCounter" value="91" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -650,9 +650,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/gmwcs-solver" />
     </ignored-roots>
-    <MESSAGE value="different edge parameters" />
-    <MESSAGE value="creating different graphs for subgraph extraction" />
-    <MESSAGE value="pipelining first attempt" />
     <MESSAGE value="working with academic version IPLEX, able to solve subgraph problem" />
     <MESSAGE value="pipeline working" />
     <MESSAGE value="subgraph based classification" />
@@ -675,7 +672,10 @@
     <MESSAGE value="delete unwanted lines" />
     <MESSAGE value="y test splitting fix" />
     <MESSAGE value="add results to vcs" />
-    <option name="LAST_COMMIT_MESSAGE" value="add results to vcs" />
+    <MESSAGE value="extra file for modification" />
+    <MESSAGE value="pipeline- according to one label, need to focus on model training" />
+    <MESSAGE value="tentative results with inner cv" />
+    <option name="LAST_COMMIT_MESSAGE" value="tentative results with inner cv" />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="181" width="800" height="683" key="#Deployment" timestamp="1595687658480">
@@ -780,10 +780,10 @@
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
     <state x="784" y="341" key="SettingsEditor/0.0.2560.1413@0.0.2560.1413" timestamp="1594817271566" />
-    <state x="875" y="442" width="644" height="366" key="Vcs.Push.Dialog.v2" timestamp="1595845060609">
+    <state x="875" y="442" width="644" height="366" key="Vcs.Push.Dialog.v2" timestamp="1595864541120">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state x="875" y="442" width="802" height="524" key="Vcs.Push.Dialog.v2/0.0.2560.1413@0.0.2560.1413" timestamp="1595845060609" />
+    <state x="875" y="442" width="802" height="524" key="Vcs.Push.Dialog.v2/0.0.2560.1413@0.0.2560.1413" timestamp="1595864541120" />
     <state x="656" y="335" width="644" height="366" key="Vcs.Push.Dialog.v2/0.27.1920.985@0.27.1920.985" timestamp="1595583060269" />
     <state width="1281" height="706" key="XDebugger.FullValuePopup" timestamp="1591115772905">
       <screen x="0" y="0" width="2560" height="1413" />

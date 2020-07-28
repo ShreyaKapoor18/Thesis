@@ -3,7 +3,7 @@ from processing import *
 from readfiles import computed_subjects
 from read_graphs import train_from_reduced_graph
 from classification import run_classification
-
+from paramopt import graph_options
 # %%
 '''Data computed for all 5 personality traits at once'''
 data = computed_subjects()  # labels for the computed subjects, data.index is the subject id
@@ -20,8 +20,9 @@ mat = np.triu_indices(84)
 mews = '/home/skapoor/Thesis/gmwcs-solver'
 # before
 metrics = ['balanced_accuracy', 'accuracy', 'f1_weighted', 'roc_auc_ovr_weighted']
-fscores = hist_fscore(data, whole, labels, big5, edge_names, tri)
-corr = hist_correlation(data, whole, labels, edge_names, big5, tri)
+#note. right now the matrix whole is not scaled, for computing the fscores and correlation coeff it has to be so
+#fscores = hist_fscore(data, whole, labels, big5, edge_names, tri)
+# corr = hist_correlation(data, whole, labels, edge_names, big5, tri)
 #%%
 feature_type = 'mean_FA'
 if feature_type == 'mean_FA':
@@ -33,23 +34,24 @@ elif feature_type == 'num_streamlines':
 # The labels i.e. the ones from unrestricted_files # the order in which the subjects
 #%%
 run_classification(whole, metrics, 'Agreeableness', data[mapping['Agreeableness']], 'fscore')
+#the split must be the same when we are comparing all the functions
+
 #%%
 #add choice for the features we want to use and slice the whole matrix accordingly, no need to change the processing.py
 
 plotting_options = graph_options(color='red', node_size=5, line_color='white', linewidhts=0.1, width=1)
 hyperparams = {'target': 'Agreeableness',
-               'edge': 'pearson', 'threshold': 50, 'node_wts': 'max', 'tri': tri, 'degree': 1,
+               'edge': 'pearson', 'threshold': 65, 'node_wts': 'max', 'tri': tri, 'degree': 1,
                'plotting_options': plotting_options}
 # based on these hyperparameters, search the input files, the output files and the reduced number of edges and nodes
 '''
 Here we will need to take the threshold and degree as hyperparameters, change them and compute the result accordingly
 maybe make the dictionary like dict['degree'] = val when the val is in a loop. We shall put all the options differently
 '''
-# fscores, mat, target, data, edge,whole, label, corr, mews, threshold, node_wts, tri, degree, plotting_options
 # %%
 '''This one is generating graphs for all three feature types at once maybe we can reduce this'''
 different_graphs(fscores=fscores, mat=mat, big5=big5, whole=whole, corr=corr, mews=mews, target_col=data[mapping['Agreeableness']],
-                 **hyperparams)
+                 feature_type=feature_type, **hyperparams)
 #also compute the fscores for the training data only here, make sure here also the splitting and the training data, random state is the same
 # %%
 # now we have to read these graphs, in order to read these graphs we will have to see which all edges are present

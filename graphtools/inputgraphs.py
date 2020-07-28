@@ -13,7 +13,7 @@ Store the values in the a json dictionary
 """
 import json
 import os
-
+import pandas as pd
 import matplotlib
 import matplotlib.cm as cm
 import matplotlib.pyplot as plt
@@ -22,10 +22,7 @@ import numpy as np
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import scale
-from sklearn.preprocessing import StandardScaler
 from classification import data_splitting
-from paramopt import graph_options
-
 
 # %%
 def train_with_best_params(classifier, params, X, y):
@@ -92,7 +89,6 @@ def make_and_visualize(nodes, edge_attributes, personality_trait, threshold, edg
             # print(str(node) + ' ' + str(0), file=nodes_file)
             count += 1
     g2 = g1.subgraph(connected_nodes)  # make a subgraph from the original one that only contains selected nodes
-    options = graph_options(color='red', node_size=1, line_color='white', linewidhts=0.1, width=1)
     edge_wts = []
     for m in g2.edges.data():
         # print(m)
@@ -108,7 +104,7 @@ def make_and_visualize(nodes, edge_attributes, personality_trait, threshold, edg
         color.append(mapper.to_rgba(v))
     plt.figure()
     plt.title(f'Nodes with degree >={degree}, input to the solver: {filename}\n Number of edges {len(g2.edges)}\n'
-              f'Features above percentile: {threshold}, Target: {personality_trait}, Feature:{feature}\n'
+              f'Features above percentile: {threshold}, Target: {personality_trait}, Feature:{feature_type}\n'
               f'Edge type:{edge}, Node weighting:{node_wts}')
     nx.draw(g2, **plotting_options, edge_color=color)
     plt.show()
@@ -148,7 +144,7 @@ def different_graphs(fscores, mat, target, target_col, edge, big5, feature_type,
         print('feature importance:', feature_imp.shape, 'len mat', len(mat[0]))
 
         if edge == 'fscores':
-            arr = fscores[i, :, :]
+            arr = fscores[i, :, :] # take this only from the training data
         if edge == 'pearson':
             arr = corr[i, :, :]
         if edge == 'feature_importance':
@@ -173,17 +169,21 @@ def different_graphs(fscores, mat, target, target_col, edge, big5, feature_type,
             arr[xs[p], ys[p]] = 0
         # we want to standardize the whole array together
         # the values are x.y and the values in itself
-        arr = (arr - arr.mean())/arr.std() # standardization of the array itself
+         # standardization of the array itself, need to preserve the non zero parts only
+        arr = pd.DataFrame(arr)
+        stdvals = arr[arr!=0]
+        stdvals = (stdvals - stdvals.mean())/stdvals.std()
+        arr[arr!=0] = stdvals
         # try for for different types, one feature at a time maybe and then construct graph?
         nodes = set()
         edge_attributes = []
         for j in range(len(mat[0])):
             if feature_type == 'mean_FA':
-                value = arr[0, j]
+                value = arr.iloc[0, j]
             if feature_type == 'mean_strl':
-                value = arr[1, j]
+                value = arr.iloc[1, j]
             if feature_type == 'num_str':
-                value = arr[2, j]
+                value = arr.iloc[2, j]
             if abs(value) > thresh:
                 edge_attributes.append((mat[0][j], mat[1][j], value))
                 nodes.add(mat[0][j])  # add only the nodes which have corresponding edges
@@ -201,7 +201,7 @@ def different_graphs(fscores, mat, target, target_col, edge, big5, feature_type,
             f' java -Xss4M -Djava.library.path=/opt/ibm/ILOG/CPLEX_Studio1210/cplex/bin/x86-64_linux/ '
             f'-cp /opt/ibm/ILOG/CPLEX_Studio1210/cplex/lib/cplex.jar:target/gmwcs-solver.jar '
             f'ru.ifmo.ctddev.gmwcs.Main -e outputs/edges/{filename} '
-            f'-n outputs/nodes/{filename} > outputs/solver/{filename}')
+            f'-n outputs/nodes/{filename} > outputs/solver/{filename}') #training data into the solver
         print(cmd)
         os.system(cmd)
         os.chdir("/home/skapoor/Thesis/graphtools")

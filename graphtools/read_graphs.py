@@ -109,7 +109,7 @@ def train_from_reduced_graph(metrics, target, edge, node_wts, mat, mews, feature
                                          refit='balanced_accuracy',
                                          cv=5)  # maybe we can train with the best params here
                 # scores = cross_validate(clf, X, Y, cv=5, scoring=metrics)
-                search = rcv.fit(X, y)
+                search = rcv.fit(X, y) #split to train and test data
                 scores = search.cv_results_
                 for metric in metrics:
                     print(f'mean_test_{metric}:', round(np.mean(scores[f'mean_test_{metric}']), 3),
