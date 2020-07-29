@@ -22,16 +22,15 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96a293b3-8c56-42ff-a127-58952144c9ad" name="Default Changelist" comment="tentative results with inner cv">
-      <change afterPath="$PROJECT_DIR$/subgraphclass.py" afterDir="false" />
+    <list default="true" id="96a293b3-8c56-42ff-a127-58952144c9ad" name="Default Changelist" comment="nested cross validation for baseline almost needed with some errors">
       <change beforePath="$PROJECT_DIR$/../gmwcs-solver" beforeDir="false" afterPath="$PROJECT_DIR$/../gmwcs-solver" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classification.py" beforeDir="false" afterPath="$PROJECT_DIR$/classification.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inputgraphs.py" beforeDir="false" afterPath="$PROJECT_DIR$/inputgraphs.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/metrics.py" beforeDir="false" afterPath="$PROJECT_DIR$/metrics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/outputs/csvs/Agreeableness_SVC_results_cv.csv" beforeDir="false" afterPath="$PROJECT_DIR$/outputs/csvs/Agreeableness_SVC_results_cv.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/outputs/csvs/Agreeableness_SVC_results_cv_bestparams.csv" beforeDir="false" afterPath="$PROJECT_DIR$/outputs/csvs/Agreeableness_SVC_results_cv_bestparams.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/outputs/dicts/Agreeableness_SVC_results_cv.json" beforeDir="false" afterPath="$PROJECT_DIR$/outputs/dicts/Agreeableness_SVC_results_cv.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paramopt.py" beforeDir="false" afterPath="$PROJECT_DIR$/paramopt.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/pipeline.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processing.py" beforeDir="false" afterPath="$PROJECT_DIR$/processing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/read_graphs.py" beforeDir="false" afterPath="$PROJECT_DIR$/read_graphs.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,6 +138,9 @@
       <module name="graphtools" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="$USER_HOME$/anaconda3/bin/python" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -177,6 +179,9 @@
       <module name="graphtools" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="$USER_HOME$/anaconda3/bin/python" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -196,6 +201,9 @@
       <module name="graphtools" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="$USER_HOME$/anaconda3/bin/python" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -283,14 +291,8 @@
       <workItem from="1595424110864" duration="23871000" />
       <workItem from="1595579610255" duration="5527000" />
       <workItem from="1595681284424" duration="7899000" />
-      <workItem from="1595842883867" duration="29945000" />
-    </task>
-    <task id="LOCAL-00042" summary="add ReadME.md">
-      <created>1592210684704</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1592210684704</updated>
+      <workItem from="1595842883867" duration="33578000" />
+      <workItem from="1596033976107" duration="2372000" />
     </task>
     <task id="LOCAL-00043" summary="syntax format">
       <created>1592210724820</created>
@@ -628,7 +630,14 @@
       <option name="project" value="LOCAL" />
       <updated>1595864539297</updated>
     </task>
-    <option name="localTasksCounter" value="91" />
+    <task id="LOCAL-00091" summary="nested cross validation for baseline almost needed with some errors">
+      <created>1595954709195</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1595954709195</updated>
+    </task>
+    <option name="localTasksCounter" value="92" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -650,7 +659,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/gmwcs-solver" />
     </ignored-roots>
-    <MESSAGE value="working with academic version IPLEX, able to solve subgraph problem" />
     <MESSAGE value="pipeline working" />
     <MESSAGE value="subgraph based classification" />
     <MESSAGE value="remove features for subgraph extraction, close to 0 values don't make an edge" />
@@ -675,7 +683,8 @@
     <MESSAGE value="extra file for modification" />
     <MESSAGE value="pipeline- according to one label, need to focus on model training" />
     <MESSAGE value="tentative results with inner cv" />
-    <option name="LAST_COMMIT_MESSAGE" value="tentative results with inner cv" />
+    <MESSAGE value="nested cross validation for baseline almost needed with some errors" />
+    <option name="LAST_COMMIT_MESSAGE" value="nested cross validation for baseline almost needed with some errors" />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="181" width="800" height="683" key="#Deployment" timestamp="1595687658480">
@@ -724,45 +733,45 @@
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
     <state x="1100" y="610" key="Github.CreateGistDialog/0.0.2560.1413@0.0.2560.1413" timestamp="1594114237336" />
-    <state width="1874" height="247" key="GridCell.Tab.0.bottom" timestamp="1595703676055">
-      <screen x="0" y="27" width="1920" height="985" />
+    <state width="1257" height="596" key="GridCell.Tab.0.bottom" timestamp="1596034821683">
+      <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state width="2514" height="596" key="GridCell.Tab.0.bottom/0.0.2560.1413@0.0.2560.1413" timestamp="1595426115978" />
+    <state width="1257" height="596" key="GridCell.Tab.0.bottom/0.0.2560.1413@0.0.2560.1413" timestamp="1596034821683" />
     <state width="1874" height="247" key="GridCell.Tab.0.bottom/0.27.1920.985@0.27.1920.985" timestamp="1595703676055" />
-    <state width="1874" height="247" key="GridCell.Tab.0.center" timestamp="1595703676054">
-      <screen x="0" y="27" width="1920" height="985" />
+    <state width="1257" height="596" key="GridCell.Tab.0.center" timestamp="1596034821683">
+      <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state width="2514" height="596" key="GridCell.Tab.0.center/0.0.2560.1413@0.0.2560.1413" timestamp="1595426115977" />
+    <state width="1257" height="596" key="GridCell.Tab.0.center/0.0.2560.1413@0.0.2560.1413" timestamp="1596034821683" />
     <state width="1874" height="247" key="GridCell.Tab.0.center/0.27.1920.985@0.27.1920.985" timestamp="1595703676054" />
-    <state width="1874" height="247" key="GridCell.Tab.0.left" timestamp="1595703676054">
-      <screen x="0" y="27" width="1920" height="985" />
+    <state width="1257" height="596" key="GridCell.Tab.0.left" timestamp="1596034821682">
+      <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state width="2514" height="596" key="GridCell.Tab.0.left/0.0.2560.1413@0.0.2560.1413" timestamp="1595426115977" />
+    <state width="1257" height="596" key="GridCell.Tab.0.left/0.0.2560.1413@0.0.2560.1413" timestamp="1596034821682" />
     <state width="1874" height="247" key="GridCell.Tab.0.left/0.27.1920.985@0.27.1920.985" timestamp="1595703676054" />
-    <state width="1874" height="247" key="GridCell.Tab.0.right" timestamp="1595703676055">
-      <screen x="0" y="27" width="1920" height="985" />
+    <state width="1257" height="596" key="GridCell.Tab.0.right" timestamp="1596034821683">
+      <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state width="2514" height="596" key="GridCell.Tab.0.right/0.0.2560.1413@0.0.2560.1413" timestamp="1595426115978" />
+    <state width="1257" height="596" key="GridCell.Tab.0.right/0.0.2560.1413@0.0.2560.1413" timestamp="1596034821683" />
     <state width="1874" height="247" key="GridCell.Tab.0.right/0.27.1920.985@0.27.1920.985" timestamp="1595703676055" />
-    <state width="1874" height="247" key="GridCell.Tab.1.bottom" timestamp="1595703676056">
-      <screen x="0" y="27" width="1920" height="985" />
+    <state width="1257" height="596" key="GridCell.Tab.1.bottom" timestamp="1596034821685">
+      <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state width="2514" height="596" key="GridCell.Tab.1.bottom/0.0.2560.1413@0.0.2560.1413" timestamp="1595426115979" />
+    <state width="1257" height="596" key="GridCell.Tab.1.bottom/0.0.2560.1413@0.0.2560.1413" timestamp="1596034821685" />
     <state width="1874" height="247" key="GridCell.Tab.1.bottom/0.27.1920.985@0.27.1920.985" timestamp="1595703676056" />
-    <state width="1874" height="247" key="GridCell.Tab.1.center" timestamp="1595703676056">
-      <screen x="0" y="27" width="1920" height="985" />
+    <state width="1257" height="596" key="GridCell.Tab.1.center" timestamp="1596034821684">
+      <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state width="2514" height="596" key="GridCell.Tab.1.center/0.0.2560.1413@0.0.2560.1413" timestamp="1595426115979" />
+    <state width="1257" height="596" key="GridCell.Tab.1.center/0.0.2560.1413@0.0.2560.1413" timestamp="1596034821684" />
     <state width="1874" height="247" key="GridCell.Tab.1.center/0.27.1920.985@0.27.1920.985" timestamp="1595703676056" />
-    <state width="1874" height="247" key="GridCell.Tab.1.left" timestamp="1595703676055">
-      <screen x="0" y="27" width="1920" height="985" />
+    <state width="1257" height="596" key="GridCell.Tab.1.left" timestamp="1596034821684">
+      <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state width="2514" height="596" key="GridCell.Tab.1.left/0.0.2560.1413@0.0.2560.1413" timestamp="1595426115978" />
+    <state width="1257" height="596" key="GridCell.Tab.1.left/0.0.2560.1413@0.0.2560.1413" timestamp="1596034821684" />
     <state width="1874" height="247" key="GridCell.Tab.1.left/0.27.1920.985@0.27.1920.985" timestamp="1595703676055" />
-    <state width="1874" height="247" key="GridCell.Tab.1.right" timestamp="1595703676056">
-      <screen x="0" y="27" width="1920" height="985" />
+    <state width="1257" height="596" key="GridCell.Tab.1.right" timestamp="1596034821684">
+      <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state width="2514" height="596" key="GridCell.Tab.1.right/0.0.2560.1413@0.0.2560.1413" timestamp="1595426115979" />
+    <state width="1257" height="596" key="GridCell.Tab.1.right/0.0.2560.1413@0.0.2560.1413" timestamp="1596034821684" />
     <state width="1874" height="247" key="GridCell.Tab.1.right/0.27.1920.985@0.27.1920.985" timestamp="1595703676056" />
     <state x="247" y="125" width="2050" height="1156" key="MergeDialog" timestamp="1594732638236">
       <screen x="0" y="0" width="2560" height="1413" />
@@ -780,19 +789,19 @@
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
     <state x="784" y="341" key="SettingsEditor/0.0.2560.1413@0.0.2560.1413" timestamp="1594817271566" />
-    <state x="875" y="442" width="644" height="366" key="Vcs.Push.Dialog.v2" timestamp="1595864541120">
+    <state x="875" y="442" width="644" height="366" key="Vcs.Push.Dialog.v2" timestamp="1595954710965">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state x="875" y="442" width="802" height="524" key="Vcs.Push.Dialog.v2/0.0.2560.1413@0.0.2560.1413" timestamp="1595864541120" />
+    <state x="875" y="442" width="802" height="524" key="Vcs.Push.Dialog.v2/0.0.2560.1413@0.0.2560.1413" timestamp="1595954710965" />
     <state x="656" y="335" width="644" height="366" key="Vcs.Push.Dialog.v2/0.27.1920.985@0.27.1920.985" timestamp="1595583060269" />
     <state width="1281" height="706" key="XDebugger.FullValuePopup" timestamp="1591115772905">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
     <state width="1281" height="706" key="XDebugger.FullValuePopup/0.0.2560.1413@0.0.2560.1413" timestamp="1591115772905" />
-    <state x="1280" y="420" width="1029" height="580" key="com.intellij.execution.console.ConsoleHistoryController$MyBrowseAction$1" timestamp="1595425598051">
+    <state x="1280" y="420" width="1029" height="580" key="com.intellij.execution.console.ConsoleHistoryController$MyBrowseAction$1" timestamp="1596034688880">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state x="1280" y="420" width="1029" height="580" key="com.intellij.execution.console.ConsoleHistoryController$MyBrowseAction$1/0.0.2560.1413@0.0.2560.1413" timestamp="1595425598051" />
+    <state x="1280" y="420" width="1029" height="580" key="com.intellij.execution.console.ConsoleHistoryController$MyBrowseAction$1/0.0.2560.1413@0.0.2560.1413" timestamp="1596034688880" />
     <state x="890" y="320" width="772" height="769" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1593164203502">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
@@ -801,10 +810,10 @@
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
     <state x="1085" y="622" width="381" height="164" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2560.1413@0.0.2560.1413" timestamp="1595845022397" />
-    <state x="624" y="326" width="666" height="447" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1595701625526">
-      <screen x="0" y="27" width="1920" height="985" />
+    <state x="832" y="429" width="666" height="447" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1596034698889">
+      <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state x="832" y="429" width="887" height="551" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.2560.1413@0.0.2560.1413" timestamp="1595425750888" />
+    <state x="832" y="429" width="887" height="551" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.2560.1413@0.0.2560.1413" timestamp="1596034698889" />
     <state x="624" y="326" width="666" height="447" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.27.1920.985@0.27.1920.985" timestamp="1595701625526" />
     <state x="997" y="496" width="557" height="416" key="git4idea.merge.GitPullDialog" timestamp="1594732649697">
       <screen x="0" y="0" width="2560" height="1413" />
@@ -846,7 +855,7 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/graphtools$classifier_3labels_flatten.coverage" NAME="classifier_3labels_flatten Coverage Results" MODIFIED="1591269826429" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/graphtools$plot_pipeline_example.coverage" NAME="plot_pipeline_example Coverage Results" MODIFIED="1592387461543" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/graphtools$pipeline.coverage" NAME="pipeline Coverage Results" MODIFIED="1595687695063" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/graphtools$pipeline.coverage" NAME="pipeline Coverage Results" MODIFIED="1596034670345" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/graphtools$readfiles.coverage" NAME="readfiles Coverage Results" MODIFIED="1590758111547" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

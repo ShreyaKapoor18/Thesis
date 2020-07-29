@@ -21,8 +21,8 @@ mews = '/home/skapoor/Thesis/gmwcs-solver'
 # before
 metrics = ['balanced_accuracy', 'accuracy', 'f1_weighted', 'roc_auc_ovr_weighted']
 #note. right now the matrix whole is not scaled, for computing the fscores and correlation coeff it has to be so
-#fscores = hist_fscore(data, whole, labels, big5, edge_names, tri)
-# corr = hist_correlation(data, whole, labels, edge_names, big5, tri)
+fscores = hist_fscore(data, whole, labels, big5, edge_names, tri)
+corr = hist_correlation(data, whole, labels, edge_names, big5, tri)
 #%%
 feature_type = 'mean_FA'
 if feature_type == 'mean_FA':

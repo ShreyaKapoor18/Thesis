@@ -60,12 +60,12 @@ def dict_classifier(classifier, whole, metrics, target_col, edge, percent):
     for choice in ['throw median', 'qcut', 'median']:
         metric_score[choice] = {}
         best_params[choice] = {}
-        clf, distributions = get_distributions(classifier)
+        clf, distributions = get_distributions(classifier, True, None)
         X,y = data_splitting(choice, range(whole.shape[1]), whole, target_col)
         print(f'Executing {clf}')
         for per in percent:
             print('percentage', per)
-            outer_cv = StratifiedKFold(n_splits=10)
+            outer_cv = StratifiedKFold(n_splits=5)
             inner_cv = StratifiedKFold(n_splits=5)
 
             metric_score[choice][per] = {}
@@ -77,7 +77,7 @@ def dict_classifier(classifier, whole, metrics, target_col, edge, percent):
                 X_train_c, X_test = X.iloc[train_index,:], X.iloc[test_index,:]
                 y_train_c, y_test = y.iloc[train_index], y.iloc[test_index]
                 print('X_train_c', X_train_c.shape, 'y_train_c', y_train_c.shape)
-                print('X_test', X_test.shape, 'y_train_c', y_test.shape)
+                print('X_test', X_test.shape, 'y_test', y_test.shape)
                 inner_cv_scores = []
                 inner_cv_params = []
                 for train_idx, val_idx in inner_cv.split(X_train_c, y_train_c):
@@ -123,9 +123,8 @@ def dict_classifier(classifier, whole, metrics, target_col, edge, percent):
                     print('split index',split_index, 'need to check if this is correct or not')
                     # Use the list to create PredefinedSplit
                     pds = PredefinedSplit(test_fold=split_index)
-
                     rcv = RandomizedSearchCV(clf, distributions, random_state=55, scoring=metrics,
-                                             refit='balanced_accuracy', cv=pds) #this is already producing 5 folds so we need to do something different?
+                                             refit='balanced_accuracy', cv=pds.split(X_train_comb, y_train_comb)) #this is already producing 5 folds so we need to do something different?
                     # both the training and the validation set shall be passed since we have passed the indices of the validation set
 
                     assert X_train.shape[1] == X_val.shape[1]
@@ -138,9 +137,10 @@ def dict_classifier(classifier, whole, metrics, target_col, edge, percent):
                 bestp_index = np.argmax(inner_cv_scores)
                 bestincv_params = inner_cv_params[bestp_index]
                 print('best internal cv params', bestincv_params)
-                scalar = StandardScaler()
-                X_train_c = pd.DataFrame(scalar.fit_transform(X_train_c))
-                X_test = pd.DataFrame(scalar.transform(X_test))
+
+                scalar2 = StandardScaler()
+                X_train_c = pd.DataFrame(scalar2.fit_transform(X_train_c), index = X_train_c.index)
+                X_test = pd.DataFrame(scalar2.transform(X_test), index = X_test.index)
                 stacked = pd.concat([X_train_c, y_train_c], axis=1)
                 cols = []
                 cols.extend(range(X_train_c.shape[1]))  # the values zero to the number of columns
@@ -157,11 +157,11 @@ def dict_classifier(classifier, whole, metrics, target_col, edge, percent):
                 val = np.nanpercentile(arr_outer, 100 - per)
                 index = np.where(arr_outer >= val)
 
-                X_train = X_train_c.iloc[:, index[0]]
+                X_train_c = X_train_c.iloc[:, index[0]]
                 X_test = X_test.iloc[:, index[0]]
-                if classifier == 'SVC':
 
-                    clf.fit(X_train, y_train)
+                clf = get_distributions(classifier, False, bestincv_params)
+                clf.fit(X_train_c, y_train_c)
                 y_pred = clf.predict(X_test)
                 y_score = clf.predict_proba(X_test)
 
@@ -170,8 +170,9 @@ def dict_classifier(classifier, whole, metrics, target_col, edge, percent):
                 else:
                     outer_cv_scores.append(compute_scores(y_test, y_pred, y_score, choice, metrics))
                 outer_cv_params.append(bestincv_params)
-
-            best_params[choice][per] = outer_cv_params[np.argmax(outer_cv_scores['balanced_accuracy'])]#need to see if this is in cv
+            print('outer cv scores', outer_cv_scores)
+            print('index', [score['balanced_accuracy'] for score in outer_cv_scores])
+            best_params[choice][per] = outer_cv_params[np.argmax([score['balanced_accuracy'] for score in outer_cv_scores])]#need to see if this is in cv
 
             for metric in metrics:
                 # validation set
