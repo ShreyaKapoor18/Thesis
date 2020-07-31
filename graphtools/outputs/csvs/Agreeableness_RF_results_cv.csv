@@ -1,6 +1,6 @@
-,throw median,throw median,throw median,qcut,qcut,qcut,median,median,median
-,balanced_accuracy,accuracy,f1_weighted,balanced_accuracy,accuracy,f1_weighted,balanced_accuracy,accuracy,f1_weighted
-5,"{'validation': 0.463, 'oob': 0.6022727272727273}","{'validation': 0.549, 'oob': 0.72}","{'validation': 0.506, 'oob': 0.6952905452035887}","{'validation': 0.31, 'oob': 0.31111111111111106}","{'validation': 0.318, 'oob': 0.33333333333333337}","{'validation': 0.298, 'oob': 0.3305062127415069}","{'validation': 0.443, 'oob': 0.53}","{'validation': 0.433, 'oob': 0.4666666666666666}","{'validation': 0.421, 'oob': 0.4638095238095238}"
-10,"{'validation': 0.436, 'oob': 0.5613636363636364}","{'validation': 0.532, 'oob': 0.7066666666666667}","{'validation': 0.479, 'oob': 0.6686031746031748}","{'validation': 0.33, 'oob': 0.375}","{'validation': 0.335, 'oob': 0.37333333333333335}","{'validation': 0.311, 'oob': 0.3840407000407}","{'validation': 0.452, 'oob': 0.54}","{'validation': 0.442, 'oob': 0.48}","{'validation': 0.43, 'oob': 0.4768196509372979}"
-50,"{'validation': 0.467, 'oob': 0.5136363636363637}","{'validation': 0.573, 'oob': 0.7066666666666667}","{'validation': 0.498, 'oob': 0.6424}","{'validation': 0.336, 'oob': 0.3083333333333333}","{'validation': 0.341, 'oob': 0.29333333333333333}","{'validation': 0.316, 'oob': 0.29906471306471305}","{'validation': 0.486, 'oob': 0.55}","{'validation': 0.468, 'oob': 0.48}","{'validation': 0.455, 'oob': 0.4742857142857143}"
-100,"{'validation': 0.464, 'oob': 0.4727272727272728}","{'validation': 0.582, 'oob': 0.6933333333333332}","{'validation': 0.491, 'oob': 0.6002051282051282}","{'validation': 0.331, 'oob': 0.3555555555555555}","{'validation': 0.334, 'oob': 0.3466666666666667}","{'validation': 0.305, 'oob': 0.35566300366300363}","{'validation': 0.505, 'oob': 0.5000000000000001}","{'validation': 0.484, 'oob': 0.44000000000000006}","{'validation': 0.471, 'oob': 0.43571428571428567}"
+,throw median,throw median,throw median,throw median,qcut,qcut,qcut,qcut,median,median,median,median
+,balanced_accuracy,accuracy,f1_weighted,roc_auc_ovr_weighted,balanced_accuracy,accuracy,f1_weighted,roc_auc_ovr_weighted,balanced_accuracy,accuracy,f1_weighted,roc_auc_ovr_weighted
+5,0.55,0.625,0.553,0.504,0.455,0.464,0.464,0.659,0.607,0.607,0.594,0.561
+10,0.55,0.625,0.517,0.557,0.376,0.393,0.383,0.581,0.607,0.607,0.594,0.602
+50,0.55,0.625,0.517,0.5,0.381,0.393,0.35,0.55,0.619,0.621,0.62,0.615
+100,0.55,0.625,0.523,0.543,0.4,0.429,0.398,0.512,0.552,0.552,0.552,0.541

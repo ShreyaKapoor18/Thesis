@@ -31,25 +31,25 @@
                 "balanced_accuracy": 0.502,
                 "accuracy": 0.517,
                 "f1_weighted": 0.505,
-                "roc_auc_ovr_weighted": 0.667
+                "roc_auc_ovr_weighted": 0.66
             },
             "10": {
                 "balanced_accuracy": 0.562,
                 "accuracy": 0.571,
                 "f1_weighted": 0.558,
-                "roc_auc_ovr_weighted": 0.616
+                "roc_auc_ovr_weighted": 0.614
             },
             "50": {
-                "balanced_accuracy": 0.413,
+                "balanced_accuracy": 0.407,
                 "accuracy": 0.429,
-                "f1_weighted": 0.424,
-                "roc_auc_ovr_weighted": 0.554
+                "f1_weighted": 0.416,
+                "roc_auc_ovr_weighted": 0.544
             },
             "100": {
-                "balanced_accuracy": 0.37,
-                "accuracy": 0.393,
-                "f1_weighted": 0.257,
-                "roc_auc_ovr_weighted": 0.571
+                "balanced_accuracy": 0.422,
+                "accuracy": 0.429,
+                "f1_weighted": 0.414,
+                "roc_auc_ovr_weighted": 0.559
             }
         },
         "median": {
@@ -72,10 +72,10 @@
                 "roc_auc_ovr_weighted": 0.668
             },
             "100": {
-                "balanced_accuracy": 0.536,
-                "accuracy": 0.536,
-                "f1_weighted": 0.52,
-                "roc_auc_ovr_weighted": 0.622
+                "balanced_accuracy": 0.643,
+                "accuracy": 0.643,
+                "f1_weighted": 0.641,
+                "roc_auc_ovr_weighted": 0.531
             }
         }
     },
@@ -94,23 +94,23 @@
                 "kernel": "sigmoid"
             },
             "50": {
-                "C": 30.465263348460073,
+                "C": 8.511930051358032,
                 "class_weight": null,
-                "gamma": 0.0001408488205819359,
+                "gamma": 0.00018602741112914978,
                 "kernel": "sigmoid"
             },
             "100": {
-                "C": 2.7314960038856624,
+                "C": 37.35171162844947,
                 "class_weight": "balanced",
-                "gamma": 0.00015039209948365523,
-                "kernel": "poly"
+                "gamma": 0.00016860069267847497,
+                "kernel": "sigmoid"
             }
         },
         "qcut": {
             "5": {
-                "C": 37.35171162844947,
-                "class_weight": "balanced",
-                "gamma": 0.00016860069267847497,
+                "C": 30.465263348460073,
+                "class_weight": null,
+                "gamma": 0.0001408488205819359,
                 "kernel": "sigmoid"
             },
             "10": {
@@ -120,16 +120,16 @@
                 "kernel": "sigmoid"
             },
             "50": {
-                "C": 8.511930051358032,
+                "C": 47.848828710507206,
                 "class_weight": null,
-                "gamma": 0.00018602741112914978,
-                "kernel": "sigmoid"
+                "gamma": 0.001079501659756022,
+                "kernel": "linear"
             },
             "100": {
-                "C": 15.452178955314634,
+                "C": 101.16090508837898,
                 "class_weight": null,
-                "gamma": 0.00020155865068810367,
-                "kernel": "poly"
+                "gamma": 0.003776930255339378,
+                "kernel": "rbf"
             }
         },
         "median": {
@@ -152,10 +152,10 @@
                 "kernel": "sigmoid"
             },
             "100": {
-                "C": 16.77226057448047,
+                "C": 8.511930051358032,
                 "class_weight": null,
-                "gamma": 0.00030793579824823906,
-                "kernel": "linear"
+                "gamma": 0.00018602741112914978,
+                "kernel": "sigmoid"
             }
         }
     }

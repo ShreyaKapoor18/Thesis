@@ -22,14 +22,17 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96a293b3-8c56-42ff-a127-58952144c9ad" name="Default Changelist" comment="implementation 1 for nested cv with some results">
+    <list default="true" id="96a293b3-8c56-42ff-a127-58952144c9ad" name="Default Changelist" comment="overfitting with the feature inner validation loop">
       <change beforePath="$PROJECT_DIR$/../gmwcs-solver" beforeDir="false" afterPath="$PROJECT_DIR$/../gmwcs-solver" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/graphtools.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/graphtools.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classification.py" beforeDir="false" afterPath="$PROJECT_DIR$/classification.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/outputs/csvs/Agreeableness_RF_results_cv.csv" beforeDir="false" afterPath="$PROJECT_DIR$/outputs/csvs/Agreeableness_RF_results_cv.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/outputs/csvs/Agreeableness_RF_results_cv_bestparams.csv" beforeDir="false" afterPath="$PROJECT_DIR$/outputs/csvs/Agreeableness_RF_results_cv_bestparams.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/outputs/csvs/Agreeableness_SVC_results_cv.csv" beforeDir="false" afterPath="$PROJECT_DIR$/outputs/csvs/Agreeableness_SVC_results_cv.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/outputs/csvs/Agreeableness_SVC_results_cv_bestparams.csv" beforeDir="false" afterPath="$PROJECT_DIR$/outputs/csvs/Agreeableness_SVC_results_cv_bestparams.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/outputs/dicts/Agreeableness_RF_results_cv.json" beforeDir="false" afterPath="$PROJECT_DIR$/outputs/dicts/Agreeableness_RF_results_cv.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/outputs/dicts/Agreeableness_SVC_results_cv.json" beforeDir="false" afterPath="$PROJECT_DIR$/outputs/dicts/Agreeableness_SVC_results_cv.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paramopt.py" beforeDir="false" afterPath="$PROJECT_DIR$/paramopt.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -291,14 +294,7 @@
       <workItem from="1595579610255" duration="5527000" />
       <workItem from="1595681284424" duration="7899000" />
       <workItem from="1595842883867" duration="33578000" />
-      <workItem from="1596033976107" duration="8971000" />
-    </task>
-    <task id="LOCAL-00044" summary="cleanup folder">
-      <created>1592210770396</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1592210770396</updated>
+      <workItem from="1596033976107" duration="15483000" />
     </task>
     <task id="LOCAL-00045" summary="new results but need to change the visualisation">
       <created>1592299973319</created>
@@ -636,7 +632,14 @@
       <option name="project" value="LOCAL" />
       <updated>1596036423112</updated>
     </task>
-    <option name="localTasksCounter" value="93" />
+    <task id="LOCAL-00093" summary="overfitting with the feature inner validation loop">
+      <created>1596189765074</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1596189765074</updated>
+    </task>
+    <option name="localTasksCounter" value="94" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -658,7 +661,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/gmwcs-solver" />
     </ignored-roots>
-    <MESSAGE value="subgraph based classification" />
     <MESSAGE value="remove features for subgraph extraction, close to 0 values don't make an edge" />
     <MESSAGE value="Low accuracy sugraph based classification" />
     <MESSAGE value="assigning constant weight 1 instead of 0" />
@@ -683,7 +685,8 @@
     <MESSAGE value="tentative results with inner cv" />
     <MESSAGE value="nested cross validation for baseline almost needed with some errors" />
     <MESSAGE value="implementation 1 for nested cv with some results" />
-    <option name="LAST_COMMIT_MESSAGE" value="implementation 1 for nested cv with some results" />
+    <MESSAGE value="overfitting with the feature inner validation loop" />
+    <option name="LAST_COMMIT_MESSAGE" value="overfitting with the feature inner validation loop" />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="181" width="800" height="683" key="#Deployment" timestamp="1595687658480">
@@ -784,10 +787,10 @@
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
     <state x="1117" y="420" width="318" height="569" key="RollbackChangesDialog/0.0.2560.1413@0.0.2560.1413" timestamp="1590766592440" />
-    <state x="784" y="341" key="SettingsEditor" timestamp="1594817271566">
+    <state x="784" y="341" key="SettingsEditor" timestamp="1596201349318">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state x="784" y="341" key="SettingsEditor/0.0.2560.1413@0.0.2560.1413" timestamp="1594817271566" />
+    <state x="784" y="341" key="SettingsEditor/0.0.2560.1413@0.0.2560.1413" timestamp="1596201349318" />
     <state x="875" y="442" width="644" height="366" key="Vcs.Push.Dialog.v2" timestamp="1596036425363">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>

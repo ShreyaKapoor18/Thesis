@@ -126,13 +126,14 @@ def dict_classifier(classifier, whole, metrics, target_col, edge, percent):
 
             print('outer cv scores completed', outer_cv_scores)
             print('outer cv balanced acc', [score['balanced_accuracy'] for score in outer_cv_scores])
-            best_params[choice][per] = outer_cv_params[np.argmax([score['roc_auc_ovr_weighted'] for score in outer_cv_scores])]#need to see if this is in cv
+            loc = np.argmax([score['roc_auc_ovr_weighted'] for score in outer_cv_scores])
+            best_params[choice][per] = outer_cv_params[loc]#need to see if this is in cv
 
             for metric in metrics:
                 # validation set
                 metric_score[choice][per][metric] = {}
                 #but the best score into the outer cv part instead of the average
-                metric_score[choice][per][metric] = round(np.max([scores[f'{metric}']for scores in outer_cv_scores]), 3)
+                metric_score[choice][per][metric] = round(outer_cv_scores[loc][metric], 3)
                 print(f'{metric}',np.mean([score[metric] for score in outer_cv_scores]))
                 # out of bag error
     return {'Metrics': metric_score, 'Parameters': best_params}
