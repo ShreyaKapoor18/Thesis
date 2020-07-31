@@ -22,17 +22,14 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96a293b3-8c56-42ff-a127-58952144c9ad" name="Default Changelist" comment="overfitting with the feature inner validation loop">
+    <list default="true" id="96a293b3-8c56-42ff-a127-58952144c9ad" name="Default Changelist" comment="overfitting with the feature inner validation loop&#10;need to change">
       <change beforePath="$PROJECT_DIR$/../gmwcs-solver" beforeDir="false" afterPath="$PROJECT_DIR$/../gmwcs-solver" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/graphtools.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/graphtools.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classification.py" beforeDir="false" afterPath="$PROJECT_DIR$/classification.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/outputs/csvs/Agreeableness_RF_results_cv.csv" beforeDir="false" afterPath="$PROJECT_DIR$/outputs/csvs/Agreeableness_RF_results_cv.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/outputs/csvs/Agreeableness_RF_results_cv_bestparams.csv" beforeDir="false" afterPath="$PROJECT_DIR$/outputs/csvs/Agreeableness_RF_results_cv_bestparams.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/outputs/csvs/Agreeableness_SVC_results_cv.csv" beforeDir="false" afterPath="$PROJECT_DIR$/outputs/csvs/Agreeableness_SVC_results_cv.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/outputs/csvs/Agreeableness_SVC_results_cv_bestparams.csv" beforeDir="false" afterPath="$PROJECT_DIR$/outputs/csvs/Agreeableness_SVC_results_cv_bestparams.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/outputs/dicts/Agreeableness_RF_results_cv.json" beforeDir="false" afterPath="$PROJECT_DIR$/outputs/dicts/Agreeableness_RF_results_cv.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/outputs/dicts/Agreeableness_SVC_results_cv.json" beforeDir="false" afterPath="$PROJECT_DIR$/outputs/dicts/Agreeableness_SVC_results_cv.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/pipeline.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,9 +115,6 @@
       <module name="graphtools" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="$USER_HOME$/anaconda3/bin/python" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -231,10 +225,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.pipeline" />
+        <item itemvalue="Python.classification" />
         <item itemvalue="Python.processing" />
         <item itemvalue="Python.subgraphclass" />
         <item itemvalue="Python.inputgraphs" />
-        <item itemvalue="Python.classification" />
       </list>
     </recent_temporary>
   </component>
@@ -294,14 +288,8 @@
       <workItem from="1595579610255" duration="5527000" />
       <workItem from="1595681284424" duration="7899000" />
       <workItem from="1595842883867" duration="33578000" />
-      <workItem from="1596033976107" duration="15483000" />
-    </task>
-    <task id="LOCAL-00045" summary="new results but need to change the visualisation">
-      <created>1592299973319</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1592299973320</updated>
+      <workItem from="1596033976107" duration="17383000" />
+      <workItem from="1596207826166" duration="1434000" />
     </task>
     <task id="LOCAL-00046" summary="visualisation with low medium and high label division. Gradient boosting doing well in this case">
       <created>1592380634599</created>
@@ -639,7 +627,14 @@
       <option name="project" value="LOCAL" />
       <updated>1596189765074</updated>
     </task>
-    <option name="localTasksCounter" value="94" />
+    <task id="LOCAL-00094" summary="overfitting with the feature inner validation loop&#10;need to change">
+      <created>1596205926518</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1596205926518</updated>
+    </task>
+    <option name="localTasksCounter" value="95" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -661,7 +656,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/gmwcs-solver" />
     </ignored-roots>
-    <MESSAGE value="remove features for subgraph extraction, close to 0 values don't make an edge" />
     <MESSAGE value="Low accuracy sugraph based classification" />
     <MESSAGE value="assigning constant weight 1 instead of 0" />
     <MESSAGE value="use individual features; FA,meanstrl, num strl" />
@@ -686,7 +680,8 @@
     <MESSAGE value="nested cross validation for baseline almost needed with some errors" />
     <MESSAGE value="implementation 1 for nested cv with some results" />
     <MESSAGE value="overfitting with the feature inner validation loop" />
-    <option name="LAST_COMMIT_MESSAGE" value="overfitting with the feature inner validation loop" />
+    <MESSAGE value="overfitting with the feature inner validation loop&#10;need to change" />
+    <option name="LAST_COMMIT_MESSAGE" value="overfitting with the feature inner validation loop&#10;need to change" />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="181" width="800" height="683" key="#Deployment" timestamp="1595687658480">
@@ -735,45 +730,45 @@
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
     <state x="1100" y="610" key="Github.CreateGistDialog/0.0.2560.1413@0.0.2560.1413" timestamp="1594114237336" />
-    <state width="1257" height="596" key="GridCell.Tab.0.bottom" timestamp="1596034821683">
+    <state width="1257" height="596" key="GridCell.Tab.0.bottom" timestamp="1596207811745">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state width="1257" height="596" key="GridCell.Tab.0.bottom/0.0.2560.1413@0.0.2560.1413" timestamp="1596034821683" />
+    <state width="1257" height="596" key="GridCell.Tab.0.bottom/0.0.2560.1413@0.0.2560.1413" timestamp="1596207811745" />
     <state width="1874" height="247" key="GridCell.Tab.0.bottom/0.27.1920.985@0.27.1920.985" timestamp="1595703676055" />
-    <state width="1257" height="596" key="GridCell.Tab.0.center" timestamp="1596034821683">
+    <state width="1257" height="596" key="GridCell.Tab.0.center" timestamp="1596207811744">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state width="1257" height="596" key="GridCell.Tab.0.center/0.0.2560.1413@0.0.2560.1413" timestamp="1596034821683" />
+    <state width="1257" height="596" key="GridCell.Tab.0.center/0.0.2560.1413@0.0.2560.1413" timestamp="1596207811744" />
     <state width="1874" height="247" key="GridCell.Tab.0.center/0.27.1920.985@0.27.1920.985" timestamp="1595703676054" />
-    <state width="1257" height="596" key="GridCell.Tab.0.left" timestamp="1596034821682">
+    <state width="1257" height="596" key="GridCell.Tab.0.left" timestamp="1596207811744">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state width="1257" height="596" key="GridCell.Tab.0.left/0.0.2560.1413@0.0.2560.1413" timestamp="1596034821682" />
+    <state width="1257" height="596" key="GridCell.Tab.0.left/0.0.2560.1413@0.0.2560.1413" timestamp="1596207811744" />
     <state width="1874" height="247" key="GridCell.Tab.0.left/0.27.1920.985@0.27.1920.985" timestamp="1595703676054" />
-    <state width="1257" height="596" key="GridCell.Tab.0.right" timestamp="1596034821683">
+    <state width="1257" height="596" key="GridCell.Tab.0.right" timestamp="1596207811744">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state width="1257" height="596" key="GridCell.Tab.0.right/0.0.2560.1413@0.0.2560.1413" timestamp="1596034821683" />
+    <state width="1257" height="596" key="GridCell.Tab.0.right/0.0.2560.1413@0.0.2560.1413" timestamp="1596207811744" />
     <state width="1874" height="247" key="GridCell.Tab.0.right/0.27.1920.985@0.27.1920.985" timestamp="1595703676055" />
-    <state width="1257" height="596" key="GridCell.Tab.1.bottom" timestamp="1596034821685">
+    <state width="1257" height="596" key="GridCell.Tab.1.bottom" timestamp="1596207811745">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state width="1257" height="596" key="GridCell.Tab.1.bottom/0.0.2560.1413@0.0.2560.1413" timestamp="1596034821685" />
+    <state width="1257" height="596" key="GridCell.Tab.1.bottom/0.0.2560.1413@0.0.2560.1413" timestamp="1596207811745" />
     <state width="1874" height="247" key="GridCell.Tab.1.bottom/0.27.1920.985@0.27.1920.985" timestamp="1595703676056" />
-    <state width="1257" height="596" key="GridCell.Tab.1.center" timestamp="1596034821684">
+    <state width="1257" height="596" key="GridCell.Tab.1.center" timestamp="1596207811745">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state width="1257" height="596" key="GridCell.Tab.1.center/0.0.2560.1413@0.0.2560.1413" timestamp="1596034821684" />
+    <state width="1257" height="596" key="GridCell.Tab.1.center/0.0.2560.1413@0.0.2560.1413" timestamp="1596207811745" />
     <state width="1874" height="247" key="GridCell.Tab.1.center/0.27.1920.985@0.27.1920.985" timestamp="1595703676056" />
-    <state width="1257" height="596" key="GridCell.Tab.1.left" timestamp="1596034821684">
+    <state width="1257" height="596" key="GridCell.Tab.1.left" timestamp="1596207811745">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state width="1257" height="596" key="GridCell.Tab.1.left/0.0.2560.1413@0.0.2560.1413" timestamp="1596034821684" />
+    <state width="1257" height="596" key="GridCell.Tab.1.left/0.0.2560.1413@0.0.2560.1413" timestamp="1596207811745" />
     <state width="1874" height="247" key="GridCell.Tab.1.left/0.27.1920.985@0.27.1920.985" timestamp="1595703676055" />
-    <state width="1257" height="596" key="GridCell.Tab.1.right" timestamp="1596034821684">
+    <state width="1257" height="596" key="GridCell.Tab.1.right" timestamp="1596207811745">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state width="1257" height="596" key="GridCell.Tab.1.right/0.0.2560.1413@0.0.2560.1413" timestamp="1596034821684" />
+    <state width="1257" height="596" key="GridCell.Tab.1.right/0.0.2560.1413@0.0.2560.1413" timestamp="1596207811745" />
     <state width="1874" height="247" key="GridCell.Tab.1.right/0.27.1920.985@0.27.1920.985" timestamp="1595703676056" />
     <state x="247" y="125" width="2050" height="1156" key="MergeDialog" timestamp="1594732638236">
       <screen x="0" y="0" width="2560" height="1413" />
@@ -791,10 +786,10 @@
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
     <state x="784" y="341" key="SettingsEditor/0.0.2560.1413@0.0.2560.1413" timestamp="1596201349318" />
-    <state x="875" y="442" width="644" height="366" key="Vcs.Push.Dialog.v2" timestamp="1596036425363">
+    <state x="875" y="442" width="644" height="366" key="Vcs.Push.Dialog.v2" timestamp="1596205929634">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state x="875" y="442" width="802" height="524" key="Vcs.Push.Dialog.v2/0.0.2560.1413@0.0.2560.1413" timestamp="1596036425363" />
+    <state x="875" y="442" width="802" height="524" key="Vcs.Push.Dialog.v2/0.0.2560.1413@0.0.2560.1413" timestamp="1596205929634" />
     <state x="656" y="335" width="644" height="366" key="Vcs.Push.Dialog.v2/0.27.1920.985@0.27.1920.985" timestamp="1595583060269" />
     <state width="1281" height="706" key="XDebugger.FullValuePopup" timestamp="1591115772905">
       <screen x="0" y="0" width="2560" height="1413" />

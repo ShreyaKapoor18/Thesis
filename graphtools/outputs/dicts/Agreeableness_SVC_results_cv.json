@@ -2,54 +2,54 @@
     "Metrics": {
         "throw median": {
             "5": {
-                "balanced_accuracy": 0.563,
-                "accuracy": 0.565,
-                "f1_weighted": 0.57,
-                "roc_auc_ovr_weighted": 0.603
+                "balanced_accuracy": 0.5,
+                "accuracy": 0.583,
+                "f1_weighted": 0.43,
+                "roc_auc_ovr_weighted": 0.764
             },
             "10": {
-                "balanced_accuracy": 0.619,
-                "accuracy": 0.609,
-                "f1_weighted": 0.613,
-                "roc_auc_ovr_weighted": 0.675
+                "balanced_accuracy": 0.5,
+                "accuracy": 0.583,
+                "f1_weighted": 0.43,
+                "roc_auc_ovr_weighted": 0.586
             },
             "50": {
-                "balanced_accuracy": 0.579,
-                "accuracy": 0.609,
-                "f1_weighted": 0.604,
-                "roc_auc_ovr_weighted": 0.536
+                "balanced_accuracy": 0.5,
+                "accuracy": 0.583,
+                "f1_weighted": 0.43,
+                "roc_auc_ovr_weighted": 0.557
             },
             "100": {
-                "balanced_accuracy": 0.5,
-                "accuracy": 0.609,
-                "f1_weighted": 0.461,
-                "roc_auc_ovr_weighted": 0.6
+                "balanced_accuracy": 0.457,
+                "accuracy": 0.5,
+                "f1_weighted": 0.469,
+                "roc_auc_ovr_weighted": 0.679
             }
         },
         "qcut": {
             "5": {
-                "balanced_accuracy": 0.502,
-                "accuracy": 0.517,
-                "f1_weighted": 0.505,
-                "roc_auc_ovr_weighted": 0.66
+                "balanced_accuracy": 0.448,
+                "accuracy": 0.464,
+                "f1_weighted": 0.456,
+                "roc_auc_ovr_weighted": 0.664
             },
             "10": {
-                "balanced_accuracy": 0.562,
-                "accuracy": 0.571,
-                "f1_weighted": 0.558,
-                "roc_auc_ovr_weighted": 0.614
+                "balanced_accuracy": 0.532,
+                "accuracy": 0.536,
+                "f1_weighted": 0.526,
+                "roc_auc_ovr_weighted": 0.652
             },
             "50": {
-                "balanced_accuracy": 0.407,
-                "accuracy": 0.429,
-                "f1_weighted": 0.416,
-                "roc_auc_ovr_weighted": 0.544
+                "balanced_accuracy": 0.304,
+                "accuracy": 0.321,
+                "f1_weighted": 0.217,
+                "roc_auc_ovr_weighted": 0.513
             },
             "100": {
-                "balanced_accuracy": 0.422,
-                "accuracy": 0.429,
-                "f1_weighted": 0.414,
-                "roc_auc_ovr_weighted": 0.559
+                "balanced_accuracy": 0.333,
+                "accuracy": 0.393,
+                "f1_weighted": 0.222,
+                "roc_auc_ovr_weighted": 0.569
             }
         },
         "median": {
@@ -63,67 +63,67 @@
                 "balanced_accuracy": 0.643,
                 "accuracy": 0.643,
                 "f1_weighted": 0.643,
-                "roc_auc_ovr_weighted": 0.668
+                "roc_auc_ovr_weighted": 0.663
             },
             "50": {
                 "balanced_accuracy": 0.607,
                 "accuracy": 0.607,
                 "f1_weighted": 0.603,
-                "roc_auc_ovr_weighted": 0.668
+                "roc_auc_ovr_weighted": 0.658
             },
             "100": {
-                "balanced_accuracy": 0.643,
-                "accuracy": 0.643,
-                "f1_weighted": 0.641,
-                "roc_auc_ovr_weighted": 0.531
+                "balanced_accuracy": 0.393,
+                "accuracy": 0.393,
+                "f1_weighted": 0.386,
+                "roc_auc_ovr_weighted": 0.663
             }
         }
     },
     "Parameters": {
         "throw median": {
             "5": {
-                "C": 30.465263348460073,
-                "class_weight": null,
-                "gamma": 0.0001408488205819359,
-                "kernel": "sigmoid"
+                "C": 2.7314960038856624,
+                "class_weight": "balanced",
+                "gamma": 0.00015039209948365523,
+                "kernel": "poly"
             },
             "10": {
-                "C": 30.465263348460073,
-                "class_weight": null,
-                "gamma": 0.0001408488205819359,
-                "kernel": "sigmoid"
+                "C": 2.7314960038856624,
+                "class_weight": "balanced",
+                "gamma": 0.00015039209948365523,
+                "kernel": "poly"
             },
             "50": {
-                "C": 8.511930051358032,
-                "class_weight": null,
-                "gamma": 0.00018602741112914978,
+                "C": 1.4764029949637407,
+                "class_weight": "balanced",
+                "gamma": 0.0011414089620325873,
                 "kernel": "sigmoid"
             },
             "100": {
-                "C": 37.35171162844947,
+                "C": 1.4764029949637407,
                 "class_weight": "balanced",
-                "gamma": 0.00016860069267847497,
+                "gamma": 0.0011414089620325873,
                 "kernel": "sigmoid"
             }
         },
         "qcut": {
             "5": {
-                "C": 30.465263348460073,
-                "class_weight": null,
-                "gamma": 0.0001408488205819359,
-                "kernel": "sigmoid"
+                "C": 2.7314960038856624,
+                "class_weight": "balanced",
+                "gamma": 0.00015039209948365523,
+                "kernel": "poly"
             },
             "10": {
-                "C": 30.465263348460073,
-                "class_weight": null,
-                "gamma": 0.0001408488205819359,
-                "kernel": "sigmoid"
+                "C": 2.7314960038856624,
+                "class_weight": "balanced",
+                "gamma": 0.00015039209948365523,
+                "kernel": "poly"
             },
             "50": {
-                "C": 47.848828710507206,
+                "C": 101.16090508837898,
                 "class_weight": null,
-                "gamma": 0.001079501659756022,
-                "kernel": "linear"
+                "gamma": 0.003776930255339378,
+                "kernel": "rbf"
             },
             "100": {
                 "C": 101.16090508837898,
@@ -134,28 +134,28 @@
         },
         "median": {
             "5": {
-                "C": 37.35171162844947,
-                "class_weight": "balanced",
-                "gamma": 0.00016860069267847497,
+                "C": 8.511930051358032,
+                "class_weight": null,
+                "gamma": 0.00018602741112914978,
                 "kernel": "sigmoid"
             },
             "10": {
-                "C": 30.465263348460073,
+                "C": 15.452178955314634,
                 "class_weight": null,
-                "gamma": 0.0001408488205819359,
-                "kernel": "sigmoid"
+                "gamma": 0.00020155865068810367,
+                "kernel": "poly"
             },
             "50": {
-                "C": 8.511930051358032,
-                "class_weight": null,
-                "gamma": 0.00018602741112914978,
-                "kernel": "sigmoid"
+                "C": 2.7314960038856624,
+                "class_weight": "balanced",
+                "gamma": 0.00015039209948365523,
+                "kernel": "poly"
             },
             "100": {
-                "C": 8.511930051358032,
-                "class_weight": null,
-                "gamma": 0.00018602741112914978,
-                "kernel": "sigmoid"
+                "C": 105.61344217478786,
+                "class_weight": "balanced",
+                "gamma": 0.0022015746734815366,
+                "kernel": "poly"
             }
         }
     }

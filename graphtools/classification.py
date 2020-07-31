@@ -65,21 +65,75 @@ def dict_classifier(classifier, whole, metrics, target_col, edge, percent):
         for per in percent:
             print('percentage', per)
             outer_cv = StratifiedKFold(n_splits=5)
+            inner_cv = StratifiedKFold(n_splits = 5)
             metric_score[choice][per] = {}
             best_params[choice][per] = {}
             outer_cv_scores = []
             outer_cv_params = []
             print('the number of splits', outer_cv.get_n_splits())
             for train_index, test_index in outer_cv.split(X,y):
+                inner_cv_scores = []
+                inner_cv_params = []
                 print ('Outer cv loop')
                 #print('X', X.shape)
                 X_train_c, X_test = X.iloc[train_index,:], X.iloc[test_index,:]
                 y_train_c, y_test = y.iloc[train_index], y.iloc[test_index]
                 print('Xtrain, Xtest, ytrain, ytest', X_train_c.shape, X_test.shape, y_train_c.shape, y_test.shape)
-                scalar2 = StandardScaler()
-                X_train_c = pd.DataFrame(scalar2.fit_transform(X_train_c), index =X_train_c.index)
-                X_test = pd.DataFrame(scalar2.transform(X_test), index =X_test.index)
 
+                for train_idx, val_idx in inner_cv.split(X_train_c, y_train_c):
+                    X_train, X_val = X_train_c.iloc[train_idx, :], X_train_c.iloc[val_idx, :]
+                    y_train, y_val = y_train_c.iloc[train_idx], y_train_c.iloc[val_idx]
+                    print('X train, ytrain, Xval, yval', X_train.shape, y_train.shape, X_val.shape, y_val.shape)
+                    scalar2 = StandardScaler()
+                    X_train = pd.DataFrame(scalar2.fit_transform(X_train), index =X_train.index)
+                    X_val= pd.DataFrame(scalar2.transform(X_val), index =X_val.index)
+
+                    stacked = pd.concat([X_train, y_train], axis=1)
+                    cols = []
+                    cols.extend(range(X_train.shape[1]))  # the values zero to the number of columns
+                    cols.append(target_col.name)
+                    stacked.columns = cols
+                    if edge == 'fscore':
+                        arr_inner = fscore(stacked, class_col=target_col.name)[:-1]
+                        # fscore is different for the multiclass and binary case; has been incorporated above
+                    if edge == 'pearson':
+                        arr_inner = stacked.corr().iloc[:, -1]
+                    arr_inner.fillna(0, inplace=True)
+                    arr_inner = np.array(arr_inner)
+                    val = np.nanpercentile(arr_inner, 100 - per)
+                    index = np.where(arr_inner >= val)
+
+                    X_train = X_train.iloc[:, index[0]]
+                    X_val = X_val.iloc[:, index[0]]
+                    #print('X_train_c', X_train_c.shape, 'y_train_c', y_train_c.shape)
+                    #print('X_test', X_test.shape, 'y_test', y_test.shape)
+                    assert list(X_train.index) == list(y_train.index)
+                    assert list(X_val.index) == list(y_val.index)
+                    y_train_comb = y_train.append(y_val)
+                    y_train_comb.sort_index(inplace=True)
+                    X_train_comb = pd.concat([X_train, X_val], axis=0)
+                    X_train_comb.sort_index(inplace=True, axis=0)
+                    split_index = [-1 if x in X_train.index else 0 for x in X_train_comb.index]
+                    #print('split index', split_index, 'need to check if this is correct or not')
+                    # Use the list to create PredefinedSplit
+                    pds = PredefinedSplit(test_fold=split_index)
+                    assert pds.get_n_splits() == 2
+                    clf, distributions = get_distributions(classifier, True, None)
+                    rcv = RandomizedSearchCV(clf, distributions, random_state=50, scoring=metrics,
+                                             refit='roc_auc_ovr_weighted', cv=pds.split(X_train_comb, y_train_comb)) #this is already producing 5 folds so we need to do something different?
+                    # both the training and the validation set shall be passed since we have passed the indices of the validation set
+                    search = rcv.fit(X_train_comb, y_train_comb)
+                    inner_cv_scores.append(search.cv_results_)
+                    inner_cv_params.append(search.best_estimator_)
+                    print('rcv scores length', len(search.cv_results_['mean_test_roc_auc_ovr_weighted']), search.cv_results_['mean_test_roc_auc_ovr_weighted'])
+                    print('best internal cv params', search.best_params_)
+
+
+                #clf = get_distributions(classifier, False, search.best_params_)
+                #clf.fit(X_train_c, y_train_c)
+                scalar = StandardScaler()
+                X_train_c = pd.DataFrame(scalar.fit_transform(X_train_c), index=X_train_c.index)
+                X_test = pd.DataFrame(scalar.transform(X_test), index=X_test.index)
                 stacked = pd.concat([X_train_c, y_train_c], axis=1)
                 cols = []
                 cols.extend(range(X_train_c.shape[1]))  # the values zero to the number of columns
@@ -97,22 +151,9 @@ def dict_classifier(classifier, whole, metrics, target_col, edge, percent):
 
                 X_train_c = X_train_c.iloc[:, index[0]]
                 X_test = X_test.iloc[:, index[0]]
-                #print('X_train_c', X_train_c.shape, 'y_train_c', y_train_c.shape)
-                #print('X_test', X_test.shape, 'y_test', y_test.shape)
-                assert list(X_train_c.index) == list(y_train_c.index)
-                assert list(X_test.index) == list(y_test.index)
-                assert X_test.shape[1] == X_train_c.shape[1]
-                clf, distributions = get_distributions(classifier, True, None)
-                rcv = RandomizedSearchCV(clf, distributions, random_state=50, scoring=metrics,
-                                         refit='roc_auc_ovr_weighted', cv=5) #this is already producing 5 folds so we need to do something different?
-                # both the training and the validation set shall be passed since we have passed the indices of the validation set
-                search = rcv.fit(X_train_c, y_train_c)
-                print('rcv scores length', len(search.cv_results_['mean_test_roc_auc_ovr_weighted']), search.cv_results_['mean_test_roc_auc_ovr_weighted'])
-                print('best internal cv params', search.best_params_)
-
-                #clf = get_distributions(classifier, False, search.best_params_)
-                #clf.fit(X_train_c, y_train_c)
-                clf1 = search.best_estimator_
+                assert len(inner_cv_scores) == len(inner_cv_params)
+                #print('keys', inner_cv_scores[0].keys())
+                clf1 = inner_cv_params[np.argmax([np.mean(score['mean_test_roc_auc_ovr_weighted']) for score in inner_cv_scores])]
                 clf1.fit(X_train_c, y_train_c)
                 y_pred = clf1.predict(X_test)
                 y_score = clf1.predict_proba(X_test)
