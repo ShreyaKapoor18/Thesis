@@ -50,7 +50,7 @@ def get_distributions(classifier, search, train_params):
         if classifier == 'SVC':
             clf = SVC(probability=True, **train_params)
         elif classifier == 'RF':
-            clf = RandomForestClassifier(*+train_params)
+            clf = RandomForestClassifier(**train_params)
         elif classifier == 'GB':
             clf = GradientBoostingClassifier(**train_params)
             # multiclass cannot use loss exponential
