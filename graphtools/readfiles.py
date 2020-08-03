@@ -51,7 +51,7 @@ def precomputed_subjects():
     return data
 
 
-def make_profiles(filename):
+def make_profiles(filename, notes_path):
     """
     Make html files for the profiles of all label. Filename is either the one from
     my folder or the one from Regina's folder. present_subjects.csv or present_subjects_regina.csv

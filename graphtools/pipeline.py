@@ -5,7 +5,7 @@ from read_graphs import train_from_reduced_graph
 from classification import run_classification
 from paramopt import graph_options
 # %%
-'''Data computed for all 5 personality traits at once'''
+''' Data computed for all 5 personality traits at once'''
 data = computed_subjects()  # labels for the computed subjects, data.index is the subject id
 num = 84  # number of nodes in the graph
 tri = int(num * (num + 1) * 0.5)  # we want only the upper diagonal parts since everything below diagonal is 0
@@ -19,9 +19,9 @@ mapping = {k: v for k, v in zip(big5, labels)}
 mat = np.triu_indices(84)
 mews = '/home/skapoor/Thesis/gmwcs-solver'
 # before
-
+# this is what is supposed to be done
 metrics = ['balanced_accuracy', 'accuracy', 'f1_weighted', 'roc_auc_ovr_weighted']
-#note. right now the matrix whole is not scaled, for computing the fscores and correlation coeff it has to be so
+#note: right now the matrix whole is not scaled, for computing the fscores and correlation coeff it has to be so.
 fscores = hist_fscore(data, whole, labels, big5, edge_names, tri)
 corr = hist_correlation(data, whole, labels, edge_names, big5, tri)
 #%%
@@ -32,9 +32,10 @@ elif feature_type == 'mean_strl':
     whole = whole.iloc[:, tri:2*tri]
 elif feature_type == 'num_streamlines':
     whole = whole.iloc[:, 2*tri:] # input one feature at a time
+print (f'the {feature_type} feature is being used; the shape of the matrix is:', whole.shape)
 # The labels i.e. the ones from unrestricted_files # the order in which the subjects
 #%%
-run_classification(whole, metrics, 'Agreeableness', data[mapping['Agreeableness']], 'fscore')
+#run_classification(whole, metrics, 'Agreeableness', data[mapping['Agreeableness']], 'fscore')
 #the split must be the same when we are comparing all the functions
 
 #%%
