@@ -24,8 +24,10 @@ metrics = ['balanced_accuracy', 'accuracy', 'f1_weighted', 'roc_auc_ovr_weighted
 #note: right now the matrix whole is not scaled, for computing the fscores and correlation coeff it has to be so.
 fscores = hist_fscore(data, whole, labels, big5, edge_names, tri)
 corr = hist_correlation(data, whole, labels, edge_names, big5, tri)
-#%%
 feature_type = 'mean_FA'
+#%%
+'''
+
 if feature_type == 'mean_FA':
     whole = whole.iloc[:, :tri]
 elif feature_type == 'mean_strl':
@@ -33,9 +35,10 @@ elif feature_type == 'mean_strl':
 elif feature_type == 'num_streamlines':
     whole = whole.iloc[:, 2*tri:] # input one feature at a time
 print (f'the {feature_type} feature is being used; the shape of the matrix is:', whole.shape)
+'''
 # The labels i.e. the ones from unrestricted_files # the order in which the subjects
 #%%
-#run_classification(whole, metrics, 'Agreeableness', data[mapping['Agreeableness']], 'fscore')
+run_classification(whole, metrics, 'Agreeableness', data[mapping['Agreeableness']], 'fscore')
 #the split must be the same when we are comparing all the functions
 
 #%%

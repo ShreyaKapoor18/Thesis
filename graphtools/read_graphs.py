@@ -24,7 +24,7 @@ def make_and_visualize(nodes, edges, feature, target, edge, node_wts, mat, filen
         if a[1] != 'n/a':
             nodes_e.add(int(a[0]))
     feature_indices = []
-
+    # add node weights to the graph also? I didnt do this before because we were not considering the node edges before hand
     # 0 to range(len(mat)), everything in matrix whole corresponding to this edge is feature
     for existing_edge in edges[:-1]:
         if existing_edge[-1] != 'n/a':

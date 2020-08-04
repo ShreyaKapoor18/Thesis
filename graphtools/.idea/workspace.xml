@@ -22,19 +22,20 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96a293b3-8c56-42ff-a127-58952144c9ad" name="Default Changelist" comment="try changing params of the randomized search cv otherwise complete">
+    <list default="true" id="96a293b3-8c56-42ff-a127-58952144c9ad" name="Default Changelist" comment="reconstructed file">
+      <change afterPath="$PROJECT_DIR$/graphclass.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/trial.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../gmwcs-solver" beforeDir="false" afterPath="$PROJECT_DIR$/../gmwcs-solver" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classification.py" beforeDir="false" afterPath="$PROJECT_DIR$/classification.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/outputs/csvs/Agreeableness_RF_results_cv.csv" beforeDir="false" afterPath="$PROJECT_DIR$/outputs/csvs/Agreeableness_RF_results_cv.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/outputs/csvs/Agreeableness_RF_results_cv_bestparams.csv" beforeDir="false" afterPath="$PROJECT_DIR$/outputs/csvs/Agreeableness_RF_results_cv_bestparams.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inputgraphs.py" beforeDir="false" afterPath="$PROJECT_DIR$/inputgraphs.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/outputs/csvs/Agreeableness_SVC_results_cv.csv" beforeDir="false" afterPath="$PROJECT_DIR$/outputs/csvs/Agreeableness_SVC_results_cv.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/outputs/csvs/Agreeableness_SVC_results_cv_bestparams.csv" beforeDir="false" afterPath="$PROJECT_DIR$/outputs/csvs/Agreeableness_SVC_results_cv_bestparams.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/outputs/dicts/Agreeableness_RF_results_cv.json" beforeDir="false" afterPath="$PROJECT_DIR$/outputs/dicts/Agreeableness_RF_results_cv.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/outputs/dicts/Agreeableness_SVC_results_cv.json" beforeDir="false" afterPath="$PROJECT_DIR$/outputs/dicts/Agreeableness_SVC_results_cv.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paramopt.py" beforeDir="false" afterPath="$PROJECT_DIR$/paramopt.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/outputs/figures/classification_Agreeableness.png" beforeDir="false" afterPath="$PROJECT_DIR$/outputs/figures/classification_Agreeableness.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/pipeline.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/readfiles.py" beforeDir="false" afterPath="$PROJECT_DIR$/readfiles.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/read_graphs.py" beforeDir="false" afterPath="$PROJECT_DIR$/read_graphs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/subgraphclass.py" beforeDir="false" afterPath="$PROJECT_DIR$/subgraphclass.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +64,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="TERMINAL_CUSTOM_COMMANDS_GOT_IT" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
     <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
@@ -73,7 +74,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="aDefault" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="pyconsole" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -83,7 +84,6 @@
         <option name="myModuleName" value="graphtools" />
       </console-settings>
     </option>
-    <option name="myUseExistingConsole" value="true" />
   </component>
   <component name="PyCoverageOptionsProvider">
     <option name="myUseBundledCoveragePy" value="true" />
@@ -138,35 +138,10 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="inputgraphs" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="graphtools" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="$USER_HOME$/anaconda3/bin/python" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/inputgraphs.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="true" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="pipeline" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="graphtools" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -226,20 +201,39 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="trial" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="graphtools" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="$USER_HOME$/anaconda3/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/trial.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Python.pipeline" />
       <item itemvalue="Python.classification" />
-      <item itemvalue="Python.inputgraphs" />
       <item itemvalue="Python.subgraphclass" />
       <item itemvalue="Python.processing" />
+      <item itemvalue="Python.trial" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.pipeline" />
+        <item itemvalue="Python.trial" />
         <item itemvalue="Python.classification" />
         <item itemvalue="Python.processing" />
         <item itemvalue="Python.subgraphclass" />
-        <item itemvalue="Python.inputgraphs" />
       </list>
     </recent_temporary>
   </component>
@@ -301,21 +295,7 @@
       <workItem from="1595842883867" duration="33578000" />
       <workItem from="1596033976107" duration="17383000" />
       <workItem from="1596207826166" duration="3564000" />
-      <workItem from="1596454891555" duration="4011000" />
-    </task>
-    <task id="LOCAL-00047" summary="try graph kernel">
-      <created>1592408458540</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1592408458540</updated>
-    </task>
-    <task id="LOCAL-00048" summary="trying to use standardization instead of normalization">
-      <created>1592471223220</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1592471223220</updated>
+      <workItem from="1596454891555" duration="24412000" />
     </task>
     <task id="LOCAL-00049" summary="grakel graphs that give 27% accuracy">
       <created>1592471274146</created>
@@ -646,11 +626,35 @@
       <option name="project" value="LOCAL" />
       <updated>1596209764817</updated>
     </task>
-    <option name="localTasksCounter" value="96" />
+    <task id="LOCAL-00096" summary="current state">
+      <created>1596463862492</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1596463862492</updated>
+    </task>
+    <task id="LOCAL-00097" summary="reconstructed file">
+      <created>1596465020234</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1596465020234</updated>
+    </task>
+    <option name="localTasksCounter" value="98" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -668,8 +672,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/gmwcs-solver" />
     </ignored-roots>
-    <MESSAGE value="assigning constant weight 1 instead of 0" />
-    <MESSAGE value="use individual features; FA,meanstrl, num strl" />
     <MESSAGE value="rearrange folder structure" />
     <MESSAGE value="input node degree as parameter" />
     <MESSAGE value="try different coding style for navigation" />
@@ -693,7 +695,9 @@
     <MESSAGE value="overfitting with the feature inner validation loop" />
     <MESSAGE value="overfitting with the feature inner validation loop&#10;need to change" />
     <MESSAGE value="try changing params of the randomized search cv otherwise complete" />
-    <option name="LAST_COMMIT_MESSAGE" value="try changing params of the randomized search cv otherwise complete" />
+    <MESSAGE value="current state" />
+    <MESSAGE value="reconstructed file" />
+    <option name="LAST_COMMIT_MESSAGE" value="reconstructed file" />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="181" width="800" height="683" key="#Deployment" timestamp="1595687658480">
@@ -790,18 +794,18 @@
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
     <state x="919" y="470" width="714" height="469" key="MultipleFileMergeDialog/0.0.2560.1413@0.0.2560.1413" timestamp="1594732638237" />
-    <state x="1117" y="420" width="318" height="569" key="RollbackChangesDialog" timestamp="1590766592440">
+    <state x="1117" y="420" width="318" height="569" key="RollbackChangesDialog" timestamp="1596464008505">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state x="1117" y="420" width="318" height="569" key="RollbackChangesDialog/0.0.2560.1413@0.0.2560.1413" timestamp="1590766592440" />
-    <state x="784" y="341" key="SettingsEditor" timestamp="1596201349318">
+    <state x="1117" y="420" width="318" height="569" key="RollbackChangesDialog/0.0.2560.1413@0.0.2560.1413" timestamp="1596464008505" />
+    <state x="784" y="341" key="SettingsEditor" timestamp="1596549174794">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state x="784" y="341" key="SettingsEditor/0.0.2560.1413@0.0.2560.1413" timestamp="1596201349318" />
-    <state x="875" y="442" width="644" height="366" key="Vcs.Push.Dialog.v2" timestamp="1596209766974">
+    <state x="784" y="341" key="SettingsEditor/0.0.2560.1413@0.0.2560.1413" timestamp="1596549174794" />
+    <state x="875" y="442" width="644" height="366" key="Vcs.Push.Dialog.v2" timestamp="1596465022473">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state x="875" y="442" width="802" height="524" key="Vcs.Push.Dialog.v2/0.0.2560.1413@0.0.2560.1413" timestamp="1596209766974" />
+    <state x="875" y="442" width="802" height="524" key="Vcs.Push.Dialog.v2/0.0.2560.1413@0.0.2560.1413" timestamp="1596465022473" />
     <state x="656" y="335" width="644" height="366" key="Vcs.Push.Dialog.v2/0.27.1920.985@0.27.1920.985" timestamp="1595583060269" />
     <state width="1281" height="706" key="XDebugger.FullValuePopup" timestamp="1591115772905">
       <screen x="0" y="0" width="2560" height="1413" />
@@ -824,6 +828,14 @@
     </state>
     <state x="832" y="429" width="887" height="551" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.2560.1413@0.0.2560.1413" timestamp="1596034698889" />
     <state x="624" y="326" width="666" height="447" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.27.1920.985@0.27.1920.985" timestamp="1595701625526" />
+    <state x="1441" y="0" width="1119" height="1391" key="dock-window-1" timestamp="1596556122894">
+      <screen x="0" y="0" width="2560" height="1413" />
+    </state>
+    <state x="1441" y="0" width="1119" height="1391" key="dock-window-1/0.0.2560.1413@0.0.2560.1413" timestamp="1596556122894" />
+    <state x="1450" y="0" width="1110" height="1087" key="dock-window-2" timestamp="1596557200656">
+      <screen x="0" y="0" width="2560" height="1413" />
+    </state>
+    <state x="1450" y="0" width="1110" height="1087" key="dock-window-2/0.0.2560.1413@0.0.2560.1413" timestamp="1596557200656" />
     <state x="997" y="496" width="557" height="416" key="git4idea.merge.GitPullDialog" timestamp="1594732649697">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>

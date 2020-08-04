@@ -51,6 +51,8 @@ def nested_outputdirs(mews):  # make a separate directory for each label, easier
         os.mkdir(f'{mews}/outputs/solver')
     if not os.path.exists(f'{mews}/outputs/classification_results'):
         os.mkdir(f'{mews}/outputs/classification_results')
+    if not os.path.exists(f'{mews}/outputs/figs'):
+        os.mkdir(f'{mews}/outputs/figs')
 
 
 def make_and_visualize(nodes, edge_attributes, personality_trait, threshold, edge, node_wts,
