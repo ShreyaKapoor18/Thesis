@@ -2,7 +2,6 @@ import datetime
 import json
 import os
 import time
-
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -10,7 +9,6 @@ from sklearn.model_selection import PredefinedSplit
 from sklearn.model_selection import RandomizedSearchCV
 from sklearn.model_selection import StratifiedKFold
 from sklearn.preprocessing import StandardScaler
-
 from metrics import fscore, compute_scores
 from paramopt import get_distributions
 
@@ -76,6 +74,8 @@ def make_predefined_split(X_train, X_val, y_train, y_val):
     y_train_comb.sort_index(inplace=True)
     X_train_comb = pd.concat([X_train, X_val], axis=0)
     X_train_comb.sort_index(inplace=True, axis=0)
+    assert list(X_train_comb.index) == list(y_train_comb.index)
+    assert set(X_train_comb.index) == set(X_val.index).union(set(X_train.index))
     split_index = [-1 if x in X_train.index else 0 for x in X_train_comb.index]
     return X_train_comb, y_train_comb, split_index
 
@@ -97,7 +97,7 @@ def dict_classifier(classifier, whole, metrics, target_col, edge, percent):
     metric_score = {}
     best_params = {}
     # note we are running for one label at a time!  # different labels
-    for choice in ['throw median', 'qcut', 'median']:
+    for choice in ['throw median', 'qcut', 'median'][:1]:
         print(choice)
         metric_score[choice] = {}
         best_params[choice] = {}
@@ -137,15 +137,15 @@ def dict_classifier(classifier, whole, metrics, target_col, edge, percent):
                                              n_jobs=-1)  # this is already producing 5 folds so we need to do something different?
                     # both the training and the validation set shall be passed since we have passed the indices of the validation set
                     search = rcv.fit(X_train_comb, y_train_comb)
-                    inner_cv_scores.append(search.best_score_)
+                    inner_cv_scores.append(search.cv_results_)
                     inner_cv_params.append(search.best_estimator_)
                     # print('rcv scores length', len(search.cv_results_['mean_test_roc_auc_ovr_weighted']), search.cv_results_['mean_test_roc_auc_ovr_weighted'])
                     print('best internal cv params', search.best_params_)
-
+                print('internal cv scores', search.cv_results_)
                 X_train_c, X_test = feature_selection(X_train_c, X_test, y_train_c, y_test, per, target_col, edge)
                 assert len(inner_cv_scores) == len(inner_cv_params)
                 # print('keys', inner_cv_scores[0].keys())
-                clf1 = inner_cv_params[np.argmax([inner_cv_scores])]
+                clf1 = inner_cv_params[np.argmax([np.mean(result['mean_test_roc_auc_ovr_weighted']) for result in inner_cv_scores])]
                 # we have this because of the number of trials for the parameter settings
                 clf1.fit(X_train_c, y_train_c)
                 y_pred = clf1.predict(X_test)
@@ -166,9 +166,11 @@ def dict_classifier(classifier, whole, metrics, target_col, edge, percent):
             for metric in metrics:
                 # validation set
                 metric_score[choice][per][metric] = {}
-                # but the best score into the outer cv part instead of the average
-                metric_score[choice][per][metric] = round(outer_cv_scores[loc][metric], 3)
-                print(f'{metric}', np.mean([score[metric] for score in outer_cv_scores]))
+                metric_score[choice][per][metric]['best'] = round(outer_cv_scores[loc][metric], 3)
+                # take the mean of the outer validation scores for each of the different algorithms
+                metric_score[choice][per][metric]['mean'] = round(np.mean([score[metric] for score in outer_cv_scores]),3)
+                print(f'{metric} best score', round(outer_cv_scores[loc][metric], 3))
+                print(f'{metric} mean', np.mean([score[metric] for score in outer_cv_scores]))
                 # out of bag error
     return {'Metrics': metric_score, 'Parameters': best_params}
 
@@ -205,16 +207,16 @@ def visualise_performance(combined, metrics, top_per, target):
     fig, ax = plt.subplots(len(top_per), len(metrics), figsize=(20, 20))
     legends = []
     for choice in ['qcut', 'median', 'throw median']:
-        legends.extend([choice + '_validation_score', choice + '_oob_score'])
+        legends.extend([choice])
     for k in range(len(top_per)):
         for j in range(len(metrics)):
             for choice, color in zip(['qcut', 'median', 'throw median'], ['orange', 'green', 'pink']):
-                validation = []
+                test_score = []
                 for clf in combined.keys():
                     print("dictionary", combined[clf][choice])
-                    validation.append(combined[clf][choice][top_per[k]][metrics[j]])
+                    test_score.append(combined[clf][choice][top_per[k]][metrics[j]['best']])
 
-                ax[k][j].plot(list(combined.keys()), validation, marker='+', label=choice,
+                ax[k][j].plot(list(combined.keys()), test_score, marker='+', label=choice,
                               color=color, linestyle='dashed', markersize=12)
             if top_per[k] == 0:
                 ax[k][j].set_title(f'100% features')
@@ -247,7 +249,7 @@ def run_classification(whole, metrics, target, target_col, edge):
         if not os.path.exists(f'outputs/{folder}'):
             os.mkdir(f'outputs/{folder}')
 
-    for clf in ['SVC', 'RF', 'GB', 'MLP'][:2]:  # other ones are taking too long
+    for clf in ['SVC', 'RF', 'GB', 'MLP']:  # other ones are taking too long
         start = time.time()
         d1 = dict_classifier(clf, whole, metrics, target_col, edge, [5, 10, 50, 100])
         end = time.time()
