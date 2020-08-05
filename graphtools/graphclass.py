@@ -16,7 +16,7 @@ class Graph(nx.Graph): #inheriting from networkx graph package along with the fu
     def set_edge_labels(self, edge_attributes): #maybe this function is not even needed
         self.add_weighted_edges_from(edge_attributes)
 
-    def set_node_labels(self, node_labels, node_wts):
+    def set_node_labels(self, node_wts):
         node_labels = []
         for l in self.nodes.keys():
             if node_wts == 'max':
