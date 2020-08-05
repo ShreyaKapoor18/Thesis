@@ -3,222 +3,74 @@
         "throw median": {
             "5": {
                 "balanced_accuracy": {
-                    "validation": 0.936,
-                    "oob": 0.8
+                    "best": 0.521,
+                    "mean": 0.465
                 },
                 "accuracy": {
-                    "validation": 0.934,
-                    "oob": 0.733
+                    "best": 0.542,
+                    "mean": 0.487
                 },
                 "f1_weighted": {
-                    "validation": 0.934,
-                    "oob": 0.738
+                    "best": 0.538,
+                    "mean": 0.479
                 },
                 "roc_auc_ovr_weighted": {
-                    "validation": 0.985,
-                    "oob": 0.92
+                    "best": 0.65,
+                    "mean": 0.541
                 }
             },
             "10": {
                 "balanced_accuracy": {
-                    "validation": 0.935,
-                    "oob": 0.75
+                    "best": 0.507,
+                    "mean": 0.424
                 },
                 "accuracy": {
-                    "validation": 0.931,
-                    "oob": 0.667
+                    "best": 0.542,
+                    "mean": 0.437
                 },
                 "f1_weighted": {
-                    "validation": 0.932,
-                    "oob": 0.667
+                    "best": 0.523,
+                    "mean": 0.434
                 },
                 "roc_auc_ovr_weighted": {
-                    "validation": 0.979,
-                    "oob": 0.88
+                    "best": 0.6,
+                    "mean": 0.451
                 }
             },
             "50": {
                 "balanced_accuracy": {
-                    "validation": 0.751,
-                    "oob": 0.7
+                    "best": 0.557,
+                    "mean": 0.496
                 },
                 "accuracy": {
-                    "validation": 0.748,
-                    "oob": 0.667
+                    "best": 0.583,
+                    "mean": 0.513
                 },
                 "f1_weighted": {
-                    "validation": 0.746,
-                    "oob": 0.676
+                    "best": 0.574,
+                    "mean": 0.498
                 },
                 "roc_auc_ovr_weighted": {
-                    "validation": 0.843,
-                    "oob": 0.88
+                    "best": 0.636,
+                    "mean": 0.479
                 }
             },
             "100": {
                 "balanced_accuracy": {
-                    "validation": 0.462,
-                    "oob": 0.65
+                    "best": 0.607,
+                    "mean": 0.492
                 },
                 "accuracy": {
-                    "validation": 0.464,
-                    "oob": 0.733
+                    "best": 0.625,
+                    "mean": 0.512
                 },
                 "f1_weighted": {
-                    "validation": 0.455,
-                    "oob": 0.712
+                    "best": 0.622,
+                    "mean": 0.505
                 },
                 "roc_auc_ovr_weighted": {
-                    "validation": 0.431,
-                    "oob": 0.82
-                }
-            }
-        },
-        "qcut": {
-            "5": {
-                "balanced_accuracy": {
-                    "validation": 0.826,
-                    "oob": 0.236
-                },
-                "accuracy": {
-                    "validation": 0.824,
-                    "oob": 0.2
-                },
-                "f1_weighted": {
-                    "validation": 0.823,
-                    "oob": 0.2
-                },
-                "roc_auc_ovr_weighted": {
-                    "validation": 0.947,
-                    "oob": 0.469
-                }
-            },
-            "10": {
-                "balanced_accuracy": {
-                    "validation": 0.809,
-                    "oob": 0.444
-                },
-                "accuracy": {
-                    "validation": 0.809,
-                    "oob": 0.467
-                },
-                "f1_weighted": {
-                    "validation": 0.808,
-                    "oob": 0.475
-                },
-                "roc_auc_ovr_weighted": {
-                    "validation": 0.94,
-                    "oob": 0.602
-                }
-            },
-            "50": {
-                "balanced_accuracy": {
-                    "validation": 0.639,
-                    "oob": 0.444
-                },
-                "accuracy": {
-                    "validation": 0.639,
-                    "oob": 0.467
-                },
-                "f1_weighted": {
-                    "validation": 0.633,
-                    "oob": 0.48
-                },
-                "roc_auc_ovr_weighted": {
-                    "validation": 0.811,
-                    "oob": 0.653
-                }
-            },
-            "100": {
-                "balanced_accuracy": {
-                    "validation": 0.282,
-                    "oob": 0.556
-                },
-                "accuracy": {
-                    "validation": 0.282,
-                    "oob": 0.533
-                },
-                "f1_weighted": {
-                    "validation": 0.273,
-                    "oob": 0.581
-                },
-                "roc_auc_ovr_weighted": {
-                    "validation": 0.437,
-                    "oob": 0.795
-                }
-            }
-        },
-        "median": {
-            "5": {
-                "balanced_accuracy": {
-                    "validation": 0.877,
-                    "oob": 0.472
-                },
-                "accuracy": {
-                    "validation": 0.876,
-                    "oob": 0.467
-                },
-                "f1_weighted": {
-                    "validation": 0.876,
-                    "oob": 0.471
-                },
-                "roc_auc_ovr_weighted": {
-                    "validation": 0.945,
-                    "oob": 0.685
-                }
-            },
-            "10": {
-                "balanced_accuracy": {
-                    "validation": 0.859,
-                    "oob": 0.611
-                },
-                "accuracy": {
-                    "validation": 0.858,
-                    "oob": 0.533
-                },
-                "f1_weighted": {
-                    "validation": 0.856,
-                    "oob": 0.471
-                },
-                "roc_auc_ovr_weighted": {
-                    "validation": 0.943,
-                    "oob": 0.722
-                }
-            },
-            "50": {
-                "balanced_accuracy": {
-                    "validation": 0.753,
-                    "oob": 0.722
-                },
-                "accuracy": {
-                    "validation": 0.753,
-                    "oob": 0.733
-                },
-                "f1_weighted": {
-                    "validation": 0.749,
-                    "oob": 0.733
-                },
-                "roc_auc_ovr_weighted": {
-                    "validation": 0.833,
-                    "oob": 0.722
-                }
-            },
-            "100": {
-                "balanced_accuracy": {
-                    "validation": 0.503,
-                    "oob": 0.75
-                },
-                "accuracy": {
-                    "validation": 0.502,
-                    "oob": 0.733
-                },
-                "f1_weighted": {
-                    "validation": 0.491,
-                    "oob": 0.736
-                },
-                "roc_auc_ovr_weighted": {
-                    "validation": 0.498,
-                    "oob": 0.796
+                    "best": 0.643,
+                    "mean": 0.491
                 }
             }
         }
@@ -226,40 +78,30 @@
     "Parameters": {
         "throw median": {
             "5": {
-                "solver": "adam",
+                "solver": "sgd",
                 "learning_rate": "adaptive",
                 "hidden_layer_sizes": [
                     50,
                     100,
+                    100,
                     50
                 ],
                 "alpha": 0.001,
-                "activation": "tanh"
+                "activation": "relu"
             },
             "10": {
-                "solver": "adam",
+                "solver": "sgd",
                 "learning_rate": "adaptive",
                 "hidden_layer_sizes": [
                     50,
                     100,
+                    100,
                     50
                 ],
-                "alpha": 0.001,
+                "alpha": 0.05,
                 "activation": "tanh"
             },
             "50": {
-                "solver": "adam",
-                "learning_rate": "adaptive",
-                "hidden_layer_sizes": [
-                    50,
-                    100,
-                    100,
-                    50
-                ],
-                "alpha": 0.001,
-                "activation": "tanh"
-            },
-            "100": {
                 "solver": "sgd",
                 "learning_rate": "adaptive",
                 "hidden_layer_sizes": [
@@ -270,105 +112,17 @@
                 ],
                 "alpha": 0.05,
                 "activation": "relu"
-            }
-        },
-        "qcut": {
-            "5": {
-                "solver": "adam",
-                "learning_rate": "adaptive",
-                "hidden_layer_sizes": [
-                    50,
-                    100,
-                    50
-                ],
-                "alpha": 0.001,
-                "activation": "tanh"
-            },
-            "10": {
-                "solver": "adam",
-                "learning_rate": "adaptive",
-                "hidden_layer_sizes": [
-                    50,
-                    100,
-                    100,
-                    50
-                ],
-                "alpha": 0.001,
-                "activation": "tanh"
-            },
-            "50": {
-                "solver": "adam",
-                "learning_rate": "adaptive",
-                "hidden_layer_sizes": [
-                    50,
-                    100,
-                    100,
-                    50
-                ],
-                "alpha": 0.001,
-                "activation": "tanh"
             },
             "100": {
                 "solver": "sgd",
                 "learning_rate": "adaptive",
                 "hidden_layer_sizes": [
                     50,
-                    100,
                     100,
                     50
                 ],
                 "alpha": 0.05,
                 "activation": "relu"
-            }
-        },
-        "median": {
-            "5": {
-                "solver": "adam",
-                "learning_rate": "adaptive",
-                "hidden_layer_sizes": [
-                    50,
-                    100,
-                    100,
-                    50
-                ],
-                "alpha": 0.001,
-                "activation": "tanh"
-            },
-            "10": {
-                "solver": "adam",
-                "learning_rate": "adaptive",
-                "hidden_layer_sizes": [
-                    50,
-                    100,
-                    100,
-                    50
-                ],
-                "alpha": 0.001,
-                "activation": "tanh"
-            },
-            "50": {
-                "solver": "adam",
-                "learning_rate": "adaptive",
-                "hidden_layer_sizes": [
-                    50,
-                    100,
-                    100,
-                    50
-                ],
-                "alpha": 0.001,
-                "activation": "tanh"
-            },
-            "100": {
-                "solver": "sgd",
-                "learning_rate": "adaptive",
-                "hidden_layer_sizes": [
-                    50,
-                    100,
-                    100,
-                    50
-                ],
-                "alpha": 0.05,
-                "activation": "tanh"
             }
         }
     }

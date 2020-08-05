@@ -101,7 +101,7 @@ def train_from_reduced_graph(metrics, target, edge, node_wts, mat, mews, feature
     with open(f'{mews}/outputs/classification_results/{target}_{edge}_{node_wts}', 'w+') as results_file:
         choice = 'throw median'
         if all_feature_indices:
-            X, y = data_splitting(choice, all_feature_indices, whole, target_col)
+            X, y = data_splitting(choice, all_feature_indices, whole, target_col) #here I am training with the original features
             for classifier in ['SVC', 'RF', 'MLP']:
                 print('Choice and classifier', choice, classifier)
                 clf, distributions = get_distributions(classifier)

@@ -127,7 +127,7 @@ def make_and_visualize(nodes, edge_attributes, personality_trait, threshold, edg
 def different_graphs(fscores, mat, target, target_col, edge, big5, feature_type,
                      whole, corr, mews, threshold, node_wts, tri, degree, plotting_options):
     nested_outputdirs(mews='/home/skapoor/Thesis/gmwcs-solver')
-    with open('outputs/combined_params.json', 'r') as f:
+    with open(f'outputs/dicts/{target}_combined_params.json', 'r') as f:
 
         best_params = json.load(f)
         i = big5.index(target)

@@ -40,6 +40,10 @@ for i, model in enumerate(models_to_run):
 
     nested_CV_search.fit(X=X, y=y)
     model_param_grid = nested_CV_search.best_params
-
+    # with random forest, neural network also needs to be compared
     print(np.mean(nested_CV_search.outer_scores))
     print(nested_CV_search.best_inner_params_list)
+'''
+Output: 0.5054597792901644
+[{'max_depth': 3, 'max_features': 200, 'n_estimators': 200}, {'max_depth': 3, 'max_features': 200, 'n_estimators': 100}, {'max_depth': 3, 'max_features': 150, 'n_estimators': 100}, {'max_depth': None, 'max_features': 150, 'n_estimators': 200}, {'max_depth': 3, 'max_features': 50, 'n_estimators': 100}]
+'''

@@ -22,20 +22,25 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96a293b3-8c56-42ff-a127-58952144c9ad" name="Default Changelist" comment="reconstructed file">
-      <change afterPath="$PROJECT_DIR$/graphclass.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/trial.py" afterDir="false" />
+    <list default="true" id="96a293b3-8c56-42ff-a127-58952144c9ad" name="Default Changelist" comment="Combined range params in dictionary">
       <change beforePath="$PROJECT_DIR$/../gmwcs-solver" beforeDir="false" afterPath="$PROJECT_DIR$/../gmwcs-solver" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classification.py" beforeDir="false" afterPath="$PROJECT_DIR$/classification.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphclass.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphclass.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/inputgraphs.py" beforeDir="false" afterPath="$PROJECT_DIR$/inputgraphs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/outputs/csvs/Agreeableness_RF_results_cv.csv" beforeDir="false" afterPath="$PROJECT_DIR$/outputs/csvs/Agreeableness_RF_results_cv.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/outputs/csvs/Agreeableness_RF_results_cv_bestparams.csv" beforeDir="false" afterPath="$PROJECT_DIR$/outputs/csvs/Agreeableness_RF_results_cv_bestparams.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/outputs/csvs/Agreeableness_SVC_results_cv.csv" beforeDir="false" afterPath="$PROJECT_DIR$/outputs/csvs/Agreeableness_SVC_results_cv.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/outputs/csvs/Agreeableness_SVC_results_cv_bestparams.csv" beforeDir="false" afterPath="$PROJECT_DIR$/outputs/csvs/Agreeableness_SVC_results_cv_bestparams.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/outputs/dicts/Agreeableness_MLP_results_cv.json" beforeDir="false" afterPath="$PROJECT_DIR$/outputs/dicts/Agreeableness_MLP_results_cv.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/outputs/dicts/Agreeableness_RF_results_cv.json" beforeDir="false" afterPath="$PROJECT_DIR$/outputs/dicts/Agreeableness_RF_results_cv.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/outputs/dicts/Agreeableness_SVC_results_cv.json" beforeDir="false" afterPath="$PROJECT_DIR$/outputs/dicts/Agreeableness_SVC_results_cv.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/outputs/dicts/Agreeableness_combined_params.json" beforeDir="false" afterPath="$PROJECT_DIR$/outputs/dicts/Agreeableness_combined_params.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/outputs/figures/classification_Agreeableness.png" beforeDir="false" afterPath="$PROJECT_DIR$/outputs/figures/classification_Agreeableness.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/pipeline.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paramopt.py" beforeDir="false" afterPath="$PROJECT_DIR$/paramopt.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/read_graphs.py" beforeDir="false" afterPath="$PROJECT_DIR$/read_graphs.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/subgraphclass.py" beforeDir="false" afterPath="$PROJECT_DIR$/subgraphclass.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trial.py" beforeDir="false" afterPath="$PROJECT_DIR$/trial.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +98,7 @@
       <recent name="$PROJECT_DIR$/rough_code" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.pipeline">
+  <component name="RunManager" selected="Python.classification">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -120,9 +125,6 @@
       <module name="graphtools" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="$USER_HOME$/anaconda3/bin/python" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -229,9 +231,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.classification" />
         <item itemvalue="Python.pipeline" />
         <item itemvalue="Python.trial" />
-        <item itemvalue="Python.classification" />
         <item itemvalue="Python.processing" />
         <item itemvalue="Python.subgraphclass" />
       </list>
@@ -295,42 +297,7 @@
       <workItem from="1595842883867" duration="33578000" />
       <workItem from="1596033976107" duration="17383000" />
       <workItem from="1596207826166" duration="3564000" />
-      <workItem from="1596454891555" duration="24412000" />
-    </task>
-    <task id="LOCAL-00049" summary="grakel graphs that give 27% accuracy">
-      <created>1592471274146</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1592471274146</updated>
-    </task>
-    <task id="LOCAL-00050" summary="different label comparison methods working">
-      <created>1592486327806</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1592486327807</updated>
-    </task>
-    <task id="LOCAL-00051" summary="indexes fixed with comparison of different algorithms">
-      <created>1592552238916</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1592552238916</updated>
-    </task>
-    <task id="LOCAL-00052" summary="modularized code with indexing change test">
-      <created>1592570487455</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
-      <option name="project" value="LOCAL" />
-      <updated>1592570487456</updated>
-    </task>
-    <task id="LOCAL-00053" summary="train and test curve">
-      <created>1592570682845</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1592570682845</updated>
+      <workItem from="1596454891555" duration="92800000" />
     </task>
     <task id="LOCAL-00054" summary="test metrics not obtained by script">
       <created>1592571762262</created>
@@ -640,7 +607,42 @@
       <option name="project" value="LOCAL" />
       <updated>1596465020234</updated>
     </task>
-    <option name="localTasksCounter" value="98" />
+    <task id="LOCAL-00098" summary="OOP for subgraph class">
+      <created>1596558993023</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1596558993023</updated>
+    </task>
+    <task id="LOCAL-00099" summary="NESTED CV with inbuilt package">
+      <created>1596559019531</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1596559019531</updated>
+    </task>
+    <task id="LOCAL-00100" summary="results in process, not tracked">
+      <created>1596559079046</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1596559079046</updated>
+    </task>
+    <task id="LOCAL-00101" summary="try with complete matrix to compare with previous cross validation">
+      <created>1596559140154</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1596559140154</updated>
+    </task>
+    <task id="LOCAL-00102" summary="Combined range params in dictionary">
+      <created>1596629972937</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1596629972937</updated>
+    </task>
+    <option name="localTasksCounter" value="103" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -672,11 +674,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/gmwcs-solver" />
     </ignored-roots>
-    <MESSAGE value="rearrange folder structure" />
-    <MESSAGE value="input node degree as parameter" />
-    <MESSAGE value="try different coding style for navigation" />
-    <MESSAGE value="try to make generalized for labels" />
-    <MESSAGE value="running" />
     <MESSAGE value="fscore based selection separate for training and test data" />
     <MESSAGE value="fscore only for training, out of bag error needed to check roc curve" />
     <MESSAGE value="added out of bag error visualization" />
@@ -697,7 +694,12 @@
     <MESSAGE value="try changing params of the randomized search cv otherwise complete" />
     <MESSAGE value="current state" />
     <MESSAGE value="reconstructed file" />
-    <option name="LAST_COMMIT_MESSAGE" value="reconstructed file" />
+    <MESSAGE value="OOP for subgraph class" />
+    <MESSAGE value="NESTED CV with inbuilt package" />
+    <MESSAGE value="results in process, not tracked" />
+    <MESSAGE value="try with complete matrix to compare with previous cross validation" />
+    <MESSAGE value="Combined range params in dictionary" />
+    <option name="LAST_COMMIT_MESSAGE" value="Combined range params in dictionary" />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="181" width="800" height="683" key="#Deployment" timestamp="1595687658480">
@@ -746,45 +748,45 @@
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
     <state x="1100" y="610" key="Github.CreateGistDialog/0.0.2560.1413@0.0.2560.1413" timestamp="1594114237336" />
-    <state width="1257" height="596" key="GridCell.Tab.0.bottom" timestamp="1596207811745">
+    <state width="1953" height="827" key="GridCell.Tab.0.bottom" timestamp="1596629852260">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state width="1257" height="596" key="GridCell.Tab.0.bottom/0.0.2560.1413@0.0.2560.1413" timestamp="1596207811745" />
+    <state width="1953" height="827" key="GridCell.Tab.0.bottom/0.0.2560.1413@0.0.2560.1413" timestamp="1596629852260" />
     <state width="1874" height="247" key="GridCell.Tab.0.bottom/0.27.1920.985@0.27.1920.985" timestamp="1595703676055" />
-    <state width="1257" height="596" key="GridCell.Tab.0.center" timestamp="1596207811744">
+    <state width="1953" height="827" key="GridCell.Tab.0.center" timestamp="1596629852260">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state width="1257" height="596" key="GridCell.Tab.0.center/0.0.2560.1413@0.0.2560.1413" timestamp="1596207811744" />
+    <state width="1953" height="827" key="GridCell.Tab.0.center/0.0.2560.1413@0.0.2560.1413" timestamp="1596629852260" />
     <state width="1874" height="247" key="GridCell.Tab.0.center/0.27.1920.985@0.27.1920.985" timestamp="1595703676054" />
-    <state width="1257" height="596" key="GridCell.Tab.0.left" timestamp="1596207811744">
+    <state width="1953" height="827" key="GridCell.Tab.0.left" timestamp="1596629852260">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state width="1257" height="596" key="GridCell.Tab.0.left/0.0.2560.1413@0.0.2560.1413" timestamp="1596207811744" />
+    <state width="1953" height="827" key="GridCell.Tab.0.left/0.0.2560.1413@0.0.2560.1413" timestamp="1596629852260" />
     <state width="1874" height="247" key="GridCell.Tab.0.left/0.27.1920.985@0.27.1920.985" timestamp="1595703676054" />
-    <state width="1257" height="596" key="GridCell.Tab.0.right" timestamp="1596207811744">
+    <state width="1953" height="827" key="GridCell.Tab.0.right" timestamp="1596629852260">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state width="1257" height="596" key="GridCell.Tab.0.right/0.0.2560.1413@0.0.2560.1413" timestamp="1596207811744" />
+    <state width="1953" height="827" key="GridCell.Tab.0.right/0.0.2560.1413@0.0.2560.1413" timestamp="1596629852260" />
     <state width="1874" height="247" key="GridCell.Tab.0.right/0.27.1920.985@0.27.1920.985" timestamp="1595703676055" />
-    <state width="1257" height="596" key="GridCell.Tab.1.bottom" timestamp="1596207811745">
+    <state width="1953" height="827" key="GridCell.Tab.1.bottom" timestamp="1596629852261">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state width="1257" height="596" key="GridCell.Tab.1.bottom/0.0.2560.1413@0.0.2560.1413" timestamp="1596207811745" />
+    <state width="1953" height="827" key="GridCell.Tab.1.bottom/0.0.2560.1413@0.0.2560.1413" timestamp="1596629852261" />
     <state width="1874" height="247" key="GridCell.Tab.1.bottom/0.27.1920.985@0.27.1920.985" timestamp="1595703676056" />
-    <state width="1257" height="596" key="GridCell.Tab.1.center" timestamp="1596207811745">
+    <state width="1953" height="827" key="GridCell.Tab.1.center" timestamp="1596629852260">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state width="1257" height="596" key="GridCell.Tab.1.center/0.0.2560.1413@0.0.2560.1413" timestamp="1596207811745" />
+    <state width="1953" height="827" key="GridCell.Tab.1.center/0.0.2560.1413@0.0.2560.1413" timestamp="1596629852260" />
     <state width="1874" height="247" key="GridCell.Tab.1.center/0.27.1920.985@0.27.1920.985" timestamp="1595703676056" />
-    <state width="1257" height="596" key="GridCell.Tab.1.left" timestamp="1596207811745">
+    <state width="1953" height="827" key="GridCell.Tab.1.left" timestamp="1596629852260">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state width="1257" height="596" key="GridCell.Tab.1.left/0.0.2560.1413@0.0.2560.1413" timestamp="1596207811745" />
+    <state width="1953" height="827" key="GridCell.Tab.1.left/0.0.2560.1413@0.0.2560.1413" timestamp="1596629852260" />
     <state width="1874" height="247" key="GridCell.Tab.1.left/0.27.1920.985@0.27.1920.985" timestamp="1595703676055" />
-    <state width="1257" height="596" key="GridCell.Tab.1.right" timestamp="1596207811745">
+    <state width="1953" height="827" key="GridCell.Tab.1.right" timestamp="1596629852261">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state width="1257" height="596" key="GridCell.Tab.1.right/0.0.2560.1413@0.0.2560.1413" timestamp="1596207811745" />
+    <state width="1953" height="827" key="GridCell.Tab.1.right/0.0.2560.1413@0.0.2560.1413" timestamp="1596629852261" />
     <state width="1874" height="247" key="GridCell.Tab.1.right/0.27.1920.985@0.27.1920.985" timestamp="1595703676056" />
     <state x="247" y="125" width="2050" height="1156" key="MergeDialog" timestamp="1594732638236">
       <screen x="0" y="0" width="2560" height="1413" />
@@ -802,10 +804,10 @@
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
     <state x="784" y="341" key="SettingsEditor/0.0.2560.1413@0.0.2560.1413" timestamp="1596549174794" />
-    <state x="875" y="442" width="644" height="366" key="Vcs.Push.Dialog.v2" timestamp="1596465022473">
+    <state x="875" y="442" width="644" height="366" key="Vcs.Push.Dialog.v2" timestamp="1596629974501">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state x="875" y="442" width="802" height="524" key="Vcs.Push.Dialog.v2/0.0.2560.1413@0.0.2560.1413" timestamp="1596465022473" />
+    <state x="875" y="442" width="802" height="524" key="Vcs.Push.Dialog.v2/0.0.2560.1413@0.0.2560.1413" timestamp="1596629974501" />
     <state x="656" y="335" width="644" height="366" key="Vcs.Push.Dialog.v2/0.27.1920.985@0.27.1920.985" timestamp="1595583060269" />
     <state width="1281" height="706" key="XDebugger.FullValuePopup" timestamp="1591115772905">
       <screen x="0" y="0" width="2560" height="1413" />
@@ -836,6 +838,10 @@
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
     <state x="1450" y="0" width="1110" height="1087" key="dock-window-2/0.0.2560.1413@0.0.2560.1413" timestamp="1596557200656" />
+    <state x="1446" y="0" width="1114" height="1372" key="dock-window-3" timestamp="1596627776933">
+      <screen x="0" y="0" width="2560" height="1413" />
+    </state>
+    <state x="1446" y="0" width="1114" height="1372" key="dock-window-3/0.0.2560.1413@0.0.2560.1413" timestamp="1596627776933" />
     <state x="997" y="496" width="557" height="416" key="git4idea.merge.GitPullDialog" timestamp="1594732649697">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
@@ -876,7 +882,7 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/graphtools$classifier_3labels_flatten.coverage" NAME="classifier_3labels_flatten Coverage Results" MODIFIED="1591269826429" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/graphtools$plot_pipeline_example.coverage" NAME="plot_pipeline_example Coverage Results" MODIFIED="1592387461543" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/graphtools$pipeline.coverage" NAME="pipeline Coverage Results" MODIFIED="1596034670345" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/graphtools$pipeline.coverage" NAME="pipeline Coverage Results" MODIFIED="1596629280579" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/graphtools$readfiles.coverage" NAME="readfiles Coverage Results" MODIFIED="1590758111547" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

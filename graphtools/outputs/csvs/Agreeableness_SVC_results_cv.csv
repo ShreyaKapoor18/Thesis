@@ -1,6 +1,6 @@
-,throw median,throw median,throw median,throw median,qcut,qcut,qcut,qcut,median,median,median,median
-,balanced_accuracy,accuracy,f1_weighted,roc_auc_ovr_weighted,balanced_accuracy,accuracy,f1_weighted,roc_auc_ovr_weighted,balanced_accuracy,accuracy,f1_weighted,roc_auc_ovr_weighted
-5,0.5,0.583,0.43,0.614,0.333,0.393,0.222,0.55,0.571,0.571,0.475,0.699
-10,0.521,0.542,0.538,0.607,0.333,0.393,0.222,0.591,0.476,0.483,0.463,0.552
-50,0.5,0.583,0.43,0.65,0.463,0.5,0.464,0.616,0.714,0.714,0.701,0.673
-100,0.307,0.292,0.286,0.589,0.367,0.379,0.361,0.569,0.357,0.357,0.357,0.648
+,throw median,throw median,throw median,throw median
+,balanced_accuracy,accuracy,f1_weighted,roc_auc_ovr_weighted
+5,"{'best': 0.5, 'mean': 0.471}","{'best': 0.609, 'mean': 0.522}","{'best': 0.461, 'mean': 0.468}","{'best': 0.595, 'mean': 0.53}"
+10,"{'best': 0.521, 'mean': 0.483}","{'best': 0.542, 'mean': 0.538}","{'best': 0.538, 'mean': 0.47}","{'best': 0.607, 'mean': 0.487}"
+50,"{'best': 0.599, 'mean': 0.474}","{'best': 0.609, 'mean': 0.505}","{'best': 0.612, 'mean': 0.469}","{'best': 0.579, 'mean': 0.467}"
+100,"{'best': 0.5, 'mean': 0.496}","{'best': 0.583, 'mean': 0.563}","{'best': 0.43, 'mean': 0.441}","{'best': 0.757, 'mean': 0.56}"

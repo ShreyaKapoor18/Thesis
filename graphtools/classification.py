@@ -141,7 +141,7 @@ def dict_classifier(classifier, whole, metrics, target_col, edge, percent):
                     inner_cv_params.append(search.best_estimator_)
                     # print('rcv scores length', len(search.cv_results_['mean_test_roc_auc_ovr_weighted']), search.cv_results_['mean_test_roc_auc_ovr_weighted'])
                     print('best internal cv params', search.best_params_)
-                print('internal cv scores', search.cv_results_)
+                    #print('internal cv scores', search.cv_results_)
                 X_train_c, X_test = feature_selection(X_train_c, X_test, y_train_c, y_test, per, target_col, edge)
                 assert len(inner_cv_scores) == len(inner_cv_params)
                 # print('keys', inner_cv_scores[0].keys())
@@ -206,15 +206,16 @@ def visualise_performance(combined, metrics, top_per, target):
     # for each label we will visualise the performance of different classifiers
     fig, ax = plt.subplots(len(top_per), len(metrics), figsize=(20, 20))
     legends = []
-    for choice in ['qcut', 'median', 'throw median']:
+    for choice in combined.keys():
         legends.extend([choice])
     for k in range(len(top_per)):
         for j in range(len(metrics)):
-            for choice, color in zip(['qcut', 'median', 'throw median'], ['orange', 'green', 'pink']):
+            choice = 'throw median'
+            for color in ['orange', 'green', 'pink']:
                 test_score = []
-                for clf in combined.keys():
-                    print("dictionary", combined[clf][choice])
-                    test_score.append(combined[clf][choice][top_per[k]][metrics[j]['best']])
+                for clf in ['SVC', 'RF', 'MLP']:
+                    #print("dictionary", combined[clf][choice])
+                    test_score.append(combined[clf][choice][top_per[k]][metrics[j]]['best'])
 
                 ax[k][j].plot(list(combined.keys()), test_score, marker='+', label=choice,
                               color=color, linestyle='dashed', markersize=12)
@@ -249,13 +250,13 @@ def run_classification(whole, metrics, target, target_col, edge):
         if not os.path.exists(f'outputs/{folder}'):
             os.mkdir(f'outputs/{folder}')
 
-    for clf in ['SVC', 'RF', 'GB', 'MLP']:  # other ones are taking too long
+    for clf in ['MLP']:  # other ones are taking too long
         start = time.time()
         d1 = dict_classifier(clf, whole, metrics, target_col, edge, [5, 10, 50, 100])
         end = time.time()
         print(f'Time taken for {clf}: {datetime.timedelta(seconds=end - start)}')
         make_csv(d1, f'outputs/csvs/{target}_{clf}_results_cv.csv')
-
+    for clf in ['SVC', 'RF', 'MLP']:
         with open(f'outputs/dicts/{target}_{clf}_results_cv.json', 'w') as fp:
             json.dump(d1, fp, indent=4)
 
