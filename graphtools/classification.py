@@ -12,7 +12,6 @@ from sklearn.preprocessing import StandardScaler
 from metrics import fscore, compute_scores
 from paramopt import get_distributions
 
-
 # %%
 def data_splitting(choice, index, X, y):
     """
@@ -195,7 +194,7 @@ def make_csv(dict_score, filename):
 
 
 # %%
-def visualise_performance(combined, metrics, top_per, target):
+def visualise_performance(combined, metrics, top_per, target, choices):
     """
 
     @param combined: the dictionary that contains the scores for all possibilities
@@ -206,12 +205,12 @@ def visualise_performance(combined, metrics, top_per, target):
     # for each label we will visualise the performance of different classifiers
     fig, ax = plt.subplots(len(top_per), len(metrics), figsize=(20, 20))
     legends = []
-    for choice in combined.keys():
+    for choice in choices:
         legends.extend([choice])
     for k in range(len(top_per)):
         for j in range(len(metrics)):
-            choice = 'throw median'
-            for color in ['orange', 'green', 'pink']:
+
+            for color, choice in zip(['orange', 'green', 'pink'][:len(choices)], choices):
                 test_score = []
                 for clf in ['SVC', 'RF', 'MLP']:
                     #print("dictionary", combined[clf][choice])
@@ -250,13 +249,12 @@ def run_classification(whole, metrics, target, target_col, edge):
         if not os.path.exists(f'outputs/{folder}'):
             os.mkdir(f'outputs/{folder}')
 
-    for clf in ['MLP']:  # other ones are taking too long
+    for clf in ['SVC', 'RF', 'MLP']:  # other ones are taking too long
         start = time.time()
         d1 = dict_classifier(clf, whole, metrics, target_col, edge, [5, 10, 50, 100])
         end = time.time()
         print(f'Time taken for {clf}: {datetime.timedelta(seconds=end - start)}')
         make_csv(d1, f'outputs/csvs/{target}_{clf}_results_cv.csv')
-    for clf in ['SVC', 'RF', 'MLP']:
         with open(f'outputs/dicts/{target}_{clf}_results_cv.json', 'w') as fp:
             json.dump(d1, fp, indent=4)
 
@@ -269,10 +267,10 @@ def run_classification(whole, metrics, target, target_col, edge):
     with open(f'outputs/dicts/{target}_combined_params.json', 'w') as f:  #
         json.dump(best_params_combined, f, indent=4)
     try:
-        visualise_performance(combined, metrics, [5, 10, 50, 100], target)
+        visualise_performance(combined, metrics, [5, 10, 50, 100], target, ['throw median'])
     except KeyError:
         print("There was a key value error in the first case")
         try:
-            visualise_performance(combined, metrics, ['5', '10', '50', '100'], target)
+            visualise_performance(combined, metrics, ['5', '10', '50', '100'], target, ['throw median'])
         except KeyError:
             print("Again couldn't visualize")
