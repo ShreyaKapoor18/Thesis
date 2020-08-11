@@ -24,8 +24,6 @@ mews = '/home/skapoor/Thesis/gmwcs-solver'
 # this is what is supposed to be done
 metrics = ['balanced_accuracy', 'accuracy', 'f1_weighted', 'roc_auc_ovr_weighted']
 #note: right now the matrix whole is not scaled, for computing the fscores and correlation coeff it has to be so.
-fscores = hist_fscore(data, whole, labels, big5, edge_names, tri)
-corr = hist_correlation(data, whole, labels, edge_names, big5, tri)
 feature_type = 'mean_FA'
 target = 'Agreeableness'
 target_col = data[mapping[target]]
@@ -53,7 +51,7 @@ with open(f'outputs/dicts/{target}_combined_params.json', 'r') as f:
     # Let's say we only choose the throw median choice, because it is the one that makes more sense
     choice = 'throw median'  # out of all these we will use these particular choices only!
     X, y = data_splitting(choice, index, whole, target_col)  # this X is for random forests training
-    params = best_params['RF'][target]["100"][choice]  # maybe use the parameters that work the best for top 5%
+    params = best_params['RF'][choice]["100"]  # maybe use the parameters that work the best for top 5%
     feature_imp = train_with_best_params('RF', params, X, y)
 
     X_train, X_test, y_train, y_test = train_test_split(X,y)
@@ -73,16 +71,17 @@ with open(f'outputs/dicts/{target}_combined_params.json', 'r') as f:
         arr = feature_imp
         # assert type(arr) == np.ndarray
     print('type of array', type(arr))
+    arr.fillna(0, inplace=True)
     arr = np.absolute(arr)  # need to standardize after taking the absolute value
     thresh = np.percentile(arr, threshold)
     print(f'Threshold value according to {threshold} percentile: {thresh}')
     index2 = np.where(arr <= thresh)
     print('indexes', index2)
     xs = index2[0]
-    ys = index2[1]
+
     # removed wrong indexing
     for p in range(len(index2[0])):
-        arr[xs[p], ys[p]] = 0
+        arr[xs[p]] = 0
     # we want to standardize the whole array together
     # the values are x.y and the values in itself
     # standardization of the array itself, need to preserve the non zero parts only
@@ -94,14 +93,14 @@ with open(f'outputs/dicts/{target}_combined_params.json', 'r') as f:
     nodes = set()
     edge_attributes = []
     for j in range(len(mat[0])):
-        value = arr[j]
+        value = float(arr.iloc[j])
         if abs(value) > thresh:
             edge_attributes.append((mat[0][j], mat[1][j], value))
             nodes.add(mat[0][j])  # add only the nodes which have corresponding edges
             nodes.add(mat[1][j])
     # mean for the scores of three different labels
     assert nodes != None
-    input_graph = Graph(edge, feature_type, node_wts, target)
+    input_graph = BrainGraph(edge, feature_type, node_wts, target)
     input_graph.add_nodes_from(nodes)
     input_graph.add_weighted_edges_from(edge_attributes)
     input_graph.set_node_labels('max')
@@ -109,7 +108,7 @@ with open(f'outputs/dicts/{target}_combined_params.json', 'r') as f:
     input_graph.savefiles(mews, degree=2)
     input_graph.visualize_graph(mews, True, threshold, plotting_options)
 
-    output_graph = Graph(edge, feature_type, node_wts, target)
+    output_graph = BrainGraph(edge, feature_type, node_wts, target)
     output_graph.read_from_file(mews)
     output_graph.visualize_graph(mews, False, threshold, plotting_options)
     #get nodes and edges of this graph
