@@ -86,9 +86,10 @@ with open(f'outputs/dicts/{target}_combined_params.json', 'r') as f:
     # the values are x.y and the values in itself
     # standardization of the array itself, need to preserve the non zero parts only
     arr = pd.DataFrame(arr)
-    stdvals = arr[arr != 0]
+    nonzero = arr[(arr!=0).any(1)].index
+    stdvals = arr.loc[nonzero]
     stdvals = (stdvals - stdvals.mean()) / stdvals.std()
-    arr[arr != 0] = stdvals # before giving these values as edge values
+    arr.loc[nonzero] = stdvals # before giving these values as edge values
     # try for for different types, one feature at a time maybe and then construct graph?
     nodes = set()
     edge_attributes = []
