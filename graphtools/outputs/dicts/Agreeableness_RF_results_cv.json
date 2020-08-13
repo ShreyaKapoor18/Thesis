@@ -3,74 +3,74 @@
         "throw median": {
             "5": {
                 "balanced_accuracy": {
-                    "best": 0.521,
-                    "mean": 0.465
+                    "best": 0.393,
+                    "mean": 0.446
                 },
                 "accuracy": {
-                    "best": 0.542,
-                    "mean": 0.487
+                    "best": 0.458,
+                    "mean": 0.505
                 },
                 "f1_weighted": {
-                    "best": 0.538,
-                    "mean": 0.479
+                    "best": 0.367,
+                    "mean": 0.435
                 },
                 "roc_auc_ovr_weighted": {
-                    "best": 0.65,
-                    "mean": 0.541
+                    "best": 0.493,
+                    "mean": 0.381
                 }
             },
             "10": {
                 "balanced_accuracy": {
-                    "best": 0.507,
-                    "mean": 0.424
+                    "best": 0.5,
+                    "mean": 0.474
                 },
                 "accuracy": {
-                    "best": 0.542,
-                    "mean": 0.437
+                    "best": 0.583,
+                    "mean": 0.538
                 },
                 "f1_weighted": {
-                    "best": 0.523,
-                    "mean": 0.434
+                    "best": 0.43,
+                    "mean": 0.462
                 },
                 "roc_auc_ovr_weighted": {
-                    "best": 0.6,
-                    "mean": 0.451
+                    "best": 0.557,
+                    "mean": 0.433
                 }
             },
             "50": {
                 "balanced_accuracy": {
-                    "best": 0.557,
-                    "mean": 0.496
+                    "best": 0.429,
+                    "mean": 0.454
                 },
                 "accuracy": {
-                    "best": 0.583,
-                    "mean": 0.513
+                    "best": 0.5,
+                    "mean": 0.521
                 },
                 "f1_weighted": {
-                    "best": 0.574,
-                    "mean": 0.498
+                    "best": 0.389,
+                    "mean": 0.43
                 },
                 "roc_auc_ovr_weighted": {
-                    "best": 0.636,
-                    "mean": 0.479
+                    "best": 0.521,
+                    "mean": 0.4
                 }
             },
             "100": {
                 "balanced_accuracy": {
-                    "best": 0.607,
-                    "mean": 0.492
+                    "best": 0.429,
+                    "mean": 0.461
                 },
                 "accuracy": {
-                    "best": 0.625,
-                    "mean": 0.512
+                    "best": 0.5,
+                    "mean": 0.538
                 },
                 "f1_weighted": {
-                    "best": 0.622,
-                    "mean": 0.505
+                    "best": 0.389,
+                    "mean": 0.422
                 },
                 "roc_auc_ovr_weighted": {
-                    "best": 0.643,
-                    "mean": 0.491
+                    "best": 0.536,
+                    "mean": 0.4
                 }
             }
         }
@@ -78,51 +78,36 @@
     "Parameters": {
         "throw median": {
             "5": {
-                "solver": "sgd",
-                "learning_rate": "adaptive",
-                "hidden_layer_sizes": [
-                    50,
-                    100,
-                    100,
-                    50
-                ],
-                "alpha": 0.001,
-                "activation": "relu"
+                "n_estimators": 200,
+                "min_samples_split": 2,
+                "min_samples_leaf": 1,
+                "max_features": "sqrt",
+                "max_depth": 10,
+                "bootstrap": false
             },
             "10": {
-                "solver": "sgd",
-                "learning_rate": "adaptive",
-                "hidden_layer_sizes": [
-                    50,
-                    100,
-                    100,
-                    50
-                ],
-                "alpha": 0.05,
-                "activation": "tanh"
+                "n_estimators": 200,
+                "min_samples_split": 10,
+                "min_samples_leaf": 2,
+                "max_features": "auto",
+                "max_depth": 50,
+                "bootstrap": true
             },
             "50": {
-                "solver": "sgd",
-                "learning_rate": "adaptive",
-                "hidden_layer_sizes": [
-                    50,
-                    100,
-                    100,
-                    50
-                ],
-                "alpha": 0.05,
-                "activation": "relu"
+                "n_estimators": 400,
+                "min_samples_split": 10,
+                "min_samples_leaf": 1,
+                "max_features": "auto",
+                "max_depth": 40,
+                "bootstrap": true
             },
             "100": {
-                "solver": "sgd",
-                "learning_rate": "adaptive",
-                "hidden_layer_sizes": [
-                    50,
-                    100,
-                    50
-                ],
-                "alpha": 0.05,
-                "activation": "relu"
+                "n_estimators": 200,
+                "min_samples_split": 2,
+                "min_samples_leaf": 2,
+                "max_features": "sqrt",
+                "max_depth": 10,
+                "bootstrap": true
             }
         }
     }

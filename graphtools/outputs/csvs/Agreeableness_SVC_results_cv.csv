@@ -1,6 +1,6 @@
 ,throw median,throw median,throw median,throw median
 ,balanced_accuracy,accuracy,f1_weighted,roc_auc_ovr_weighted
-5,"{'best': 0.5, 'mean': 0.471}","{'best': 0.609, 'mean': 0.522}","{'best': 0.461, 'mean': 0.468}","{'best': 0.595, 'mean': 0.53}"
-10,"{'best': 0.521, 'mean': 0.483}","{'best': 0.542, 'mean': 0.538}","{'best': 0.538, 'mean': 0.47}","{'best': 0.607, 'mean': 0.487}"
-50,"{'best': 0.599, 'mean': 0.474}","{'best': 0.609, 'mean': 0.505}","{'best': 0.612, 'mean': 0.469}","{'best': 0.579, 'mean': 0.467}"
-100,"{'best': 0.5, 'mean': 0.496}","{'best': 0.583, 'mean': 0.563}","{'best': 0.43, 'mean': 0.441}","{'best': 0.757, 'mean': 0.56}"
+5,"{'best': 0.5, 'mean': 0.484}","{'best': 0.583, 'mean': 0.53}","{'best': 0.43, 'mean': 0.467}","{'best': 0.721, 'mean': 0.489}"
+10,"{'best': 0.5, 'mean': 0.494}","{'best': 0.583, 'mean': 0.572}","{'best': 0.43, 'mean': 0.448}","{'best': 0.579, 'mean': 0.467}"
+50,"{'best': 0.5, 'mean': 0.433}","{'best': 0.583, 'mean': 0.487}","{'best': 0.43, 'mean': 0.43}","{'best': 0.507, 'mean': 0.4}"
+100,"{'best': 0.371, 'mean': 0.463}","{'best': 0.417, 'mean': 0.538}","{'best': 0.38, 'mean': 0.427}","{'best': 0.657, 'mean': 0.609}"

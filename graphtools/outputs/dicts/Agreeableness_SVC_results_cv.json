@@ -3,74 +3,74 @@
         "throw median": {
             "5": {
                 "balanced_accuracy": {
-                    "best": 0.521,
-                    "mean": 0.465
+                    "best": 0.5,
+                    "mean": 0.484
                 },
                 "accuracy": {
-                    "best": 0.542,
-                    "mean": 0.487
+                    "best": 0.583,
+                    "mean": 0.53
                 },
                 "f1_weighted": {
-                    "best": 0.538,
-                    "mean": 0.479
+                    "best": 0.43,
+                    "mean": 0.467
                 },
                 "roc_auc_ovr_weighted": {
-                    "best": 0.65,
-                    "mean": 0.541
+                    "best": 0.721,
+                    "mean": 0.489
                 }
             },
             "10": {
                 "balanced_accuracy": {
-                    "best": 0.507,
-                    "mean": 0.424
+                    "best": 0.5,
+                    "mean": 0.494
                 },
                 "accuracy": {
-                    "best": 0.542,
-                    "mean": 0.437
+                    "best": 0.583,
+                    "mean": 0.572
                 },
                 "f1_weighted": {
-                    "best": 0.523,
-                    "mean": 0.434
+                    "best": 0.43,
+                    "mean": 0.448
                 },
                 "roc_auc_ovr_weighted": {
-                    "best": 0.6,
-                    "mean": 0.451
+                    "best": 0.579,
+                    "mean": 0.467
                 }
             },
             "50": {
                 "balanced_accuracy": {
-                    "best": 0.557,
-                    "mean": 0.496
+                    "best": 0.5,
+                    "mean": 0.433
                 },
                 "accuracy": {
                     "best": 0.583,
-                    "mean": 0.513
+                    "mean": 0.487
                 },
                 "f1_weighted": {
-                    "best": 0.574,
-                    "mean": 0.498
+                    "best": 0.43,
+                    "mean": 0.43
                 },
                 "roc_auc_ovr_weighted": {
-                    "best": 0.636,
-                    "mean": 0.479
+                    "best": 0.507,
+                    "mean": 0.4
                 }
             },
             "100": {
                 "balanced_accuracy": {
-                    "best": 0.607,
-                    "mean": 0.492
+                    "best": 0.371,
+                    "mean": 0.463
                 },
                 "accuracy": {
-                    "best": 0.625,
-                    "mean": 0.512
+                    "best": 0.417,
+                    "mean": 0.538
                 },
                 "f1_weighted": {
-                    "best": 0.622,
-                    "mean": 0.505
+                    "best": 0.38,
+                    "mean": 0.427
                 },
                 "roc_auc_ovr_weighted": {
-                    "best": 0.643,
-                    "mean": 0.491
+                    "best": 0.657,
+                    "mean": 0.609
                 }
             }
         }
@@ -78,51 +78,28 @@
     "Parameters": {
         "throw median": {
             "5": {
-                "solver": "sgd",
-                "learning_rate": "adaptive",
-                "hidden_layer_sizes": [
-                    50,
-                    100,
-                    100,
-                    50
-                ],
-                "alpha": 0.001,
-                "activation": "relu"
+                "C": 0.0270073369790005,
+                "class_weight": "balanced",
+                "gamma": 0.001516735308203975,
+                "kernel": "rbf"
             },
             "10": {
-                "solver": "sgd",
-                "learning_rate": "adaptive",
-                "hidden_layer_sizes": [
-                    50,
-                    100,
-                    100,
-                    50
-                ],
-                "alpha": 0.05,
-                "activation": "tanh"
+                "C": 881.1656671127379,
+                "class_weight": null,
+                "gamma": 0.0022027201958256647,
+                "kernel": "linear"
             },
             "50": {
-                "solver": "sgd",
-                "learning_rate": "adaptive",
-                "hidden_layer_sizes": [
-                    50,
-                    100,
-                    100,
-                    50
-                ],
-                "alpha": 0.05,
-                "activation": "relu"
+                "C": 0.0270073369790005,
+                "class_weight": "balanced",
+                "gamma": 0.001516735308203975,
+                "kernel": "rbf"
             },
             "100": {
-                "solver": "sgd",
-                "learning_rate": "adaptive",
-                "hidden_layer_sizes": [
-                    50,
-                    100,
-                    50
-                ],
-                "alpha": 0.05,
-                "activation": "relu"
+                "C": 0.11096412485473772,
+                "class_weight": null,
+                "gamma": 0.0014282343288282778,
+                "kernel": "sigmoid"
             }
         }
     }

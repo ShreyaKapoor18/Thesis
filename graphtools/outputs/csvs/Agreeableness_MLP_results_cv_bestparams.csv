@@ -1,6 +1,6 @@
-,throw median,throw median,throw median,throw median,throw median,qcut,qcut,qcut,qcut,qcut,median,median,median,median,median
-,solver,learning_rate,hidden_layer_sizes,alpha,activation,solver,learning_rate,hidden_layer_sizes,alpha,activation,solver,learning_rate,hidden_layer_sizes,alpha,activation
-5,adam,adaptive,"(50, 100, 50)",0.001,tanh,adam,adaptive,"(50, 100, 50)",0.001,tanh,adam,adaptive,"(50, 100, 100, 50)",0.001,tanh
-10,adam,adaptive,"(50, 100, 50)",0.001,tanh,adam,adaptive,"(50, 100, 100, 50)",0.001,tanh,adam,adaptive,"(50, 100, 100, 50)",0.001,tanh
-50,adam,adaptive,"(50, 100, 100, 50)",0.001,tanh,adam,adaptive,"(50, 100, 100, 50)",0.001,tanh,adam,adaptive,"(50, 100, 100, 50)",0.001,tanh
-100,sgd,adaptive,"(50, 100, 100, 50)",0.05,relu,sgd,adaptive,"(50, 100, 100, 50)",0.05,relu,sgd,adaptive,"(50, 100, 100, 50)",0.05,tanh
+,throw median,throw median,throw median,throw median,throw median
+,solver,learning_rate,hidden_layer_sizes,alpha,activation
+5,sgd,adaptive,"(50, 100, 100, 50)",0.001,relu
+10,sgd,adaptive,"(50, 100, 100, 50)",0.05,tanh
+50,sgd,adaptive,"(50, 100, 100, 50)",0.001,relu
+100,sgd,adaptive,"(50, 100, 100, 50)",0.001,tanh
