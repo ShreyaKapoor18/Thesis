@@ -1,7 +1,7 @@
 from inputgraphs import *  # for importing the function names exactly
 from processing import *
 from readfiles import computed_subjects
-from read_graphs import train_from_reduced_graph
+from rough_code.read_graphs import train_from_reduced_graph
 from classification import run_classification
 from paramopt import graph_options
 # %%

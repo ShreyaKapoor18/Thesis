@@ -6,7 +6,7 @@ import matplotlib
 import matplotlib.cm as cm
 import numpy as np
 import pandas as pd
-from sklearn.preprocessing import MinMaxScaler
+import matplotlib.patches as patches
 class BrainGraph(nx.Graph): #inheriting from networkx graph package along with the functionality we want
     def __init__(self, edge, feature_type, node_wts, target):
         #self.connected_subgraph = self.subgraph([0])
@@ -38,13 +38,13 @@ class BrainGraph(nx.Graph): #inheriting from networkx graph package along with t
         mat = np.triu_indices(84)
         print('type of array', type(arr))
         arr.fillna(0, inplace=True)
-        arr = np.absolute(arr)  # need to standardize after taking the absolute value
+        arr = arr.abs()  # need to standardize after taking the absolute value
         arr = arr - sub_val
+        #nonzero = arr[arr != 0].index
+        #arr.loc[nonzero] = arr.loc[nonzero] - sub_val #subtract only for the nonzero parts
         # we want to standardize the whole array together
         # the values are x.y and the values in itself
         # standardization of the array itself, need to preserve the non zero parts only
-        arr = pd.DataFrame(arr)
-        arr = MinMaxScaler.fit_transform(arr)
         # before giving these values as edge values
         # try for for different types, one feature at a time maybe and then construct graph?
         nodes = set()
@@ -58,7 +58,7 @@ class BrainGraph(nx.Graph): #inheriting from networkx graph package along with t
         assert nodes is not None
         self.add_weighted_edges_from(edge_attributes)
 
-    def set_node_labels(self, node_wts, const_val=0):
+    def set_node_labels(self, node_wts, const_val=None):
         node_labels = []
         for l in self.nodes.keys():
             if node_wts == 'max':
@@ -73,7 +73,7 @@ class BrainGraph(nx.Graph): #inheriting from networkx graph package along with t
         for n in self.nodes.keys():
             self.nodes[n]['label'] = self.node_labels[n]
 
-    def visualize_graph(self, mews, connected, sub_val, plotting_options):
+    def visualize_graph(self, mews, connected, sub_val, plotting_options, const_val=None):
 
         edge_wts = []
         if connected:
@@ -87,7 +87,8 @@ class BrainGraph(nx.Graph): #inheriting from networkx graph package along with t
                 for v in self[u].keys():
                     #print(u,v, self[u][v]['weight'])
                     edge_wts.append(self[u][v]['weight'])
-        print('edge weights',edge_wts)
+        #print('edge weights',edge_wts)
+        self.edge_weights = edge_wts
         if edge_wts!= None and edge_wts!=[]:
             minima = min(edge_wts)
             maxima = max(edge_wts)
@@ -96,22 +97,28 @@ class BrainGraph(nx.Graph): #inheriting from networkx graph package along with t
             color = []
             for v in edge_wts:
                 color.append(mapper.to_rgba(v))
-            plt.figure()
+            # build a rectangle in axes coords
+            fig, ax = plt.subplots()
             print('minima and maxima', minima, maxima)
             if connected:  # to visualize the connected subgraph in the input
                 plt.title(f'Nodes with degree >={self.connected_degree}, input to the solver: {self.filename}\n Number of edges {len(self.edges)}\n'
                           f'Subtracted value: {sub_val}, Target: {self.target}, Feature:{self.feature_type}\n'
                           f'Edge type:{self.edge}, Node weighting:{self.node_wts}')
+                if const_val!=None:
+                    print('constant value has been given')
+                    ax.annotate(f'Node weight={const_val}',xy=(0,1))
                 nx.draw(self.subgraph(), **plotting_options, edge_color=color, edge_cmap=mapper.cmap, vmin=minima,
-                        vmax=maxima, with_labels=False)
+                            vmax=maxima, with_labels=False)
                 plt.colorbar(mapper)
                 plt.savefig(f'{mews}/outputs/figs/{self.filename}.png')
 
             else:
                 plt.title(f'Output from the solver: {self.filename}\n Number of edges {len(self.edges)}\n'
                           f'Subtracted value:{sub_val}, Target: {self.target}, Feature:{self.feature_type}\n'
-                          f'Edge type:{self.edge}, Node weighting:{self.node_wts}')
-                nx.draw(self, **plotting_options, edge_color=color)
+                          f'Edge type:{self.edge}, Node weighting: according to solver')
+                nx.draw(self.subgraph(), **plotting_options, edge_color=color, edge_cmap=mapper.cmap, vmin=minima,
+                        vmax=maxima, with_labels=False)
+                plt.colorbar(mapper)
                 plt.savefig(f'{mews}/outputs/figs/{self.filename}_out.png')
             plt.show()
         else:
@@ -143,6 +150,7 @@ class BrainGraph(nx.Graph): #inheriting from networkx graph package along with t
             f'-cp /opt/ibm/ILOG/CPLEX_Studio1210/cplex/lib/cplex.jar:target/gmwcs-solver.jar '
             f'ru.ifmo.ctddev.gmwcs.Main -e outputs/edges/{self.filename} '
             f'-n outputs/nodes/{self.filename} > outputs/solver/{self.filename}') #training data into the solver
+
         print(cmd)
         os.system(cmd)
         os.chdir("/home/skapoor/Thesis/graphtools")
@@ -157,12 +165,15 @@ class BrainGraph(nx.Graph): #inheriting from networkx graph package along with t
                 edges = [x.split('\t') for x in edges_file.read().split('\n')]
                 nodes_e = set()
                 edges_e = set()
+                node_labels = {}
                 for a in nodes[:-1]:
                     if a[1] != 'n/a': # since the last line is the subnet score
                         nodes_e.add(int(a[0]))
+                        node_labels[int(a[0])] = float(a[1])
                 feature_indices = []
 
                 # 0 to range(len(mat)), everything in matrix whole corresponding to this edge is feature
+                self.edge_weights = []
                 for existing_edge in edges[:-1]:
                     if existing_edge[-1] != 'n/a':
                         edges_e.add((int(existing_edge[0]), int(existing_edge[1]), float(existing_edge[2])))
@@ -171,11 +182,21 @@ class BrainGraph(nx.Graph): #inheriting from networkx graph package along with t
                                 # all_feature_indices.extend([k, k+tri, k+2*tri]) # for the three types FA, n strl, strlen
                                 # all_feature_indices.extend([k, k + tri, k + 2 * tri])
                                 feature_indices.append(k)
+                                self.edge_weights.append((float(existing_edge[2])))
                                 # feature_mat = whole.iloc[:, :tri]]
                 self.add_nodes_from(nodes_e)
                 #self.set_edge_labels(edges_e)
                 self.connected_nodes = nodes_e
                 #assert self.nodes!= None
                 self.add_weighted_edges_from(edges_e)
-                self.set_node_labels([node[1] for node in nodes[:-1] if int(node[0]) in nodes_e])
-        return feature_indices
+                self.node_labels = []
+                for l in self.nodes.keys():
+                        self.nodes[l]['label'] = node_labels[l]
+                        self.node_labels.append(node_labels[l])
+
+                print('output graph has been read from file', 'nodes:', self.nodes, 'edges', self.edges)
+                return feature_indices
+        else:
+            self.edge_weights = []
+            self.node_labels = []
+            return None

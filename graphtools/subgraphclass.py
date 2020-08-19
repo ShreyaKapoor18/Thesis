@@ -1,11 +1,46 @@
-from inputgraphs import *  # for importing the function names exactly
-from processing import *
-from readfiles import computed_subjects
-from read_graphs import train_from_reduced_graph
-from classification import run_classification
-from paramopt import graph_options
 from graphclass import *
-from metrics import *
+from paramopt import graph_options
+from processing import generate_combined_matrix
+from readfiles import computed_subjects
+from metrics import fscore
+from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+import json
+from classification import data_splitting
+from scipy.stats import describe
+from sklearn.preprocessing import scale
+#%%
+def train_with_best_params(classifier, params, X, y):
+    """
+    Train the specified classifier with the best parameters obtained from
+    Cross Validation
+    """
+    if classifier == 'RF':
+        clf = RandomForestClassifier(**params)  # try if this method works so that don't have to use explicit arguments
+        X_train, X_test, y_train, y_test = train_test_split(X, y)
+        clf.fit(X_train, y_train)
+        clf.predict(X_test)
+        return clf.feature_importances_  # put this as the edge weight in the graph
+    return None
+
+
+def nested_outputdirs(mews):  # make a separate directory for each label, easier to do comparisons
+
+    if not os.path.exists(f'{mews}/outputs'):
+        os.mkdir(f'{mews}/outputs')
+    if not os.path.exists(f'{mews}/outputs/nodes'):
+        os.mkdir(f'{mews}/outputs/nodes')
+    if not os.path.exists(f'{mews}/outputs/edges'):
+        os.mkdir(f'{mews}/outputs/edges')
+    if not os.path.exists(f'{mews}/outputs/solver'):
+        os.mkdir(f'{mews}/outputs/solver')
+    if not os.path.exists(f'{mews}/outputs/classification_results'):
+        os.mkdir(f'{mews}/outputs/classification_results')
+    if not os.path.exists(f'{mews}/outputs/figs'):
+        os.mkdir(f'{mews}/outputs/figs')
+
+
 # %%
 ''' Data computed for all 5 personality traits at once'''
 data = computed_subjects()  # labels for the computed subjects, data.index is the subject id
@@ -27,9 +62,10 @@ metrics = ['balanced_accuracy', 'accuracy', 'f1_weighted', 'roc_auc_ovr_weighted
 feature_type = 'mean_FA'
 target = 'Agreeableness'
 target_col = data[mapping[target]]
-edge = 'fscores'
+edge = 'pearson'
 node_wts = 'max'
 threshold = 85
+sub_val = 2
 plotting_options = graph_options(color='red', node_size=5, line_color='white', linewidhts=0.1, width=1)
 #%%
 if feature_type == 'mean_FA':
@@ -42,7 +78,7 @@ print (f'the {feature_type} feature is being used; the shape of the matrix is:',
 #%%
 
 nested_outputdirs(mews='/home/skapoor/Thesis/gmwcs-solver')
-with open(f'outputs/dicts/{target}_combined_params.json', 'r') as f:
+with open(f'/home/skapoor/Thesis/graphtools/outputs/dicts/{target}_combined_params.json', 'r') as f:
     best_params = json.load(f)
     i = big5.index(target)
     index = list(range(tri))  # if we are using only one type of feature at a time, lets say mean FA
@@ -55,6 +91,9 @@ with open(f'outputs/dicts/{target}_combined_params.json', 'r') as f:
     feature_imp = train_with_best_params('RF', params, X, y)
 
     X_train, X_test, y_train, y_test = train_test_split(X,y)
+    scalar = StandardScaler()
+    X_train = pd.DataFrame(scalar.fit_transform(X_train), index=X_train.index)
+    X_test = pd.DataFrame(scalar.transform(X_test), index=X_test.index)
     #train a graph based only on the training set
     #get fscores for all the features, only based on the training set.
     # maybe I can make a graph class based on this and initialize on the basis of the properties
@@ -66,53 +105,34 @@ with open(f'outputs/dicts/{target}_combined_params.json', 'r') as f:
     if edge == 'fscores':
         arr = fscore(stacked, class_col=target_col.name)[:-1] #take this only from the training data
     if edge == 'pearson':
-        arr = stacked.corr().iloc[:, -1]
+        arr = stacked.corr().iloc[:-1, -1]
     if edge == 'feature_importance':
         arr = feature_imp
         # assert type(arr) == np.ndarray
-    print('type of array', type(arr))
-    arr.fillna(0, inplace=True)
-    arr = np.absolute(arr)  # need to standardize after taking the absolute value
-    thresh = np.percentile(arr, threshold)
-    print(f'Threshold value according to {threshold} percentile: {thresh}')
-    index2 = np.where(arr <= thresh)
-    print('indexes', index2)
-    xs = index2[0]
-
-    # removed wrong indexing
-    for p in range(len(index2[0])):
-        arr[xs[p]] = 0
-    # we want to standardize the whole array together
-    # the values are x.y and the values in itself
-    # standardization of the array itself, need to preserve the non zero parts only
-    arr = pd.DataFrame(arr)
-    nonzero = arr[(arr!=0).any(1)].index
-    stdvals = arr.loc[nonzero]
-    stdvals = (stdvals - stdvals.mean()) / stdvals.std()
-    arr.loc[nonzero] = stdvals # before giving these values as edge values
-    # try for for different types, one feature at a time maybe and then construct graph?
-    nodes = set()
-    edge_attributes = []
-    for j in range(len(mat[0])):
-        value = float(arr.iloc[j])
-        if abs(value) > thresh:
-            edge_attributes.append((mat[0][j], mat[1][j], value))
-            nodes.add(mat[0][j])  # add only the nodes which have corresponding edges
-            nodes.add(mat[1][j])
-    # mean for the scores of three different labels
-    assert nodes != None
+    arr = pd.DataFrame(scale(arr), index= arr.index)
     input_graph = BrainGraph(edge, feature_type, node_wts, target)
-    input_graph.add_nodes_from(nodes)
-    input_graph.add_weighted_edges_from(edge_attributes)
-    input_graph.set_node_labels('max')
-    input_graph.normalize_node_attr()
-    input_graph.savefiles(mews, degree=2)
-    input_graph.visualize_graph(mews, True, threshold, plotting_options)
+    input_graph.make_graph(arr, sub_val)
+    input_graph.set_node_labels(node_wts)
+    #input_graph.normalize_node_attr()
+    input_graph.savefiles(mews)
+    input_graph.visualize_graph(mews, True, sub_val,plotting_options)
+    print('Describing the node labels of the input graph', describe(input_graph.node_labels))
+    print('Describing the edge weights of the input graph', describe(input_graph.edge_weights))
+    input_graph.run_solver(mews)
 
     output_graph = BrainGraph(edge, feature_type, node_wts, target)
-    output_graph.read_from_file(mews)
-    output_graph.visualize_graph(mews, False, threshold, plotting_options)
+    reduced_feature_indices = output_graph.read_from_file(mews)
+    output_graph.visualize_graph(mews, False, sub_val, plotting_options)
+    if output_graph.node_labels!= [] and output_graph.edge_weights!= []:
+        print('Describing the node labels of the output graph', describe(output_graph.node_labels))
+        print('Describing the edge weights of the output graph', describe(output_graph.edge_weights))
+    ''''os.remove(f'{mews}/outputs/edges/{input_graph.filename}')
+    os.remove(f'{mews}/outputs/edges/{input_graph.filename}.out')
+    os.remove(f'{mews}/outputs/nodes/{input_graph.filename}')
+    os.remove(f'{mews}/outputs/nodes/{input_graph.filename}.out')'''
     #get nodes and edges of this graph
     #train algorithm accordingly
-    output_graph.edges
+    #X_train = X_train.iloc[:, reduced_feature_indices]
+    #X_test = X_test.iloc[:, reduced_feature_indices]
+
 
