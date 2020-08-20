@@ -10,7 +10,9 @@ import json
 from classification import data_splitting
 from scipy.stats import describe
 from sklearn.preprocessing import scale
-#%%
+
+
+# %%
 def train_with_best_params(classifier, params, X, y):
     """
     Train the specified classifier with the best parameters obtained from
@@ -42,7 +44,6 @@ def nested_outputdirs(mews):  # make a separate directory for each label, easier
 
 
 # %%
-''' Data computed for all 5 personality traits at once'''
 data = computed_subjects()  # labels for the computed subjects, data.index is the subject id
 num = 84  # number of nodes in the graph
 tri = int(num * (num + 1) * 0.5)  # we want only the upper diagonal parts since everything below diagonal is 0
@@ -58,7 +59,7 @@ mews = '/home/skapoor/Thesis/gmwcs-solver'
 # before
 # this is what is supposed to be done
 metrics = ['balanced_accuracy', 'accuracy', 'f1_weighted', 'roc_auc_ovr_weighted']
-#note: right now the matrix whole is not scaled, for computing the fscores and correlation coeff it has to be so.
+# note: right now the matrix whole is not scaled, for computing the fscores and correlation coeff it has to be so.
 feature_type = 'mean_FA'
 target = 'Agreeableness'
 target_col = data[mapping[target]]
@@ -67,15 +68,15 @@ node_wts = 'max'
 threshold = 85
 sub_val = 2
 plotting_options = graph_options(color='red', node_size=5, line_color='white', linewidhts=0.1, width=1)
-#%%
+# %%
 if feature_type == 'mean_FA':
     whole = whole.iloc[:, :tri]
 elif feature_type == 'mean_strl':
-    whole = whole.iloc[:, tri:2*tri]
+    whole = whole.iloc[:, tri:2 * tri]
 elif feature_type == 'num_streamlines':
-    whole = whole.iloc[:, 2*tri:] # input one feature at a time
-print (f'the {feature_type} feature is being used; the shape of the matrix is:', whole.shape)
-#%%
+    whole = whole.iloc[:, 2 * tri:]  # input one feature at a time
+print(f'the {feature_type} feature is being used; the shape of the matrix is:', whole.shape)
+# %%
 
 nested_outputdirs(mews='/home/skapoor/Thesis/gmwcs-solver')
 with open(f'/home/skapoor/Thesis/graphtools/outputs/dicts/{target}_combined_params.json', 'r') as f:
@@ -90,12 +91,12 @@ with open(f'/home/skapoor/Thesis/graphtools/outputs/dicts/{target}_combined_para
     params = best_params['RF'][choice]["100"]  # maybe use the parameters that work the best for top 5%
     feature_imp = train_with_best_params('RF', params, X, y)
 
-    X_train, X_test, y_train, y_test = train_test_split(X,y)
+    X_train, X_test, y_train, y_test = train_test_split(X, y)
     scalar = StandardScaler()
     X_train = pd.DataFrame(scalar.fit_transform(X_train), index=X_train.index)
     X_test = pd.DataFrame(scalar.transform(X_test), index=X_test.index)
-    #train a graph based only on the training set
-    #get fscores for all the features, only based on the training set.
+    # train a graph based only on the training set
+    # get fscores for all the features, only based on the training set.
     # maybe I can make a graph class based on this and initialize on the basis of the properties
     stacked = pd.concat([X_train, y_train], axis=1)
     cols = []
@@ -103,19 +104,19 @@ with open(f'/home/skapoor/Thesis/graphtools/outputs/dicts/{target}_combined_para
     cols.append(target_col.name)
     stacked.columns = cols
     if edge == 'fscores':
-        arr = fscore(stacked, class_col=target_col.name)[:-1] #take this only from the training data
+        arr = fscore(stacked, class_col=target_col.name)[:-1]  # take this only from the training data
     if edge == 'pearson':
         arr = stacked.corr().iloc[:-1, -1]
     if edge == 'feature_importance':
         arr = feature_imp
         # assert type(arr) == np.ndarray
-    arr = pd.DataFrame(scale(arr), index= arr.index)
+    arr = pd.DataFrame(scale(arr), index=arr.index)
     input_graph = BrainGraph(edge, feature_type, node_wts, target)
     input_graph.make_graph(arr, sub_val)
     input_graph.set_node_labels(node_wts)
-    #input_graph.normalize_node_attr()
+    # input_graph.normalize_node_attr()
     input_graph.savefiles(mews)
-    input_graph.visualize_graph(mews, True, sub_val,plotting_options)
+    input_graph.visualize_graph(mews, True, sub_val, plotting_options)
     print('Describing the node labels of the input graph', describe(input_graph.node_labels))
     print('Describing the edge weights of the input graph', describe(input_graph.edge_weights))
     input_graph.run_solver(mews)
@@ -123,16 +124,14 @@ with open(f'/home/skapoor/Thesis/graphtools/outputs/dicts/{target}_combined_para
     output_graph = BrainGraph(edge, feature_type, node_wts, target)
     reduced_feature_indices = output_graph.read_from_file(mews)
     output_graph.visualize_graph(mews, False, sub_val, plotting_options)
-    if output_graph.node_labels!= [] and output_graph.edge_weights!= []:
+    if output_graph.node_labels != [] and output_graph.edge_weights != []:
         print('Describing the node labels of the output graph', describe(output_graph.node_labels))
         print('Describing the edge weights of the output graph', describe(output_graph.edge_weights))
     ''''os.remove(f'{mews}/outputs/edges/{input_graph.filename}')
     os.remove(f'{mews}/outputs/edges/{input_graph.filename}.out')
     os.remove(f'{mews}/outputs/nodes/{input_graph.filename}')
     os.remove(f'{mews}/outputs/nodes/{input_graph.filename}.out')'''
-    #get nodes and edges of this graph
-    #train algorithm accordingly
-    #X_train = X_train.iloc[:, reduced_feature_indices]
-    #X_test = X_test.iloc[:, reduced_feature_indices]
-
-
+    # get nodes and edges of this graph
+    # train algorithm accordingly
+    # X_train = X_train.iloc[:, reduced_feature_indices]
+    # X_test = X_test.iloc[:, reduced_feature_indices]

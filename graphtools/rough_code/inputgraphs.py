@@ -24,6 +24,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import scale
 from classification import data_splitting
 
+
 # %%
 def train_with_best_params(classifier, params, X, y):
     """
@@ -40,7 +41,11 @@ def train_with_best_params(classifier, params, X, y):
 
 
 def nested_outputdirs(mews):  # make a separate directory for each label, easier to do comparisons
-
+    """
+    Make nested ouput directories in the given folder
+    @param mews: the directory which we want to be nested
+    @return: Nothing
+    """
     if not os.path.exists(f'{mews}/outputs'):
         os.mkdir(f'{mews}/outputs')
     if not os.path.exists(f'{mews}/outputs/nodes'):
@@ -146,7 +151,7 @@ def different_graphs(fscores, mat, target, target_col, edge, big5, feature_type,
         print('feature importance:', feature_imp.shape, 'len mat', len(mat[0]))
 
         if edge == 'fscores':
-            arr = fscores[i, :, :] # take this only from the training data
+            arr = fscores[i, :, :]  # take this only from the training data
         if edge == 'pearson':
             arr = corr[i, :, :]
         if edge == 'feature_importance':
@@ -171,11 +176,11 @@ def different_graphs(fscores, mat, target, target_col, edge, big5, feature_type,
             arr[xs[p], ys[p]] = 0
         # we want to standardize the whole array together
         # the values are x.y and the values in itself
-         # standardization of the array itself, need to preserve the non zero parts only
+        # standardization of the array itself, need to preserve the non zero parts only
         arr = pd.DataFrame(arr)
-        stdvals = arr[arr!=0]
-        stdvals = (stdvals - stdvals.mean())/stdvals.std()
-        arr[arr!=0] = stdvals
+        stdvals = arr[arr != 0]
+        stdvals = (stdvals - stdvals.mean()) / stdvals.std()
+        arr[arr != 0] = stdvals
         # try for for different types, one feature at a time maybe and then construct graph?
         nodes = set()
         edge_attributes = []
@@ -191,7 +196,7 @@ def different_graphs(fscores, mat, target, target_col, edge, big5, feature_type,
                 nodes.add(mat[0][j])  # add only the nodes which have corresponding edges
                 nodes.add(mat[1][j])
         # mean for the scores of three different labels
-        assert nodes != None
+        assert nodes is not None
         make_and_visualize(nodes, edge_attributes, target, threshold, edge, node_wts,
                            feature_type, degree, mews, plotting_options)
         filename = f'{target}_{edge}_{node_wts}_{feature_type}'
@@ -203,7 +208,7 @@ def different_graphs(fscores, mat, target, target_col, edge, big5, feature_type,
             f' java -Xss4M -Djava.library.path=/opt/ibm/ILOG/CPLEX_Studio1210/cplex/bin/x86-64_linux/ '
             f'-cp /opt/ibm/ILOG/CPLEX_Studio1210/cplex/lib/cplex.jar:target/gmwcs-solver.jar '
             f'ru.ifmo.ctddev.gmwcs.Main -e outputs/edges/{filename} '
-            f'-n outputs/nodes/{filename} > outputs/solver/{filename}') #training data into the solver
+            f'-n outputs/nodes/{filename} > outputs/solver/{filename}')  # training data into the solver
         print(cmd)
         os.system(cmd)
         os.chdir("/home/skapoor/Thesis/graphtools")

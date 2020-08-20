@@ -11,7 +11,7 @@ from sklearn.model_selection import StratifiedKFold
 from sklearn.preprocessing import StandardScaler
 from metrics import fscore, compute_scores
 from paramopt import get_distributions
-
+from sklearn.model_selection import train_test_split
 # %%
 def data_splitting(choice, index, X, y):
     """
@@ -82,7 +82,7 @@ def make_predefined_split(X_train, X_val, y_train, y_val):
 # %%
 def dict_classifier(classifier, whole, metrics, target_col, edge, percent):
     """
-    Nested Cross validation is needed, the hyperparmeters are obtained from the inner cross validation
+
     :param whole: the matrix containing the edge information for all subjects
     :param option: if we want the scores with or without cross validation
     :param classifier: the name of the classifier we want to test
@@ -92,84 +92,69 @@ def dict_classifier(classifier, whole, metrics, target_col, edge, percent):
     :param new_fscores: flattened array of f scores: num_subjects x num edges
     :return: metric_scores: the values to be calculated using permitted keywords
     """
+    refit_metric = 'roc_auc_ovr_weighted'
     print('Classifier', classifier)
     metric_score = {}
     best_params = {}
-    # note we are running for one label at a time!  # different labels
-    for choice in ['throw median', 'qcut', 'median'][:1]:
-        print(choice)
-        metric_score[choice] = {}
-        best_params[choice] = {}
-        X, y = data_splitting(choice, range(whole.shape[1]), whole, target_col)
-        for per in percent:
-            print('percentage', per)
-            outer_cv = StratifiedKFold(n_splits=5)
-            inner_cv = StratifiedKFold(n_splits=10)
-            metric_score[choice][per] = {}
-            best_params[choice][per] = {}
-            outer_cv_scores = []
-            outer_cv_params = []
-            print('the number of splits', outer_cv.get_n_splits())
-            for train_index, test_index in outer_cv.split(X, y):
-                inner_cv_scores = []
-                inner_cv_params = []
-                print('Outer cv loop')
-                # print('X', X.shape)
-                X_train_c, X_test = X.iloc[train_index, :], X.iloc[test_index, :]
-                y_train_c, y_test = y.iloc[train_index], y.iloc[test_index]
-                print('Xtrain, Xtest, ytrain, ytest', X_train_c.shape, X_test.shape, y_train_c.shape, y_test.shape)
+    X_train_c, X_test, y_train_c, y_test = train_test_split(whole,target_col, test_size=0.2)
+    med = y_train.median() #the median is tried based on the training set
 
-                for train_idx, val_idx in inner_cv.split(X_train_c, y_train_c):
-                    X_train, X_val = X_train_c.iloc[train_idx, :], X_train_c.iloc[val_idx, :]
-                    y_train, y_val = y_train_c.iloc[train_idx], y_train_c.iloc[val_idx]
-                    print('X train, ytrain, Xval, yval', X_train.shape, y_train.shape, X_val.shape, y_val.shape)
+    y_train_c = pd.qcut(y_train_c,5, labels=False, retbins=True)[0]
+    y_train_c = y_train_c[y_train_c!=2]
+    y_train_c = y_train_c//3
+    X_train_c = pd.DataFrame([X_train_c.loc[i] for i in list(y_train_c.index)])
+    y_test = y_test >= med
+    # now we do the cross validation search
+    inner_cv = StratifiedKFold(n_splits=5)
+    inner_cv_params = []
+    inner_cv_estimator = []
+    for per in [5,10,50,100]:
+        metric_score[per] = {}
+        best_params[per] = {}
+        for train_index, val_index in inner_cv.split(X_train_c, y_train_c):
+            X_train, X_val = X_train_c.iloc[train_idx, :], X_train_c.iloc[val_idx, :]
+            y_train, y_val = y_train_c.iloc[train_idx], y_train_c.iloc[val_idx]
+            print('X train, ytrain, Xval, yval', X_train.shape, y_train.shape, X_val.shape, y_val.shape)
 
-                    X_train, X_val = feature_selection(X_train, X_val, y_train, y_val, per, target_col, edge)
-                    X_train_comb, y_train_comb, split_index = make_predefined_split(X_train, X_val, y_train, y_val)
-                    # print('split index', split_index, 'need to check if this is correct or not')
-                    # Use the list to create PredefinedSplit
-                    pds = PredefinedSplit(test_fold=split_index)
-                    # print('number of splits', pds.get_n_splits(), pds)
-                    clf, distributions = get_distributions(classifier, True, None)
-                    rcv = RandomizedSearchCV(clf, distributions, random_state=45, scoring=metrics,
-                                             refit='roc_auc_ovr_weighted', cv=pds, n_iter=1000,
-                                             n_jobs=-1)  # this is already producing 5 folds so we need to do something different?
-                    # both the training and the validation set shall be passed since we have passed the indices of the validation set
-                    search = rcv.fit(X_train_comb, y_train_comb)
-                    inner_cv_scores.append(search.cv_results_)
-                    inner_cv_params.append(search.best_estimator_)
-                    # print('rcv scores length', len(search.cv_results_['mean_test_roc_auc_ovr_weighted']), search.cv_results_['mean_test_roc_auc_ovr_weighted'])
-                    print('best internal cv params', search.best_params_)
-                    #print('internal cv scores', search.cv_results_)
-                X_train_c, X_test = feature_selection(X_train_c, X_test, y_train_c, y_test, per, target_col, edge)
-                assert len(inner_cv_scores) == len(inner_cv_params)
-                # print('keys', inner_cv_scores[0].keys())
-                clf1 = inner_cv_params[np.argmax([np.mean(result['mean_test_roc_auc_ovr_weighted']) for result in inner_cv_scores])]
-                # we have this because of the number of trials for the parameter settings
-                clf1.fit(X_train_c, y_train_c)
-                y_pred = clf1.predict(X_test)
-                y_score = clf1.predict_proba(X_test)
+            X_train, X_val = feature_selection(X_train, X_val, y_train, y_val, per, target_col, edge)
+            X_train_comb, y_train_comb, split_index = make_predefined_split(X_train, X_val, y_train, y_val)
+            # print('split index', split_index, 'need to check if this is correct or not')
+            # Use the list to create PredefinedSplit
+            pds = PredefinedSplit(test_fold=split_index)
+            # print('number of splits', pds.get_n_splits(), pds)
+            clf, distributions = get_distributions(classifier, True, None)
+            rcv = RandomizedSearchCV(clf, distributions, random_state=45, scoring=metrics,
+                                     refit=refit_metric, cv=pds, n_iter=100,
+                                     n_jobs=-1)  # this is already producing 5 folds so we need to do something different?
+            # both the training and the validation set shall be passed since we have passed the indices of the validation set
+            search = rcv.fit(X_train_comb, y_train_comb)
+            inner_cv_scores.append(search.best_score_)
+            inner_cv_estimator.append(search.best_estimator_)
+            # print('rcv scores length', len(search.cv_results_['mean_test_roc_auc_ovr_weighted']), search.cv_results_['mean_test_roc_auc_ovr_weighted'])
 
-                if len(y_score[0]) == 2:  # number of classes in the y_score
-                    outer_cv_scores.append(compute_scores(y_test, y_pred, [x[1] for x in y_score], choice, metrics))
-                    # The binary case expects a shape (n_samples,), and the scores must be the scores of the class with the greater label.S
-                else:
-                    outer_cv_scores.append(compute_scores(y_test, y_pred, y_score, choice, metrics))
-                outer_cv_params.append(search.best_params_)
+        X_train,X_test = feature_selection(X_train, X_test, y_train, y_test, per, target_col, edge)
+        clf_out = inner_cv_estimator[np.argmax(inner_cv_scores)]
+        clf_out.fit(X_train, y_train)
+        y_pred = clf_out.predict(X_test)
+        y_score = clf_out.predict_proba(X_test)
 
-            print('outer cv scores completed', outer_cv_scores)
-            print('outer cv balanced acc', [score['balanced_accuracy'] for score in outer_cv_scores])
-            loc = np.argmax([score['roc_auc_ovr_weighted'] for score in outer_cv_scores])
-            best_params[choice][per] = outer_cv_params[loc]  # need to see if this is in cv
-
-            for metric in metrics:
-                # validation set
-                metric_score[choice][per][metric] = {}
-                metric_score[choice][per][metric]['best'] = round(outer_cv_scores[loc][metric], 3)
-                # take the mean of the outer validation scores for each of the different algorithms
-                metric_score[choice][per][metric]['mean'] = round(np.mean([score[metric] for score in outer_cv_scores]),3)
-                print(f'{metric} best score', round(outer_cv_scores[loc][metric], 3))
-                print(f'{metric} mean', np.mean([score[metric] for score in outer_cv_scores]))
+        if len(y_score[0]) == 2:  # number of classes in the y_score
+            outer_test = compute_scores(y_test, y_pred, [x[1] for x in y_score], choice, metrics)
+            outer_train = compute_scores(y_train, clf_out.predict(X_train),
+                                        [x[1] for x in clf_out.predict_proba(X_train)], choice, meterics)
+            # The binary case expects a shape (n_samples,), and the scores must be the scores of the class with the greater label.S
+        else:
+            outer_test = compute_scores(y_test, y_pred, y_score, choice, metrics)
+            outer_train = compute_scores(y_train, clf_out.predict(X_train),
+                                         clf_out.predict_proba(X_train), choice, meterics)
+        for metric in metrics:
+            # validation set
+            metric_score[choice][per][metric] = {}
+            metric_score[choice][per][metric]['test'] = round(outer_test[metric], 3)
+            # take the mean of the outer validation scores for each of the different algorithms
+            metric_score[choice][per][metric]['train'] = round(outer_train[metric],3)
+            print(f'{metric} test score', round(outer_test[metric], 3))
+            print(f'{metric} train score',round(outer_test[metric], 3) )
                 # out of bag error
     return {'Metrics': metric_score, 'Parameters': best_params}
 
@@ -212,11 +197,15 @@ def visualise_performance(combined, metrics, top_per, target, choices):
 
             for color, choice in zip(['orange', 'green', 'pink'][:len(choices)], choices):
                 test_score = []
+                train_score = []
                 for clf in ['SVC', 'RF', 'MLP']:
                     #print("dictionary", combined[clf][choice])
-                    test_score.append(combined[clf][choice][top_per[k]][metrics[j]]['best'])
+                    test_score.append(combined[clf][top_per[k]][metrics[j]]['test'])
+                    train_score.apped(combined[clf][top_per[k]][metrics[j]]['train'])
 
-                ax[k][j].plot(list(combined.keys()), test_score, marker='+', label=choice,
+                ax[k][j].plot(list(combined.keys()), test_score, marker='+', label=choice+'test',
+                              color=color, markersize=12)
+                ax[k][j].plot(list(combined.keys()), train_score, marker='+', label=choice+'train',
                               color=color, linestyle='dashed', markersize=12)
             if top_per[k] == 0:
                 ax[k][j].set_title(f'100% features')
@@ -257,7 +246,6 @@ def run_classification(whole, metrics, target, target_col, edge):
         make_csv(d1, f'outputs/csvs/{target}_{clf}_results_cv.csv')
         with open(f'outputs/dicts/{target}_{clf}_results_cv.json', 'w') as fp:
             json.dump(d1, fp, indent=4)
-
         combined[clf] = d1['Metrics']
         best_params_combined[clf] = d1['Parameters']
 
