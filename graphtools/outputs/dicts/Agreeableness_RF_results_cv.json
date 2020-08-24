@@ -3,37 +3,37 @@
         "5": {
             "test throw median": {
                 "balanced_accuracy": {
-                    "test": 0.438,
-                    "train": 0.976
+                    "test": 0.5,
+                    "train": 1.0
                 },
                 "accuracy": {
-                    "test": 0.45,
-                    "train": 0.978
+                    "test": 0.429,
+                    "train": 1.0
                 },
                 "f1_weighted": {
-                    "test": 0.454,
-                    "train": 0.978
+                    "test": 0.418,
+                    "train": 1.0
                 },
                 "roc_auc_ovr_weighted": {
-                    "test": 0.438,
-                    "train": 0.976
+                    "test": 0.592,
+                    "train": 1.0
                 }
             },
             "keep median": {
                 "balanced_accuracy": {
-                    "test": 0.464,
+                    "test": 0.647,
                     "train": 1.0
                 },
                 "accuracy": {
-                    "test": 0.464,
+                    "test": 0.571,
                     "train": 1.0
                 },
                 "f1_weighted": {
-                    "test": 0.458,
+                    "test": 0.53,
                     "train": 1.0
                 },
                 "roc_auc_ovr_weighted": {
-                    "test": 0.464,
+                    "test": 0.674,
                     "train": 1.0
                 }
             }
@@ -41,37 +41,37 @@
         "10": {
             "test throw median": {
                 "balanced_accuracy": {
-                    "test": 0.583,
+                    "test": 0.629,
                     "train": 1.0
                 },
                 "accuracy": {
-                    "test": 0.474,
+                    "test": 0.545,
                     "train": 1.0
                 },
                 "f1_weighted": {
-                    "test": 0.395,
+                    "test": 0.545,
                     "train": 1.0
                 },
                 "roc_auc_ovr_weighted": {
-                    "test": 0.583,
+                    "test": 0.686,
                     "train": 1.0
                 }
             },
             "keep median": {
                 "balanced_accuracy": {
-                    "test": 0.491,
+                    "test": 0.448,
                     "train": 1.0
                 },
                 "accuracy": {
-                    "test": 0.429,
+                    "test": 0.464,
                     "train": 1.0
                 },
                 "f1_weighted": {
-                    "test": 0.429,
+                    "test": 0.461,
                     "train": 1.0
                 },
                 "roc_auc_ovr_weighted": {
-                    "test": 0.491,
+                    "test": 0.349,
                     "train": 1.0
                 }
             }
@@ -79,37 +79,37 @@
         "50": {
             "test throw median": {
                 "balanced_accuracy": {
-                    "test": 0.536,
+                    "test": 0.44,
                     "train": 1.0
                 },
                 "accuracy": {
-                    "test": 0.524,
+                    "test": 0.368,
                     "train": 1.0
                 },
                 "f1_weighted": {
-                    "test": 0.489,
+                    "test": 0.325,
                     "train": 1.0
                 },
                 "roc_auc_ovr_weighted": {
-                    "test": 0.536,
+                    "test": 0.417,
                     "train": 1.0
                 }
             },
             "keep median": {
                 "balanced_accuracy": {
-                    "test": 0.464,
+                    "test": 0.472,
                     "train": 1.0
                 },
                 "accuracy": {
-                    "test": 0.464,
+                    "test": 0.607,
                     "train": 1.0
                 },
                 "f1_weighted": {
-                    "test": 0.403,
+                    "test": 0.486,
                     "train": 1.0
                 },
                 "roc_auc_ovr_weighted": {
-                    "test": 0.464,
+                    "test": 0.5,
                     "train": 1.0
                 }
             }
@@ -117,25 +117,25 @@
         "100": {
             "test throw median": {
                 "balanced_accuracy": {
-                    "test": 0.353,
+                    "test": 0.4,
                     "train": 1.0
                 },
                 "accuracy": {
-                    "test": 0.421,
+                    "test": 0.444,
                     "train": 1.0
                 },
                 "f1_weighted": {
-                    "test": 0.432,
+                    "test": 0.342,
                     "train": 1.0
                 },
                 "roc_auc_ovr_weighted": {
-                    "test": 0.353,
+                    "test": 0.137,
                     "train": 1.0
                 }
             },
             "keep median": {
                 "balanced_accuracy": {
-                    "test": 0.467,
+                    "test": 0.528,
                     "train": 1.0
                 },
                 "accuracy": {
@@ -143,11 +143,11 @@
                     "train": 1.0
                 },
                 "f1_weighted": {
-                    "test": 0.357,
+                    "test": 0.412,
                     "train": 1.0
                 },
                 "roc_auc_ovr_weighted": {
-                    "test": 0.467,
+                    "test": 0.497,
                     "train": 1.0
                 }
             }
@@ -157,68 +157,68 @@
         "5": {
             "test throw median": {
                 "balanced_accuracy": {
-                    "n_estimators": 400,
-                    "min_samples_split": 2,
+                    "n_estimators": 600,
+                    "min_samples_split": 5,
                     "min_samples_leaf": 4,
                     "max_features": "sqrt",
-                    "max_depth": 20,
-                    "bootstrap": true
+                    "max_depth": 10,
+                    "bootstrap": false
                 },
                 "accuracy": {
-                    "n_estimators": 400,
-                    "min_samples_split": 2,
+                    "n_estimators": 600,
+                    "min_samples_split": 5,
                     "min_samples_leaf": 4,
                     "max_features": "sqrt",
-                    "max_depth": 20,
-                    "bootstrap": true
+                    "max_depth": 10,
+                    "bootstrap": false
                 },
                 "f1_weighted": {
-                    "n_estimators": 400,
-                    "min_samples_split": 2,
+                    "n_estimators": 600,
+                    "min_samples_split": 5,
                     "min_samples_leaf": 4,
                     "max_features": "sqrt",
-                    "max_depth": 20,
-                    "bootstrap": true
+                    "max_depth": 10,
+                    "bootstrap": false
                 },
                 "roc_auc_ovr_weighted": {
-                    "n_estimators": 400,
-                    "min_samples_split": 2,
+                    "n_estimators": 600,
+                    "min_samples_split": 5,
                     "min_samples_leaf": 4,
                     "max_features": "sqrt",
-                    "max_depth": 20,
-                    "bootstrap": true
+                    "max_depth": 10,
+                    "bootstrap": false
                 }
             },
             "keep median": {
                 "balanced_accuracy": {
-                    "n_estimators": 600,
+                    "n_estimators": 1000,
                     "min_samples_split": 2,
-                    "min_samples_leaf": 1,
-                    "max_features": "auto",
+                    "min_samples_leaf": 2,
+                    "max_features": "sqrt",
                     "max_depth": 40,
                     "bootstrap": true
                 },
                 "accuracy": {
-                    "n_estimators": 600,
+                    "n_estimators": 1000,
                     "min_samples_split": 2,
-                    "min_samples_leaf": 1,
-                    "max_features": "auto",
+                    "min_samples_leaf": 2,
+                    "max_features": "sqrt",
                     "max_depth": 40,
                     "bootstrap": true
                 },
                 "f1_weighted": {
-                    "n_estimators": 600,
+                    "n_estimators": 1000,
                     "min_samples_split": 2,
-                    "min_samples_leaf": 1,
-                    "max_features": "auto",
+                    "min_samples_leaf": 2,
+                    "max_features": "sqrt",
                     "max_depth": 40,
                     "bootstrap": true
                 },
                 "roc_auc_ovr_weighted": {
-                    "n_estimators": 600,
+                    "n_estimators": 1000,
                     "min_samples_split": 2,
-                    "min_samples_leaf": 1,
-                    "max_features": "auto",
+                    "min_samples_leaf": 2,
+                    "max_features": "sqrt",
                     "max_depth": 40,
                     "bootstrap": true
                 }
@@ -227,33 +227,33 @@
         "10": {
             "test throw median": {
                 "balanced_accuracy": {
-                    "n_estimators": 1400,
+                    "n_estimators": 800,
                     "min_samples_split": 5,
-                    "min_samples_leaf": 2,
+                    "min_samples_leaf": 1,
                     "max_features": "sqrt",
                     "max_depth": 70,
                     "bootstrap": false
                 },
                 "accuracy": {
-                    "n_estimators": 1400,
+                    "n_estimators": 800,
                     "min_samples_split": 5,
-                    "min_samples_leaf": 2,
+                    "min_samples_leaf": 1,
                     "max_features": "sqrt",
                     "max_depth": 70,
                     "bootstrap": false
                 },
                 "f1_weighted": {
-                    "n_estimators": 1400,
+                    "n_estimators": 800,
                     "min_samples_split": 5,
-                    "min_samples_leaf": 2,
+                    "min_samples_leaf": 1,
                     "max_features": "sqrt",
                     "max_depth": 70,
                     "bootstrap": false
                 },
                 "roc_auc_ovr_weighted": {
-                    "n_estimators": 1400,
+                    "n_estimators": 800,
                     "min_samples_split": 5,
-                    "min_samples_leaf": 2,
+                    "min_samples_leaf": 1,
                     "max_features": "sqrt",
                     "max_depth": 70,
                     "bootstrap": false
@@ -264,32 +264,32 @@
                     "n_estimators": 400,
                     "min_samples_split": 2,
                     "min_samples_leaf": 1,
-                    "max_features": "auto",
-                    "max_depth": 20,
+                    "max_features": "sqrt",
+                    "max_depth": 40,
                     "bootstrap": false
                 },
                 "accuracy": {
                     "n_estimators": 400,
                     "min_samples_split": 2,
                     "min_samples_leaf": 1,
-                    "max_features": "auto",
-                    "max_depth": 20,
+                    "max_features": "sqrt",
+                    "max_depth": 40,
                     "bootstrap": false
                 },
                 "f1_weighted": {
                     "n_estimators": 400,
                     "min_samples_split": 2,
                     "min_samples_leaf": 1,
-                    "max_features": "auto",
-                    "max_depth": 20,
+                    "max_features": "sqrt",
+                    "max_depth": 40,
                     "bootstrap": false
                 },
                 "roc_auc_ovr_weighted": {
                     "n_estimators": 400,
                     "min_samples_split": 2,
                     "min_samples_leaf": 1,
-                    "max_features": "auto",
-                    "max_depth": 20,
+                    "max_features": "sqrt",
+                    "max_depth": 40,
                     "bootstrap": false
                 }
             }
@@ -298,34 +298,34 @@
             "test throw median": {
                 "balanced_accuracy": {
                     "n_estimators": 200,
-                    "min_samples_split": 5,
+                    "min_samples_split": 10,
                     "min_samples_leaf": 4,
                     "max_features": "sqrt",
-                    "max_depth": 20,
+                    "max_depth": 50,
                     "bootstrap": true
                 },
                 "accuracy": {
                     "n_estimators": 200,
-                    "min_samples_split": 5,
+                    "min_samples_split": 10,
                     "min_samples_leaf": 4,
                     "max_features": "sqrt",
-                    "max_depth": 20,
+                    "max_depth": 50,
                     "bootstrap": true
                 },
                 "f1_weighted": {
                     "n_estimators": 200,
-                    "min_samples_split": 5,
+                    "min_samples_split": 10,
                     "min_samples_leaf": 4,
                     "max_features": "sqrt",
-                    "max_depth": 20,
+                    "max_depth": 50,
                     "bootstrap": true
                 },
                 "roc_auc_ovr_weighted": {
                     "n_estimators": 200,
-                    "min_samples_split": 5,
+                    "min_samples_split": 10,
                     "min_samples_leaf": 4,
                     "max_features": "sqrt",
-                    "max_depth": 20,
+                    "max_depth": 50,
                     "bootstrap": true
                 }
             },
@@ -333,103 +333,103 @@
                 "balanced_accuracy": {
                     "n_estimators": 400,
                     "min_samples_split": 2,
-                    "min_samples_leaf": 1,
-                    "max_features": "sqrt",
+                    "min_samples_leaf": 4,
+                    "max_features": "auto",
                     "max_depth": 70,
-                    "bootstrap": false
+                    "bootstrap": true
                 },
                 "accuracy": {
                     "n_estimators": 400,
                     "min_samples_split": 2,
-                    "min_samples_leaf": 1,
-                    "max_features": "sqrt",
+                    "min_samples_leaf": 4,
+                    "max_features": "auto",
                     "max_depth": 70,
-                    "bootstrap": false
+                    "bootstrap": true
                 },
                 "f1_weighted": {
                     "n_estimators": 400,
                     "min_samples_split": 2,
-                    "min_samples_leaf": 1,
-                    "max_features": "sqrt",
+                    "min_samples_leaf": 4,
+                    "max_features": "auto",
                     "max_depth": 70,
-                    "bootstrap": false
+                    "bootstrap": true
                 },
                 "roc_auc_ovr_weighted": {
                     "n_estimators": 400,
                     "min_samples_split": 2,
-                    "min_samples_leaf": 1,
-                    "max_features": "sqrt",
+                    "min_samples_leaf": 4,
+                    "max_features": "auto",
                     "max_depth": 70,
-                    "bootstrap": false
+                    "bootstrap": true
                 }
             }
         },
         "100": {
             "test throw median": {
                 "balanced_accuracy": {
-                    "n_estimators": 200,
-                    "min_samples_split": 5,
-                    "min_samples_leaf": 4,
-                    "max_features": "sqrt",
-                    "max_depth": 20,
-                    "bootstrap": true
+                    "n_estimators": 1200,
+                    "min_samples_split": 2,
+                    "min_samples_leaf": 1,
+                    "max_features": "auto",
+                    "max_depth": 50,
+                    "bootstrap": false
                 },
                 "accuracy": {
-                    "n_estimators": 200,
-                    "min_samples_split": 5,
-                    "min_samples_leaf": 4,
-                    "max_features": "sqrt",
-                    "max_depth": 20,
-                    "bootstrap": true
+                    "n_estimators": 1200,
+                    "min_samples_split": 2,
+                    "min_samples_leaf": 1,
+                    "max_features": "auto",
+                    "max_depth": 50,
+                    "bootstrap": false
                 },
                 "f1_weighted": {
-                    "n_estimators": 200,
-                    "min_samples_split": 5,
-                    "min_samples_leaf": 4,
-                    "max_features": "sqrt",
-                    "max_depth": 20,
-                    "bootstrap": true
+                    "n_estimators": 1200,
+                    "min_samples_split": 2,
+                    "min_samples_leaf": 1,
+                    "max_features": "auto",
+                    "max_depth": 50,
+                    "bootstrap": false
                 },
                 "roc_auc_ovr_weighted": {
-                    "n_estimators": 200,
-                    "min_samples_split": 5,
-                    "min_samples_leaf": 4,
-                    "max_features": "sqrt",
-                    "max_depth": 20,
-                    "bootstrap": true
+                    "n_estimators": 1200,
+                    "min_samples_split": 2,
+                    "min_samples_leaf": 1,
+                    "max_features": "auto",
+                    "max_depth": 50,
+                    "bootstrap": false
                 }
             },
             "keep median": {
                 "balanced_accuracy": {
-                    "n_estimators": 400,
-                    "min_samples_split": 10,
-                    "min_samples_leaf": 2,
+                    "n_estimators": 800,
+                    "min_samples_split": 2,
+                    "min_samples_leaf": 1,
                     "max_features": "auto",
-                    "max_depth": 40,
+                    "max_depth": 60,
                     "bootstrap": false
                 },
                 "accuracy": {
-                    "n_estimators": 400,
-                    "min_samples_split": 10,
-                    "min_samples_leaf": 2,
+                    "n_estimators": 800,
+                    "min_samples_split": 2,
+                    "min_samples_leaf": 1,
                     "max_features": "auto",
-                    "max_depth": 40,
+                    "max_depth": 60,
                     "bootstrap": false
                 },
                 "f1_weighted": {
-                    "n_estimators": 400,
-                    "min_samples_split": 10,
-                    "min_samples_leaf": 2,
+                    "n_estimators": 800,
+                    "min_samples_split": 2,
+                    "min_samples_leaf": 1,
                     "max_features": "auto",
-                    "max_depth": 40,
+                    "max_depth": 60,
                     "bootstrap": false
                 },
                 "roc_auc_ovr_weighted": {
-                    "n_estimators": 400,
-                    "min_samples_split": 10,
-                    "min_samples_leaf": 2,
+                    "n_estimators": 800,
+                    "min_samples_split": 2,
+                    "min_samples_leaf": 1,
                     "max_features": "auto",
-                    "max_depth": 40,
+                    "max_depth": 60,
                     "bootstrap": false
                 }
             }

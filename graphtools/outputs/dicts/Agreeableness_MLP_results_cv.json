@@ -3,37 +3,37 @@
         "5": {
             "test throw median": {
                 "balanced_accuracy": {
-                    "test": 0.562,
-                    "train": 1.0
+                    "test": 0.642,
+                    "train": 0.923
                 },
                 "accuracy": {
-                    "test": 0.556,
-                    "train": 1.0
+                    "test": 0.684,
+                    "train": 0.926
                 },
                 "f1_weighted": {
-                    "test": 0.556,
-                    "train": 1.0
+                    "test": 0.656,
+                    "train": 0.926
                 },
                 "roc_auc_ovr_weighted": {
-                    "test": 0.562,
-                    "train": 1.0
+                    "test": 0.636,
+                    "train": 0.977
                 }
             },
             "keep median": {
                 "balanced_accuracy": {
-                    "test": 0.433,
+                    "test": 0.475,
                     "train": 1.0
                 },
                 "accuracy": {
-                    "test": 0.429,
+                    "test": 0.464,
                     "train": 1.0
                 },
                 "f1_weighted": {
-                    "test": 0.434,
+                    "test": 0.489,
                     "train": 1.0
                 },
                 "roc_auc_ovr_weighted": {
-                    "test": 0.433,
+                    "test": 0.488,
                     "train": 1.0
                 }
             }
@@ -41,45 +41,7 @@
         "10": {
             "test throw median": {
                 "balanced_accuracy": {
-                    "test": 0.568,
-                    "train": 1.0
-                },
-                "accuracy": {
-                    "test": 0.571,
-                    "train": 1.0
-                },
-                "f1_weighted": {
-                    "test": 0.569,
-                    "train": 1.0
-                },
-                "roc_auc_ovr_weighted": {
-                    "test": 0.568,
-                    "train": 1.0
-                }
-            },
-            "keep median": {
-                "balanced_accuracy": {
-                    "test": 0.618,
-                    "train": 1.0
-                },
-                "accuracy": {
-                    "test": 0.607,
-                    "train": 1.0
-                },
-                "f1_weighted": {
-                    "test": 0.6,
-                    "train": 1.0
-                },
-                "roc_auc_ovr_weighted": {
-                    "test": 0.618,
-                    "train": 1.0
-                }
-            }
-        },
-        "50": {
-            "test throw median": {
-                "balanced_accuracy": {
-                    "test": 0.523,
+                    "test": 0.54,
                     "train": 1.0
                 },
                 "accuracy": {
@@ -87,67 +49,105 @@
                     "train": 1.0
                 },
                 "f1_weighted": {
-                    "test": 0.529,
+                    "test": 0.526,
                     "train": 1.0
                 },
                 "roc_auc_ovr_weighted": {
-                    "test": 0.523,
+                    "test": 0.58,
                     "train": 1.0
                 }
             },
             "keep median": {
                 "balanced_accuracy": {
-                    "test": 0.456,
-                    "train": 0.932
+                    "test": 0.854,
+                    "train": 0.931
                 },
                 "accuracy": {
-                    "test": 0.357,
-                    "train": 0.948
+                    "test": 0.75,
+                    "train": 0.933
                 },
                 "f1_weighted": {
-                    "test": 0.285,
-                    "train": 0.947
+                    "test": 0.787,
+                    "train": 0.933
                 },
                 "roc_auc_ovr_weighted": {
-                    "test": 0.456,
-                    "train": 0.932
+                    "test": 0.99,
+                    "train": 0.989
+                }
+            }
+        },
+        "50": {
+            "test throw median": {
+                "balanced_accuracy": {
+                    "test": 0.419,
+                    "train": 1.0
+                },
+                "accuracy": {
+                    "test": 0.455,
+                    "train": 1.0
+                },
+                "f1_weighted": {
+                    "test": 0.44,
+                    "train": 1.0
+                },
+                "roc_auc_ovr_weighted": {
+                    "test": 0.436,
+                    "train": 1.0
+                }
+            },
+            "keep median": {
+                "balanced_accuracy": {
+                    "test": 0.521,
+                    "train": 1.0
+                },
+                "accuracy": {
+                    "test": 0.536,
+                    "train": 1.0
+                },
+                "f1_weighted": {
+                    "test": 0.533,
+                    "train": 1.0
+                },
+                "roc_auc_ovr_weighted": {
+                    "test": 0.531,
+                    "train": 1.0
                 }
             }
         },
         "100": {
             "test throw median": {
                 "balanced_accuracy": {
-                    "test": 0.344,
+                    "test": 0.542,
                     "train": 1.0
                 },
                 "accuracy": {
-                    "test": 0.292,
+                    "test": 0.478,
                     "train": 1.0
                 },
                 "f1_weighted": {
-                    "test": 0.281,
+                    "test": 0.47,
                     "train": 1.0
                 },
                 "roc_auc_ovr_weighted": {
-                    "test": 0.344,
+                    "test": 0.508,
                     "train": 1.0
                 }
             },
             "keep median": {
                 "balanced_accuracy": {
-                    "test": 0.298,
+                    "test": 0.422,
                     "train": 1.0
                 },
                 "accuracy": {
-                    "test": 0.286,
+                    "test": 0.429,
                     "train": 1.0
                 },
                 "f1_weighted": {
-                    "test": 0.3,
+                    "test": 0.44,
                     "train": 1.0
                 },
                 "roc_auc_ovr_weighted": {
-                    "test": 0.298,
+                    "test": 0.306,
                     "train": 1.0
                 }
             }
@@ -157,48 +157,52 @@
         "5": {
             "test throw median": {
                 "balanced_accuracy": {
-                    "solver": "adam",
+                    "solver": "sgd",
                     "learning_rate": "adaptive",
                     "hidden_layer_sizes": [
                         50,
                         100,
+                        100,
                         50
                     ],
                     "alpha": 0.001,
-                    "activation": "tanh"
+                    "activation": "relu"
                 },
                 "accuracy": {
-                    "solver": "adam",
+                    "solver": "sgd",
                     "learning_rate": "adaptive",
                     "hidden_layer_sizes": [
                         50,
                         100,
+                        100,
                         50
                     ],
                     "alpha": 0.001,
-                    "activation": "tanh"
+                    "activation": "relu"
                 },
                 "f1_weighted": {
-                    "solver": "adam",
+                    "solver": "sgd",
                     "learning_rate": "adaptive",
                     "hidden_layer_sizes": [
                         50,
                         100,
+                        100,
                         50
                     ],
                     "alpha": 0.001,
-                    "activation": "tanh"
+                    "activation": "relu"
                 },
                 "roc_auc_ovr_weighted": {
-                    "solver": "adam",
+                    "solver": "sgd",
                     "learning_rate": "adaptive",
                     "hidden_layer_sizes": [
                         50,
                         100,
+                        100,
                         50
                     ],
                     "alpha": 0.001,
-                    "activation": "tanh"
+                    "activation": "relu"
                 }
             },
             "keep median": {
@@ -211,7 +215,7 @@
                         50
                     ],
                     "alpha": 0.05,
-                    "activation": "tanh"
+                    "activation": "relu"
                 },
                 "accuracy": {
                     "solver": "adam",
@@ -222,7 +226,7 @@
                         50
                     ],
                     "alpha": 0.05,
-                    "activation": "tanh"
+                    "activation": "relu"
                 },
                 "f1_weighted": {
                     "solver": "adam",
@@ -233,7 +237,7 @@
                         50
                     ],
                     "alpha": 0.05,
-                    "activation": "tanh"
+                    "activation": "relu"
                 },
                 "roc_auc_ovr_weighted": {
                     "solver": "adam",
@@ -244,7 +248,7 @@
                         50
                     ],
                     "alpha": 0.05,
-                    "activation": "tanh"
+                    "activation": "relu"
                 }
             }
         },
@@ -256,10 +260,11 @@
                     "hidden_layer_sizes": [
                         50,
                         100,
+                        100,
                         50
                     ],
-                    "alpha": 0.05,
-                    "activation": "tanh"
+                    "alpha": 0.001,
+                    "activation": "relu"
                 },
                 "accuracy": {
                     "solver": "adam",
@@ -267,10 +272,11 @@
                     "hidden_layer_sizes": [
                         50,
                         100,
+                        100,
                         50
                     ],
-                    "alpha": 0.05,
-                    "activation": "tanh"
+                    "alpha": 0.001,
+                    "activation": "relu"
                 },
                 "f1_weighted": {
                     "solver": "adam",
@@ -278,10 +284,11 @@
                     "hidden_layer_sizes": [
                         50,
                         100,
+                        100,
                         50
                     ],
-                    "alpha": 0.05,
-                    "activation": "tanh"
+                    "alpha": 0.001,
+                    "activation": "relu"
                 },
                 "roc_auc_ovr_weighted": {
                     "solver": "adam",
@@ -289,55 +296,56 @@
                     "hidden_layer_sizes": [
                         50,
                         100,
+                        100,
                         50
                     ],
-                    "alpha": 0.05,
-                    "activation": "tanh"
+                    "alpha": 0.001,
+                    "activation": "relu"
                 }
             },
             "keep median": {
                 "balanced_accuracy": {
-                    "solver": "adam",
+                    "solver": "sgd",
                     "learning_rate": "adaptive",
                     "hidden_layer_sizes": [
                         50,
                         100,
                         50
                     ],
-                    "alpha": 0.001,
+                    "alpha": 0.05,
                     "activation": "relu"
                 },
                 "accuracy": {
-                    "solver": "adam",
+                    "solver": "sgd",
                     "learning_rate": "adaptive",
                     "hidden_layer_sizes": [
                         50,
                         100,
                         50
                     ],
-                    "alpha": 0.001,
+                    "alpha": 0.05,
                     "activation": "relu"
                 },
                 "f1_weighted": {
-                    "solver": "adam",
+                    "solver": "sgd",
                     "learning_rate": "adaptive",
                     "hidden_layer_sizes": [
                         50,
                         100,
                         50
                     ],
-                    "alpha": 0.001,
+                    "alpha": 0.05,
                     "activation": "relu"
                 },
                 "roc_auc_ovr_weighted": {
-                    "solver": "adam",
+                    "solver": "sgd",
                     "learning_rate": "adaptive",
                     "hidden_layer_sizes": [
                         50,
                         100,
                         50
                     ],
-                    "alpha": 0.001,
+                    "alpha": 0.05,
                     "activation": "relu"
                 }
             }
@@ -353,7 +361,7 @@
                         50
                     ],
                     "alpha": 0.001,
-                    "activation": "relu"
+                    "activation": "tanh"
                 },
                 "accuracy": {
                     "solver": "sgd",
@@ -364,7 +372,7 @@
                         50
                     ],
                     "alpha": 0.001,
-                    "activation": "relu"
+                    "activation": "tanh"
                 },
                 "f1_weighted": {
                     "solver": "sgd",
@@ -375,7 +383,7 @@
                         50
                     ],
                     "alpha": 0.001,
-                    "activation": "relu"
+                    "activation": "tanh"
                 },
                 "roc_auc_ovr_weighted": {
                     "solver": "sgd",
@@ -386,7 +394,7 @@
                         50
                     ],
                     "alpha": 0.001,
-                    "activation": "relu"
+                    "activation": "tanh"
                 }
             },
             "keep median": {
@@ -396,11 +404,10 @@
                     "hidden_layer_sizes": [
                         50,
                         100,
-                        100,
                         50
                     ],
-                    "alpha": 0.001,
-                    "activation": "relu"
+                    "alpha": 0.05,
+                    "activation": "tanh"
                 },
                 "accuracy": {
                     "solver": "sgd",
@@ -408,11 +415,10 @@
                     "hidden_layer_sizes": [
                         50,
                         100,
-                        100,
                         50
                     ],
-                    "alpha": 0.001,
-                    "activation": "relu"
+                    "alpha": 0.05,
+                    "activation": "tanh"
                 },
                 "f1_weighted": {
                     "solver": "sgd",
@@ -420,11 +426,10 @@
                     "hidden_layer_sizes": [
                         50,
                         100,
-                        100,
                         50
                     ],
-                    "alpha": 0.001,
-                    "activation": "relu"
+                    "alpha": 0.05,
+                    "activation": "tanh"
                 },
                 "roc_auc_ovr_weighted": {
                     "solver": "sgd",
@@ -432,11 +437,10 @@
                     "hidden_layer_sizes": [
                         50,
                         100,
-                        100,
                         50
                     ],
-                    "alpha": 0.001,
-                    "activation": "relu"
+                    "alpha": 0.05,
+                    "activation": "tanh"
                 }
             }
         },
@@ -448,10 +452,9 @@
                     "hidden_layer_sizes": [
                         50,
                         100,
-                        100,
                         50
                     ],
-                    "alpha": 0.001,
+                    "alpha": 0.05,
                     "activation": "relu"
                 },
                 "accuracy": {
@@ -460,10 +463,9 @@
                     "hidden_layer_sizes": [
                         50,
                         100,
-                        100,
                         50
                     ],
-                    "alpha": 0.001,
+                    "alpha": 0.05,
                     "activation": "relu"
                 },
                 "f1_weighted": {
@@ -472,10 +474,9 @@
                     "hidden_layer_sizes": [
                         50,
                         100,
-                        100,
                         50
                     ],
-                    "alpha": 0.001,
+                    "alpha": 0.05,
                     "activation": "relu"
                 },
                 "roc_auc_ovr_weighted": {
@@ -484,16 +485,15 @@
                     "hidden_layer_sizes": [
                         50,
                         100,
-                        100,
                         50
                     ],
-                    "alpha": 0.001,
+                    "alpha": 0.05,
                     "activation": "relu"
                 }
             },
             "keep median": {
                 "balanced_accuracy": {
-                    "solver": "adam",
+                    "solver": "sgd",
                     "learning_rate": "adaptive",
                     "hidden_layer_sizes": [
                         50,
@@ -501,10 +501,10 @@
                         50
                     ],
                     "alpha": 0.001,
-                    "activation": "relu"
+                    "activation": "tanh"
                 },
                 "accuracy": {
-                    "solver": "adam",
+                    "solver": "sgd",
                     "learning_rate": "adaptive",
                     "hidden_layer_sizes": [
                         50,
@@ -512,10 +512,10 @@
                         50
                     ],
                     "alpha": 0.001,
-                    "activation": "relu"
+                    "activation": "tanh"
                 },
                 "f1_weighted": {
-                    "solver": "adam",
+                    "solver": "sgd",
                     "learning_rate": "adaptive",
                     "hidden_layer_sizes": [
                         50,
@@ -523,10 +523,10 @@
                         50
                     ],
                     "alpha": 0.001,
-                    "activation": "relu"
+                    "activation": "tanh"
                 },
                 "roc_auc_ovr_weighted": {
-                    "solver": "adam",
+                    "solver": "sgd",
                     "learning_rate": "adaptive",
                     "hidden_layer_sizes": [
                         50,
@@ -534,7 +534,7 @@
                         50
                     ],
                     "alpha": 0.001,
-                    "activation": "relu"
+                    "activation": "tanh"
                 }
             }
         }
