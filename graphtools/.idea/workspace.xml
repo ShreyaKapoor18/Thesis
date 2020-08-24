@@ -19,13 +19,17 @@
         <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </expand>
-    <select />
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:master" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96a293b3-8c56-42ff-a127-58952144c9ad" name="Default Changelist" comment="code for results in previous commit">
+    <list default="true" id="96a293b3-8c56-42ff-a127-58952144c9ad" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../gmwcs-solver" beforeDir="false" afterPath="$PROJECT_DIR$/../gmwcs-solver" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paramopt.py" beforeDir="false" afterPath="$PROJECT_DIR$/paramopt.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -280,14 +284,7 @@
       <workItem from="1596033976107" duration="17383000" />
       <workItem from="1596207826166" duration="3564000" />
       <workItem from="1596454891555" duration="92800000" />
-      <workItem from="1597667289158" duration="35507000" />
-    </task>
-    <task id="LOCAL-00058" summary="properly labelled results">
-      <created>1592817999328</created>
-      <option name="number" value="00058" />
-      <option name="presentableId" value="LOCAL-00058" />
-      <option name="project" value="LOCAL" />
-      <updated>1592817999328</updated>
+      <workItem from="1597667289158" duration="35825000" />
     </task>
     <task id="LOCAL-00059" summary="added json functionality">
       <created>1592835973888</created>
@@ -625,7 +622,14 @@
       <option name="project" value="LOCAL" />
       <updated>1598261561993</updated>
     </task>
-    <option name="localTasksCounter" value="107" />
+    <task id="LOCAL-00107" summary="fixup! code for results in previous commit">
+      <created>1598262076835</created>
+      <option name="number" value="00107" />
+      <option name="presentableId" value="LOCAL-00107" />
+      <option name="project" value="LOCAL" />
+      <updated>1598262076835</updated>
+    </task>
+    <option name="localTasksCounter" value="108" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -646,7 +650,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -657,7 +673,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/gmwcs-solver" />
     </ignored-roots>
-    <MESSAGE value="different cases for binary and multiclass" />
     <MESSAGE value="improved visualisation, need to improve title fontsize" />
     <MESSAGE value="need to check for balance of classses in training and test set" />
     <MESSAGE value="validation set labels are set to be different from training set labels" />
@@ -682,7 +697,8 @@
     <MESSAGE value="obtaining clear output with modifications from meeting in subgraphclass.py" />
     <MESSAGE value="Results for baseline computed using finalized pipeline" />
     <MESSAGE value="code for results in previous commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="code for results in previous commit" />
+    <MESSAGE value="fixup! code for results in previous commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixup! code for results in previous commit" />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="181" width="800" height="683" key="#Deployment" timestamp="1595687658480">
@@ -718,6 +734,10 @@
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
     <state x="968" y="558" width="496" height="285" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.2560.1413@0.0.2560.1413" timestamp="1592210414213" />
+    <state x="891" y="286" width="1531" height="1033" key="CommitChangelistDialog2" timestamp="1598262076658">
+      <screen x="0" y="0" width="2560" height="1413" />
+    </state>
+    <state x="891" y="286" width="1531" height="1033" key="CommitChangelistDialog2/0.0.2560.1413@0.0.2560.1413" timestamp="1598262076658" />
     <state x="99" y="100" width="2362" height="1213" key="DiffContextDialog" timestamp="1598261832705">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
@@ -833,6 +853,10 @@
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
     <state x="1446" y="0" width="1114" height="1413" key="dock-window-3/0.0.2560.1413@0.0.2560.1413" timestamp="1598261473943" />
+    <state x="1076" y="496" width="407" height="416" key="git4idea.merge.GitMergeDialog" timestamp="1598261913824">
+      <screen x="0" y="0" width="2560" height="1413" />
+    </state>
+    <state x="1076" y="496" width="407" height="416" key="git4idea.merge.GitMergeDialog/0.0.2560.1413@0.0.2560.1413" timestamp="1598261913824" />
     <state x="997" y="496" width="557" height="416" key="git4idea.merge.GitPullDialog" timestamp="1594732649697">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
