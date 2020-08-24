@@ -44,6 +44,7 @@ def nested_outputdirs(mews):  # make a separate directory for each label, easier
 
 
 # %%
+
 data = computed_subjects()  # labels for the computed subjects, data.index is the subject id
 num = 84  # number of nodes in the graph
 tri = int(num * (num + 1) * 0.5)  # we want only the upper diagonal parts since everything below diagonal is 0
@@ -58,7 +59,9 @@ mat = np.triu_indices(84)
 mews = '/home/skapoor/Thesis/gmwcs-solver'
 # before
 # this is what is supposed to be done
+solver_summary = {}
 metrics = ['balanced_accuracy', 'accuracy', 'f1_weighted', 'roc_auc_ovr_weighted']
+#%%
 # note: right now the matrix whole is not scaled, for computing the fscores and correlation coeff it has to be so.
 feature_type = 'mean_FA'
 target = 'Agreeableness'
@@ -67,6 +70,8 @@ edge = 'pearson'
 node_wts = 'max'
 threshold = 85
 sub_val = 2
+use_case = dict(feature_type=feature_type, edge=edge, node_wts=node_wts, subtracted_val=sub_val)
+
 plotting_options = graph_options(color='red', node_size=5, line_color='white', linewidhts=0.1, width=1)
 # %%
 if feature_type == 'mean_FA':
@@ -113,6 +118,7 @@ with open(f'/home/skapoor/Thesis/graphtools/outputs/dicts/{target}_combined_para
     input_graph.make_graph(arr, sub_val)
     input_graph.set_node_labels(node_wts)
     # input_graph.normalize_node_attr()
+    use_case['input_graph'] =dict(nodes=len(input_graph.subgraph.nodes), edges= input_graph.subgraph.edges)
     input_graph.savefiles(mews)
     input_graph.visualize_graph(mews, True, sub_val, plotting_options)
     print('Describing the node labels of the input graph', describe(input_graph.node_labels))
@@ -134,4 +140,5 @@ with open(f'/home/skapoor/Thesis/graphtools/outputs/dicts/{target}_combined_para
     #X_train = X_train.iloc[:, reduced_feature_indices]
     #X_test = X_test.iloc[:, reduced_feature_indices]
 
+solver_summary[target] = use_case
 
