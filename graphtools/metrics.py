@@ -1,8 +1,7 @@
 import numpy as np
 from sklearn.metrics import balanced_accuracy_score
 from sklearn.metrics import accuracy_score
-from sklearn.metrics import f1_score, roc_curve, auc
-from sklearn.metrics import auc
+from sklearn.metrics import f1_score, roc_auc_score
 import pandas as pd #this will be used in the fscore function
 import matplotlib.pyplot as plt
 
@@ -26,7 +25,7 @@ def fscore(data, class_col='class'):
         return pd.DataFrame(np.zeros(numerator.shape)) #all options shall return the same datatype
 
 
-def compute_scores(y_test, y_pred, pos_label,
+def compute_scores(y_test, y_pred, y_score,
                    metrics=['balanced_accuracy', 'accuracy', 'f1_weighted', 'r', 'auc']):
     """
 
@@ -39,10 +38,10 @@ def compute_scores(y_test, y_pred, pos_label,
     #assert list(y_pred.index) == list(y_test.index)
     assert len(y_test) == len(y_pred)
 
-    fpr, tpr, thresholds = roc_curve(y_test, y_pred, pos_label=pos_label)
+    #fpr, tpr, thresholds = roc_curve(y_test, y_pred, pos_label=pos_label)
     scores = [balanced_accuracy_score(y_test, y_pred),
               accuracy_score(y_test, y_pred), f1_score(y_test, y_pred, average='weighted'),
-              auc(fpr, tpr)]
+              roc_auc_score(y_test, y_score, 'weighted')]
 
     return {k: v for k, v in zip(metrics, scores)}
 
