@@ -19,6 +19,7 @@ def feature_selection(X_train, X_val, y_train, y_val, per, target_col, edge, ):
     print('feature selection')
     # print('Initial X_train, y_train, X_val, y_val',  X_train.shape, y_train.shape, X_val.shape, y_val.shape)
     X_train = pd.DataFrame(scalar2.fit_transform(X_train), index=X_train.index)
+    X_train = pd.DataFrame(scalar2.fit_transform(X_train), index=X_train.index)
     X_val = pd.DataFrame(scalar2.transform(X_val), index=X_val.index)
 
     stacked = pd.concat([X_train, y_train], axis=1)
@@ -74,73 +75,6 @@ def dict_classifier(classifier, whole, metrics, target_col, edge, percent):
     metric_score = {}
     best_params = {}
 
-    for per in percent:
-        print('*' * 100)
-        print('percentage of features being used:', per)
-        metric_score[per] = {}
-        best_params[per] = {}
-        test_size = int(0.2 * len(whole))
-        for choice in ['test throw median', 'keep median']:
-            print('-'*100)
-            print(choice)
-            y_test = stratify_sampling(target_col.sort_values(ascending=True), test_size,
-                                       (test_size, len(target_col) - test_size))  # how to stratify here
-            assert len(y_test) == test_size
-            X_test = whole.loc[y_test.index]
-            train_c_ind = list(set(target_col.index).difference(set(y_test.index)))
-            X_train_c = whole.loc[train_c_ind] # each time defined differently so there shall not be an issue
-            y_train_c = target_col[train_c_ind]
-            med = y_train_c.median()  # the median is tried based on the training set
-            print('median of the training data', med)
-            print('value counts in train and test data set\n', y_train_c.value_counts().T, y_test.value_counts().T)
-            print('Descriptive statistics of the training and the test set labels', describe(y_train_c), describe(y_test))
-
-            y_train_c = pd.qcut(y_train_c, 5, labels=False, retbins=True)[0]
-            print('The number of training subjects which are to be removed:', sum(y_train_c == 2))
-            y_train_c = y_train_c[y_train_c != 2]
-            y_train_c = y_train_c // 3# binarizing the values by removing the middle quartile
-            X_train_c = pd.DataFrame([X_train_c.loc[i] for i in list(y_train_c.index)])
-
-            print('The choice that we are using', choice)
-            if choice == 'test throw median':
-                # removing subjects that are close to the median of the training data
-                print(sum(abs(y_test - med) <= 1), 'The number of subjects with labels '
-                                                   'within difference of 1.0 from the median value')
-                y_test = y_test[abs(y_test - med) > 1]  # maybe most of the values are close to the median
-                y_test = y_test >= med # binarizing the label
-                X_test = X_test.loc[y_test.index] # making sure that the training data is also for the same subjects
-
-            elif choice == 'keep median':
-                y_test = y_test >= med# we just binarize it and don't do anything else
-            # now we do the cross validation search
-            metric_score[per][choice] = {}
-            best_params[per][choice] = {}
-            X_train_c, X_test = feature_selection(X_train_c, X_test, y_train_c, y_test, per, target_col, edge)
-            clf, distributions = get_distributions(classifier, True, None)
-            rcv = RandomizedSearchCV(clf, distributions, random_state=55, scoring=metrics,
-                                     refit=refit_metric, cv=5, n_iter=200,
-                                     n_jobs=-1)  # this is already producing 5 folds so we need to do something different?
-
-            search = rcv.fit(X_train_c, y_train_c)
-            clf_out = search.best_estimator_
-            plot_grid_search(search.cv_results_, refit_metric) #need to see what we will plot or not
-
-            clf_out.fit(X_train_c, y_train_c)
-            y_pred = clf_out.predict(X_test)
-            outer_test = compute_scores(y_test, y_pred, pos_label=1, metrics =metrics)
-            ytrain_pred = clf_out.predict(X_train_c)
-            outer_train = compute_scores(y_train_c, ytrain_pred, pos_label=1, metrics=metrics)
-
-            for metric in metrics:
-                # validation set
-                metric_score[per][choice][metric] = {}
-                metric_score[per][choice][metric]['test'] = round(outer_test[metric], 3)
-                # take the mean of the outer validation scores for each of the different algorithms
-                metric_score[per][choice][metric]['train'] = round(outer_train[metric], 3)
-                best_params[per][choice][metric] = search.best_params_
-                print(f'{metric} test score', round(outer_test[metric], 3))
-                print(f'{metric} train score', round(outer_train[metric], 3))
-            # out of bag error
     return {'Metrics': metric_score, 'Parameters': best_params}
 
 
@@ -189,8 +123,6 @@ def visualise_performance(combined, metrics, top_per, target, choices, classifie
                     train_score.append(combined[clf][top_per[k]][choice][metrics[j]]['train'])
 
                 ax[k][j].plot(list(combined.keys()), test_score, marker='+', label=choice + 'test',
-                              color=color, markersize=12)
-                ax[k][j].plot(list(combined.keys()), train_score, marker='+', label=choice + 'train',
                               color=color, linestyle='dashed', markersize=12)
             if top_per[k] == 0:
                 ax[k][j].set_title(f'100% features')
@@ -200,7 +132,6 @@ def visualise_performance(combined, metrics, top_per, target, choices, classifie
             ax[k][j].set_ylabel(metrics[j])
             ax[k][j].grid(which='minor', alpha=0.2)
             ax[k][j].grid(which='major', alpha=0.5)
-    plt.ylim(0.4, 1)
     plt.legend(legends)
     fig.suptitle(target)
     plt.tight_layout()

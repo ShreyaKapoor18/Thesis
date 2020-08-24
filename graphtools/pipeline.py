@@ -21,8 +21,6 @@ mews = '/home/skapoor/Thesis/gmwcs-solver'
 # this is what is supposed to be done
 metrics = ['balanced_accuracy', 'accuracy', 'f1_weighted', 'roc_auc_ovr_weighted']
 # note: right now the matrix whole is not scaled, for computing the fscores and correlation coeff it has to be so.
-# fscores = hist_fscore(data, whole, labels, big5, edge_names, tri)
-# corr = hist_correlation(data, whole, labels, edge_names, big5, tri)
 feature_type = 'mean_FA'
 target = 'Agreeableness'
 target_col = data[mapping[target]]
@@ -41,6 +39,7 @@ run_classification(whole, metrics, target, target_col, feature_selection)
 # the split must be the same when we are comparing all the functions
 # %%
 # add choice for the features we want to use and slice the whole matrix accordingly, no need to change the processing.py
+
 
 plotting_options = graph_options(color='red', node_size=5, line_color='white', linewidhts=0.1, width=1)
 hyperparams = {'target': 'Agreeableness',
