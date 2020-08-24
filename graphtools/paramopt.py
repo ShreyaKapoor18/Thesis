@@ -13,7 +13,7 @@ def get_distributions(classifier, search, train_params):
     if search:
         if classifier == 'SVC':
             clf = SVC(probability=True)
-            distributions = {'C': loguniform(1e-2, 1e3),
+            distributions = {'C': loguniform(1e-4, 1e3),
                              'gamma': loguniform(1e-4, 1e-2),
                              'kernel': ['rbf', 'poly', 'sigmoid', 'linear'],
                              'class_weight': ['balanced', None]}

@@ -22,13 +22,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96a293b3-8c56-42ff-a127-58952144c9ad" name="Default Changelist" comment="Combined range params in dictionary">
+    <list default="true" id="96a293b3-8c56-42ff-a127-58952144c9ad" name="Default Changelist" comment="code for results in previous commit">
       <change beforePath="$PROJECT_DIR$/../gmwcs-solver" beforeDir="false" afterPath="$PROJECT_DIR$/../gmwcs-solver" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphclass.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphclass.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/pipeline.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/read_graphs.py" beforeDir="false" afterPath="$PROJECT_DIR$/rough_code/read_graphs.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/subgraphclass.py" beforeDir="false" afterPath="$PROJECT_DIR$/subgraphclass.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paramopt.py" beforeDir="false" afterPath="$PROJECT_DIR$/paramopt.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +83,7 @@
       <recent name="$PROJECT_DIR$/rough_code" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.subgraphclass">
+  <component name="RunManager" selected="Python.pipeline">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -128,20 +125,17 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="pipeline" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="metrics" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="graphtools" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
+      <option name="SDK_HOME" value="$USER_HOME$/anaconda3/bin/python" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pipeline.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/metrics.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -150,20 +144,17 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="processing" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="pipeline" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="graphtools" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="$USER_HOME$/anaconda3/bin/python" />
+      <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/processing.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pipeline.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -217,16 +208,16 @@
       <item itemvalue="Python.pipeline" />
       <item itemvalue="Python.classification" />
       <item itemvalue="Python.subgraphclass" />
-      <item itemvalue="Python.processing" />
       <item itemvalue="Python.trial" />
+      <item itemvalue="Python.metrics" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.subgraphclass" />
-        <item itemvalue="Python.classification" />
         <item itemvalue="Python.pipeline" />
+        <item itemvalue="Python.classification" />
+        <item itemvalue="Python.metrics" />
+        <item itemvalue="Python.subgraphclass" />
         <item itemvalue="Python.trial" />
-        <item itemvalue="Python.processing" />
       </list>
     </recent_temporary>
   </component>
@@ -289,35 +280,7 @@
       <workItem from="1596033976107" duration="17383000" />
       <workItem from="1596207826166" duration="3564000" />
       <workItem from="1596454891555" duration="92800000" />
-      <workItem from="1597667289158" duration="8244000" />
-    </task>
-    <task id="LOCAL-00054" summary="test metrics not obtained by script">
-      <created>1592571762262</created>
-      <option name="number" value="00054" />
-      <option name="presentableId" value="LOCAL-00054" />
-      <option name="project" value="LOCAL" />
-      <updated>1592571762262</updated>
-    </task>
-    <task id="LOCAL-00055" summary="adding rf features">
-      <created>1592573351416</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1592573351416</updated>
-    </task>
-    <task id="LOCAL-00056" summary="better visualisation">
-      <created>1592573364049</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1592573364049</updated>
-    </task>
-    <task id="LOCAL-00057" summary="incorporating in graphs">
-      <created>1592574993489</created>
-      <option name="number" value="00057" />
-      <option name="presentableId" value="LOCAL-00057" />
-      <option name="project" value="LOCAL" />
-      <updated>1592574993489</updated>
+      <workItem from="1597667289158" duration="35507000" />
     </task>
     <task id="LOCAL-00058" summary="properly labelled results">
       <created>1592817999328</created>
@@ -634,7 +597,35 @@
       <option name="project" value="LOCAL" />
       <updated>1596629972937</updated>
     </task>
-    <option name="localTasksCounter" value="103" />
+    <task id="LOCAL-00103" summary="obtaining clear output with modifications from meeting in subgraphclass.py">
+      <created>1597848677668</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1597848677668</updated>
+    </task>
+    <task id="LOCAL-00104" summary="Results for baseline computed using finalized pipeline">
+      <created>1598261510907</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1598261510907</updated>
+    </task>
+    <task id="LOCAL-00105" summary="code for results in previous commit">
+      <created>1598261557303</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1598261557303</updated>
+    </task>
+    <task id="LOCAL-00106" summary="code for results in previous commit">
+      <created>1598261561993</created>
+      <option name="number" value="00106" />
+      <option name="presentableId" value="LOCAL-00106" />
+      <option name="project" value="LOCAL" />
+      <updated>1598261561993</updated>
+    </task>
+    <option name="localTasksCounter" value="107" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -666,9 +657,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/gmwcs-solver" />
     </ignored-roots>
-    <MESSAGE value="fscore based selection separate for training and test data" />
-    <MESSAGE value="fscore only for training, out of bag error needed to check roc curve" />
-    <MESSAGE value="added out of bag error visualization" />
     <MESSAGE value="different cases for binary and multiclass" />
     <MESSAGE value="improved visualisation, need to improve title fontsize" />
     <MESSAGE value="need to check for balance of classses in training and test set" />
@@ -691,7 +679,10 @@
     <MESSAGE value="results in process, not tracked" />
     <MESSAGE value="try with complete matrix to compare with previous cross validation" />
     <MESSAGE value="Combined range params in dictionary" />
-    <option name="LAST_COMMIT_MESSAGE" value="Combined range params in dictionary" />
+    <MESSAGE value="obtaining clear output with modifications from meeting in subgraphclass.py" />
+    <MESSAGE value="Results for baseline computed using finalized pipeline" />
+    <MESSAGE value="code for results in previous commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="code for results in previous commit" />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="181" width="800" height="683" key="#Deployment" timestamp="1595687658480">
@@ -703,6 +694,10 @@
     </state>
     <state x="1428" y="394" width="734" height="633" key="#Inspections/0.0.2560.1413@0.0.2560.1413" timestamp="1593791476605" />
     <state x="1071" y="302" key="#Inspections/0.27.1920.985@0.27.1920.985" timestamp="1594307634830" />
+    <state x="1168" y="578" width="216" height="252" key="#Notifications" timestamp="1597848831108">
+      <screen x="0" y="0" width="2560" height="1413" />
+    </state>
+    <state x="1168" y="578" width="216" height="252" key="#Notifications/0.0.2560.1413@0.0.2560.1413" timestamp="1597848831108" />
     <state x="1079" y="495" width="394" height="418" key="#Web_Browsers" timestamp="1590662890178">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
@@ -723,10 +718,10 @@
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
     <state x="968" y="558" width="496" height="285" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.2560.1413@0.0.2560.1413" timestamp="1592210414213" />
-    <state x="74" y="97" width="1772" height="846" key="DiffContextDialog" timestamp="1595669542762">
-      <screen x="0" y="27" width="1920" height="985" />
+    <state x="99" y="100" width="2362" height="1213" key="DiffContextDialog" timestamp="1598261832705">
+      <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state x="99" y="100" width="2362" height="1213" key="DiffContextDialog/0.0.2560.1413@0.0.2560.1413" timestamp="1592380832618" />
+    <state x="99" y="100" width="2362" height="1213" key="DiffContextDialog/0.0.2560.1413@0.0.2560.1413" timestamp="1598261832705" />
     <state x="74" y="97" width="1772" height="846" key="DiffContextDialog/0.27.1920.985@0.27.1920.985" timestamp="1595669542762" />
     <state x="1144" y="456" width="529" height="495" key="EnvironmentVariablesDialog" timestamp="1592387630711">
       <screen x="0" y="0" width="2560" height="1413" />
@@ -796,10 +791,10 @@
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
     <state x="784" y="341" key="SettingsEditor/0.0.2560.1413@0.0.2560.1413" timestamp="1596549174794" />
-    <state x="875" y="442" width="644" height="366" key="Vcs.Push.Dialog.v2" timestamp="1596629974501">
+    <state x="875" y="442" width="644" height="366" key="Vcs.Push.Dialog.v2" timestamp="1598261564376">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state x="875" y="442" width="802" height="524" key="Vcs.Push.Dialog.v2/0.0.2560.1413@0.0.2560.1413" timestamp="1596629974501" />
+    <state x="875" y="442" width="802" height="524" key="Vcs.Push.Dialog.v2/0.0.2560.1413@0.0.2560.1413" timestamp="1598261564376" />
     <state x="656" y="335" width="644" height="366" key="Vcs.Push.Dialog.v2/0.27.1920.985@0.27.1920.985" timestamp="1595583060269" />
     <state width="1281" height="706" key="XDebugger.FullValuePopup" timestamp="1591115772905">
       <screen x="0" y="0" width="2560" height="1413" />
@@ -834,10 +829,10 @@
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
     <state x="1450" y="0" width="1110" height="1087" key="dock-window-2/0.0.2560.1413@0.0.2560.1413" timestamp="1596557200656" />
-    <state x="1446" y="0" width="1114" height="1413" key="dock-window-3" timestamp="1597848535618">
+    <state x="1446" y="0" width="1114" height="1413" key="dock-window-3" timestamp="1598261473943">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state x="1446" y="0" width="1114" height="1413" key="dock-window-3/0.0.2560.1413@0.0.2560.1413" timestamp="1597848535618" />
+    <state x="1446" y="0" width="1114" height="1413" key="dock-window-3/0.0.2560.1413@0.0.2560.1413" timestamp="1598261473943" />
     <state x="997" y="496" width="557" height="416" key="git4idea.merge.GitPullDialog" timestamp="1594732649697">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
