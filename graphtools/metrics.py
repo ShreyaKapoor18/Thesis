@@ -1,9 +1,10 @@
 import numpy as np
 from sklearn.metrics import balanced_accuracy_score
 from sklearn.metrics import accuracy_score
-from sklearn.metrics import f1_score
-from sklearn.metrics import roc_auc_score
+from sklearn.metrics import f1_score, roc_curve, auc
+from sklearn.metrics import auc
 import pandas as pd #this will be used in the fscore function
+import matplotlib.pyplot as plt
 
 # %%
 def fscore(data, class_col='class'):
@@ -25,8 +26,8 @@ def fscore(data, class_col='class'):
         return pd.DataFrame(np.zeros(numerator.shape)) #all options shall return the same datatype
 
 
-def compute_scores(y_test, y_pred, y_score,choice,
-                   metrics=['balanced_accuracy', 'accuracy', 'f1_weighted', 'roc_auc_ovr_weighted']):
+def compute_scores(y_test, y_pred, pos_label,
+                   metrics=['balanced_accuracy', 'accuracy', 'f1_weighted', 'r', 'auc']):
     """
 
     @type metrics: list
@@ -35,12 +36,69 @@ def compute_scores(y_test, y_pred, y_score,choice,
     @param y_score: the scores for comparison between test and predicted labels
     @return:
     """
+    #assert list(y_pred.index) == list(y_test.index)
+    assert len(y_test) == len(y_pred)
+
+    fpr, tpr, thresholds = roc_curve(y_test, y_pred, pos_label=pos_label)
     scores = [balanced_accuracy_score(y_test, y_pred),
-              accuracy_score(y_test, y_pred), f1_score(y_test, y_pred, average='weighted')
-              ]
-    if "roc_auc_ovr_weighted" in metrics:
-        if choice=='qcut':
-            scores.append(roc_auc_score(y_test, y_score, average='weighted', multi_class='ovr'))
-        else:
-            scores.append(roc_auc_score(y_test, y_score, average='weighted'))
+              accuracy_score(y_test, y_pred), f1_score(y_test, y_pred, average='weighted'),
+              auc(fpr, tpr)]
+
     return {k: v for k, v in zip(metrics, scores)}
+
+
+def stratify_sampling(x, n_samples, stratify):
+    """Perform stratify sampling of a tensor.
+    From  YannDubs/statify_sampling.py
+    parameters
+    ----------
+    x: np.ndarray or torch.Tensor
+        Array to sample from. Sampels from first dimension.
+
+    n_samples: int
+        Number of samples to sample
+
+    stratify: tuple of int
+        Size of each subgroup. Note that the sum of all the sizes
+        need to be equal to `x.shape[']`.
+    """
+    n_total = x.shape[0]
+    assert sum(stratify) == n_total
+
+    n_strat_samples = [int(i * n_samples / n_total) for i in stratify]
+    cum_n_samples = np.cumsum([0] + list(stratify))
+    sampled_idcs = []
+    for i, n_strat_sample in enumerate(n_strat_samples):
+        sampled_idcs.append(np.random.choice(range(cum_n_samples[i], cum_n_samples[i + 1]),
+                                             replace=False,
+                                             size=n_strat_sample))
+
+    # might not be correct number of samples due to rounding
+    n_current_samples = sum(n_strat_samples)
+    if n_current_samples < n_samples:
+        delta_n_samples = n_samples - n_current_samples
+        # might actually resample same as before, but it's only for a few
+        sampled_idcs.append(np.random.choice(range(n_total), replace=False, size=delta_n_samples))
+
+    samples = x.iloc[np.concatenate(sampled_idcs)]
+
+    return samples
+
+def plot_grid_search(cv_results, refit_metric):
+    # Get Test Scores Mean and std for each grid search
+    scores_mean = cv_results[f'mean_test_{refit_metric}']
+
+
+    scores_sd = cv_results[f'std_test_{refit_metric}']
+
+    # Plot Grid search scores
+    _, ax = plt.subplots(1,1)
+
+    # Param1 is the X-axis, Param 2 is represented as a different curve (color line)
+    ax.plot(np.arange(len(scores_mean)), scores_mean, '-o')
+
+    ax.set_title("Randomized Search Scores", fontsize=20, fontweight='bold')
+    ax.set_xlabel('Iteration Number', fontsize=16)
+    ax.set_ylabel(f'{refit_metric} Score', fontsize=16)
+    ax.grid('on')
+    plt.show()

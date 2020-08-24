@@ -7,7 +7,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 import json
-from classification import data_splitting
+
 from scipy.stats import describe
 from sklearn.preprocessing import scale
 #%%
@@ -86,9 +86,8 @@ with open(f'/home/skapoor/Thesis/graphtools/outputs/dicts/{target}_combined_para
     # for choice in ['qcut', 'median', 'throw median']
     # Let's say we only choose the throw median choice, because it is the one that makes more sense
     choice = 'throw median'  # out of all these we will use these particular choices only!
-    X, y = data_splitting(choice, index, whole, target_col)  # this X is for random forests training
-    params = best_params['RF'][choice]["100"]  # maybe use the parameters that work the best for top 5%
-    feature_imp = train_with_best_params('RF', params, X, y)
+   # this X is for random forests training
+    X,y = whole, target_col
 
     X_train, X_test, y_train, y_test = train_test_split(X,y)
     scalar = StandardScaler()
@@ -106,8 +105,7 @@ with open(f'/home/skapoor/Thesis/graphtools/outputs/dicts/{target}_combined_para
         arr = fscore(stacked, class_col=target_col.name)[:-1] #take this only from the training data
     if edge == 'pearson':
         arr = stacked.corr().iloc[:-1, -1]
-    if edge == 'feature_importance':
-        arr = feature_imp
+
         # assert type(arr) == np.ndarray
     arr = pd.DataFrame(scale(arr), index= arr.index)
     input_graph = BrainGraph(edge, feature_type, node_wts, target)
@@ -126,10 +124,10 @@ with open(f'/home/skapoor/Thesis/graphtools/outputs/dicts/{target}_combined_para
     if output_graph.node_labels!= [] and output_graph.edge_weights!= []:
         print('Describing the node labels of the output graph', describe(output_graph.node_labels))
         print('Describing the edge weights of the output graph', describe(output_graph.edge_weights))
-    ''''os.remove(f'{mews}/outputs/edges/{input_graph.filename}')
+    os.remove(f'{mews}/outputs/edges/{input_graph.filename}')
     os.remove(f'{mews}/outputs/edges/{input_graph.filename}.out')
     os.remove(f'{mews}/outputs/nodes/{input_graph.filename}')
-    os.remove(f'{mews}/outputs/nodes/{input_graph.filename}.out')'''
+    os.remove(f'{mews}/outputs/nodes/{input_graph.filename}.out')
     #get nodes and edges of this graph
     #train algorithm accordingly
     #X_train = X_train.iloc[:, reduced_feature_indices]
