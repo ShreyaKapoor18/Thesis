@@ -1,6 +1,4 @@
-,throw median,throw median,throw median,throw median
-,balanced_accuracy,accuracy,f1_weighted,roc_auc_ovr_weighted
-5,"{'best': 0.5, 'mean': 0.484}","{'best': 0.583, 'mean': 0.53}","{'best': 0.43, 'mean': 0.467}","{'best': 0.721, 'mean': 0.489}"
-10,"{'best': 0.5, 'mean': 0.494}","{'best': 0.583, 'mean': 0.572}","{'best': 0.43, 'mean': 0.448}","{'best': 0.579, 'mean': 0.467}"
-50,"{'best': 0.5, 'mean': 0.433}","{'best': 0.583, 'mean': 0.487}","{'best': 0.43, 'mean': 0.43}","{'best': 0.507, 'mean': 0.4}"
-100,"{'best': 0.371, 'mean': 0.463}","{'best': 0.417, 'mean': 0.538}","{'best': 0.38, 'mean': 0.427}","{'best': 0.657, 'mean': 0.609}"
+,5,5,5,5,10,10,10,10,50,50,50,50,100,100,100,100
+,balanced_accuracy,accuracy,f1_weighted,roc_auc_ovr_weighted,balanced_accuracy,accuracy,f1_weighted,roc_auc_ovr_weighted,balanced_accuracy,accuracy,f1_weighted,roc_auc_ovr_weighted,balanced_accuracy,accuracy,f1_weighted,roc_auc_ovr_weighted
+test throw median,"{'test': 0.484, 'train': 1.0}","{'test': 0.5, 'train': 1.0}","{'test': 0.51, 'train': 1.0}","{'test': 0.484, 'train': 1.0}","{'test': 0.585, 'train': 0.907}","{'test': 0.579, 'train': 0.904}","{'test': 0.581, 'train': 0.904}","{'test': 0.585, 'train': 0.907}","{'test': 0.455, 'train': 0.973}","{'test': 0.455, 'train': 0.968}","{'test': 0.312, 'train': 0.968}","{'test': 0.455, 'train': 0.973}","{'test': 0.364, 'train': 0.558}","{'test': 0.364, 'train': 0.559}","{'test': 0.358, 'train': 0.563}","{'test': 0.364, 'train': 0.558}"
+keep median,"{'test': 0.459, 'train': 0.912}","{'test': 0.464, 'train': 0.913}","{'test': 0.482, 'train': 0.913}","{'test': 0.459, 'train': 0.912}","{'test': 0.429, 'train': 0.829}","{'test': 0.429, 'train': 0.825}","{'test': 0.426, 'train': 0.826}","{'test': 0.429, 'train': 0.829}","{'test': 0.517, 'train': 0.699}","{'test': 0.464, 'train': 0.684}","{'test': 0.458, 'train': 0.678}","{'test': 0.517, 'train': 0.699}","{'test': 0.542, 'train': 1.0}","{'test': 0.607, 'train': 1.0}","{'test': 0.491, 'train': 1.0}","{'test': 0.542, 'train': 1.0}"

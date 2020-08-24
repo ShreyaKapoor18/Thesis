@@ -1,105 +1,373 @@
 {
     "Metrics": {
-        "throw median": {
-            "5": {
+        "5": {
+            "test throw median": {
                 "balanced_accuracy": {
-                    "best": 0.5,
-                    "mean": 0.484
+                    "test": 0.484,
+                    "train": 1.0
                 },
                 "accuracy": {
-                    "best": 0.583,
-                    "mean": 0.53
+                    "test": 0.5,
+                    "train": 1.0
                 },
                 "f1_weighted": {
-                    "best": 0.43,
-                    "mean": 0.467
+                    "test": 0.51,
+                    "train": 1.0
                 },
                 "roc_auc_ovr_weighted": {
-                    "best": 0.721,
-                    "mean": 0.489
+                    "test": 0.484,
+                    "train": 1.0
                 }
             },
-            "10": {
+            "keep median": {
                 "balanced_accuracy": {
-                    "best": 0.5,
-                    "mean": 0.494
+                    "test": 0.459,
+                    "train": 0.912
                 },
                 "accuracy": {
-                    "best": 0.583,
-                    "mean": 0.572
+                    "test": 0.464,
+                    "train": 0.913
                 },
                 "f1_weighted": {
-                    "best": 0.43,
-                    "mean": 0.448
+                    "test": 0.482,
+                    "train": 0.913
                 },
                 "roc_auc_ovr_weighted": {
-                    "best": 0.579,
-                    "mean": 0.467
+                    "test": 0.459,
+                    "train": 0.912
+                }
+            }
+        },
+        "10": {
+            "test throw median": {
+                "balanced_accuracy": {
+                    "test": 0.585,
+                    "train": 0.907
+                },
+                "accuracy": {
+                    "test": 0.579,
+                    "train": 0.904
+                },
+                "f1_weighted": {
+                    "test": 0.581,
+                    "train": 0.904
+                },
+                "roc_auc_ovr_weighted": {
+                    "test": 0.585,
+                    "train": 0.907
                 }
             },
-            "50": {
+            "keep median": {
                 "balanced_accuracy": {
-                    "best": 0.5,
-                    "mean": 0.433
+                    "test": 0.429,
+                    "train": 0.829
                 },
                 "accuracy": {
-                    "best": 0.583,
-                    "mean": 0.487
+                    "test": 0.429,
+                    "train": 0.825
                 },
                 "f1_weighted": {
-                    "best": 0.43,
-                    "mean": 0.43
+                    "test": 0.426,
+                    "train": 0.826
                 },
                 "roc_auc_ovr_weighted": {
-                    "best": 0.507,
-                    "mean": 0.4
+                    "test": 0.429,
+                    "train": 0.829
+                }
+            }
+        },
+        "50": {
+            "test throw median": {
+                "balanced_accuracy": {
+                    "test": 0.455,
+                    "train": 0.973
+                },
+                "accuracy": {
+                    "test": 0.455,
+                    "train": 0.968
+                },
+                "f1_weighted": {
+                    "test": 0.312,
+                    "train": 0.968
+                },
+                "roc_auc_ovr_weighted": {
+                    "test": 0.455,
+                    "train": 0.973
                 }
             },
-            "100": {
+            "keep median": {
                 "balanced_accuracy": {
-                    "best": 0.371,
-                    "mean": 0.463
+                    "test": 0.517,
+                    "train": 0.699
                 },
                 "accuracy": {
-                    "best": 0.417,
-                    "mean": 0.538
+                    "test": 0.464,
+                    "train": 0.684
                 },
                 "f1_weighted": {
-                    "best": 0.38,
-                    "mean": 0.427
+                    "test": 0.458,
+                    "train": 0.678
                 },
                 "roc_auc_ovr_weighted": {
-                    "best": 0.657,
-                    "mean": 0.609
+                    "test": 0.517,
+                    "train": 0.699
+                }
+            }
+        },
+        "100": {
+            "test throw median": {
+                "balanced_accuracy": {
+                    "test": 0.364,
+                    "train": 0.558
+                },
+                "accuracy": {
+                    "test": 0.364,
+                    "train": 0.559
+                },
+                "f1_weighted": {
+                    "test": 0.358,
+                    "train": 0.563
+                },
+                "roc_auc_ovr_weighted": {
+                    "test": 0.364,
+                    "train": 0.558
+                }
+            },
+            "keep median": {
+                "balanced_accuracy": {
+                    "test": 0.542,
+                    "train": 1.0
+                },
+                "accuracy": {
+                    "test": 0.607,
+                    "train": 1.0
+                },
+                "f1_weighted": {
+                    "test": 0.491,
+                    "train": 1.0
+                },
+                "roc_auc_ovr_weighted": {
+                    "test": 0.542,
+                    "train": 1.0
                 }
             }
         }
     },
     "Parameters": {
-        "throw median": {
-            "5": {
-                "C": 0.0270073369790005,
-                "class_weight": "balanced",
-                "gamma": 0.001516735308203975,
-                "kernel": "rbf"
+        "5": {
+            "test throw median": {
+                "balanced_accuracy": {
+                    "C": 240.83458911062914,
+                    "class_weight": null,
+                    "gamma": 0.000866960618111828,
+                    "kernel": "rbf"
+                },
+                "accuracy": {
+                    "C": 240.83458911062914,
+                    "class_weight": null,
+                    "gamma": 0.000866960618111828,
+                    "kernel": "rbf"
+                },
+                "f1_weighted": {
+                    "C": 240.83458911062914,
+                    "class_weight": null,
+                    "gamma": 0.000866960618111828,
+                    "kernel": "rbf"
+                },
+                "roc_auc_ovr_weighted": {
+                    "C": 240.83458911062914,
+                    "class_weight": null,
+                    "gamma": 0.000866960618111828,
+                    "kernel": "rbf"
+                }
             },
-            "10": {
-                "C": 881.1656671127379,
-                "class_weight": null,
-                "gamma": 0.0022027201958256647,
-                "kernel": "linear"
+            "keep median": {
+                "balanced_accuracy": {
+                    "C": 2.4337538522796835,
+                    "class_weight": "balanced",
+                    "gamma": 0.0002596634109226194,
+                    "kernel": "rbf"
+                },
+                "accuracy": {
+                    "C": 2.4337538522796835,
+                    "class_weight": "balanced",
+                    "gamma": 0.0002596634109226194,
+                    "kernel": "rbf"
+                },
+                "f1_weighted": {
+                    "C": 2.4337538522796835,
+                    "class_weight": "balanced",
+                    "gamma": 0.0002596634109226194,
+                    "kernel": "rbf"
+                },
+                "roc_auc_ovr_weighted": {
+                    "C": 2.4337538522796835,
+                    "class_weight": "balanced",
+                    "gamma": 0.0002596634109226194,
+                    "kernel": "rbf"
+                }
+            }
+        },
+        "10": {
+            "test throw median": {
+                "balanced_accuracy": {
+                    "C": 0.3415322676023039,
+                    "class_weight": "balanced",
+                    "gamma": 0.0034729446436775756,
+                    "kernel": "sigmoid"
+                },
+                "accuracy": {
+                    "C": 0.3415322676023039,
+                    "class_weight": "balanced",
+                    "gamma": 0.0034729446436775756,
+                    "kernel": "sigmoid"
+                },
+                "f1_weighted": {
+                    "C": 0.3415322676023039,
+                    "class_weight": "balanced",
+                    "gamma": 0.0034729446436775756,
+                    "kernel": "sigmoid"
+                },
+                "roc_auc_ovr_weighted": {
+                    "C": 0.3415322676023039,
+                    "class_weight": "balanced",
+                    "gamma": 0.0034729446436775756,
+                    "kernel": "sigmoid"
+                }
             },
-            "50": {
-                "C": 0.0270073369790005,
-                "class_weight": "balanced",
-                "gamma": 0.001516735308203975,
-                "kernel": "rbf"
+            "keep median": {
+                "balanced_accuracy": {
+                    "C": 0.00035246378178231414,
+                    "class_weight": "balanced",
+                    "gamma": 0.00011859452666074789,
+                    "kernel": "linear"
+                },
+                "accuracy": {
+                    "C": 0.00035246378178231414,
+                    "class_weight": "balanced",
+                    "gamma": 0.00011859452666074789,
+                    "kernel": "linear"
+                },
+                "f1_weighted": {
+                    "C": 0.00035246378178231414,
+                    "class_weight": "balanced",
+                    "gamma": 0.00011859452666074789,
+                    "kernel": "linear"
+                },
+                "roc_auc_ovr_weighted": {
+                    "C": 0.00035246378178231414,
+                    "class_weight": "balanced",
+                    "gamma": 0.00011859452666074789,
+                    "kernel": "linear"
+                }
+            }
+        },
+        "50": {
+            "test throw median": {
+                "balanced_accuracy": {
+                    "C": 1.8520027649341053,
+                    "class_weight": "balanced",
+                    "gamma": 0.00037779213818975527,
+                    "kernel": "poly"
+                },
+                "accuracy": {
+                    "C": 1.8520027649341053,
+                    "class_weight": "balanced",
+                    "gamma": 0.00037779213818975527,
+                    "kernel": "poly"
+                },
+                "f1_weighted": {
+                    "C": 1.8520027649341053,
+                    "class_weight": "balanced",
+                    "gamma": 0.00037779213818975527,
+                    "kernel": "poly"
+                },
+                "roc_auc_ovr_weighted": {
+                    "C": 1.8520027649341053,
+                    "class_weight": "balanced",
+                    "gamma": 0.00037779213818975527,
+                    "kernel": "poly"
+                }
             },
-            "100": {
-                "C": 0.11096412485473772,
-                "class_weight": null,
-                "gamma": 0.0014282343288282778,
-                "kernel": "sigmoid"
+            "keep median": {
+                "balanced_accuracy": {
+                    "C": 1.5551791778553947,
+                    "class_weight": "balanced",
+                    "gamma": 0.00010708489860006669,
+                    "kernel": "sigmoid"
+                },
+                "accuracy": {
+                    "C": 1.5551791778553947,
+                    "class_weight": "balanced",
+                    "gamma": 0.00010708489860006669,
+                    "kernel": "sigmoid"
+                },
+                "f1_weighted": {
+                    "C": 1.5551791778553947,
+                    "class_weight": "balanced",
+                    "gamma": 0.00010708489860006669,
+                    "kernel": "sigmoid"
+                },
+                "roc_auc_ovr_weighted": {
+                    "C": 1.5551791778553947,
+                    "class_weight": "balanced",
+                    "gamma": 0.00010708489860006669,
+                    "kernel": "sigmoid"
+                }
+            }
+        },
+        "100": {
+            "test throw median": {
+                "balanced_accuracy": {
+                    "C": 283.48657980589627,
+                    "class_weight": "balanced",
+                    "gamma": 0.009295751464309004,
+                    "kernel": "sigmoid"
+                },
+                "accuracy": {
+                    "C": 283.48657980589627,
+                    "class_weight": "balanced",
+                    "gamma": 0.009295751464309004,
+                    "kernel": "sigmoid"
+                },
+                "f1_weighted": {
+                    "C": 283.48657980589627,
+                    "class_weight": "balanced",
+                    "gamma": 0.009295751464309004,
+                    "kernel": "sigmoid"
+                },
+                "roc_auc_ovr_weighted": {
+                    "C": 283.48657980589627,
+                    "class_weight": "balanced",
+                    "gamma": 0.009295751464309004,
+                    "kernel": "sigmoid"
+                }
+            },
+            "keep median": {
+                "balanced_accuracy": {
+                    "C": 0.00044849541409439385,
+                    "class_weight": null,
+                    "gamma": 0.009068973491620256,
+                    "kernel": "poly"
+                },
+                "accuracy": {
+                    "C": 0.00044849541409439385,
+                    "class_weight": null,
+                    "gamma": 0.009068973491620256,
+                    "kernel": "poly"
+                },
+                "f1_weighted": {
+                    "C": 0.00044849541409439385,
+                    "class_weight": null,
+                    "gamma": 0.009068973491620256,
+                    "kernel": "poly"
+                },
+                "roc_auc_ovr_weighted": {
+                    "C": 0.00044849541409439385,
+                    "class_weight": null,
+                    "gamma": 0.009068973491620256,
+                    "kernel": "poly"
+                }
             }
         }
     }

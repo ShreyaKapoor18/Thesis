@@ -1,129 +1,541 @@
 {
     "Metrics": {
-        "throw median": {
-            "5": {
+        "5": {
+            "test throw median": {
                 "balanced_accuracy": {
-                    "best": 0.593,
-                    "mean": 0.547
+                    "test": 0.562,
+                    "train": 1.0
                 },
                 "accuracy": {
-                    "best": 0.625,
-                    "mean": 0.571
+                    "test": 0.556,
+                    "train": 1.0
                 },
                 "f1_weighted": {
-                    "best": 0.61,
-                    "mean": 0.564
+                    "test": 0.556,
+                    "train": 1.0
                 },
                 "roc_auc_ovr_weighted": {
-                    "best": 0.6,
-                    "mean": 0.497
+                    "test": 0.562,
+                    "train": 1.0
                 }
             },
-            "10": {
+            "keep median": {
                 "balanced_accuracy": {
-                    "best": 0.599,
-                    "mean": 0.486
+                    "test": 0.433,
+                    "train": 1.0
                 },
                 "accuracy": {
-                    "best": 0.609,
-                    "mean": 0.505
+                    "test": 0.429,
+                    "train": 1.0
                 },
                 "f1_weighted": {
-                    "best": 0.612,
-                    "mean": 0.497
+                    "test": 0.434,
+                    "train": 1.0
                 },
                 "roc_auc_ovr_weighted": {
-                    "best": 0.571,
-                    "mean": 0.476
+                    "test": 0.433,
+                    "train": 1.0
+                }
+            }
+        },
+        "10": {
+            "test throw median": {
+                "balanced_accuracy": {
+                    "test": 0.568,
+                    "train": 1.0
+                },
+                "accuracy": {
+                    "test": 0.571,
+                    "train": 1.0
+                },
+                "f1_weighted": {
+                    "test": 0.569,
+                    "train": 1.0
+                },
+                "roc_auc_ovr_weighted": {
+                    "test": 0.568,
+                    "train": 1.0
                 }
             },
-            "50": {
+            "keep median": {
                 "balanced_accuracy": {
-                    "best": 0.603,
-                    "mean": 0.502
+                    "test": 0.618,
+                    "train": 1.0
                 },
                 "accuracy": {
-                    "best": 0.565,
-                    "mean": 0.521
+                    "test": 0.607,
+                    "train": 1.0
                 },
                 "f1_weighted": {
-                    "best": 0.56,
-                    "mean": 0.503
+                    "test": 0.6,
+                    "train": 1.0
                 },
                 "roc_auc_ovr_weighted": {
-                    "best": 0.603,
-                    "mean": 0.453
+                    "test": 0.618,
+                    "train": 1.0
+                }
+            }
+        },
+        "50": {
+            "test throw median": {
+                "balanced_accuracy": {
+                    "test": 0.523,
+                    "train": 1.0
+                },
+                "accuracy": {
+                    "test": 0.526,
+                    "train": 1.0
+                },
+                "f1_weighted": {
+                    "test": 0.529,
+                    "train": 1.0
+                },
+                "roc_auc_ovr_weighted": {
+                    "test": 0.523,
+                    "train": 1.0
                 }
             },
-            "100": {
+            "keep median": {
                 "balanced_accuracy": {
-                    "best": 0.571,
-                    "mean": 0.477
+                    "test": 0.456,
+                    "train": 0.932
                 },
                 "accuracy": {
-                    "best": 0.583,
-                    "mean": 0.496
+                    "test": 0.357,
+                    "train": 0.948
                 },
                 "f1_weighted": {
-                    "best": 0.583,
-                    "mean": 0.493
+                    "test": 0.285,
+                    "train": 0.947
                 },
                 "roc_auc_ovr_weighted": {
-                    "best": 0.55,
-                    "mean": 0.437
+                    "test": 0.456,
+                    "train": 0.932
+                }
+            }
+        },
+        "100": {
+            "test throw median": {
+                "balanced_accuracy": {
+                    "test": 0.344,
+                    "train": 1.0
+                },
+                "accuracy": {
+                    "test": 0.292,
+                    "train": 1.0
+                },
+                "f1_weighted": {
+                    "test": 0.281,
+                    "train": 1.0
+                },
+                "roc_auc_ovr_weighted": {
+                    "test": 0.344,
+                    "train": 1.0
+                }
+            },
+            "keep median": {
+                "balanced_accuracy": {
+                    "test": 0.298,
+                    "train": 1.0
+                },
+                "accuracy": {
+                    "test": 0.286,
+                    "train": 1.0
+                },
+                "f1_weighted": {
+                    "test": 0.3,
+                    "train": 1.0
+                },
+                "roc_auc_ovr_weighted": {
+                    "test": 0.298,
+                    "train": 1.0
                 }
             }
         }
     },
     "Parameters": {
-        "throw median": {
-            "5": {
-                "solver": "sgd",
-                "learning_rate": "adaptive",
-                "hidden_layer_sizes": [
-                    50,
-                    100,
-                    100,
-                    50
-                ],
-                "alpha": 0.001,
-                "activation": "relu"
+        "5": {
+            "test throw median": {
+                "balanced_accuracy": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "tanh"
+                },
+                "accuracy": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "tanh"
+                },
+                "f1_weighted": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "tanh"
+                },
+                "roc_auc_ovr_weighted": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "tanh"
+                }
             },
-            "10": {
-                "solver": "sgd",
-                "learning_rate": "adaptive",
-                "hidden_layer_sizes": [
-                    50,
-                    100,
-                    100,
-                    50
-                ],
-                "alpha": 0.05,
-                "activation": "tanh"
+            "keep median": {
+                "balanced_accuracy": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.05,
+                    "activation": "tanh"
+                },
+                "accuracy": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.05,
+                    "activation": "tanh"
+                },
+                "f1_weighted": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.05,
+                    "activation": "tanh"
+                },
+                "roc_auc_ovr_weighted": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.05,
+                    "activation": "tanh"
+                }
+            }
+        },
+        "10": {
+            "test throw median": {
+                "balanced_accuracy": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.05,
+                    "activation": "tanh"
+                },
+                "accuracy": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.05,
+                    "activation": "tanh"
+                },
+                "f1_weighted": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.05,
+                    "activation": "tanh"
+                },
+                "roc_auc_ovr_weighted": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.05,
+                    "activation": "tanh"
+                }
             },
-            "50": {
-                "solver": "sgd",
-                "learning_rate": "adaptive",
-                "hidden_layer_sizes": [
-                    50,
-                    100,
-                    100,
-                    50
-                ],
-                "alpha": 0.001,
-                "activation": "relu"
+            "keep median": {
+                "balanced_accuracy": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "relu"
+                },
+                "accuracy": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "relu"
+                },
+                "f1_weighted": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "relu"
+                },
+                "roc_auc_ovr_weighted": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "relu"
+                }
+            }
+        },
+        "50": {
+            "test throw median": {
+                "balanced_accuracy": {
+                    "solver": "sgd",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "relu"
+                },
+                "accuracy": {
+                    "solver": "sgd",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "relu"
+                },
+                "f1_weighted": {
+                    "solver": "sgd",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "relu"
+                },
+                "roc_auc_ovr_weighted": {
+                    "solver": "sgd",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "relu"
+                }
             },
-            "100": {
-                "solver": "sgd",
-                "learning_rate": "adaptive",
-                "hidden_layer_sizes": [
-                    50,
-                    100,
-                    100,
-                    50
-                ],
-                "alpha": 0.001,
-                "activation": "tanh"
+            "keep median": {
+                "balanced_accuracy": {
+                    "solver": "sgd",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "relu"
+                },
+                "accuracy": {
+                    "solver": "sgd",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "relu"
+                },
+                "f1_weighted": {
+                    "solver": "sgd",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "relu"
+                },
+                "roc_auc_ovr_weighted": {
+                    "solver": "sgd",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "relu"
+                }
+            }
+        },
+        "100": {
+            "test throw median": {
+                "balanced_accuracy": {
+                    "solver": "sgd",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "relu"
+                },
+                "accuracy": {
+                    "solver": "sgd",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "relu"
+                },
+                "f1_weighted": {
+                    "solver": "sgd",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "relu"
+                },
+                "roc_auc_ovr_weighted": {
+                    "solver": "sgd",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "relu"
+                }
+            },
+            "keep median": {
+                "balanced_accuracy": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "relu"
+                },
+                "accuracy": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "relu"
+                },
+                "f1_weighted": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "relu"
+                },
+                "roc_auc_ovr_weighted": {
+                    "solver": "adam",
+                    "learning_rate": "adaptive",
+                    "hidden_layer_sizes": [
+                        50,
+                        100,
+                        50
+                    ],
+                    "alpha": 0.001,
+                    "activation": "relu"
+                }
             }
         }
     }
