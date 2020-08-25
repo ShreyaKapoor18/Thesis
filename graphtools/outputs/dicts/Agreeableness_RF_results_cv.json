@@ -3,7 +3,25 @@
         "5": {
             "test throw median": {
                 "balanced_accuracy": {
-                    "test": 0.5,
+                    "test": 0.607,
+                    "train": 1.0
+                },
+                "accuracy": {
+                    "test": 0.476,
+                    "train": 1.0
+                },
+                "f1_weighted": {
+                    "test": 0.422,
+                    "train": 1.0
+                },
+                "roc_auc_ovr_weighted": {
+                    "test": 0.684,
+                    "train": 1.0
+                }
+            },
+            "keep median": {
+                "balanced_accuracy": {
+                    "test": 0.488,
                     "train": 1.0
                 },
                 "accuracy": {
@@ -11,29 +29,11 @@
                     "train": 1.0
                 },
                 "f1_weighted": {
-                    "test": 0.418,
+                    "test": 0.443,
                     "train": 1.0
                 },
                 "roc_auc_ovr_weighted": {
-                    "test": 0.592,
-                    "train": 1.0
-                }
-            },
-            "keep median": {
-                "balanced_accuracy": {
-                    "test": 0.647,
-                    "train": 1.0
-                },
-                "accuracy": {
-                    "test": 0.571,
-                    "train": 1.0
-                },
-                "f1_weighted": {
-                    "test": 0.53,
-                    "train": 1.0
-                },
-                "roc_auc_ovr_weighted": {
-                    "test": 0.674,
+                    "test": 0.344,
                     "train": 1.0
                 }
             }
@@ -41,37 +41,37 @@
         "10": {
             "test throw median": {
                 "balanced_accuracy": {
-                    "test": 0.629,
+                    "test": 0.525,
                     "train": 1.0
                 },
                 "accuracy": {
-                    "test": 0.545,
+                    "test": 0.412,
                     "train": 1.0
                 },
                 "f1_weighted": {
-                    "test": 0.545,
+                    "test": 0.395,
                     "train": 1.0
                 },
                 "roc_auc_ovr_weighted": {
-                    "test": 0.686,
+                    "test": 0.667,
                     "train": 1.0
                 }
             },
             "keep median": {
                 "balanced_accuracy": {
-                    "test": 0.448,
+                    "test": 0.267,
                     "train": 1.0
                 },
                 "accuracy": {
-                    "test": 0.464,
+                    "test": 0.286,
                     "train": 1.0
                 },
                 "f1_weighted": {
-                    "test": 0.461,
+                    "test": 0.238,
                     "train": 1.0
                 },
                 "roc_auc_ovr_weighted": {
-                    "test": 0.349,
+                    "test": 0.241,
                     "train": 1.0
                 }
             }
@@ -79,11 +79,11 @@
         "50": {
             "test throw median": {
                 "balanced_accuracy": {
-                    "test": 0.44,
+                    "test": 0.571,
                     "train": 1.0
                 },
                 "accuracy": {
-                    "test": 0.368,
+                    "test": 0.4,
                     "train": 1.0
                 },
                 "f1_weighted": {
@@ -91,25 +91,25 @@
                     "train": 1.0
                 },
                 "roc_auc_ovr_weighted": {
-                    "test": 0.417,
+                    "test": 0.452,
                     "train": 1.0
                 }
             },
             "keep median": {
                 "balanced_accuracy": {
-                    "test": 0.472,
+                    "test": 0.464,
                     "train": 1.0
                 },
                 "accuracy": {
-                    "test": 0.607,
+                    "test": 0.464,
                     "train": 1.0
                 },
                 "f1_weighted": {
-                    "test": 0.486,
+                    "test": 0.403,
                     "train": 1.0
                 },
                 "roc_auc_ovr_weighted": {
-                    "test": 0.5,
+                    "test": 0.546,
                     "train": 1.0
                 }
             }
@@ -117,19 +117,19 @@
         "100": {
             "test throw median": {
                 "balanced_accuracy": {
-                    "test": 0.4,
+                    "test": 0.542,
                     "train": 1.0
                 },
                 "accuracy": {
-                    "test": 0.444,
+                    "test": 0.5,
                     "train": 1.0
                 },
                 "f1_weighted": {
-                    "test": 0.342,
+                    "test": 0.377,
                     "train": 1.0
                 },
                 "roc_auc_ovr_weighted": {
-                    "test": 0.137,
+                    "test": 0.408,
                     "train": 1.0
                 }
             },
@@ -139,15 +139,15 @@
                     "train": 1.0
                 },
                 "accuracy": {
-                    "test": 0.5,
+                    "test": 0.393,
                     "train": 1.0
                 },
                 "f1_weighted": {
-                    "test": 0.412,
+                    "test": 0.261,
                     "train": 1.0
                 },
                 "roc_auc_ovr_weighted": {
-                    "test": 0.497,
+                    "test": 0.406,
                     "train": 1.0
                 }
             }
@@ -157,69 +157,69 @@
         "5": {
             "test throw median": {
                 "balanced_accuracy": {
-                    "n_estimators": 600,
+                    "n_estimators": 800,
                     "min_samples_split": 5,
-                    "min_samples_leaf": 4,
-                    "max_features": "sqrt",
-                    "max_depth": 10,
-                    "bootstrap": false
+                    "min_samples_leaf": 1,
+                    "max_features": "auto",
+                    "max_depth": 40,
+                    "bootstrap": true
                 },
                 "accuracy": {
-                    "n_estimators": 600,
+                    "n_estimators": 800,
                     "min_samples_split": 5,
-                    "min_samples_leaf": 4,
-                    "max_features": "sqrt",
-                    "max_depth": 10,
-                    "bootstrap": false
+                    "min_samples_leaf": 1,
+                    "max_features": "auto",
+                    "max_depth": 40,
+                    "bootstrap": true
                 },
                 "f1_weighted": {
-                    "n_estimators": 600,
+                    "n_estimators": 800,
                     "min_samples_split": 5,
-                    "min_samples_leaf": 4,
-                    "max_features": "sqrt",
-                    "max_depth": 10,
-                    "bootstrap": false
+                    "min_samples_leaf": 1,
+                    "max_features": "auto",
+                    "max_depth": 40,
+                    "bootstrap": true
                 },
                 "roc_auc_ovr_weighted": {
-                    "n_estimators": 600,
+                    "n_estimators": 800,
                     "min_samples_split": 5,
-                    "min_samples_leaf": 4,
-                    "max_features": "sqrt",
-                    "max_depth": 10,
-                    "bootstrap": false
+                    "min_samples_leaf": 1,
+                    "max_features": "auto",
+                    "max_depth": 40,
+                    "bootstrap": true
                 }
             },
             "keep median": {
                 "balanced_accuracy": {
-                    "n_estimators": 1000,
-                    "min_samples_split": 2,
-                    "min_samples_leaf": 2,
-                    "max_features": "sqrt",
-                    "max_depth": 40,
+                    "n_estimators": 1400,
+                    "min_samples_split": 5,
+                    "min_samples_leaf": 1,
+                    "max_features": "auto",
+                    "max_depth": 20,
                     "bootstrap": true
                 },
                 "accuracy": {
-                    "n_estimators": 1000,
-                    "min_samples_split": 2,
-                    "min_samples_leaf": 2,
-                    "max_features": "sqrt",
-                    "max_depth": 40,
+                    "n_estimators": 1400,
+                    "min_samples_split": 5,
+                    "min_samples_leaf": 1,
+                    "max_features": "auto",
+                    "max_depth": 20,
                     "bootstrap": true
                 },
                 "f1_weighted": {
-                    "n_estimators": 1000,
-                    "min_samples_split": 2,
-                    "min_samples_leaf": 2,
-                    "max_features": "sqrt",
-                    "max_depth": 40,
+                    "n_estimators": 1400,
+                    "min_samples_split": 5,
+                    "min_samples_leaf": 1,
+                    "max_features": "auto",
+                    "max_depth": 20,
                     "bootstrap": true
                 },
                 "roc_auc_ovr_weighted": {
-                    "n_estimators": 1000,
-                    "min_samples_split": 2,
-                    "min_samples_leaf": 2,
-                    "max_features": "sqrt",
-                    "max_depth": 40,
+                    "n_estimators": 1400,
+                    "min_samples_split": 5,
+                    "min_samples_leaf": 1,
+                    "max_features": "auto",
+                    "max_depth": 20,
                     "bootstrap": true
                 }
             }
@@ -227,70 +227,70 @@
         "10": {
             "test throw median": {
                 "balanced_accuracy": {
-                    "n_estimators": 800,
-                    "min_samples_split": 5,
+                    "n_estimators": 200,
+                    "min_samples_split": 10,
                     "min_samples_leaf": 1,
                     "max_features": "sqrt",
-                    "max_depth": 70,
+                    "max_depth": 10,
                     "bootstrap": false
                 },
                 "accuracy": {
-                    "n_estimators": 800,
-                    "min_samples_split": 5,
+                    "n_estimators": 200,
+                    "min_samples_split": 10,
                     "min_samples_leaf": 1,
                     "max_features": "sqrt",
-                    "max_depth": 70,
+                    "max_depth": 10,
                     "bootstrap": false
                 },
                 "f1_weighted": {
-                    "n_estimators": 800,
-                    "min_samples_split": 5,
+                    "n_estimators": 200,
+                    "min_samples_split": 10,
                     "min_samples_leaf": 1,
                     "max_features": "sqrt",
-                    "max_depth": 70,
+                    "max_depth": 10,
                     "bootstrap": false
                 },
                 "roc_auc_ovr_weighted": {
-                    "n_estimators": 800,
-                    "min_samples_split": 5,
+                    "n_estimators": 200,
+                    "min_samples_split": 10,
                     "min_samples_leaf": 1,
                     "max_features": "sqrt",
-                    "max_depth": 70,
+                    "max_depth": 10,
                     "bootstrap": false
                 }
             },
             "keep median": {
                 "balanced_accuracy": {
-                    "n_estimators": 400,
-                    "min_samples_split": 2,
+                    "n_estimators": 200,
+                    "min_samples_split": 5,
                     "min_samples_leaf": 1,
-                    "max_features": "sqrt",
-                    "max_depth": 40,
-                    "bootstrap": false
+                    "max_features": "auto",
+                    "max_depth": 30,
+                    "bootstrap": true
                 },
                 "accuracy": {
-                    "n_estimators": 400,
-                    "min_samples_split": 2,
+                    "n_estimators": 200,
+                    "min_samples_split": 5,
                     "min_samples_leaf": 1,
-                    "max_features": "sqrt",
-                    "max_depth": 40,
-                    "bootstrap": false
+                    "max_features": "auto",
+                    "max_depth": 30,
+                    "bootstrap": true
                 },
                 "f1_weighted": {
-                    "n_estimators": 400,
-                    "min_samples_split": 2,
+                    "n_estimators": 200,
+                    "min_samples_split": 5,
                     "min_samples_leaf": 1,
-                    "max_features": "sqrt",
-                    "max_depth": 40,
-                    "bootstrap": false
+                    "max_features": "auto",
+                    "max_depth": 30,
+                    "bootstrap": true
                 },
                 "roc_auc_ovr_weighted": {
-                    "n_estimators": 400,
-                    "min_samples_split": 2,
+                    "n_estimators": 200,
+                    "min_samples_split": 5,
                     "min_samples_leaf": 1,
-                    "max_features": "sqrt",
-                    "max_depth": 40,
-                    "bootstrap": false
+                    "max_features": "auto",
+                    "max_depth": 30,
+                    "bootstrap": true
                 }
             }
         },
@@ -298,138 +298,138 @@
             "test throw median": {
                 "balanced_accuracy": {
                     "n_estimators": 200,
-                    "min_samples_split": 10,
-                    "min_samples_leaf": 4,
-                    "max_features": "sqrt",
+                    "min_samples_split": 2,
+                    "min_samples_leaf": 2,
+                    "max_features": "auto",
                     "max_depth": 50,
                     "bootstrap": true
                 },
                 "accuracy": {
                     "n_estimators": 200,
-                    "min_samples_split": 10,
-                    "min_samples_leaf": 4,
-                    "max_features": "sqrt",
+                    "min_samples_split": 2,
+                    "min_samples_leaf": 2,
+                    "max_features": "auto",
                     "max_depth": 50,
                     "bootstrap": true
                 },
                 "f1_weighted": {
                     "n_estimators": 200,
-                    "min_samples_split": 10,
-                    "min_samples_leaf": 4,
-                    "max_features": "sqrt",
+                    "min_samples_split": 2,
+                    "min_samples_leaf": 2,
+                    "max_features": "auto",
                     "max_depth": 50,
                     "bootstrap": true
                 },
                 "roc_auc_ovr_weighted": {
                     "n_estimators": 200,
-                    "min_samples_split": 10,
-                    "min_samples_leaf": 4,
-                    "max_features": "sqrt",
+                    "min_samples_split": 2,
+                    "min_samples_leaf": 2,
+                    "max_features": "auto",
                     "max_depth": 50,
                     "bootstrap": true
                 }
             },
             "keep median": {
                 "balanced_accuracy": {
-                    "n_estimators": 400,
+                    "n_estimators": 600,
                     "min_samples_split": 2,
-                    "min_samples_leaf": 4,
-                    "max_features": "auto",
-                    "max_depth": 70,
-                    "bootstrap": true
+                    "min_samples_leaf": 1,
+                    "max_features": "sqrt",
+                    "max_depth": 40,
+                    "bootstrap": false
                 },
                 "accuracy": {
-                    "n_estimators": 400,
+                    "n_estimators": 600,
                     "min_samples_split": 2,
-                    "min_samples_leaf": 4,
-                    "max_features": "auto",
-                    "max_depth": 70,
-                    "bootstrap": true
+                    "min_samples_leaf": 1,
+                    "max_features": "sqrt",
+                    "max_depth": 40,
+                    "bootstrap": false
                 },
                 "f1_weighted": {
-                    "n_estimators": 400,
+                    "n_estimators": 600,
                     "min_samples_split": 2,
-                    "min_samples_leaf": 4,
-                    "max_features": "auto",
-                    "max_depth": 70,
-                    "bootstrap": true
+                    "min_samples_leaf": 1,
+                    "max_features": "sqrt",
+                    "max_depth": 40,
+                    "bootstrap": false
                 },
                 "roc_auc_ovr_weighted": {
-                    "n_estimators": 400,
+                    "n_estimators": 600,
                     "min_samples_split": 2,
-                    "min_samples_leaf": 4,
-                    "max_features": "auto",
-                    "max_depth": 70,
-                    "bootstrap": true
+                    "min_samples_leaf": 1,
+                    "max_features": "sqrt",
+                    "max_depth": 40,
+                    "bootstrap": false
                 }
             }
         },
         "100": {
             "test throw median": {
                 "balanced_accuracy": {
-                    "n_estimators": 1200,
-                    "min_samples_split": 2,
-                    "min_samples_leaf": 1,
+                    "n_estimators": 400,
+                    "min_samples_split": 10,
+                    "min_samples_leaf": 2,
                     "max_features": "auto",
-                    "max_depth": 50,
+                    "max_depth": 40,
                     "bootstrap": false
                 },
                 "accuracy": {
-                    "n_estimators": 1200,
-                    "min_samples_split": 2,
-                    "min_samples_leaf": 1,
+                    "n_estimators": 400,
+                    "min_samples_split": 10,
+                    "min_samples_leaf": 2,
                     "max_features": "auto",
-                    "max_depth": 50,
+                    "max_depth": 40,
                     "bootstrap": false
                 },
                 "f1_weighted": {
-                    "n_estimators": 1200,
-                    "min_samples_split": 2,
-                    "min_samples_leaf": 1,
+                    "n_estimators": 400,
+                    "min_samples_split": 10,
+                    "min_samples_leaf": 2,
                     "max_features": "auto",
-                    "max_depth": 50,
+                    "max_depth": 40,
                     "bootstrap": false
                 },
                 "roc_auc_ovr_weighted": {
-                    "n_estimators": 1200,
-                    "min_samples_split": 2,
-                    "min_samples_leaf": 1,
+                    "n_estimators": 400,
+                    "min_samples_split": 10,
+                    "min_samples_leaf": 2,
                     "max_features": "auto",
-                    "max_depth": 50,
+                    "max_depth": 40,
                     "bootstrap": false
                 }
             },
             "keep median": {
                 "balanced_accuracy": {
-                    "n_estimators": 800,
+                    "n_estimators": 200,
                     "min_samples_split": 2,
-                    "min_samples_leaf": 1,
-                    "max_features": "auto",
-                    "max_depth": 60,
+                    "min_samples_leaf": 2,
+                    "max_features": "sqrt",
+                    "max_depth": 40,
                     "bootstrap": false
                 },
                 "accuracy": {
-                    "n_estimators": 800,
+                    "n_estimators": 200,
                     "min_samples_split": 2,
-                    "min_samples_leaf": 1,
-                    "max_features": "auto",
-                    "max_depth": 60,
+                    "min_samples_leaf": 2,
+                    "max_features": "sqrt",
+                    "max_depth": 40,
                     "bootstrap": false
                 },
                 "f1_weighted": {
-                    "n_estimators": 800,
+                    "n_estimators": 200,
                     "min_samples_split": 2,
-                    "min_samples_leaf": 1,
-                    "max_features": "auto",
-                    "max_depth": 60,
+                    "min_samples_leaf": 2,
+                    "max_features": "sqrt",
+                    "max_depth": 40,
                     "bootstrap": false
                 },
                 "roc_auc_ovr_weighted": {
-                    "n_estimators": 800,
+                    "n_estimators": 200,
                     "min_samples_split": 2,
-                    "min_samples_leaf": 1,
-                    "max_features": "auto",
-                    "max_depth": 60,
+                    "min_samples_leaf": 2,
+                    "max_features": "sqrt",
+                    "max_depth": 40,
                     "bootstrap": false
                 }
             }
