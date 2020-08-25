@@ -24,7 +24,7 @@ metrics = ['balanced_accuracy', 'accuracy', 'f1_weighted', 'roc_auc_ovr_weighted
 feature_type = 'mean_FA'
 target = 'Agreeableness'
 target_col = data[mapping[target]]
-feature_selection = 'pearson'
+feature_selection = 'fscore'
 # %%
 if feature_type == 'mean_FA':
     whole = whole.iloc[:, :tri]

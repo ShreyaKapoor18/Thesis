@@ -125,9 +125,12 @@ def dict_classifier(classifier, whole, metrics, target_col, feature, percent):
                 # removing subjects that are close to the median of the training data
                 print(sum(abs(y_test - med) <= 1), 'The number of subjects with labels '
                                                    'within difference of 1.0 from the median value')
+                length_sub = sum(abs(y_test - med) <= 1)
                 y_test = y_test[abs(y_test - med) > 1]  # maybe most of the values are close to the median
-                y_test = y_test >=med  #binarizing the label
-                X_test = X_test.loc[y_test.index] # making sure that the training data is also for the same subjects
+                y_test = y_test >=med  #binarizing the label check for duplicates
+                assert len(y_test.index) == test_size - length_sub
+                X_test = X_test.loc[list(set(y_test.index))]
+                # making sure that the training data is also for the same subjects
                 assert len(X_test) == len(y_test)
 
             elif choice == 'keep median':
@@ -244,7 +247,7 @@ def run_classification(whole, metrics, target, target_col, feature):
     for folder in ['figures', 'dicts', 'csvs']:
         if not os.path.exists(f'outputs/{folder}'):
             os.mkdir(f'outputs/{folder}')
-    classifiers  = ['SVC', 'RF', 'MLP']
+    classifiers  = ['RF', 'MLP', 'SVC']
     for clf in classifiers:  # other ones are taking too long
         start = time.time()
         d1 = dict_classifier(clf, whole, metrics, target_col, feature, [5, 10, 50, 100])
