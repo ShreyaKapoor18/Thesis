@@ -7,9 +7,11 @@ import matplotlib.cm as cm
 import numpy as np
 import pandas as pd
 import matplotlib.patches as patches
-class BrainGraph(nx.Graph): #inheriting from networkx graph package along with the functionality we want
+
+
+class BrainGraph(nx.Graph):  # inheriting from networkx graph package along with the functionality we want
     def __init__(self, edge, feature_type, node_wts, target):
-        #self.connected_subgraph = self.subgraph([0])
+        # self.connected_subgraph = self.subgraph([0])
         super(BrainGraph, self).__init__()  # constructor of the base class
         self.edge = edge
         self.feature_type = feature_type
@@ -21,6 +23,7 @@ class BrainGraph(nx.Graph): #inheriting from networkx graph package along with t
 
     def subgraph(self):
         # create new graph and copy subgraph into it
+        # pipeline changed
         H = self.__class__(self.edge, self.feature_type, self.node_wts, self.target)
         # copy node and attribute dictionaries
         H.add_nodes_from(self.connected_nodes)
@@ -29,24 +32,17 @@ class BrainGraph(nx.Graph): #inheriting from networkx graph package along with t
             # if edge[0] in g1.nodes and edge[1] in g1.nodes:
             H.nodes[x]['label'] = self.nodes[x]['label']
             for conn in self[x]:
-                subgr_edges.append((x,conn, self[x][conn]['weight']))
+                subgr_edges.append((x, conn, self[x][conn]['weight']))
         H.add_weighted_edges_from(subgr_edges)
         return H
 
-
-    def make_graph(self, arr, sub_val): #maybe this function is not even needed
+    def make_graph(self, arr, sub_val):  # maybe this function is not even needed
         mat = np.triu_indices(84)
         print('type of array', type(arr))
-        arr.fillna(0, inplace=True)
-        arr = arr.abs()  # need to standardize after taking the absolute value
+        # need to standardize after taking the absolute value
         arr = arr - sub_val
-        #nonzero = arr[arr != 0].index
-        #arr.loc[nonzero] = arr.loc[nonzero] - sub_val #subtract only for the nonzero parts
-        # we want to standardize the whole array together
-        # the values are x.y and the values in itself
-        # standardization of the array itself, need to preserve the non zero parts only
-        # before giving these values as edge values
-        # try for for different types, one feature at a time maybe and then construct graph?
+        # nonzero = arr[arr != 0].index
+        # arr.loc[nonzero] = arr.loc[nonzero] - sub_val #subtract only for the nonzero parts
         nodes = set()
         edge_attributes = []
         for j in range(len(mat[0])):
@@ -56,13 +52,18 @@ class BrainGraph(nx.Graph): #inheriting from networkx graph package along with t
             nodes.add(mat[1][j])
         # mean for the scores of three different labels
         assert nodes is not None
+        self.add_nodes_from(nodes)
         self.add_weighted_edges_from(edge_attributes)
+        self.edge_weights = []
+        for u, v in self.edges:
+            self.edge_weights.append(self[u][v]['weight'])
 
     def set_node_labels(self, node_wts, const_val=None):
         node_labels = []
         for l in self.nodes.keys():
             if node_wts == 'max':
-                self.nodes[l]['label'] = max([dict(self[l])[k]['weight'] for k in dict(self[l]).keys()])  # max or max abs?
+                self.nodes[l]['label'] = max(
+                    [dict(self[l])[k]['weight'] for k in dict(self[l]).keys()])  # max or max abs?
             elif node_wts == 'const':
                 self.nodes[l]['label'] = const_val
             node_labels.append(self.nodes[l]['label'])
@@ -74,41 +75,29 @@ class BrainGraph(nx.Graph): #inheriting from networkx graph package along with t
             self.nodes[n]['label'] = self.node_labels[n]
 
     def visualize_graph(self, mews, connected, sub_val, plotting_options, const_val=None):
+        # not using the subgraph extraction right now since we are not thresholding in any case
 
-        edge_wts = []
-        if connected:
-            for u in self.connected_nodes:
-                for v in self[u].keys():
-                    #print(u,v, self[u][v]['weight'])
-                    edge_wts.append(self[u][v]['weight'])
-        if not connected:
-            print('nodes', self.nodes)
-            for u in self.nodes:
-                for v in self[u].keys():
-                    #print(u,v, self[u][v]['weight'])
-                    edge_wts.append(self[u][v]['weight'])
-        #print('edge weights',edge_wts)
-        self.edge_weights = edge_wts
-        if edge_wts!= None and edge_wts!=[]:
-            minima = min(edge_wts)
-            maxima = max(edge_wts)
+        if self.edge_weights != None and self.edge_weights != []:
+            minima = min(self.edge_weights)
+            maxima = max(self.edge_weights)
             norm = matplotlib.colors.Normalize(vmin=minima, vmax=maxima)
             mapper = cm.ScalarMappable(norm=norm, cmap=plt.get_cmap('Spectral'))
             color = []
-            for v in edge_wts:
+            for v in self.edge_weights:
                 color.append(mapper.to_rgba(v))
             # build a rectangle in axes coords
             fig, ax = plt.subplots()
             print('minima and maxima', minima, maxima)
             if connected:  # to visualize the connected subgraph in the input
-                plt.title(f'Nodes with degree >={self.connected_degree}, input to the solver: {self.filename}\n Number of edges {len(self.edges)}\n'
-                          f'Subtracted value: {sub_val}, Target: {self.target}, Feature:{self.feature_type}\n'
-                          f'Edge type:{self.edge}, Node weighting:{self.node_wts}')
-                if const_val!=None:
+                plt.title(
+                    f'Nodes with degree >={self.connected_degree}, input to the solver: {self.filename}\n Number of edges {len(self.edges)}\n'
+                    f'Subtracted value: {sub_val}, Target: {self.target}, Feature:{self.feature_type}\n'
+                    f'Edge type:{self.edge}, Node weighting:{self.node_wts}')
+                if const_val != None:
                     print('constant value has been given')
-                    ax.annotate(f'Node weight={const_val}',xy=(0,1))
+                    ax.annotate(f'Node weight={const_val}', xy=(0, 1))
                 nx.draw(self.subgraph(), **plotting_options, edge_color=color, edge_cmap=mapper.cmap, vmin=minima,
-                            vmax=maxima, with_labels=False)
+                        vmax=maxima, with_labels=False)
                 plt.colorbar(mapper)
                 plt.savefig(f'{mews}/outputs/figs/{self.filename}.png')
 
@@ -129,11 +118,11 @@ class BrainGraph(nx.Graph): #inheriting from networkx graph package along with t
         with open(f'{mews}/outputs/nodes/{self.filename}', 'w') as nodes_file:
             for x in self.nodes:
                 # print(node)  # solver documentation, 1 or 2
-                    print(str(x) + ' ' * 3 + str(self.nodes[x]['label']), file=nodes_file)
-                    self.connected_nodes.append(x)
-                    # print(str(node) + ' ' + str(0), file=nodes_file)
-                    count += 1
-        #self.connected_subgraph = self.subgraph(connected_nodes)
+                print(str(x) + ' ' * 3 + str(self.nodes[x]['label']), file=nodes_file)
+                self.connected_nodes.append(x)
+                # print(str(node) + ' ' + str(0), file=nodes_file)
+                count += 1
+        # self.connected_subgraph = self.subgraph(connected_nodes)
 
         with open(f'{mews}/outputs/edges/{self.filename}', 'w') as edges_file:
             for x in self.nodes:
@@ -144,17 +133,17 @@ class BrainGraph(nx.Graph): #inheriting from networkx graph package along with t
 
     def run_solver(self, mews):
         os.chdir(mews)
-        print('Current directory', os.getcwd())
+        #print('Current directory', os.getcwd())
         cmd = (
             f' java -Xss4M -Djava.library.path=/opt/ibm/ILOG/CPLEX_Studio1210/cplex/bin/x86-64_linux/ '
             f'-cp /opt/ibm/ILOG/CPLEX_Studio1210/cplex/lib/cplex.jar:target/gmwcs-solver.jar '
             f'ru.ifmo.ctddev.gmwcs.Main -e outputs/edges/{self.filename} '
-            f'-n outputs/nodes/{self.filename} > outputs/solver/{self.filename}') #training data into the solver
+            f'-n outputs/nodes/{self.filename} > outputs/solver/{self.filename}')  # training data into the solver
 
-        print(cmd)
+        #print(cmd)
         os.system(cmd)
         os.chdir("/home/skapoor/Thesis/graphtools")
-        print('Current directory', os.getcwd())
+        #print('Current directory', os.getcwd())
 
     def read_from_file(self, mews, mat=np.triu_indices(84)):
         if os.path.exists(f'{mews}/outputs/nodes/{self.filename}.out') \
@@ -167,7 +156,7 @@ class BrainGraph(nx.Graph): #inheriting from networkx graph package along with t
                 edges_e = set()
                 node_labels = {}
                 for a in nodes[:-1]:
-                    if a[1] != 'n/a': # since the last line is the subnet score
+                    if a[1] != 'n/a':  # since the last line is the subnet score
                         nodes_e.add(int(a[0]))
                         node_labels[int(a[0])] = float(a[1])
                 feature_indices = []
@@ -185,14 +174,16 @@ class BrainGraph(nx.Graph): #inheriting from networkx graph package along with t
                                 self.edge_weights.append((float(existing_edge[2])))
                                 # feature_mat = whole.iloc[:, :tri]]
                 self.add_nodes_from(nodes_e)
-                #self.set_edge_labels(edges_e)
                 self.connected_nodes = nodes_e
-                #assert self.nodes!= None
                 self.add_weighted_edges_from(edges_e)
                 self.node_labels = []
                 for l in self.nodes.keys():
-                        self.nodes[l]['label'] = node_labels[l]
-                        self.node_labels.append(node_labels[l])
+                    self.nodes[l]['label'] = node_labels[l]
+                    self.node_labels.append(node_labels[l])
+
+                self.edge_weights = []
+                for u, v in self.edges:
+                    self.edge_weights.append(self[u][v]['weight'])
 
                 print('output graph has been read from file', 'nodes:', self.nodes, 'edges', self.edges)
                 return feature_indices
