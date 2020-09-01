@@ -16,7 +16,7 @@ from scipy.stats import ttest_ind
 
 # %%
 
-def feature_selection(X_train, X_val, y_train, per, target_col, feature):
+def feature_selection(X_train, X_val, y_train, per, feature):
     scalar2 = StandardScaler()
     print('feature selection')
     assert len(np.unique(y_train)) > 2 #to make sure that we are getting the unbinned personality traits
@@ -27,17 +27,17 @@ def feature_selection(X_train, X_val, y_train, per, target_col, feature):
     stacked = pd.concat([X_train, y_train], axis=1)
     cols = []
     cols.extend(range(X_train.shape[1]))  # the values zero to the number of columns
-    cols.append(target_col.name)
+    cols.append(y_train.name)
     stacked.columns = cols
     if feature == 'fscore':
-        name = target_col.name
+        name = y_train.name
         stacked[name] = stacked[name] >= stacked[name].median()
         arr_inner = fscore(stacked, class_col=name)[:-1]
         # fscore is different for the multiclass and binary case; has been incorporated above
     if feature == 'pearson':
         arr_inner = stacked.corr().iloc[:-1, -1]
     if feature == 't_test':
-        name = target_col.name
+        name = y_train.name
         stacked[name] = stacked[name] >= stacked[name].median()
         group0 = stacked[stacked[name] == 0]
         group1 = stacked[stacked[name] ==1]
@@ -54,7 +54,7 @@ def feature_selection(X_train, X_val, y_train, per, target_col, feature):
     X_val = X_val.iloc[:, index[0]]
 
     assert list(X_train.index) == list(y_train.index)
-    #assert list(X_val.index) == list(y_val.index))
+
     return X_train, X_val
 
 
@@ -108,7 +108,7 @@ def dict_classifier(classifier, X_train, X_test, y_train, y_test, metrics, featu
             X_train = X_train_c.loc[y_train.index]
             assert len(X_train_c) == len(y_train)
             print('The choice that we are using', choice)
-            X_train_c, X_test = feature_selection(X_train, X_test, y_train, per, target_col, feature)
+            X_train_c, X_test = feature_selection(X_train, X_test, y_train, per, feature)
             if choice == 'test throw median':
                 # removing subjects that are close to the median of the training data
                 print(sum(abs(y_test - med) <= 1), 'The number of subjects with labels '
