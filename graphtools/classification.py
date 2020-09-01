@@ -52,8 +52,7 @@ def feature_selection(X_train, X_val, y_train, per, target_col, feature):
 
     X_train = X_train.iloc[:, index[0]]
     X_val = X_val.iloc[:, index[0]]
-    # print('X_train_c', X_train_c.shape, 'y_train_c', y_train_c.shape)
-    # print('X_test', X_test.shape, 'y_test', y_test.shape)
+
     assert list(X_train.index) == list(y_train.index)
     #assert list(X_val.index) == list(y_val.index))
     return X_train, X_val
@@ -71,7 +70,7 @@ def make_predefined_split(X_train, X_val, y_train, y_val):
 
 
 # %%
-def dict_classifier(classifier, whole, metrics, target_col, feature, percent):
+def dict_classifier(classifier, X_train, X_test, y_train, y_test, metrics, feature, percent):
     """
 
     :param whole: the matrix containing the edge information for all subjects
@@ -92,35 +91,24 @@ def dict_classifier(classifier, whole, metrics, target_col, feature, percent):
         print('percentage of features being used:', per)
         metric_score[per] = {}
         best_params[per] = {}
-        test_size = int(0.2 * len(whole))
+        test_size = int(0.2 * len(X_train))
         for choice in ['test throw median', 'keep median']:
             print('-'*100)
-            print(choice)
-            y_test = stratify_sampling(target_col.sort_values(ascending=True), test_size,
-                                       (test_size, len(target_col) - test_size))  # how to stratify here
-            assert len(y_test) == test_size
-            X_test = whole.loc[y_test.index]
-            train_c_ind = list(set(target_col.index).difference(set(y_test.index)))
-            X_train_c = whole.loc[train_c_ind] # each time defined differently so there shall not be an issue
-            y_train_c = target_col[train_c_ind]
-
-
-
-            assert len(X_train_c) == len(y_train_c)
-            med = int(y_train_c.median())  # the median is tried based on the training set
+            assert len(X_train) == len(y_train)
+            med = int(y_train.median())  # the median is tried based on the training set
             print('median of the training data', med)
-            print('value counts in train and test data set\n', y_train_c.value_counts().T, y_test.value_counts().T)
-            print('Descriptive statistics of the training and the test set labels', describe(y_train_c), describe(y_test))
+            print('value counts in train and test data set\n', y_train.value_counts().T, y_test.value_counts().T)
+            print('Descriptive statistics of the training and the test set labels', describe(y_train), describe(y_test))
 
-            y_train_c = pd.qcut(y_train_c, 5, labels=False, retbins=True)[0]
+            y_train = pd.qcut(y_train, 5, labels=False, retbins=True)[0]
             # we need to pass the non-binned values for effective pearson correlation calc.
-            print('The number of subjects which are to be removed:', sum(y_train_c == 2))
-            y_train_c = y_train_c[y_train_c != 2]
-            y_train_c = y_train_c // 3#binarizing the values by removing the middle quartile
-            X_train_c = X_train_c.loc[y_train_c.index]
-            assert len(X_train_c) == len(y_train_c)
+            print('The number of subjects which are to be removed:', sum(y_train== 2))
+            y_train = y_train[y_train != 2]
+            y_train = y_train // 3#binarizing the values by removing the middle quartile
+            X_train = X_train_c.loc[y_train.index]
+            assert len(X_train_c) == len(y_train)
             print('The choice that we are using', choice)
-            X_train_c, X_test = feature_selection(X_train_c, X_test, target_col.loc[y_train_c.index], per, target_col, feature)
+            X_train_c, X_test = feature_selection(X_train, X_test, y_train, per, target_col, feature)
             if choice == 'test throw median':
                 # removing subjects that are close to the median of the training data
                 print(sum(abs(y_test - med) <= 1), 'The number of subjects with labels '
@@ -142,18 +130,19 @@ def dict_classifier(classifier, whole, metrics, target_col, feature, percent):
             clf, distributions = get_distributions(classifier, True, None)
             rcv = RandomizedSearchCV(clf, distributions, random_state=55, scoring=metrics,
                                      refit=refit_metric, cv=5, n_iter=200,
-                                     n_jobs=-1)  # this is already producing 5 folds so we need to do something different?
+                                     n_jobs=-1)
+            # this is already producing 5 folds so we need to do something different?
 
-            search = rcv.fit(X_train_c, y_train_c)
+            search = rcv.fit(X_train_c, y_train)
             clf_out = search.best_estimator_
             plot_grid_search(search.cv_results_, refit_metric) #need to see what we will plot or not
 
-            clf_out.fit(X_train_c, y_train_c)
+            clf_out.fit(X_train_c, y_train)
             y_pred = clf_out.predict(X_test)
             assert len(y_pred) == len(X_test)
             outer_test = compute_scores(y_test, y_pred, clf_out.predict_proba(X_test)[:,1], metrics =metrics)
             ytrain_pred = clf_out.predict(X_train_c)
-            outer_train = compute_scores(y_train_c, ytrain_pred, clf_out.predict_proba(X_train_c)[:,1], metrics=metrics)
+            outer_train = compute_scores(y_train, ytrain_pred, clf_out.predict_proba(X_train_c)[:,1], metrics=metrics)
 
             for metric in metrics:
                 # validation set
@@ -233,7 +222,7 @@ def visualise_performance(combined, metrics, top_per, target, choices, classifie
 
 
 # %%
-def run_classification(whole, metrics, target, target_col, feature):
+def run_classification(X_train, X_test,y_train, y_test, metrics, target, target_col, feature):
     """
     @param label: the target variable since we want to run in a pipeline
     @param whole: the oriignal data with combined features from all subjects
@@ -250,7 +239,7 @@ def run_classification(whole, metrics, target, target_col, feature):
     classifiers  = ['RF', 'MLP', 'SVC']
     for clf in classifiers:  # other ones are taking too long
         start = time.time()
-        d1 = dict_classifier(clf, whole, metrics, target_col, feature, [5, 10, 50, 100])
+        d1 = dict_classifier(clf, X_train,X_test, y_train, y_test, metrics, target_col, feature)
         end = time.time()
         print(f'Time taken for {clf}: {datetime.timedelta(seconds=end - start)}')
         make_csv(d1, f'outputs/csvs/{target}_{clf}_results_cv.csv')

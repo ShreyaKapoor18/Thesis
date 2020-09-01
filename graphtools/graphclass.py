@@ -66,6 +66,8 @@ class BrainGraph(nx.Graph):  # inheriting from networkx graph package along with
                     [dict(self[l])[k]['weight'] for k in dict(self[l]).keys()])  # max or max abs?
             elif node_wts == 'const':
                 self.nodes[l]['label'] = const_val
+            elif node_wts== 'avg':
+                self.nodes[l]['label'] = np.mean([dict(self[l])[k]['weight'] for k in dict(self[l]).keys()])
             node_labels.append(self.nodes[l]['label'])
         self.node_labels = node_labels
 
@@ -114,14 +116,13 @@ class BrainGraph(nx.Graph):  # inheriting from networkx graph package along with
             print('No output produced by the solver')
 
     def savefiles(self, mews):
-        count = 0
+
         with open(f'{mews}/outputs/nodes/{self.filename}', 'w') as nodes_file:
             for x in self.nodes:
                 # print(node)  # solver documentation, 1 or 2
                 print(str(x) + ' ' * 3 + str(self.nodes[x]['label']), file=nodes_file)
-                self.connected_nodes.append(x)
+
                 # print(str(node) + ' ' + str(0), file=nodes_file)
-                count += 1
         # self.connected_subgraph = self.subgraph(connected_nodes)
 
         with open(f'{mews}/outputs/edges/{self.filename}', 'w') as edges_file:
@@ -174,7 +175,7 @@ class BrainGraph(nx.Graph):  # inheriting from networkx graph package along with
                                 self.edge_weights.append((float(existing_edge[2])))
                                 # feature_mat = whole.iloc[:, :tri]]
                 self.add_nodes_from(nodes_e)
-                self.connected_nodes = nodes_e
+                self.connected_nodes = list(nodes_e)
                 self.add_weighted_edges_from(edges_e)
                 self.node_labels = []
                 for l in self.nodes.keys():
