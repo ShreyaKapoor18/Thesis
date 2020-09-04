@@ -139,11 +139,11 @@ def classify(classifiers, targets, X_train, X_test, y_train, y_test, metrics, ma
             X_train_l = X_train.iloc[:, 2 * tri:]  # input one feature at a time
             X_test_l = X_test.iloc[:, 2 * tri:]
         assert len(X_train) == len(y_train)
-        med = int(y_train.median())  # the median is tried based on the training set
+        med = int(y_train_l.median())  # the median is tried based on the training set
         print('median of the training data', med)
-        y_train_l = pd.qcut(y_train, 5, labels=False, retbins=True)[0]
+        y_train_l = pd.qcut(y_train_l, 5, labels=False, retbins=True)[0]
         # we need to pass the non-binned values for effective pearson correlation calc.
-        print('The number of training subjects which are to be removed:', sum(y_train== 2))
+        print('The number of training subjects which are to be removed:', sum(y_train_l== 2))
         y_train_l = y_train_l[y_train_l != 2]
         y_train_l = y_train_l // 3#binarizing the values by removing the middle quartile
         X_train_l = X_train_l.loc[y_train_l.index]
@@ -151,10 +151,10 @@ def classify(classifiers, targets, X_train, X_test, y_train, y_test, metrics, ma
         print('The choice that we are using', choice)
         if choice == 'test throw median':
             # removing subjects that are close to the median of the training data
-            print(sum(abs(y_test - med) <= 1), 'The number of subjects with labels '
+            print(sum(abs(y_test_l - med) <= 1), 'The number of subjects with labels '
                                                'within difference of 1.0 from the median value')
             #length_sub = sum(abs(y_test - med) <= 1)
-            y_test_l = y_test[abs(y_test - med) > 1]  # maybe most of the values are close to the median
+            y_test_l = y_test_l[abs(y_test_l - med) > 1]  # maybe most of the values are close to the median
             y_test_l = y_test_l >=med  #binarizing the label check for duplicates
             X_test_l = X_test_l.loc[list(set(y_test_l.index))]
             # making sure that the training data is also for the same subjects

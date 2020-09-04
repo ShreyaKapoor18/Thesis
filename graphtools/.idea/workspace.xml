@@ -28,15 +28,9 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96a293b3-8c56-42ff-a127-58952144c9ad" name="Default Changelist" comment="check for consistent names">
-      <change afterPath="$PROJECT_DIR$/classification_refined.py" afterDir="false" />
+    <list default="true" id="96a293b3-8c56-42ff-a127-58952144c9ad" name="Default Changelist" comment="new comparison files of baseline and solver in classification_refined.py">
       <change beforePath="$PROJECT_DIR$/../gmwcs-solver" beforeDir="false" afterPath="$PROJECT_DIR$/../gmwcs-solver" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classification.py" beforeDir="false" afterPath="$PROJECT_DIR$/classification.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classification_copy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/pipeline.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processing.py" beforeDir="false" afterPath="$PROJECT_DIR$/processing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/readfiles.py" beforeDir="false" afterPath="$PROJECT_DIR$/readfiles.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classification_refined.py" beforeDir="false" afterPath="$PROJECT_DIR$/classification_refined.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../preprocessing" beforeDir="false" afterPath="$PROJECT_DIR$/../preprocessing" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -304,14 +298,7 @@
       <workItem from="1597667289158" duration="40929000" />
       <workItem from="1598274728789" duration="56861000" />
       <workItem from="1598972932525" duration="14367000" />
-      <workItem from="1599213055826" duration="11889000" />
-    </task>
-    <task id="LOCAL-00067" summary="working with academic version IPLEX, able to solve subgraph problem">
-      <created>1593181474002</created>
-      <option name="number" value="00067" />
-      <option name="presentableId" value="LOCAL-00067" />
-      <option name="project" value="LOCAL" />
-      <updated>1593181474002</updated>
+      <workItem from="1599213055826" duration="12681000" />
     </task>
     <task id="LOCAL-00068" summary="pipeline working">
       <created>1593185975340</created>
@@ -649,7 +636,14 @@
       <option name="project" value="LOCAL" />
       <updated>1598976866327</updated>
     </task>
-    <option name="localTasksCounter" value="116" />
+    <task id="LOCAL-00116" summary="new comparison files of baseline and solver in classification_refined.py">
+      <created>1599232901579</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL-00116" />
+      <option name="project" value="LOCAL" />
+      <updated>1599232901579</updated>
+    </task>
+    <option name="localTasksCounter" value="117" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -693,7 +687,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/gmwcs-solver" />
     </ignored-roots>
-    <MESSAGE value="nested cross validation for baseline almost needed with some errors" />
     <MESSAGE value="implementation 1 for nested cv with some results" />
     <MESSAGE value="overfitting with the feature inner validation loop" />
     <MESSAGE value="overfitting with the feature inner validation loop&#10;need to change" />
@@ -718,7 +711,8 @@
     <MESSAGE value="documenting the solver outputs in a csv file" />
     <MESSAGE value="test with predifined test and training data" />
     <MESSAGE value="check for consistent names" />
-    <option name="LAST_COMMIT_MESSAGE" value="check for consistent names" />
+    <MESSAGE value="new comparison files of baseline and solver in classification_refined.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="new comparison files of baseline and solver in classification_refined.py" />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="181" width="800" height="683" key="#Deployment" timestamp="1595687658480">
@@ -839,10 +833,10 @@
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
     <state x="784" y="341" key="SettingsEditor/0.0.2560.1413@0.0.2560.1413" timestamp="1596549174794" />
-    <state x="875" y="442" width="644" height="366" key="Vcs.Push.Dialog.v2" timestamp="1598976869127">
+    <state x="875" y="442" width="644" height="366" key="Vcs.Push.Dialog.v2" timestamp="1599232908019">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state x="875" y="442" width="802" height="524" key="Vcs.Push.Dialog.v2/0.0.2560.1413@0.0.2560.1413" timestamp="1598976869127" />
+    <state x="875" y="442" width="802" height="524" key="Vcs.Push.Dialog.v2/0.0.2560.1413@0.0.2560.1413" timestamp="1599232908019" />
     <state x="656" y="335" width="644" height="366" key="Vcs.Push.Dialog.v2/0.27.1920.985@0.27.1920.985" timestamp="1595583060269" />
     <state width="1281" height="706" key="XDebugger.FullValuePopup" timestamp="1598443649970">
       <screen x="0" y="0" width="2560" height="1413" />
@@ -869,10 +863,10 @@
     </state>
     <state x="832" y="429" width="887" height="551" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.2560.1413@0.0.2560.1413" timestamp="1598281883288" />
     <state x="624" y="326" width="666" height="447" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.27.1920.985@0.27.1920.985" timestamp="1595701625526" />
-    <state x="1373" y="0" width="1187" height="1390" maximized="true" key="dock-window-1" timestamp="1599232203102">
+    <state x="1373" y="0" width="1187" height="1390" key="dock-window-1" timestamp="1599233647257">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state x="1373" y="0" width="1187" height="1390" maximized="true" key="dock-window-1/0.0.2560.1413@0.0.2560.1413" timestamp="1599232203102" />
+    <state x="1373" y="0" width="1187" height="1390" key="dock-window-1/0.0.2560.1413@0.0.2560.1413" timestamp="1599233647257" />
     <state x="1450" y="0" width="1110" height="1087" key="dock-window-2" timestamp="1596557200656">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
@@ -913,6 +907,18 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/classification_refined.py</url>
+          <line>177</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/classification_refined.py</url>
+          <line>169</line>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+      </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
           <properties notifyOnTerminate="true" exception="BaseException">
