@@ -19,7 +19,7 @@ from scipy.stats import ttest_ind
 def feature_selection(X_train, X_val, y_train, per, feature):
     scalar2 = StandardScaler()
     print('feature selection')
-    assert len(np.unique(y_train)) > 2 #to make sure that we are getting the unbinned personality traits
+    #assert len(np.unique(y_train)) > 2 #to make sure that we are getting the unbinned personality traits
     # print('Initial X_train, y_train, X_val, y_val',  X_train.shape, y_train.shape, X_val.shape, y_val.shape)
     X_train = pd.DataFrame(scalar2.fit_transform(X_train), index=X_train.index)
     X_val = pd.DataFrame(scalar2.transform(X_val), index=X_val.index)
@@ -79,50 +79,54 @@ def dict_classifier(classifier, X_train, X_test, y_train, y_test, metrics, featu
 
     :return: metric_scores: the values to be calculated using permitted keywords
     """
+    #try making a csv file for the same
     refit_metric = 'balanced_accuracy'
     print('The refit metric we are using', refit_metric)
     print('=' * 100)
     print('Classifier', classifier)
     metric_score = {}
     best_params = {}
-
+    cols = ['Classifier', 'Parameter', 'Percentage', 'Choice', 'Refit Metric']
+    cols.extend(metrics)
+    results = []
     for per in percent:
         print('*' * 100)
         print('percentage of features being used:', per)
         metric_score[per] = {}
         best_params[per] = {}
-        test_size = int(0.2 * len(X_train))
+
         for choice in ['test throw median', 'keep median']:
             print('-'*100)
             assert len(X_train) == len(y_train)
             med = int(y_train.median())  # the median is tried based on the training set
             print('median of the training data', med)
-            print('value counts in train and test data set\n', y_train.value_counts().T, y_test.value_counts().T)
+            results.append([classifier, feature, per, choice, refit_metric])
+            #print('value counts in train and test data set\n', y_train.value_counts(), y_test.value_counts())
             print('Descriptive statistics of the training and the test set labels', describe(y_train), describe(y_test))
-
-            y_train = pd.qcut(y_train, 5, labels=False, retbins=True)[0]
+            # all the things inside the loop, probably the percentage of features shall be inside the loop
+            y_train_l = pd.qcut(y_train, 5, labels=False, retbins=True)[0]
             # we need to pass the non-binned values for effective pearson correlation calc.
             print('The number of subjects which are to be removed:', sum(y_train== 2))
-            y_train = y_train[y_train != 2]
-            y_train = y_train // 3#binarizing the values by removing the middle quartile
-            X_train = X_train_c.loc[y_train.index]
-            assert len(X_train_c) == len(y_train)
+            y_train_l = y_train_l[y_train != 2]
+            y_train_l = y_train_l // 3#binarizing the values by removing the middle quartile
+            X_train_l = X_train.loc[y_train_l.index]
+            assert len(X_train_l) == len(y_train_l)
             print('The choice that we are using', choice)
-            X_train_c, X_test = feature_selection(X_train, X_test, y_train, per, feature)
+            X_train_l, X_test_l = feature_selection(X_train_l, X_test, y_train_l, per, feature)
             if choice == 'test throw median':
                 # removing subjects that are close to the median of the training data
                 print(sum(abs(y_test - med) <= 1), 'The number of subjects with labels '
                                                    'within difference of 1.0 from the median value')
-                length_sub = sum(abs(y_test - med) <= 1)
-                y_test = y_test[abs(y_test - med) > 1]  # maybe most of the values are close to the median
-                y_test = y_test >=med  #binarizing the label check for duplicates
-                assert len(y_test.index) == test_size - length_sub
-                X_test = X_test.loc[list(set(y_test.index))]
+                #length_sub = sum(abs(y_test - med) <= 1)
+                y_test_l = y_test[abs(y_test - med) > 1]  # maybe most of the values are close to the median
+                y_test_l = y_test_l >=med  #binarizing the label check for duplicates
+
+                X_test_l = X_test_l.loc[list(set(y_test_l.index))]
                 # making sure that the training data is also for the same subjects
                 assert len(X_test) == len(y_test)
 
             elif choice == 'keep median':
-                y_test = y_test >= med# we just binarize it and don't do anything else
+                y_test_l = y_test_l >= med# we just binarize it and don't do anything else
             # now we do the cross validation search
             metric_score[per][choice] = {}
             best_params[per][choice] = {}
@@ -132,20 +136,21 @@ def dict_classifier(classifier, X_train, X_test, y_train, y_test, metrics, featu
                                      refit=refit_metric, cv=5, n_iter=200,
                                      n_jobs=-1)
             # this is already producing 5 folds so we need to do something different?
-
-            search = rcv.fit(X_train_c, y_train)
+            print('starting to train')
+            search = rcv.fit(X_train_l, y_train_l)
             clf_out = search.best_estimator_
             plot_grid_search(search.cv_results_, refit_metric) #need to see what we will plot or not
 
-            clf_out.fit(X_train_c, y_train)
-            y_pred = clf_out.predict(X_test)
-            assert len(y_pred) == len(X_test)
-            outer_test = compute_scores(y_test, y_pred, clf_out.predict_proba(X_test)[:,1], metrics =metrics)
-            ytrain_pred = clf_out.predict(X_train_c)
-            outer_train = compute_scores(y_train, ytrain_pred, clf_out.predict_proba(X_train_c)[:,1], metrics=metrics)
+            clf_out.fit(X_train_l, y_train_l)
+            y_pred = clf_out.predict(X_test_l)
+            assert len(y_pred) == len(X_test_l)
+            outer_test = compute_scores(y_test_l, y_pred, clf_out.predict_proba(X_test_l)[:,1], metrics =metrics)
+            ytrain_pred = clf_out.predict(X_train_l)
+            outer_train = compute_scores(y_train_l, ytrain_pred, clf_out.predict_proba(X_train_l)[:,1], metrics=metrics)
 
             for metric in metrics:
                 # validation set
+                results[-1].append(outer_test[metric])
                 metric_score[per][choice][metric] = {}
                 metric_score[per][choice][metric]['test'] = round(outer_test[metric], 3)
                 # take the mean of the outer validation scores for each of the different algorithms
@@ -154,6 +159,8 @@ def dict_classifier(classifier, X_train, X_test, y_train, y_test, metrics, featu
                 print(f'{metric} test score', round(outer_test[metric], 3))
                 print(f'{metric} train score', round(outer_train[metric], 3))
             # out of bag error
+    res = pd.DataFrame(results, columns=cols)
+    res.to_csv('outputs/baseline.csv')
     return {'Metrics': metric_score, 'Parameters': best_params}
 
 
@@ -222,7 +229,7 @@ def visualise_performance(combined, metrics, top_per, target, choices, classifie
 
 
 # %%
-def run_classification(X_train, X_test,y_train, y_test, metrics, target, target_col, feature):
+def run_classification(X_train, X_test,y_train, y_test, metrics, target, feature):
     """
     @param label: the target variable since we want to run in a pipeline
     @param whole: the oriignal data with combined features from all subjects
@@ -239,7 +246,7 @@ def run_classification(X_train, X_test,y_train, y_test, metrics, target, target_
     classifiers  = ['RF', 'MLP', 'SVC']
     for clf in classifiers:  # other ones are taking too long
         start = time.time()
-        d1 = dict_classifier(clf, X_train,X_test, y_train, y_test, metrics, target_col, feature)
+        d1 = dict_classifier(clf, X_train,X_test, y_train, y_test, metrics, feature, [5,10,50,100])
         end = time.time()
         print(f'Time taken for {clf}: {datetime.timedelta(seconds=end - start)}')
         make_csv(d1, f'outputs/csvs/{target}_{clf}_results_cv.csv')

@@ -28,15 +28,15 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96a293b3-8c56-42ff-a127-58952144c9ad" name="Default Changelist" comment="documenting the solver outputs in a csv file%%">
+    <list default="true" id="96a293b3-8c56-42ff-a127-58952144c9ad" name="Default Changelist" comment="check for consistent names">
+      <change afterPath="$PROJECT_DIR$/classification_refined.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../gmwcs-solver" beforeDir="false" afterPath="$PROJECT_DIR$/../gmwcs-solver" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classification.py" beforeDir="false" afterPath="$PROJECT_DIR$/classification.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphclass.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphclass.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classification_copy" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/pipeline.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/processing.py" beforeDir="false" afterPath="$PROJECT_DIR$/processing.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/readfiles.py" beforeDir="false" afterPath="$PROJECT_DIR$/readfiles.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/subgraphclass.py" beforeDir="false" afterPath="$PROJECT_DIR$/subgraphclass.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../preprocessing" beforeDir="false" afterPath="$PROJECT_DIR$/../preprocessing" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -73,7 +73,7 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="full.screen.before.presentation.mode" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../preprocessing" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="aDefault" />
     <property name="settings.editor.selected.configurable" value="pyconsole" />
@@ -95,7 +95,7 @@
       <recent name="$PROJECT_DIR$/rough_code" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.subgraphclass">
+  <component name="RunManager" selected="Python.pipeline">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -166,9 +166,6 @@
       <module name="graphtools" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -188,6 +185,9 @@
       <module name="graphtools" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="$USER_HOME$/anaconda3/bin/python" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -234,8 +234,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.subgraphclass" />
         <item itemvalue="Python.pipeline" />
+        <item itemvalue="Python.subgraphclass" />
         <item itemvalue="Python.classification" />
         <item itemvalue="Python.metrics" />
         <item itemvalue="Python.trial" />
@@ -303,21 +303,8 @@
       <workItem from="1596454891555" duration="92800000" />
       <workItem from="1597667289158" duration="40929000" />
       <workItem from="1598274728789" duration="56861000" />
-      <workItem from="1598972932525" duration="3153000" />
-    </task>
-    <task id="LOCAL-00065" summary="creating different graphs for subgraph extraction">
-      <created>1593015665313</created>
-      <option name="number" value="00065" />
-      <option name="presentableId" value="LOCAL-00065" />
-      <option name="project" value="LOCAL" />
-      <updated>1593015665313</updated>
-    </task>
-    <task id="LOCAL-00066" summary="pipelining first attempt">
-      <created>1593175003042</created>
-      <option name="number" value="00066" />
-      <option name="presentableId" value="LOCAL-00066" />
-      <option name="project" value="LOCAL" />
-      <updated>1593175003042</updated>
+      <workItem from="1598972932525" duration="14367000" />
+      <workItem from="1599213055826" duration="11889000" />
     </task>
     <task id="LOCAL-00067" summary="working with academic version IPLEX, able to solve subgraph problem">
       <created>1593181474002</created>
@@ -648,7 +635,21 @@
       <option name="project" value="LOCAL" />
       <updated>1598540267340</updated>
     </task>
-    <option name="localTasksCounter" value="114" />
+    <task id="LOCAL-00114" summary="test with predifined test and training data">
+      <created>1598976766079</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1598976766079</updated>
+    </task>
+    <task id="LOCAL-00115" summary="check for consistent names">
+      <created>1598976866327</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL-00115" />
+      <option name="project" value="LOCAL" />
+      <updated>1598976866327</updated>
+    </task>
+    <option name="localTasksCounter" value="116" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -692,8 +693,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/gmwcs-solver" />
     </ignored-roots>
-    <MESSAGE value="pipeline- according to one label, need to focus on model training" />
-    <MESSAGE value="tentative results with inner cv" />
     <MESSAGE value="nested cross validation for baseline almost needed with some errors" />
     <MESSAGE value="implementation 1 for nested cv with some results" />
     <MESSAGE value="overfitting with the feature inner validation loop" />
@@ -717,7 +716,9 @@
     <MESSAGE value="results with agreaableness fscore mean FA" />
     <MESSAGE value="changes for new dataset" />
     <MESSAGE value="documenting the solver outputs in a csv file" />
-    <option name="LAST_COMMIT_MESSAGE" value="documenting the solver outputs in a csv file" />
+    <MESSAGE value="test with predifined test and training data" />
+    <MESSAGE value="check for consistent names" />
+    <option name="LAST_COMMIT_MESSAGE" value="check for consistent names" />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="181" width="800" height="683" key="#Deployment" timestamp="1595687658480">
@@ -770,10 +771,10 @@
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
     <state x="1144" y="456" width="529" height="495" key="EnvironmentVariablesDialog/0.0.2560.1413@0.0.2560.1413" timestamp="1592387630711" />
-    <state x="1292" y="464" width="426" height="480" key="FileChooserDialogImpl" timestamp="1598971348781">
+    <state x="1292" y="464" width="426" height="480" key="FileChooserDialogImpl" timestamp="1599213065070">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state x="1292" y="464" width="426" height="480" key="FileChooserDialogImpl/0.0.2560.1413@0.0.2560.1413" timestamp="1598971348781" />
+    <state x="1292" y="464" width="426" height="480" key="FileChooserDialogImpl/0.0.2560.1413@0.0.2560.1413" timestamp="1599213065070" />
     <state x="775" y="393" width="1002" height="623" key="Git.Interactive.Rebase.Dialog" timestamp="1598262398791">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
@@ -838,10 +839,10 @@
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
     <state x="784" y="341" key="SettingsEditor/0.0.2560.1413@0.0.2560.1413" timestamp="1596549174794" />
-    <state x="875" y="442" width="644" height="366" key="Vcs.Push.Dialog.v2" timestamp="1598540268706">
+    <state x="875" y="442" width="644" height="366" key="Vcs.Push.Dialog.v2" timestamp="1598976869127">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state x="875" y="442" width="802" height="524" key="Vcs.Push.Dialog.v2/0.0.2560.1413@0.0.2560.1413" timestamp="1598540268706" />
+    <state x="875" y="442" width="802" height="524" key="Vcs.Push.Dialog.v2/0.0.2560.1413@0.0.2560.1413" timestamp="1598976869127" />
     <state x="656" y="335" width="644" height="366" key="Vcs.Push.Dialog.v2/0.27.1920.985@0.27.1920.985" timestamp="1595583060269" />
     <state width="1281" height="706" key="XDebugger.FullValuePopup" timestamp="1598443649970">
       <screen x="0" y="0" width="2560" height="1413" />
@@ -851,10 +852,10 @@
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
     <state x="1280" y="420" width="1029" height="580" key="com.intellij.execution.console.ConsoleHistoryController$MyBrowseAction$1/0.0.2560.1413@0.0.2560.1413" timestamp="1596034688880" />
-    <state x="102" y="104" width="1212" height="1194" maximized="true" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1598270538104">
+    <state x="102" y="104" width="1204" height="1190" maximized="true" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1599230820970">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state x="102" y="104" width="1212" height="1194" maximized="true" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.2560.1413@0.0.2560.1413" timestamp="1598270538104" />
+    <state x="102" y="104" width="1204" height="1190" maximized="true" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.2560.1413@0.0.2560.1413" timestamp="1599230820970" />
     <state x="890" y="320" width="772" height="769" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1593164203502">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
@@ -868,10 +869,10 @@
     </state>
     <state x="832" y="429" width="887" height="551" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.2560.1413@0.0.2560.1413" timestamp="1598281883288" />
     <state x="624" y="326" width="666" height="447" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.27.1920.985@0.27.1920.985" timestamp="1595701625526" />
-    <state x="1441" y="0" width="1119" height="1391" key="dock-window-1" timestamp="1596556122894">
+    <state x="1373" y="0" width="1187" height="1390" maximized="true" key="dock-window-1" timestamp="1599232203102">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state x="1441" y="0" width="1119" height="1391" key="dock-window-1/0.0.2560.1413@0.0.2560.1413" timestamp="1596556122894" />
+    <state x="1373" y="0" width="1187" height="1390" maximized="true" key="dock-window-1/0.0.2560.1413@0.0.2560.1413" timestamp="1599232203102" />
     <state x="1450" y="0" width="1110" height="1087" key="dock-window-2" timestamp="1596557200656">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>

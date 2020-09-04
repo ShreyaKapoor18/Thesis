@@ -4,6 +4,7 @@ from metrics import fscore
 from readfiles import get_subj_ids
 import pandas as pd
 import glob
+import os
 # %%
 def generate_combined_matrix(tri, present_subjects):
     """
@@ -40,28 +41,34 @@ def generate_combined_matrix(tri, present_subjects):
     return whole
 
 def generate_test_data(tri, index):
-    location = '/data/skapoor/test_data/*'
+    location = '/data/skapoor/test_data/*/T1w/Diffusion/mean_FA_connectome_1M_SIFT.csv'
     test_data = np.zeros((len(index), tri * 3))
+    subjects = []
     j = 0
-    for subject in glob.glob(location):
-        if int(subject.split('/')[-1]) in index:
-            files = [f'{subject}/T1w/Diffusion/mean_FA_connectome_1M.csv',
-                     f'{subject}/T1w/Diffusion/distances_mean_1M_SIFT.csv',
-                     f'{subject}/T1w/Diffusion/connectome_1M.csv']
-            i=0
-            for file in files:
-                # print(file) # we need to make all edges as a feature for each subject!
-                # so we will have 84x84 features
-                edge_feature = np.array(pd.read_csv(file, sep=' ', header=None))
-                # the file shall be number of subjects x 7056
-                edge_feature = edge_feature[np.triu_indices(84)]  # get only the upper triangular indices
-                test_data[j, i * tri:(i + 1) * tri] = edge_feature
-                # print(i,j)
-                i += 1
-        j += 1
+    for subject in sorted(glob.glob(location)):
+        s = subject.split('/')[-4]
+        if s[-1]!= 'h':
+            if int(s) in index:
+                files = [f'/data/skapoor/test_data/{s}/T1w/Diffusion/mean_FA_connectome_1M_SIFT.csv',
+                         f'/data/skapoor/test_data/{s}/T1w/Diffusion/distances_mean_1M_SIFT.csv',
+                         f'/data/skapoor/test_data/{s}/T1w/Diffusion/connectome_1M.csv']
+                subjects.append(int(s))
+                i=0
+                for file in files:
+                    if os.path.exists(file):
+                    # print(file) # we need to make all edges as a feature for each subject!
+                    # so we will have 84x84 features
+                        edge_feature = np.array(pd.read_csv(file, sep=' ', header=None))
+                        # the file shall be number of subjects x 7056
+                        #print(file)
+                        edge_feature = edge_feature[np.triu_indices(84)]  # get only the upper triangular indices
+                        test_data[j, i * tri:(i + 1) * tri] = edge_feature
+                        # print(i,j)
+                        i += 1
+                j += 1
     # scaling will be done according to the training and test data
-    test_data = pd.DataFrame(test_data)
-    test_data.index = index
+    test_data = pd.DataFrame(test_data, index=subjects)
+    assert list(test_data.index) == list(index)
     return test_data
 
 
