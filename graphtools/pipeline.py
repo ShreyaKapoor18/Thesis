@@ -1,5 +1,4 @@
-from classification import run_classification
-from paramopt import graph_options
+
 from processing import *
 from readfiles import *
 from classification_refined import classify
@@ -20,7 +19,6 @@ metrics = ['balanced_accuracy', 'accuracy', 'f1_weighted', 'roc_auc_ovr_weighted
 # note: right now the matrix whole is not scaled, for computing the fscores and correlation coeff it has to be so.
 y_train = computed_subjects()
 X_train = generate_combined_matrix(tri, list(y_train.index))  # need to check indices till here then convert to numpy array
-feature_selection = 'fscore'
 y_test = test_subjects()
 X_test = generate_test_data(tri, y_test.index)
 
@@ -29,7 +27,7 @@ X_test = generate_test_data(tri, y_test.index)
 # the split must be the same when we are comparing all the functions
 # %%
 # add choice for the features we want to use and slice the whole matrix accordingly, no need to change the processing.py
-classify(['RF', 'SVC', 'MLP'], big5, X_train, X_test, y_train, y_test, metrics, mapping)
+classify(['SVC', 'RF', 'MLP'], X_train, X_test, y_train, y_test, metrics, mapping)
 # based on these hyperparameters, search the input files, the output files and the reduced number of edges and nodes
 '''
 Here we will need to take the threshold and degree as hyperparameters, change them and compute the result accordingly

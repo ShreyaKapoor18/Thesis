@@ -28,9 +28,11 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96a293b3-8c56-42ff-a127-58952144c9ad" name="Default Changelist" comment="new comparison files of baseline and solver in classification_refined.py">
+    <list default="true" id="96a293b3-8c56-42ff-a127-58952144c9ad" name="Default Changelist" comment="fix error in variable names">
       <change beforePath="$PROJECT_DIR$/../gmwcs-solver" beforeDir="false" afterPath="$PROJECT_DIR$/../gmwcs-solver" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classification_refined.py" beforeDir="false" afterPath="$PROJECT_DIR$/classification_refined.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/pipeline.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../preprocessing" beforeDir="false" afterPath="$PROJECT_DIR$/../preprocessing" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -70,7 +72,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../preprocessing" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="aDefault" />
-    <property name="settings.editor.selected.configurable" value="pyconsole" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -229,8 +231,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.pipeline" />
-        <item itemvalue="Python.subgraphclass" />
         <item itemvalue="Python.classification" />
+        <item itemvalue="Python.subgraphclass" />
         <item itemvalue="Python.metrics" />
         <item itemvalue="Python.trial" />
       </list>
@@ -298,14 +300,10 @@
       <workItem from="1597667289158" duration="40929000" />
       <workItem from="1598274728789" duration="56861000" />
       <workItem from="1598972932525" duration="14367000" />
-      <workItem from="1599213055826" duration="12681000" />
-    </task>
-    <task id="LOCAL-00068" summary="pipeline working">
-      <created>1593185975340</created>
-      <option name="number" value="00068" />
-      <option name="presentableId" value="LOCAL-00068" />
-      <option name="project" value="LOCAL" />
-      <updated>1593185975340</updated>
+      <workItem from="1599213055826" duration="15427000" />
+      <workItem from="1599468255433" duration="12760000" />
+      <workItem from="1599552396466" duration="3163000" />
+      <workItem from="1599556014424" duration="6670000" />
     </task>
     <task id="LOCAL-00069" summary="subgraph based classification">
       <created>1593704481176</created>
@@ -643,7 +641,14 @@
       <option name="project" value="LOCAL" />
       <updated>1599232901579</updated>
     </task>
-    <option name="localTasksCounter" value="117" />
+    <task id="LOCAL-00117" summary="fix error in variable names">
+      <created>1599233663002</created>
+      <option name="number" value="00117" />
+      <option name="presentableId" value="LOCAL-00117" />
+      <option name="project" value="LOCAL" />
+      <updated>1599233663002</updated>
+    </task>
+    <option name="localTasksCounter" value="118" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -687,7 +692,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/gmwcs-solver" />
     </ignored-roots>
-    <MESSAGE value="implementation 1 for nested cv with some results" />
     <MESSAGE value="overfitting with the feature inner validation loop" />
     <MESSAGE value="overfitting with the feature inner validation loop&#10;need to change" />
     <MESSAGE value="try changing params of the randomized search cv otherwise complete" />
@@ -712,7 +716,8 @@
     <MESSAGE value="test with predifined test and training data" />
     <MESSAGE value="check for consistent names" />
     <MESSAGE value="new comparison files of baseline and solver in classification_refined.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="new comparison files of baseline and solver in classification_refined.py" />
+    <MESSAGE value="fix error in variable names" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix error in variable names" />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="181" width="800" height="683" key="#Deployment" timestamp="1595687658480">
@@ -728,10 +733,6 @@
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
     <state x="1168" y="578" width="216" height="252" key="#Notifications/0.0.2560.1413@0.0.2560.1413" timestamp="1597848831108" />
-    <state x="1079" y="495" width="394" height="418" key="#Web_Browsers" timestamp="1590662890178">
-      <screen x="0" y="0" width="2560" height="1413" />
-    </state>
-    <state x="1079" y="495" width="394" height="418" key="#Web_Browsers/0.0.2560.1413@0.0.2560.1413" timestamp="1590662890178" />
     <state x="738" y="364" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1593771551695">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
@@ -744,10 +745,10 @@
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
     <state x="953" y="452" width="526" height="497" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.2560.1413@0.0.2560.1413" timestamp="1591352389342" />
-    <state x="1190" y="325" width="1303" height="509" key="#xdebugger.evaluate" timestamp="1598447244492">
+    <state x="104" y="186" width="1303" height="509" key="#xdebugger.evaluate" timestamp="1599560982425">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state x="1190" y="325" width="1303" height="509" key="#xdebugger.evaluate/0.0.2560.1413@0.0.2560.1413" timestamp="1598447244492" />
+    <state x="104" y="186" width="1303" height="509" key="#xdebugger.evaluate/0.0.2560.1413@0.0.2560.1413" timestamp="1599560982425" />
     <state x="968" y="558" width="496" height="285" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1592210414213">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
@@ -777,45 +778,45 @@
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
     <state x="1100" y="610" key="Github.CreateGistDialog/0.0.2560.1413@0.0.2560.1413" timestamp="1594114237336" />
-    <state width="2514" height="413" key="GridCell.Tab.0.bottom" timestamp="1598453380688">
+    <state width="1235" height="462" key="GridCell.Tab.0.bottom" timestamp="1599567668117">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state width="2514" height="413" key="GridCell.Tab.0.bottom/0.0.2560.1413@0.0.2560.1413" timestamp="1598453380688" />
+    <state width="1235" height="462" key="GridCell.Tab.0.bottom/0.0.2560.1413@0.0.2560.1413" timestamp="1599567668117" />
     <state width="1874" height="247" key="GridCell.Tab.0.bottom/0.27.1920.985@0.27.1920.985" timestamp="1595703676055" />
-    <state width="2514" height="413" key="GridCell.Tab.0.center" timestamp="1598453380688">
+    <state width="1235" height="462" key="GridCell.Tab.0.center" timestamp="1599567668117">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state width="2514" height="413" key="GridCell.Tab.0.center/0.0.2560.1413@0.0.2560.1413" timestamp="1598453380688" />
+    <state width="1235" height="462" key="GridCell.Tab.0.center/0.0.2560.1413@0.0.2560.1413" timestamp="1599567668117" />
     <state width="1874" height="247" key="GridCell.Tab.0.center/0.27.1920.985@0.27.1920.985" timestamp="1595703676054" />
-    <state width="2514" height="413" key="GridCell.Tab.0.left" timestamp="1598453380688">
+    <state width="1235" height="462" key="GridCell.Tab.0.left" timestamp="1599567668116">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state width="2514" height="413" key="GridCell.Tab.0.left/0.0.2560.1413@0.0.2560.1413" timestamp="1598453380688" />
+    <state width="1235" height="462" key="GridCell.Tab.0.left/0.0.2560.1413@0.0.2560.1413" timestamp="1599567668116" />
     <state width="1874" height="247" key="GridCell.Tab.0.left/0.27.1920.985@0.27.1920.985" timestamp="1595703676054" />
-    <state width="2514" height="413" key="GridCell.Tab.0.right" timestamp="1598453380688">
+    <state width="1235" height="462" key="GridCell.Tab.0.right" timestamp="1599567668117">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state width="2514" height="413" key="GridCell.Tab.0.right/0.0.2560.1413@0.0.2560.1413" timestamp="1598453380688" />
+    <state width="1235" height="462" key="GridCell.Tab.0.right/0.0.2560.1413@0.0.2560.1413" timestamp="1599567668117" />
     <state width="1874" height="247" key="GridCell.Tab.0.right/0.27.1920.985@0.27.1920.985" timestamp="1595703676055" />
-    <state width="2514" height="413" key="GridCell.Tab.1.bottom" timestamp="1598453380689">
+    <state width="1235" height="462" key="GridCell.Tab.1.bottom" timestamp="1599567668119">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state width="2514" height="413" key="GridCell.Tab.1.bottom/0.0.2560.1413@0.0.2560.1413" timestamp="1598453380689" />
+    <state width="1235" height="462" key="GridCell.Tab.1.bottom/0.0.2560.1413@0.0.2560.1413" timestamp="1599567668119" />
     <state width="1874" height="247" key="GridCell.Tab.1.bottom/0.27.1920.985@0.27.1920.985" timestamp="1595703676056" />
-    <state width="2514" height="413" key="GridCell.Tab.1.center" timestamp="1598453380689">
+    <state width="1235" height="462" key="GridCell.Tab.1.center" timestamp="1599567668118">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state width="2514" height="413" key="GridCell.Tab.1.center/0.0.2560.1413@0.0.2560.1413" timestamp="1598453380689" />
+    <state width="1235" height="462" key="GridCell.Tab.1.center/0.0.2560.1413@0.0.2560.1413" timestamp="1599567668118" />
     <state width="1874" height="247" key="GridCell.Tab.1.center/0.27.1920.985@0.27.1920.985" timestamp="1595703676056" />
-    <state width="2514" height="413" key="GridCell.Tab.1.left" timestamp="1598453380689">
+    <state width="1235" height="462" key="GridCell.Tab.1.left" timestamp="1599567668118">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state width="2514" height="413" key="GridCell.Tab.1.left/0.0.2560.1413@0.0.2560.1413" timestamp="1598453380689" />
+    <state width="1235" height="462" key="GridCell.Tab.1.left/0.0.2560.1413@0.0.2560.1413" timestamp="1599567668118" />
     <state width="1874" height="247" key="GridCell.Tab.1.left/0.27.1920.985@0.27.1920.985" timestamp="1595703676055" />
-    <state width="2514" height="413" key="GridCell.Tab.1.right" timestamp="1598453380689">
+    <state width="1235" height="462" key="GridCell.Tab.1.right" timestamp="1599567668118">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state width="2514" height="413" key="GridCell.Tab.1.right/0.0.2560.1413@0.0.2560.1413" timestamp="1598453380689" />
+    <state width="1235" height="462" key="GridCell.Tab.1.right/0.0.2560.1413@0.0.2560.1413" timestamp="1599567668118" />
     <state width="1874" height="247" key="GridCell.Tab.1.right/0.27.1920.985@0.27.1920.985" timestamp="1595703676056" />
     <state x="247" y="125" width="2050" height="1156" key="MergeDialog" timestamp="1594732638236">
       <screen x="0" y="0" width="2560" height="1413" />
@@ -829,27 +830,27 @@
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
     <state x="1117" y="420" width="318" height="569" key="RollbackChangesDialog/0.0.2560.1413@0.0.2560.1413" timestamp="1598284217142" />
-    <state x="784" y="341" key="SettingsEditor" timestamp="1596549174794">
+    <state x="784" y="341" key="SettingsEditor" timestamp="1599466825204">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state x="784" y="341" key="SettingsEditor/0.0.2560.1413@0.0.2560.1413" timestamp="1596549174794" />
-    <state x="875" y="442" width="644" height="366" key="Vcs.Push.Dialog.v2" timestamp="1599232908019">
+    <state x="784" y="341" key="SettingsEditor/0.0.2560.1413@0.0.2560.1413" timestamp="1599466825204" />
+    <state x="875" y="442" width="644" height="366" key="Vcs.Push.Dialog.v2" timestamp="1599233666911">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state x="875" y="442" width="802" height="524" key="Vcs.Push.Dialog.v2/0.0.2560.1413@0.0.2560.1413" timestamp="1599232908019" />
+    <state x="875" y="442" width="802" height="524" key="Vcs.Push.Dialog.v2/0.0.2560.1413@0.0.2560.1413" timestamp="1599233666911" />
     <state x="656" y="335" width="644" height="366" key="Vcs.Push.Dialog.v2/0.27.1920.985@0.27.1920.985" timestamp="1595583060269" />
-    <state width="1281" height="706" key="XDebugger.FullValuePopup" timestamp="1598443649970">
+    <state width="1281" height="706" key="XDebugger.FullValuePopup" timestamp="1599560953705">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state width="1281" height="706" key="XDebugger.FullValuePopup/0.0.2560.1413@0.0.2560.1413" timestamp="1598443649970" />
+    <state width="1281" height="706" key="XDebugger.FullValuePopup/0.0.2560.1413@0.0.2560.1413" timestamp="1599560953705" />
     <state x="1280" y="420" width="1029" height="580" key="com.intellij.execution.console.ConsoleHistoryController$MyBrowseAction$1" timestamp="1596034688880">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
     <state x="1280" y="420" width="1029" height="580" key="com.intellij.execution.console.ConsoleHistoryController$MyBrowseAction$1/0.0.2560.1413@0.0.2560.1413" timestamp="1596034688880" />
-    <state x="102" y="104" width="1204" height="1190" maximized="true" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1599230820970">
+    <state x="102" y="104" width="1196" height="1186" maximized="true" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1599560065807">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state x="102" y="104" width="1204" height="1190" maximized="true" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.2560.1413@0.0.2560.1413" timestamp="1599230820970" />
+    <state x="102" y="104" width="1196" height="1186" maximized="true" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.2560.1413@0.0.2560.1413" timestamp="1599560065807" />
     <state x="890" y="320" width="772" height="769" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1593164203502">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
@@ -863,10 +864,10 @@
     </state>
     <state x="832" y="429" width="887" height="551" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.2560.1413@0.0.2560.1413" timestamp="1598281883288" />
     <state x="624" y="326" width="666" height="447" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.27.1920.985@0.27.1920.985" timestamp="1595701625526" />
-    <state x="1373" y="0" width="1187" height="1390" key="dock-window-1" timestamp="1599233647257">
+    <state x="1357" y="0" width="1203" height="1390" key="dock-window-1" timestamp="1599558461584">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state x="1373" y="0" width="1187" height="1390" key="dock-window-1/0.0.2560.1413@0.0.2560.1413" timestamp="1599233647257" />
+    <state x="1357" y="0" width="1203" height="1390" key="dock-window-1/0.0.2560.1413@0.0.2560.1413" timestamp="1599558461584" />
     <state x="1450" y="0" width="1110" height="1087" key="dock-window-2" timestamp="1596557200656">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
@@ -887,18 +888,18 @@
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
     <state x="1094" y="603" width="364" height="202" key="git4idea.ui.GitResetDialog/0.0.2560.1413@0.0.2560.1413" timestamp="1591102865803" />
-    <state x="1124" y="480" width="303" height="448" key="refactoring.ChangeSignatureDialog" timestamp="1598277757578">
+    <state x="1124" y="480" width="303" height="448" key="refactoring.ChangeSignatureDialog" timestamp="1599559435834">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state x="1124" y="480" width="303" height="448" key="refactoring.ChangeSignatureDialog/0.0.2560.1413@0.0.2560.1413" timestamp="1598277757578" />
+    <state x="1124" y="480" width="303" height="448" key="refactoring.ChangeSignatureDialog/0.0.2560.1413@0.0.2560.1413" timestamp="1599559435834" />
     <state x="1071" y="566" width="402" height="273" key="scopes" timestamp="1598277706598">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
     <state x="1071" y="566" width="402" height="273" key="scopes/0.0.2560.1413@0.0.2560.1413" timestamp="1598277706598" />
-    <state x="943" y="322" width="672" height="678" key="search.everywhere.popup" timestamp="1598969255287">
+    <state x="943" y="322" width="672" height="678" key="search.everywhere.popup" timestamp="1599560369836">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state x="943" y="322" width="672" height="678" key="search.everywhere.popup/0.0.2560.1413@0.0.2560.1413" timestamp="1598969255287" />
+    <state x="943" y="322" width="672" height="678" key="search.everywhere.popup/0.0.2560.1413@0.0.2560.1413" timestamp="1599560369836" />
     <state x="707" y="251" width="672" height="473" key="search.everywhere.popup/0.27.1920.985@0.27.1920.985" timestamp="1594307618706" />
     <state x="1005" y="621" width="542" height="167" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1594030051621">
       <screen x="0" y="0" width="2560" height="1413" />
@@ -907,18 +908,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/classification_refined.py</url>
-          <line>177</line>
-          <option name="timeStamp" value="21" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/classification_refined.py</url>
-          <line>169</line>
-          <option name="timeStamp" value="22" />
-        </line-breakpoint>
-      </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
           <properties notifyOnTerminate="true" exception="BaseException">
@@ -927,11 +916,17 @@
         </breakpoint>
       </default-breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="percentages" language="Python" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/graphtools$classifier_3labels_flatten.coverage" NAME="classifier_3labels_flatten Coverage Results" MODIFIED="1591269826429" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/graphtools$plot_pipeline_example.coverage" NAME="plot_pipeline_example Coverage Results" MODIFIED="1592387461543" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/graphtools$pipeline.coverage" NAME="pipeline Coverage Results" MODIFIED="1598348709291" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/graphtools$classification.coverage" NAME="classification Coverage Results" MODIFIED="1599556033497" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/graphtools$pipeline.coverage" NAME="pipeline Coverage Results" MODIFIED="1599567173151" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/graphtools$subgraphclass.coverage" NAME="subgraphclass Coverage Results" MODIFIED="1598449837450" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/graphtools$readfiles.coverage" NAME="readfiles Coverage Results" MODIFIED="1590758111547" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
