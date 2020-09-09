@@ -16,7 +16,7 @@ def poolcontext(*args, **kwargs):
     yield pool
     pool.terminate()
 
-
+# remember to automatically create the csv files beforehand
 if __name__ == '__main__':
     # %%
     ''' Data computed for all 5 personality traits at once'''
@@ -44,24 +44,26 @@ if __name__ == '__main__':
     cols_solver.extend(['Node_weights', 'Factor', 'Subtracted_value', 'Num edges', '% Positive edges'])
     cols_base.extend(metrics)
     cols_solver.extend(metrics)
-    results_base = []
-    results_solver = []
     l1 = [X_train, X_test, y_train, y_test]
-    feature_selection = ['baseline', 'solver']
-    choice = ['test throw median', 'keep median']
+    feature_selections = ['baseline', 'solver']
+    choices = ['test throw median', 'keep median']
     s_params = pd.read_csv('/home/skapoor/Thesis/gmwcs-solver/outputs/solver/filtered.csv')
+    s1 = pd.DataFrame([], columns=cols_solver)
+    s1.to_csv('solver.csv')
+    b1 = pd.DataFrame([], columns=cols_solver)
+    b1.to_csv('base.csv')
 
-    f = open('results.txt', 'w')
-    prod = list(product(classifiers,[s_params.iloc[:,:6]], feature_selection, choice, metrics))
+    prod = list(product(classifiers,[s_params.iloc[:,:6]], feature_selections, choices, metrics))
+    #print(len(prod)*len(s_params)*2, 'is the number of use cases the pipeline will run for')
     for classifier, params, feature_selection, choice, refit_metric in prod:
-        resb, ress = classify(l1,classifier, params, feature_selection, choice, refit_metric )
-        results_base.extend(resb)
-        results_solver.extend(ress)
+        resb, ress = classify(l1,classifier, params, feature_selection, choice, refit_metric)
+        resb = pd.DataFrame(resb, columns=cols_base)
+        ress = pd.DataFrame(ress, columns=cols_solver)
+        ress.to_csv('solver.csv', mode='a', header=False)
+        resb.to_csv('base.csv', mode='a', header=False)
+        #results_base.extend(resb)
+        #results_solver.extend(ress)
 
-    solv = pd.DataFrame(results_solver, columns=cols_solver)
-    solv.to_csv('solver.csv')
-    base = pd.DataFrame(results_base, columns=cols_base)
-    base.to_csv('base.csv')
 
 '''
 Here we will need to take the threshold and degree as hyperparameters, change them and compute the result accordingly
