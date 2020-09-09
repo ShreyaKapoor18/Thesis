@@ -28,10 +28,14 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96a293b3-8c56-42ff-a127-58952144c9ad" name="Default Changelist" comment="fix error in variable names">
+    <list default="true" id="96a293b3-8c56-42ff-a127-58952144c9ad" name="Default Changelist" comment="pipelined properly for comparison of baseline and solver">
+      <change afterPath="$PROJECT_DIR$/solver_decision.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/solver_decision.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../gmwcs-solver" beforeDir="false" afterPath="$PROJECT_DIR$/../gmwcs-solver" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classification_refined.py" beforeDir="false" afterPath="$PROJECT_DIR$/classification_refined.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/metrics.py" beforeDir="false" afterPath="$PROJECT_DIR$/metrics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paramopt.py" beforeDir="false" afterPath="$PROJECT_DIR$/paramopt.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/pipeline.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../preprocessing" beforeDir="false" afterPath="$PROJECT_DIR$/../preprocessing" afterDir="false" />
     </list>
@@ -44,6 +48,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
+        <option value="Jupyter Notebook" />
       </list>
     </option>
   </component>
@@ -136,20 +141,17 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="metrics" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="classification_refined" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="graphtools" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="$USER_HOME$/anaconda3/bin/python" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/metrics.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/classification_refined.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -169,6 +171,25 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pipeline.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="solver_decision" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="graphtools" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="$USER_HOME$/anaconda3/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/solver_decision.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -199,42 +220,20 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="trial" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="graphtools" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="$USER_HOME$/anaconda3/bin/python" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/trial.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="true" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <list>
       <item itemvalue="Python.pipeline" />
       <item itemvalue="Python.classification" />
       <item itemvalue="Python.subgraphclass" />
-      <item itemvalue="Python.trial" />
-      <item itemvalue="Python.metrics" />
+      <item itemvalue="Python.solver_decision" />
+      <item itemvalue="Python.classification_refined" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.pipeline" />
+        <item itemvalue="Python.classification_refined" />
+        <item itemvalue="Python.solver_decision" />
         <item itemvalue="Python.classification" />
         <item itemvalue="Python.subgraphclass" />
-        <item itemvalue="Python.metrics" />
-        <item itemvalue="Python.trial" />
       </list>
     </recent_temporary>
   </component>
@@ -303,14 +302,7 @@
       <workItem from="1599213055826" duration="15427000" />
       <workItem from="1599468255433" duration="12760000" />
       <workItem from="1599552396466" duration="3163000" />
-      <workItem from="1599556014424" duration="6670000" />
-    </task>
-    <task id="LOCAL-00069" summary="subgraph based classification">
-      <created>1593704481176</created>
-      <option name="number" value="00069" />
-      <option name="presentableId" value="LOCAL-00069" />
-      <option name="project" value="LOCAL" />
-      <updated>1593704481176</updated>
+      <workItem from="1599556014424" duration="30562000" />
     </task>
     <task id="LOCAL-00070" summary="remove features for subgraph extraction, close to 0 values don't make an edge">
       <created>1593779445245</created>
@@ -648,7 +640,14 @@
       <option name="project" value="LOCAL" />
       <updated>1599233663002</updated>
     </task>
-    <option name="localTasksCounter" value="118" />
+    <task id="LOCAL-00118" summary="pipelined properly for comparison of baseline and solver">
+      <created>1599568065081</created>
+      <option name="number" value="00118" />
+      <option name="presentableId" value="LOCAL-00118" />
+      <option name="project" value="LOCAL" />
+      <updated>1599568065081</updated>
+    </task>
+    <option name="localTasksCounter" value="119" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -692,7 +691,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/gmwcs-solver" />
     </ignored-roots>
-    <MESSAGE value="overfitting with the feature inner validation loop" />
     <MESSAGE value="overfitting with the feature inner validation loop&#10;need to change" />
     <MESSAGE value="try changing params of the randomized search cv otherwise complete" />
     <MESSAGE value="current state" />
@@ -717,7 +715,8 @@
     <MESSAGE value="check for consistent names" />
     <MESSAGE value="new comparison files of baseline and solver in classification_refined.py" />
     <MESSAGE value="fix error in variable names" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix error in variable names" />
+    <MESSAGE value="pipelined properly for comparison of baseline and solver" />
+    <option name="LAST_COMMIT_MESSAGE" value="pipelined properly for comparison of baseline and solver" />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="181" width="800" height="683" key="#Deployment" timestamp="1595687658480">
@@ -839,18 +838,18 @@
     </state>
     <state x="875" y="442" width="802" height="524" key="Vcs.Push.Dialog.v2/0.0.2560.1413@0.0.2560.1413" timestamp="1599233666911" />
     <state x="656" y="335" width="644" height="366" key="Vcs.Push.Dialog.v2/0.27.1920.985@0.27.1920.985" timestamp="1595583060269" />
-    <state width="1281" height="706" key="XDebugger.FullValuePopup" timestamp="1599560953705">
+    <state width="1281" height="706" key="XDebugger.FullValuePopup" timestamp="1599654398164">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state width="1281" height="706" key="XDebugger.FullValuePopup/0.0.2560.1413@0.0.2560.1413" timestamp="1599560953705" />
+    <state width="1281" height="706" key="XDebugger.FullValuePopup/0.0.2560.1413@0.0.2560.1413" timestamp="1599654398164" />
     <state x="1280" y="420" width="1029" height="580" key="com.intellij.execution.console.ConsoleHistoryController$MyBrowseAction$1" timestamp="1596034688880">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
     <state x="1280" y="420" width="1029" height="580" key="com.intellij.execution.console.ConsoleHistoryController$MyBrowseAction$1/0.0.2560.1413@0.0.2560.1413" timestamp="1596034688880" />
-    <state x="102" y="104" width="1196" height="1186" maximized="true" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1599560065807">
+    <state x="102" y="104" width="1188" height="1182" maximized="true" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1599644986315">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state x="102" y="104" width="1196" height="1186" maximized="true" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.2560.1413@0.0.2560.1413" timestamp="1599560065807" />
+    <state x="102" y="104" width="1188" height="1182" maximized="true" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.2560.1413@0.0.2560.1413" timestamp="1599644986315" />
     <state x="890" y="320" width="772" height="769" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1593164203502">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
@@ -864,10 +863,10 @@
     </state>
     <state x="832" y="429" width="887" height="551" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.2560.1413@0.0.2560.1413" timestamp="1598281883288" />
     <state x="624" y="326" width="666" height="447" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.27.1920.985@0.27.1920.985" timestamp="1595701625526" />
-    <state x="1357" y="0" width="1203" height="1390" key="dock-window-1" timestamp="1599558461584">
+    <state x="1357" y="0" width="1203" height="1390" key="dock-window-1" timestamp="1599569216033">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state x="1357" y="0" width="1203" height="1390" key="dock-window-1/0.0.2560.1413@0.0.2560.1413" timestamp="1599558461584" />
+    <state x="1357" y="0" width="1203" height="1390" key="dock-window-1/0.0.2560.1413@0.0.2560.1413" timestamp="1599569216033" />
     <state x="1450" y="0" width="1110" height="1087" key="dock-window-2" timestamp="1596557200656">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
@@ -892,14 +891,14 @@
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
     <state x="1124" y="480" width="303" height="448" key="refactoring.ChangeSignatureDialog/0.0.2560.1413@0.0.2560.1413" timestamp="1599559435834" />
-    <state x="1071" y="566" width="402" height="273" key="scopes" timestamp="1598277706598">
+    <state x="1071" y="566" width="402" height="273" key="scopes" timestamp="1599572013649">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state x="1071" y="566" width="402" height="273" key="scopes/0.0.2560.1413@0.0.2560.1413" timestamp="1598277706598" />
-    <state x="943" y="322" width="672" height="678" key="search.everywhere.popup" timestamp="1599560369836">
+    <state x="1071" y="566" width="402" height="273" key="scopes/0.0.2560.1413@0.0.2560.1413" timestamp="1599572013649" />
+    <state x="943" y="322" width="672" height="678" key="search.everywhere.popup" timestamp="1599573686351">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
-    <state x="943" y="322" width="672" height="678" key="search.everywhere.popup/0.0.2560.1413@0.0.2560.1413" timestamp="1599560369836" />
+    <state x="943" y="322" width="672" height="678" key="search.everywhere.popup/0.0.2560.1413@0.0.2560.1413" timestamp="1599573686351" />
     <state x="707" y="251" width="672" height="473" key="search.everywhere.popup/0.27.1920.985@0.27.1920.985" timestamp="1594307618706" />
     <state x="1005" y="621" width="542" height="167" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1594030051621">
       <screen x="0" y="0" width="2560" height="1413" />

@@ -1,0 +1,121 @@
+,Classifier,Target,Choice,Edge,Feature Selection,Type of feature,Percentage,Refit Metric,balanced_accuracy,accuracy,f1_weighted,roc_auc_ovr_weighted
+0,SVC,Agreeableness,test throw median,num_streamlines,baseline,pearson,2,balanced_accuracy,0.4948275862068966,0.5306122448979592,0.34285714285714286,0.4482758620689655
+1,SVC,Agreeableness,test throw median,num_streamlines,baseline,pearson,5,balanced_accuracy,0.49310344827586206,0.5102040816326531,0.4000000000000001,0.45517241379310347
+2,SVC,Agreeableness,test throw median,num_streamlines,baseline,pearson,10,balanced_accuracy,0.48879310344827587,0.5510204081632653,0.21428571428571425,0.5887931034482758
+3,SVC,Agreeableness,test throw median,num_streamlines,baseline,pearson,50,balanced_accuracy,0.48879310344827587,0.5510204081632653,0.21428571428571425,0.5887931034482758
+4,SVC,Agreeableness,test throw median,num_streamlines,baseline,pearson,100,balanced_accuracy,0.48879310344827587,0.5510204081632653,0.21428571428571425,0.5887931034482758
+5,SVC,Agreeableness,test throw median,num_streamlines,baseline,pearson,2,accuracy,0.4948275862068966,0.5306122448979592,0.34285714285714286,0.4482758620689655
+6,SVC,Agreeableness,test throw median,num_streamlines,baseline,pearson,5,accuracy,0.3870689655172414,0.4489795918367347,0.06896551724137932,0.44999999999999996
+7,SVC,Agreeableness,test throw median,num_streamlines,baseline,pearson,10,accuracy,0.4982758620689655,0.5714285714285714,0.16000000000000003,0.5887931034482758
+8,SVC,Agreeableness,test throw median,num_streamlines,baseline,pearson,50,accuracy,0.4982758620689655,0.5714285714285714,0.16000000000000003,0.5887931034482758
+9,SVC,Agreeableness,test throw median,num_streamlines,baseline,pearson,100,accuracy,0.4982758620689655,0.5714285714285714,0.16000000000000003,0.5887931034482758
+10,SVC,Agreeableness,test throw median,num_streamlines,baseline,pearson,2,f1_weighted,0.4948275862068966,0.5306122448979592,0.34285714285714286,0.4482758620689655
+11,SVC,Agreeableness,test throw median,num_streamlines,baseline,pearson,5,f1_weighted,0.41034482758620694,0.4489795918367347,0.2285714285714286,0.45
+12,SVC,Agreeableness,test throw median,num_streamlines,baseline,pearson,10,f1_weighted,0.48879310344827587,0.5510204081632653,0.21428571428571425,0.5887931034482758
+13,SVC,Agreeableness,test throw median,num_streamlines,baseline,pearson,50,f1_weighted,0.48879310344827587,0.5510204081632653,0.21428571428571425,0.5887931034482758
+14,SVC,Agreeableness,test throw median,num_streamlines,baseline,pearson,100,f1_weighted,0.48879310344827587,0.5510204081632653,0.21428571428571425,0.5887931034482758
+15,SVC,Agreeableness,test throw median,num_streamlines,baseline,pearson,2,roc_auc_ovr_weighted,0.4198275862068966,0.46938775510204084,0.18749999999999997,0.4155172413793103
+16,SVC,Agreeableness,test throw median,num_streamlines,baseline,pearson,5,roc_auc_ovr_weighted,0.4482758620689655,0.5306122448979592,0.0,0.49137931034482757
+17,SVC,Agreeableness,test throw median,num_streamlines,baseline,pearson,10,roc_auc_ovr_weighted,0.5,0.5918367346938775,0.0,0.5887931034482758
+18,SVC,Agreeableness,test throw median,num_streamlines,baseline,pearson,50,roc_auc_ovr_weighted,0.4982758620689655,0.5714285714285714,0.16000000000000003,0.5887931034482758
+19,SVC,Agreeableness,test throw median,num_streamlines,baseline,pearson,100,roc_auc_ovr_weighted,0.5,0.5918367346938775,0.0,0.5887931034482758
+20,SVC,Agreeableness,keep median,num_streamlines,baseline,pearson,2,balanced_accuracy,0.491005291005291,0.5161290322580645,0.34782608695652173,0.4687830687830688
+21,SVC,Agreeableness,keep median,num_streamlines,baseline,pearson,5,balanced_accuracy,0.41534391534391535,0.43548387096774194,0.2857142857142857,0.49735449735449744
+22,SVC,Agreeableness,keep median,num_streamlines,baseline,pearson,10,balanced_accuracy,0.42275132275132277,0.46774193548387094,0.10810810810810811,0.43703703703703706
+23,SVC,Agreeableness,keep median,num_streamlines,baseline,pearson,50,balanced_accuracy,0.42275132275132277,0.46774193548387094,0.10810810810810811,0.43703703703703706
+24,SVC,Agreeableness,keep median,num_streamlines,baseline,pearson,100,balanced_accuracy,0.42275132275132277,0.46774193548387094,0.10810810810810811,0.43703703703703706
+25,SVC,Agreeableness,keep median,num_streamlines,baseline,pearson,2,accuracy,0.491005291005291,0.5161290322580645,0.34782608695652173,0.46984126984126984
+26,SVC,Agreeableness,keep median,num_streamlines,baseline,pearson,5,accuracy,0.4740740740740741,0.5161290322580645,0.21052631578947367,0.5079365079365079
+27,SVC,Agreeableness,keep median,num_streamlines,baseline,pearson,10,accuracy,0.4142857142857143,0.46774193548387094,0.0,0.43703703703703706
+28,SVC,Agreeableness,keep median,num_streamlines,baseline,pearson,50,accuracy,0.4142857142857143,0.46774193548387094,0.0,0.43703703703703706
+29,SVC,Agreeableness,keep median,num_streamlines,baseline,pearson,100,accuracy,0.4142857142857143,0.46774193548387094,0.0,0.43703703703703706
+30,SVC,Agreeableness,keep median,num_streamlines,baseline,pearson,2,f1_weighted,0.491005291005291,0.5161290322580645,0.34782608695652173,0.4687830687830688
+31,SVC,Agreeableness,keep median,num_streamlines,baseline,pearson,5,f1_weighted,0.45396825396825397,0.4838709677419355,0.27272727272727276,0.49629629629629624
+32,SVC,Agreeableness,keep median,num_streamlines,baseline,pearson,10,f1_weighted,0.42275132275132277,0.46774193548387094,0.10810810810810811,0.43703703703703706
+33,SVC,Agreeableness,keep median,num_streamlines,baseline,pearson,50,f1_weighted,0.42275132275132277,0.46774193548387094,0.10810810810810811,0.43703703703703706
+34,SVC,Agreeableness,keep median,num_streamlines,baseline,pearson,100,f1_weighted,0.42275132275132277,0.46774193548387094,0.10810810810810811,0.43703703703703706
+35,SVC,Agreeableness,keep median,num_streamlines,baseline,pearson,2,roc_auc_ovr_weighted,0.5010582010582011,0.532258064516129,0.3255813953488372,0.45820105820105816
+36,SVC,Agreeableness,keep median,num_streamlines,baseline,pearson,5,roc_auc_ovr_weighted,0.4756613756613757,0.532258064516129,0.06451612903225806,0.5142857142857142
+37,SVC,Agreeableness,keep median,num_streamlines,baseline,pearson,10,roc_auc_ovr_weighted,0.5,0.5645161290322581,0.0,0.4365079365079365
+38,SVC,Agreeableness,keep median,num_streamlines,baseline,pearson,50,roc_auc_ovr_weighted,0.5,0.5645161290322581,0.0,0.4396825396825397
+39,SVC,Agreeableness,keep median,num_streamlines,baseline,pearson,100,roc_auc_ovr_weighted,0.5,0.5645161290322581,0.0,0.43703703703703706
+40,RF,Agreeableness,test throw median,num_streamlines,baseline,pearson,2,balanced_accuracy,0.4870689655172414,0.5306122448979592,0.30303030303030304,0.4129310344827586
+41,RF,Agreeableness,test throw median,num_streamlines,baseline,pearson,5,balanced_accuracy,0.39913793103448275,0.40816326530612246,0.3255813953488372,0.4336206896551724
+42,RF,Agreeableness,test throw median,num_streamlines,baseline,pearson,10,balanced_accuracy,0.6043103448275862,0.6326530612244898,0.5,0.593103448275862
+43,RF,Agreeableness,test throw median,num_streamlines,baseline,pearson,50,balanced_accuracy,0.6043103448275862,0.6326530612244898,0.5,0.593103448275862
+44,RF,Agreeableness,test throw median,num_streamlines,baseline,pearson,100,balanced_accuracy,0.6043103448275862,0.6326530612244898,0.5,0.593103448275862
+45,RF,Agreeableness,test throw median,num_streamlines,baseline,pearson,2,accuracy,0.5137931034482759,0.5714285714285714,0.2758620689655173,0.4189655172413793
+46,RF,Agreeableness,test throw median,num_streamlines,baseline,pearson,5,accuracy,0.3663793103448276,0.3877551020408163,0.25,0.42586206896551726
+47,RF,Agreeableness,test throw median,num_streamlines,baseline,pearson,10,accuracy,0.6043103448275862,0.6326530612244898,0.5,0.593103448275862
+48,RF,Agreeableness,test throw median,num_streamlines,baseline,pearson,50,accuracy,0.6043103448275862,0.6326530612244898,0.5,0.593103448275862
+49,RF,Agreeableness,test throw median,num_streamlines,baseline,pearson,100,accuracy,0.6043103448275862,0.6326530612244898,0.5,0.593103448275862
+50,RF,Agreeableness,test throw median,num_streamlines,baseline,pearson,2,f1_weighted,0.48879310344827587,0.5510204081632653,0.21428571428571425,0.3741379310344828
+51,RF,Agreeableness,test throw median,num_streamlines,baseline,pearson,5,f1_weighted,0.38362068965517243,0.40816326530612246,0.25641025641025644,0.4379310344827586
+52,RF,Agreeableness,test throw median,num_streamlines,baseline,pearson,10,f1_weighted,0.6043103448275862,0.6326530612244898,0.5,0.593103448275862
+53,RF,Agreeableness,test throw median,num_streamlines,baseline,pearson,50,f1_weighted,0.6043103448275862,0.6326530612244898,0.5,0.593103448275862
+54,RF,Agreeableness,test throw median,num_streamlines,baseline,pearson,100,f1_weighted,0.6043103448275862,0.6326530612244898,0.5,0.593103448275862
+55,RF,Agreeableness,test throw median,num_streamlines,baseline,pearson,2,roc_auc_ovr_weighted,0.521551724137931,0.5714285714285714,0.3225806451612903,0.3706896551724138
+56,RF,Agreeableness,test throw median,num_streamlines,baseline,pearson,5,roc_auc_ovr_weighted,0.3913793103448276,0.40816326530612246,0.2926829268292683,0.41034482758620694
+57,RF,Agreeableness,test throw median,num_streamlines,baseline,pearson,10,roc_auc_ovr_weighted,0.6043103448275862,0.6326530612244898,0.5,0.593103448275862
+58,RF,Agreeableness,test throw median,num_streamlines,baseline,pearson,50,roc_auc_ovr_weighted,0.6043103448275862,0.6326530612244898,0.5,0.593103448275862
+59,RF,Agreeableness,test throw median,num_streamlines,baseline,pearson,100,roc_auc_ovr_weighted,0.6043103448275862,0.6326530612244898,0.5,0.593103448275862
+60,RF,Agreeableness,keep median,num_streamlines,baseline,pearson,2,balanced_accuracy,0.48253968253968255,0.5161290322580645,0.2857142857142857,0.43386243386243384
+61,RF,Agreeableness,keep median,num_streamlines,baseline,pearson,5,balanced_accuracy,0.4666666666666667,0.4838709677419355,0.36,0.473015873015873
+62,RF,Agreeableness,keep median,num_streamlines,baseline,pearson,10,balanced_accuracy,0.5052910052910053,0.532258064516129,0.3555555555555555,0.48571428571428577
+63,RF,Agreeableness,keep median,num_streamlines,baseline,pearson,50,balanced_accuracy,0.5052910052910053,0.532258064516129,0.3555555555555555,0.48571428571428577
+64,RF,Agreeableness,keep median,num_streamlines,baseline,pearson,100,balanced_accuracy,0.5052910052910053,0.532258064516129,0.3555555555555555,0.48571428571428577
+65,RF,Agreeableness,keep median,num_streamlines,baseline,pearson,2,accuracy,0.44126984126984126,0.4838709677419355,0.15789473684210525,0.4507936507936508
+66,RF,Agreeableness,keep median,num_streamlines,baseline,pearson,5,accuracy,0.5137566137566137,0.532258064516129,0.40816326530612246,0.4825396825396825
+67,RF,Agreeableness,keep median,num_streamlines,baseline,pearson,10,accuracy,0.5052910052910053,0.532258064516129,0.3555555555555555,0.48571428571428577
+68,RF,Agreeableness,keep median,num_streamlines,baseline,pearson,50,accuracy,0.5052910052910053,0.532258064516129,0.3555555555555555,0.48571428571428577
+69,RF,Agreeableness,keep median,num_streamlines,baseline,pearson,100,accuracy,0.5052910052910053,0.532258064516129,0.3555555555555555,0.48571428571428577
+70,RF,Agreeableness,keep median,num_streamlines,baseline,pearson,2,f1_weighted,0.4597883597883598,0.5,0.20512820512820512,0.38730158730158726
+71,RF,Agreeableness,keep median,num_streamlines,baseline,pearson,5,f1_weighted,0.49523809523809526,0.5161290322580645,0.375,0.4804232804232804
+72,RF,Agreeableness,keep median,num_streamlines,baseline,pearson,10,f1_weighted,0.5052910052910053,0.532258064516129,0.3555555555555555,0.48571428571428577
+73,RF,Agreeableness,keep median,num_streamlines,baseline,pearson,50,f1_weighted,0.5052910052910053,0.532258064516129,0.3555555555555555,0.48571428571428577
+74,RF,Agreeableness,keep median,num_streamlines,baseline,pearson,100,f1_weighted,0.5052910052910053,0.532258064516129,0.3555555555555555,0.48571428571428577
+75,RF,Agreeableness,keep median,num_streamlines,baseline,pearson,2,roc_auc_ovr_weighted,0.4312169312169312,0.46774193548387094,0.1951219512195122,0.36084656084656086
+76,RF,Agreeableness,keep median,num_streamlines,baseline,pearson,5,roc_auc_ovr_weighted,0.5037037037037037,0.5161290322580645,0.4230769230769231,0.4931216931216932
+77,RF,Agreeableness,keep median,num_streamlines,baseline,pearson,10,roc_auc_ovr_weighted,0.5052910052910053,0.532258064516129,0.3555555555555555,0.48571428571428577
+78,RF,Agreeableness,keep median,num_streamlines,baseline,pearson,50,roc_auc_ovr_weighted,0.5052910052910053,0.532258064516129,0.3555555555555555,0.48571428571428577
+79,RF,Agreeableness,keep median,num_streamlines,baseline,pearson,100,roc_auc_ovr_weighted,0.5052910052910053,0.532258064516129,0.3555555555555555,0.48571428571428577
+80,MLP,Agreeableness,test throw median,num_streamlines,baseline,pearson,2,balanced_accuracy,0.46810344827586203,0.4897959183673469,0.358974358974359,0.44310344827586207
+81,MLP,Agreeableness,test throw median,num_streamlines,baseline,pearson,5,balanced_accuracy,0.3603448275862069,0.40816326530612246,0.12121212121212123,0.45
+82,MLP,Agreeableness,test throw median,num_streamlines,baseline,pearson,10,balanced_accuracy,0.4982758620689655,0.5714285714285714,0.16000000000000003,0.5896551724137932
+83,MLP,Agreeableness,test throw median,num_streamlines,baseline,pearson,50,balanced_accuracy,0.4982758620689655,0.5714285714285714,0.16000000000000003,0.5887931034482758
+84,MLP,Agreeableness,test throw median,num_streamlines,baseline,pearson,100,balanced_accuracy,0.4982758620689655,0.5714285714285714,0.16000000000000003,0.5879310344827585
+85,MLP,Agreeableness,test throw median,num_streamlines,baseline,pearson,2,accuracy,0.4353448275862069,0.46938775510204084,0.2777777777777778,0.40689655172413797
+86,MLP,Agreeableness,test throw median,num_streamlines,baseline,pearson,5,accuracy,0.41034482758620694,0.4489795918367347,0.2285714285714286,0.45
+87,MLP,Agreeableness,test throw median,num_streamlines,baseline,pearson,10,accuracy,0.49051724137931035,0.5714285714285714,0.08695652173913045,0.5879310344827585
+88,MLP,Agreeableness,test throw median,num_streamlines,baseline,pearson,50,accuracy,0.48103448275862065,0.5510204081632653,0.15384615384615383,0.5887931034482758
+89,MLP,Agreeableness,test throw median,num_streamlines,baseline,pearson,100,accuracy,0.4982758620689655,0.5714285714285714,0.16000000000000003,0.5896551724137932
+90,MLP,Agreeableness,test throw median,num_streamlines,baseline,pearson,2,f1_weighted,0.46810344827586203,0.4897959183673469,0.358974358974359,0.393103448275862
+91,MLP,Agreeableness,test throw median,num_streamlines,baseline,pearson,5,f1_weighted,0.44482758620689655,0.4897959183673469,0.24242424242424246,0.4517241379310345
+92,MLP,Agreeableness,test throw median,num_streamlines,baseline,pearson,10,f1_weighted,0.4982758620689655,0.5714285714285714,0.16000000000000003,0.5913793103448276
+93,MLP,Agreeableness,test throw median,num_streamlines,baseline,pearson,50,f1_weighted,0.4982758620689655,0.5714285714285714,0.16000000000000003,0.5887931034482758
+94,MLP,Agreeableness,test throw median,num_streamlines,baseline,pearson,100,f1_weighted,0.48103448275862065,0.5510204081632653,0.15384615384615383,0.5905172413793104
+95,MLP,Agreeableness,test throw median,num_streamlines,baseline,pearson,2,roc_auc_ovr_weighted,0.4370689655172414,0.4897959183673469,0.19354838709677416,0.46551724137931033
+96,MLP,Agreeableness,test throw median,num_streamlines,baseline,pearson,5,roc_auc_ovr_weighted,0.4482758620689655,0.5306122448979592,0.0,0.4689655172413793
+97,MLP,Agreeableness,test throw median,num_streamlines,baseline,pearson,10,roc_auc_ovr_weighted,0.4982758620689655,0.5714285714285714,0.16000000000000003,0.5879310344827585
+98,MLP,Agreeableness,test throw median,num_streamlines,baseline,pearson,50,roc_auc_ovr_weighted,0.49051724137931035,0.5714285714285714,0.08695652173913045,0.5887931034482758
+99,MLP,Agreeableness,test throw median,num_streamlines,baseline,pearson,100,roc_auc_ovr_weighted,0.4982758620689655,0.5714285714285714,0.16000000000000003,0.5896551724137932
+100,MLP,Agreeableness,keep median,num_streamlines,baseline,pearson,2,balanced_accuracy,0.4211640211640212,0.45161290322580644,0.22727272727272727,0.45714285714285713
+101,MLP,Agreeableness,keep median,num_streamlines,baseline,pearson,5,balanced_accuracy,0.4354497354497354,0.46774193548387094,0.2325581395348837,0.5058201058201058
+102,MLP,Agreeableness,keep median,num_streamlines,baseline,pearson,10,balanced_accuracy,0.43280423280423286,0.4838709677419355,0.058823529411764705,0.43439153439153433
+103,MLP,Agreeableness,keep median,num_streamlines,baseline,pearson,50,balanced_accuracy,0.43280423280423286,0.4838709677419355,0.058823529411764705,0.43915343915343913
+104,MLP,Agreeableness,keep median,num_streamlines,baseline,pearson,100,balanced_accuracy,0.43280423280423286,0.4838709677419355,0.058823529411764705,0.43227513227513226
+105,MLP,Agreeableness,keep median,num_streamlines,baseline,pearson,2,accuracy,0.491005291005291,0.5161290322580645,0.34782608695652173,0.4465608465608466
+106,MLP,Agreeableness,keep median,num_streamlines,baseline,pearson,5,accuracy,0.426984126984127,0.46774193548387094,0.15384615384615383,0.5005291005291006
+107,MLP,Agreeableness,keep median,num_streamlines,baseline,pearson,10,accuracy,0.45714285714285713,0.5161290322580645,0.0,0.4380952380952381
+108,MLP,Agreeableness,keep median,num_streamlines,baseline,pearson,50,accuracy,0.4857142857142857,0.5483870967741935,0.0,0.39629629629629626
+109,MLP,Agreeableness,keep median,num_streamlines,baseline,pearson,100,accuracy,0.42857142857142855,0.4838709677419355,0.0,0.44550264550264546
+110,MLP,Agreeableness,keep median,num_streamlines,baseline,pearson,2,f1_weighted,0.44391534391534393,0.46774193548387094,0.29787234042553196,0.4359788359788359
+111,MLP,Agreeableness,keep median,num_streamlines,baseline,pearson,5,f1_weighted,0.4455026455026455,0.4838709677419355,0.2,0.4857142857142857
+112,MLP,Agreeableness,keep median,num_streamlines,baseline,pearson,10,f1_weighted,0.43280423280423286,0.4838709677419355,0.058823529411764705,0.4396825396825397
+113,MLP,Agreeableness,keep median,num_streamlines,baseline,pearson,50,f1_weighted,0.43703703703703706,0.4838709677419355,0.1111111111111111,0.43756613756613755
+114,MLP,Agreeableness,keep median,num_streamlines,baseline,pearson,100,f1_weighted,0.43280423280423286,0.4838709677419355,0.058823529411764705,0.4386243386243386
+115,MLP,Agreeableness,keep median,num_streamlines,baseline,pearson,2,roc_auc_ovr_weighted,0.4296296296296296,0.45161290322580644,0.2916666666666667,0.45185185185185184
+116,MLP,Agreeableness,keep median,num_streamlines,baseline,pearson,5,roc_auc_ovr_weighted,0.47830687830687835,0.5161290322580645,0.25,0.491005291005291
+117,MLP,Agreeableness,keep median,num_streamlines,baseline,pearson,10,roc_auc_ovr_weighted,0.43280423280423286,0.4838709677419355,0.058823529411764705,0.43915343915343913
+118,MLP,Agreeableness,keep median,num_streamlines,baseline,pearson,50,roc_auc_ovr_weighted,0.4142857142857143,0.46774193548387094,0.0,0.43650793650793646
+119,MLP,Agreeableness,keep median,num_streamlines,baseline,pearson,100,roc_auc_ovr_weighted,0.43280423280423286,0.4838709677419355,0.058823529411764705,0.43915343915343913

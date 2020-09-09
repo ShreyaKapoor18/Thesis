@@ -1,12 +1,10 @@
+from scipy.stats import ttest_ind
 from sklearn.model_selection import RandomizedSearchCV
 from sklearn.preprocessing import StandardScaler
-from metrics import fscore, compute_scores
-from metrics import stratify_sampling, plot_grid_search
-from paramopt import get_distributions
-from scipy.stats import ttest_ind
-import itertools
+
 from graphclass import *
-import copy
+from metrics import fscore, compute_scores
+from paramopt import get_distributions
 
 # %%
 mews = "/home/skapoor/Thesis/gmwcs-solver"
@@ -58,7 +56,7 @@ def transform_features(X_train, X_test, y_train, per, feature):
     return X_train, X_test, arr
 
 
-def solver(X_train, X_test, y_train, feature, node_wts=None, target=None, edge=None,factor=None, sub_val=None):
+def solver(X_train, X_test, y_train, feature, node_wts=None, target=None, edge=None, factor=None, sub_val=None):
     X_train, X_test, arr = process_raw(X_train, X_test, y_train, feature)
     arr = arr.abs()
     arr = pd.DataFrame(arr, index=arr.index)  # scale the array according to the index
@@ -91,7 +89,7 @@ def solver(X_train, X_test, y_train, feature, node_wts=None, target=None, edge=N
 def cross_validation(classifier, X_train, y_train, X_test, y_test, metrics, refit_metric):
     clf, distributions = get_distributions(classifier, True, None)
     rcv = RandomizedSearchCV(clf, distributions, random_state=55, scoring=metrics,
-                             refit=refit_metric, cv=5, n_iter=200,
+                             refit=refit_metric, cv=5, n_iter=100,
                              n_jobs=-1)
     # this is already producing 5 folds so we need to do something different?
     print('starting to train')
@@ -110,90 +108,88 @@ def cross_validation(classifier, X_train, y_train, X_test, y_test, metrics, refi
 
 
 # %%
-def classify(classifiers, X_train, X_test, y_train, y_test, metrics, mapping):
+def classify(l1, classifier, params, feature_selection, choice, refit_metric):
     # try making a csv file for the same
+    X_train, X_test, y_train, y_test = l1
+    labels = ['NEOFAC_A', 'NEOFAC_O', 'NEOFAC_C', 'NEOFAC_N', 'NEOFAC_E']
 
-    cols_base = ['Classifier', 'Target', 'Choice', 'Edge', 'Feature Selection', 'Type of feature', 'Percentage',
-                 'Refit Metric']
-    cols_solver = copy.deepcopy(cols_base)
-    cols_solver.extend(['Node_weights', 'Factor', 'Subtracted_value', 'Num edges', '% Positive edges'])
+    big5 = ['Agreeableness', 'Openness', 'Conscientiousness', 'Neuroticism',
+            'Extraversion']
+    mapping = {k: v for k, v in zip(big5, labels)}
+    metrics = ['balanced_accuracy', 'accuracy', 'f1_weighted', 'roc_auc_ovr_weighted']
     percentages = [2, 5, 10, 50, 100]
-    cols_base.extend(metrics)
-    cols_solver.extend(metrics)
     results_base = []
     results_solver = []
-    s_params = pd.read_csv('/home/skapoor/Thesis/gmwcs-solver/outputs/solver/filtered.csv')
-    for i in range(len(s_params)):
-        for classifier, params, feature_selection, choice, refit_metric in itertools.product(classifiers,  [s_params.iloc[i,:6]],
-                                                                                             ['baseline', 'solver'],['test throw median', 'keep median'],
-                                                                                             metrics):
-            target = params['Target']
-            factor = params['Factor']
-            solver_edge = params['Edge']
-            edge = params['Feature_type']
-            solver_node_wts = params['Node_weights']
-            sub_val = params['Subtracted_value']
-            y_train_l = y_train[mapping[target]]
-            y_test_l = y_test[mapping[target]]
-            print('-' * 100)
-            print(classifier, target, edge, feature_selection,choice, refit_metric, feature_selection)
-            if edge == 'mean_FA':
-                X_train_l = X_train.iloc[:, :tri]
-                X_test_l = X_test.iloc[:, :tri]
-            elif edge == 'mean_strl':
-                X_train_l = X_train.iloc[:, :tri]
-                X_test_l = X_test.iloc[:, :tri]
-            elif edge == 'num_streamlines':
-                X_train_l = X_train.iloc[:, 2 * tri:]  # input one feature at a time
-                X_test_l = X_test.iloc[:, 2 * tri:]
-            assert len(X_train) == len(y_train)
-            med = int(y_train_l.median())  # the median is tried based on the training set
-            print('median of the training data', med)
-            y_train_l = pd.qcut(y_train_l, 5, labels=False, retbins=True)[0]
-            # we need to pass the non-binned values for effective pearson correlation calc.
-            print('The number of training subjects which are to be removed:', sum(y_train_l == 2))
-            y_train_l = y_train_l[y_train_l != 2]
-            y_train_l = y_train_l // 3  # binarizing the values by removing the middle quartile
-            X_train_l = X_train_l.loc[y_train_l.index]
-            assert len(X_train_l) == len(y_train_l)
-            print('The choice that we are using', choice)
-            if choice == 'test throw median':
-                # removing subjects that are close to the median of the training data
-                print(sum(abs(y_test_l - med) <= 1), 'is the number of test subjects with labels '
-                                                     'within difference of 1.0 from the median value')
-                # length_sub = sum(abs(y_test - med) <= 1)
-                y_test_l = y_test_l[abs(y_test_l - med) > 1]  # maybe most of the values are close to the median
-                y_test_l = y_test_l >= med  # binarizing the label check for duplicates
-                X_test_l = X_test_l.loc[list(set(y_test_l.index))]
-                # making sure that the training data is also for the same subjects
-                assert len(X_test_l) == len(y_test_l)
-            elif choice == 'keep median':
-                y_test_l = y_test_l >= med  # we just binarize it and don't do anything else
-            # now we do the cross validation search
-            if feature_selection == 'solver':
+    for i in range(len(params)):
+        par = params.iloc[i,:]
+        target = par['Target']
+        factor = par['Factor']
+        solver_edge = par['Edge']
+        edge = par['Feature_type']
+        solver_node_wts = par['Node_weights']
+        sub_val = par['Subtracted_value']
+        y_train_l = y_train[mapping[target]]
+        y_test_l = y_test[mapping[target]]
+        print('-' * 100)
+        print(classifier, target, choice, edge, feature_selection, solver_edge,
+              refit_metric, sub_val, solver_node_wts, factor)
+        if edge == 'mean_FA':
+            X_train_l = X_train.iloc[:, :tri]
+            X_test_l = X_test.iloc[:, :tri]
+        elif edge == 'mean_strl':
+            X_train_l = X_train.iloc[:, :tri]
+            X_test_l = X_test.iloc[:, :tri]
+        elif edge == 'num_streamlines':
+            X_train_l = X_train.iloc[:, 2 * tri:]  # input one feature at a time
+            X_test_l = X_test.iloc[:, 2 * tri:]
+        assert len(X_train) == len(y_train)
+        med = int(y_train_l.median())  # the median is tried based on the training set
+        print('median of the training data', med)
+        y_train_l = pd.qcut(y_train_l, 5, labels=False, retbins=True)[0]
+        # we need to pass the non-binned values for effective pearson correlation calc.
+        print('The number of training subjects which are to be removed:', sum(y_train_l == 2))
+        y_train_l = y_train_l[y_train_l != 2]
+        y_train_l = y_train_l // 3  # binarizing the values by removing the middle quartile
+        X_train_l = X_train_l.loc[y_train_l.index]
+        assert len(X_train_l) == len(y_train_l)
+        print('The choice that we are using', choice)
+        if choice == 'test throw median':
+            # removing subjects that are close to the median of the training data
+            print(sum(abs(y_test_l - med) <= 1), 'is the number of test subjects with labels '
+                                                 'within difference of 1.0 from the median value')
+            # length_sub = sum(abs(y_test - med) <= 1)
+            y_test_l = y_test_l[abs(y_test_l - med) > 1]  # maybe most of the values are close to the median
+            y_test_l = y_test_l >= med  # binarizing the label check for duplicates
+            X_test_l = X_test_l.loc[list(set(y_test_l.index))]
+            # making sure that the training data is also for the same subjects
+            assert len(X_test_l) == len(y_test_l)
+        elif choice == 'keep median':
+            y_test_l = y_test_l >= med  # we just binarize it and don't do anything else
+        # now we do the cross validation search
+        if feature_selection == 'solver':
 
-                X_train_l, X_test_l, edge_wts, arr = solver(X_train_l, X_test_l, y_train_l, solver_edge,
-                                                            solver_node_wts, target, edge, factor, sub_val)
-                train_res, test_res = cross_validation(classifier, X_train_l, y_train_l, X_test_l, y_test_l,
-                                                       metrics, refit_metric)
-                results_solver.append([classifier, target, choice, edge, feature_selection, solver_edge, len(edge_wts)*100/tri,
-                                      refit_metric, solver_node_wts, factor, sub_val,
-                                       len(edge_wts), sum([edge>0 for edge in edge_wts])*100/len(edge_wts)])
+            X_train_l, X_test_l, edge_wts, arr = solver(X_train_l, X_test_l, y_train_l, solver_edge,
+                                                        solver_node_wts, target, edge, factor, sub_val)
+            train_res, test_res = cross_validation(classifier, X_train_l, y_train_l, X_test_l, y_test_l,
+                                                   metrics, refit_metric)
+            if len(edge_wts) != 0:
+                results_solver.append(
+                    [classifier, target, choice, edge, feature_selection, solver_edge, len(edge_wts) * 100 / tri,
+                     refit_metric, solver_node_wts, factor, sub_val,
+                     len(edge_wts), sum([edge > 0 for edge in edge_wts]) * 100 / len(edge_wts)])
 
+            for metric in metrics:
+                results_solver[-1].extend([test_res[metric]])
+
+        elif feature_selection == 'baseline':
+            for per in percentages:
+                print('the percentages being used are', per)
+                X_train_l, X_test_l, arr = transform_features(X_train_l, X_test_l, y_train_l, per, solver_edge)
+                train_res, test_res = cross_validation(classifier, X_train_l, y_train_l, X_test_l, y_test_l, metrics,
+                                                       refit_metric)
+                results_base.append([classifier, target, choice, edge, feature_selection, solver_edge, per, refit_metric])
                 for metric in metrics:
-                    results_solver[-1].extend([test_res[metric]])
+                    results_base[-1].extend([test_res[metric]])
 
-            elif feature_selection == 'baseline':
-                for per in percentages:
-                    print('the percentages being used are', per)
-                    X_train_l, X_test_l, arr = transform_features(X_train_l, X_test_l, y_train_l, per, solver_edge)
-                    train_res, test_res = cross_validation(classifier, X_train_l, y_train_l, X_test_l, y_test_l, metrics,
-                                                           refit_metric)
-                    results_base.append([classifier, target, choice, edge, feature_selection, solver_edge, per, refit_metric])
-                    for metric in metrics:
-                        results_base[-1].extend([test_res[metric]])
 
-    file1 = pd.DataFrame(results_base, index=cols_base)
-    file1.to_csv(f'{mews}/outputs/csvs/results_baseline.csv')
-    file2 = pd.DataFrame(results_solver, index=cols_solver)
-    file2.to_csv(f'{mews}/outputs/csvs/results_solver.csv')
+        return results_base, results_solver

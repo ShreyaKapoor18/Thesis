@@ -2,39 +2,72 @@
 from processing import *
 from readfiles import *
 from classification_refined import classify
+import copy
+from joblib import Parallel, delayed
+import multiprocessing
+import multiprocessing
+from itertools import product
+from functools import partial
+from contextlib import contextmanager
+#%%
+@contextmanager
+def poolcontext(*args, **kwargs):
+    pool = multiprocessing.Pool(*args, **kwargs)
+    yield pool
+    pool.terminate()
 
-# %%
-''' Data computed for all 5 personality traits at once'''
-  # labels for the computed subjects, data.index is the subject id
-num = 84  # number of nodes in the graph
-tri = int(num * (num + 1) * 0.5)  # we want only the upper diagonal parts since everything below diagonal is 0
-labels = ['NEOFAC_A', 'NEOFAC_O', 'NEOFAC_C', 'NEOFAC_N', 'NEOFAC_E']
-edge_names = ['mean_FA', 'mean_strl', 'num_streamlines']
-big5 = ['Agreeableness', 'Openness', 'Conscientiousness', 'Neuroticism',
-        'Extraversion']
-mapping = {k: v for k, v in zip(big5, labels)}
-mat = np.triu_indices(84)
-mews = '/home/skapoor/Thesis/gmwcs-solver'
-metrics = ['balanced_accuracy', 'accuracy', 'f1_weighted', 'roc_auc_ovr_weighted']
-# note: right now the matrix whole is not scaled, for computing the fscores and correlation coeff it has to be so.
-y_train = computed_subjects()
-X_train = generate_combined_matrix(tri, list(y_train.index))  # need to check indices till here then convert to numpy array
-y_test = test_subjects()
-X_test = generate_test_data(tri, y_test.index)
 
-# The labels i.e. the ones from unrestricted_files # the order in which the subjects
-# %%but now we have to give it both in a split
-# the split must be the same when we are comparing all the functions
-# %%
-# add choice for the features we want to use and slice the whole matrix accordingly, no need to change the processing.py
-classify(['SVC', 'RF', 'MLP'], X_train, X_test, y_train, y_test, metrics, mapping)
-# based on these hyperparameters, search the input files, the output files and the reduced number of edges and nodes
+if __name__ == '__main__':
+    # %%
+    ''' Data computed for all 5 personality traits at once'''
+    # labels for the computed subjects, data.index is the subject id
+    num = 84  # number of nodes in the graph
+    tri = int(num * (num + 1) * 0.5)  # we want only the upper diagonal parts since everything below diagonal is 0
+    labels = ['NEOFAC_A', 'NEOFAC_O', 'NEOFAC_C', 'NEOFAC_N', 'NEOFAC_E']
+    edge_names = ['mean_FA', 'mean_strl', 'num_streamlines']
+    big5 = ['Agreeableness', 'Openness', 'Conscientiousness', 'Neuroticism',
+            'Extraversion']
+    mapping = {k: v for k, v in zip(big5, labels)}
+    mat = np.triu_indices(84)
+    mews = '/home/skapoor/Thesis/gmwcs-solver'
+    metrics = ['balanced_accuracy', 'accuracy', 'f1_weighted', 'roc_auc_ovr_weighted']
+    # note: right now the matrix whole is not scaled, for computing the fscores and correlation coeff it has to be so.
+    y_train = computed_subjects()
+    X_train = generate_combined_matrix(tri, list(y_train.index))  # need to check indices till here then convert to numpy array
+    y_test = test_subjects()
+    X_test = generate_test_data(tri, y_test.index)
+
+    classifiers = ['SVC', 'RF','MLP']
+    cols_base = ['Classifier', 'Target', 'Choice', 'Edge', 'Feature Selection', 'Type of feature', 'Percentage',
+                 'Refit Metric']
+    cols_solver = copy.deepcopy(cols_base)
+    cols_solver.extend(['Node_weights', 'Factor', 'Subtracted_value', 'Num edges', '% Positive edges'])
+    cols_base.extend(metrics)
+    cols_solver.extend(metrics)
+    results_base = []
+    results_solver = []
+    l1 = [X_train, X_test, y_train, y_test]
+    feature_selection = ['baseline', 'solver']
+    choice = ['test throw median', 'keep median']
+    s_params = pd.read_csv('/home/skapoor/Thesis/gmwcs-solver/outputs/solver/filtered.csv')
+
+    f = open('results.txt', 'w')
+    prod = list(product(classifiers,[s_params.iloc[:,:6]], feature_selection, choice, metrics))
+    for classifier, params, feature_selection, choice, refit_metric in prod:
+        resb, ress = classify(l1,classifier, params, feature_selection, choice, refit_metric )
+        results_base.extend(resb)
+        results_solver.extend(ress)
+
+    solv = pd.DataFrame(results_solver, columns=cols_solver)
+    solv.to_csv('solver.csv')
+    base = pd.DataFrame(results_base, columns=cols_base)
+    base.to_csv('base.csv')
+
 '''
 Here we will need to take the threshold and degree as hyperparameters, change them and compute the result accordingly
 maybe make the dictionary like dict['degree'] = val when the val is in a loop. We shall put all the options differently
 '''
 # %%
-#run the classification on bases of graph
 '''
 To do:
 def pipeline_summary():

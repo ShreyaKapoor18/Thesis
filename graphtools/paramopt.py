@@ -21,11 +21,11 @@ def get_distributions(classifier, search, train_params):
         elif classifier == 'RF':
             clf = RandomForestClassifier()
             distributions = {'bootstrap': [True, False],
-                             'max_depth': [10, 20, 30, 40, 50, 60, 70],
+                             'max_depth': [10, 30, 40, 50, 60],
                              'max_features': ['auto', 'sqrt'],
                              'min_samples_leaf': [1, 2, 4],
                              'min_samples_split': [2, 5, 10],
-                             'n_estimators': [200, 400, 600, 800, 1000, 1200, 1400]}
+                             }
 
         elif classifier == 'GB':
             clf = GradientBoostingClassifier()
@@ -34,7 +34,7 @@ def get_distributions(classifier, search, train_params):
                 'tol': [0.01, 0.1],
                 'min_samples_leaf': [1, 2, 4],
                 'min_samples_split': [2, 5, 10],
-                'n_estimators': [200, 400]  # takes too long to converge if tolerance not specificied
+                  # takes too long to converge if tolerance not specificied
             }
         # multiclass cannot use loss exponential
         else:
