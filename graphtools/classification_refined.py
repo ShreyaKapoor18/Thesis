@@ -179,9 +179,11 @@ def classify(l1, classifier, params, feature_selection, choice, refit_metric):
                     [classifier, target, choice, edge, feature_selection, solver_edge, len(edge_wts) * 100 / tri,
                      refit_metric, solver_node_wts, factor, sub_val,
                      len(edge_wts), sum([edge > 0 for edge in edge_wts]) * 100 / len(edge_wts)])
-
-            for metric in metrics:
-                results_solver[-1].extend([round(100*test_res[metric],3)])
+                assert len(results_solver[-1])==13
+                for metric in metrics:
+                    results_solver[-1].extend([round(100*train_res[metric],3)])
+                for metric in metrics:
+                    results_solver[-1].extend([round(100*test_res[metric],3)])
 
         elif feature_selection == 'baseline':
             for per in percentages:
@@ -190,6 +192,8 @@ def classify(l1, classifier, params, feature_selection, choice, refit_metric):
                 train_res, test_res = cross_validation(classifier, X_train_l, y_train_l, X_test_l, y_test_l, metrics,
                                                       refit_metric)
                 results_base.append([classifier, target, choice, edge, feature_selection, solver_edge, per, refit_metric])
+                for metric in metrics:
+                    results_base[-1].extend([round(100 * train_res[metric], 3)])
                 for metric in metrics:
                     results_base[-1].extend([round(100*test_res[metric],3)])
 

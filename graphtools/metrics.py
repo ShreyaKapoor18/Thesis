@@ -41,7 +41,7 @@ def compute_scores(y_test, y_pred, y_score,
     #fpr, tpr, thresholds = roc_curve(y_test, y_pred, pos_label=pos_label)
     scores = [balanced_accuracy_score(y_test, y_pred),
               accuracy_score(y_test, y_pred), f1_score(y_test, y_pred),
-              roc_auc_score(y_test, y_score, 'weighted')]
+              roc_auc_score(y_test, y_score)]
 
     return {k: v for k, v in zip(metrics, scores)}
 

@@ -55,7 +55,8 @@ big5 = ['Agreeableness', 'Openness', 'Conscientiousness', 'Neuroticism',
         'Extraversion']
 mapping = {k: v for k, v in zip(big5, labels)}
 mat = np.triu_indices(84)
-mews = '/home/skapoor/Thesis/gmwcs-solver'
+mews = '/home/skapoor/Thesis/gmwcs-solver/temp'
+nested_outputdirs(mews)
 # before
 # this is what is supposed to be done
 solver_summary = {}
@@ -71,7 +72,7 @@ factors = [1, -1, -10, 10,100, -100, 1000,-1000] #ee how the factors make a diff
 #maybe we can make this mean, median, mode or something on basis of features
 
 
-output_file = open('/home/skapoor/Thesis/gmwcs-solver/outputs/solver_summary.txt', 'w')
+output_file = open('/home/skapoor/Thesis/gmwcs-solver/temp/solver_summary.txt', 'w')
 plotting_options = graph_options(color='red', node_size=5, line_color='white', linewidhts=0.1, width=1)
 
 columns = ['Feature_type', 'Factor', 'Target','Edge', 'Node_weights', 'Subtracted_value',
@@ -82,7 +83,7 @@ summary_data = []
 #%%
 for j, (feature_type, target, edge, node_wts,factor) in \
         enumerate(itertools.product(feature_types,targets,edges, node_wtsl, factors)):
-    #%%
+
     sub_vals = [factor/(x) for x in [2, 5, 10, 20, 25, 3]]
     for sub_val in sub_vals:
         print('*'*100)
@@ -179,7 +180,6 @@ for j, (feature_type, target, edge, node_wts,factor) in \
             print('Describing the edge weights of the output graph', describe(output_graph.edge_weights))
         else:
             summary_data[-1].extend(['', '', '', ''])
-#%%
     os.remove(f'{mews}/outputs/edges/{input_graph.filename}')
     os.remove(f'{mews}/outputs/solver/{input_graph.filename}')
     if os.path.exists(f'{mews}/outputs/edges/{input_graph.filename}.out'):
@@ -189,8 +189,6 @@ for j, (feature_type, target, edge, node_wts,factor) in \
         os.remove(f'{mews}/outputs/nodes/{input_graph.filename}.out')
 
 output_file.close()
-#%%
-from pandas.io.json import json_normalize
 df = pd.DataFrame(summary_data, columns=columns)
-#%%
+
 df.to_csv('/home/skapoor/Thesis/gmwcs-solver/outputs/solver/summary.csv')

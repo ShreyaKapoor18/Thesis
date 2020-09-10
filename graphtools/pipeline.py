@@ -9,12 +9,6 @@ import multiprocessing
 from itertools import product
 from functools import partial
 from contextlib import contextmanager
-#%%
-@contextmanager
-def poolcontext(*args, **kwargs):
-    pool = multiprocessing.Pool(*args, **kwargs)
-    yield pool
-    pool.terminate()
 
 # remember to automatically create the csv files beforehand
 if __name__ == '__main__':
@@ -42,28 +36,30 @@ if __name__ == '__main__':
                  'Refit Metric']
     cols_solver = copy.deepcopy(cols_base)
     cols_solver.extend(['Node_weights', 'Factor', 'Subtracted_value', 'Num edges', '% Positive edges'])
-    cols_base.extend(metrics)
-    cols_solver.extend(metrics)
+    cols_base.extend([f'train_{metric}'for metric in metrics])
+    cols_solver.extend([f'train_{metric}'for metric in metrics])
+    cols_base.extend([f'test_{metric}'for metric in metrics])
+    cols_solver.extend([f'test_{metric}'for metric in metrics])
     l1 = [X_train, X_test, y_train, y_test]
-    feature_selections = ['baseline', 'solver']
+    feature_selections = ['solver', 'baseline']
     choices = ['test throw median', 'keep median']
     s_params = pd.read_csv('/home/skapoor/Thesis/gmwcs-solver/outputs/solver/filtered.csv')
-    s1 = pd.DataFrame([], columns=cols_solver)
-    s1.to_csv('solver.csv')
-    b1 = pd.DataFrame([], columns=cols_solver)
-    b1.to_csv('base.csv')
+    results_base = []
+    results_solver=[]
 
-    prod = list(product(classifiers,[s_params.iloc[:,:6]], feature_selections, choices, metrics))
+    prod = product(classifiers,[s_params.iloc[:,:6]], feature_selections, choices, metrics)
     #print(len(prod)*len(s_params)*2, 'is the number of use cases the pipeline will run for')
     for classifier, params, feature_selection, choice, refit_metric in prod:
-        resb, ress = classify(l1,classifier, params, feature_selection, choice, refit_metric)
-        resb = pd.DataFrame(resb, columns=cols_base)
-        ress = pd.DataFrame(ress, columns=cols_solver)
-        ress.to_csv('solver.csv', mode='a', header=False)
-        resb.to_csv('base.csv', mode='a', header=False)
+            resb, ress = classify(l1,classifier, params, feature_selection, choice, refit_metric)
+            results_solver.extend(ress)
+            results_base.extend(resb)
+        #print(results_base)
         #results_base.extend(resb)
         #results_solver.extend(ress)
-
+    results_base = pd.DataFrame(results_base, columns=cols_base)
+    results_solver = pd.DataFrame(results_solver, columns=cols_solver)
+    results_solver.to_csv('solver.csv')
+    results_base.to_csv('base.csv')
 
 '''
 Here we will need to take the threshold and degree as hyperparameters, change them and compute the result accordingly
