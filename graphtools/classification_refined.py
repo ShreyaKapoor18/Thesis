@@ -28,9 +28,11 @@ def process_raw(X_train, X_test, y_train, feature):
         name = y_train.name
         stacked[name] = stacked[name] >= stacked[name].median()
         arr = fscore(stacked, class_col=name)[:-1]
-        # fscore is different for the multiclass and binary case; has been incorporated above
+        arr = arr.abs()
+        #fscore is different for the multiclass and binary case; has been incorporated above
     if feature == 'pearson':
         arr = stacked.corr().iloc[:-1, -1]
+        arr = arr.abs() #giving the absolute value of the pearson correlation is important
     if feature == 't_test':
         name = y_train.name
         stacked[name] = stacked[name] >= stacked[name].median()
@@ -38,7 +40,8 @@ def process_raw(X_train, X_test, y_train, feature):
         group1 = stacked[stacked[name] == 1]
         arr = []
         for i in range(X_train.shape[1]):
-            arr.append(ttest_ind(group0.iloc[:, i], group1.iloc[:, i]).pvalue)
+            arr.append((-1)*np.log10(ttest_ind(group0.iloc[:, i], group1.iloc[:, i]).pvalue))
+            #we want the the lower pvalues
     arr = pd.DataFrame(arr)
     arr.fillna(0, inplace=True)
     return X_train, X_test, arr
@@ -58,7 +61,6 @@ def transform_features(X_train, X_test, y_train, per, feature):
 
 def solver(X_train, X_test, y_train, feature, node_wts=None, target=None, edge=None, factor=None, sub_val=None):
     X_train, X_test, arr = process_raw(X_train, X_test, y_train, feature)
-    arr = arr.abs()
     arr = pd.DataFrame(arr, index=arr.index)  # scale the array according to the index
     arr = arr * factor
     arr = pd.DataFrame(arr, index=arr.index)
@@ -133,8 +135,7 @@ def classify(l1, classifier, params, feature_selection, choice, refit_metric):
         y_test_l = y_test[mapping[target]]
         print('-' * 100)
        # print('CSV parameter setting number')
-        print(classifier, feature_selection, choice, refit_metric, target, factor, solver_edge, edge,
-              solver_node_wts, sub_val)# why is it always stopping at the first row
+        # why is it always stopping at the first row
         if edge == 'mean_FA':
             X_train_l = X_train.iloc[:, :tri]
             X_test_l = X_test.iloc[:, :tri]
@@ -169,12 +170,15 @@ def classify(l1, classifier, params, feature_selection, choice, refit_metric):
             y_test_l = y_test_l >= med  # we just binarize it and don't do anything else
         # now we do the cross validation search
         if feature_selection == 'solver':
-
+            print(classifier, feature_selection, choice, refit_metric, target, factor, solver_edge, edge,
+                  solver_node_wts, sub_val)
             X_train_l, X_test_l, edge_wts, arr = solver(X_train_l, X_test_l, y_train_l, solver_edge,
                                                         solver_node_wts, target, edge, factor, sub_val)
-            train_res, test_res = cross_validation(classifier, X_train_l, y_train_l, X_test_l, y_test_l,
-                                                  metrics, refit_metric)
+
             if len(edge_wts) != 0:
+                train_res, test_res = cross_validation(classifier, X_train_l, y_train_l, X_test_l, y_test_l,
+                                                       metrics, refit_metric)
+                # to make the program faster only do this when the solver is actually producing some results
                 results_solver.append(
                     [classifier, target, choice, edge, feature_selection, solver_edge, len(edge_wts) * 100 / tri,
                      refit_metric, solver_node_wts, factor, sub_val,

@@ -41,7 +41,7 @@ if __name__ == '__main__':
     cols_base.extend([f'test_{metric}'for metric in metrics])
     cols_solver.extend([f'test_{metric}'for metric in metrics])
     l1 = [X_train, X_test, y_train, y_test]
-    feature_selections = ['solver', 'baseline']
+    feature_selections = ['solver']
     choices = ['test throw median', 'keep median']
     s_params = pd.read_csv('/home/skapoor/Thesis/gmwcs-solver/outputs/solver/filtered.csv')
     results_base = []

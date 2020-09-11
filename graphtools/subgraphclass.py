@@ -116,8 +116,10 @@ for j, (feature_type, target, edge, node_wts,factor) in \
             name = target_col.name
             stacked[name] = stacked[name] >= stacked[name].median()
             arr = fscore(stacked, class_col=target_col.name)[:-1]  # take this only from the training data
+            arr = arr.abs()
         if edge == 'pearson':
             arr = stacked.corr().iloc[:-1, -1]
+            arr = arr.abs()
         if edge == 'train_dat':
             arr = X.mean()
         if edge == 't_test':
@@ -127,11 +129,10 @@ for j, (feature_type, target, edge, node_wts,factor) in \
             group1 = stacked[stacked[name] ==1]
             arr = []
             for i in range(X.shape[1]):
-                arr.append(ttest_ind(group0.iloc[:, i], group1.iloc[:,i]).pvalue)
+                arr.append((-1)*np.log10(ttest_ind(group0.iloc[:, i], group1.iloc[:,i]).pvalue))
             arr = pd.DataFrame(arr, index=range(X.shape[1]))
 
         arr.fillna(0, inplace=True)
-        arr = arr.abs()
         arr = pd.DataFrame(arr, index=arr.index)# scale the array according to the index
         arr = arr * factor
         arr = pd.DataFrame(arr, index=arr.index)
