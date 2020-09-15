@@ -38,7 +38,7 @@ def process_raw(X_train, X_test, y_train, feature):
         group1 = stacked[stacked[name] == 1]
         arr = []
         for i in range(X_train.shape[1]):
-            arr.append(ttest_ind(group0.iloc[:, i], group1.iloc[:, i]).pvalue)
+            arr.append((-1)*np.log10(ttest_ind(group0.iloc[:, i], group1.iloc[:, i]).pvalue))
     arr = pd.DataFrame(arr)
     arr.fillna(0, inplace=True)
     return X_train, X_test, arr
@@ -120,6 +120,7 @@ def classify(l1, classifier, params, feature_selection, choice, refit_metric):
     percentages = [2, 5, 10, 50, 100]
     results_base = []
     results_solver = []
+    baseline_cases = set()
     for i in range(len(params)):
         #print(i)
         par = params.iloc[i,:]
@@ -133,8 +134,7 @@ def classify(l1, classifier, params, feature_selection, choice, refit_metric):
         y_test_l = y_test[mapping[target]]
         print('-' * 100)
        # print('CSV parameter setting number')
-        print(classifier, feature_selection, choice, refit_metric, target, factor, solver_edge, edge,
-              solver_node_wts, sub_val)# why is it always stopping at the first row
+        # why is it always stopping at the first row
         if edge == 'mean_FA':
             X_train_l = X_train.iloc[:, :tri]
             X_test_l = X_test.iloc[:, :tri]
@@ -169,12 +169,15 @@ def classify(l1, classifier, params, feature_selection, choice, refit_metric):
             y_test_l = y_test_l >= med  # we just binarize it and don't do anything else
         # now we do the cross validation search
         if feature_selection == 'solver':
-
+            print(classifier, feature_selection, choice, refit_metric, target, factor, solver_edge, edge,
+                  solver_node_wts, sub_val)
             X_train_l, X_test_l, edge_wts, arr = solver(X_train_l, X_test_l, y_train_l, solver_edge,
                                                         solver_node_wts, target, edge, factor, sub_val)
-            train_res, test_res = cross_validation(classifier, X_train_l, y_train_l, X_test_l, y_test_l,
-                                                  metrics, refit_metric)
+
             if len(edge_wts) != 0:
+                train_res, test_res = cross_validation(classifier, X_train_l, y_train_l, X_test_l, y_test_l,
+                                                       metrics, refit_metric)
+                # to make the program faster only do this when the solver is actually producing some results
                 results_solver.append(
                     [classifier, target, choice, edge, feature_selection, solver_edge, len(edge_wts) * 100 / tri,
                      refit_metric, solver_node_wts, factor, sub_val,
@@ -187,15 +190,21 @@ def classify(l1, classifier, params, feature_selection, choice, refit_metric):
 
         elif feature_selection == 'baseline':
             for per in percentages:
-                #print('the percentages being used are', per)
-                X_train_l, X_test_l, arr = transform_features(X_train_l, X_test_l, y_train_l, per, solver_edge)
-                train_res, test_res = cross_validation(classifier, X_train_l, y_train_l, X_test_l, y_test_l, metrics,
-                                                      refit_metric)
-                results_base.append([classifier, target, choice, edge, feature_selection, solver_edge, per, refit_metric])
-                for metric in metrics:
-                    results_base[-1].extend([round(100 * train_res[metric], 3)])
-                for metric in metrics:
-                    results_base[-1].extend([round(100*test_res[metric],3)])
+                #print('the percentages being used are', per)#
+                case = (classifier, target, choice, edge, feature_selection, solver_edge, per, refit_metric)
+                #make this into a set
+                if case not in baseline_cases:
+                    baseline_cases.add(case)
+                    print(case)
+                    # and dont repeat
+                    X_train_l, X_test_l, arr = transform_features(X_train_l, X_test_l, y_train_l, per, solver_edge)
+                    train_res, test_res = cross_validation(classifier, X_train_l, y_train_l, X_test_l, y_test_l, metrics,
+                                                          refit_metric)
+                    results_base.append([classifier, target, choice, edge, feature_selection, solver_edge, per, refit_metric])
+                    for metric in metrics:
+                        results_base[-1].extend([round(100 * train_res[metric], 3)])
+                    for metric in metrics:
+                        results_base[-1].extend([round(100*test_res[metric],3)])
 
 
     return results_base, results_solver

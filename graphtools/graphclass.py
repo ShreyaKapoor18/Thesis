@@ -132,19 +132,26 @@ class BrainGraph(nx.Graph):  # inheriting from networkx graph package along with
                     print(str(x) + ' ' * 3 + str(conn) + ' ' * 3 + str(self[x][conn]['weight']),
                           file=edges_file)  # original file format was supposed to have 3 spaces
 
-    def run_solver(self, mews):
+    def run_solver(self, mews, temp=None):
         os.chdir(mews)
-        #print('Current directory', os.getcwd())
-        cmd = (
-            f' java -Xss4M -Djava.library.path=/opt/ibm/ILOG/CPLEX_Studio1210/cplex/bin/x86-64_linux/ '
-            f'-cp /opt/ibm/ILOG/CPLEX_Studio1210/cplex/lib/cplex.jar:target/gmwcs-solver.jar '
-            f'ru.ifmo.ctddev.gmwcs.Main -e outputs/edges/{self.filename} '
-            f'-n outputs/nodes/{self.filename} > outputs/solver/{self.filename}')  # training data into the solver
+        print('Current directory', os.getcwd())
+        if temp==None:
+            cmd = (
+                f' java -Xss4M -Djava.library.path=/opt/ibm/ILOG/CPLEX_Studio1210/cplex/bin/x86-64_linux/ '
+                f'-cp /opt/ibm/ILOG/CPLEX_Studio1210/cplex/lib/cplex.jar:target/gmwcs-solver.jar '
+                f'ru.ifmo.ctddev.gmwcs.Main -e outputs/edges/{self.filename} '
+                f'-n outputs/nodes/{self.filename} > outputs/solver/{self.filename}')  # training data into the solver
+        else:
+            cmd = (
+                f' java -Xss4M -Djava.library.path=/opt/ibm/ILOG/CPLEX_Studio1210/cplex/bin/x86-64_linux/ '
+                f'-cp /opt/ibm/ILOG/CPLEX_Studio1210/cplex/lib/cplex.jar:target/gmwcs-solver.jar '
+                f'ru.ifmo.ctddev.gmwcs.Main -e {temp}/outputs/edges/{self.filename} '
+                f'-n {temp}/outputs/nodes/{self.filename} > {temp}/outputs/solver/{self.filename}')
 
-        #print(cmd)
+        print(cmd)
         os.system(cmd)
         os.chdir("/home/skapoor/Thesis/graphtools")
-        #print('Current directory', os.getcwd())
+        print('Current directory', os.getcwd())
 
     def read_from_file(self, mews, mat=np.triu_indices(84)):
         if os.path.exists(f'{mews}/outputs/nodes/{self.filename}.out') \
@@ -186,7 +193,8 @@ class BrainGraph(nx.Graph):  # inheriting from networkx graph package along with
                 for u, v in self.edges:
                     self.edge_weights.append(self[u][v]['weight'])
 
-                print('output graph has been read from file', 'nodes:', self.nodes, 'edges', self.edges)
+                print('output graph has been read from file', 'num of nodes:', len(self.nodes),
+                      'num of edges', len(self.edges))
                 return feature_indices
         else:
             self.edge_weights = []
