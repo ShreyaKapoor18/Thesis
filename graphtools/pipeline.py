@@ -1,12 +1,11 @@
 
 from processing import *
 from readfiles import *
-from classification_refined import classify
-import copy
-from itertools import product
 from subgraphclass import make_solver_summary
+import copy
 from solver_decision import filter
-
+from itertools import product
+from classification_refined import classify
 # remember to automatically create the csv files beforehand
 if __name__ == '__main__':
     ''' Data computed for all 5 personality traits at once'''
@@ -24,8 +23,9 @@ if __name__ == '__main__':
     # note: right now the matrix whole is not scaled, for computing the fscores and correlation coeff it has to be so.
     y_train = computed_subjects()
     X_train = generate_combined_matrix(tri, list(y_train.index))  # need to check indices till here then convert to numpy array
-    make_solver_summary(mapping, y_train, big5, mews, X_train, tri)
-    """filter()
+    num_strls = X_train.iloc[:,2 * tri:]
+    make_solver_summary(mapping, y_train, big5, mews, X_train, tri, num_strls)
+    filter()
     y_test = test_subjects()
     X_test = generate_test_data(tri, y_test.index)
 
@@ -33,7 +33,7 @@ if __name__ == '__main__':
     cols_base = ['Classifier', 'Target', 'Choice', 'Edge', 'Feature Selection', 'Type of feature', 'Percentage',
                  'Refit Metric']
     cols_solver = copy.deepcopy(cols_base)
-    cols_solver.extend(['Node_weights', 'Factor', 'Subtracted_value', 'Num edges', '% Positive edges'])
+    cols_solver.extend(['Node_weights', 'Num edges', '% Positive edges'])
     cols_base.extend([f'train_{metric}'for metric in metrics])
     cols_solver.extend([f'train_{metric}'for metric in metrics])
     cols_base.extend([f'test_{metric}'for metric in metrics])
@@ -61,20 +61,11 @@ if __name__ == '__main__':
     results_solver = pd.DataFrame(results_solver, columns=cols_solver)
     results_solver = results_solver.round(3)
     results_solver.to_csv('outputs/csvs/solver.csv')
-    results_base.to_csv('outputs/csvs/base.csv')"""
+    results_base.to_csv('outputs/csvs/base.csv')
 
 '''
 Here we will need to take the threshold and degree as hyperparameters, change them and compute the result accordingly
 maybe make the dictionary like dict['degree'] = val when the val is in a loop. We shall put all the options differently
 '''
 # %%
-'''
-To do:
-def pipeline_summary():
-    # fscores based on the label
-    # pearson correlation based on the target variable
-    # classification for the target variable
-    # input to the solver
-    # output from the solver
-    # classification on the basis of the solver output
-'''
+
