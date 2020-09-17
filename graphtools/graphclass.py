@@ -69,7 +69,7 @@ class BrainGraph(nx.Graph):  # inheriting from networkx graph package along with
                 self.nodes[l]['label'] = max(
                     [dict(self[l])[k]['weight'] for k in dict(self[l]).keys()])  # max or max abs?
             elif node_wts == 'const':
-                self.nodes[l]['label'] = const_val + self.self_loops[l]
+                self.nodes[l]['label'] = const_val
             elif node_wts== 'avg':
                 self.nodes[l]['label'] = np.mean([dict(self[l])[k]['weight'] for k in dict(self[l]).keys()])
             node_labels.append(self.nodes[l]['label'])
@@ -197,3 +197,20 @@ class BrainGraph(nx.Graph):  # inheriting from networkx graph package along with
             self.edge_weights = []
             self.node_labels = []
             return None
+    def hist(self, mews):
+        '''
+        Plotting the histogram of the sum of incoming edge weights
+        @return:
+        '''
+        incoming_sums = []
+        for node in self.nodes:
+            incoming_sums.append(sum([self[node][v]['weight'] for v in self[node].keys()]))
+        fig = plt.figure()
+        plt.title('Sum of incoming edges on each node')
+        plt.ylabel('Number of nodes')
+        plt.xlabel('Sums')
+        plt.hist(incoming_sums)
+        plt.savefig(f'{mews}/outputs/figs/{self.filename}.png')
+        plt.show()
+
+
