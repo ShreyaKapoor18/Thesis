@@ -28,11 +28,9 @@ def process_raw(X_train, X_test, y_train, feature):
         name = y_train.name
         stacked[name] = stacked[name] >= stacked[name].median()
         arr = fscore(stacked, class_col=name)[:-1]
-        arr = arr.abs()
-        #fscore is different for the multiclass and binary case; has been incorporated above
+        # fscore is different for the multiclass and binary case; has been incorporated above
     if feature == 'pearson':
         arr = stacked.corr().iloc[:-1, -1]
-        arr = arr.abs() #giving the absolute value of the pearson correlation is important
     if feature == 't_test':
         name = y_train.name
         stacked[name] = stacked[name] >= stacked[name].median()
@@ -41,7 +39,6 @@ def process_raw(X_train, X_test, y_train, feature):
         arr = []
         for i in range(X_train.shape[1]):
             arr.append((-1)*np.log10(ttest_ind(group0.iloc[:, i], group1.iloc[:, i]).pvalue))
-            #we want the the lower pvalues
     arr = pd.DataFrame(arr)
     arr.fillna(0, inplace=True)
     return X_train, X_test, arr
@@ -59,13 +56,13 @@ def transform_features(X_train, X_test, y_train, per, feature):
     return X_train, X_test, arr
 
 
-def solver(X_train, X_test, y_train, feature, node_wts=None, target=None, edge=None, factor=None, sub_val=None):
+def solver(X_train, X_test, y_train, feature, node_wts=None, target=None, edge=None):
     X_train, X_test, arr = process_raw(X_train, X_test, y_train, feature)
+    arr = arr.abs()
     arr = pd.DataFrame(arr, index=arr.index)  # scale the array according to the index
-    arr = arr * factor
     arr = pd.DataFrame(arr, index=arr.index)
     input_graph = BrainGraph(edge, feature, node_wts, target)
-    input_graph.make_graph(arr, sub_val)
+    input_graph.make_graph(arr)
     if node_wts == 'const':
         input_graph.set_node_labels(node_wts, const_val=0)
     else:
@@ -122,15 +119,14 @@ def classify(l1, classifier, params, feature_selection, choice, refit_metric):
     percentages = [2, 5, 10, 50, 100]
     results_base = []
     results_solver = []
+    baseline_cases = set()
     for i in range(len(params)):
         #print(i)
         par = params.iloc[i,:]
         target = par['Target']
-        factor = par['Factor']
         solver_edge = par['Edge']
         edge = par['Feature_type']
         solver_node_wts = par['Node_weights']
-        sub_val = par['Subtracted_value']
         y_train_l = y_train[mapping[target]]
         y_test_l = y_test[mapping[target]]
         print('-' * 100)
@@ -170,10 +166,10 @@ def classify(l1, classifier, params, feature_selection, choice, refit_metric):
             y_test_l = y_test_l >= med  # we just binarize it and don't do anything else
         # now we do the cross validation search
         if feature_selection == 'solver':
-            print(classifier, feature_selection, choice, refit_metric, target, factor, solver_edge, edge,
-                  solver_node_wts, sub_val)
+            print(classifier, feature_selection, choice, refit_metric, target, solver_edge, edge,
+                  solver_node_wts)
             X_train_l, X_test_l, edge_wts, arr = solver(X_train_l, X_test_l, y_train_l, solver_edge,
-                                                        solver_node_wts, target, edge, factor, sub_val)
+                                                        solver_node_wts, target, edge)
 
             if len(edge_wts) != 0:
                 train_res, test_res = cross_validation(classifier, X_train_l, y_train_l, X_test_l, y_test_l,
@@ -181,7 +177,7 @@ def classify(l1, classifier, params, feature_selection, choice, refit_metric):
                 # to make the program faster only do this when the solver is actually producing some results
                 results_solver.append(
                     [classifier, target, choice, edge, feature_selection, solver_edge, len(edge_wts) * 100 / tri,
-                     refit_metric, solver_node_wts, factor, sub_val,
+                     refit_metric, solver_node_wts,
                      len(edge_wts), sum([edge > 0 for edge in edge_wts]) * 100 / len(edge_wts)])
                 assert len(results_solver[-1])==13
                 for metric in metrics:
@@ -191,15 +187,21 @@ def classify(l1, classifier, params, feature_selection, choice, refit_metric):
 
         elif feature_selection == 'baseline':
             for per in percentages:
-                #print('the percentages being used are', per)
-                X_train_l, X_test_l, arr = transform_features(X_train_l, X_test_l, y_train_l, per, solver_edge)
-                train_res, test_res = cross_validation(classifier, X_train_l, y_train_l, X_test_l, y_test_l, metrics,
-                                                      refit_metric)
-                results_base.append([classifier, target, choice, edge, feature_selection, solver_edge, per, refit_metric])
-                for metric in metrics:
-                    results_base[-1].extend([round(100 * train_res[metric], 3)])
-                for metric in metrics:
-                    results_base[-1].extend([round(100*test_res[metric],3)])
+                #print('the percentages being used are', per)#
+                case = (classifier, target, choice, edge, feature_selection, solver_edge, per, refit_metric)
+                #make this into a set
+                if case not in baseline_cases:
+                    baseline_cases.add(case)
+                    print(case)
+                    # and dont repeat
+                    X_train_l, X_test_l, arr = transform_features(X_train_l, X_test_l, y_train_l, per, solver_edge)
+                    train_res, test_res = cross_validation(classifier, X_train_l, y_train_l, X_test_l, y_test_l, metrics,
+                                                          refit_metric)
+                    results_base.append([classifier, target, choice, edge, feature_selection, solver_edge, per, refit_metric])
+                    for metric in metrics:
+                        results_base[-1].extend([round(100 * train_res[metric], 3)])
+                    for metric in metrics:
+                        results_base[-1].extend([round(100*test_res[metric],3)])
 
 
     return results_base, results_solver

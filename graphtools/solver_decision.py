@@ -1,26 +1,38 @@
 #%%
 import pandas as pd
+'''
 from sklearn.preprocessing import LabelEncoder
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.compose import ColumnTransformer
 import numpy as np
 from sklearn.tree import DecisionTreeClassifier
+#%%
 from six import StringIO
 from IPython.display import Image
 from sklearn.tree import export_graphviz
 import pydotplus
-import os
+import os'''
 '''
 Aim is to design a decision tree classifier based on the fact if the 
 solver produces an output or not
 '''
-summary = pd.read_csv('/home/skapoor/Thesis/gmwcs-solver/outputs/solver/summary_100.csv')
-summary.fillna(0, inplace=True)
 #%%
-summary.sort_values(['Features_preserved_per', 'Output_graph_posedge'], ascending=[False, False])
-filtered = summary[(summary.Features_preserved_per>0) & (summary.Output_graph_posedge>0) & (summary.Output_Graph_edges>4) ]
+def filter():
+    summary = pd.read_csv('/home/skapoor/Thesis/graphtools/outputs/csvs/summary.csv')
+    summary.sort_values(by=['Features_preserved_per', 'Output_graph_posedge_per'],
+                                  ascending=[False, False], inplace=True)
+    summary.fillna(0, inplace=True)
+    #%%
+    summary.sort_values(['Features_preserved_per', 'Output_graph_posedge_per'], ascending=[False, False])
+    filtered = summary[(summary.Features_preserved_per>0) & (summary.Output_graph_posedge_per>0) & (summary.Output_Graph_edges>4)].copy()
+    filtered.drop(filtered.columns[0], axis=1, inplace=True)
+    #%%
+    filtered.drop_duplicates(subset=["Features_preserved_per", 'Output_Graph_edges'], inplace=True)
+    filtered.index = range(len(filtered))
+    filtered = filtered.round(3) #round off to three decimal places
+    filtered.to_csv('/home/skapoor/Thesis/graphtools/outputs/csvs/filtered.csv') #make sure compiled with same version
 #%%
-
+'''
 for target in summary['Target'].unique():
 	df = summary[summary['Target']==target].iloc[:,:6]
 	y = summary[summary['Target'] == target].Features_preserved_per
@@ -56,6 +68,6 @@ for target in summary['Target'].unique():
 	Image(graph.create_png())
 	export_graphviz(dtree, out_file=f'outputs/figures/{target}.dot', feature_names=data.columns)
 	os.system(f'dot -Tpng outputs/figures/{target}.dot -o outputs/figures/{target}.png')
-
+'''
 #%%
 #different decision trees for each personality tratiz

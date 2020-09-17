@@ -10,16 +10,17 @@ import matplotlib.patches as patches
 
 
 class BrainGraph(nx.Graph):  # inheriting from networkx graph package along with the functionality we want
-    def __init__(self, edge, feature_type, node_wts, target):
+    def __init__(self, edge, feature_type, node_wts, target, val):
         # self.connected_subgraph = self.subgraph([0])
         super(BrainGraph, self).__init__()  # constructor of the base class
         self.edge = edge
         self.feature_type = feature_type
         self.node_wts = node_wts
         self.target = target
-        self.filename = f'{target}_{edge}_{node_wts}_{feature_type}'
+        self.filename = f'{target}_{edge}_{val}_{feature_type}'
         self.connected_nodes = []
         self.connected_degree = 0
+        self.self_loops = []
 
     def subgraph(self):
         # create new graph and copy subgraph into it
@@ -36,20 +37,23 @@ class BrainGraph(nx.Graph):  # inheriting from networkx graph package along with
         H.add_weighted_edges_from(subgr_edges)
         return H
 
-    def make_graph(self, arr, sub_val):  # maybe this function is not even needed
+    def make_graph(self, arr):  # maybe this function is not even needed
         mat = np.triu_indices(84)
-        print('type of array', type(arr))
+        #print('type of array', type(arr))
         # need to standardize after taking the absolute value
-        arr = arr - sub_val
         # nonzero = arr[arr != 0].index
         # arr.loc[nonzero] = arr.loc[nonzero] - sub_val #subtract only for the nonzero parts
         nodes = set()
         edge_attributes = []
         for j in range(len(mat[0])):
             value = float(arr.iloc[j])
-            edge_attributes.append((mat[0][j], mat[1][j], value))
             nodes.add(mat[0][j])  # add only the nodes which have corresponding edges
             nodes.add(mat[1][j])
+            if value>0 and mat[0][j]!= mat[1][j]:
+                edge_attributes.append((mat[0][j], mat[1][j], value))
+            else:
+                self.self_loops.append(value)
+
         # mean for the scores of three different labels
         assert nodes is not None
         self.add_nodes_from(nodes)
@@ -65,7 +69,7 @@ class BrainGraph(nx.Graph):  # inheriting from networkx graph package along with
                 self.nodes[l]['label'] = max(
                     [dict(self[l])[k]['weight'] for k in dict(self[l]).keys()])  # max or max abs?
             elif node_wts == 'const':
-                self.nodes[l]['label'] = const_val
+                self.nodes[l]['label'] = const_val + self.self_loops[l]
             elif node_wts== 'avg':
                 self.nodes[l]['label'] = np.mean([dict(self[l])[k]['weight'] for k in dict(self[l]).keys()])
             node_labels.append(self.nodes[l]['label'])
@@ -120,17 +124,18 @@ class BrainGraph(nx.Graph):  # inheriting from networkx graph package along with
         with open(f'{mews}/outputs/nodes/{self.filename}', 'w') as nodes_file:
             for x in self.nodes:
                 # print(node)  # solver documentation, 1 or 2
-                print(str(x) + ' ' * 3 + str(self.nodes[x]['label']), file=nodes_file)
-
+                    print(str(x) + ' ' * 3 + str(self.nodes[x]['label']), file=nodes_file)
+                #print(str(x) + ' ' * 3 + str(self.nodes[x]['label']))
                 # print(str(node) + ' ' + str(0), file=nodes_file)
         # self.connected_subgraph = self.subgraph(connected_nodes)
 
         with open(f'{mews}/outputs/edges/{self.filename}', 'w') as edges_file:
-            for x in self.nodes:
-                # if edge[0] in g1.nodes and edge[1] in g1.nodes:
-                for conn in self[x]:
-                    print(str(x) + ' ' * 3 + str(conn) + ' ' * 3 + str(self[x][conn]['weight']),
+
+            for u,v in self.edges:
+                if u!=v: #just don't write these into the files and also make sure that this doesn't happen
+                    print(str(u) + ' ' * 3 + str(v) + ' ' * 3 + str(self[u][v]['weight']),
                           file=edges_file)  # original file format was supposed to have 3 spaces
+                    #print(str(x) + ' ' * 3 + str(conn) + ' ' * 3 + str(self[x][conn]['weight']))
 
     def run_solver(self, mews):
         os.chdir(mews)
@@ -186,7 +191,7 @@ class BrainGraph(nx.Graph):  # inheriting from networkx graph package along with
                 for u, v in self.edges:
                     self.edge_weights.append(self[u][v]['weight'])
 
-                print('output graph has been read from file', 'nodes:', self.nodes, 'edges', self.edges)
+                #print('output graph has been read from file', 'nodes:', self.nodes, 'edges', self.edges)
                 return feature_indices
         else:
             self.edge_weights = []
