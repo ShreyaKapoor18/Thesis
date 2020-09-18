@@ -24,8 +24,8 @@ if __name__ == '__main__':
     # note: right now the matrix whole is not scaled, for computing the fscores and correlation coeff it has to be so.
     y_train = computed_subjects()
     X_train = generate_combined_matrix(tri, list(y_train.index))  # need to check indices till here then convert to numpy array
-    #make_solver_summary(mapping, y_train, big5, mews, X_train, tri)
-    filter()
+    make_solver_summary(mapping, y_train, big5, mews, X_train, tri)
+    """filter()
     y_test = test_subjects()
     X_test = generate_test_data(tri, y_test.index)
 
@@ -61,7 +61,7 @@ if __name__ == '__main__':
     results_solver = pd.DataFrame(results_solver, columns=cols_solver)
     results_solver = results_solver.round(3)
     results_solver.to_csv('outputs/csvs/solver.csv')
-    results_base.to_csv('outputs/csvs/base.csv')
+    results_base.to_csv('outputs/csvs/base.csv')"""
 
 '''
 Here we will need to take the threshold and degree as hyperparameters, change them and compute the result accordingly

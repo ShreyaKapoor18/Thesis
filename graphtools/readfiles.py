@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import glob
+import re
 import pandas_profiling
 
 def computed_subjects():
@@ -75,3 +76,31 @@ def get_subj_ids():
             subject = s.split('/HCP/results/')[1].split('/')[0]
             present_subj.append(subject)
     return present_subj
+
+
+def corresp_label_file(file):
+    f = open('/home/skapoor/Thesis/Notes/HCP_data/labels/' + file)
+    dat = f.read()
+    if file == 'FreeSurferColorLUT.txt':
+        dat = [x.split(' ')[::2] for x in dat.split('\n')[1:-1]]
+        dat = [x for x in dat if len(x) >= 3 and x[0] != '#']
+        dict_data = {int(x[0]): x[1] for x in dat}
+        """for x in np.unique(labels).astype(int):
+            for y in dat: 
+                if y[0]!=[''] and y[0]!='#':
+                    #print(str(x), y)
+                    if str(x) == y[0]: 
+                        for a in y: 
+                            if 'white-matter' in a.lower():
+                                print (y)
+                            if 'corpus' in a.lower(): 
+                                print (y)
+                            if 'cc' in a.lower(): 
+                                print (y)"""
+    elif file == 'fs_default.txt':
+        dat = [re.sub(' +', ' ', x).split(' ') for x in dat.split('\n')[2:-2]]
+        dat = [x for x in dat if len(x) >= 3 and int(x[0])]
+        dict_data = {int(x[0]): x[2] for x in dat}
+
+    return dict_data
+
