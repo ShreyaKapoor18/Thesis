@@ -68,7 +68,7 @@ def solver(X_train, X_test, y_train, feature, node_wts=None, target=None, edge=N
     else:
         input_graph.set_node_labels(node_wts)
     input_graph.savefiles(mews)
-    input_graph.run_solver(mews)
+    input_graph.run_solver(mews, max_num_nodes=20, root=10)
     output_graph = BrainGraph(edge, feature, node_wts, target)
     reduced_feature_indices = output_graph.read_from_file(mews)
 

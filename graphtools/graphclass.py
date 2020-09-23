@@ -124,7 +124,7 @@ class BrainGraph(nx.Graph):  # inheriting from networkx graph package along with
         with open(f'{mews}/outputs/nodes/{self.filename}', 'w') as nodes_file:
             for x in self.nodes:
                 # print(node)  # solver documentation, 1 or 2
-                    print(str(x) + ' ' * 3 + str(self.nodes[x]['label']), file=nodes_file)
+                    print(str(x+1) + ' ' * 3 + str(self.nodes[x]['label']), file=nodes_file)
                 #print(str(x) + ' ' * 3 + str(self.nodes[x]['label']))
                 # print(str(node) + ' ' + str(0), file=nodes_file)
         # self.connected_subgraph = self.subgraph(connected_nodes)
@@ -133,18 +133,18 @@ class BrainGraph(nx.Graph):  # inheriting from networkx graph package along with
 
             for u,v in self.edges:
                 if u!=v: #just don't write these into the files and also make sure that this doesn't happen
-                    print(str(u) + ' ' * 3 + str(v) + ' ' * 3 + str(self[u][v]['weight']),
+                    print(str(u+1) + ' ' * 3 + str(v+1) + ' ' * 3 + str(self[u][v]['weight']),
                           file=edges_file)  # original file format was supposed to have 3 spaces
                     #print(str(x) + ' ' * 3 + str(conn) + ' ' * 3 + str(self[x][conn]['weight']))
 
-    def run_solver(self, mews):
+    def run_solver(self, mews, max_num_nodes, root):
         os.chdir(mews)
         #print('Current directory', os.getcwd())
         cmd = (
             f' java -Xss4M -Djava.library.path=/opt/ibm/ILOG/CPLEX_Studio1210/cplex/bin/x86-64_linux/ '
             f'-cp /opt/ibm/ILOG/CPLEX_Studio1210/cplex/lib/cplex.jar:target/gmwcs-solver.jar '
             f'ru.ifmo.ctddev.gmwcs.Main -e outputs/edges/{self.filename} '
-            f'-n outputs/nodes/{self.filename} > outputs/solver/{self.filename}')  # training data into the solver
+            f'-n outputs/nodes/{self.filename} > outputs/solver/{self.filename} -nm {max_num_nodes} -root {root}')  # training data into the solver
 
         #print(cmd)
         os.system(cmd)

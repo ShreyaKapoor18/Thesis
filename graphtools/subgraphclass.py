@@ -80,7 +80,7 @@ def input_graph_processing(arr, edge, feature_type, node_wts, target, output_fil
     summary = [len(input_graph.nodes), len(input_graph.edges),
                              100 * sum([True for wt in input_graph.edge_weights if wt > 0]) / len(input_graph.edges)]
     # we want to calculate the strictly positive edges
-    input_graph.run_solver('/home/skapoor/Thesis/gmwcs-solver')
+    input_graph.run_solver('/home/skapoor/Thesis/gmwcs-solver', max_num_nodes=50, root=30)
     return input_graph, summary
 
 def output_graph_processing(input_graph, edge, feature_type, node_wts,val, target, mews, output_file):
@@ -132,14 +132,10 @@ def delete_files(mews, input_graph):
 def make_solver_summary(mapping, data, targets,mews, whole, tri):
     edges = ['pearson']
     node_wtsl = ['const']
-    #vals = np.arange(0,-0.1,-0.01)
-    #vals = [-1, -2, -10, -100, -200]
-    #vals =[0]
 
-    #vals = np.arange(-2.5, -3, -0.1)
     metrics = ['balanced_accuracy', 'accuracy', 'f1_weighted', 'roc_auc_ovr_weighted']
     # note: right now the matrix whole is not scaled, for computing the fscores and correlation coeff it has to be so.
-    feature_types = ['mean_FA']
+    feature_types = ['mean_FA', 'mean_strl', 'num_streamlines']
     # see how the factors make a difference
     output_file = open('/home/skapoor/Thesis/gmwcs-solver/solver_summary.txt', 'w')
 
@@ -150,7 +146,7 @@ def make_solver_summary(mapping, data, targets,mews, whole, tri):
     summary_data = []
     for j, (feature_type, target, edge, node_wts) in \
             enumerate(itertools.product(feature_types,targets,edges, node_wtsl)):
-        vals = np.arange(-2.5, -3, -0.01)
+        vals = np.arange(0, -1, -0.01)
 
         y = data[mapping[target]]
         X = filter_indices(whole, feature_type, tri)
@@ -171,9 +167,7 @@ def make_solver_summary(mapping, data, targets,mews, whole, tri):
         arr.fillna(0, inplace=True)
         arr = arr.abs()
         arr = arr.round(3)
-        stop = False
-        while( not stop):
-            val = vals[len(vals)//2]
+        for val in vals:
             print('*' * 100)
             print('*' * 100, file=output_file)
             print(f'Case:{feature_type},{target},{edge},{node_wts},{val}')
@@ -187,13 +181,6 @@ def make_solver_summary(mapping, data, targets,mews, whole, tri):
             output_graph, summary_out = output_graph_processing(input_graph, edge, feature_type, node_wts, val,
                                                            target, mews, output_file)
             summary_data[-1].extend(summary_out)
-            if len(output_graph)>10: #if its becoming bigger and bigger means going towards -2.5 but we want to go lower so shift towards 3.0
-                vals = vals[len(vals)//2:]
-            elif len(output_graph)>0:
-                stop = True
-            else:
-                vals = vals[:len(vals)//2]
-            print('new interval:', vals[0], vals[-1])
 
 
     output_file.close()
