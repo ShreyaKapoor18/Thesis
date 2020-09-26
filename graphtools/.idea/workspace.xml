@@ -39,6 +39,25 @@
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" /> <<<<<<< HEAD
+      <change beforePath="$PROJECT_DIR$/graphclass.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphclass.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/outputs/csvs/summary.csv" beforeDir="false" afterPath="$PROJECT_DIR$/outputs/csvs/summary.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/pipeline.py" afterDir="false" />
+||||||| merged common ancestors
+      <change beforePath="$PROJECT_DIR$/base.csv" beforeDir="false" afterPath="$PROJECT_DIR$/base.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classification_refined.py" beforeDir="false" afterPath="$PROJECT_DIR$/classification_refined.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/metrics.py" beforeDir="false" afterPath="$PROJECT_DIR$/metrics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/pipeline.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/solver.csv" beforeDir="false" afterPath="$PROJECT_DIR$/solver.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/solver_decision.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/solver_decision.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/solver_decision.py" beforeDir="false" afterPath="$PROJECT_DIR$/solver_decision.py" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/graphclass.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphclass.py" afterDir="false" />
+>>>>>>> e6e4f753681f3c31d69a21da7e819df358da61dd
+      <change beforePath="$PROJECT_DIR$/subgraphclass.py" beforeDir="false" afterPath="$PROJECT_DIR$/subgraphclass.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
@@ -54,7 +73,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
     <option name="UPDATE_TYPE" value="REBASE" />
   </component>
-  <component name="JupyterTrust" id="edbcbcd2-d81a-4387-81f3-78ab951c0b06" />
+  <component name="JupyterTrust" id="23142a05-ffce-4c66-8057-52ae9c2ae4e4" />
   <component name="ProjectId" id="1cOYuUCjZEue5YXFt5EVFOgpP53" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -66,7 +85,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="TERMINAL_CUSTOM_COMMANDS_GOT_IT" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
     <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
@@ -235,16 +254,28 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.pipeline" />
+<<<<<<< HEAD
         <item itemvalue="Python.graphclass" />
+||||||| merged common ancestors
+        <item itemvalue="Python.classification_refined" />
+        <item itemvalue="Python.subgraphclass" />
+=======
+        <item itemvalue="Python.subgraphclass" />
+>>>>>>> e6e4f753681f3c31d69a21da7e819df358da61dd
         <item itemvalue="Python.solver_decision" />
+<<<<<<< HEAD
         <item itemvalue="Python.subgraphclass" />
         <item itemvalue="Python.classification_refined" />
+||||||| merged common ancestors
+        <item itemvalue="Python.classification" />
+=======
+        <item itemvalue="Python.classification_refined" />
+        <item itemvalue="Python.classification" />
+>>>>>>> e6e4f753681f3c31d69a21da7e819df358da61dd
       </list>
     </recent_temporary>
   </component>
-  <component name="StructureViewFactory">
-    <option name="ACTIVE_ACTIONS" value=",SHOW_INHERITED,SHOW_FIELDS" />
-  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="project-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration>$USER_HOME$/.subversion</configuration>
   </component>
@@ -308,6 +339,7 @@
       <workItem from="1599468255433" duration="12760000" />
       <workItem from="1599552396466" duration="3163000" />
       <workItem from="1599556014424" duration="41192000" />
+<<<<<<< HEAD
       <workItem from="1599731653651" duration="38462000" />
       <workItem from="1600256910673" duration="3807000" />
       <workItem from="1600423672982" duration="2975000" />
@@ -315,6 +347,87 @@
       <workItem from="1600785084823" duration="778000" />
       <workItem from="1600857343217" duration="11928000" />
       <workItem from="1600938586063" duration="8534000" />
+||||||| merged common ancestors
+      <workItem from="1599731653651" duration="7931000" />
+    </task>
+    <task id="LOCAL-00073" summary="use individual features; FA,meanstrl, num strl">
+      <created>1594031417261</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1594031417262</updated>
+    </task>
+    <task id="LOCAL-00074" summary="rearrange folder structure">
+      <created>1594732799452</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1594732799452</updated>
+    </task>
+    <task id="LOCAL-00075" summary="input node degree as parameter">
+      <created>1594743651764</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1594743651764</updated>
+    </task>
+    <task id="LOCAL-00076" summary="try different coding style for navigation">
+      <created>1594819927869</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1594819927869</updated>
+    </task>
+    <task id="LOCAL-00077" summary="running">
+      <created>1595318135992</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1595318135992</updated>
+    </task>
+    <task id="LOCAL-00078" summary="fscore based selection separate for training and test data">
+      <created>1595338985324</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1595338985325</updated>
+=======
+      <workItem from="1599731653651" duration="7931000" />
+      <workItem from="1599902412778" duration="2423000" />
+      <workItem from="1599996750620" duration="1772000" />
+      <workItem from="1600112664506" duration="1105000" />
+      <workItem from="1600150455322" duration="820000" />
+      <workItem from="1600244436864" duration="2293000" />
+      <workItem from="1600332491097" duration="13802000" />
+    </task>
+    <task id="LOCAL-00075" summary="input node degree as parameter">
+      <created>1594743651764</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1594743651764</updated>
+    </task>
+    <task id="LOCAL-00076" summary="try different coding style for navigation">
+      <created>1594819927869</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1594819927869</updated>
+    </task>
+    <task id="LOCAL-00077" summary="running">
+      <created>1595318135992</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1595318135992</updated>
+    </task>
+    <task id="LOCAL-00078" summary="fscore based selection separate for training and test data">
+      <created>1595338985324</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1595338985325</updated>
+>>>>>>> e6e4f753681f3c31d69a21da7e819df358da61dd
     </task>
     <task id="LOCAL-00079" summary="fscore only for training, out of bag error needed to check roc curve">
       <created>1595347388758</created>
@@ -617,6 +730,7 @@
       <option name="project" value="LOCAL" />
       <updated>1599739717354</updated>
     </task>
+<<<<<<< HEAD
     <task id="LOCAL-00122" summary="5 cases for the solver">
       <created>1599749111982</created>
       <option name="number" value="00122" />
@@ -660,10 +774,29 @@
       <updated>1600862046809</updated>
     </task>
     <option name="localTasksCounter" value="128" />
+||||||| merged common ancestors
+    <option name="localTasksCounter" value="122" />
+=======
+    <task id="LOCAL-00122" summary="giving absolute value of pearson correlation to the baseline">
+      <created>1599856142353</created>
+      <option name="number" value="00122" />
+      <option name="presentableId" value="LOCAL-00122" />
+      <option name="project" value="LOCAL" />
+      <updated>1599856142353</updated>
+    </task>
+    <task id="LOCAL-00123" summary="tried with adding self loops">
+      <created>1600347351952</created>
+      <option name="number" value="00123" />
+      <option name="presentableId" value="LOCAL-00123" />
+      <option name="project" value="LOCAL" />
+      <updated>1600347351953</updated>
+    </task>
+    <option name="localTasksCounter" value="124" />
+>>>>>>> e6e4f753681f3c31d69a21da7e819df358da61dd
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.History.Properties">
     <option name="COLUMN_ORDER">
@@ -703,6 +836,18 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/gmwcs-solver" />
     </ignored-roots>
+<<<<<<< HEAD
+||||||| merged common ancestors
+    <MESSAGE value="reconstructed file" />
+    <MESSAGE value="OOP for subgraph class" />
+    <MESSAGE value="NESTED CV with inbuilt package" />
+    <MESSAGE value="results in process, not tracked" />
+    <MESSAGE value="try with complete matrix to compare with previous cross validation" />
+=======
+    <MESSAGE value="NESTED CV with inbuilt package" />
+    <MESSAGE value="results in process, not tracked" />
+    <MESSAGE value="try with complete matrix to compare with previous cross validation" />
+>>>>>>> e6e4f753681f3c31d69a21da7e819df358da61dd
     <MESSAGE value="Combined range params in dictionary" />
     <MESSAGE value="obtaining clear output with modifications from meeting in subgraphclass.py" />
     <MESSAGE value="Results for baseline computed using finalized pipeline" />
@@ -723,18 +868,26 @@
     <MESSAGE value="one test case passed results" />
     <MESSAGE value="fixed error for the parameters in the filtered csv file" />
     <MESSAGE value="5 cases for the baseline" />
+<<<<<<< HEAD
     <MESSAGE value="5 cases for the solver" />
     <MESSAGE value="execute all cases for solver in filtered.csv" />
     <MESSAGE value="pipeline run completed" />
     <MESSAGE value="trial for binary search" />
     <MESSAGE value="let the node names start from 1 written in the file" />
     <option name="LAST_COMMIT_MESSAGE" value="let the node names start from 1 written in the file" />
+||||||| merged common ancestors
+    <option name="LAST_COMMIT_MESSAGE" value="5 cases for the baseline" />
+=======
+    <MESSAGE value="giving absolute value of pearson correlation to the baseline" />
+    <MESSAGE value="tried with adding self loops" />
+    <option name="LAST_COMMIT_MESSAGE" value="tried with adding self loops" />
+>>>>>>> e6e4f753681f3c31d69a21da7e819df358da61dd
   </component>
   <component name="WindowStateProjectService">
-    <state x="555" y="181" width="800" height="683" key="#Deployment" timestamp="1595687658480">
+    <state x="555" y="181" width="800" height="683" key="#Deployment" timestamp="1600112780542">
       <screen x="0" y="27" width="1920" height="985" />
     </state>
-    <state x="555" y="181" width="800" height="683" key="#Deployment/0.27.1920.985@0.27.1920.985" timestamp="1595687658480" />
+    <state x="555" y="181" width="800" height="683" key="#Deployment/0.27.1920.985@0.27.1920.985" timestamp="1600112780542" />
     <state x="1071" y="302" width="734" height="633" key="#Inspections" timestamp="1594307634830">
       <screen x="0" y="27" width="1920" height="985" />
     </state>
@@ -748,23 +901,65 @@
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
     <state x="738" y="364" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1413@0.0.2560.1413" timestamp="1593771551695" />
-    <state x="1002" y="510" width="547" height="389" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1595845383439">
-      <screen x="0" y="0" width="2560" height="1413" />
+    <state x="752" y="383" width="1026" height="284" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1600352588064">
+      <screen x="0" y="27" width="1920" height="985" />
     </state>
     <state x="1002" y="510" width="547" height="389" key="#com.intellij.fileTypes.FileTypeChooser/0.0.2560.1413@0.0.2560.1413" timestamp="1595845383439" />
+<<<<<<< HEAD
     <state x="531" y="467" width="1303" height="509" key="#xdebugger.evaluate" timestamp="1600948136711">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
     <state x="531" y="467" width="1303" height="509" key="#xdebugger.evaluate/0.0.2560.1413@0.0.2560.1413" timestamp="1600948136711" />
+||||||| merged common ancestors
+    <state x="953" y="452" width="526" height="497" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1591352389342">
+      <screen x="0" y="0" width="2560" height="1413" />
+    </state>
+    <state x="953" y="452" width="526" height="497" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.2560.1413@0.0.2560.1413" timestamp="1591352389342" />
+    <state x="104" y="186" width="1303" height="509" key="#xdebugger.evaluate" timestamp="1599746072448">
+      <screen x="0" y="0" width="2560" height="1413" />
+    </state>
+    <state x="104" y="186" width="1303" height="509" key="#xdebugger.evaluate/0.0.2560.1413@0.0.2560.1413" timestamp="1599746072448" />
+    <state x="968" y="558" width="496" height="285" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1592210414213">
+      <screen x="0" y="0" width="2560" height="1413" />
+    </state>
+    <state x="968" y="558" width="496" height="285" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.2560.1413@0.0.2560.1413" timestamp="1592210414213" />
+=======
+    <state x="752" y="383" width="1026" height="284" key="#com.intellij.fileTypes.FileTypeChooser/0.27.1920.985@0.27.1920.985" timestamp="1600352588064" />
+    <state x="78" y="157" width="1303" height="509" key="#xdebugger.evaluate" timestamp="1600354208030">
+      <screen x="0" y="27" width="1920" height="985" />
+    </state>
+    <state x="104" y="186" width="1303" height="509" key="#xdebugger.evaluate/0.0.2560.1413@0.0.2560.1413" timestamp="1599746072448" />
+    <state x="78" y="157" key="#xdebugger.evaluate/0.27.1920.985@0.27.1920.985" timestamp="1600354208030" />
+    <state x="968" y="558" width="496" height="285" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1592210414213">
+      <screen x="0" y="0" width="2560" height="1413" />
+    </state>
+    <state x="968" y="558" width="496" height="285" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.2560.1413@0.0.2560.1413" timestamp="1592210414213" />
+>>>>>>> e6e4f753681f3c31d69a21da7e819df358da61dd
     <state x="891" y="286" width="1531" height="1033" key="CommitChangelistDialog2" timestamp="1598262076658">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
     <state x="891" y="286" width="1531" height="1033" key="CommitChangelistDialog2/0.0.2560.1413@0.0.2560.1413" timestamp="1598262076658" />
+<<<<<<< HEAD
     <state x="99" y="100" width="2362" height="1213" key="DiffContextDialog" timestamp="1599750215075">
       <screen x="0" y="0" width="2560" height="1413" />
+||||||| merged common ancestors
+    <state x="99" y="100" width="2362" height="1213" key="DiffContextDialog" timestamp="1598261832705">
+      <screen x="0" y="0" width="2560" height="1413" />
+=======
+    <state x="54" y="97" width="1772" height="846" key="DiffContextDialog" timestamp="1600353729947">
+      <screen x="0" y="27" width="1920" height="985" />
+>>>>>>> e6e4f753681f3c31d69a21da7e819df358da61dd
     </state>
+<<<<<<< HEAD
     <state x="99" y="100" width="2362" height="1213" key="DiffContextDialog/0.0.2560.1413@0.0.2560.1413" timestamp="1599750215075" />
     <state x="74" y="97" width="1772" height="846" key="DiffContextDialog/0.27.1920.985@0.27.1920.985" timestamp="1595669542762" />
+||||||| merged common ancestors
+    <state x="99" y="100" width="2362" height="1213" key="DiffContextDialog/0.0.2560.1413@0.0.2560.1413" timestamp="1598261832705" />
+    <state x="74" y="97" width="1772" height="846" key="DiffContextDialog/0.27.1920.985@0.27.1920.985" timestamp="1595669542762" />
+=======
+    <state x="99" y="100" width="2362" height="1213" key="DiffContextDialog/0.0.2560.1413@0.0.2560.1413" timestamp="1598261832705" />
+    <state x="54" y="97" width="1772" height="846" key="DiffContextDialog/0.27.1920.985@0.27.1920.985" timestamp="1600353729947" />
+>>>>>>> e6e4f753681f3c31d69a21da7e819df358da61dd
     <state x="1144" y="456" width="529" height="495" key="EnvironmentVariablesDialog" timestamp="1592387630711">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
@@ -780,47 +975,149 @@
     <state x="1100" y="610" key="Github.CreateGistDialog" timestamp="1599750260950">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
+<<<<<<< HEAD
     <state x="1100" y="610" key="Github.CreateGistDialog/0.0.2560.1413@0.0.2560.1413" timestamp="1599750260950" />
     <state width="2202" height="459" key="GridCell.Tab.0.bottom" timestamp="1600948237036">
       <screen x="0" y="0" width="2560" height="1413" />
+||||||| merged common ancestors
+    <state x="1100" y="610" key="Github.CreateGistDialog/0.0.2560.1413@0.0.2560.1413" timestamp="1594114237336" />
+    <state width="2514" height="418" key="GridCell.Tab.0.bottom" timestamp="1599746082303">
+      <screen x="0" y="0" width="2560" height="1413" />
+=======
+    <state x="1100" y="610" key="Github.CreateGistDialog/0.0.2560.1413@0.0.2560.1413" timestamp="1594114237336" />
+    <state width="1433" height="294" key="GridCell.Tab.0.bottom" timestamp="1600354223039">
+      <screen x="0" y="27" width="1920" height="985" />
+>>>>>>> e6e4f753681f3c31d69a21da7e819df358da61dd
     </state>
+<<<<<<< HEAD
     <state width="2202" height="459" key="GridCell.Tab.0.bottom/0.0.2560.1413@0.0.2560.1413" timestamp="1600948237036" />
     <state width="1874" height="247" key="GridCell.Tab.0.bottom/0.27.1920.985@0.27.1920.985" timestamp="1595703676055" />
     <state width="2202" height="459" key="GridCell.Tab.0.center" timestamp="1600948237035">
       <screen x="0" y="0" width="2560" height="1413" />
+||||||| merged common ancestors
+    <state width="2514" height="418" key="GridCell.Tab.0.bottom/0.0.2560.1413@0.0.2560.1413" timestamp="1599746082303" />
+    <state width="1874" height="247" key="GridCell.Tab.0.bottom/0.27.1920.985@0.27.1920.985" timestamp="1595703676055" />
+    <state width="2514" height="418" key="GridCell.Tab.0.center" timestamp="1599746082299">
+      <screen x="0" y="0" width="2560" height="1413" />
+=======
+    <state width="2514" height="418" key="GridCell.Tab.0.bottom/0.0.2560.1413@0.0.2560.1413" timestamp="1599746082303" />
+    <state width="1433" height="294" key="GridCell.Tab.0.bottom/0.27.1920.985@0.27.1920.985" timestamp="1600354223039" />
+    <state width="1433" height="294" key="GridCell.Tab.0.center" timestamp="1600354223038">
+      <screen x="0" y="27" width="1920" height="985" />
+>>>>>>> e6e4f753681f3c31d69a21da7e819df358da61dd
     </state>
+<<<<<<< HEAD
     <state width="2202" height="459" key="GridCell.Tab.0.center/0.0.2560.1413@0.0.2560.1413" timestamp="1600948237035" />
     <state width="1874" height="247" key="GridCell.Tab.0.center/0.27.1920.985@0.27.1920.985" timestamp="1595703676054" />
     <state width="2202" height="459" key="GridCell.Tab.0.left" timestamp="1600948237035">
       <screen x="0" y="0" width="2560" height="1413" />
+||||||| merged common ancestors
+    <state width="2514" height="418" key="GridCell.Tab.0.center/0.0.2560.1413@0.0.2560.1413" timestamp="1599746082299" />
+    <state width="1874" height="247" key="GridCell.Tab.0.center/0.27.1920.985@0.27.1920.985" timestamp="1595703676054" />
+    <state width="2514" height="418" key="GridCell.Tab.0.left" timestamp="1599746082298">
+      <screen x="0" y="0" width="2560" height="1413" />
+=======
+    <state width="2514" height="418" key="GridCell.Tab.0.center/0.0.2560.1413@0.0.2560.1413" timestamp="1599746082299" />
+    <state width="1433" height="294" key="GridCell.Tab.0.center/0.27.1920.985@0.27.1920.985" timestamp="1600354223038" />
+    <state width="1433" height="294" key="GridCell.Tab.0.left" timestamp="1600354223037">
+      <screen x="0" y="27" width="1920" height="985" />
+>>>>>>> e6e4f753681f3c31d69a21da7e819df358da61dd
     </state>
+<<<<<<< HEAD
     <state width="2202" height="459" key="GridCell.Tab.0.left/0.0.2560.1413@0.0.2560.1413" timestamp="1600948237035" />
     <state width="1874" height="247" key="GridCell.Tab.0.left/0.27.1920.985@0.27.1920.985" timestamp="1595703676054" />
     <state width="2202" height="459" key="GridCell.Tab.0.right" timestamp="1600948237036">
       <screen x="0" y="0" width="2560" height="1413" />
+||||||| merged common ancestors
+    <state width="2514" height="418" key="GridCell.Tab.0.left/0.0.2560.1413@0.0.2560.1413" timestamp="1599746082298" />
+    <state width="1874" height="247" key="GridCell.Tab.0.left/0.27.1920.985@0.27.1920.985" timestamp="1595703676054" />
+    <state width="2514" height="418" key="GridCell.Tab.0.right" timestamp="1599746082302">
+      <screen x="0" y="0" width="2560" height="1413" />
+=======
+    <state width="2514" height="418" key="GridCell.Tab.0.left/0.0.2560.1413@0.0.2560.1413" timestamp="1599746082298" />
+    <state width="1433" height="294" key="GridCell.Tab.0.left/0.27.1920.985@0.27.1920.985" timestamp="1600354223037" />
+    <state width="1433" height="294" key="GridCell.Tab.0.right" timestamp="1600354223039">
+      <screen x="0" y="27" width="1920" height="985" />
+>>>>>>> e6e4f753681f3c31d69a21da7e819df358da61dd
     </state>
+<<<<<<< HEAD
     <state width="2202" height="459" key="GridCell.Tab.0.right/0.0.2560.1413@0.0.2560.1413" timestamp="1600948237036" />
     <state width="1874" height="247" key="GridCell.Tab.0.right/0.27.1920.985@0.27.1920.985" timestamp="1595703676055" />
     <state width="2202" height="459" key="GridCell.Tab.1.bottom" timestamp="1600948237038">
       <screen x="0" y="0" width="2560" height="1413" />
+||||||| merged common ancestors
+    <state width="2514" height="418" key="GridCell.Tab.0.right/0.0.2560.1413@0.0.2560.1413" timestamp="1599746082302" />
+    <state width="1874" height="247" key="GridCell.Tab.0.right/0.27.1920.985@0.27.1920.985" timestamp="1595703676055" />
+    <state width="2514" height="418" key="GridCell.Tab.1.bottom" timestamp="1599746082305">
+      <screen x="0" y="0" width="2560" height="1413" />
+=======
+    <state width="2514" height="418" key="GridCell.Tab.0.right/0.0.2560.1413@0.0.2560.1413" timestamp="1599746082302" />
+    <state width="1433" height="294" key="GridCell.Tab.0.right/0.27.1920.985@0.27.1920.985" timestamp="1600354223039" />
+    <state width="1433" height="294" key="GridCell.Tab.1.bottom" timestamp="1600354223043">
+      <screen x="0" y="27" width="1920" height="985" />
+>>>>>>> e6e4f753681f3c31d69a21da7e819df358da61dd
     </state>
+<<<<<<< HEAD
     <state width="2202" height="459" key="GridCell.Tab.1.bottom/0.0.2560.1413@0.0.2560.1413" timestamp="1600948237038" />
     <state width="1874" height="247" key="GridCell.Tab.1.bottom/0.27.1920.985@0.27.1920.985" timestamp="1595703676056" />
     <state width="2202" height="459" key="GridCell.Tab.1.center" timestamp="1600948237037">
       <screen x="0" y="0" width="2560" height="1413" />
+||||||| merged common ancestors
+    <state width="2514" height="418" key="GridCell.Tab.1.bottom/0.0.2560.1413@0.0.2560.1413" timestamp="1599746082305" />
+    <state width="1874" height="247" key="GridCell.Tab.1.bottom/0.27.1920.985@0.27.1920.985" timestamp="1595703676056" />
+    <state width="2514" height="418" key="GridCell.Tab.1.center" timestamp="1599746082304">
+      <screen x="0" y="0" width="2560" height="1413" />
+=======
+    <state width="2514" height="418" key="GridCell.Tab.1.bottom/0.0.2560.1413@0.0.2560.1413" timestamp="1599746082305" />
+    <state width="1433" height="294" key="GridCell.Tab.1.bottom/0.27.1920.985@0.27.1920.985" timestamp="1600354223043" />
+    <state width="1433" height="294" key="GridCell.Tab.1.center" timestamp="1600354223041">
+      <screen x="0" y="27" width="1920" height="985" />
+>>>>>>> e6e4f753681f3c31d69a21da7e819df358da61dd
     </state>
+<<<<<<< HEAD
     <state width="2202" height="459" key="GridCell.Tab.1.center/0.0.2560.1413@0.0.2560.1413" timestamp="1600948237037" />
     <state width="1874" height="247" key="GridCell.Tab.1.center/0.27.1920.985@0.27.1920.985" timestamp="1595703676056" />
     <state width="2202" height="459" key="GridCell.Tab.1.left" timestamp="1600948237037">
       <screen x="0" y="0" width="2560" height="1413" />
+||||||| merged common ancestors
+    <state width="2514" height="418" key="GridCell.Tab.1.center/0.0.2560.1413@0.0.2560.1413" timestamp="1599746082304" />
+    <state width="1874" height="247" key="GridCell.Tab.1.center/0.27.1920.985@0.27.1920.985" timestamp="1595703676056" />
+    <state width="2514" height="418" key="GridCell.Tab.1.left" timestamp="1599746082303">
+      <screen x="0" y="0" width="2560" height="1413" />
+=======
+    <state width="2514" height="418" key="GridCell.Tab.1.center/0.0.2560.1413@0.0.2560.1413" timestamp="1599746082304" />
+    <state width="1433" height="294" key="GridCell.Tab.1.center/0.27.1920.985@0.27.1920.985" timestamp="1600354223041" />
+    <state width="1433" height="294" key="GridCell.Tab.1.left" timestamp="1600354223040">
+      <screen x="0" y="27" width="1920" height="985" />
+>>>>>>> e6e4f753681f3c31d69a21da7e819df358da61dd
     </state>
+<<<<<<< HEAD
     <state width="2202" height="459" key="GridCell.Tab.1.left/0.0.2560.1413@0.0.2560.1413" timestamp="1600948237037" />
     <state width="1874" height="247" key="GridCell.Tab.1.left/0.27.1920.985@0.27.1920.985" timestamp="1595703676055" />
     <state width="2202" height="459" key="GridCell.Tab.1.right" timestamp="1600948237037">
       <screen x="0" y="0" width="2560" height="1413" />
+||||||| merged common ancestors
+    <state width="2514" height="418" key="GridCell.Tab.1.left/0.0.2560.1413@0.0.2560.1413" timestamp="1599746082303" />
+    <state width="1874" height="247" key="GridCell.Tab.1.left/0.27.1920.985@0.27.1920.985" timestamp="1595703676055" />
+    <state width="2514" height="418" key="GridCell.Tab.1.right" timestamp="1599746082304">
+      <screen x="0" y="0" width="2560" height="1413" />
+=======
+    <state width="2514" height="418" key="GridCell.Tab.1.left/0.0.2560.1413@0.0.2560.1413" timestamp="1599746082303" />
+    <state width="1433" height="294" key="GridCell.Tab.1.left/0.27.1920.985@0.27.1920.985" timestamp="1600354223040" />
+    <state width="1433" height="294" key="GridCell.Tab.1.right" timestamp="1600354223042">
+      <screen x="0" y="27" width="1920" height="985" />
+>>>>>>> e6e4f753681f3c31d69a21da7e819df358da61dd
     </state>
+<<<<<<< HEAD
     <state width="2202" height="459" key="GridCell.Tab.1.right/0.0.2560.1413@0.0.2560.1413" timestamp="1600948237037" />
     <state width="1874" height="247" key="GridCell.Tab.1.right/0.27.1920.985@0.27.1920.985" timestamp="1595703676056" />
+||||||| merged common ancestors
+    <state width="2514" height="418" key="GridCell.Tab.1.right/0.0.2560.1413@0.0.2560.1413" timestamp="1599746082304" />
+    <state width="1874" height="247" key="GridCell.Tab.1.right/0.27.1920.985@0.27.1920.985" timestamp="1595703676056" />
+=======
+    <state width="2514" height="418" key="GridCell.Tab.1.right/0.0.2560.1413@0.0.2560.1413" timestamp="1599746082304" />
+    <state width="1433" height="294" key="GridCell.Tab.1.right/0.27.1920.985@0.27.1920.985" timestamp="1600354223042" />
+>>>>>>> e6e4f753681f3c31d69a21da7e819df358da61dd
     <state x="247" y="125" width="2050" height="1156" key="MergeDialog" timestamp="1594732638236">
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
@@ -837,21 +1134,61 @@
       <screen x="0" y="0" width="2560" height="1413" />
     </state>
     <state x="784" y="341" key="SettingsEditor/0.0.2560.1413@0.0.2560.1413" timestamp="1599466825204" />
+<<<<<<< HEAD
     <state x="875" y="442" width="644" height="366" key="Vcs.Push.Dialog.v2" timestamp="1600862049044">
       <screen x="0" y="0" width="2560" height="1413" />
+||||||| merged common ancestors
+    <state x="875" y="442" width="644" height="366" key="Vcs.Push.Dialog.v2" timestamp="1599739718979">
+      <screen x="0" y="0" width="2560" height="1413" />
+=======
+    <state x="656" y="335" width="792" height="366" key="Vcs.Push.Dialog.v2" timestamp="1600347354336">
+      <screen x="0" y="27" width="1920" height="985" />
+>>>>>>> e6e4f753681f3c31d69a21da7e819df358da61dd
     </state>
+<<<<<<< HEAD
     <state x="875" y="442" width="802" height="524" key="Vcs.Push.Dialog.v2/0.0.2560.1413@0.0.2560.1413" timestamp="1600862049044" />
     <state x="656" y="335" width="644" height="366" key="Vcs.Push.Dialog.v2/0.27.1920.985@0.27.1920.985" timestamp="1595583060269" />
     <state width="1281" height="706" key="XDebugger.FullValuePopup" timestamp="1600948113757">
       <screen x="0" y="0" width="2560" height="1413" />
+||||||| merged common ancestors
+    <state x="875" y="442" width="802" height="524" key="Vcs.Push.Dialog.v2/0.0.2560.1413@0.0.2560.1413" timestamp="1599739718979" />
+    <state x="656" y="335" width="644" height="366" key="Vcs.Push.Dialog.v2/0.27.1920.985@0.27.1920.985" timestamp="1595583060269" />
+    <state width="1281" height="706" key="XDebugger.FullValuePopup" timestamp="1599746060236">
+      <screen x="0" y="0" width="2560" height="1413" />
+=======
+    <state x="875" y="442" width="802" height="524" key="Vcs.Push.Dialog.v2/0.0.2560.1413@0.0.2560.1413" timestamp="1599739718979" />
+    <state x="656" y="335" width="792" height="366" key="Vcs.Push.Dialog.v2/0.27.1920.985@0.27.1920.985" timestamp="1600347354336" />
+    <state width="961" height="493" key="XDebugger.FullValuePopup" timestamp="1600354222851">
+      <screen x="0" y="27" width="1920" height="985" />
+>>>>>>> e6e4f753681f3c31d69a21da7e819df358da61dd
     </state>
+<<<<<<< HEAD
     <state width="1281" height="706" key="XDebugger.FullValuePopup/0.0.2560.1413@0.0.2560.1413" timestamp="1600948113757" />
     <state x="1280" y="420" width="1029" height="580" key="com.intellij.execution.console.ConsoleHistoryController$MyBrowseAction$1" timestamp="1596034688880">
       <screen x="0" y="0" width="2560" height="1413" />
+||||||| merged common ancestors
+    <state width="1281" height="706" key="XDebugger.FullValuePopup/0.0.2560.1413@0.0.2560.1413" timestamp="1599746060236" />
+    <state x="1280" y="420" width="1029" height="580" key="com.intellij.execution.console.ConsoleHistoryController$MyBrowseAction$1" timestamp="1596034688880">
+      <screen x="0" y="0" width="2560" height="1413" />
+=======
+    <state width="1281" height="706" key="XDebugger.FullValuePopup/0.0.2560.1413@0.0.2560.1413" timestamp="1599746060236" />
+    <state width="961" height="493" key="XDebugger.FullValuePopup/0.27.1920.985@0.27.1920.985" timestamp="1600354222851" />
+    <state x="960" y="320" width="1029" height="580" key="com.intellij.execution.console.ConsoleHistoryController$MyBrowseAction$1" timestamp="1599854567154">
+      <screen x="0" y="27" width="1920" height="985" />
+>>>>>>> e6e4f753681f3c31d69a21da7e819df358da61dd
     </state>
     <state x="1280" y="420" width="1029" height="580" key="com.intellij.execution.console.ConsoleHistoryController$MyBrowseAction$1/0.0.2560.1413@0.0.2560.1413" timestamp="1596034688880" />
+<<<<<<< HEAD
     <state x="102" y="104" width="1156" height="1166" maximized="true" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1600704199398">
       <screen x="0" y="0" width="2560" height="1413" />
+||||||| merged common ancestors
+    <state x="102" y="104" width="1180" height="1178" maximized="true" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1599731459515">
+      <screen x="0" y="0" width="2560" height="1413" />
+=======
+    <state x="960" y="320" key="com.intellij.execution.console.ConsoleHistoryController$MyBrowseAction$1/0.27.1920.985@0.27.1920.985" timestamp="1599854567154" />
+    <state x="102" y="104" width="1180" height="1178" maximized="true" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1600031245346">
+      <screen x="0" y="27" width="1920" height="985" />
+>>>>>>> e6e4f753681f3c31d69a21da7e819df358da61dd
     </state>
     <state x="102" y="104" width="1156" height="1166" maximized="true" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.2560.1413@0.0.2560.1413" timestamp="1600704199398" />
     <state x="890" y="320" width="772" height="769" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1593164203502">
@@ -909,6 +1246,7 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+<<<<<<< HEAD
           <url>file://$PROJECT_DIR$/pipeline.py</url>
           <line>60</line>
           <option name="timeStamp" value="43" />
@@ -917,8 +1255,23 @@
           <url>file://$PROJECT_DIR$/pipeline.py</url>
           <line>43</line>
           <option name="timeStamp" value="47" />
+||||||| merged common ancestors
+          <url>file://$PROJECT_DIR$/pipeline.py</url>
+          <line>67</line>
+          <option name="timeStamp" value="43" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/classification_refined.py</url>
+          <line>172</line>
+          <option name="timeStamp" value="44" />
+=======
+          <url>file://$PROJECT_DIR$/classification_refined.py</url>
+          <line>170</line>
+          <option name="timeStamp" value="44" />
+>>>>>>> e6e4f753681f3c31d69a21da7e819df358da61dd
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+<<<<<<< HEAD
           <url>file://$PROJECT_DIR$/subgraphclass.py</url>
           <line>57</line>
           <option name="timeStamp" value="49" />
@@ -942,11 +1295,25 @@
           <url>file://$PROJECT_DIR$/pipeline.py</url>
           <line>23</line>
           <option name="timeStamp" value="54" />
+||||||| merged common ancestors
+          <url>file://$PROJECT_DIR$/classification_refined.py</url>
+          <line>73</line>
+          <option name="timeStamp" value="45" />
+=======
+          <url>file://$PROJECT_DIR$/classification_refined.py</url>
+          <line>72</line>
+          <option name="timeStamp" value="45" />
+>>>>>>> e6e4f753681f3c31d69a21da7e819df358da61dd
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/graphclass.py</url>
           <line>41</line>
           <option name="timeStamp" value="56" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/graphclass.py</url>
+          <line>68</line>
+          <option name="timeStamp" value="48" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -964,12 +1331,24 @@
     </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+<<<<<<< HEAD
     <SUITE FILE_PATH="coverage/graphtools$classifier_3labels_flatten.coverage" NAME="classifier_3labels_flatten Coverage Results" MODIFIED="1591269826429" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/graphtools$plot_pipeline_example.coverage" NAME="plot_pipeline_example Coverage Results" MODIFIED="1592387461543" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/graphtools$classification.coverage" NAME="classification Coverage Results" MODIFIED="1599556033497" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/graphtools$pipeline.coverage" NAME="pipeline Coverage Results" MODIFIED="1600947930268" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+||||||| merged common ancestors
+    <SUITE FILE_PATH="coverage/graphtools$classifier_3labels_flatten.coverage" NAME="classifier_3labels_flatten Coverage Results" MODIFIED="1591269826429" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/graphtools$plot_pipeline_example.coverage" NAME="plot_pipeline_example Coverage Results" MODIFIED="1592387461543" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/graphtools$classification.coverage" NAME="classification Coverage Results" MODIFIED="1599556033497" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/graphtools$pipeline.coverage" NAME="pipeline Coverage Results" MODIFIED="1599745737532" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+=======
+    <SUITE FILE_PATH="coverage/graphtools$pipeline.coverage" NAME="pipeline Coverage Results" MODIFIED="1600353870001" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+>>>>>>> e6e4f753681f3c31d69a21da7e819df358da61dd
     <SUITE FILE_PATH="coverage/graphtools$classification_refined.coverage" NAME="classification_refined Coverage Results" MODIFIED="1599744676211" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/graphtools$subgraphclass.coverage" NAME="subgraphclass Coverage Results" MODIFIED="1598449837450" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/graphtools$readfiles.coverage" NAME="readfiles Coverage Results" MODIFIED="1590758111547" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/graphtools$classification.coverage" NAME="classification Coverage Results" MODIFIED="1599556033497" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/graphtools$classifier_3labels_flatten.coverage" NAME="classifier_3labels_flatten Coverage Results" MODIFIED="1591269826429" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/graphtools$subgraphclass.coverage" NAME="subgraphclass Coverage Results" MODIFIED="1598449837450" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/graphtools$plot_pipeline_example.coverage" NAME="plot_pipeline_example Coverage Results" MODIFIED="1592387461543" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

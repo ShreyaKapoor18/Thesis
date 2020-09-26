@@ -11,6 +11,23 @@ if __name__ == '__main__':
     ''' Data computed for all 5 personality traits at once'''
     # labels for the computed subjects, data.index is the subject id
     num = 84  # number of nodes in the graph
+from itertools import product
+<<<<<<< HEAD
+from classification_refined import classify
+||||||| merged common ancestors
+from functools import partial
+from contextlib import contextmanager
+
+=======
+from subgraphclass import make_solver_summary
+from solver_decision import filter
+
+>>>>>>> e6e4f753681f3c31d69a21da7e819df358da61dd
+# remember to automatically create the csv files beforehand
+if __name__ == '__main__':
+    ''' Data computed for all 5 personality traits at once'''
+    # labels for the computed subjects, data.index is the subject id
+    num = 84  # number of nodes in the graph
     tri = int(num * (num + 1) * 0.5)  # we want only the upper diagonal parts since everything below diagonal is 0
     labels = ['NEOFAC_A', 'NEOFAC_O', 'NEOFAC_C', 'NEOFAC_N', 'NEOFAC_E']
     edge_names = ['mean_FA', 'mean_strl', 'num_streamlines']

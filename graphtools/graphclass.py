@@ -43,6 +43,15 @@ class BrainGraph(nx.Graph):  # inheriting from networkx graph package along with
         #print('type of array', type(arr))
         # need to standardize after taking the absolute value
         # nonzero = arr[arr != 0].index
+        mat = np.triu_indices(84)
+        assert len(mat[0]) == len(strls_num)
+        #print('type of array', type(arr))
+        # need to standardize after taking the absolute value
+        # nonzero = arr[arr != 0].index
+        # arr.loc[nonzero] = arr.loc[nonzero] - sub_val #subtract only for the nonzero parts
+        nodes = set()
+        # need to standardize after taking the absolute value
+        # nonzero = arr[arr != 0].index
         # arr.loc[nonzero] = arr.loc[nonzero] - sub_val #subtract only for the nonzero parts
         nodes = set()
         edge_attributes = []
@@ -56,12 +65,6 @@ class BrainGraph(nx.Graph):  # inheriting from networkx graph package along with
             u = mat[0][j]
             v = mat[1][j]
             nodes.add(u)  # add only the nodes which have corresponding edges
-            nodes.add(v)
-            if value>0 and u!=v and strls_num.iloc[j]/strl[u]>=0.01 and strls_num.iloc[j]/strl[v]>=0.01 :
-                edge_attributes.append((mat[0][j], mat[1][j], value))
-            else:
-                self.self_loops.append(value)
-
         # mean for the scores of three different labels
         assert nodes is not None
         self.add_nodes_from(nodes)
@@ -140,8 +143,22 @@ class BrainGraph(nx.Graph):  # inheriting from networkx graph package along with
         with open(f'{mews}/outputs/edges/{self.filename}', 'w') as edges_file:
 
             for u,v in self.edges:
+                # print(str(node) + ' ' + str(0), file=nodes_file)
+        # self.connected_subgraph = self.subgraph(connected_nodes)
+
+        with open(f'{mews}/outputs/edges/{self.filename}', 'w') as edges_file:
+
+            for u,v in self.edges:
                 if u!=v: #just don't write these into the files and also make sure that this doesn't happen
                     print(str(u+1) + ' ' * 3 + str(v+1) + ' ' * 3 + str(self[u][v]['weight']),
+                          file=edges_file)  # original file format was supposed to have 3 spaces
+                    #print(str(x) + ' ' * 3 + str(conn) + ' ' * 3 + str(self[x][conn]['weight']))
+
+    def run_solver(self, mews, max_num_nodes):
+        os.chdir(mews)
+        #print('Current directory', os.getcwd())
+        cmd = (
+            f' java -Xss4M -Djava.library.path=/opt/ibm/ILOG/CPLEX_Studio1210/cplex/bin/x86-64_linux/ '
                           file=edges_file)  # original file format was supposed to have 3 spaces
                     #print(str(x) + ' ' * 3 + str(conn) + ' ' * 3 + str(self[x][conn]['weight']))
 
