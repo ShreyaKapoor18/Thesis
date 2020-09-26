@@ -132,7 +132,11 @@ def delete_files(mews, input_graph):
 def make_solver_summary(mapping, data, targets,mews, whole, tri, num_strls):
     edges = ['pearson']
     node_wtsl = ['const']
+    #vals = np.arange(0,-0.1,-0.01)
+    #vals = [-1, -2, -10, -100, -200]
+    #vals =[0]
 
+    #vals = np.arange(-2.5, -3, -0.1)
     metrics = ['balanced_accuracy', 'accuracy', 'f1_weighted', 'roc_auc_ovr_weighted']
     # note: right now the matrix whole is not scaled, for computing the fscores and correlation coeff it has to be so.
     feature_types = ['mean_FA', 'mean_strl', 'num_streamlines']
@@ -146,7 +150,7 @@ def make_solver_summary(mapping, data, targets,mews, whole, tri, num_strls):
     summary_data = []
     for j, (feature_type, target, edge, node_wts) in \
             enumerate(itertools.product(feature_types,targets,edges, node_wtsl)):
-        val = -0.1
+        val = -0.01
 
         y = data[mapping[target]]
         X = filter_indices(whole, feature_type, tri)
@@ -168,14 +172,20 @@ def make_solver_summary(mapping, data, targets,mews, whole, tri, num_strls):
         arr.fillna(0, inplace=True)
         arr = arr.abs()
         arr = arr.round(3)
-
-        input_graph, summary = input_graph_processing(arr, edge, feature_type, node_wts, target, output_file,mews,val)
+        for num_nodes in [5,10,15,20,25,30]:
+            print('*' * 100)
+            print('*' * 100, file=output_file)
+            print(f'Case:{feature_type},{target},{edge},{node_wts},{num_nodes}')
+            print(f'Case:feature_type, target,edge, Node weights, Num_nodes', file=output_file)
+            print(f'Case:{feature_type},{target},{edge},{node_wts}, {num_nodes}', file=output_file)
+            input_graph, summary= input_graph_processing(arr, edge, feature_type, node_wts, target,
+                                                         output_file,mews,val, strls_num_train, num_nodes)
         summary_data.append([feature_type, target, edge, val])
         summary_data[-1].extend(summary)
 
         #print('the degree of all the nodes', input_graph.degree(input_graph.nodes))
         output_graph, summary_out = output_graph_processing(input_graph, edge, feature_type, node_wts, val,
-                                                            target, mews, output_file)
+                                                           target, mews, output_file, num_nodes)
         summary_data[-1].extend(summary_out)
         #output_graph.visualize_graph(mews, False, sub_val, plotting_options)
         #delete_files(mews, input_graph)
