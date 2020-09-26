@@ -1,14 +1,11 @@
 import itertools
 from scipy.stats import describe
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from scipy.stats import ttest_ind #independent sample t-test
 from graphclass import *
 from metrics import fscore
 from readfiles import corresp_label_file
 
-# %%
 def nested_outputdirs(mews):  # make a separate directory for each label, easier to do comparisons
 
     if not os.path.exists(f'{mews}/outputs'):
@@ -60,9 +57,9 @@ def solver_edge_filtering(edge,X_cut,y):
         arr = pd.DataFrame(arr, index=range(X_cut.shape[1]))
     return arr
 
-def input_graph_processing(arr, edge, feature_type, node_wts, target, output_file,mews, val):
-    input_graph = BrainGraph(edge, feature_type, node_wts, target, val)
-    input_graph.make_graph(arr)
+def input_graph_processing(arr, edge, feature_type, node_wts, target, output_file,mews, val, strls_num, num_nodes):
+    input_graph = BrainGraph(edge, feature_type, node_wts, target, num_nodes)
+    input_graph.make_graph(arr, strls_num)
 
     if node_wts == 'const':
         input_graph.set_node_labels(node_wts, const_val=val)
@@ -80,11 +77,11 @@ def input_graph_processing(arr, edge, feature_type, node_wts, target, output_fil
     summary = [len(input_graph.nodes), len(input_graph.edges),
                              100 * sum([True for wt in input_graph.edge_weights if wt > 0]) / len(input_graph.edges)]
     # we want to calculate the strictly positive edges
-    input_graph.run_solver('/home/skapoor/Thesis/gmwcs-solver', max_num_nodes=50, root=30)
+    input_graph.run_solver('/home/skapoor/Thesis/gmwcs-solver', max_num_nodes=num_nodes)
     return input_graph, summary
 
-def output_graph_processing(input_graph, edge, feature_type, node_wts,val, target, mews, output_file):
-    output_graph = BrainGraph(edge, feature_type, node_wts, target, val)
+def output_graph_processing(input_graph, edge, feature_type, node_wts,val, target, mews, output_file, num_nodes):
+    output_graph = BrainGraph(edge, feature_type, node_wts, target, num_nodes)
     reduced_feature_indices = output_graph.read_from_file(mews)
     print('Output graph')
     print(f'Number of edges:{len(output_graph.edge_weights)} and Number of nodes:{len(output_graph.nodes)}')
@@ -107,7 +104,7 @@ def output_graph_processing(input_graph, edge, feature_type, node_wts,val, targe
         f.close()
         dict_lut = corresp_label_file('fs_default.txt')
         for node in output_graph.nodes:
-            print(node, dict_lut[node+1]) #since our node numbering starts from 0 and LUT starts with 1
+            print(node, dict_lut[node]) #since our node numbering starts from 0 and LUT starts with 1
     else:
         f = open(f'{mews}/outputs/solver/{input_graph.filename}')
         solveroutput = f.read()
@@ -129,7 +126,7 @@ def delete_files(mews, input_graph):
 
 
 
-def make_solver_summary(mapping, data, targets,mews, whole, tri):
+def make_solver_summary(mapping, data, targets,mews, whole, tri, num_strls):
     edges = ['pearson']
     node_wtsl = ['const']
 
@@ -146,7 +143,7 @@ def make_solver_summary(mapping, data, targets,mews, whole, tri):
     summary_data = []
     for j, (feature_type, target, edge, node_wts) in \
             enumerate(itertools.product(feature_types,targets,edges, node_wtsl)):
-        vals = np.arange(0, -1, -0.01)
+        val = -0.1
 
         y = data[mapping[target]]
         X = filter_indices(whole, feature_type, tri)
@@ -162,24 +159,25 @@ def make_solver_summary(mapping, data, targets,mews, whole, tri):
         y_cut = y_cut // 3  # binarizing the values by removing the middle quartile
         X_cut = X.loc[y_cut.index]
         assert len(X_cut) == len(y_cut)
-
+        strls_num_train = num_strls.loc[X_cut.index, :]
+        strls_num_train = strls_num_train.mean(axis=0, skipna=True)
         arr = solver_edge_filtering(edge, X_cut, y)
         arr.fillna(0, inplace=True)
         arr = arr.abs()
         arr = arr.round(3)
-        for val in vals:
+        for num_nodes in [5,10,15,20,25,30]:
             print('*' * 100)
             print('*' * 100, file=output_file)
-            print(f'Case:{feature_type},{target},{edge},{node_wts},{val}')
-            print(f'Case:feature_type, target,edge, Node weights, val', file=output_file)
-            print(f'Case:{feature_type},{target},{edge},{node_wts}, {val}', file=output_file)
+            print(f'Case:{feature_type},{target},{edge},{node_wts},{num_nodes}')
+            print(f'Case:feature_type, target,edge, Node weights, Num_nodes', file=output_file)
+            print(f'Case:{feature_type},{target},{edge},{node_wts}, {num_nodes}', file=output_file)
             input_graph, summary= input_graph_processing(arr, edge, feature_type, node_wts, target,
-                                                         output_file,mews,val)
+                                                         output_file,mews,val, strls_num_train, num_nodes)
             summary_data.append([feature_type, target, edge, val])
             summary_data[-1].extend(summary)
             #print('the degree of all the nodes', input_graph.degree(input_graph.nodes))
             output_graph, summary_out = output_graph_processing(input_graph, edge, feature_type, node_wts, val,
-                                                           target, mews, output_file)
+                                                           target, mews, output_file, num_nodes)
             summary_data[-1].extend(summary_out)
 
 

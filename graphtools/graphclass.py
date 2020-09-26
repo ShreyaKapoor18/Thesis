@@ -37,19 +37,27 @@ class BrainGraph(nx.Graph):  # inheriting from networkx graph package along with
         H.add_weighted_edges_from(subgr_edges)
         return H
 
-    def make_graph(self, arr):  # maybe this function is not even needed
+    def make_graph(self, arr, strls_num):  # maybe this function is not even needed
         mat = np.triu_indices(84)
+        assert len(mat[0]) == len(strls_num)
         #print('type of array', type(arr))
         # need to standardize after taking the absolute value
         # nonzero = arr[arr != 0].index
         # arr.loc[nonzero] = arr.loc[nonzero] - sub_val #subtract only for the nonzero parts
         nodes = set()
         edge_attributes = []
+        strl = np.zeros((84,84))
+        for i in range(len(mat[0])):
+            strl[mat[0][i], mat[1][i]] = strls_num.iloc[i]
+        strl = strl + strl.T - np.diag(strl.diagonal())
+        strl = np.sum(strl, axis=0)
         for j in range(len(mat[0])):
             value = float(arr.iloc[j])
-            nodes.add(mat[0][j])  # add only the nodes which have corresponding edges
-            nodes.add(mat[1][j])
-            if value>0 and mat[0][j]!= mat[1][j]:
+            u = mat[0][j]
+            v = mat[1][j]
+            nodes.add(u)  # add only the nodes which have corresponding edges
+            nodes.add(v)
+            if value>0 and u!=v and strls_num.iloc[j]/strl[u]>=0.01 and strls_num.iloc[j]/strl[v]>=0.01 :
                 edge_attributes.append((mat[0][j], mat[1][j], value))
             else:
                 self.self_loops.append(value)
@@ -137,14 +145,14 @@ class BrainGraph(nx.Graph):  # inheriting from networkx graph package along with
                           file=edges_file)  # original file format was supposed to have 3 spaces
                     #print(str(x) + ' ' * 3 + str(conn) + ' ' * 3 + str(self[x][conn]['weight']))
 
-    def run_solver(self, mews, max_num_nodes, root):
+    def run_solver(self, mews, max_num_nodes):
         os.chdir(mews)
         #print('Current directory', os.getcwd())
         cmd = (
             f' java -Xss4M -Djava.library.path=/opt/ibm/ILOG/CPLEX_Studio1210/cplex/bin/x86-64_linux/ '
             f'-cp /opt/ibm/ILOG/CPLEX_Studio1210/cplex/lib/cplex.jar:target/gmwcs-solver.jar '
             f'ru.ifmo.ctddev.gmwcs.Main -e outputs/edges/{self.filename} '
-            f'-n outputs/nodes/{self.filename} > outputs/solver/{self.filename} -nm {max_num_nodes} -root {root}')  # training data into the solver
+            f'-n outputs/nodes/{self.filename} > outputs/solver/{self.filename} -nm {max_num_nodes}')  # training data into the solver
 
         #print(cmd)
         os.system(cmd)
