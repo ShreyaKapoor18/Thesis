@@ -1,11 +1,14 @@
 import itertools
 from scipy.stats import describe
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from scipy.stats import ttest_ind #independent sample t-test
 from graphclass import *
 from metrics import fscore
 from readfiles import corresp_label_file
 
+# %%
 def nested_outputdirs(mews):  # make a separate directory for each label, easier to do comparisons
 
     if not os.path.exists(f'{mews}/outputs'):
@@ -165,20 +168,17 @@ def make_solver_summary(mapping, data, targets,mews, whole, tri, num_strls):
         arr.fillna(0, inplace=True)
         arr = arr.abs()
         arr = arr.round(3)
-        for num_nodes in [5,10,15,20,25,30]:
-            print('*' * 100)
-            print('*' * 100, file=output_file)
-            print(f'Case:{feature_type},{target},{edge},{node_wts},{num_nodes}')
-            print(f'Case:feature_type, target,edge, Node weights, Num_nodes', file=output_file)
-            print(f'Case:{feature_type},{target},{edge},{node_wts}, {num_nodes}', file=output_file)
-            input_graph, summary= input_graph_processing(arr, edge, feature_type, node_wts, target,
-                                                         output_file,mews,val, strls_num_train, num_nodes)
-            summary_data.append([feature_type, target, edge, val])
-            summary_data[-1].extend(summary)
-            #print('the degree of all the nodes', input_graph.degree(input_graph.nodes))
-            output_graph, summary_out = output_graph_processing(input_graph, edge, feature_type, node_wts, val,
-                                                           target, mews, output_file, num_nodes)
-            summary_data[-1].extend(summary_out)
+
+        input_graph, summary = input_graph_processing(arr, edge, feature_type, node_wts, target, output_file,mews,val)
+        summary_data.append([feature_type, target, edge, val])
+        summary_data[-1].extend(summary)
+
+        #print('the degree of all the nodes', input_graph.degree(input_graph.nodes))
+        output_graph, summary_out = output_graph_processing(input_graph, edge, feature_type, node_wts, val,
+                                                            target, mews, output_file)
+        summary_data[-1].extend(summary_out)
+        #output_graph.visualize_graph(mews, False, sub_val, plotting_options)
+        #delete_files(mews, input_graph)
 
 
     output_file.close()
