@@ -1,0 +1,6 @@
+.idea/
+.ipynb_checkpoints
+*.xml
+.iml
+workspace.xml
+CoBundleMAP

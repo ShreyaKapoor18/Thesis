@@ -3,7 +3,7 @@ from sklearn.model_selection import RandomizedSearchCV
 from sklearn.preprocessing import StandardScaler
 
 from graphclass import *
-from metrics import fscore, compute_scores
+from metrics import fscore, compute_scores, diag_flattened_indices
 from paramopt import get_distributions
 
 # %%
@@ -13,9 +13,6 @@ tri = len(np.triu_indices(84)[0])
 
 def process_raw(X_train, X_test, y_train, feature):
     scalar2 = StandardScaler()
-    #print('feature selection')
-    # assert len(np.unique(y_train)) > 2 #to make sure that we are getting the unbinned personality traits
-    # print('Initial X_train, y_train, X_val, y_val',  X_train.shape, y_train.shape, X_val.shape, y_val.shape)
     X_train = pd.DataFrame(scalar2.fit_transform(X_train), index=X_train.index)
     X_test = pd.DataFrame(scalar2.transform(X_test), index=X_test.index)
 
@@ -56,21 +53,21 @@ def transform_features(X_train, X_test, y_train, per, feature):
     return X_train, X_test, arr
 
 
-def solver(X_train, X_test, y_train, feature, node_wts=None, target=None, edge=None):
+def solver(X_train, X_test, y_train, strls_num, feature, val, max_num_nodes, node_wts=None, target=None, edge=None):
     X_train, X_test, arr = process_raw(X_train, X_test, y_train, feature)
     arr = arr.abs()
     arr = pd.DataFrame(arr, index=arr.index)  # scale the array according to the index
     arr = pd.DataFrame(arr, index=arr.index)
-    input_graph = BrainGraph(edge, feature, node_wts, target)
-    input_graph.make_graph(arr)
+    input_graph = BrainGraph(edge, feature, max_num_nodes, target, val)
+    input_graph.make_graph(arr, strls_num)
     if node_wts == 'const':
-        input_graph.set_node_labels(node_wts, const_val=0)
+        input_graph.set_node_labels(node_wts, const_val=val)
     else:
         input_graph.set_node_labels(node_wts)
     input_graph.savefiles(mews)
-    input_graph.run_solver(mews, max_num_nodes=20)
-    output_graph = BrainGraph(edge, feature, node_wts, target)
-    reduced_feature_indices = output_graph.read_from_file(mews)
+    input_graph.run_solver(mews, max_num_nodes=max_num_nodes)
+    output_graph = BrainGraph(edge, feature,max_num_nodes, target, val)
+    reduced_feature_indices = output_graph.read_from_file(mews, False)
 
     if output_graph.node_labels != [] and output_graph.edge_weights != []:
         X_train = X_train.iloc[:, reduced_feature_indices]
@@ -104,10 +101,21 @@ def cross_validation(classifier, X_train, y_train, X_test, y_test, metrics, refi
     outer_train = compute_scores(y_train, ytrain_pred, clf_out.predict_proba(X_train)[:, 1], metrics=metrics)
     #print('Test results', outer_test)
     return outer_train, outer_test
-
+#%%
+def edge_filtering(edge,X_train,X_test):
+    if edge == 'mean_FA':
+        X_train_l = X_train.iloc[:, :tri]
+        X_test_l = X_test.iloc[:, :tri]
+    elif edge == 'mean_strl':
+        X_train_l = X_train.iloc[:, :tri]
+        X_test_l = X_test.iloc[:, :tri]
+    elif edge == 'num_streamlines':
+        X_train_l = X_train.iloc[:, 2 * tri:]  # input one feature at a time
+        X_test_l = X_test.iloc[:, 2 * tri:]
+    return X_train_l, X_test_l
 
 # %%
-def classify(l1, classifier, params, feature_selection, choice, refit_metric):
+def classify(l1, classifier, params, strls_num, feature_selection, choice, refit_metric):
     # try making a csv file for the same
     X_train, X_test, y_train, y_test = l1
     labels = ['NEOFAC_A', 'NEOFAC_O', 'NEOFAC_C', 'NEOFAC_N', 'NEOFAC_E']
@@ -115,35 +123,27 @@ def classify(l1, classifier, params, feature_selection, choice, refit_metric):
     big5 = ['Agreeableness', 'Openness', 'Conscientiousness', 'Neuroticism',
             'Extraversion']
     mapping = {k: v for k, v in zip(big5, labels)}
-    metrics = ['balanced_accuracy', 'accuracy', 'f1_weighted', 'roc_auc_ovr_weighted']
-    percentages = [2, 5, 10, 50, 100]
+    metrics = ['balanced_accuracy', 'roc_auc_ovr_weighted']
+    percentages = [5,100]
     results_base = []
     results_solver = []
     baseline_cases = set()
     for i in range(len(params)):
-        #print(i)
         par = params.iloc[i,:]
         target = par['Target']
         solver_edge = par['Edge']
         edge = par['Feature_type']
-        solver_node_wts = par['Node_weights']
+        val = par['Node_weights']
+        solver_node_wts = 'const'
+        max_num_nodes = par['Input_Graph_nodes']
         y_train_l = y_train[mapping[target]]
         y_test_l = y_test[mapping[target]]
         print('-' * 100)
        # print('CSV parameter setting number')
         # why is it always stopping at the first row
-        if edge == 'mean_FA':
-            X_train_l = X_train.iloc[:, :tri]
-            X_test_l = X_test.iloc[:, :tri]
-        elif edge == 'mean_strl':
-            X_train_l = X_train.iloc[:, :tri]
-            X_test_l = X_test.iloc[:, :tri]
-        elif edge == 'num_streamlines':
-            X_train_l = X_train.iloc[:, 2 * tri:]  # input one feature at a time
-            X_test_l = X_test.iloc[:, 2 * tri:]
+        X_train_l, X_test_l = edge_filtering(edge, X_train, X_test)
         assert len(X_train) == len(y_train)
         med = int(y_train_l.median())  # the median is tried based on the training set
-        #print('median of the training data', med)
         y_train_l = pd.qcut(y_train_l, 5, labels=False, retbins=True)[0]
         # we need to pass the non-binned values for effective pearson correlation calc.
         #print('The number of training subjects which are to be removed:', sum(y_train_l == 2))
@@ -153,10 +153,7 @@ def classify(l1, classifier, params, feature_selection, choice, refit_metric):
         assert len(X_train_l) == len(y_train_l)
         #print('The choice that we are using', choice)
         if choice == 'test throw median':
-            # removing subjects that are close to the median of the training data
-            #print(sum(abs(y_test_l - med) <= 1), 'is the number of test subjects with labels '
-            #                                     'within difference of 1.0 from the median value')
-            # length_sub = sum(abs(y_test - med) <= 1)
+
             y_test_l = y_test_l[abs(y_test_l - med) > 1]  # maybe most of the values are close to the median
             y_test_l = y_test_l >= med  # binarizing the label check for duplicates
             X_test_l = X_test_l.loc[list(set(y_test_l.index))]
@@ -168,8 +165,9 @@ def classify(l1, classifier, params, feature_selection, choice, refit_metric):
         if feature_selection == 'solver':
             print(classifier, feature_selection, choice, refit_metric, target, solver_edge, edge,
                   solver_node_wts)
-            X_train_l, X_test_l, edge_wts, arr = solver(X_train_l, X_test_l, y_train_l, solver_edge,
-                                                        solver_node_wts, target, edge)
+            X_train_l, X_test_l, edge_wts, arr = solver(X_train_l, X_test_l, y_train_l, strls_num, solver_edge, val,
+                                                        max_num_nodes,
+                                                        node_wts=solver_node_wts, target=target, edge=edge)
 
             if len(edge_wts) != 0:
                 train_res, test_res = cross_validation(classifier, X_train_l, y_train_l, X_test_l, y_test_l,
@@ -179,7 +177,6 @@ def classify(l1, classifier, params, feature_selection, choice, refit_metric):
                     [classifier, target, choice, edge, feature_selection, solver_edge, len(edge_wts) * 100 / tri,
                      refit_metric, solver_node_wts,
                      len(edge_wts), sum([edge > 0 for edge in edge_wts]) * 100 / len(edge_wts)])
-                assert len(results_solver[-1])==13
                 for metric in metrics:
                     results_solver[-1].extend([round(100*train_res[metric],3)])
                 for metric in metrics:
@@ -187,21 +184,30 @@ def classify(l1, classifier, params, feature_selection, choice, refit_metric):
 
         elif feature_selection == 'baseline':
             for per in percentages:
-                #print('the percentages being used are', per)#
-                case = (classifier, target, choice, edge, feature_selection, solver_edge, per, refit_metric)
-                #make this into a set
-                if case not in baseline_cases:
-                    baseline_cases.add(case)
-                    print(case)
-                    # and dont repeat
-                    X_train_l, X_test_l, arr = transform_features(X_train_l, X_test_l, y_train_l, per, solver_edge)
-                    train_res, test_res = cross_validation(classifier, X_train_l, y_train_l, X_test_l, y_test_l, metrics,
-                                                          refit_metric)
-                    results_base.append([classifier, target, choice, edge, feature_selection, solver_edge, per, refit_metric])
-                    for metric in metrics:
-                        results_base[-1].extend([round(100 * train_res[metric], 3)])
-                    for metric in metrics:
-                        results_base[-1].extend([round(100*test_res[metric],3)])
+                for self_loops in [True, False]:
+                    case = (classifier, target, choice, edge, feature_selection, solver_edge, per, refit_metric, self_loops)
+                    if case not in baseline_cases:
+                        baseline_cases.add(case)
+                        print(case)
+
+                        if self_loops == False:
+                            X_train_inl = X_train_l.drop(X_train_l.columns[diag_flattened_indices(84)], axis=1)
+                            X_test_inl = X_test_l.drop(X_test_l.columns[diag_flattened_indices(84)], axis=1)
+                        else:
+                            X_train_inl = X_train_l
+                            X_test_inl = X_test_l
+                        X_train_inl, X_test_inl, arr = transform_features(X_train_inl, X_test_inl, y_train_l, per,
+                                                                          solver_edge)
+
+                        train_res, test_res = cross_validation(classifier, X_train_inl, y_train_l, X_test_inl,
+                                                               y_test_l, metrics, refit_metric)
+                        results_base.append([classifier, target, choice, edge, feature_selection, solver_edge,
+                                             per, refit_metric])
+                        for metric in metrics:
+                            results_base[-1].extend([round(100 * train_res[metric], 3)])
+                        for metric in metrics:
+                            results_base[-1].extend([round(100*test_res[metric], 3)])
+                        results_base[-1].append(self_loops)
 
 
     return results_base, results_solver

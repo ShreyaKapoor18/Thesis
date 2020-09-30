@@ -5,6 +5,8 @@ from readfiles import get_subj_ids
 import pandas as pd
 import glob
 import os
+
+
 # %%
 def generate_combined_matrix(tri, present_subjects):
     """
@@ -40,6 +42,7 @@ def generate_combined_matrix(tri, present_subjects):
     whole.index = present_subjects
     return whole
 
+
 def generate_test_data(tri, index):
     location = '/data/skapoor/test_data/*/T1w/Diffusion/mean_FA_connectome_1M_SIFT.csv'
     test_data = np.zeros((len(index), tri * 3))
@@ -47,20 +50,20 @@ def generate_test_data(tri, index):
     j = 0
     for subject in sorted(glob.glob(location)):
         s = subject.split('/')[-4]
-        if s[-1]!= 'h':
+        if s[-1] != 'h':
             if int(s) in index:
                 files = [f'/data/skapoor/test_data/{s}/T1w/Diffusion/mean_FA_connectome_1M_SIFT.csv',
                          f'/data/skapoor/test_data/{s}/T1w/Diffusion/distances_mean_1M_SIFT.csv',
                          f'/data/skapoor/test_data/{s}/T1w/Diffusion/connectome_1M.csv']
                 subjects.append(int(s))
-                i=0
+                i = 0
                 for file in files:
                     if os.path.exists(file):
-                    # print(file) # we need to make all edges as a feature for each subject!
-                    # so we will have 84x84 features
+                        # print(file) # we need to make all edges as a feature for each subject!
+                        # so we will have 84x84 features
                         edge_feature = np.array(pd.read_csv(file, sep=' ', header=None))
                         # the file shall be number of subjects x 7056
-                        #print(file)
+                        # print(file)
                         edge_feature = edge_feature[np.triu_indices(84)]  # get only the upper triangular indices
                         test_data[j, i * tri:(i + 1) * tri] = edge_feature
                         # print(i,j)
@@ -80,7 +83,7 @@ def hist_correlation(data, whole, labels, edge_names, big5, tri):
         # check if the variance of each feature is not zero if it is then remove it
         for i in range(3):
             map_o = pd.concat((pd.DataFrame(whole.iloc[:, i * tri:(i + 1) * tri]), label), axis=1)
-            #corr = np.corrcoef(map_o, rowvar=False)
+            # corr = np.corrcoef(map_o, rowvar=False)
             corr[j, i, :] = np.array(map_o.drop(labels[j], axis=1).apply(lambda x: x.corr(map_o[labels[j]])))
             if np.isnan(corr[j][i]).any():
                 # print(j,i)
@@ -91,18 +94,18 @@ def hist_correlation(data, whole, labels, edge_names, big5, tri):
             ax[j][i].set_xlabel('Correlation coeff')
     plt.tight_layout()
     plt.savefig('reports/correlation_distribution.png')
-    #plt.show()
+    # plt.show()
     return corr
 
 
 def hist_fscore(data, whole, labels, big5, edge_names, tri):
     # to return the fscore in order to get the best performing features according to fscore
-    fscores = np.zeros((5, 3, tri)) # 5 is for the big5 personality traits, 3 is for the three different edge names
+    fscores = np.zeros((5, 3, tri))  # 5 is for the big5 personality traits, 3 is for the three different edge names
     fig, ax = plt.subplots(5, 3, figsize=(15, 15))
     for j in range(len(labels)):
         # threshold for converting the data to binary format for classification
         bin_label = data[labels[j]] >= data[labels[j]].median()  # this ensures that the labels are balanced?
-        bin_label = bin_label.astype(int) # fscore here is based on the binary labelling using median value!
+        bin_label = bin_label.astype(int)  # fscore here is based on the binary labelling using median value!
         bin_label.reset_index(drop=True, inplace=True)
         for i in range(len(edge_names)):
             data_edges = pd.DataFrame(whole.iloc[:, i * tri:(i + 1) * tri])
@@ -128,5 +131,4 @@ def hist_fscore(data, whole, labels, big5, edge_names, tri):
             ax[j][i].set_ylabel('Number of edges')
     plt.tight_layout()
     plt.savefig('reports/fscore_distribution.png')
-    #plt.show()
     return fscores

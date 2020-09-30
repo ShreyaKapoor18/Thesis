@@ -101,3 +101,20 @@ def plot_grid_search(cv_results, refit_metric):
     ax.set_ylabel(f'{refit_metric} Score', fontsize=16)
     ax.grid('on')
     plt.show()
+
+
+def diag_flattened_indices(a):
+    '''
+    Flattened array contains the upper diagonal matrix and we need to get the indices
+    in the flattened array which correspond to the diagonal elements
+    @param n: the shape of the array
+    @return:
+    '''
+    indices = []
+    i = a
+    n = 0
+    while n < (a * (a + 1)) / 2:
+        indices.append(n)
+        n += i
+        i -= 1
+    return indices

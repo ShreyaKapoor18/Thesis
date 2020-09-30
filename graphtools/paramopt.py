@@ -1,3 +1,6 @@
+"""
+This script is meant for parameter search in cross validation and option exploration.
+"""
 from sklearn.svm import SVC
 from sklearn.utils.fixes import loguniform
 from sklearn.neural_network import MLPClassifier
@@ -6,8 +9,9 @@ from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
 
 def get_distributions(classifier, search, train_params):
     """
-
     @param classifier: the classifier that we want to train
+    @param search: if we are searching for the new parameters or have predefined parameters
+    @param train_params: the training parameters
     @return: clf, distributions the classifier with the distributions on which CrossValidation will be run
     """
     if search:
@@ -34,7 +38,7 @@ def get_distributions(classifier, search, train_params):
                 'tol': [0.01, 0.1],
                 'min_samples_leaf': [1, 2, 4],
                 'min_samples_split': [2, 5, 10],
-                  # takes too long to converge if tolerance not specificied
+                # takes too long to converge if tolerance not specificied
             }
         # multiclass cannot use loss exponential
         else:
@@ -54,12 +58,19 @@ def get_distributions(classifier, search, train_params):
         elif classifier == 'GB':
             clf = GradientBoostingClassifier(**train_params)
             # multiclass cannot use loss exponential
-        elif classifier == 'MLP':
+        else:
             clf = MLPClassifier(**train_params)
         return clf
 
 
 def graph_options(color, node_size, line_color, linewidhts, width):
+    """
+    @param color: the color we want to give the nodes
+    @param node_size: the size of the nodes
+    @param line_color: the color of the lines
+    @param linewidhts: the width of the lines in the graph
+    @param width: width
+    """
     options = {
         'node_color': color,
         'node_size': node_size,
