@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import glob
 import re
+import os
 import pandas_profiling
 
 def computed_subjects():
@@ -34,7 +35,7 @@ def test_subjects():
     input_dir = '/data/skapoor/test_data'
     df = pd.read_csv(f'{notes_path}/unrestricted_mdkhatami_3_2_2017_5_48_20.csv')
     present_subj = []
-    #Now we need to check for which all subjects the meam_FA_connectome exists!
+    # Now we need to check for which all subjects the meam_FA_connectome exists!
     for s in sorted(glob.glob(f'{input_dir}/*/T1w/Diffusion/mean_FA_connectome_1M_SIFT.csv')):
         #print(s)
         subject = s.split('/')[-4]
@@ -103,4 +104,13 @@ def corresp_label_file(file):
         dict_data = {int(x[0]): x[2] for x in dat}
 
     return dict_data
+
+def clean_dirs(mews):  # make a separate directory for each label, easier to do comparisons
+
+    if os.path.exists(f'{mews}/outputs/nodes'):
+        os.system(f'rm {mews}/outputs/nodes/*')
+    if os.path.exists(f'{mews}/outputs/edges'):
+        os.system(f'rm {mews}/outputs/edges/*')
+    if os.path.exists(f'{mews}/outputs/solver'):
+        os.system(f'rm {mews}/outputs/solver/*')
 

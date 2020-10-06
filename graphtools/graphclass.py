@@ -11,14 +11,14 @@ from readfiles import corresp_label_file
 
 
 class BrainGraph(nx.Graph):  # inheriting from networkx graph package along with the functionality we want
-    def __init__(self, edge, feature_type, node_wts, target, val):
+    def __init__(self, edge, feature_type, node_wts, target, max_num_nodes, val, thresh):
         # self.connected_subgraph = self.subgraph([0])
         super(BrainGraph, self).__init__()  # constructor of the base class
         self.edge = edge
         self.feature_type = feature_type
         self.node_wts = node_wts
         self.target = target
-        self.filename = f'{target}_{edge}_{val}_{feature_type}'
+        self.filename = f'{target}_{edge}_{max_num_nodes}_{feature_type}_{thresh}'
         self.connected_nodes = []
         self.connected_degree = 0
         self.self_loops = []
@@ -40,16 +40,9 @@ class BrainGraph(nx.Graph):  # inheriting from networkx graph package along with
         H.add_weighted_edges_from(subgr_edges)
         return H
 
-    def make_graph(self, arr, strls_num):  # maybe this function is not even needed
+    def make_graph(self, arr, strls_num, thresh):
         mat = np.triu_indices(84)
         assert len(mat[0]) == len(strls_num)
-        # print('type of array', type(arr))
-        # need to standardize after taking the absolute value
-        # nonzero = arr[arr != 0].index
-        # arr.loc[nonzero] = arr.loc[nonzero] - sub_val #subtract only for the nonzero parts
-        # need to standardize after taking the absolute value
-        # nonzero = arr[arr != 0].index
-        # arr.loc[nonzero] = arr.loc[nonzero] - sub_val #subtract only for the nonzero parts
         nodes = set()
         edge_attributes = []
         strl = np.zeros((84, 84))
@@ -63,7 +56,7 @@ class BrainGraph(nx.Graph):  # inheriting from networkx graph package along with
             v = mat[1][j]
             nodes.add(u)  # add only the nodes which have corresponding edges
             nodes.add(v)
-            if value > 0 and u != v and strls_num.iloc[j] / strl[u] >= 0.01 and strls_num.iloc[j] / strl[v] >= 0.01:
+            if value > 0 and u != v and max(strls_num.iloc[j] / strl[u] ,strls_num.iloc[j] / strl[v]) >= thresh:
                 edge_attributes.append((mat[0][j], mat[1][j], value))
             else:
                 self.self_loops.append(value)
@@ -136,20 +129,16 @@ class BrainGraph(nx.Graph):  # inheriting from networkx graph package along with
     def savefiles(self, mews):
 
         with open(f'{mews}/outputs/nodes/{self.filename}', 'w') as nodes_file:
-            for x in self.nodes:
-                # print(node)  # solver documentation, 1 or 2
-                print(str(x + 1) + ' ' * 3 + str(self.nodes[x]['label']), file=nodes_file)
-            # print(str(x) + ' ' * 3 + str(self.nodes[x]['label']))
-            # print(str(node) + ' ' + str(0), file=nodes_file)
-        # self.connected_subgraph = self.subgraph(connected_nodes)
+            for x in self.nodes: #we are starting it from 1
+                print(str(x+1) + ' ' * 3 + str(self.nodes[x]['label']), file=nodes_file)
+
 
         with open(f'{mews}/outputs/edges/{self.filename}', 'w') as edges_file:
 
             for u, v in self.edges:
                 if u != v:  # just don't write these into the files and also make sure that this doesn't happen
-                    print(str(u + 1) + ' ' * 3 + str(v + 1) + ' ' * 3 + str(self[u][v]['weight']),
+                    print(str(u+1) + ' ' * 3 + str(v+1) + ' ' * 3 + str(self[u][v]['weight']),
                           file=edges_file)  # original file format was supposed to have 3 spaces
-                    # print(str(x) + ' ' * 3 + str(conn) + ' ' * 3 + str(self[x][conn]['weight']))
 
     def run_solver(self, mews, max_num_nodes):
         os.chdir(mews)
@@ -186,20 +175,19 @@ class BrainGraph(nx.Graph):  # inheriting from networkx graph package along with
                 node_labels = {}
                 for a in nodes[:-1]:
                     if a[1] != 'n/a':  # since the last line is the subnet score
-                        nodes_e.add(int(a[0]))
-                        node_labels[int(a[0])] = float(a[1])
+                        nodes_e.add(int(a[0])-1)
+                        node_labels[int(a[0])-1] = float(a[1])
                 feature_indices = []
 
                 # 0 to range(len(mat)), everything in matrix whole corresponding to this edge is feature
                 self.edge_weights = []
                 for existing_edge in edges[:-1]:
                     if existing_edge[-1] != 'n/a':
-                        edges_e.add((int(existing_edge[0]), int(existing_edge[1]), float(existing_edge[2])))
+                        # because we wrote the node and edge names starting from 1 instead of 0
+                        edges_e.add((int(existing_edge[0])-1, int(existing_edge[1])-1, float(existing_edge[2])))
                         for k in range(len(mat[0])):
-                            if (int(existing_edge[0]), int(existing_edge[1])) == (mat[0][k], mat[1][k]):
-                                # all_feature_indices.extend([k, k+tri, k+2*tri]) # for the three types FA, n strl, strlen
-                                # all_feature_indices.extend([k, k + tri, k + 2 * tri])
-                                feature_indices.append(k)
+                            if (int(existing_edge[0])-1, int(existing_edge[1])-1) == (mat[0][k], mat[1][k]):
+                                feature_indices.append(k) #if we were writing the node names from 1 onwards how to
                                 self.edge_weights.append((float(existing_edge[2])))
                                 # feature_mat = whole.iloc[:, :tri]]
                 dict_lut = corresp_label_file('fs_default.txt')
@@ -208,7 +196,7 @@ class BrainGraph(nx.Graph):  # inheriting from networkx graph package along with
                 self.add_weighted_edges_from(edges_e)
                 self.node_labels = []
                 for l in self.nodes.keys():
-                    self.nodes[l]['label'] = dict_lut[l]
+                    self.nodes[l]['label'] = dict_lut[l+1]
                     self.node_labels.append(node_labels[l])
 
             self.edge_weights = []
