@@ -18,15 +18,14 @@ if __name__ == '__main__':
     mapping = {k: v for k, v in zip(big5, labels)}
     mat = np.triu_indices(84)
     mews = '/home/skapoor/Thesis/gmwcs-solver'
-    metrics = ['balanced_accuracy']
+    metrics = ['balanced_accuracy', 'accuracy', 'f1_weighted', 'roc_auc_ovr_weighted']
     # note: right now the matrix whole is not scaled, for computing the fscores and correlation coeff it has to be so.
     y_train = computed_subjects()
-    X_train = generate_combined_matrix(tri, list(
-        y_train.index))  # need to check indices till here then convert to numpy array
+    X_train = generate_combined_matrix(tri, list(y_train.index))  # need to check indices till here then convert to numpy array
     num_strls = X_train.iloc[:, 2 * tri:]
     #make_solver_summary(mapping, y_train, big5, mews, X_train, tri, num_strls)
     #filter_summary()
-    clean_dirs(mews)
+    #clean_dirs(mews)
     y_test = test_subjects()
     X_test = generate_test_data(tri, y_test.index)
 
@@ -51,7 +50,7 @@ if __name__ == '__main__':
 
     prod = product(classifiers, [s_params.loc[:, ['Target', 'Edge', 'Feature_type', 'Node_weights',
                                                   'Output_Graph_nodes', 'ROI_strl_thresh']]],
-                   feature_selections, choices, metrics)
+                   feature_selections, choices, ['balanced_accuracy'])
     for classifier, params, feature_selection, choice, refit_metric in prod:
         resb, ress = classify(l1, classifier, params, num_strls, feature_selection, choice, refit_metric)
         results_solver.extend(ress)

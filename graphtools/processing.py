@@ -42,6 +42,39 @@ def generate_combined_matrix(tri, present_subjects):
     whole.index = present_subjects
     return whole
 
+def generate_training_data(tri, present_subjects):
+    """
+    There are three features that we want to add to the matrix for all subjects
+    1. Mean FA between the two nodes
+    2. The mean length of the streamlines between the two nodes
+    3. The number of streamlines between the two nodes
+    """
+    whole = np.zeros((len(get_subj_ids()), tri * 3))
+    # but the matrix is upper triangular so we should only take that into account, then number of features will
+    # get reduced
+    # assert get_subj_ids() == present_subjects
+    # make sure labels are ordered the same way in which we read data
+    j = 0
+    for subject in present_subjects:
+
+        out_diff = f'/data/skapoor/HCP/results/{subject}/T1w/Diffusion'
+        files = [f'{out_diff}/mean_FA_connectome_1M_SIFT.csv', f'{out_diff}/distances_mean_1M_SIFT.csv',
+                 f'{out_diff}/connectome_1M.csv']
+        i = 0
+        for file in files:
+            # print(file) # we need to make all edges as a feature for each subject!
+            # so we will have 84x84 features
+            edge_feature = np.array(pd.read_csv(file, sep=' ', header=None))
+            # the file shall be number of subjects x 7056
+            edge_feature = edge_feature[np.triu_indices(84)]  # get only the upper triangular indices
+            whole[j, i * tri:(i + 1) * tri] = edge_feature
+            # print(i,j)
+            i += 1
+        j += 1
+    # scaling will be done according to the training and test data
+    whole = pd.DataFrame(whole)
+    whole.index = present_subjects
+    return whole
 
 def generate_test_data(tri, index):
     location = '/data/skapoor/test_data/*/T1w/Diffusion/mean_FA_connectome_1M_SIFT.csv'
@@ -132,3 +165,21 @@ def hist_fscore(data, whole, labels, big5, edge_names, tri):
     plt.tight_layout()
     plt.savefig('reports/fscore_distribution.png')
     return fscores
+
+
+def feature_matrix(subject_id, feature):
+    diffusion_path = f'/data/skapoor/HCP/results/{subject_id}/T1w/Diffusion'
+    if feature == 'mean_FA':
+        csv = f'{diffusion_path}/mean_FA_connectome_1M_SIFT.csv'
+    elif feature == 'mean_strl_len':
+        csv = f'{diffusion_path}/distances_mean_1M_SIFT.csv'
+    elif feature == 'num_strls':
+        csv = f'{diffusion_path}/connectome_1M.csv'
+    df = pd.read_csv(csv, sep=' ', header=None)
+    return df
+
+def print_graphs_info(input_graph, output_graph):
+    print('The number of nodes in the Input graph', len(input_graph.nodes))
+    print('The number of edges in the Input graph', len(input_graph.edges))
+    print('The number of nodes in the output graph', len(output_graph.nodes))
+    print('The number of edges in the output graph', len(output_graph.edges))

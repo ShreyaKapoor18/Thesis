@@ -58,10 +58,10 @@ def solver(X_train, X_test, y_train, strls_num, feature, thresh, val, max_num_no
     X_train, X_test, arr = process_raw(X_train, X_test, y_train, feature)
     arr = arr.abs()
     arr = pd.DataFrame(arr, index=arr.index)  # scale the array according to the index
-    arr = pd.DataFrame(arr, index=arr.index)
     input_graph = BrainGraph(edge, feature, node_wts, target, max_num_nodes, val, thresh)
     if not os.path.exists(f'{mews}/outputs/edges/{input_graph.filename}.out')\
             and not os.path.exists(f'{mews}/outputs/nodes/{input_graph.filename}.out'):
+        print ('the solver is being called since the reduced file does not exist')
         input_graph.make_graph(arr, strls_num, thresh)
         if node_wts == 'const':
             input_graph.set_node_labels(node_wts, const_val=val)
@@ -69,6 +69,8 @@ def solver(X_train, X_test, y_train, strls_num, feature, thresh, val, max_num_no
             input_graph.set_node_labels(node_wts)
         input_graph.savefiles(mews)
         input_graph.run_solver(mews, max_num_nodes=max_num_nodes)
+    else:
+        input_graph.read_from_file(mews, input_graph=True)
 
     output_graph = BrainGraph(edge, feature,node_wts, target, max_num_nodes, val, thresh)
     reduced_feature_indices = output_graph.read_from_file(mews, input_graph=False)
@@ -131,7 +133,7 @@ def classify(l1, classifier, params, strls_num, feature_selection, choice, refit
     big5 = ['Agreeableness', 'Openness', 'Conscientiousness', 'Neuroticism',
             'Extraversion']
     mapping = {k: v for k, v in zip(big5, labels)}
-    metrics = ['balanced_accuracy', 'roc_auc_ovr_weighted']
+    metrics = ['balanced_accuracy', 'accuracy', 'f1_weighted', 'roc_auc_ovr_weighted']
     percentages = [5,100]
     results_base = []
     results_solver = []
@@ -190,6 +192,7 @@ def classify(l1, classifier, params, strls_num, feature_selection, choice, refit
                     [classifier, target, choice, edge, feature_selection, solver_edge, len(edge_wts) * 100 / tri,
                      refit_metric, solver_node_wts,
                      len(edge_wts), sum([edge > 0 for edge in edge_wts]) * 100 / len(edge_wts)])
+                results_solver[-1].extend([thresh])
                 for metric in metrics:
                     results_solver[-1].extend([round(100*train_res[metric],3)])
                 for metric in metrics:
@@ -220,7 +223,7 @@ def classify(l1, classifier, params, strls_num, feature_selection, choice, refit
                             results_base[-1].extend([round(100 * train_res[metric], 3)])
                         for metric in metrics:
                             results_base[-1].extend([round(100*test_res[metric], 3)])
-                        results_base[-1].extend([self_loops, thresh])
+                        results_base[-1].extend([self_loops])
 
 
     return results_base, results_solver

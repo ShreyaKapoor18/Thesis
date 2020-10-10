@@ -1,0 +1,13 @@
+Train/Test,Metric,Feature,t_statstic,p_value
+train,roc_auc_ovr_weighted,mean_FA,2.4220319012,0.0185252751
+train,roc_auc_ovr_weighted,mean_strl,1.8056779103,0.076070876
+train,roc_auc_ovr_weighted,num_streamlines,0.0324752743,0.9742026485
+train,balanced_accuracy,mean_FA,2.2476805252,0.0283484538
+train,balanced_accuracy,mean_strl,1.5647554482,0.1229885881
+train,balanced_accuracy,num_streamlines,0.2020877798,0.8405433115
+test,roc_auc_ovr_weighted,mean_FA,0.0710872156,0.9435687613
+test,roc_auc_ovr_weighted,mean_strl,1.3324487346,0.1878363539
+test,roc_auc_ovr_weighted,num_streamlines,-1.420259452,0.1607951953
+test,balanced_accuracy,mean_FA,-0.1955318992,0.8456484182
+test,balanced_accuracy,mean_strl,0.1562999011,0.8763302247
+test,balanced_accuracy,num_streamlines,-1.2480033175,0.2169601366

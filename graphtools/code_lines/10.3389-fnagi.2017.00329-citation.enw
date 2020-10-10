@@ -1,0 +1,58 @@
+   
+%A Sarica,Alessia 
+%A Cerasa,Antonio 
+%A Quattrone,Aldo 
+	
+%D 2017      
+	
+%J Frontiers in Aging Neuroscience     
+	
+%C   
+   
+%F    
+	
+%G English    
+	
+%K random forest,Alzheimer’s disease,Mild Cognitive Impairment,Neuroimaging,Classification  
+	
+%Q    
+	
+%R 10.3389/fnagi.2017.00329
+	
+%W     
+	
+%L     
+	
+%N 329
+	
+%M     
+	
+%P    
+	
+%7     
+	
+%8 2017-October-06    
+	
+%9 Review    
+
+%+ Alessia Sarica,Institute of Bioimaging and Molecular Physiology, National Research Council,Italy,sarica@unicz.it
+	
+%#     
+	
+%! Random Forest in Dementia: a systematic review.
+	
+%*     
+	
+%<     
+	
+%T Random Forest Algorithm for the Classification of Neuroimaging Data in Alzheimer's Disease: A Systematic Review  
+	
+%U https://www.frontiersin.org/article/10.3389/fnagi.2017.00329    
+	
+%V 9       
+	  
+%0 JOURNAL ARTICLE
+	
+%@ 1663-4365   
+
+%X Objective: Machine learning classification has been the most important computational development in the last years to satisfy the primary need of clinicians for automatic early diagnosis and prognosis. Nowadays, Random Forest (RF) algorithm has been successfully applied for reducing high dimensional and multi-source data in many scientific realms. Our aim was to explore the state of the art of the application of RF on single and multi-modal neuroimaging data for the prediction of Alzheimer's disease.Methods: A systematic review following PRISMA guidelines was conducted on this field of study. In particular, we constructed an advanced query using boolean operators as follows: (“random forest” OR “random forests”) AND neuroimaging AND (“alzheimer's disease” OR alzheimer's OR alzheimer) AND (prediction OR classification). The query was then searched in four well-known scientific databases: Pubmed, Scopus, Google Scholar and Web of Science.Results: Twelve articles—published between the 2007 and 2017—have been included in this systematic review after a quantitative and qualitative selection. The lesson learnt from these works suggest that when RF was applied on multi-modal data for prediction of Alzheimer's disease (AD) conversion from the Mild Cognitive Impairment (MCI), it produces one of the best accuracies to date. Moreover, the RF has important advantages in terms of robustness to overfitting, ability to handle highly non-linear data, stability in the presence of outliers and opportunity for efficient parallel processing mainly when applied on multi-modality neuroimaging data, such as, MRI morphometric, diffusion tensor imaging, and PET images.Conclusions: We discussed the strengths of RF, considering also possible limitations and by encouraging further studies on the comparisons of this algorithm with other commonly used classification approaches, particularly in the early prediction of the progression from MCI to AD. 
