@@ -231,3 +231,11 @@ class BrainGraph(nx.Graph):  # inheriting from networkx graph package along with
         plt.hist(incoming_sums)
         plt.savefig(f'{mews}/outputs/figs/{self.filename}.png')
         plt.show()
+
+    def write_csv(self, mews):
+        a = np.zeros((len(self.nodes, self.nodes)))
+        for u,v in self.edges:
+            a[u][v] = self[u][v]['weight']
+        a = pd.DataFrame(a, index= self.nodes, columns=self.nodes)
+        a.to_csv(f'{mews}/outputs/csvs/{self.filename}')
+
