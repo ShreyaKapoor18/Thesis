@@ -40,7 +40,7 @@ X_train.head()  # mean_FA, mean_strl, num_strls
 y_train.head()
 #%%
 
-params = pd.read_csv('/home/skapoor/Thesis/graphtools/outputs/csvs/filtered.csv', index_col=None)
+params = pd.read_csv('/outputs/csvs/filtered.csv', index_col=None)
 #%%
 def solver_viz(X_train, X_test, y_train, strls_num, feature, thresh, val, max_num_nodes, node_wts=None,
            target=None, edge=None):
@@ -158,7 +158,7 @@ tf.keras.backend.clear_session()
 # In[31]:
 
 
-params = pd.read_csv('/home/skapoor/Thesis/graphtools/outputs/csvs/filtered.csv', index_col=None)
+params = pd.read_csv('/outputs/csvs/filtered.csv', index_col=None)
 #%%
 def solver_viz(X_train, X_test, y_train, strls_num, feature, thresh, val, max_num_nodes, node_wts=None,
            target=None, edge=None):
