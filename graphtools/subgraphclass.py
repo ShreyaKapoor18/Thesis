@@ -111,9 +111,9 @@ def output_graph_processing(input_graph, edge, feature_type, node_wts, target, m
                        output_graph.edges),
                    round(len(output_graph.edges) * 100 /tri, 3)]
 
-        dict_lut = corresp_label_file('fs_default.txt')
-        for node in output_graph.nodes:
-            print(node, dict_lut[node + 1])  # since our node numbering starts from 0 and LUT starts with 1
+        #dict_lut = corresp_label_file('fs_default.txt')
+        #for node in output_graph.nodes:
+        #    print(node, dict_lut[node + 1])  # since our node numbering starts from 0 and LUT starts with 1
     else:
         f = open(f'{mews}/outputs/solver/{input_graph.filename}')
         solveroutput = f.read()
@@ -177,7 +177,6 @@ def make_solver_summary(mapping, data, targets, mews, whole, tri, num_strls, avg
         for num_nodes in [5, 10, 15, 20, 25, 30]:
             print('*' * 100)
             print('*' * 100, file=output_file)
-            print(f'Case:{feature_type},{target},{edge},{node_wts},{num_nodes},{thresh}')
             print(f'Case:feature_type, target,edge, Node weights, Num_nodes, Thresh', file=output_file)
             print(f'Case:{feature_type},{target},{edge},{node_wts}, {num_nodes},{thresh}', file=output_file)
             input_graph, summary = input_graph_processing(arr, edge, feature_type, node_wts, val, target,
