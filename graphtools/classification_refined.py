@@ -11,7 +11,7 @@ mews = "/home/skapoor/Thesis/gmwcs-solver"
 tri = len(np.triu_indices(84)[0])
 
 
-def process_raw(X_train, X_test, y_train, feature):
+def process_raw(X_train, X_test, y_train, edge):
     scalar2 = StandardScaler()
     X_train = pd.DataFrame(scalar2.fit_transform(X_train), index=X_train.index)
     X_test = pd.DataFrame(scalar2.transform(X_test), index=X_test.index)
@@ -21,14 +21,14 @@ def process_raw(X_train, X_test, y_train, feature):
     cols.extend(range(X_train.shape[1]))  # the values zero to the number of columns
     cols.append(y_train.name)
     stacked.columns = cols
-    if feature == 'fscore':
+    if edge == 'fscore':
         name = y_train.name
         stacked[name] = stacked[name] >= stacked[name].median()
         arr = fscore(stacked, class_col=name)[:-1]
         # fscore is different for the multiclass and binary case; has been incorporated above
-    if feature == 'pearson':
+    if edge == 'pearson':
         arr = stacked.corr().iloc[:-1, -1]
-    if feature == 't_test':
+    if edge == 't_test':
         name = y_train.name
         stacked[name] = stacked[name] >= stacked[name].median()
         group0 = stacked[stacked[name] == 0]
@@ -41,8 +41,8 @@ def process_raw(X_train, X_test, y_train, feature):
     return X_train, X_test, arr
 
 
-def transform_features(X_train, X_test, y_train, per, feature):
-    X_train, X_test, arr = process_raw(X_train, X_test, y_train, feature)
+def transform_features(X_train, X_test, y_train, per, edge):
+    X_train, X_test, arr = process_raw(X_train, X_test, y_train, edge)
     arr = np.array(arr)
     val = np.nanpercentile(arr, 100 - per)
     index = np.where(arr >= val)
@@ -53,16 +53,16 @@ def transform_features(X_train, X_test, y_train, per, feature):
     return X_train, X_test, arr
 
 
-def solver(X_train, X_test, y_train, strls_num, feature, thresh, val, max_num_nodes, node_wts=None,
+def solver(X_train, X_test, y_train, strls_num, feature, thresh, val, max_num_nodes, avg_thresh,
+           node_wts=None,
            target=None, edge=None):
-    X_train, X_test, arr = process_raw(X_train, X_test, y_train, feature)
+    X_train, X_test, arr = process_raw(X_train, X_test, y_train, edge)
     arr = arr.abs()
-    arr = pd.DataFrame(arr, index=arr.index)  # scale the array according to the index
+    arr = pd.DataFrame(arr, index=arr.index)
     input_graph = BrainGraph(edge, feature, node_wts, target, max_num_nodes, val, thresh)
     if not os.path.exists(f'{mews}/outputs/edges/{input_graph.filename}.out')\
             and not os.path.exists(f'{mews}/outputs/nodes/{input_graph.filename}.out'):
-        print ('the solver is being called since the reduced file does not exist')
-        input_graph.make_graph(arr, strls_num, thresh)
+        input_graph.make_graph(arr, strls_num, thresh, avg_thresh)
         if node_wts == 'const':
             input_graph.set_node_labels(node_wts, const_val=val)
         else:
@@ -71,6 +71,10 @@ def solver(X_train, X_test, y_train, strls_num, feature, thresh, val, max_num_no
         input_graph.run_solver(mews, max_num_nodes=max_num_nodes)
     else:
         input_graph.read_from_file(mews, input_graph=True)
+        if node_wts == 'const':
+            input_graph.set_node_labels(node_wts, const_val=val)
+        else:
+            input_graph.set_node_labels(node_wts)
 
     output_graph = BrainGraph(edge, feature,node_wts, target, max_num_nodes, val, thresh)
     reduced_feature_indices = output_graph.read_from_file(mews, input_graph=False)
@@ -112,20 +116,20 @@ def cross_validation(classifier, X_train, y_train, X_test, y_test, metrics, refi
     #print('Test results', outer_test)
     return outer_train, outer_test
 #%%
-def edge_filtering(edge,X_train,X_test):
-    if edge == 'mean_FA':
+def edge_filtering(feature ,X_train,X_test):
+    if feature == 'mean_FA':
         X_train_l = X_train.iloc[:, :tri]
         X_test_l = X_test.iloc[:, :tri]
-    elif edge == 'mean_strl':
+    elif feature == 'mean_strl':
         X_train_l = X_train.iloc[:, :tri]
         X_test_l = X_test.iloc[:, :tri]
-    elif edge == 'num_streamlines':
+    elif feature == 'num_streamlines':
         X_train_l = X_train.iloc[:, 2 * tri:]  # input one feature at a time
         X_test_l = X_test.iloc[:, 2 * tri:]
     return X_train_l, X_test_l
 
 # %%
-def classify(l1, classifier, params, strls_num, feature_selection, choice, refit_metric):
+def classify(l1, classifier, params, strls_num, feature_selection, choice, refit_metric, avg_thresh):
     # try making a csv file for the same
     X_train, X_test, y_train, y_test = l1
     labels = ['NEOFAC_A', 'NEOFAC_O', 'NEOFAC_C', 'NEOFAC_N', 'NEOFAC_E']
@@ -142,8 +146,8 @@ def classify(l1, classifier, params, strls_num, feature_selection, choice, refit
     for i in range(len(params)):
         par = params.iloc[i,:]
         target = par['Target']
-        solver_edge = par['Edge']
-        edge = par['Feature_type']
+        feature = par['Feature_type']
+        edge = par['Edge']
         val = par['Node_weights']
         thresh = par['ROI_strl_thresh']
         solver_node_wts = 'const'
@@ -153,7 +157,7 @@ def classify(l1, classifier, params, strls_num, feature_selection, choice, refit
         print('-' * 100)
         # print('CSV parameter setting number')
         # why is it always stopping at the first row
-        X_train_l, X_test_l = edge_filtering(edge, X_train, X_test)
+        X_train_l, X_test_l = edge_filtering(feature, X_train, X_test)
         assert len(X_train) == len(y_train)
         med = int(y_train_l.median())  # the median is tried based on the training set
         y_train_l = pd.qcut(y_train_l, 5, labels=False, retbins=True)[0]
@@ -175,13 +179,16 @@ def classify(l1, classifier, params, strls_num, feature_selection, choice, refit
             y_test_l = y_test_l >= med  # we just binarize it and don't do anything else
         # now we do the cross validation search
         if feature_selection == 'solver':
-            print(classifier, feature_selection, choice, refit_metric, target, solver_edge, edge,
+            print(classifier, feature_selection, choice, refit_metric, target, feature, edge,
                   solver_node_wts)
             strls_num_l = strls_num.loc[X_train_l.index, :]
-            strls_num_l = strls_num.mean(axis=0, skipna=True)
-            X_train_l, X_test_l, edge_wts, arr = solver(X_train_l, X_test_l, y_train_l, strls_num_l, solver_edge, thresh,
+            if avg_thresh == True:
+                strls_num_l = strls_num.mean(axis=0, skipna=True)
+            else:
+                strls_num_l = strls_num_l.all()
+            X_train_l, X_test_l, edge_wts, arr = solver(X_train_l, X_test_l, y_train_l, strls_num_l,feature, thresh,
                                                         val,
-                                                        max_num_nodes,
+                                                        max_num_nodes, avg_thresh,
                                                         node_wts=solver_node_wts, target=target, edge=edge)
 
             if len(edge_wts) != 0:
@@ -189,10 +196,10 @@ def classify(l1, classifier, params, strls_num, feature_selection, choice, refit
                                                        metrics, refit_metric)
                 # to make the program faster only do this when the solver is actually producing some results
                 results_solver.append(
-                    [classifier, target, choice, edge, feature_selection, solver_edge, len(edge_wts) * 100 / tri,
-                     refit_metric, solver_node_wts,
+                    [classifier, target, choice, edge, feature_selection, feature, len(edge_wts) * 100 / tri,
+                     refit_metric, max_num_nodes,
                      len(edge_wts), sum([edge > 0 for edge in edge_wts]) * 100 / len(edge_wts)])
-                results_solver[-1].extend([thresh])
+                results_solver[-1].append(thresh)
                 for metric in metrics:
                     results_solver[-1].extend([round(100*train_res[metric],3)])
                 for metric in metrics:
@@ -200,30 +207,30 @@ def classify(l1, classifier, params, strls_num, feature_selection, choice, refit
 
         elif feature_selection == 'baseline':
             for per in percentages:
-                for self_loops in [True, False]:
-                    case = (classifier, target, choice, edge, feature_selection, solver_edge, per, refit_metric, self_loops)
-                    if case not in baseline_cases:
-                        baseline_cases.add(case)
-                        print(case)
+                self_loops = False
+                case = (classifier, target, choice, edge, feature_selection, feature, per, refit_metric, self_loops)
+                if case not in baseline_cases:
+                    baseline_cases.add(case)
+                    print(case)
 
-                        if not self_loops:
-                            X_train_inl = X_train_l.drop(X_train_l.columns[diag_flattened_indices(84)], axis=1)
-                            X_test_inl = X_test_l.drop(X_test_l.columns[diag_flattened_indices(84)], axis=1)
-                        else:
-                            X_train_inl = X_train_l
-                            X_test_inl = X_test_l
-                        X_train_inl, X_test_inl, arr = transform_features(X_train_inl, X_test_inl, y_train_l, per,
-                                                                          solver_edge)
+                    if not self_loops:
+                        X_train_inl = X_train_l.drop(X_train_l.columns[diag_flattened_indices(84)], axis=1)
+                        X_test_inl = X_test_l.drop(X_test_l.columns[diag_flattened_indices(84)], axis=1)
+                    else:
+                        X_train_inl = X_train_l
+                        X_test_inl = X_test_l
+                    X_train_inl, X_test_inl, arr = transform_features(X_train_inl, X_test_inl, y_train_l, per,
+                                                                     feature)
 
-                        train_res, test_res = cross_validation(classifier, X_train_inl, y_train_l, X_test_inl,
-                                                               y_test_l, metrics, refit_metric)
-                        results_base.append([classifier, target, choice, edge, feature_selection, solver_edge,
-                                             per, refit_metric])
-                        for metric in metrics:
-                            results_base[-1].extend([round(100 * train_res[metric], 3)])
-                        for metric in metrics:
-                            results_base[-1].extend([round(100*test_res[metric], 3)])
-                        results_base[-1].extend([self_loops])
+                    train_res, test_res = cross_validation(classifier, X_train_inl, y_train_l, X_test_inl,
+                                                           y_test_l, metrics, refit_metric)
+                    results_base.append([classifier, target, choice, edge, feature_selection, feature,
+                                         per, refit_metric])
+                    for metric in metrics:
+                        results_base[-1].extend([round(100 * train_res[metric], 3)])
+                    for metric in metrics:
+                        results_base[-1].extend([round(100*test_res[metric], 3)])
+                    results_base[-1].extend([self_loops, thresh])
 
 
     return results_base, results_solver

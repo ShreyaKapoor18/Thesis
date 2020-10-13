@@ -40,7 +40,7 @@ class BrainGraph(nx.Graph):  # inheriting from networkx graph package along with
         H.add_weighted_edges_from(subgr_edges)
         return H
 
-    def make_graph(self, arr, strls_num, thresh):
+    def make_graph(self, arr, strls_num, thresh, avg_thresh):
         mat = np.triu_indices(84)
         assert len(mat[0]) == len(strls_num)
         nodes = set()
@@ -56,12 +56,18 @@ class BrainGraph(nx.Graph):  # inheriting from networkx graph package along with
             v = mat[1][j]
             nodes.add(u)  # add only the nodes which have corresponding edges
             nodes.add(v)
-            if value > 0 and u != v and max(strls_num.iloc[j] / strl[u] ,strls_num.iloc[j] / strl[v]) >= thresh:
-                edge_attributes.append((mat[0][j], mat[1][j], value))
+            if avg_thresh:
+                if value > 0 and u != v and max(strls_num.iloc[j] / strl[u] ,strls_num.iloc[j] / strl[v]) >= thresh:
+                    edge_attributes.append((mat[0][j], mat[1][j], value))
+                else:
+                    self.self_loops.append(value)
             else:
-                self.self_loops.append(value)
+                if value > 0 and u != v and strls_num.iloc[j] == True:
+                    edge_attributes.append((mat[0][j], mat[1][j], value))
+                else:
+                    self.self_loops.append(value)
 
-        # mean for the scores of three different labels
+            # mean for the scores of three different labels
         assert nodes is not None
         self.add_nodes_from(nodes)
         self.add_weighted_edges_from(edge_attributes)

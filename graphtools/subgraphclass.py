@@ -66,18 +66,23 @@ def solver_edge_filtering(edge, X_cut, y):
 
 
 def input_graph_processing(arr, edge, feature_type, node_wts, val, target,
-                           output_file, mews, strls_num, max_num_nodes, thresh):
+                           output_file, mews, strls_num, max_num_nodes, thresh, avg_thresh):
     input_graph = BrainGraph(edge, feature_type, node_wts, target, max_num_nodes, val, thresh)
-    input_graph.make_graph(arr, strls_num, thresh)
-
-    if node_wts == 'const':
-        input_graph.set_node_labels(node_wts, const_val=val)
+    if not os.path.exists(f'{mews}/outputs/edges/{input_graph.filename}.out')\
+            and not os.path.exists(f'{mews}/outputs/nodes/{input_graph.filename}.out'):
+        input_graph.make_graph(arr, strls_num, thresh, avg_thresh)
+        if node_wts == 'const':
+            input_graph.set_node_labels(node_wts, const_val=val)
+        else:
+            input_graph.set_node_labels(node_wts)
+        input_graph.savefiles(mews)
+        input_graph.run_solver(mews, max_num_nodes=max_num_nodes)
     else:
-        input_graph.set_node_labels(node_wts)
-    # input_graph.normalize_node_attr()
-    input_graph.savefiles(mews)
-    input_graph.hist(mews)
-    # input_graph.visualize_graph(mews, True, sub_val, plotting_options)
+        input_graph.read_from_file(mews, input_graph=True)
+        if node_wts == 'const':
+            input_graph.set_node_labels(node_wts, const_val=val)
+        else:
+            input_graph.set_node_labels(node_wts)
 
     print('Input graph\n', f'Nodes: {len(input_graph.nodes)}\n', f'Edges:{len(input_graph.edges)}\n',
           f'Edges description:{describe(input_graph.edge_weights)}\n',
@@ -85,7 +90,7 @@ def input_graph_processing(arr, edge, feature_type, node_wts, val, target,
     summary = [len(input_graph.nodes), len(input_graph.edges),
                100 * sum([True for wt in input_graph.edge_weights if wt > 0]) / len(input_graph.edges)]
     # we want to calculate the strictly positive edges
-    input_graph.run_solver('/home/skapoor/Thesis/gmwcs-solver', max_num_nodes=max_num_nodes)
+
     return input_graph, summary
 
 
@@ -105,10 +110,7 @@ def output_graph_processing(input_graph, edge, feature_type, node_wts, target, m
                    100 * sum([True for wt in output_graph.edge_weights if wt > 0]) / len(
                        output_graph.edges),
                    round(len(output_graph.edges) * 100 /tri, 3)]
-        f = open(f'{mews}/outputs/solver/{input_graph.filename}')
-        solveroutput = f.read()
 
-        f.close()
         dict_lut = corresp_label_file('fs_default.txt')
         for node in output_graph.nodes:
             print(node, dict_lut[node + 1])  # since our node numbering starts from 0 and LUT starts with 1
@@ -131,7 +133,7 @@ def delete_files(mews, input_graph):
         os.remove(f'{mews}/outputs/nodes/{input_graph.filename}.out')
 
 
-def make_solver_summary(mapping, data, targets, mews, whole, tri, num_strls):
+def make_solver_summary(mapping, data, targets, mews, whole, tri, num_strls, avg_thresh):
     edges = ['pearson']
     node_wtsl = ['const']
     metrics = ['balanced_accuracy', 'accuracy', 'f1_weighted', 'roc_auc_ovr_weighted']
@@ -164,7 +166,10 @@ def make_solver_summary(mapping, data, targets, mews, whole, tri, num_strls):
         X_cut = X.loc[y_cut.index]
         assert len(X_cut) == len(y_cut)
         strls_num_train = num_strls.loc[X_cut.index, :]
-        strls_num_train = strls_num_train.mean(axis=0, skipna=True)
+        if avg_thresh:
+            strls_num_train = strls_num_train.mean(axis=0, skipna=True)
+        else:
+            strls_num_train = strls_num_train.all()
         arr = solver_edge_filtering(edge, X_cut, y)
         arr.fillna(0, inplace=True)
         arr = arr.abs()
@@ -176,7 +181,7 @@ def make_solver_summary(mapping, data, targets, mews, whole, tri, num_strls):
             print(f'Case:feature_type, target,edge, Node weights, Num_nodes, Thresh', file=output_file)
             print(f'Case:{feature_type},{target},{edge},{node_wts}, {num_nodes},{thresh}', file=output_file)
             input_graph, summary = input_graph_processing(arr, edge, feature_type, node_wts, val, target,
-                                                          output_file, mews, strls_num_train, num_nodes, thresh)
+                                                          output_file, mews, strls_num_train, num_nodes, thresh, avg_thresh)
             summary_data.append([feature_type, target, edge, val])
             summary_data[-1].extend(summary)
 
