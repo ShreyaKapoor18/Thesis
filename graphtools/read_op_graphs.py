@@ -2,6 +2,7 @@ import pandas as pd
 from graphclass import BrainGraph
 import numpy as np
 from readfiles import corresp_label_file
+import matplotlib.pyplot as plt
 '''
 Trying to know which nodes are getting selected in most of the cases.
 The intensity in each of the cells of the array tells us about which node is
@@ -24,8 +25,15 @@ for trait in big5:
                 a[node] += 1
             for u,v in output_graph.edges:
                 edges[u, v] += 1
-        a = pd.Series(a, index=corresp_label_file('fs_default.txt').keys())
-        edges = pd.DataFrame(edges,columns=corresp_label_file('fs_default.txt').keys(),
-                             index=corresp_label_file('fs_default.txt').keys())
+        a = pd.Series(a, index= list(corresp_label_file('fs_default.txt').values()))
+        edges = pd.DataFrame(edges, columns=list(corresp_label_file('fs_default.txt').values()),
+                             index=list(corresp_label_file('fs_default.txt').values()))
         a.to_csv(f'{mews}/outputs/csvs/{trait}_{max_num_nodes}_nodes.csv')
         edges.to_csv(f'{mews}/outputs/csvs/{trait}_{max_num_nodes}_edges.csv')
+        #only the nodes which are included more than once
+        a = a[a>0]
+        plt.hist(a)
+        plt.show()
+        edges = edges[edges >0]
+        plt.imshow(edges)
+        plt.show()
