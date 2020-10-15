@@ -26,25 +26,25 @@ if __name__ == '__main__':
     num_strls = X_train.iloc[:, 2 * tri:]
     labels = ['Gender']
     mapping = {'Gender': 'Gender'}
-    make_solver_summary(edges, mapping, y_train, labels, mews, X_train, tri, num_strls, avg_thresh=False, cat=False)
-    filter_summary()
+    #make_solver_summary(edges, mapping, y_train, labels, mews, X_train, tri, num_strls, avg_thresh=False, cat=False)
+    #filter_summary()
     y_test = test_subjects()
     X_test = generate_test_data(tri, y_test.index)
 
-    classifiers = ['SVC', 'MLP', 'RF']
+    classifiers = ['SVC', 'RF', 'MLP']
     cols_base = ['Classifier', 'Target', 'Choice', 'Edge', 'Feature Selection', 'Type of feature', 'Percentage',
-                 'Refit Metric']
-    cols_solver = copy.deepcopy(cols_base)
+                'Refit Metric', 'Num_features']
+    cols_solver = copy.deepcopy(cols_base[:-1])
     cols_solver.extend(['Num_nodes', 'Num edges', '% Positive edges', 'ROI_strl_thresh'])
     cols_base.extend([f'train_{metric}' for metric in metrics])
     cols_solver.extend([f'train_{metric}' for metric in metrics])
     cols_base.extend([f'test_{metric}' for metric in metrics])
-    cols_base.append('Self_loops')
+    cols_base.extend(['Self_loops', 'ROI_strl_thresh'])
     cols_solver.extend([f'test_{metric}' for metric in metrics])
     l1 = [X_train, X_test, y_train, y_test]
     feature_selections = ['baseline', 'solver']
     choices = ['random']
-    s_params = pd.read_csv('/home/skapoor/Tesis/graphtools/outputs/csvs/filtered.csv', index_col=None)
+    s_params = pd.read_csv('/home/skapoor/Thesis/graphtools/outputs/csvs/filtered.csv', index_col=None)
     if len(s_params.columns) > 11:
         s_params = s_params.iloc[:, 1:]
     results_base = []

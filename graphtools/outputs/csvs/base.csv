@@ -1,1 +1,3 @@
-,Classifier,Target,Choice,Edge,Feature Selection,Type of feature,Percentage,Refit Metric,train_balanced_accuracy,train_accuracy,train_f1_weighted,train_roc_auc_ovr_weighted,test_balanced_accuracy,test_accuracy,test_f1_weighted,test_roc_auc_ovr_weighted,Self_loops
+,Classifier,Target,Choice,Edge,Feature Selection,Type of feature,Percentage,Refit Metric,Num_features,train_balanced_accuracy,train_accuracy,train_f1_weighted,train_roc_auc_ovr_weighted,test_balanced_accuracy,test_accuracy,test_f1_weighted,test_roc_auc_ovr_weighted,Self_loops,ROI_strl_thresh
+0,SVC,Gender,random,t_test,baseline,num_streamlines,5,balanced_accuracy,175,100.0,100.0,100.0,100.0,78.466,77.419,78.125,89.391,False,0
+1,SVC,Gender,random,t_test,baseline,num_streamlines,100,balanced_accuracy,3486,85.532,85.106,86.792,94.558,88.445,88.71,87.273,94.958,False,0

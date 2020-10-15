@@ -21,7 +21,7 @@ def process_raw(X_train, X_test, y_train, edge):
     cols.extend(range(X_train.shape[1]))  # the values zero to the number of columns
     cols.append(y_train.name)
     stacked.columns = cols
-    if edge == 'fscore':
+    if edge == 'fscores' or edge == 'fscore':
         name = y_train.name
         stacked[name] = stacked[name] >= stacked[name].median()
         arr = fscore(stacked, class_col=name)[:-1]
@@ -138,7 +138,7 @@ def classify(l1, classifier, params, strls_num, feature_selection, choice, refit
             'Extraversion']
     mapping = {k: v for k, v in zip(big5, labels)}
     metrics = ['balanced_accuracy', 'accuracy', 'f1_weighted', 'roc_auc_ovr_weighted']
-    percentages = [5,100]
+    percentages = [2, 5, 10, 50, 100]
     results_base = []
     results_solver = []
     baseline_cases = set()
@@ -182,10 +182,8 @@ def classify(l1, classifier, params, strls_num, feature_selection, choice, refit
         else:
             y_train_l = y_train[target]
             y_test_l = y_test[target]
-            y_train_l[y_train_l=='M'] = 0
-            y_train_l[y_train_l=='F'] = 1
-            y_test_l[y_test_l=='M'] = 0
-            y_test_l[y_test_l=='F'] = 1
+            y_train_l = y_train_l.map({'M':0, 'F':1})
+            y_test_l = y_test_l.map({'M':0, 'F':1})
         if feature_selection == 'solver':
             print(classifier, feature_selection, choice, refit_metric, target, feature, edge,
                   solver_node_wts)
@@ -228,17 +226,15 @@ def classify(l1, classifier, params, strls_num, feature_selection, choice, refit
                         X_train_inl = X_train_l
                         X_test_inl = X_test_l
                     X_train_inl, X_test_inl, arr = transform_features(X_train_inl, X_test_inl, y_train_l, per,
-                                                                     feature)
+                                                                     edge)
 
                     train_res, test_res = cross_validation(classifier, X_train_inl, y_train_l, X_test_inl,
                                                            y_test_l, metrics, refit_metric)
                     results_base.append([classifier, target, choice, edge, feature_selection, feature,
-                                         per, refit_metric])
+                                         per, refit_metric, X_train_inl.shape[1]])
                     for metric in metrics:
                         results_base[-1].extend([round(100 * train_res[metric], 3)])
                     for metric in metrics:
                         results_base[-1].extend([round(100*test_res[metric], 3)])
                     results_base[-1].extend([self_loops, thresh])
-
-
     return results_base, results_solver

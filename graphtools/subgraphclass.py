@@ -44,7 +44,7 @@ def solver_edge_filtering(edge, X_cut, y):
     cols.extend(range(X_cut.shape[1]))  # the values zero to the number of columns
     cols.append(y.name)
     stacked.columns = cols
-    if edge == 'fscores':
+    if edge == 'fscores' or edge == 'fscore':
         name = y.name
         stacked[name] = stacked[name] >= stacked[name].median()
         arr = fscore(stacked, class_col=y.name)[:-1]
@@ -173,8 +173,7 @@ def make_solver_summary(edges, mapping, data, targets, mews, whole, tri, num_str
             arr = solver_edge_filtering(edge, X_cut, y)
         else:
             y = data[target]
-            y[y=='M'] = 0
-            y[y=='F'] = 1
+            y = y.map({'M':0, 'F':1})
             X = filter_indices(whole, feature_type, tri)
             strls_num_train = num_strls.loc[X.index, :]
             arr = solver_edge_filtering(edge, X, y)
