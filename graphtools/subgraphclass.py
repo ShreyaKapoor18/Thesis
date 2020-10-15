@@ -133,8 +133,8 @@ def delete_files(mews, input_graph):
         os.remove(f'{mews}/outputs/nodes/{input_graph.filename}.out')
 
 
-def make_solver_summary(mapping, data, targets, mews, whole, tri, num_strls, avg_thresh):
-    edges = ['pearson']
+def make_solver_summary(edges, mapping, data, targets, mews, whole, tri, num_strls, avg_thresh, cat):
+
     node_wtsl = ['const']
     metrics = ['balanced_accuracy', 'accuracy', 'f1_weighted', 'roc_auc_ovr_weighted']
     # note: right now the matrix whole is not scaled, for computing the fscores and correlation coeff it has to be so.
@@ -147,30 +147,42 @@ def make_solver_summary(mapping, data, targets, mews, whole, tri, num_strls, avg
                'Output_Graph_nodes', 'Output_Graph_edges', 'Output_graph_posedge_per',
                'Features_preserved_per', 'ROI_strl_thresh']
     summary_data = []
-    threshs = [0.01, 0.001, 0.005, 0.0055]
+    if avg_thresh == True:
+        threshs = [0.01, 0.001, 0.005, 0.0055]
+    else:
+        threshs = [0]
     for j, (feature_type, target, edge, node_wts, thresh) in \
             enumerate(itertools.product(feature_types, targets, edges, node_wtsl, threshs)):
         val = -0.01
-        y = data[mapping[target]]
-        X = filter_indices(whole, feature_type, tri)
-        nested_outputdirs(mews=mews)
-        scalar = StandardScaler()
-        X = pd.DataFrame(scalar.fit_transform(X), index=X.index)
-        med = int(y.median())  # the median is tried based on the training set
-        # print('median of the training data', med)
-        y_cut = pd.qcut(y, 5, labels=False, retbins=True)[0]
-        # we need to pass the non-binned values for effective pearson correlation calc.
-        # print('The number of training subjects which are to be removed:', sum(y_train_l == 2))
-        y_cut = y_cut[y_cut != 2]
-        y_cut = y_cut // 3  # binarizing the values by removing the middle quartile
-        X_cut = X.loc[y_cut.index]
-        assert len(X_cut) == len(y_cut)
-        strls_num_train = num_strls.loc[X_cut.index, :]
+        if cat == True:
+            y = data[mapping[target]]
+            X = filter_indices(whole, feature_type, tri)
+            nested_outputdirs(mews=mews)
+            scalar = StandardScaler()
+            X = pd.DataFrame(scalar.fit_transform(X), index=X.index)
+            med = int(y.median())  # the median is tried based on the training set
+            # print('median of the training data', med)
+            y_cut = pd.qcut(y, 5, labels=False, retbins=True)[0]
+            # we need to pass the non-binned values for effective pearson correlation calc.
+            # print('The number of training subjects which are to be removed:', sum(y_train_l == 2))
+            y_cut = y_cut[y_cut != 2]
+            y_cut = y_cut // 3  # binarizing the values by removing the middle quartile
+            X_cut = X.loc[y_cut.index]
+            assert len(X_cut) == len(y_cut)
+            strls_num_train = num_strls.loc[X_cut.index, :]
+            arr = solver_edge_filtering(edge, X_cut, y)
+        else:
+            y = data[target]
+            y[y=='M'] = 0
+            y[y=='F'] = 1
+            X = filter_indices(whole, feature_type, tri)
+            strls_num_train = num_strls.loc[X.index, :]
+            arr = solver_edge_filtering(edge, X, y)
         if avg_thresh:
             strls_num_train = strls_num_train.mean(axis=0, skipna=True)
         else:
             strls_num_train = strls_num_train.all()
-        arr = solver_edge_filtering(edge, X_cut, y)
+
         arr.fillna(0, inplace=True)
         arr = arr.abs()
         arr = arr.round(3)

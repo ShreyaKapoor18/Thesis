@@ -152,32 +152,40 @@ def classify(l1, classifier, params, strls_num, feature_selection, choice, refit
         thresh = par['ROI_strl_thresh']
         solver_node_wts = 'const'
         max_num_nodes = par['Output_Graph_nodes']
-        y_train_l = y_train[mapping[target]]
-        y_test_l = y_test[mapping[target]]
         print('-' * 100)
         # print('CSV parameter setting number')
         # why is it always stopping at the first row
         X_train_l, X_test_l = edge_filtering(feature, X_train, X_test)
         assert len(X_train) == len(y_train)
-        med = int(y_train_l.median())  # the median is tried based on the training set
-        y_train_l = pd.qcut(y_train_l, 5, labels=False, retbins=True)[0]
-        # we need to pass the non-binned values for effective pearson correlation calc.
-        # print('The number of training subjects which are to be removed:', sum(y_train_l == 2))
-        y_train_l = y_train_l[y_train_l != 2]
-        y_train_l = y_train_l // 3  # binarizing the values by removing the middle quartile
-        X_train_l = X_train_l.loc[y_train_l.index]
-        assert len(X_train_l) == len(y_train_l)
-        #print('The choice that we are using', choice)
-        if choice == 'test throw median':
+        if choice in ['test throw median', 'keep median']:
+            y_train_l = y_train[mapping[target]]
+            y_test_l = y_test[mapping[target]]
+            med = int(y_train_l.median())  # the median is tried based on the training set
+            y_train_l = pd.qcut(y_train_l, 5, labels=False, retbins=True)[0]
+            # we need to pass the non-binned values for effective pearson correlation calc.
+            # print('The number of training subjects which are to be removed:', sum(y_train_l == 2))
+            y_train_l = y_train_l[y_train_l != 2]
+            y_train_l = y_train_l // 3  # binarizing the values by removing the middle quartile
+            X_train_l = X_train_l.loc[y_train_l.index]
+            assert len(X_train_l) == len(y_train_l)
+            #print('The choice that we are using', choice)
+            if choice == 'test throw median':
 
-            y_test_l = y_test_l[abs(y_test_l - med) > 1]  # maybe most of the values are close to the median
-            y_test_l = y_test_l >= med  # binarizing the label check for duplicates
-            X_test_l = X_test_l.loc[list(set(y_test_l.index))]
-            # making sure that the training data is also for the same subjects
-            assert len(X_test_l) == len(y_test_l)
-        elif choice == 'keep median':
-            y_test_l = y_test_l >= med  # we just binarize it and don't do anything else
-        # now we do the cross validation search
+                y_test_l = y_test_l[abs(y_test_l - med) > 1]  # maybe most of the values are close to the median
+                y_test_l = y_test_l >= med  # binarizing the label check for duplicates
+                X_test_l = X_test_l.loc[list(set(y_test_l.index))]
+                # making sure that the training data is also for the same subjects
+                assert len(X_test_l) == len(y_test_l)
+            elif choice == 'keep median':
+                y_test_l = y_test_l >= med  # we just binarize it and don't do anything else
+            # now we do the cross validation search
+        else:
+            y_train_l = y_train[target]
+            y_test_l = y_test[target]
+            y_train_l[y_train_l=='M'] = 0
+            y_train_l[y_train_l=='F'] = 1
+            y_test_l[y_test_l=='M'] = 0
+            y_test_l[y_test_l=='F'] = 1
         if feature_selection == 'solver':
             print(classifier, feature_selection, choice, refit_metric, target, feature, edge,
                   solver_node_wts)

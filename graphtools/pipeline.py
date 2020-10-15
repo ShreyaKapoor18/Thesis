@@ -12,24 +12,26 @@ if __name__ == '__main__':
     num = 84  # number of nodes in the graph
     tri = int(num * (num + 1) * 0.5)  # we want only the upper diagonal parts since everything below diagonal is 0
     labels = ['NEOFAC_A', 'NEOFAC_O', 'NEOFAC_C', 'NEOFAC_N', 'NEOFAC_E']
-    edge_names = ['mean_FA']
+    edge_names = ['mean_FA', 'mean_strl', 'num_streamlines']
     big5 = ['Agreeableness', 'Openness', 'Conscientiousness', 'Neuroticism',
             'Extraversion']
     mapping = {k: v for k, v in zip(big5, labels)}
     mat = np.triu_indices(84)
     mews = '/home/skapoor/Thesis/gmwcs-solver'
     metrics = ['balanced_accuracy', 'accuracy', 'f1_weighted', 'roc_auc_ovr_weighted']
+    edges = ['t_test', 'fscores']
     # note: right now the matrix whole is not scaled, for computing the fscores and correlation coeff it has to be so.
     y_train = computed_subjects()
-    X_train = generate_combined_matrix(tri, list(
-        y_train.index))  # need to check indices till here then convert to numpy array
+    X_train = generate_combined_matrix(tri, list(y_train.index))  # need to check indices till here then convert to numpy array
     num_strls = X_train.iloc[:, 2 * tri:]
-    make_solver_summary(mapping, y_train, big5, mews, X_train, tri, num_strls, avg_thresh=True)
+    labels = ['Gender']
+    mapping = {'Gender': 'Gender'}
+    make_solver_summary(edges, mapping, y_train, labels, mews, X_train, tri, num_strls, avg_thresh=False, cat=False)
     filter_summary()
     y_test = test_subjects()
     X_test = generate_test_data(tri, y_test.index)
 
-    classifiers = ['SVC']
+    classifiers = ['SVC', 'MLP', 'RF']
     cols_base = ['Classifier', 'Target', 'Choice', 'Edge', 'Feature Selection', 'Type of feature', 'Percentage',
                  'Refit Metric']
     cols_solver = copy.deepcopy(cols_base)
@@ -40,8 +42,8 @@ if __name__ == '__main__':
     cols_base.append('Self_loops')
     cols_solver.extend([f'test_{metric}' for metric in metrics])
     l1 = [X_train, X_test, y_train, y_test]
-    feature_selections = ['solver']
-    choices = ['test throw median']
+    feature_selections = ['baseline', 'solver']
+    choices = ['random']
     s_params = pd.read_csv('/home/skapoor/Tesis/graphtools/outputs/csvs/filtered.csv', index_col=None)
     if len(s_params.columns) > 11:
         s_params = s_params.iloc[:, 1:]
@@ -52,7 +54,7 @@ if __name__ == '__main__':
                                                   'Output_Graph_nodes', 'ROI_strl_thresh']]],
                    feature_selections, choices, ['balanced_accuracy'])
     for classifier, params, feature_selection, choice, refit_metric in prod:
-        resb, ress = classify(l1, classifier, params, num_strls, feature_selection, choice, refit_metric, avg_thresh=True)
+        resb, ress = classify(l1, classifier, params, num_strls, feature_selection, choice, refit_metric, avg_thresh=False)
         results_solver.extend(ress)
         results_base.extend(resb)
 
