@@ -50,7 +50,7 @@ def transform_features(X_train, X_test, y_train, per, edge):
     X_test = X_test.iloc[:, index[0]]
 
     assert list(X_train.index) == list(y_train.index)
-    return X_train, X_test, arr
+    return X_train, X_test, arr, index
 
 
 def solver(X_train, X_test, y_train, strls_num, feature, thresh, val, max_num_nodes, avg_thresh,
@@ -225,9 +225,20 @@ def classify(l1, classifier, params, strls_num, feature_selection, choice, refit
                     else:
                         X_train_inl = X_train_l
                         X_test_inl = X_test_l
-                    X_train_inl, X_test_inl, arr = transform_features(X_train_inl, X_test_inl, y_train_l, per,
+                    X_train_inl, X_test_inl, arr, index = transform_features(X_train_inl, X_test_inl, y_train_l, per,
                                                                      edge)
-
+                    output_gr = BrainGraph(edge, feature, 'baseline', target, max_num_nodes, val, thresh)
+                    edges = []
+                    nodes = set()
+                    for ind in index:
+                        edges.append(np.triu_indices(84)[0][ind], np.triu_indices(84)[1][ind],1)
+                        nodes.add(np.triu_indices(84)[0][ind])
+                        nodes.add(np.triu_indices(84)[1][ind])
+                    output_gr.add_nodes_from(nodes)
+                    for node in nodes:
+                        output_gr.nodes[node]['label'] = 1
+                    output_gr.add_weighted_edges_from(edges)
+                    output_gr.savefiles(mews)
                     train_res, test_res = cross_validation(classifier, X_train_inl, y_train_l, X_test_inl,
                                                            y_test_l, metrics, refit_metric)
                     results_base.append([classifier, target, choice, edge, feature_selection, feature,
@@ -237,4 +248,5 @@ def classify(l1, classifier, params, strls_num, feature_selection, choice, refit
                     for metric in metrics:
                         results_base[-1].extend([round(100*test_res[metric], 3)])
                     results_base[-1].extend([self_loops, thresh])
+                    # convert the output to edges in the baseline
     return results_base, results_solver
