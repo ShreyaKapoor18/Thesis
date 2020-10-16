@@ -10,34 +10,38 @@ BCOR=8mm]{scrbook} % BCOR sets the space, used by the type of  book. (e.g. glued
 
 \input{setup/packages.tex}
 \input{setup/acronyms.tex}
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}
+%\newcommand{\comment}[1]{}
 
 \begin{document}
 \frontmatter
 		\input{setup/titlepage.tex}
         \input{setup/declaration.tex}
+        \input{setup/Acknowledgements.tex}
         \subfile{Abstract.tex}
-        
         \tableofcontents
         \listoffigures
         \listoftables
         \listofalgorithms
-        
         \newpage
         
         
 
 \mainmatter
         \subfile{Introduction}
+        \subfile{Background}
         \subfile{Methods}
         \subfile{Results}
         \subfile{Discussion}
         \subfile{Conclusion}
 
 \backmatter
-        \subfile{Appendix}
+        %\subfile{Appendix}
         
         \FloatBarrier
-        
+
+
         \begin{singlespacing}
             \printbibliography[heading=bibintoc,title={References}]
         \end{singlespacing}

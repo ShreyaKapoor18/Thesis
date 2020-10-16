@@ -1,6 +1,15 @@
-\documentclass[ms_thesis.tex]{subfiles}
+\documentclass[msthesis.tex]{subfiles}
 
 \begin{document}
 \chapter{Discussion}
+\section{Statistical Coefficient}
+There were numerous possibilities for the edge weights in the input graph for the solver. It was maintained that the input graph edge weights shall represent a statistical coefficient which represents the strength of the connections between the two nodes/brain regions determined by the cortical parcellation. The coefficients chosen were the f-score, the pearson correlation coefficient and the p-value of the t-test. 
+
+
+The pearson correlation coefficient in fact did work because it considers the linear nature of the personality trait coefficients. This type of feature selection is well reported in literature for Neuroimaging data considering continuous variables. It performed well for the baseline experiments as well as the solver based feature selection. For both the cases the absolute value of the pearson correlation coefficient was taken because only the correlation was important, whether it is positive or negative correlation was not a matter of concern for the analysis.
+
+The f-score and the t-test were based on the binarization of the target variables according to the median values of the feature from the training set, this might lead to information loss and hence their lower numerical values. 
+
+
 
 \end{document}
