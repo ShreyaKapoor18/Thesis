@@ -23,14 +23,14 @@ def process_raw(X_train, X_test, y_train, edge):
     stacked.columns = cols
     if edge == 'fscores' or edge == 'fscore':
         name = y_train.name
-        stacked[name] = stacked[name] >= stacked[name].median()
+        #stacked[name] = stacked[name] >= stacked[name].median()
         arr = fscore(stacked, class_col=name)[:-1]
         # fscore is different for the multiclass and binary case; has been incorporated above
     if edge == 'pearson':
         arr = stacked.corr().iloc[:-1, -1]
     if edge == 't_test':
         name = y_train.name
-        stacked[name] = stacked[name] >= stacked[name].median()
+        #stacked[name] = stacked[name] >= stacked[name].median()
         group0 = stacked[stacked[name] == 0]
         group1 = stacked[stacked[name] == 1]
         arr = []

@@ -46,16 +46,16 @@ def solver_edge_filtering(edge, X_cut, y):
     stacked.columns = cols
     if edge == 'fscores' or edge == 'fscore':
         name = y.name
-        stacked[name] = stacked[name] >= stacked[name].median()
+        #stacked[name] = stacked[name] >= stacked[name].median()
         arr = fscore(stacked, class_col=y.name)[:-1]
-        arr = arr * 100  # take this only from the training data
+        #arr = arr * 100  # take this only from the training data
     if edge == 'pearson':
         arr = stacked.corr().iloc[:-1, -1]
     if edge == 'train_dat':
         arr = X_cut.mean()
     if edge == 't_test':
         name = y.name
-        stacked[name] = stacked[name] >= stacked[name].median()
+        #stacked[name] = stacked[name] >= stacked[name].median()
         group0 = stacked[stacked[name] == 0]
         group1 = stacked[stacked[name] == 1]
         arr = []
