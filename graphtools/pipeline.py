@@ -26,8 +26,8 @@ if __name__ == '__main__':
     num_strls = X_train.iloc[:, 2 * tri:]
     labels = ['Gender']
     mapping = {'Gender': 'Gender'}
-    #make_solver_summary(edges, mapping, y_train, labels, mews, X_train, tri, num_strls, avg_thresh=False, cat=False)
-    #filter_summary()
+    make_solver_summary(edges, mapping, y_train, labels, mews, X_train, tri, num_strls, avg_thresh=False, cat=False)
+    filter_summary()
     y_test = test_subjects()
     X_test = generate_test_data(tri, y_test.index)
 

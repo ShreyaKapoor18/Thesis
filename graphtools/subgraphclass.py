@@ -185,7 +185,8 @@ def make_solver_summary(edges, mapping, data, targets, mews, whole, tri, num_str
         arr.fillna(0, inplace=True)
         arr = arr.abs()
         arr = arr.round(3)
-        for num_nodes in [5, 10, 15, 20, 25, 30]:
+        #for num_nodes in [5, 10, 15, 20, 25, 30]:
+        for num_nodes in range(30):
             print('*' * 100)
             print('*' * 100, file=output_file)
             print(f'Case:feature_type, target,edge, Node weights, Num_nodes, Thresh', file=output_file)
