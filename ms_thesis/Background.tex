@@ -94,6 +94,7 @@ Another important concept is that of Field of View (FOV) refers to the distance 
 
 
 \subsection{Diffusion MRI}
+
 Diffusion Magnetic resonance imaging is an \textit{in-vivo}, non-invasive imaging modality that used to create high-resolution structural images of biological tissues. It measures the non-homogeneity of water diffusion in tissues to probe their microstructure (\cite{ghosh2015survey}). One of the most important applications of dMRI is to map the white-matter fiber tracts in the brain. As compared to other MRI techniques such as functional Magnetic Resonance Imaging it does not suffer from an issue of low resolution and low signal-to-noise ratio (\cite{wong2016}). 
 
 “Diffusion” is defined as the net movement of a substance from a region of higher concentration to a region of lower concentration. In a homogeneous medium, the diffusion of water molecules is isotropic, i.e. they can move in any direction with equal probability or exhibit random walk behavior explained by Brownian motion (\cite{Brogioli_2000}).
@@ -101,7 +102,7 @@ The environment inside a biological tissue is complex and the diffusion of water
 
 
 \subsubsection{Diffusion Weighted Imaging}
-\label{DWI}
+\label{sec:DWI}
 In this type of Diffusion imaging, the intensity of each voxel represents the rate of water diffusion in a cubic region. Diffusion weighting is applied in order to generate contrasts based on the presumption that diffusion varies with pathology i.e. differences in diffusion can also highlight differences in structure and function (\cite{Taylor_1985}). 
 
 One of the most popular ways to give images Diffusion weighting is through using single-shot-spin-ehco (SE) T2 weighted sequences with two symmetric gradients on each side of the 180 degree refocusing pulse. This is based on the pulsed gradient spin echo (PGSE) technique developed by (\cite{stejskal1965spin}) in the mid 1960's, which resulted in much improved sensitivity to diffusion in comparison to the steady state gradients used previously. They solved the Bloch-Torrey partial differential equations for a symmetric pair of pulsed gradients and obtained the well-known Stejskal-Tanner formula
@@ -131,7 +132,7 @@ Diffusion Tensor Imaging (DTI) is a new type of imaging technique that relies on
 
 Diffusion Tensor Imaging is a novel technology, an \textit{in-vivo } application of DWI that is the gold standard for imaging neural fiber tracts. It has become an important brain imaging modality since various neurological disorders such as cerebral ischemia and Parkinson’s disease can be attributed to defects in white matter. Further, white matter constitutes about 50\% of the brain (by volume) which makes it important to understand both its structure and tissue composition. Analyzing structural brain connectivity or the ‘connectome’ using DTI does not only help to understand the pathophysiological effect of brain disorders but also the structure of functional networks.
 
-In this type of imaging, each voxel is associated with a 3x3 Diffusion Tensor representing the diffusion of water molecules using a Gaussian Model. It is symmetric and contains six unique variables that characterize diffusion (as anisotropic or isotropic). This tensor has 3 eigenvalues and corresponding eigenvectors which represent the directions of Diffusion along the voxel, the voxels are usually 1 mm3 in size and often constitute components of more than one cell within them.
+In this type of imaging, each voxel is associated with a 3x3 Diffusion Tensor representing the diffusion of water molecules using a Gaussian Model. It is symmetric and contains six unique variables that characterize diffusion (as anisotropic or isotropic). This tensor has 3 eigenvalues and 3 corresponding eigenvectors which represent the directions of Diffusion along the voxel, the voxels are usually $1 mm3$ in size and often constitute components of more than one cell within them.
 \begin{equation*}
 D =
 \begin{pmatrix}
@@ -153,7 +154,7 @@ DTI images are usually represented by either encoding the tensor information usi
 
 There are three important quantities that can easily be derived from the diffusion tensor. These help to analyze the nature of differences in diffusion along the various voxels of the image. The three quantities are mean diffusivity, diffusion anisotropy and fractional anisotropy. The trace of the Diffusion tensor is used as Mean diffusivity. While the diffusion anisotropy exhibits the deviation of the voxel diffusion from isotropic diffusion; high diffusion anisotropy means that there is a preferred direction for the water molecules within that voxels to diffuse (an indication of more white matter?
 
-The fractional anisotropy determines a sort of average ratio of diffusion distortion from the applied gradient directions. In order to calculate the FA, the diffusion tensor is converted to a diagonal matrix (which has eigenvalues D1, D2,D2 the diffusion coefficients along xx,yy,zz) \\
+The fractional anisotropy determines an average ratio of diffusion distortion from the applied gradient directions. In order to calculate the FA, the diffusion tensor is converted to a diagonal matrix (which has eigenvalues D1, D2,D2 the diffusion coefficients along xx,yy,zz) \\
 \begin{equation*}
 D =
  \begin{pmatrix}
@@ -169,7 +170,6 @@ D1 & 0 & 0 \\
 FA = \sqrt{\frac{3}{2}} \frac{\sqrt{(D1 -D_{mean})^2+(D2 -D_{mean})^2 + (D3 -D_{mean})^2
 }}{\sqrt{D1^2 + D2^2 + D3^2}}
 \end{equation}
-
 
 Where D1, D2, and D3 are the corresponding eigenvalues and v1,v2,v3 are the eigenvectors.
 DTI is a popular method to study the orientation and organisation of white matter. However, its fails in regions containing populations of fiber orientations that have different orientations. It assumes that all white matter bundles in the brain have similar diffusion characteristics and attributes diffusion anisotropy to partial volume effects \cite{tournier2004direct}. Secondly, the Diffusion tensor only possess a single major eigenvalue for modelling the diffusion in one voxel and cannot be used for mixed fiber populations.
@@ -207,7 +207,7 @@ Tractography methods often use DTI in order to delineate the streamlines along t
 In deterministic tractography, the algorithm usually follows the direction of maximum diffusion from along the voxels by starting from a “seed” region. If the angle between two subsequent directions of maximum diffusion is less than predefined threshold then the algorithm proceeds tracking along the maximum diffusion direction of the second voxel and terminates when the condition is not met \cite{}.  Several other conditions can also be imposed on the basis tracking technique on the basis of investigator specific techniques. The deterministic tractography does not take into account any random or systematic errors that arise during signal acquisition, recording and transmission.
 
 \subsection{Analyzing the brain as a graph}
-
+\label{sec:braingraph}
 The human brain is considered to be one of the most intricate biological systems. It has been well established that this complex system can be modelled as a network composed of various dynamically interacting elements. It can hence be well represented as a graph for computational analysis. The networks perspective has gained tractable attention in Neuroscience and given rise to an ever expanding field of Network Neuroscience. Brain networks can vary at scale (from molecular interactions to cognition. With different interactions at each level, graph theory finds its applications in this field \cite{sporns2018graph}. 
 
 Graph theory can be defined as a branch of discrete mathematics that deals with the geometric analysis of graphs. Graph theory is useful in the analysis of biological networks since biological systems are dynamic and the interaction between the elements of the network gives rise to emergent properties. These properties can only be deciphered by comprehending the behavior with a systems approach. Graph theoretic methods can give comprehensive information about brain network topology, archictecture, structure and function. This has given rise to the field of connectomics \cite{sporns2005human} for analysis of the structural and functional brain connectivity. The strucutral networks usually represent the anatomy of the brain and are temporally stable (ignoring effects of plasticity and development). On the other hand, the functional networks are temporally variable and dense.
@@ -237,7 +237,7 @@ Usually in Neuroimaging studies the connectivity is analyzed at the macroscopic 
 
 \subsection{Functional Brain Connectivity}
 
-Funtional connectivity can be defined as the numerical analysis of brain regions engaged in a task. Any two brain regions are considered to be functionally connected if there exists a temporal correlation in activities recorded from them. The assumption in the use of functional connectivity is that two temporally coupled events in the brain could imply correlation in their association i.e. they are more associated to each other than to all those which are not temporally correlated.
+Functional connectivity can be defined as the numerical analysis of brain regions engaged in a task. Any two brain regions are considered to be functionally connected if there exists a temporal correlation in activities recorded from them. The assumption in the use of functional connectivity is that two temporally coupled events in the brain could imply correlation in their association i.e. they are more associated to each other than to all those which are not temporally correlated.
 
 The brain's functional connectivity can be analysed using fMRI data. It can be seen as a sort of dynamic connectivity. 
 
@@ -264,48 +264,75 @@ A simple t-test can also be computed and then the features can be filtered based
     t = \frac{|\overline{x_1} - \overline{x_2}|}{\sqrt{0.5(\sigma_{1}^2 + \sigma_{2}^2)}}
 \end{equation}
 The features can be ranked and the features with the highest t-test scores can be used to perform the classification. Numerical thresholds can also be imposed if suited to the nature of the problem. 
-\subsection{Maximum Weight Subgraph}
-In the above section it was presented that the brain can be analyzed as a graph. 
 
-The definition of the maximum weight connected subgraph can be given as 
+
+\subsection{Maximum Weight Connected Subgraph}
+\label{sec:MEWS}
+The Maximum Weight Connected Subgraph (MWCS) problem falls into the class of NP-hard problems. This method is widely used in biological network enrichment analysis \cite{DBLP:journals/corr/LobodaAS16}. One important application of this technique is to detect
+differentially regulated pathways based on environmental or phenotypical changes (\cite{althaus2014algorithms}). It can be extended to analyse brain networks to determine brain pathways which are correlated to a particular behavioral measurement/ physiological or epigenetic character. Sicne the number of connections are man, it is important to distinguish their properites etc, 
+
+Consider an un-directed, connected graph $G = (V,E)$ with weighted nodes and edges. Let $V$ represents its set of vertices. $E$ the set of it's nodes, $w_e$ the weight of an edge $e$ and $w_v$ the weigh of a node $v$. Mathematically, the MWCS can be described as that subgraph  $\Tilde{G} = (\Tilde{V}, \Tilde{E})$ which maximizes the following function:
 \begin{equation}
-    \Omega(\Tilde{G}) = \sum_{v in \Tilde{V}} w_v + \sum_{e \in \Tilde{E}} w_e \longrightarrow max
+\label{eq:sumfun}
+    \Omega(\Tilde{G}) = \sum_{v \in \Tilde{V}} w_v + \sum_{e \in \Tilde{E}} w_e \longrightarrow max
 \end{equation}
 
-Such a problem is formulated using a Mixed INteger programming formulation. 
+The generalized MWCS can be converted into the Maximum Edge Weight Subgraph(MEWS) problem by either considering the weights of all the nodes in the equation \ref{eq:sumfun} as zero or equivalently constant valued so that the subgraph which maximizes the following constraint can be found.
+\begin{equation}
+    \label{eq:sumews}
+    \Phi(\Tilde{G}) = \sum_{e \in \Tilde{E}} w_e \longrightarrow max
+\end{equation}
 
-The representation is as follows for the subgraph. the variables are
-\begin{itemize}
-    \item Binary variable $y_v = 1$ iff $v \in V$ and $v \in \Tilde{V}$
-    \item Binary variable $w_e =1 $ iff $e \in E$ and $e \in \Tilde{E}$
-\end{itemize}
-These variables can represent a valid subgraph iff for the constraints be satisfied. 
-\begin{align*}
-    w_e \leq y_v & \forall v \in \V, e \in \delta_{v}
-\end{align*}
+According to the conceptual framework in \cite{DBLP:journals/corr/LobodaAS16}, such a problem is formulated using a Mixed Integer Progrbgraamming (MIP) formulation. By using  a mixture of integral and binary variables, the maximal value of the objective function (equation \ref{eq:sumfun}) can be optimally found using a set of constraints.
 
-For the non-linear formulation the graph can be considered as set of binary variables and continuous variables
+The first step of formulating such a problem is to represent a candidate optimal subgraph. The membership of nodes and vertices in the subgraph represented using binary variables:
+\begin{align}
+    \label{eq:y_v}
+    y_v = 1  \iff v \in V  \textrm{ and } v \in \Tilde{V} \\
+    \label{eq:w_e}
+    w_e =1  \iff e \in E  \textrm{  and }  e \in \Tilde{E}
+\end{align}
+Conceptually, an edge should be present in the subgraph only if both the end vertices are also present in the subgraph. In equation \ref{eq:memberconstraint} this condition is represented as an inequality.
+\begin{align}
+    \label{eq:memberconstraint}
+    w_e \leq y_v && \forall v \in V, e \in \delta_{v}
+\end{align}
+wehre $\delta_{v}$ represents the set of incoming edges on a node. Consider if $y_v = 0$, then $w_e$ has to be zero because an edge cannot be present without the node being present and if $y_v = 1$ then $w_e = 0$ or $w_e = 1$ because it is not necessary for an edge to be present if a node is present.
+
+After the subgraphbcan be represented, it is important to establish the validity of any subgraph. A valid MWCS needs to be connected and maximise the function \ref{eq:sumfunc}. To establish the connectedness of the subgraph the concept of an arborescence needs to be introduced.
+
+An arborescence is an acyclic directed graph in with a root node $v$, having exactly one path from $v$ to any other vertex $u$. The connectedness in a graph is defined as the existence of a simple path between any two nodes. So, for the valid connected subgraph each of it's traversal has to be a valid arborescence. The MWCS can be constructed in a bottom-up fashion by first determining the valid arboresnces and then combining them to form the optimal subgraph.
+
+The traversal of any graph can be found by considering $S = (V,A)$ derived from $G=(V,E)$  where each undirected edge $(v,u)$ is replaced by two directed arcs $(u,v)$ and $(v,u)$. To ensure the connectedness of the subgraph (formed by combining arborescences) a non-linear formulation is needed wehre:
 \begin{itemize}
     \item Binary variable $x_a = 1$ iff $a \in A$ belongs to the arborescence.
     \item Binary variable $r_v = 1$ iff $v \in V$ is the root of the arborescence,
-    \item Continuous variable $d_v = n$ if the traversal from the root of the arborescence to the vertex v goes through n vertices. The $d_v$ value can be arbitrary if the vertex v does not belong to the optimal solution.
+    \item Continuous variable $d_v = n$ if the length of the simple path from the root to the vertex v is n. The $d_v$ value can be arbitrary if the vertex v does not belong to the optimal solution
 \end{itemize}
-To ensure the validity of the arborescence the following constraints were introduced. 
+As pointed above a valid arborescence corresponds to the traversal of the connected subgraph. Hence the arborescence needs satisfy the following constraints, according to \cite{haouari2013enhanced}:
 \begin{align}
+    \label{eq:rv}
     \sum_{v \in V} r_v = 1\\
+    \label{eq:dv}
     1 \leq d_v \leq n && \forall v \in V \\
+    \label{eq:uvrv}
     \sum_{(u,v) \in A} x_{uv} + r_v = y_v && \forall v \in V\\
+    \label{eq:fronba}
     x_{uv} + x_{vu} \leq w_e && \forall e =(v,u) \in A\\
-    d_v r_v = r_v
+    \label{eq:dvrv}
+    d_v r_v = r_v\\
+    \label{eq:dudv}
+    d_u x_{vu} = (d_v + 1) x_{vu} && \forall e=(v, u) \in A\\
 \end{align}
+Equation \ref{eq:rv} ensures that there is only one root of the arborescence. Equation \ref{eq:dv} limits the path length from the root vertex to any other vertex in the arborescence if it is present in the subgraph. With equation \ref{eq:uvrv} it can be established if a vertex is a root then there are no incoming edges and that there is a maximum of one incoming edge on each node. The constraint \ref{eq:fronba} says that either the forward arc or the backward arc can be a part of the valid arborescence and not both. The last two constraint \ref{eq:dvrv}  and \ref{eq:dudv} imposes that the length of the path to the root is always 1 and the distance of the nodes correspond to the direction of the edges.
 
-Linearization of the above inequalities
+It can be seen that equation \ref{eq:dudv} and \ref{dvrv} are non-linear. Combining the above equations the linearization is as follows:
 \begin{align}
     d_v + n r_v \leq n && \forall v \in V\\
     n + d_u - d_v \geq (n+1) x_{vu} && \forall (v,u) \in A\\
     n + d_v - d_u \geq (n+1) x_{vu} && \forall (v,u) \in A\\
 \end{align}
-
+Any arbitrary node is considered to be the root of such an arborescence. The arborescence are then combined on the basis of the maximal edge and node weighhts to yield the final subgraph. 
 
 \section{Classification}
 \subsection{Support Vector Classifiers}
