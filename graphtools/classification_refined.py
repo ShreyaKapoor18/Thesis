@@ -50,7 +50,7 @@ def transform_features(X_train, X_test, y_train, per, edge):
     X_test = X_test.iloc[:, index[0]]
 
     assert list(X_train.index) == list(y_train.index)
-    return X_train, X_test, arr, index
+    return X_train, X_test, arr, index[0]
 
 
 def solver(X_train, X_test, y_train, strls_num, feature, thresh, val, max_num_nodes, avg_thresh,
@@ -202,7 +202,7 @@ def classify(l1, classifier, params, strls_num, feature_selection, choice, refit
                                                        metrics, refit_metric)
                 # to make the program faster only do this when the solver is actually producing some results
                 results_solver.append(
-                    [classifier, target, choice, edge, feature_selection, feature, len(edge_wts) * 100 / tri,
+                    [classifier, target, choice, edge, feature_selection, feature, len(edge_wts) * 100 / (tri-84),
                      refit_metric, max_num_nodes,
                      len(edge_wts), sum([edge > 0 for edge in edge_wts]) * 100 / len(edge_wts)])
                 results_solver[-1].append(thresh)
@@ -227,13 +227,13 @@ def classify(l1, classifier, params, strls_num, feature_selection, choice, refit
                         X_test_inl = X_test_l
                     X_train_inl, X_test_inl, arr, index = transform_features(X_train_inl, X_test_inl, y_train_l, per,
                                                                      edge)
-                    output_gr = BrainGraph(edge, feature, 'baseline', target, max_num_nodes, val, thresh)
+                    output_gr = BrainGraph(edge, f'{feature}_baseline', 'baseline', target, per, val, thresh)
                     edges = []
                     nodes = set()
                     for ind in index:
-                        edges.append(np.triu_indices(84)[0][ind], np.triu_indices(84)[1][ind],1)
-                        nodes.add(np.triu_indices(84)[0][ind])
-                        nodes.add(np.triu_indices(84)[1][ind])
+                        edges.append((np.triu_indices(84)[0][ind]+ 1, np.triu_indices(84)[1][ind]+ 1,1))
+                        nodes.add(np.triu_indices(84)[0][ind] + 1)
+                        nodes.add(np.triu_indices(84)[1][ind] + 1)
                     output_gr.add_nodes_from(nodes)
                     for node in nodes:
                         output_gr.nodes[node]['label'] = 1
@@ -248,5 +248,5 @@ def classify(l1, classifier, params, strls_num, feature_selection, choice, refit
                     for metric in metrics:
                         results_base[-1].extend([round(100*test_res[metric], 3)])
                     results_base[-1].extend([self_loops, thresh])
-                    # convert the output to edges in the baseline
+                    # make convert the output to edges in the baseline
     return results_base, results_solver
