@@ -37,23 +37,26 @@ mean_FA.max().max()
 mean_FA.mean().max()
 #%%
 '''
-
+#%%
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 
 df = pd.read_csv('outputs/csvs/summary.csv')
-x = df['Output_Graph_nodes']
-y = df['Output_Graph_edges']
+fig = plt.figure(figsize=(50,40))
 target = 'Gender'
-m, b = np.polyfit(x,y,1)
-plt.plot(x, m*x +b)
-plt.scatter(x,y)
-plt.xlabel('Number of nodes preserved')
-plt.ylabel('Number of edges preseved')
-plt.title(f'y = {m.round(3)} x + {b.round(3)}')
+g = sns.FacetGrid(df, col='Feature_type', row ='Edge', sharex=True, margin_titles=True,
+                  legend_out=True)
+g = g.map(plt.plot,'Output_Graph_nodes', 'Output_Graph_edges' )
+g= (g.map(sns.scatterplot, 'Output_Graph_nodes', 'Output_Graph_edges')).add_legend()
+#[plt.setp(ax.texts, text="") for ax in g.axes.flat]
+# remove the original texts
+# important to add this before setting titles
+#g.set_titles(row_template = '{row_name}', col_template = '{col_name}')
+fig.suptitle('Gender Classification - Solver')
 plt.savefig(f'outputs/figures/{target}_nodes_preserved.png')
+plt.show()
 #%%
 solver = pd.read_csv('outputs/csvs/solver.csv')
 s1 = solver.groupby(by=['Type of feature', 'Edge'])
@@ -69,7 +72,7 @@ def multi_plot(x, y1,y2, y3, y4, **kwargs):
 
 #%%
 fig = plt.figure(figsize=(50,40))
-g = sns.FacetGrid(solver, col='Type of feature', row ='Edge', sharex=True, margin_titles=True,
+g = sns.FacetGrid(solver, col='Type of feature', row ='Edge', hue='Classifier', sharex=True, margin_titles=True,
                   legend_out=True,hue_kws=dict(color=['red','blue','pink','orange', "1","2","3","4"]))
 g= (g.map(multi_plot, 'Num edges','test_roc_auc_ovr_weighted', 'test_accuracy',
       'test_balanced_accuracy', 'test_f1_weighted')).add_legend()
@@ -114,3 +117,36 @@ g.axes[1,0].set_ylabel('metrics')
 fig.suptitle('Gender Classification - Solver')
 plt.savefig('outputs/figures/solver_results_classifier.png')
 plt.show()
+#%%
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+import seaborn as sns
+base = pd.read_csv('outputs/csvs/base.csv')
+base = base[base['Num_features']<=1000]
+solver = pd.read_csv('outputs/csvs/solver.csv')
+solver = solver.drop(columns=['Num_nodes', '% Positive edges', 'ROI_strl_thresh'])
+base = base.drop(columns=['Self_loops', 'ROI_strl_thresh'])
+base = base.rename(columns={'Num_features':'Num edges'})
+base.columns
+solver.columns
+set(base.columns) == set(solver.columns)
+combined = pd.concat([solver, base], axis=0)
+combined.to_csv('combined_result_solver_base.csv')
+#%%
+for clf in ['SVC', 'RF', 'MLP']:
+    svc = combined[combined['Classifier'] == clf]
+    fig = plt.figure(figsize=(50,40))
+    g = sns.FacetGrid(svc, col='Type of feature', row ='Edge', margin_titles=True,
+                      legend_out=True, hue='Feature Selection')
+
+    g = g.map(plt.plot,'Num edges','test_roc_auc_ovr_weighted' )
+    g= (g.map(sns.scatterplot, 'Num edges','test_roc_auc_ovr_weighted')).add_legend()
+    #[plt.setp(ax.texts, text="") for ax in g.axes.flat]
+    # remove the original texts
+                                                        # important to add this before setting titles
+    #g.set_titles(row_template = '{row_name}', col_template = '{col_name}')
+    g.fig.subplots_adjust(top=0.5)
+    g.fig.suptitle(f'Gender classification- {clf}')
+    plt.savefig(f'outputs/figures/comparison_roc_auc_{clf}.png')
+    plt.show()

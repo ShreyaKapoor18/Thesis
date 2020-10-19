@@ -1,0 +1,878 @@
+@string { NIPS = "Advances in Neural Information Processing Systems (NIPS)"}
+@string { ICCV = " International Conference on Computer Vision (ICCV)"}
+@string { ICML = "International Conference on Machine Learning (ICML)"}
+@string { CVPR = "Computer Vision and Pattern Recognition (CVPR)"}
+@string { IROS = "Intelligent Robots and Systems (IROS)"}
+@string { IJCNN = "International Joint Conference on Neural Networks (IJCNN)"}
+@string { ICANN = "Artificial Neural Networks and Machine Learning (ICANN)"}
+@string { GCOW = "Greatest Conference Of the World (GCOW)"}
+
+
+@inproceedings{muster,
+  title={The greatest paper of the world},
+  author={Max Mustermann, Mia Musterfrau},
+  booktitle=GCOW,
+  volume={42},
+  pages={23-42},
+  year={2142},
+}
+@article{TOURNIER2019116137,
+title = "MRtrix3: A fast, flexible and open software framework for medical image processing and visualisation",
+journal = "NeuroImage",
+volume = "202",
+pages = "116137",
+year = "2019",
+issn = "1053-8119",
+doi = "https://doi.org/10.1016/j.neuroimage.2019.116137",
+url = "http://www.sciencedirect.com/science/article/pii/S1053811919307281",
+author = "J-Donald Tournier and Robert Smith and David Raffelt and Rami Tabbara and Thijs Dhollander and Maximilian Pietsch and Daan Christiaens and Ben Jeurissen and Chun-Hung Yeh and Alan Connelly",
+keywords = "MRI, Software, Image, Processing, Visualisation",
+abstract = "MRtrix3 is an open-source, cross-platform software package for medical image processing, analysis and visualisation, with a particular emphasis on the investigation of the brain using diffusion MRI. It is implemented using a fast, modular and flexible general-purpose code framework for image data access and manipulation, enabling efficient development of new applications, whilst retaining high computational performance and a consistent command-line interface between applications. In this article, we provide a high-level overview of the features of the MRtrix3 framework and general-purpose image processing applications provided with the software."
+}
+%%%% Diffusion Image processing with HCP data as mentioned on the link: https://www.humanconnectome.org/study/hcp-young-adult/document/hcp-citations %%%%%%%%%%%%%%%%%%%%%
+@article{ANDERSSON2003870,
+title = "How to correct susceptibility distortions in spin-echo echo-planar images: application to diffusion tensor imaging",
+journal = "NeuroImage",
+volume = "20",
+number = "2",
+pages = "870 - 888",
+year = "2003",
+issn = "1053-8119",
+doi = "https://doi.org/10.1016/S1053-8119(03)00336-7",
+url = "http://www.sciencedirect.com/science/article/pii/S1053811903003367",
+author = "Jesper L.R. Andersson and Stefan Skare and John Ashburner",
+abstract = "Diffusion tensor imaging is often performed by acquiring a series of diffusion-weighted spin-echo echo-planar images with different direction diffusion gradients. A problem of echo-planar images is the geometrical distortions that obtain near junctions between tissues of differing magnetic susceptibility. This results in distorted diffusion-tensor maps. To resolve this we suggest acquiring two images for each diffusion gradient; one with bottom-up and one with top-down traversal of k-space in the phase-encode direction. This achieves the simultaneous goals of providing information on the underlying displacement field and intensity maps with adequate spatial sampling density even in distorted areas. The resulting DT maps exhibit considerably higher geometric fidelity, as assessed by comparison to an image volume acquired using a conventional 3D MR technique."
+}
+@article{ANDERSSON2015166,
+title = "Non-parametric representation and prediction of single- and multi-shell diffusion-weighted MRI data using Gaussian processes",
+journal = "NeuroImage",
+volume = "122",
+pages = "166 - 176",
+year = "2015",
+issn = "1053-8119",
+doi = "https://doi.org/10.1016/j.neuroimage.2015.07.067",
+url = "http://www.sciencedirect.com/science/article/pii/S1053811915006874",
+author = "Jesper L.R. Andersson and Stamatios N. Sotiropoulos",
+keywords = "Diffusion MRI, Gaussian process, Non-parametric representation, Multi-shell",
+abstract = "Diffusion MRI offers great potential in studying the human brain microstructure and connectivity. However, diffusion images are marred by technical problems, such as image distortions and spurious signal loss. Correcting for these problems is non-trivial and relies on having a mechanism that predicts what to expect. In this paper we describe a novel way to represent and make predictions about diffusion MRI data. It is based on a Gaussian process on one or several spheres similar to the Geostatistical method of “Kriging”. We present a choice of covariance function that allows us to accurately predict the signal even from voxels with complex fibre patterns. For multi-shell data (multiple non-zero b-values) the covariance function extends across the shells which means that data from one shell is used when making predictions for another shell."
+}
+@article{ANDERSSON20161063,
+title = "An integrated approach to correction for off-resonance effects and subject movement in diffusion MR imaging",
+journal = "NeuroImage",
+volume = "125",
+pages = "1063 - 1078",
+year = "2016",
+issn = "1053-8119",
+doi = "https://doi.org/10.1016/j.neuroimage.2015.10.019",
+url = "http://www.sciencedirect.com/science/article/pii/S1053811915009209",
+author = "Jesper L.R. Andersson and Stamatios N. Sotiropoulos",
+keywords = "Diffusion, Eddy current, Movement, Susceptibility, Registration",
+abstract = "In this paper we describe a method for retrospective estimation and correction of eddy current (EC)-induced distortions and subject movement in diffusion imaging. In addition a susceptibility-induced field can be supplied and will be incorporated into the calculations in a way that accurately reflects that the two fields (susceptibility- and EC-induced) behave differently in the presence of subject movement. The method is based on registering the individual volumes to a model free prediction of what each volume should look like, thereby enabling its use on high b-value data where the contrast is vastly different in different volumes. In addition we show that the linear EC-model commonly used is insufficient for the data used in the present paper (high spatial and angular resolution data acquired with Stejskal–Tanner gradients on a 3T Siemens Verio, a 3T Siemens Connectome Skyra or a 7T Siemens Magnetome scanner) and that a higher order model performs significantly better. The method is already in extensive practical use and is used by four major projects (the WU-UMinn HCP, the MGH HCP, the UK Biobank and the Whitehall studies) to correct for distortions and subject movement."
+}
+@article{HCPmain,
+title = "The Human Connectome Project: A data acquisition perspective",
+journal = "NeuroImage",
+volume = "62",
+number = "4",
+pages = "2222 - 2231",
+year = "2012",
+note = "Connectivity",
+issn = "1053-8119",
+doi = "https://doi.org/10.1016/j.neuroimage.2012.02.018",
+url = "http://www.sciencedirect.com/science/article/pii/S1053811912001954",
+author = "D.C. {Van Essen} and K. Ugurbil and E. Auerbach and D. Barch and T.E.J. Behrens and R. Bucholz and A. Chang and L. Chen and M. Corbetta and S.W. Curtiss and S. {Della Penna} and D. Feinberg and M.F. Glasser and N. Harel and A.C. Heath and L. Larson-Prior and D. Marcus and G. Michalareas and S. Moeller and R. Oostenveld and S.E. Petersen and F. Prior and B.L. Schlaggar and S.M. Smith and A.Z. Snyder and J. Xu and E. Yacoub",
+keywords = "Connectivity, fMRI, Diffusion imaging, MEG/EEG, Twins, Behavior",
+abstract = "The Human Connectome Project (HCP) is an ambitious 5-year effort to characterize brain connectivity and function and their variability in healthy adults. This review summarizes the data acquisition plans being implemented by a consortium of HCP investigators who will study a population of 1200 subjects (twins and their non-twin siblings) using multiple imaging modalities along with extensive behavioral and genetic data. The imaging modalities will include diffusion imaging (dMRI), resting-state fMRI (R-fMRI), task-evoked fMRI (T-fMRI), T1- and T2-weighted MRI for structural and myelin mapping, plus combined magnetoencephalography and electroencephalography (MEG/EEG). Given the importance of obtaining the best possible data quality, we discuss the efforts underway during the first two years of the grant (Phase I) to refine and optimize many aspects of HCP data acquisition, including a new 7T scanner, a customized 3T scanner, and improved MR pulse sequences."
+}
+
+@article{smith2013sift,
+  title={SIFT: Spherical-deconvolution informed filtering of tractograms},
+  author={Smith, Robert E and Tournier, Jacques-Donald and Calamante, Fernando and Connelly, Alan},
+  journal={Neuroimage},
+  volume={67},
+  pages={298--312},
+  year={2013},
+  publisher={Elsevier}
+}
+@ARTICLE{10.3389/fnins.2018.00525,
+  
+AUTHOR={Du, Yuhui and Fu, Zening and Calhoun, Vince D.},   
+	 
+TITLE={Classification and Prediction of Brain Disorders Using Functional Connectivity: Promising but Challenging},      
+	
+JOURNAL={Frontiers in Neuroscience},      
+	
+VOLUME={12},      
+
+PAGES={525},     
+	
+YEAR={2018},      
+	  
+URL={https://www.frontiersin.org/article/10.3389/fnins.2018.00525},       
+	
+DOI={10.3389/fnins.2018.00525},      
+	
+ISSN={1662-453X},   
+   
+ABSTRACT={Brain functional imaging data, especially functional magnetic resonance imaging (fMRI) data, have been employed to reflect functional integration of the brain. Alteration in brain functional connectivity (FC) is expected to provide potential biomarkers for classifying or predicting brain disorders. In this paper, we present a comprehensive review in order to provide guidance about the available brain FC measures and typical classification strategies. We survey the state-of-the-art FC analysis methods including widely used static functional connectivity (SFC) and more recently proposed dynamic functional connectivity (DFC). Temporal correlations among regions of interest (ROIs), data-driven spatial network and functional network connectivity (FNC) are often computed to reflect SFC from different angles. SFC can be extended to DFC using a sliding-window framework, and intrinsic connectivity states along the time-varying connectivity patterns are typically extracted using clustering or decomposition approaches. We also briefly summarize window-less DFC approaches. Subsequently, we highlight various strategies for feature selection including the filter, wrapper and embedded methods. In terms of model building, we include traditional classifiers as well as more recently applied deep learning methods. Moreover, we review representative applications with remarkable classification accuracy for psychosis and mood disorders, neurodevelopmental disorder, and neurological disorders using fMRI data. Schizophrenia, bipolar disorder, autism spectrum disorder (ASD), attention deficit hyperactivity disorder (ADHD), Alzheimer's disease and mild cognitive impairment (MCI) are discussed. Finally, challenges in the field are pointed out with respect to the inaccurate diagnosis labeling, the abundant number of possible features and the difficulty in validation. Some suggestions for future work are also provided.}
+}
+﻿@Article{Mastrogiacomo2019,
+author={Mastrogiacomo, Simone
+and Dou, Weiqiang
+and Jansen, John A.
+and Walboomers, X. Frank},
+title={Magnetic Resonance Imaging of Hard Tissues and Hard Tissue Engineered Bio-substitutes},
+journal={Molecular Imaging and Biology},
+year={2019},
+month={Dec},
+day={01},
+volume={21},
+number={6},
+pages={1003-1019},
+abstract={Magnetic resonance imaging (MRI) is a non-invasive diagnostic imaging tool based on the detection of protons into the tissues. This imaging technique is remarkable because of high spatial resolution, strong soft tissue contrast and specificity, and good depth penetration. However, MR imaging of hard tissues, such as bone and teeth, remains challenging due to low proton content in such tissues as well as to very short transverse relaxation times (T2). To overcome these issues, new MRI techniques, such as sweep imaging with Fourier transformation (SWIFT), ultrashort echo time (UTE) imaging, and zero echo time (ZTE) imaging, have been developed for hard tissues imaging with promising results reported. Within this article, MRI techniques developed for the detection of hard tissues, such as bone and dental tissues, have been reviewed. The main goal was thus to give a comprehensive overview on the corresponding (pre-) clinical applications and on the potential future directions with such techniques applied. In addition, a section dedicated to MR imaging of novel biomaterials developed for hard tissue applications was given as well.},
+issn={1860-2002},
+doi={10.1007/s11307-019-01345-2},
+url={https://doi.org/10.1007/s11307-019-01345-2}
+}
+@book{mcrobbie_moore_graves_prince_2006, place={Cambridge}, edition={2}, title={MRI from Picture to Proton}, DOI={10.1017/CBO9780511545405}, publisher={Cambridge University Press}, author={McRobbie, Donald W. and Moore, Elizabeth A. and Graves, Martin J. and Prince, Martin R.}, year={2006}}
+@article{PhysRev.70.460,
+  title = {Nuclear Induction},
+  author = {Bloch, F.},
+  journal = {Phys. Rev.},
+  volume = {70},
+  issue = {7-8},
+  pages = {460--474},
+  numpages = {0},
+  year = {1946},
+  month = {Oct},
+  publisher = {American Physical Society},
+  doi = {10.1103/PhysRev.70.460},
+  url = {https://link.aps.org/doi/10.1103/PhysRev.70.460}
+}
+@article{wong2016,
+author = "Wong, Raymond K. W. and Lee, Thomas C. M. and Paul, Debashis and Peng, Jie and Disease Neuroimaging Initiative, Alzheimer’s",
+doi = "10.1214/15-AOAS880",
+fjournal = "Annals of Applied Statistics",
+journal = "Ann. Appl. Stat.",
+month = "09",
+number = "3",
+pages = "1137--1156",
+publisher = "The Institute of Mathematical Statistics",
+title = "Fiber direction estimation, smoothing and tracking in diffusion MRI",
+url = "https://doi.org/10.1214/15-AOAS880",
+volume = "10",
+year = "2016"
+}
+
+@article{dietrich_technical_2010-2,
+	title = {Technical aspects of {MR} diffusion imaging of the body},
+	volume = {76},
+	issn = {0720048X},
+	url = {https://linkinghub.elsevier.com/retrieve/pii/S0720048X10000999},
+	doi = {10.1016/j.ejrad.2010.02.018},
+	language = {en},
+	number = {3},
+	urldate = {2020-09-16},
+	journal = {European Journal of Radiology},
+	author = {Dietrich, Olaf and Biffar, Andreas and Baur-Melnyk, Andrea and Reiser, Maximilian F.},
+	month = dec,
+	year = {2010},
+	pages = {314--322}
+}
+@article{MRIrecon,
+author = {Ridgway, John},
+year = {2010},
+month = {11},
+pages = {71},
+title = {Cardiovascular magnetic resonance physics for clinicians: Part I},
+volume = {12},
+journal = {Journal of cardiovascular magnetic resonance : official journal of the Society for Cardiovascular Magnetic Resonance},
+doi = {10.1186/1532-429X-12-71}
+}
+@Inbook{Elam2013,
+author="Elam, Jennifer Stine
+and Van Essen, David",
+editor="Jaeger, Dieter
+and Jung, Ranu",
+title="Human Connectome Project",
+bookTitle="Encyclopedia of Computational Neuroscience",
+year="2013",
+publisher="Springer New York",
+address="New York, NY",
+pages="1--4",
+isbn="978-1-4614-7320-6",
+doi="10.1007/978-1-4614-7320-6_592-1",
+url="https://doi.org/10.1007/978-1-4614-7320-6_592-1"
+}
+@article{white1986structure,
+  title={The structure of the nervous system of the nematode Caenorhabditis elegans},
+  author={White, John G and Southgate, Eileen and Thomson, J Nichol and Brenner, Sydney},
+  journal={Philos Trans R Soc Lond B Biol Sci},
+  volume={314},
+  number={1165},
+  pages={1--340},
+  year={1986},
+  publisher={Citeseer}
+}
+@Article{burges1998a,
+author = {Burges, C.J.C. and Burges, Chris J.C.},
+title = {A Tutorial on Support Vector Machines for Pattern Recognition},
+year = {1998},
+month = {January},
+abstract = {The tutorial starts with an overview of the concepts of VC dimension and structural risk minimization. We then describe linear Support Vector Machines (SVMs) for separable and non-separable data, working through a non-trivial example in detail. We describe a mechanical analogy, and discuss when SVM solutions are unique and when they are global. We describe how support vector training can be practically implemented, and discuss in detail the kernel mapping technique which is used to construct SVM solutions which are nonlinear in the data. We show how Support Vector machines can have very large (even infinite) VC dimension by computing the VC dimension for homogeneous polynomial and Gaussian radial basis function kernels. While very high VC dimension would normally bode ill for generalization performance, and while at present there exists no theory which shows that good generalization performance is guaranteed for SVMs, there are several arguments which support the observed high accuracy of SVMs, which we review. Results of some experiments which were inspired by these arguments are also presented. We give numerous examples and proofs of most of the key theorems. There is new material, and I hope that the reader will find that even old material is cast in a fresh light.},
+url = {https://www.microsoft.com/en-us/research/publication/a-tutorial-on-support-vector-machines-for-pattern-recognition/},
+pages = {121-167},
+journal = {Data Mining and Knowledge Discovery},
+volume = {2},
+}
+@article{doi:10.1002/nbm.3752,
+author = {Sotiropoulos, Stamatios N. and Zalesky, Andrew},
+title = {Building connectomes using diffusion MRI: why, how and but},
+journal = {NMR in Biomedicine},
+volume = {32},
+number = {4},
+pages = {e3752},
+keywords = {brain network, connections, parcellation, tracers, tractography, white matter fibers},
+doi = {10.1002/nbm.3752},
+url = {https://onlinelibrary.wiley.com/doi/abs/10.1002/nbm.3752},
+eprint = {https://onlinelibrary.wiley.com/doi/pdf/10.1002/nbm.3752},
+note = {e3752 NBM-16-0139.R1},
+abstract = {Why has diffusion MRI become a principal modality for mapping connectomes in vivo? How do different image acquisition parameters, fiber tracking algorithms and other methodological choices affect connectome estimation? What are the main factors that dictate the success and failure of connectome reconstruction? These are some of the key questions that we aim to address in this review. We provide an overview of the key methods that can be used to estimate the nodes and edges of macroscale connectomes, and we discuss open problems and inherent limitations. We argue that diffusion MRI-based connectome mapping methods are still in their infancy and caution against blind application of deep white matter tractography due to the challenges inherent to connectome reconstruction. We review a number of studies that provide evidence of useful microstructural and network properties that can be extracted in various independent and biologically relevant contexts. Finally, we highlight some of the key deficiencies of current macroscale connectome mapping methodologies and motivate future developments.},
+year = {2019}
+}
+@book{jones2010diffusion,
+  title={Diffusion MRI},
+  author={Jones, D.K.},
+  isbn={9780199708703},
+  lccn={2009050107},
+  url={https://books.google.de/books?id=dbZCMePD52AC},
+  year={2010},
+  publisher={Oxford University Press}
+}
+@article{bassett2017network,
+  title={Network neuroscience},
+  author={Bassett, Danielle S and Sporns, Olaf},
+  journal={Nature neuroscience},
+  volume={20},
+  number={3},
+  pages={353--364},
+  year={2017},
+  publisher={Nature Publishing Group}
+}
+@article{network_neuroscience_editorial,
+author = {Sporns, Olaf and Bassett, Danielle S.},
+title = {Editorial: New Trends in Connectomics},
+journal = {Network Neuroscience},
+volume = {2},
+number = {2},
+pages = {125-127},
+year = {2018},
+doi = {10.1162/netn\_e\_00052},
+
+URL = { 
+        https://doi.org/10.1162/netn_e_00052
+    
+},
+eprint = { 
+        https://doi.org/10.1162/netn_e_00052
+    
+}
+,
+    abstract = { Connectomics is an integral part of network neuroscience. The field has undergone rapid expansion over recent years and increasingly involves a blend of experimental and computational approaches to brain connectivity. This Focus Feature on “New Trends in Connectomics” aims to track the progress of the field and its many applications across different neurobiological systems and species. }
+}
+
+@article{fornito2015connectomics,
+  title={The connectomics of brain disorders},
+  author={Fornito, Alex and Zalesky, Andrew and Breakspear, Michael},
+  journal={Nature Reviews Neuroscience},
+  volume={16},
+  number={3},
+  pages={159--172},
+  year={2015},
+  publisher={Nature Publishing Group}
+}
+@article{elegans,
+author = {Cook, Steven and Jarrell, Travis and Brittin, Christopher and Wang, Yi and Bloniarz, Adam and Yakovlev, Maksim and Nguyen, Ken and Tang, Leo and Bayer, Emily and Duerr, Janet and Bülow, Hannes and Hobert, Oliver and Hall, David and Emmons, Scott},
+year = {2019},
+month = {07},
+pages = {63},
+title = {Whole-animal connectomes of both Caenorhabditis elegans sexes},
+volume = {571},
+journal = {Nature},
+doi = {10.1038/s41586-019-1352-7}
+}
+@ARTICLE{Sporns:2007,
+AUTHOR = {Sporns, O. },
+TITLE   = {{B}rain connectivity},
+YEAR    = {2007},
+JOURNAL = {Scholarpedia},
+VOLUME  = {2},
+NUMBER  = {10},
+PAGES   = {4695},
+DOI     = {10.4249/scholarpedia.4695},
+NOTE    = {revision \#91084}
+}
+@article{pavlopoulos2011using,
+  title={Using graph theory to analyze biological networks},
+  author={Pavlopoulos, Georgios A and Secrier, Maria and Moschopoulos, Charalampos N and Soldatos, Theodoros G and Kossida, Sophia and Aerts, Jan and Schneider, Reinhard and Bagos, Pantelis G},
+  journal={BioData mining},
+  volume={4},
+  number={1},
+  pages={10},
+  year={2011},
+  publisher={Springer}
+}
+@misc { FiveFactorModelofPersonality,
+      
+      title = "Five-Factor Model of Personality",
+      isbn = "???",
+      url = "https://www.oxfordbibliographies.com/view/document/obo-9780199828340/obo-9780199828340-0120.xml"
+}
+@inbook{inbook,
+author = {Allen, Timothy and Deyoung, Colin},
+year = {2016},
+month = {01},
+pages = {},
+title = {Personality Neuroscience and the Five-Factor Model},
+doi = {10.1093/oxfordhb/9780199352487.013.26}
+}
+article{SAJIP88,
+	author = {S. Rothmann and E. P. Coetzer},
+	title = {The big five personality dimensions and job performance},
+	journal = {SA Journal of Industrial Psychology},
+	volume = {29},
+	number = {1},
+	year = {2003},
+	keywords = {Big five personality dimensions; Job performance},
+	abstract = {The objective of this research was to determine the relationship between personality dimensions and job performance. A cross-sectional survey design was used. The study population consisted of 159 employees of a pharmaceutical company. The NEO-Personality Inventory – Revised and Performance Appraisal Questionnaire were used as measuring instruments. The results showed that Emotional Stability, Extraversion, Openness to Experience and Conscientiousness were related to task performance and creativity. Three personality dimensions, namely Emotional Stability, Openness to Experience and Agreeableness, explained 28% of the variance in participants’ management performance.  Opsomming Die doelstelling van hierdie navorsing was om die verband tussen persoonlikheidsdimensies en werksprestasie te bepaal. ‘n Eenmalige dwarsdeursnee-ontwerp is gebruik. Die ondersoekgroep het bestaan uit 159 werknemers binne ‘n farmaseutiese organisasie. Die NEO-Personality Inventory – Revised en die Prestasiebeoordelingsvraelys is as meetinstrumente gebruik. Die resultate het aangetoon dat Emosionele Stabiliteit, Ekstroversie en Konsensieusheid met taakverrigting en kreatiwiteit verband hou. Drie persoonlikheidsdimensies, naamlik Emosionele Stabiliteit, Openheid vir Ervaring en Inskiklikheid, het 28% van die variansie in bestuursprestasie (soos beoordeel deur toesighouers) voorspel.},
+	issn = {2071-0763},	doi = {10.4102/sajip.v29i1.88},
+	url = {https://sajip.co.za/index.php/sajip/article/view/88}
+}
+@article{diffusionmriforhcp,
+title = "Advances in diffusion MRI acquisition and processing in the Human Connectome Project",
+journal = "NeuroImage",
+volume = "80",
+pages = "125 - 143",
+year = "2013",
+note = "Mapping the Connectome",
+issn = "1053-8119",
+doi = "https://doi.org/10.1016/j.neuroimage.2013.05.057",
+url = "http://www.sciencedirect.com/science/article/pii/S105381191300551X",
+author = "Stamatios N. Sotiropoulos and Saad Jbabdi and Junqian Xu and Jesper L. Andersson and Steen Moeller and Edward J. Auerbach and Matthew F. Glasser and Moises Hernandez and Guillermo Sapiro and Mark Jenkinson and David A. Feinberg and Essa Yacoub and Christophe Lenglet and David C. {Van Essen} and Kamil Ugurbil and Timothy E.J. Behrens",
+abstract = "The Human Connectome Project (HCP) is a collaborative 5-year effort to map human brain connections and their variability in healthy adults. A consortium of HCP investigators will study a population of 1200 healthy adults using multiple imaging modalities, along with extensive behavioral and genetic data. In this overview, we focus on diffusion MRI (dMRI) and the structural connectivity aspect of the project. We present recent advances in acquisition and processing that allow us to obtain very high-quality in-vivo MRI data, whilst enabling scanning of a very large number of subjects. These advances result from 2years of intensive efforts in optimising many aspects of data acquisition and processing during the piloting phase of the project. The data quality and methods described here are representative of the datasets and processing pipelines that will be made freely available to the community at quarterly intervals, beginning in 2013."
+}
+@article{GLASSER2013105,
+title = "The minimal preprocessing pipelines for the Human Connectome Project",
+journal = "NeuroImage",
+volume = "80",
+pages = "105 - 124",
+year = "2013",
+note = "Mapping the Connectome",
+issn = "1053-8119",
+doi = "https://doi.org/10.1016/j.neuroimage.2013.04.127",
+url = "http://www.sciencedirect.com/science/article/pii/S1053811913005053",
+author = "Matthew F. Glasser and Stamatios N. Sotiropoulos and J. Anthony Wilson and Timothy S. Coalson and Bruce Fischl and Jesper L. Andersson and Junqian Xu and Saad Jbabdi and Matthew Webster and Jonathan R. Polimeni and David C. {Van Essen} and Mark Jenkinson",
+keywords = "Human Connectome Project, Image analysis pipeline, Surface-based analysis, CIFTI, Grayordinates, Multi-modal data integration",
+abstract = "The Human Connectome Project (HCP) faces the challenging task of bringing multiple magnetic resonance imaging (MRI) modalities together in a common automated preprocessing framework across a large cohort of subjects. The MRI data acquired by the HCP differ in many ways from data acquired on conventional 3Tesla scanners and often require newly developed preprocessing methods. We describe the minimal preprocessing pipelines for structural, functional, and diffusion MRI that were developed by the HCP to accomplish many low level tasks, including spatial artifact/distortion removal, surface generation, cross-modal registration, and alignment to standard space. These pipelines are specially designed to capitalize on the high quality data offered by the HCP. The final standard space makes use of a recently introduced CIFTI file format and the associated grayordinate spatial coordinate system. This allows for combined cortical surface and subcortical volume analyses while reducing the storage and processing requirements for high spatial and temporal resolution data. Here, we provide the minimum image acquisition requirements for the HCP minimal preprocessing pipelines and additional advice for investigators interested in replicating the HCP's acquisition protocols or using these pipelines. Finally, we discuss some potential future improvements to the pipelines."
+}
+@article{desikan2006automated,
+  title={An automated labeling system for subdividing the human cerebral cortex on MRI scans into gyral based regions of interest},
+  author={Desikan, Rahul S and S{\'e}gonne, Florent and Fischl, Bruce and Quinn, Brian T and Dickerson, Bradford C and Blacker, Deborah and Buckner, Randy L and Dale, Anders M and Maguire, R Paul and Hyman, Bradley T and others},
+  journal={Neuroimage},
+  volume={31},
+  number={3},
+  pages={968--980},
+  year={2006},
+  publisher={Elsevier}
+}
+@article{smith2013sift,
+  title={SIFT: Spherical-deconvolution informed filtering of tractograms},
+  author={Smith, Robert E and Tournier, Jacques-Donald and Calamante, Fernando and Connelly, Alan},
+  journal={Neuroimage},
+  volume={67},
+  pages={298--312},
+  year={2013},
+  publisher={Elsevier}
+}
+@ARTICLE{10.3389/fnagi.2017.00329,
+  
+AUTHOR={Sarica, Alessia and Cerasa, Antonio and Quattrone, Aldo},   
+	 
+TITLE={Random Forest Algorithm for the Classification of Neuroimaging Data in Alzheimer's Disease: A Systematic Review},      
+	
+JOURNAL={Frontiers in Aging Neuroscience},      
+	
+VOLUME={9},      
+
+PAGES={329},     
+	
+YEAR={2017},      
+	  
+URL={https://www.frontiersin.org/article/10.3389/fnagi.2017.00329},       
+	
+DOI={10.3389/fnagi.2017.00329},      
+	
+ISSN={1663-4365},   
+   
+ABSTRACT={Objective: Machine learning classification has been the most important computational development in the last years to satisfy the primary need of clinicians for automatic early diagnosis and prognosis. Nowadays, Random Forest (RF) algorithm has been successfully applied for reducing high dimensional and multi-source data in many scientific realms. Our aim was to explore the state of the art of the application of RF on single and multi-modal neuroimaging data for the prediction of Alzheimer's disease.Methods: A systematic review following PRISMA guidelines was conducted on this field of study. In particular, we constructed an advanced query using boolean operators as follows: (“random forest” OR “random forests”) AND neuroimaging AND (“alzheimer's disease” OR alzheimer's OR alzheimer) AND (prediction OR classification). The query was then searched in four well-known scientific databases: Pubmed, Scopus, Google Scholar and Web of Science.Results: Twelve articles—published between the 2007 and 2017—have been included in this systematic review after a quantitative and qualitative selection. The lesson learnt from these works suggest that when RF was applied on multi-modal data for prediction of Alzheimer's disease (AD) conversion from the Mild Cognitive Impairment (MCI), it produces one of the best accuracies to date. Moreover, the RF has important advantages in terms of robustness to overfitting, ability to handle highly non-linear data, stability in the presence of outliers and opportunity for efficient parallel processing mainly when applied on multi-modality neuroimaging data, such as, MRI morphometric, diffusion tensor imaging, and PET images.Conclusions: We discussed the strengths of RF, considering also possible limitations and by encouraging further studies on the comparisons of this algorithm with other commonly used classification approaches, particularly in the early prediction of the progression from MCI to AD.}
+}
+
+
+@article{DBLP:journals/corr/LobodaAS16,
+  author    = {Alexander A. Loboda and
+               Maxim N. Artyomov and
+               Alexey A. Sergushichev},
+  title     = {Solving generalized maximum-weight connected subgraph problem for
+               network enrichment analysis},
+  journal   = {CoRR},
+  volume    = {abs/1605.02168},
+  year      = {2016},
+  url       = {http://arxiv.org/abs/1605.02168},
+  archivePrefix = {arXiv},
+  eprint    = {1605.02168},
+  timestamp = {Mon, 13 Aug 2018 16:47:06 +0200},
+  biburl    = {https://dblp.org/rec/journals/corr/LobodaAS16.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+@book{hastie2009elements,
+  title={The elements of statistical learning: data mining, inference, and prediction},
+  author={Hastie, Trevor and Tibshirani, Robert and Friedman, Jerome},
+  year={2009},
+  publisher={Springer Science \& Business Media}
+}
+@article{plis2014deep,
+  title={Deep learning for neuroimaging: a validation study},
+  author={Plis, Sergey M and Hjelm, Devon R and Salakhutdinov, Ruslan and Allen, Elena A and Bockholt, Henry J and Long, Jeffrey D and Johnson, Hans J and Paulsen, Jane S and Turner, Jessica A and Calhoun, Vince D},
+  journal={Frontiers in neuroscience},
+  volume={8},
+  pages={229},
+  year={2014},
+  publisher={Frontiers}
+}
+
+@article{universal_mlp,
+author = {Sifaoui, Amel and Abdelkrim, Afef and Benrejeb, Mohamed},
+year = {2008},
+month = {08},
+pages = {386-399},
+title = {On the Use of Neural Network as a Universal Approximator},
+volume = {2},
+journal = {International Journal of Sciences}
+}
+@article{vieira2017using,
+  title={Using deep learning to investigate the neuroimaging correlates of psychiatric and neurological disorders: Methods and applications},
+  author={Vieira, Sandra and Pinaya, Walter HL and Mechelli, Andrea},
+  journal={Neuroscience \& Biobehavioral Reviews},
+  volume={74},
+  pages={58--75},
+  year={2017},
+  publisher={Elsevier}
+}
+@article{plis2014deep,
+  title={Deep learning for neuroimaging: a validation study},
+  author={Plis, Sergey M and Hjelm, Devon R and Salakhutdinov, Ruslan and Allen, Elena A and Bockholt, Henry J and Long, Jeffrey D and Johnson, Hans J and Paulsen, Jane S and Turner, Jessica A and Calhoun, Vince D},
+  journal={Frontiers in neuroscience},
+  volume={8},
+  pages={229},
+  year={2014},
+  publisher={Frontiers}
+}
+@article{ghosh2015survey,
+  title={A survey of current trends in diffusion MRI for structural brain connectivity},
+  author={Ghosh, Aurobrata and Deriche, Rachid},
+  journal={Journal of neural engineering},
+  volume={13},
+  number={1},
+  pages={011001},
+  year={2015},
+  publisher={IOP Publishing}
+}
+@article{Brogioli_2000,
+   title={Diffusive mass transfer by nonequilibrium fluctuations: Fick’s law revisited},
+   volume={63},
+   ISSN={1095-3787},
+   url={http://dx.doi.org/10.1103/PhysRevE.63.012105},
+   DOI={10.1103/physreve.63.012105},
+   number={1},
+   journal={Physical Review E},
+   publisher={American Physical Society (APS)},
+   author={Brogioli, Doriano and Vailati, Alberto},
+   year={2000},
+   month={Dec}
+}
+@book{toennies2017guide,
+  title={Guide to medical image analysis},
+  author={Toennies, Klaus D},
+  publisher={Springer}
+}
+@article{Taylor_1985,
+	doi = {10.1088/0031-9155/30/4/009},
+	url = {https://doi.org/10.1088%2F0031-9155%2F30%2F4%2F009},
+	year = 1985,
+	month = {apr},
+	publisher = {{IOP} Publishing},
+	volume = {30},
+	number = {4},
+	pages = {345--349},
+	author = {D G Taylor and M C Bushell},
+	title = {The spatial mapping of translational diffusion coefficients by the {NMR} imaging technique},
+	journal = {Physics in Medicine and Biology},
+	abstract = {With the recent development of nuclear magnetic resonance (NMR) imaging it is important to characterise and understand the NMR response of tissues. There are several reasons why such characterisation of tissues using NMR parameters would be useful. It may provide a helpful diagnostic guide and could lead to a deeper understanding of the underlying processes responsible for many pathological and physiological states of tissues. For several years, hydrogen density, spin-lattice relaxation and spin-spin relaxation maps of objects have been obtained using the NMR imaging technique. The authors have developed a method for the spatial mapping of an additional NMR parameter, the molecular translational diffusion coefficient D. In addition the technique will permit the measurement of perfusion and blood flow rates.}
+}
+@article{technical_aspects_dmri,
+author = {Dietrich, Olaf and Biffar, Andreas and Baur-Melnyk, Andrea and Reiser, Maximilian},
+year = {2010},
+month = {03},
+pages = {314-22},
+title = {Technical aspects of MR diffusion imaging of the body},
+volume = {76},
+journal = {European Journal of Radiology},
+doi = {10.1016/j.ejrad.2010.02.018}
+}
+@article{stejskal1965spin,
+  title={Spin diffusion measurements: spin echoes in the presence of a time-dependent field gradient},
+  author={Stejskal, Edward O and Tanner, John E},
+  journal={The journal of chemical physics},
+  volume={42},
+  number={1},
+  pages={288--292},
+  year={1965},
+  publisher={American Institute of Physics}
+}
+@article{mori2002fiber,
+  title={Fiber tracking: principles and strategies--a technical review},
+  author={Mori, Susumu and Van Zijl, Peter CM},
+  journal={NMR in Biomedicine: An International Journal Devoted to the Development and Application of Magnetic Resonance In Vivo},
+  volume={15},
+  number={7-8},
+  pages={468--480},
+  year={2002},
+  publisher={Wiley Online Library}
+}
+@article{romano2009pre,
+  title={Pre-surgical planning and MR-tractography utility in brain tumour resection},
+  author={Romano, A and D’andrea, G and Minniti, G and Mastronardi, L and Ferrante, L and Fantozzi, LM and Bozzao, A},
+  journal={European radiology},
+  volume={19},
+  number={12},
+  pages={2798},
+  year={2009},
+  publisher={Springer}
+}
+@article{tournier2004direct,
+  title={Direct estimation of the fiber orientation density function from diffusion-weighted MRI data using spherical deconvolution},
+  author={Tournier, J-Donald and Calamante, Fernando and Gadian, David G and Connelly, Alan},
+  journal={Neuroimage},
+  volume={23},
+  number={3},
+  pages={1176--1185},
+  year={2004},
+  publisher={Elsevier}
+}
+@article{JEURISSEN2014411,
+title = "Multi-tissue constrained spherical deconvolution for improved analysis of multi-shell diffusion MRI data",
+journal = "NeuroImage",
+volume = "103",
+pages = "411 - 426",
+year = "2014",
+issn = "1053-8119",
+doi = "https://doi.org/10.1016/j.neuroimage.2014.07.061",
+url = "http://www.sciencedirect.com/science/article/pii/S1053811914006442",
+author = "Ben Jeurissen and Jacques-Donald Tournier and Thijs Dhollander and Alan Connelly and Jan Sijbers",
+keywords = "Spherical deconvolution, Diffusion MRI, Multi-shell acquisition, Multiple tissue types, Tissue segmentation, Fibre orientation distribution functions",
+abstract = "Constrained spherical deconvolution (CSD) has become one of the most widely used methods to extract white matter (WM) fibre orientation information from diffusion-weighted MRI (DW-MRI) data, overcoming the crossing fibre limitations inherent in the diffusion tensor model. It is routinely used to obtain high quality fibre orientation distribution function (fODF) estimates and fibre tractograms and is increasingly used to obtain apparent fibre density (AFD) measures. Unfortunately, CSD typically only supports data acquired on a single shell in q-space. With multi-shell data becoming more and more prevalent, there is a growing need for CSD to fully support such data. Furthermore, CSD can only provide high quality fODF estimates in voxels containing WM only. In voxels containing other tissue types such as grey matter (GM) and cerebrospinal fluid (CSF), the WM response function may no longer be appropriate and spherical deconvolution produces unreliable, noisy fODF estimates. The aim of this study is to incorporate support for multi-shell data into the CSD approach as well as to exploit the unique b-value dependencies of the different tissue types to estimate a multi-tissue ODF. The resulting approach is dubbed multi-shell, multi-tissue CSD (MSMT-CSD) and is compared to the state-of-the-art single-shell, single-tissue CSD (SSST-CSD) approach. Using both simulations and real data, we show that MSMT-CSD can produce reliable WM/GM/CSF volume fraction maps, directly from the DW data, whereas SSST-CSD has a tendency to overestimate the WM volume in voxels containing GM and/or CSF. In addition, compared to SSST-CSD, MSMT-CSD can substantially increase the precision of the fODF fibre orientations and reduce the presence of spurious fODF peaks in voxels containing GM and/or CSF. Both effects translate into more reliable AFD measures and tractography results with MSMT-CSD compared to SSST-CSD."
+}
+@article{TOURNIER20041176,
+title = "Direct estimation of the fiber orientation density function from diffusion-weighted MRI data using spherical deconvolution",
+journal = "NeuroImage",
+volume = "23",
+number = "3",
+pages = "1176 - 1185",
+year = "2004",
+issn = "1053-8119",
+doi = "https://doi.org/10.1016/j.neuroimage.2004.07.037",
+url = "http://www.sciencedirect.com/science/article/pii/S1053811904004100",
+author = "J.-Donald Tournier and Fernando Calamante and David G. Gadian and Alan Connelly",
+keywords = "MRI, Diffusion tensor, Tractography",
+abstract = "Diffusion-weighted magnetic resonance imaging can provide information related to the arrangement of white matter fibers. The diffusion tensor is the model most commonly used to derive the orientation of the fibers within a voxel. However, this model has been shown to fail in regions containing several fiber populations with distinct orientations. A number of alternative models have been suggested, such as multiple tensor fitting, q-space, and Q-ball imaging. However, each of these has inherent limitations. In this study, we propose a novel method for estimating the fiber orientation distribution directly from high angular resolution diffusion-weighted MR data without the need for prior assumptions regarding the number of fiber populations present. We assume that all white matter fiber bundles in the brain share identical diffusion characteristics, thus implicitly assigning any differences in diffusion anisotropy to partial volume effects. The diffusion-weighted signal attenuation measured over the surface of a sphere can then be expressed as the convolution over the sphere of a response function (the diffusion-weighted attenuation profile for a typical fiber bundle) with the fiber orientation density function (ODF). The fiber ODF (the distribution of fiber orientations within the voxel) can therefore be obtained using spherical deconvolution. The properties of the technique are demonstrated using simulations and on data acquired from a volunteer using a standard 1.5-T clinical scanner. The technique can recover the fiber ODF in regions of multiple fiber crossing and holds promise for applications such as tractography."
+}
+@inproceedings{van2016human,
+  title={The human connectome project: progress and prospects},
+  author={Van Essen, David C and Glasser, Matthew F},
+  booktitle={Cerebrum: the Dana forum on brain science},
+  volume={2016},
+  year={2016},
+  organization={Dana Foundation}
+}
+@article{sala2015reorganization,
+  title={Reorganization of brain networks in aging: a review of functional connectivity studies},
+  author={Sala-Llonch, Roser and Bartr{\'e}s-Faz, David and Junqu{\'e}, Carme},
+  journal={Frontiers in psychology},
+  volume={6},
+  pages={663},
+  year={2015},
+  publisher={Frontiers}
+}
+@article{cociu2017multimodal,
+  title={Multimodal functional and structural brain connectivity analysis in autism: A preliminary integrated approach with EEG, fMRI, and DTI},
+  author={Cociu, Bogdan Alexandru and Das, Saptarshi and Billeci, Lucia and Jamal, Wasifa and Maharatna, Koushik and Calderoni, Sara and Narzisi, Antonio and Muratori, Filippo},
+  journal={IEEE Transactions on Cognitive and Developmental Systems},
+  volume={10},
+  number={2},
+  pages={213--226},
+  year={2017},
+  publisher={IEEE}
+}
+@article{anattractsmith,
+title = "Anatomically-constrained tractography: Improved diffusion MRI streamlines tractography through effective use of anatomical information",
+journal = "NeuroImage",
+volume = "62",
+number = "3",
+pages = "1924 - 1938",
+year = "2012",
+issn = "1053-8119",
+doi = "https://doi.org/10.1016/j.neuroimage.2012.06.005",
+url = "http://www.sciencedirect.com/science/article/pii/S1053811912005824",
+author = "Robert E. Smith and Jacques-Donald Tournier and Fernando Calamante and Alan Connelly",
+keywords = "Magnetic resonance imaging, Diffusion MRI, Fibre-tracking, Tractography, Streamlines",
+abstract = "Diffusion MRI streamlines tractography suffers from a number of inherent limitations, one of which is the accurate determination of when streamlines should be terminated. Use of an accurate streamlines propagation mask from segmentation of an anatomical image confines the streamlines to the volume of the brain white matter, but does not take full advantage of all of the information available from such an image. We present a modular addition to streamlines tractography, which makes more effective use of the information available from anatomical image segmentation, and the known properties of the neuronal axons being reconstructed, to apply biologically realistic priors to the streamlines generated; we refer to this as “Anatomically-Constrained Tractography”. Results indicate that some of the known false positives associated with tractography algorithms are prevented, such that the biological accuracy of the reconstructions should be improved, provided that state-of-the-art streamlines tractography methods are used."
+}
+@article{SMITH2013298,
+title = "SIFT: Spherical-deconvolution informed filtering of tractograms",
+journal = "NeuroImage",
+volume = "67",
+pages = "298 - 312",
+year = "2013",
+issn = "1053-8119",
+doi = "https://doi.org/10.1016/j.neuroimage.2012.11.049",
+url = "http://www.sciencedirect.com/science/article/pii/S1053811912011615",
+author = "Robert E. Smith and Jacques-Donald Tournier and Fernando Calamante and Alan Connelly",
+keywords = "Magnetic resonance imaging, Diffusion MRI, Fibre-tracking, Tractography, Streamlines",
+abstract = "Diffusion MRI allows the structural connectivity of the whole brain (the ‘tractogram’) to be estimated in vivo non-invasively using streamline tractography. The biological accuracy of these data sets is however limited by the inherent biases associated with the reconstruction method. Here we propose a method to retrospectively improve the accuracy of these reconstructions, by selectively filtering out streamlines from the tractogram in a manner that improves the fit between the streamline reconstruction and the underlying diffusion images. This filtering is guided by the results of spherical deconvolution of the diffusion signal, hence the acronym SIFT: spherical-deconvolution informed filtering of tractograms. Data sets processed by this algorithm show a marked reduction in known reconstruction biases, and improved biological plausibility. Emerging methods in diffusion MRI, particularly those that aim to characterise and compare the structural connectivity of the brain, should benefit from the improved accuracy of the reconstruction."
+}
+@inproceedings{tournier2010improved,
+  title={Improved probabilistic streamlines tractography by 2nd order integration over fibre orientation distributions},
+  author={Tournier, J Donald and Calamante, Fernando and Connelly, Alan},
+  booktitle={Proceedings of the international society for magnetic resonance in medicine},
+  volume={1670},
+  year={2010},
+  organization={Ismrm}
+}
+@article{hcp2015wu,
+  title={WU-Minn HCP 900 Subjects Data Release: Reference Manual},
+  author={HCP},
+  year={2015}
+}
+@article{van2012human,
+  title={The Human Connectome Project: a data acquisition perspective},
+  author={Van Essen, David C and Ugurbil, Kamil and Auerbach, Edward and Barch, Deanna and Behrens, TEJ and Bucholz, Richard and Chang, Acer and Chen, Liyong and Corbetta, Maurizio and Curtiss, Sandra W and others},
+  journal={Neuroimage},
+  volume={62},
+  number={4},
+  pages={2222--2231},
+  year={2012},
+  publisher={Elsevier}
+}
+@article{desikan2006automated,
+  title={An automated labeling system for subdividing the human cerebral cortex on MRI scans into gyral based regions of interest},
+  author={Desikan, Rahul S and S{\'e}gonne, Florent and Fischl, Bruce and Quinn, Brian T and Dickerson, Bradford C and Blacker, Deborah and Buckner, Randy L and Dale, Anders M and Maguire, R Paul and Hyman, Bradley T and others},
+  journal={Neuroimage},
+  volume={31},
+  number={3},
+  pages={968--980},
+  year={2006},
+  publisher={Elsevier}
+}
+@article{TAHMASEBI2020103619,
+title = "Machine learning in geo- and environmental sciences: From small to large scale",
+journal = "Advances in Water Resources",
+volume = "142",
+pages = "103619",
+year = "2020",
+issn = "0309-1708",
+doi = "https://doi.org/10.1016/j.advwatres.2020.103619",
+url = "http://www.sciencedirect.com/science/article/pii/S0309170820301366",
+author = "Pejman Tahmasebi and Serveh Kamrava and Tao Bai and Muhammad Sahimi",
+keywords = "Machine learning, Deep learning, Data analytics, Subsurface systems, Geomedia, Physics-guided artificial intelligence",
+abstract = "In recent years significant breakthroughs in exploring big data, recognition of complex patterns, and predicting intricate variables have been made. One efficient way of analyzing big data, recognizing complex patterns, and extracting trends is through machine-learning (ML) algorithms. The field of porous media, and more generally geoscience, have also witnessed much progress, and recent progress in developing various ML techniques have benefitted various problems in porous media and geoscience across disparate scales. Thus, it is becoming increasingly clear that it is imperative to adopt advanced ML methods for the problems in porous media and geoscience because they enable researchers to solve many difficult problems. At the same time, one can use the already existing extensive knowledge of porous media to endow ML algorithms and develop novel physics-guided methods. The goal of this review paper is to provide the first comprehensive review of the recently developed methods in the ML algorithms and describe their application to porous media and geoscience. Thus, we review the basic concept of the ML and describe more advanced methods, known as deep-learning algorithms. Then, the application of such methods to various problems in porous media and geoscience, such as hydrological modeling, fluid flow in porous media, and (sub)surface characterization, are reviewed. We also provide a discussion of future directions in this rapidly developing field."
+}
+@article{rinaldo2019bootstrapping,
+  title={Bootstrapping and sample splitting for high-dimensional, assumption-lean inference},
+  author={Rinaldo, Alessandro and Wasserman, Larry and G’Sell, Max and others},
+  journal={The Annals of Statistics},
+  volume={47},
+  number={6},
+  pages={3438--3469},
+  year={2019},
+  publisher={Institute of Mathematical Statistics}
+}
+@inproceedings{shi2018feature,
+  title={Feature Learning and Classification in Neuroimaging: Predicting Cognitive Impairment from Magnetic Resonance Imaging},
+  author={Shi, Shan and Nathoo, Farouk},
+  booktitle={2018 4th International Conference on Big Data and Information Analytics (BigDIA)},
+  pages={1--5},
+  year={2018},
+  organization={IEEE}
+}
+@article{tohka2016comparison,
+  title={Comparison of feature selection techniques in machine learning for anatomical brain MRI in dementia},
+  author={Tohka, Jussi and Moradi, Elaheh and Huttunen, Heikki and Alzheimer’s Disease Neuroimaging Initiative and others},
+  journal={Neuroinformatics},
+  volume={14},
+  number={3},
+  pages={279--296},
+  year={2016},
+  publisher={Springer}
+}
+@article{inza2004filter,
+  title={Filter versus wrapper gene selection approaches in DNA microarray domains},
+  author={Inza, I{\~n}aki and Larra{\~n}aga, Pedro and Blanco, Rosa and Cerrolaza, Antonio J},
+  journal={Artificial intelligence in medicine},
+  volume={31},
+  number={2},
+  pages={91--103},
+  year={2004},
+  publisher={Elsevier}
+}
+<<<<<<< HEAD
+@article{sporns2018graph,
+  title={Graph theory methods: applications in brain networks},
+  author={Sporns, Olaf},
+  journal={Dialogues in clinical neuroscience},
+  volume={20},
+  number={2},
+  pages={111},
+  year={2018},
+  publisher={Les Laboratoires Servier}
+}
+@article{sporns2005human,
+  title={The human connectome: a structural description of the human brain},
+  author={Sporns, Olaf and Tononi, Giulio and K{\"o}tter, Rolf},
+  journal={PLoS Comput Biol},
+  volume={1},
+  number={4},
+  pages={e42},
+  year={2005},
+  publisher={Public Library of Science}
+}
+
+
+||||||| merged common ancestors
+=======
+@article{sporns2018graph,
+  title={Graph theory methods: applications in brain networks},
+  author={Sporns, Olaf},
+  journal={Dialogues in clinical neuroscience},
+  volume={20},
+  number={2},
+  pages={111},
+  year={2018},
+  publisher={Les Laboratoires Servier}
+}
+@article{sporns2005human,
+  title={The human connectome: a structural description of the human brain},
+  author={Sporns, Olaf and Tononi, Giulio and K{\"o}tter, Rolf},
+  journal={PLoS Comput Biol},
+  volume={1},
+  number={4},
+  pages={e42},
+  year={2005},
+  publisher={Public Library of Science}
+}
+@misc{pytorchdoc_2020, 
+    title={PyTorch documentation},
+    url={https://pytorch.org/docs/stable/index.html},
+    journal={PyTorch documentation - PyTorch 1.5.0 documentation},
+    author={Paszke, Adam and Gross, Sam and Massa, Francisco and Lerer, Adam and Bradbury, James and Chanan, Gregory and Killeen, Trevor and Lin, Zeming and Gimelshein, Natalia and Antiga, Luca and Desmaison, Alban and Kopf, Andreas and Yang, Edward and DeVito, Zachary and Raison, Martin and Tejani, Alykhan and Chilamkurthy, Sasank and Steiner, Benoit and Fang, Lu and Bai, Junjie and Chintala, Soumith}
+}
+
+@article{sklearn_2012,
+    title={Scikit-learn: Machine Learning in {P}ython},
+    author={Pedregosa, F. and Varoquaux, G. and Gramfort, A. and Michel, V.
+         and Thirion, B. and Grisel, O. and Blondel, M. and Prettenhofer, P.
+         and Weiss, R. and Dubourg, V. and Vanderplas, J. and Passos, A. and
+         Cournapeau, D. and Brucher, M. and Perrot, M. and Duchesnay, E.},
+    journal={Journal of Machine Learning Research},
+    volume={12},
+    pages={2825--2830},
+    year={2011}
+}
+
+@article{opencv_2000,
+    author = {Bradski, G.},
+    journal = {Dr. Dobb's Journal of Software Tools},
+    keywords = {bibtex-import},
+    posted-at = {2008-01-15 19:21:54},
+    priority = {4},
+    title = {{The OpenCV Library}},
+    year = {2000}
+}
+
+@incollection{pytorch_2019,
+    title = {PyTorch: An Imperative Style, High-Performance Deep Learning Library},
+    author = {Paszke, Adam and Gross, Sam and Massa, Francisco and Lerer, Adam and Bradbury, James and Chanan, Gregory and Killeen, Trevor and Lin, Zeming and Gimelshein, Natalia and Antiga, Luca and Desmaison, Alban and Kopf, Andreas and Yang, Edward and DeVito, Zachary and Raison, Martin and Tejani, Alykhan and Chilamkurthy, Sasank and Steiner, Benoit and Fang, Lu and Bai, Junjie and Chintala, Soumith},
+    booktitle = {Advances in Neural Information Processing Systems 32},
+    pages = {8024--8035},
+    year = {2019},
+    publisher = {Curran Associates, Inc.},
+}
+
+@misc{pandas_2020,
+    author = {The pandas development team},
+    title = {pandas-dev/pandas: Pandas},
+    month = feb,
+    year = 2020,
+    publisher = {Zenodo},
+    doi = {10.5281/zenodo.3509134},
+    url = {https://doi.org/10.5281/zenodo.3509134}
+}
+@article{parker2003framework,
+  title={A framework for a streamline-based probabilistic index of connectivity (PICo) using a structural interpretation of MRI diffusion measurements},
+  author={Parker, Geoffrey JM and Haroon, Hamied A and Wheeler-Kingshott, Claudia AM},
+  journal={Journal of Magnetic Resonance Imaging: An Official Journal of the International Society for Magnetic Resonance in Medicine},
+  volume={18},
+  number={2},
+  pages={242--254},
+  year={2003},
+  publisher={Wiley Online Library}
+}
+>>>>>>> a8266afe6c5d026e135c6bd572dceb75031f2df5
+
+@article{jeurissen2014multi,
+  title={Multi-tissue constrained spherical deconvolution for improved analysis of multi-shell diffusion MRI data},
+  author={Jeurissen, Ben and Tournier, Jacques-Donald and Dhollander, Thijs and Connelly, Alan and Sijbers, Jan},
+  journal={NeuroImage},
+  volume={103},
+  pages={411--426},
+  year={2014},
+  publisher={Elsevier}
+}
+@article{smith2015effects,
+  title={The effects of SIFT on the reproducibility and biological accuracy of the structural connectome},
+  author={Smith, Robert E and Tournier, Jacques-Donald and Calamante, Fernando and Connelly, Alan},
+  journal={Neuroimage},
+  volume={104},
+  pages={253--265},
+  year={2015},
+  publisher={Elsevier}
+}
+@article{smith2004advances,
+  title={Advances in functional and structural MR image analysis and implementation as FSL},
+  author={Smith, Stephen M and Jenkinson, Mark and Woolrich, Mark W and Beckmann, Christian F and Behrens, Timothy EJ and Johansen-Berg, Heidi and Bannister, Peter R and De Luca, Marilena and Drobnjak, Ivana and Flitney, David E and others},
+  journal={Neuroimage},
+  volume={23},
+  pages={S208--S219},
+  year={2004},
+  publisher={Elsevier}
+}
+@article{patenaude2011bayesian,
+  title={A Bayesian model of shape and appearance for subcortical brain segmentation},
+  author={Patenaude, Brian and Smith, Stephen M and Kennedy, David N and Jenkinson, Mark},
+  journal={Neuroimage},
+  volume={56},
+  number={3},
+  pages={907--922},
+  year={2011},
+  publisher={Elsevier}
+}
