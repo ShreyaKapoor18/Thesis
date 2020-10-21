@@ -12,6 +12,10 @@ BCOR=8mm]{scrbook} % BCOR sets the space, used by the type of  book. (e.g. glued
 \input{setup/acronyms.tex}
 \setcounter{tocdepth}{3}
 \setcounter{secnumdepth}{3}
+\newcommand{\shortarrow}[1]{%
+  \mathrel{\text{\rotatebox[origin=c]{\numexpr#1*45}{\fixed@sra}}}
+}
+\makeatother
 %\newcommand{\comment}[1]{}
 
 \begin{document}
