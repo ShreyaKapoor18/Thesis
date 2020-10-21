@@ -48,7 +48,7 @@ fig = plt.figure(figsize=(50,40))
 target = 'Gender'
 g = sns.FacetGrid(df, col='Feature_type', row ='Edge', sharex=True, margin_titles=True,
                   legend_out=True)
-g = g.map(plt.plot,'Output_Graph_nodes', 'Output_Graph_edges' )
+g = g.map(plt.plot,'Output_Graph_nodes', 'Output_Graph_edges')
 g= (g.map(sns.scatterplot, 'Output_Graph_nodes', 'Output_Graph_edges')).add_legend()
 #[plt.setp(ax.texts, text="") for ax in g.axes.flat]
 # remove the original texts
@@ -85,29 +85,49 @@ g.axes[1,0].set_ylabel('metrics')
 fig.suptitle('Gender Classification - Solver')
 plt.savefig('outputs/figures/solver_results.png')
 plt.show()
+
+#%%
+def train_test_plot(x,y1,y2, **kwargs):
+    plt.plot(x, y1, '-', label='training')
+    plt.plot(x, y2, label= 'test')
+    plt.legend()
 #%%
 base=pd.read_csv('outputs/csvs/base.csv')
-base = base[base['Num_features']<=1000]
+''''
+legends = []
+for clf in ['SVC' 'RF', 'MLP']:
+    legends.append(f'train_{clf}')
+for clf in ['SVC' 'RF', 'MLP']:
+    legends.append(f'test_{clf}')
+'''
+
+
 fig = plt.figure(figsize=(50,40))
 g = sns.FacetGrid(base, col='Type of feature', row ='Edge', sharex=True, margin_titles=True,
-                  legend_out=True,hue_kws=dict(color=['red','blue','pink','orange', "1","2","3","4"]))
-g= (g.map(multi_plot, 'Num_features','test_roc_auc_ovr_weighted', 'test_accuracy',
-      'test_balanced_accuracy', 'test_f1_weighted')).add_legend()
+                  legend_out=True,hue='Classifier',hue_kws=dict(color=['green','blue','orange', "1","2","3"]))
+g = (g.map(plt.plot, 'Percentage', 'test_accuracy', marker ='.',label = 'test', alpha = 0.5, markersize =12))
+
+g.axes[0, 0].set_ylabel('Balanced Accuracy')
+g.axes[1,0].set_ylabel('Balanced Accuracy')
+for i in range(g.axes.shape[0]):
+    for j in range(g.axes.shape[1]):
+        g.axes[i][j].grid(which='minor', alpha=0.2)
+        g.axes[i][j].grid(which='major', alpha=0.5)
+#g.add_legend()
+g.add_legend()
 #[plt.setp(ax.texts, text="") for ax in g.axes.flat]
 # remove the original texts
-                                                    # important to add this before setting titles
+# important to add this before setting titles
 #g.set_titles(row_template = '{row_name}', col_template = '{col_name}')
-g.axes[0,0].set_ylabel('metrics')
-g.axes[1,0].set_ylabel('metrics')
-fig.suptitle('Gender classification- Baseline')
+g.fig.subplots_adjust(top=0.9)
+g.fig.suptitle('Gender classification on test set with baseline')
 plt.savefig('outputs/figures/baseline_results.png')
 plt.show()
 #%%
 fig = plt.figure(figsize=(50,40))
-g = sns.FacetGrid(solver, col='Type of feature', row ='Classifier', sharex=True, margin_titles=True,
+g = sns.FacetGrid(solver, col='Type of feature', row ='Edge',  style = "Classifier", sharex=True, margin_titles=True,
                   legend_out=True,hue_kws=dict(color=['red','blue','pink','orange', "1","2","3","4"]))
-g= (g.map(multi_plot, 'Num edges','test_roc_auc_ovr_weighted', 'test_accuracy',
-      'test_balanced_accuracy', 'test_f1_weighted')).add_legend()
+g= (g.map(multi_plot, 'Num edges','test_roc_auc_ovr_weighted'))
 #[plt.setp(ax.texts, text="") for ax in g.axes.flat]
 # remove the original texts
                                                     # important to add this before setting titles
@@ -128,7 +148,6 @@ solver = pd.read_csv('outputs/csvs/solver.csv')
 solver = solver.drop(columns=['Num_nodes', '% Positive edges', 'ROI_strl_thresh'])
 base = base.drop(columns=['Self_loops', 'ROI_strl_thresh'])
 base = base.rename(columns={'Num_features':'Num edges'})
-base.columns
 solver.columns
 set(base.columns) == set(solver.columns)
 combined = pd.concat([solver, base], axis=0)
@@ -150,3 +169,24 @@ for clf in ['SVC', 'RF', 'MLP']:
     g.fig.suptitle(f'Gender classification- {clf}')
     plt.savefig(f'outputs/figures/comparison_roc_auc_{clf}.png')
     plt.show()
+#%%
+fig = plt.figure(figsize=(50,40))
+g = sns.FacetGrid(svc, col='Type of feature', row ='Edge', margin_titles=True,
+                  legend_out=True, hue='Feature Selection', style='Classifier')
+
+g = g.map(plt.plot,'Num edges','test_roc_auc_ovr_weighted' )
+g= (g.map(sns.scatterplot, 'Num edges','test_roc_auc_ovr_weighted')).add_legend()
+#[plt.setp(ax.texts, text="") for ax in g.axes.flat]
+# remove the original texts
+                                                    # important to add this before setting titles
+#g.set_titles(row_template = '{row_name}', col_template = '{col_name}')
+g.axes[0, 0].set_ylabel('Area under the curve')
+g.axes[1,0].set_ylabel('Area under the curve')
+for i in range(g.axes.shape[0]):
+    for j in range(g.axes.shape[1]):
+        g.axes[i][j].grid(which='minor', alpha=0.2)
+        g.axes[i][j].grid(which='major', alpha=0.5)
+g.fig.subplots_adjust(top=0.5)
+g.fig.suptitle(f'Gender classification  on test set with  {clf} ')
+plt.savefig(f'outputs/figures/comparison_roc_auc_{clf}.png')
+plt.show()
