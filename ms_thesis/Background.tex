@@ -175,29 +175,25 @@ Where D1, D2, and D3 are the corresponding eigenvalues and v1,v2,v3 are the eige
 DTI is a popular method to study the orientation and organisation of white matter. However, its fails in regions containing populations of fiber orientations that have different orientations. It assumes that all white matter bundles in the brain have similar diffusion characteristics and attributes diffusion anisotropy to partial volume effects \cite{tournier2004direct}. Secondly, the Diffusion tensor only possess a single major eigenvalue for modelling the diffusion in one voxel and cannot be used for mixed fiber populations.
 \subsubsection{Higher order models}
 
-In order to solve the multiple fiber orientation problem in DTI, a number of approaches have been proposed to estimate the composition of fiber orientations inside a voxel. These models extract higher order structural information of tissues. They can help deal with probelms of kissing fibers/crossing fibers etc.
+In order to solve the multiple fiber orientation problem in DTI, a number of approaches have been proposed to estimate the composition of fiber orientations inside a voxel. These models extract higher order structural information of tissues. They can help deal with problems such as kissing and crossing fibers. 
 
-These rely on the concept of an fiber orientation distribution function (fODF)
-An fODF is a symmetric probability distribution function describing the distribution of fiber orientations
+High angular resolution imaging (HARDI) techniques enable the detection of multi-modal diffusion signals. It includes methods that incorporate the acquisition of diffusion data in more than 6 diffusion gradient directions. Q -ball imaging is one such technique but has its own limitations \cite{TOURNIER20041176}. These methods rely on the concept of an fiber orientation distribution function (fODF). An fODF is a symmetric probability distribution function describing the distribution of fiber orientations
 \begin{align}
   F(\Theta, \phi) = \sum_{k=1}^{K} w_k \delta_{\theta_k, \phi_k}(\Theta, \phi) &
  & \Theta \in [0, \pi], \phi \in [0,2\pi]
 \end{align}
 where $w_k$ represents the volume fraction of each fiber passing through the voxel. $\Theta_k$ and $\phi_k$ represent the polar and azimuthal angles in spherical coordinates respectively.
 
-High angular resolution imaging (HARDI) techniques enable the detection of multi-modal diffusion signals. Q -ball imaging is one such technique but has its own limitations \cite{TOURNIER20041176}.
-
-The DWI signal is modelled as the spherical convolution (i.e. convolution in spherical coordinates) of the response function and the fODF. Spherical deconvolution is the other way round where fODF can be extracted.
-
+ \cite{tournier2004direct} propose modelling the DWI signal is as the spherical convolution (i.e. convolution in spherical coordinates) of the response function and the fODF Spherical deconvolution is the other way round where fODF can be extracted. A response function is an axially symmetric kernel which describes the DWI signal resulting from water diffusion along each fiber bundle aligned with the z axis. For white matter the response function models expected for a voxel containing a singele bundle of axons. Such response functions can also be calculated for other tissue types
 Constrained Spherical Deconvolution (CSD) has gained recent attention as a method to extract white matter (WM) fibre orientation distributions. It is used to obtain fODF estimates and fibre tractograms \cite{JEURISSEN2014411}.
-
+%insert image
 
 \subsection{Tractography}
 \label{sub:tractography}
 \begin{figure}
     \centering
-    \includegraphics{images/fibertracking.png}
-    \caption{Deterministic tractography from }
+    \includegraphics[width=\textwidht]{images/A-Degree-of-anisotropy-B-Deterministic-fiber-tracking-the-fiber-path-across-voxels-is.png}
+    \caption{Image from \cite{muller2018clinically}}
     \label{fig:tracking}
 \end{figure}
 Fiber tractography is a technique used to graphically construct  3 dimensional representations white matter pathways in the human brain.The technique uses the information about local fiber directions to trace streamlines that represent white matter tracts in the brain. It has become an important part of white matter disorder studies and has gained popularity because of its non-invasive nature. These advantages make it suitable for surgical targeting and planning \cite{romano2009pre}.
@@ -243,11 +239,13 @@ The brain's functional connectivity can be analysed using fMRI data. It can be s
 
 
 \section{Feature Selection Techniques}
+\label{sec:feature_selection}
 Neuroimaging data often suffers from the \textit{curse of dimensionality}. The sample size is often much smaller than the total number of features. Classifiers might be influenced by the increase in noise as the number of features increases. Dimensionality reduction and feature selection are often the techniques used for a meaningful reduction in features. Hoewever, most dimensionality reduction methods such as Principal Component Analysis (PCA) rely on transformations (often non-linear) of the original data and this leads to a lack of interpretability. Due to this reason it is important to consider feature selection methods where inference about what the classifier actually learns can be made (\cite{shi2018feature}). 
 
 Feature selection methods can be grouped into three types; filter methods, wrapper methods and embedded methods. Filter methods are based on selecting features before running the classifier. Wrapper methods can be seen as a selection method \textit{on the fly} in which features are added or removed iteratively on the basis of classification performance.Embedded methods are those in which feature selection is embedded in the classifier. These have been increasingly used in Neuroimaging studies \cite{tohka2016comparison}.
 
 \subsection{Filter methods}
+\label{subsec:filtermethods}
 Filters form one of the simplest methods for feature selection. They usually serve as a pre-processing step for the classification and are model independent. Hoeever, there is a caveat when using these type of features for classification studies that each feature is considered independently and their cumulative effect is not taken into consideration for the cla
 Some of the common techniques used to determine the feature importance is the use of coefficients such as the fscore and t-test, these are also used in Neuroimaging applications. 
 
@@ -340,7 +338,7 @@ Any arbitrary node is considered to be the root of such an arborescence. The arb
     \label{fig:svm}
     \centering
     \includegraphics[width=0.4\textwidth]{images/svm.png}
-    \caption{Caption}
+    \caption{To be made as a google drawing}
     \label{fig:my_label}
 \end{figure}
 

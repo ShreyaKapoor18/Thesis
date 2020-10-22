@@ -26,7 +26,7 @@
          \vspace{2em}
          %\includegraphics[height=0.3\textwidth,width=0.5\textwidth]{images/Features_1.png}
         \begin{tcolorbox}[box align= center,coltitle=black!75!black, colback=yellow!5!white,colframe=yellow!50!black,
-  colbacktitle=yellow!80!black,title=\centering \large Feature Extraction]
+  colbacktitle=yellow!80!black,title=\centering \large Feature Representation]
         \centering
         fscores, t-test, pearson correlation
         \end{tcolorbox}
@@ -70,7 +70,7 @@ The implementation of this pipeline was scripted in \textit{Python}. The preproc
 
 \section{Data Acquisition}
 \label{sec:acquisition}
-Data was acquired for 203 subjects from the s900 release of the HCP (\cite{hcp2015wu}). Out of the total, 101 subjects were female and 102 were male. 83 females and 58 males were aged 26-30 and while the 34 male and 28 females were aged 22-25. The demographic information along with the personality trait labels were obtained from the unrestricted access data available on \href{https://db.humanconnectome.org/}{https://db.humanconnectome.org/}
+Data was acquired for 203 subjects from the s900 release of the HCP (\cite{hcp2015wu}). Out of the total, 101 subjects were female and 102 were male. 83 females and 58 males were aged 26-30 and while the 34 male and 28 females were aged 22-25. The demographic information along with the personality trait labels were obtained from the unrestricted access data available on \href{https://db.humanconnectome.org/}{\textbf{\textit{https://db.humanconnectome.org/}}}
 
 
 The structural and diffusion MRI files used for this project were obtained from the repositories containing volumes preprocessed using version 3 preprocessing pipelines of the HCP detailed in (\cite{GLASSER2013105}). A Siemens 3T Skyra system was used used to scan all subjects (starting in August 2012, housed at Washington University, St. Louis). The details of the acquisition protocol are mentioned in \cite{van2012human}.
@@ -131,6 +131,8 @@ For each subject, four types of files were used. First, the preprocessed diffusi
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{images/Preprocessing_pipeline.png}
+    %\includegraphics[width=\textwidth]{images/connectome_creation_workflow.png}
+    %\cite{gerhard2011connectome}
     \iffalse
     \begin{subfigure}[b]{0.4\textwidth}
          \centering
@@ -167,6 +169,13 @@ For each subject, four types of files were used. First, the preprocessed diffusi
  
     \caption{Pipeline used to create a connectome for each subject. (a) Five tissue segmented image visualized in grayscale. (b) A slice of a 4D image mapped in 3D using RGB encoding tissue densities, CSF as red, GM as green and WM as blue. (c) Fiber tractography of 1M fibers produced using probabilistic tractography overlaid on an axial slice of the brain. (d) The nodes of the connectome representing ROIs overlaid on an axial slice}
     \label{fig:preproc}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{images/connectome_creation_workflow.png}
+    \caption{Caption}
+    \label{fig:my_label}
 \end{figure}
 A connectome is generated on the basis of tractography as explained in section \ref{sec:connectomics}.The pipeline was implemented on the basis of the tutorial on Structural Connectome for Human Connectome from the software package \textbf{\textit{Mrtrix3}}. The preparation of the structural connectivity matrices can be visualized in the figure \ref{fig:preproc} mainly involves three steps which are explained in the following subsections.
 
@@ -223,7 +232,13 @@ The \textit{tcksift} command was used to downsample the tractography from 5M fib
 \end{figure}
 \fi
 \subsection{Connectome Generation}
-
+\label{subsec:connectome_generation}
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{images/brain-data-viewer_2.png}
+    \caption{Connectome of one subject with the mean streamline length visualized using tool }
+    \label{fig:my_label}
+\end{figure}
 The connectome can be represented in the form of a graph as mentioned in section \ref{sec:connectomics}. After obtaining the streamline file and a parcellation image representing the subject specific node locations of the connectome, the connectome matrix was obtained in a .csv format. It was generated from the 1M fiber tractography using 84 relevant grey matter parcellations (in \textit{\textbf{Mrtrix3}}) from the default FreeSurfer segementation specified by the Desikan Killiany Atlas. 
 
 Using different parameter settings from the \textit{tck2connectome} command three types of features  were extracted. The mean fractional anisotropy (or mean FA, equation \ref{eq:meanFA}), of the streamlines that connect the two regions, the mean streamline length and number of streamlines between any two regions. The visualization can be seen in the figure \ref{fig:connectivity_matrix}. The connectome is represented as an upper triangular matrix($84 x 84$) considering that the connections between two ROIs are symmetric.
@@ -232,12 +247,24 @@ Using different parameter settings from the \textit{tck2connectome} command thre
 In the Fig. it can be seen that there is a need to decipher the streamlines which are terminating in the specified regions of interest
 \fi
 \section{Feature representation}
-Once the connectivity matrices for all the 201 subjects were computed and encoded in the format of a .csv file, a \textit{pandas} dataframe was prepared in order to be prepared to fit into the classifier. Each row represented the data for an individual subject. Each column represented the connection between any two brain regions i.e. features in one cell of the connectivity matrix. The exact structure varied according to the feature selection techniques employed.
+Once the connectivity matrices for all the 201 subjects were computed and encoded in the format of a .csv file, a \textit{pandas} dataframe was prepared in order to be prepared to fit into the classifier. Each row represented the data for an individual subject. Each column represented the connection between any two brain regions i.e. features in one cell of the connectivity matrix. Three different types of features obtained using the connectome files as per \ref{subsec:connectome_generation} were kept structured to be separate so that at any time only the same type of features are used to be filtered.
+The exact structure varied according to the feature selection techniques employed.
+
+Self-loops were omitted from the analysis pipeline due to incompatibility with the solver based implementation and non-significant changes to classification accuracy based on the omission. Further, using the calculation of statistical coefficients on the raw data the original features were represented 
 
 \subsection{Exclusion of self loops}
+\label{sec:exclusion}
 Self loops are considered the connections from the brain regions to themselves. They were excluded from the analysis in the very beginning. On the basis of performance of the classifiers it was seen that without the self loops the performance the classifiers still perform almost similarly.
 
-To see the difference in between the classification accuracies, a paired sample t-test was conducted. In this t-test the paired samples are the classification metrics in the dataframe including the self loops and excluding them. The null hypothesis of this two-sided t-test was that the average of a particular classification metric on the basis of one feature (such as mean FA, mean streamline length etc.) with respect to five different personality traits was identical. The null hypothesis could not be rejected because for the test data, the p-values of these t-tests was high and hence not corresponding to any statistical significance. 
+To see the difference in between the classification accuracies, a paired sample t-test was conducted. In this t-test the paired samples are the classification metrics in the dataframe including the self loops and excluding them. The null hypothesis of this two-sided t-test was that the average of a particular classification metric on the basis of one feature (such as mean FA, mean streamline length etc.) with respect to five different personality traits was identical.
+\begin{align}
+    \label{eq:pairedtest}
+    t = \frac{\Tilde{X_{D}} - \mu_0}{\frac{s_{D}}{\sqrt{n}}} \\
+    \Tilde{X_D} = \sum_{i=1}^{N} \frac{a_{i} - b_{i}}{n}
+\end{align}
+where $s_D$ is the standard deviation of the differences between the metrics of the experiments with the self loops $a$ and without the self loops $b$. 
+
+The null hypothesis could not be rejected because for the test data, the p-values of these t-tests was high and hence not corresponding to any statistical significance. The results of this experiment are presented in section \ref{res:selfloops}. 
 \iffalse
 avg mean FA for all self loops(along all subjects in training data) 0.36
 avg mean FA for all the other areas without the self loops (across all the subjects) is 0.345 (avg)
@@ -255,7 +282,7 @@ Three different statistical coefficients were used mainly. The first two were th
 
 The fscore used in the analysis is used to measure how well the particular feature distinguishes between the two classes labelled as 1 and 2. It  was calculated according to the equation \ref{eq:fscores}. 
 
-An independent sample t-test was applied to consider the training subjects and the test subjects as independent samples, with the null-hypothesis that the means of the given feature for the two samples are identical i.e. $\overline{x_{1}} - \overline{x_{2}} = 0$.
+The t-test was processed in a different manner as compared to the first two metrics, the training data was divided into two groups, one belonging to class 0 and the other belonging to class. The null-hypothesis remained that the means of the given feature for the two samples are identical i.e. $\overline{x_{1}} - \overline{x_{2}} = 0$. The p-value of the t-test was used to determine it's statistical significance by converting it into the $log_10$ scale. Each p-value $p_x$ was represented by $ f(p_{x}) = (-1)*\log_{10} p_x$ so that a higher numerical value represents a higher statistical significance.
 
 
 
@@ -266,9 +293,14 @@ The hypothesis remained that the MEWS technique produces more interpretable resu
 
 \subsubsection{Baseline analysis}
 % Question: which one do we report? Solver was working only with the pearson correlation coefficient.
-For each of the structural connections, the statistical coefficient was calculated based on the data and target variables from the training set. The metrics mentioned in \ref{subsub:statcoef} were then used to rank the features. This ranking was based on dividing the coefficients for all features into percentile and then selecting all the features that belonging to the top percentiles.
 
-The t-test was processed in a different manner as compared to the first two metrics. On the basis of the classes the training data was divided into two groups, one belonging to class 0 and the other belonging to class 1  was an independent. It was a two sample t-test with the null hypothesis that the training and test subjects come from the same population and the sample averages for each value shall be identical. The p-value of the t-test was used to determine it's statistical significance by converting it into the $log_10$ scale. Each p-value $p_x$ was represented by $ f(p_{x}) = (-1)*\log_{10} p_x$ so that a higher numerical value represents a higher statistical significance.
+Baseline experiments were based purely on the filter methods mentioned in section \ref{subsec:filtermethods}. In this technique, there is no information about graph topology, the biological correspondence of the data and its logical expectations. It is based purely on numerical artefacts. 
+
+For each of the structural connections, the statistical coefficient was calculated based on the data and target variables from the training set. The metrics mentioned in \ref{subsub:statcoef} were then used to rank the features. This ranking was based on first taking the absolute value of the coefficients and then dividing the coefficients for all features into percentile. This gave a ranking from which the top percentiles were selected top percentiles.
+
+In our analysis we wanted to cover a range of number of features to cover overall trend of changes in metrics. Computational expense, the percentage of features to be chosen and compared was 2,5,10,50,100. With this range of percentages it could be determined how the metrics changed as a function of the percentage of features.
+
+
 \iffalse
 The pearson correlation coefficient was computed between the values of the feature for the training subjects and their corresponding personality trait values. It was a trial to capture the linear relationship between a parameter (eg. mean FA) representing a brain connection and the outcome label (i.e. personality trait).
 
@@ -286,16 +318,20 @@ The f-score and the t-test were based on the binarization of the target variable
 \subsubsection{Maximum Edge Weighted Subgraph}
 \label{method:MEWS}
 
-The special case of the MCWS, the MEWS was implemented because of no predefined node weighting for the regions of interest. The implementation was based on  the Java application from \cite{DBLP:journals/corr/LobodaAS16}.This application interfaced was interfaced with IBM ILOG CPLEX studio version 12.10.
+The special case of the MCWS, the MEWS was implemented because of no predefined node weighting for the regions of interest. The implementation was based on  the Java application from \cite{DBLP:journals/corr/LobodaAS16}. This application made use of the IBM ILOG CPLEX studio version 12.10 Java API. 
 
-The input graphs implemented for the use-case were created after determining the statistical coefficients. The nodes in the graph consisted of 84 nodes defined by the cortical parcellations based on the Desikan Killiany Atlas. The edges represent the coefficeints such as pearson correlation cofficient. Additionally, sparsity to the input graph was introduced using two constraints. The firs being that the absolute value of the edge weights shall not be zero and that features are convserved if and only if the tractography of each subject contains atleast one streamline between the two nodes. 
+The input graphs implemented for the use-case were created after determining the statistical coefficients. The nodes in the graph consisted of 84 nodes defined by the cortical parcellations based on the Desikan Killiany Atlas. The edges represent the numerical values obtained from the feature extraction using statistical coefficients. Additionally, sparsity to the input graph was introduced using two constraints. The first being that the absolute value of the edge weights shall not be zero and that features are convserved if and only if the tractography of each subject contains atleast one streamline between the two nodes. 
 
-For creating the output graph parts of the pipeline \cite{DBLP:journals/corr/LobodaAS16} were modified. The preprocessing module was omitted and constraints mentioned in \ref{sec:MEWS} were extended. The additional constraint was 
+An object oriented approach was taken to impalement a class derived from the \textit{networkx} graphclass for the different input and output graphs. Nodes could be given different types of weighting such as the maximum of the incoming edge weights, any numerical constant or the average of the incoming edge weights. Further the edges could be filtered on the basis of thresholds for the numerical features 
+
+The output number of edges is a function of the number of nodes. The output representing the number of edges as a function of nodes is presented in the results section (). 
+
+For creating the output graph parts of the pipeline \cite{DBLP:journals/corr/LobodaAS16} were modified. Constraints mentioned in \ref{sec:MEWS} were extended. The additional constraint was 
 \begin{align}
     \label{eq:sum_constraints}
     \sum_{v=1}^{V} y_v = m        &&  \forall v \in V
 \end{align}
-where m is a controllable parameter specifying the number of nodes needed to be preserved in the output graph. 
+where m is a controllable parameter specifying the number of nodes needed to be preserved in the output graph and $y_v$ is the binary variable mentioned in equation \ref{eq:y_v}. The preprocessing workflow of the MCWS Java solver was disabled due to it's incompatability with our required constraint of preserving at most m nodes in the output graphs.
 
 
 \section{Supervised Classification}
@@ -303,7 +339,26 @@ where m is a controllable parameter specifying the number of nodes needed to be 
 \subsection{Label Preparation}
 \label{sec:label_preparation}
 \subsection{Personality traits}
-There were two different ways in which the continuous personality traits were converted into categorical variables. 
+Personality traits are based on the five factor model of personality. The five different personality traits are Agreeableness, Conscientuousness, Neuroticism and extraversion. They are often used in pyschology and pyschiatry to determine the behaviour of subjects
+using questionnaires. 
+The personality labels were continuous, in the dataset they ranged from 
+\begin{table}
+\csvreader[
+  tabular=|c*{5}{|c}|,
+  table head=\hline Variable & Agreeableness & Openness &  Conscientiousness &  Neuroticism  & Extraversion\\ \hline,
+  late after last line=\\\hline,
+]{tables/personality_traits_summary.csv}{}%
+{\csvcoli & \csvcolii & \csvcoliii & \csvcoliv & \csvcolv & \csvcolvi}
+\caption{Foo}
+\end{table}
+Their conversion to the classification task were as follows
+\begin{list}
+\item Record the median of the personality trait the training subjects
+    \item Divide the personality labels into 5 quartiles
+    \item Remove the data of the subjects whose personality traits fall into the middle quartiles
+    \item Binarize the variables such that the first two quartiles belong to the lower class and the last two quartiles correspond to the higher class
+\end{list}
+
 \begin{enumerate}
     \item All the values of a particular trait above or equal to the median value get assigned as 1. 
     \item Split the variable's distributions into three quantiles containing 1/3 of the data in terms of frequency. 
@@ -319,7 +374,13 @@ The gender variables were categorical and for the classification task males were
 
 \end{itemize}
 
+\section{Cross Validation}
 
+A Randomized Search cross validation  with implementation from \textit{scikit learn} was carried out. 
+
+After the randomized search was finished, the best estimator was taken and fit to the training set, the prediction was then done on the independent test set.
+
+The classification metrics used were area under the curve, f1 score, accuracy and balanced accuracy.  
 
 
 \end{document}
