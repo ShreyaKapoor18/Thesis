@@ -174,7 +174,7 @@ fig = plt.figure(figsize=(50,40))
 g = sns.FacetGrid(svc, col='Type of feature', row ='Edge', margin_titles=True,
                   legend_out=True, hue='Feature Selection', style='Classifier')
 
-g = g.map(plt.plot,'Num edges','test_roc_auc_ovr_weighted' )
+g = g.map(plt.plot,'Num edges','test_roc_auc_ovr_weighted')
 g= (g.map(sns.scatterplot, 'Num edges','test_roc_auc_ovr_weighted')).add_legend()
 #[plt.setp(ax.texts, text="") for ax in g.axes.flat]
 # remove the original texts
@@ -190,3 +190,6 @@ g.fig.subplots_adjust(top=0.5)
 g.fig.suptitle(f'Gender classification  on test set with  {clf} ')
 plt.savefig(f'outputs/figures/comparison_roc_auc_{clf}.png')
 plt.show()
+#%%
+import pandas as pd
+df = pd.concat([y_train, y_test], )

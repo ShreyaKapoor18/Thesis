@@ -5,31 +5,34 @@ from processing import *
 from readfiles import *
 from decision import filter_summary
 from subgraphclass import make_solver_summary
+from sklearn.model_selection import train_test_split
 
 if __name__ == '__main__':
     ''' Data computed for all 5 personality traits at once'''
     # labels for the computed subjects, data.index is the subject id
     num = 84  # number of nodes in the graph
     tri = int(num * (num + 1) * 0.5)  # we want only the upper diagonal parts since everything below diagonal is 0
-    labels = ['NEOFAC_A', 'NEOFAC_O', 'NEOFAC_C', 'NEOFAC_N', 'NEOFAC_E']
+    big5 = ['NEOFAC_A', 'NEOFAC_O', 'NEOFAC_C', 'NEOFAC_N', 'NEOFAC_E']
     edge_names = ['mean_FA', 'mean_strl', 'num_streamlines']
-    big5 = ['Agreeableness', 'Openness', 'Conscientiousness', 'Neuroticism',
+    labels= ['Agreeableness', 'Openness', 'Conscientiousness', 'Neuroticism',
             'Extraversion']
-    mapping = {k: v for k, v in zip(big5, labels)}
+    mapping = {k: v for k, v in zip(labels, big5)}
     mat = np.triu_indices(84)
     mews = '/home/skapoor/Thesis/gmwcs-solver'
     metrics = ['balanced_accuracy', 'accuracy', 'f1_weighted', 'roc_auc_ovr_weighted']
-    edges = ['t_test', 'fscores']
+    edges = [ 'pearson']
     # note: right now the matrix whole is not scaled, for computing the fscores and correlation coeff it has to be so.
     y_train = computed_subjects()
     X_train = generate_combined_matrix(tri, list(y_train.index))  # need to check indices till here then convert to numpy array
     num_strls = X_train.iloc[:, 2 * tri:]
-    labels = ['Gender']
-    mapping = {'Gender': 'Gender'}
-    make_solver_summary(edges, mapping, y_train, labels, mews, X_train, tri, num_strls, avg_thresh=False, cat=False)
+    #labels = ['Gender']
+    #mapping = {'Gender': 'Gender'}
+    X_train, X_test, y_train, y_test = train_test_split(
+        X_train, y_train, test_size=0.33, random_state=42)
+    make_solver_summary(edges, mapping, y_train, labels, mews, X_train, tri, num_strls, avg_thresh=False, cat=True)
     filter_summary()
-    y_test = test_subjects()
-    X_test = generate_test_data(tri, y_test.index)
+    #y_test = test_subjects()
+    #X_test = generate_test_data(tri, y_test.index)
 
     classifiers = ['SVC', 'RF', 'MLP']
     cols_base = ['Classifier', 'Target', 'Choice', 'Edge', 'Feature Selection', 'Type of feature', 'Percentage',
@@ -43,7 +46,8 @@ if __name__ == '__main__':
     cols_solver.extend([f'test_{metric}' for metric in metrics])
     l1 = [X_train, X_test, y_train, y_test]
     feature_selections = ['baseline', 'solver']
-    choices = ['random']
+    #choices = ['random']
+    choices = ['test throw median', 'keep median']
     s_params = pd.read_csv('/home/skapoor/Thesis/graphtools/outputs/csvs/filtered.csv', index_col=None)
     if len(s_params.columns) > 11:
         s_params = s_params.iloc[:, 1:]
@@ -62,8 +66,8 @@ if __name__ == '__main__':
     results_base = results_base.round(3)
     results_solver = pd.DataFrame(results_solver, columns=cols_solver)
     results_solver = results_solver.round(3)
-    results_solver.to_csv('outputs/csvs/solver.csv')
-    results_base.to_csv('outputs/csvs/base.csv')
+    results_solver.to_csv('outputs/csvs/solver_personality.csv')
+    results_base.to_csv('outputs/csvs/base_personality.csv')
 
 '''
 Here we will need to take the threshold and degree as hyperparameters, change them and compute the result accordingly

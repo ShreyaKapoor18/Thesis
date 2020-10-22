@@ -13,7 +13,7 @@ mapping = {k: v for k, v in zip(big5, labels)}
 mat = np.triu_indices(84)
 mews = '/home/skapoor/Thesis/gmwcs-solver'
 metrics = ['balanced_accuracy', 'accuracy', 'f1_weighted', 'roc_auc_ovr_weighted']
-edges = ['t_test', 'fscores']
+edges = ['t_test', 'fscores', 'pearson']
 # note: right now the matrix whole is not scaled, for computing the fscores and correlation coeff it has to be so.
 y_train = computed_subjects()
 X_train = generate_combined_matrix(tri, list(y_train.index))  # need to check indices till here then convert to numpy array

@@ -46,7 +46,7 @@ def solver_edge_filtering(edge, X_cut, y):
     stacked.columns = cols
     if edge == 'fscores' or edge == 'fscore':
         name = y.name
-        #stacked[name] = stacked[name] >= stacked[name].median()
+        stacked[name] = stacked[name] >= stacked[name].median()
         arr = fscore(stacked, class_col=y.name)[:-1]
         #arr = arr * 100  # take this only from the training data
     if edge == 'pearson':
@@ -55,7 +55,7 @@ def solver_edge_filtering(edge, X_cut, y):
         arr = X_cut.mean()
     if edge == 't_test':
         name = y.name
-        #stacked[name] = stacked[name] >= stacked[name].median()
+        stacked[name] = stacked[name] >= stacked[name].median()
         group0 = stacked[stacked[name] == 0]
         group1 = stacked[stacked[name] == 1]
         arr = []
@@ -186,7 +186,7 @@ def make_solver_summary(edges, mapping, data, targets, mews, whole, tri, num_str
         arr = arr.abs()
         arr = arr.round(3)
         #for num_nodes in [5, 10, 15, 20, 25, 30]:
-        for num_nodes in range(30):
+        for num_nodes in range(4,20):
             print('*' * 100)
             print('*' * 100, file=output_file)
             print(f'Case:feature_type, target,edge, Node weights, Num_nodes, Thresh', file=output_file)
