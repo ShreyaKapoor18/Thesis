@@ -17,7 +17,7 @@ BCOR=8mm]{scrbook} % BCOR sets the space, used by the type of  book. (e.g. glued
 }
 \makeatother
 %\newcommand{\comment}[1]{}
-
+\DeclareUnicodeCharacter{2212}{-}
 \begin{document}
 \frontmatter
 		\input{setup/titlepage.tex}
@@ -40,7 +40,7 @@ BCOR=8mm]{scrbook} % BCOR sets the space, used by the type of  book. (e.g. glued
         \subfile{Discussion}
         \subfile{Conclusion}
 
-\backmatter
+        \backmatter
         %\subfile{Appendix}
         
         \FloatBarrier

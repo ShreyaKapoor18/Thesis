@@ -1,5 +1,5 @@
 \documentclass[msthesis.tex]{subfiles}
-\DeclareUnicodeCharacter{2212}{-}
+
 \begin{document}
 \chapter{Background}
 Non-invasive neuroimaging techniques have become indispensable tools to understand cognitive processes and neurological disease pathology. Magnetic Resonance Imaging (MRI)  is one of the most widely used neuroimaging modalities preferred by clinicians due to the safety of its acquisition procedure; it does not produce any ionizing radiation like X-ray or CT scans. It is of high utility when required to look at soft tissues such as those in the nervous system. 
@@ -174,6 +174,7 @@ FA = \sqrt{\frac{3}{2}} \frac{\sqrt{(D1 -D_{mean})^2+(D2 -D_{mean})^2 + (D3 -D_{
 Where D1, D2, and D3 are the corresponding eigenvalues and v1,v2,v3 are the eigenvectors.
 DTI is a popular method to study the orientation and organisation of white matter. However, its fails in regions containing populations of fiber orientations that have different orientations. It assumes that all white matter bundles in the brain have similar diffusion characteristics and attributes diffusion anisotropy to partial volume effects \cite{tournier2004direct}. Secondly, the Diffusion tensor only possess a single major eigenvalue for modelling the diffusion in one voxel and cannot be used for mixed fiber populations.
 \subsubsection{Higher order models}
+\label{sec:highermodels}
 
 In order to solve the multiple fiber orientation problem in DTI, a number of approaches have been proposed to estimate the composition of fiber orientations inside a voxel. These models extract higher order structural information of tissues. They can help deal with problems such as kissing and crossing fibers. 
 
@@ -184,16 +185,16 @@ High angular resolution imaging (HARDI) techniques enable the detection of multi
 \end{align}
 where $w_k$ represents the volume fraction of each fiber passing through the voxel. $\Theta_k$ and $\phi_k$ represent the polar and azimuthal angles in spherical coordinates respectively.
 
- \cite{tournier2004direct} propose modelling the DWI signal is as the spherical convolution (i.e. convolution in spherical coordinates) of the response function and the fODF Spherical deconvolution is the other way round where fODF can be extracted. A response function is an axially symmetric kernel which describes the DWI signal resulting from water diffusion along each fiber bundle aligned with the z axis. For white matter the response function models expected for a voxel containing a singele bundle of axons. Such response functions can also be calculated for other tissue types
+ \cite{tournier2004direct} propose modelling the DWI signal is as the spherical convolution (i.e. convolution in spherical coordinates) of the response function and the fODF. Spherical deconvolution is the other way round where fODF can be extracted based on the signal of a single type of tissue/fiber population. This signal is often called as the response function. A response function is mathematically an axially symmetric kernel which describes the DWI signal resulting from water diffusion along each fiber bundle aligned with the z axis. For white matter the response function models expected for a voxel containing a single bundle of axons. Such response functions can also be calculated for other tissue types
 Constrained Spherical Deconvolution (CSD) has gained recent attention as a method to extract white matter (WM) fibre orientation distributions. It is used to obtain fODF estimates and fibre tractograms \cite{JEURISSEN2014411}.
 %insert image
 
 \subsection{Tractography}
-\label{sub:tractography}
+\label{subsub:tractography}
 \begin{figure}
     \centering
-    \includegraphics[width=\textwidht]{images/A-Degree-of-anisotropy-B-Deterministic-fiber-tracking-the-fiber-path-across-voxels-is.png}
-    \caption{Image from \cite{muller2018clinically}}
+    \includegraphics[width=\textwidth]{images/A-Degree-of-anisotropy-B-Deterministic-fiber-tracking-the-fiber-path-across-voxels-is.png}
+    \caption{Image from \cite{muller2018clinically} depicting different types of fiber tracking techniques. (a) Depicts deterministic tracking where the largest eigenvector determines the direction of progression along adjacent voxels. (b) Probabilistic tractograph is depicted, in each voxel a probability distribution function represents multiple possible diffusion directions.}
     \label{fig:tracking}
 \end{figure}
 Fiber tractography is a technique used to graphically construct  3 dimensional representations white matter pathways in the human brain.The technique uses the information about local fiber directions to trace streamlines that represent white matter tracts in the brain. It has become an important part of white matter disorder studies and has gained popularity because of its non-invasive nature. These advantages make it suitable for surgical targeting and planning \cite{romano2009pre}.
@@ -202,11 +203,16 @@ Tractography methods often use DTI in order to delineate the streamlines along t
 
 In deterministic tractography, the algorithm usually follows the direction of maximum diffusion from along the voxels by starting from a “seed” region. If the angle between two subsequent directions of maximum diffusion is less than predefined threshold then the algorithm proceeds tracking along the maximum diffusion direction of the second voxel and terminates when the condition is not met \cite{}.  Several other conditions can also be imposed on the basis tracking technique on the basis of investigator specific techniques. The deterministic tractography does not take into account any random or systematic errors that arise during signal acquisition, recording and transmission.
 
+Probabilistic tractography relies on estimation of a probability distribution function such as an fODF for the distribution of fiber orientations in each voxel. This helps to account for the possibility of crossing fibers and kissing fibers. The probability distribution functions and uncertainity are then used to build a path probability map corresponding to a seed point. Let's say N streamlines from a seed point a propagated by randomly using an orientation along the distribution functions. Betweem any to voxels 
+$P_{AB}= M/N$  defines the probability that a curve starting at voxel A passes through voxel B
+where M = Number of streamlines that go through B and A
+N = total number of streamlines generated from A
+Using this probability map the most probable fiber orientation can be determined. Multiple fiber orientaitons existing in a voxel, the one most compatible with the incoming trajectory is chosen\citep{behrens2003non}.
 \subsection{Analyzing the brain as a graph}
 \label{sec:braingraph}
 The human brain is considered to be one of the most intricate biological systems. It has been well established that this complex system can be modelled as a network composed of various dynamically interacting elements. It can hence be well represented as a graph for computational analysis. The networks perspective has gained tractable attention in Neuroscience and given rise to an ever expanding field of Network Neuroscience. Brain networks can vary at scale (from molecular interactions to cognition. With different interactions at each level, graph theory finds its applications in this field \cite{sporns2018graph}. 
 
-Graph theory can be defined as a branch of discrete mathematics that deals with the geometric analysis of graphs. Graph theory is useful in the analysis of biological networks since biological systems are dynamic and the interaction between the elements of the network gives rise to emergent properties. These properties can only be deciphered by comprehending the behavior with a systems approach. Graph theoretic methods can give comprehensive information about brain network topology, archictecture, structure and function. This has given rise to the field of connectomics \cite{sporns2005human} for analysis of the structural and functional brain connectivity. The strucutral networks usually represent the anatomy of the brain and are temporally stable (ignoring effects of plasticity and development). On the other hand, the functional networks are temporally variable and dense.
+Graph theory can be defined as a branch of discrete mathematics that deals with the geometric analysis of graphs. Graph theory is useful in the analysis of biological networks since biological systems are dynamic and the interaction between the elements of the network gives rise to emergent properties. These properties can only be deciphered by comprehending the behavior with a systems approach. Graph theoretic methods can give comprehensive information about brain network topology, archictecture, structure and function. This has given rise to the field of connectomics (\citep{sporns2005human}) for analysis of the structural and functional brain connectivity. The strucutral networks usually represent the anatomy of the brain and are temporally stable (ignoring effects of plasticity and development). On the other hand, the functional networks are temporally variable and dense.
 
 Structural networks are preferred when trying to study the physical nature of the brain and it's anatomy, when trying to predict Neurological disorders and searching the biochemical basis and causal relationship various factors
 
@@ -218,11 +224,9 @@ A graph can be defined as mathematical representation of pairwise relationships 
 \subsection{Connectomics}
 \label{sec:connectomics}
 Connectomics is termed as the study of the brain's functional and structural networks. A connectome (in-vivo, retraced from imaging) is a dense network of brain connections, with a numerical value assigned to each network (\cite{bassett2017network}). The connectome of brain can be seen as a circuit diagram with the neural connections analogous to wires and the cell bodies to electrical components.
-Recently, connectomics has become the focus of major Neuroscience studies with evidence about the hodological view. The research in the field has expanded rapidly due to the increasing interest in understanding the brain as a dynamic system, and the belief that the connections in the brain are what give it its capabilities and functionality. \cite{network_neuroscience_editorial}
+Recently, connectomics has become the focus of major Neuroscience studies. Research in the field has expanded rapidly due to the increasing interest in understanding the brain as a dynamic system, and the belief that the connections in the brain are what give it its capabilities and functionality ( \cite{network_neuroscience_editorial}).
 
-The first complete structural connectome to be mapped at the synaptic level was published in 1986,  belongs to the species C. elegans. It was reconstructed using electron micrographs of serial section and is a network that possess three hundred neurons and roughly seven thousand connections. It still took decades to claim the biological plausibility of all the connections in the reconstructed connectome\cite{elegans}, this leads to the fact that the connectome of the human brain cannot be mapped using the manual labour intensive methodology used by \cite{white1986structure}. Mapping the human brain manually hence seems implausible. The human brain contains roughly the same number of neurons as the stars in the Milky way galaxy and about $10^{15}$ inter neuronal connections (synapses)\cite{fornito2015connectomics}. This calls for the need to computationally determine brain connectivity from brain scans. Diffusion MRI can be used for sturcutral connectome construction while functional MRI is the preferred modality for functional connectome construction. The Human Connectome Project was launched in 2007 as the first large scale collaborative effort to create detailed maps of the brain (in-vivo) and to help better understand the fundamentals of human connectional anatomy.
-
-
+The first complete structural connectome to be mapped at the synaptic level was published in 1986,  belongs to the species C. elegans. It was reconstructed using electron micrographs of serial section and is a network that possess three hundred neurons and roughly seven thousand connections. It still took decades to claim the biological plausibility of all the connections in the reconstructed connectome\cite{elegans}, this leads to the fact that the connectome of the human brain cannot be mapped using the manual labour intensive methodology used by \cite{white1986structure}. Mapping the human brain manually hence seems implausible. The human brain contains roughly the same number of neurons as the stars in the Milky way galaxy and about $10^{15}$ inter neuronal connections called as synapses (\cite{fornito2015connectomics}). This calls for the need to computationally determine brain connectivity from brain scans. Diffusion MRI can be used for sturcutral connectome construction while functional MRI is the preferred modality for functional connectome construction. The Human Connectome Project was launched in 2007 as the first large scale collaborative effort to create detailed maps of the brain (in-vivo) and to help better understand the fundamentals of human connectional anatomy.
 
 \subsection{Structural Brain Connectivity}
 %the term connectivity refers to several different and interrelated aspects of brain organization (Horwitz, 2003)
@@ -231,23 +235,16 @@ Structural brain connectivity refers to the arrangement of anatomical connection
 
 Usually in Neuroimaging studies the connectivity is analyzed at the macroscopic scale, i.e. the running of the fibers between different brain regions.  From section \ref{subsub:tractography} it can be inferred that the streamlines traced using the tractography algorithms represent the structural connections between different Regions of Interest(ROIs) of the brain seen as brain nodes. The connections are usually represented using bio-physical parameters such as mean FA (mean fractional anisotropy), number of streamlines between the two nodes and the length of the streamlines connecting the two nodes.
 
-\subsection{Functional Brain Connectivity}
-
-Functional connectivity can be defined as the numerical analysis of brain regions engaged in a task. Any two brain regions are considered to be functionally connected if there exists a temporal correlation in activities recorded from them. The assumption in the use of functional connectivity is that two temporally coupled events in the brain could imply correlation in their association i.e. they are more associated to each other than to all those which are not temporally correlated.
-
-The brain's functional connectivity can be analysed using fMRI data. It can be seen as a sort of dynamic connectivity. 
-
 
 \section{Feature Selection Techniques}
 \label{sec:feature_selection}
 Neuroimaging data often suffers from the \textit{curse of dimensionality}. The sample size is often much smaller than the total number of features. Classifiers might be influenced by the increase in noise as the number of features increases. Dimensionality reduction and feature selection are often the techniques used for a meaningful reduction in features. Hoewever, most dimensionality reduction methods such as Principal Component Analysis (PCA) rely on transformations (often non-linear) of the original data and this leads to a lack of interpretability. Due to this reason it is important to consider feature selection methods where inference about what the classifier actually learns can be made (\cite{shi2018feature}). 
 
-Feature selection methods can be grouped into three types; filter methods, wrapper methods and embedded methods. Filter methods are based on selecting features before running the classifier. Wrapper methods can be seen as a selection method \textit{on the fly} in which features are added or removed iteratively on the basis of classification performance.Embedded methods are those in which feature selection is embedded in the classifier. These have been increasingly used in Neuroimaging studies \cite{tohka2016comparison}.
+Feature selection methods can be grouped into three types; filter methods, wrapper methods and embedded methods. Filter methods are based on selecting features before running the classifier. Wrapper methods can be seen as a selection method \textit{on the fly} in which features are added or removed iteratively on the basis of classification performance.Embedded methods are those in which feature selection is embedded in the classifier. These have been increasingly used in Neuroimaging studies (\cite{tohka2016comparison}).
 
 \subsection{Filter methods}
 \label{subsec:filtermethods}
-Filters form one of the simplest methods for feature selection. They usually serve as a pre-processing step for the classification and are model independent. Hoeever, there is a caveat when using these type of features for classification studies that each feature is considered independently and their cumulative effect is not taken into consideration for the cla
-Some of the common techniques used to determine the feature importance is the use of coefficients such as the fscore and t-test, these are also used in Neuroimaging applications. 
+Filters form one of the simplest methods for feature selection. They usually serve as a pre-processing step for the classification and are model independent. However, there is a caveat when using these type of features for classification studies that each feature is considered independently and their cumulative effect is not taken into consideration for the classification. Some of the common techniques used to determine the feature importance is the use of coefficients such as the fscore and t-test which are widely used in Neuroimaging applications.
 
 The fscore can be calculated as 
 \begin{equation}
@@ -261,7 +258,15 @@ A simple t-test can also be computed and then the features can be filtered based
 \begin{equation}
     t = \frac{|\overline{x_1} - \overline{x_2}|}{\sqrt{0.5(\sigma_{1}^2 + \sigma_{2}^2)}}
 \end{equation}
-The features can be ranked and the features with the highest t-test scores can be used to perform the classification. Numerical thresholds can also be imposed if suited to the nature of the problem. 
+where $\sigma-{1}$ represents standard deviation for the feature values of the first group and $\sigma_{2}$ is the value for the second group. 
+The features can be ranked on the basis of the p value of the t-test to obtain it's statistical significance. Typically, values of $p<0.05$ are considered statistically significant (\cite{colquhoun2017reproducibility}) and null hypothesis can be rejected with confidence. Numerical thresholds can also be imposed if suited to the nature of the problem. 
+
+Based on a similar concept, the pearson correlation coefficient can be used to filter features if the target variables are continuous. The pearson correlation coefficient is defined as 
+\begin{equation}
+    \rho = \frac{\sum_{i=1}^{N} (x_{i} - \overline{x}) (y_{i} - \overline{y})}
+    {\sqrt{\sum_{i=1}^{N} (x_{i}-\overline{x})^2 \sum_{i=1}^{N} (y_{i}-\overline{y}^2)}}
+\end{equation}
+where $y$ represents the target variable and $N$ represents the total number of data points. 
 
 
 \subsection{Maximum Weight Connected Subgraph}
@@ -281,7 +286,7 @@ The generalized MWCS can be converted into the Maximum Edge Weight Subgraph(MEWS
     \Phi(\Tilde{G}) = \sum_{e \in \Tilde{E}} w_e \longrightarrow max
 \end{equation}
 
-According to the conceptual framework in \cite{DBLP:journals/corr/LobodaAS16}, such a problem is formulated using a Mixed Integer Progrbgraamming (MIP) formulation. By using  a mixture of integral and binary variables, the maximal value of the objective function (equation \ref{eq:sumfun}) can be optimally found using a set of constraints.
+According to the conceptual framework in \cite{DBLP:journals/corr/LobodaAS16}, such a problem is formulated using a Mixed Integer Programming (MIP) formulation. By using  a mixture of integral and binary variables, the maximal value of the objective function (equation \ref{eq:sumfun}) can be optimally found using a set of constraints.
 
 The first step of formulating such a problem is to represent a candidate optimal subgraph. The membership of nodes and vertices in the subgraph represented using binary variables:
 \begin{align}
@@ -297,12 +302,13 @@ Conceptually, an edge should be present in the subgraph only if both the end ver
 \end{align}
 wehre $\delta_{v}$ represents the set of incoming edges on a node. Consider if $y_v = 0$, then $w_e$ has to be zero because an edge cannot be present without the node being present and if $y_v = 1$ then $w_e = 0$ or $w_e = 1$ because it is not necessary for an edge to be present if a node is present.
 
-After the subgraphbcan be represented, it is important to establish the validity of any subgraph. A valid MWCS needs to be connected and maximise the function \ref{eq:sumfunc}. To establish the connectedness of the subgraph the concept of an arborescence needs to be introduced.
+After the subgraphbcan be represented, it is important to establish the validity of any subgraph. A valid MWCS needs to be connected and maximise the function \ref{eq:sumfun}. To establish the connectedness of the subgraph the concept of an arborescence needs to be introduced.
 
 An arborescence is an acyclic directed graph in with a root node $v$, having exactly one path from $v$ to any other vertex $u$. The connectedness in a graph is defined as the existence of a simple path between any two nodes. So, for the valid connected subgraph each of it's traversal has to be a valid arborescence. The MWCS can be constructed in a bottom-up fashion by first determining the valid arboresnces and then combining them to form the optimal subgraph.
 
 The traversal of any graph can be found by considering $S = (V,A)$ derived from $G=(V,E)$  where each undirected edge $(v,u)$ is replaced by two directed arcs $(u,v)$ and $(v,u)$. To ensure the connectedness of the subgraph (formed by combining arborescences) a non-linear formulation is needed wehre:
 \begin{itemize}
+     \setlength\itemsep{0.5em}
     \item Binary variable $x_a = 1$ iff $a \in A$ belongs to the arborescence.
     \item Binary variable $r_v = 1$ iff $v \in V$ is the root of the arborescence,
     \item Continuous variable $d_v = n$ if the length of the simple path from the root to the vertex v is n. The $d_v$ value can be arbitrary if the vertex v does not belong to the optimal solution
@@ -320,16 +326,20 @@ As pointed above a valid arborescence corresponds to the traversal of the connec
     \label{eq:dvrv}
     d_v r_v = r_v\\
     \label{eq:dudv}
-    d_u x_{vu} = (d_v + 1) x_{vu} && \forall e=(v, u) \in A\\
+    d_u x_{vu} = (d_v + 1) x_{vu} && \forall e=(v, u) \in A
 \end{align}
 Equation \ref{eq:rv} ensures that there is only one root of the arborescence. Equation \ref{eq:dv} limits the path length from the root vertex to any other vertex in the arborescence if it is present in the subgraph. With equation \ref{eq:uvrv} it can be established if a vertex is a root then there are no incoming edges and that there is a maximum of one incoming edge on each node. The constraint \ref{eq:fronba} says that either the forward arc or the backward arc can be a part of the valid arborescence and not both. The last two constraint \ref{eq:dvrv}  and \ref{eq:dudv} imposes that the length of the path to the root is always 1 and the distance of the nodes correspond to the direction of the edges.
 
-It can be seen that equation \ref{eq:dudv} and \ref{dvrv} are non-linear. Combining the above equations the linearization is as follows:
+It can be seen that equation \ref{eq:dvrv} and \ref{eq:dudv} are non-linear. Combining the above equations the linearization is as follows:
 \begin{align}
+    \label{eq:dvlin}
     d_v + n r_v \leq n && \forall v \in V\\
+    \label{eq:nuvlin}
     n + d_u - d_v \geq (n+1) x_{vu} && \forall (v,u) \in A\\
-    n + d_v - d_u \geq (n+1) x_{vu} && \forall (v,u) \in A\\
+    \label{eq:dvdulin}
+    n + d_v - d_u \geq (n-1) x_{vu} && \forall (v,u) \in A
 \end{align}
+Equation \ref{eq:dvlin} combines equations \ref{eq:rv} and \ref{eq:dv}. Equation \ref{eq:nuvlin} and \ref{eq:dvdulin} can be justified with the fact that if a directed edge $(v.u)$ is present, then node $v$ is visited before node $u$ and $d_u - d_v = 1$. They hence represent the equation \ref{eq:dudv}.
 Any arbitrary node is considered to be the root of such an arborescence. The arborescence are then combined on the basis of the maximal edge and node weighhts to yield the final subgraph. 
 
 \section{Classification}
@@ -337,14 +347,14 @@ Any arbitrary node is considered to be the root of such an arborescence. The arb
 \begin{figure}
     \label{fig:svm}
     \centering
-    \includegraphics[width=0.4\textwidth]{images/svm.png}
-    \caption{To be made as a google drawing}
+    \includegraphics[width=0.8\textwidth]{images/SVM.png}
+    \caption{Illustration of classification using support vector machines. The red line represents the decision boundary between the two classes.The algorithm maximizes the margin between the boundary for separate classes. The vectors lying on the hyperplanes depicted by the blue dashed lines are called as 'support vectors' and are the closest vectors to the decision boundary. Based on the values obtained by solving the L.H.S of the decision boundary for each data points, they are assigned to the corresponding classes.}
     \label{fig:my_label}
 \end{figure}
 
 Support Vector Classifiers (SVC) are classical machine learning algorithms based on Support Vector machines (SVMs). They are important since they have attained signifcant accuracy with different types of tasks such as a handwritten digits recognition, face detection in images, and text categorization\cite{burges1998a}. In Neuroimaging studies, SVCs are important for classification tasks since they are relatively robust to overfitting and more interpretable than Deep Learning classifiers.
 
-In the simplest, binary case the mathematical formulation of the SVM is as follows. Consider each observation \textbf{$x_i$}, $i\in {1...n}$ to be a vector in the \textit{d-dimensional} feature space with a target label  $y_i\in {-1,1}$. The classifier needs to find a boundary that separates \textit{n} such points present in the presented data within a small margin of error.  It does so by trying to find an optimally separating hyperplane that efficiently divides the input data according to the target labels. In figure \ref{fig:svm} the red line represents the optimally separating hyperplane that satisfies the equation
+In the simplest, binary case the mathematical formulation of the SVM is as follows. Consider each observation \textbf{$x_i$}, $i\in {1...n}$ to be a vector in the \textit{d-dimensional} feature space with a target label  $y_i\in {[-1,1]}$. The classifier needs to find a boundary that separates \textit{n} such points present in the presented data within a small margin of error.  It does so by trying to find an optimally separating hyperplane that efficiently divides the input data according to the target labels. In figure \ref{fig:svm} the red line represents the optimally separating hyperplane that satisfies the equation
 $ \sum w_i x_i - b = 0$
  It is maximally distant to the nearest point belonging to either class (also termed as the support vectors). The maximally separating hyperplane is found by satisfying the following constraints for each data point i. 
 \begin{align}
@@ -379,7 +389,7 @@ A Multilayer Perceptron (MLP) is an Artificial Neural Network that is organized 
 \begin{figure}
     \centering
     \includegraphics[width=0.5\textwidth]{images/tnn_ann.png}
-    \caption{(a) Visualization of an artificial neuron from \cite{vieira2017using} depicting the output as a function of weighted sum of the inputs (equation \ref{eq:op_neuron}) (b). The artificial neural network consisting of the input layer, hidden layers and the output layer. Image from \cite{article}}
+    \caption{(a) Visualization of an artificial neuron from \cite{vieira2017using} depicting the output as a function of weighted sum of the inputs (equation \ref{eq:op_neuron}) (b). The artificial neural network consisting of the input layer, hidden layers and the output layer.}
     \label{fig:mlp}
 \end{figure}
 The connections between the layers are feed-forward and uni-directional. The input layer serves as a buffer layer with no transformation of the input while in the other layers the neurons implement non-linear transfer functions on the weighted connections from the previous layer as shown in figure \ref{fig:mlp} (a), the output $y$ from the neuron can be expressed as:
