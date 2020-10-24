@@ -27,12 +27,14 @@ if __name__ == '__main__':
     num_strls = X_train.iloc[:, 2 * tri:]
     #labels = ['Gender']
     #mapping = {'Gender': 'Gender'}
+    y_test = test_subjects()
+    X_test = generate_test_data(tri, y_test.index)
+    X_train = pd.concat([X_train, X_test],axis=0)
+    y_train = pd.concat([y_train, y_test], axis=0)
     X_train, X_test, y_train, y_test = train_test_split(
         X_train, y_train, test_size=0.33, random_state=42)
     make_solver_summary(edges, mapping, y_train, labels, mews, X_train, tri, num_strls, avg_thresh=False, cat=True)
     filter_summary()
-    #y_test = test_subjects()
-    #X_test = generate_test_data(tri, y_test.index)
 
     classifiers = ['SVC', 'RF', 'MLP']
     cols_base = ['Classifier', 'Target', 'Choice', 'Edge', 'Feature Selection', 'Type of feature', 'Percentage',
