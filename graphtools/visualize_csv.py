@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
-
+#%%
 def sns_plot(**kwargs):
     for clf in ['SVC', 'RF', 'MLP']:
         svc = combined[combined['Classifier'] == clf]
@@ -27,7 +27,7 @@ def sns_plot(**kwargs):
         plt.show()
 
 
-
+#%%
 x_ax = 'Num edges'
 y_ax = 'test_roc_auc_ovr_weighted'
 column = 'Type of feature'
@@ -83,7 +83,14 @@ for (feature , i) in zip(combined['Type of feature'].unique(), range(3)):
 #plt.legend(lines, label)
 #fig.subplots_adjust(top=0.95)
 #fig.suptitle('Gender Classification')
-plt.legend(handles=lines, bbox_to_anchor=(1, 1), loc='upper left')
+#plt.xlabel('Number of edges')
+#plt.ylabel('Area under ROC Curve')
+ax[1,0].set_ylabel('Area under ROC curve')
+fig.text(0.5, 0.002, 'Number of edges', ha='center', fontsize=12)
+
+#fig.subplots_adjust(top=0.2)
+plt.legend(handles=lines, bbox_to_anchor=(1,1), loc='upper left')
+fig.tight_layout(pad=1)
 plt.savefig('outputs/figures/combined_clf_auc_gender.png')
 plt.show()
 #%%

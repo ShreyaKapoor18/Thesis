@@ -1,0 +1,817 @@
+,Unnamed: 0,Classifier,Target,Choice,Edge,Feature Selection,Type of feature,Percentage,Refit Metric,Num edges,train_balanced_accuracy,train_accuracy,train_f1_weighted,train_roc_auc_ovr_weighted,test_balanced_accuracy,test_accuracy,test_f1_weighted,test_roc_auc_ovr_weighted
+0,0,SVC,Openness,test throw median,pearson,solver,mean_FA,4.532,balanced_accuracy,158,63.771,64.557,57.576,67.503,40.625,38.889,31.25,42.812
+1,1,SVC,Extraversion,test throw median,pearson,solver,num_streamlines,4.475,balanced_accuracy,156,100.0,100.0,100.0,0.0,46.199,45.946000000000005,41.176,54.678000000000004
+2,2,SVC,Extraversion,test throw median,pearson,solver,mean_strl,4.418,balanced_accuracy,154,65.278,65.385,63.013999999999996,35.549,59.357,59.458999999999996,61.538000000000004,46.49100000000001
+3,3,SVC,Agreeableness,test throw median,pearson,solver,mean_FA,4.388999999999999,balanced_accuracy,153,100.0,100.0,100.0,100.0,46.916000000000004,43.59,50.0,48.701
+4,4,SVC,Conscientiousness,test throw median,pearson,solver,mean_strl,4.36,balanced_accuracy,152,59.085,58.75,60.24100000000001,48.872,42.857,42.857,37.5,58.843999999999994
+5,5,SVC,Neuroticism,test throw median,pearson,solver,mean_FA,4.332,balanced_accuracy,151,92.322,92.59299999999999,91.667,98.15700000000001,51.518,48.888999999999996,43.902,60.121
+6,6,SVC,Openness,test throw median,pearson,solver,mean_strl,4.303,balanced_accuracy,150,67.664,68.354,62.687,79.858,40.0,38.889,35.294000000000004,44.062
+7,7,SVC,Openness,test throw median,pearson,solver,num_streamlines,4.274,balanced_accuracy,149,100.0,100.0,100.0,0.0,55.625,55.556000000000004,57.895,44.375
+8,8,SVC,Neuroticism,test throw median,pearson,solver,mean_strl,4.188,balanced_accuracy,146,100.0,100.0,100.0,0.0,40.586999999999996,44.443999999999996,57.626999999999995,73.077
+9,9,SVC,Agreeableness,test throw median,pearson,solver,mean_strl,4.131,balanced_accuracy,144,100.0,100.0,100.0,0.0,56.818000000000005,53.846000000000004,60.87,54.545
+10,10,SVC,Conscientiousness,test throw median,pearson,solver,mean_FA,4.102,balanced_accuracy,143,100.0,100.0,100.0,100.0,54.762,54.286,50.0,67.347
+11,11,SVC,Openness,test throw median,pearson,solver,mean_FA,4.073,balanced_accuracy,142,94.916,94.93700000000001,94.595,99.228,35.0,33.333,25.0,38.75
+12,12,SVC,Neuroticism,test throw median,pearson,solver,mean_strl,4.016,balanced_accuracy,140,67.53699999999999,65.432,70.833,20.546999999999997,52.833999999999996,57.778,69.84100000000001,52.227
+13,13,SVC,Conscientiousness,test throw median,pearson,solver,num_streamlines,3.987,balanced_accuracy,139,100.0,100.0,100.0,100.0,50.0,48.571000000000005,47.059,55.782
+14,14,SVC,Agreeableness,test throw median,pearson,solver,mean_FA,3.9589999999999996,balanced_accuracy,138,100.0,100.0,100.0,100.0,46.916000000000004,43.59,50.0,46.753
+15,15,SVC,Conscientiousness,test throw median,pearson,solver,mean_strl,3.9010000000000002,balanced_accuracy,136,56.328,56.25,55.696000000000005,47.681999999999995,46.428999999999995,48.571000000000005,35.714,58.843999999999994
+16,16,SVC,Openness,test throw median,pearson,solver,mean_strl,3.844,balanced_accuracy,134,61.068000000000005,62.025,53.125,68.66199999999999,37.5,36.111,30.303,42.812
+17,17,SVC,Openness,test throw median,pearson,solver,num_streamlines,3.787,balanced_accuracy,132,98.649,98.734,98.63,99.743,63.125,63.888999999999996,68.293,64.375
+18,18,SVC,Neuroticism,test throw median,pearson,solver,mean_FA,3.758,balanced_accuracy,131,100.0,100.0,100.0,100.0,48.684,48.888999999999996,53.06100000000001,55.263000000000005
+19,19,SVC,Agreeableness,test throw median,pearson,solver,mean_strl,3.7289999999999996,balanced_accuracy,130,100.0,100.0,100.0,100.0,59.578,53.846000000000004,59.091,57.143
+20,20,SVC,Conscientiousness,test throw median,pearson,solver,mean_FA,3.701,balanced_accuracy,129,78.008,78.75,73.846,82.456,52.381,54.286,42.857,51.361000000000004
+21,21,SVC,Neuroticism,test throw median,pearson,solver,mean_FA,3.6430000000000002,balanced_accuracy,127,100.0,100.0,100.0,100.0,40.486,37.778,30.0,40.891
+22,22,SVC,Agreeableness,test throw median,pearson,solver,mean_strl,3.614,balanced_accuracy,126,98.75,98.63,98.507,0.152,58.604,56.41,63.83,52.922
+23,23,SVC,Extraversion,test throw median,pearson,solver,mean_strl,3.557,balanced_accuracy,124,97.421,97.436,97.22200000000001,3.042,62.281000000000006,62.162,61.111000000000004,40.058
+24,24,SVC,Agreeableness,test throw median,pearson,solver,mean_FA,3.528,balanced_accuracy,123,100.0,100.0,100.0,100.0,53.247,48.718,54.545,51.623000000000005
+25,25,SVC,Neuroticism,test throw median,pearson,solver,num_streamlines,3.5,balanced_accuracy,122,76.96600000000001,77.778,73.529,82.432,52.023999999999994,51.111000000000004,52.174,50.607
+26,26,SVC,Conscientiousness,test throw median,pearson,solver,mean_FA,3.4419999999999997,balanced_accuracy,120,53.946999999999996,56.25,14.634,29.605,50.0,60.0,0.0,72.109
+27,27,SVC,Agreeableness,test throw median,pearson,solver,mean_strl,3.3280000000000003,balanced_accuracy,116,100.0,100.0,100.0,100.0,52.273,51.282,59.574,56.169
+28,28,SVC,Extraversion,test throw median,pearson,solver,mean_FA,3.299,balanced_accuracy,115,98.611,98.71799999999999,98.59200000000001,0.0,70.322,70.27,70.27,29.531999999999996
+29,29,SVC,Openness,test throw median,pearson,solver,mean_strl,3.27,balanced_accuracy,114,86.80799999999999,87.34200000000001,85.294,97.104,43.75,41.667,32.258,34.375
+30,30,SVC,Neuroticism,test throw median,pearson,solver,mean_strl,3.242,balanced_accuracy,113,50.0,54.321000000000005,0.0,23.28,50.0,42.222,0.0,56.478
+31,31,SVC,Extraversion,test throw median,pearson,solver,mean_FA,3.213,balanced_accuracy,112,97.22200000000001,97.436,97.14299999999999,99.934,56.871,56.757,55.556000000000004,59.942
+32,32,SVC,Conscientiousness,test throw median,pearson,solver,mean_strl,3.1839999999999997,balanced_accuracy,111,50.0,52.5,0.0,37.845,50.0,60.0,0.0,65.306
+33,33,SVC,Neuroticism,test throw median,pearson,solver,mean_FA,3.155,balanced_accuracy,110,85.074,85.185,83.78399999999999,5.59,56.073,53.333,48.78,31.275
+34,34,SVC,Openness,test throw median,pearson,solver,mean_FA,3.127,balanced_accuracy,109,63.771,64.557,57.576,67.72800000000001,43.75,41.667,32.258,44.688
+35,35,SVC,Conscientiousness,test throw median,pearson,solver,num_streamlines,3.0980000000000003,balanced_accuracy,108,100.0,100.0,100.0,100.0,58.333,60.0,50.0,58.843999999999994
+36,36,SVC,Openness,test throw median,pearson,solver,num_streamlines,3.069,balanced_accuracy,107,70.84899999999999,70.88600000000001,69.333,63.835,51.25,50.0,47.059,55.625
+37,37,SVC,Agreeableness,test throw median,pearson,solver,mean_FA,3.0410000000000004,balanced_accuracy,106,100.0,100.0,100.0,0.0,48.701,46.153999999999996,53.333,59.578
+38,38,SVC,Agreeableness,test throw median,pearson,solver,num_streamlines,2.897,balanced_accuracy,101,50.0,54.795,0.0,24.090999999999998,50.0,28.205,0.0,45.778999999999996
+39,39,SVC,Conscientiousness,test throw median,pearson,solver,num_streamlines,2.8689999999999998,balanced_accuracy,100,100.0,100.0,100.0,0.0,61.905,65.714,50.0,40.816
+40,40,SVC,Neuroticism,test throw median,pearson,solver,mean_strl,2.84,balanced_accuracy,99,66.093,66.667,61.972,65.44800000000001,48.178000000000004,46.667,45.455,42.51
+41,41,SVC,Agreeableness,test throw median,pearson,solver,mean_strl,2.8110000000000004,balanced_accuracy,98,100.0,100.0,100.0,0.0,33.117,43.59,59.25899999999999,63.636
+42,42,SVC,Extraversion,test throw median,pearson,solver,mean_FA,2.783,balanced_accuracy,97,65.476,65.385,64.0,59.854,59.357,59.458999999999996,61.538000000000004,50.876999999999995
+43,43,SVC,Openness,test throw median,pearson,solver,mean_FA,2.7539999999999996,balanced_accuracy,96,78.861,79.747,75.0,94.755,46.25,44.443999999999996,37.5,44.218999999999994
+44,44,SVC,Agreeableness,test throw median,pearson,solver,mean_FA,2.725,balanced_accuracy,95,92.689,93.15100000000001,92.06299999999999,96.515,50.325,56.41,67.925,43.181999999999995
+45,45,SVC,Neuroticism,test throw median,pearson,solver,mean_FA,2.697,balanced_accuracy,94,93.67299999999999,93.82700000000001,93.15100000000001,99.26299999999999,57.49,53.333,43.243,57.085
+46,46,SVC,Extraversion,test throw median,pearson,solver,mean_strl,2.639,balanced_accuracy,92,50.0,53.846000000000004,0.0,30.026,50.0,48.648999999999994,0.0,65.205
+47,47,SVC,Conscientiousness,test throw median,pearson,solver,mean_FA,2.61,balanced_accuracy,91,82.331,82.5,81.081,7.018,39.286,40.0,32.258,62.585
+48,48,SVC,Agreeableness,test throw median,pearson,solver,mean_strl,2.524,balanced_accuracy,88,94.205,94.521,93.75,96.288,44.156000000000006,43.59,52.174,46.104
+49,49,SVC,Extraversion,test throw median,pearson,solver,num_streamlines,2.496,balanced_accuracy,87,92.06299999999999,92.30799999999999,91.429,99.272,51.754,51.351000000000006,43.75,52.193000000000005
+50,50,SVC,Conscientiousness,test throw median,pearson,solver,mean_FA,2.467,balanced_accuracy,86,97.619,97.5,97.436,99.875,51.19,51.428999999999995,45.161,53.571000000000005
+51,51,SVC,Openness,test throw median,pearson,solver,mean_FA,2.438,balanced_accuracy,85,63.771,64.557,57.576,68.79,43.75,41.667,32.258,45.938
+52,52,SVC,Agreeableness,test throw median,pearson,solver,num_streamlines,2.41,balanced_accuracy,84,78.86399999999999,79.452,76.19,82.87899999999999,42.37,41.026,48.888999999999996,35.39
+53,53,SVC,Agreeableness,test throw median,pearson,solver,mean_FA,2.381,balanced_accuracy,83,90.189,90.411,89.23100000000001,2.197,49.675,43.59,47.619,56.169
+54,54,SVC,Extraversion,test throw median,pearson,solver,mean_FA,2.324,balanced_accuracy,81,78.571,78.205,77.922,73.214,32.455999999999996,32.431999999999995,32.431999999999995,35.38
+55,55,SVC,Extraversion,test throw median,pearson,solver,mean_strl,2.266,balanced_accuracy,79,95.833,96.154,95.652,0.0,57.31,56.757,46.667,54.093999999999994
+56,56,SVC,Openness,test throw median,pearson,solver,mean_FA,2.18,balanced_accuracy,76,73.938,74.684,69.697,88.61,37.5,36.111,30.303,40.312
+57,57,SVC,Conscientiousness,test throw median,pearson,solver,mean_strl,2.151,balanced_accuracy,75,76.128,76.25,74.667,32.926,39.286,42.857,23.076999999999998,50.0
+58,58,SVC,Conscientiousness,test throw median,pearson,solver,mean_FA,2.123,balanced_accuracy,74,100.0,100.0,100.0,100.0,54.762,57.143,44.443999999999996,47.278999999999996
+59,59,SVC,Agreeableness,test throw median,pearson,solver,mean_strl,2.094,balanced_accuracy,73,87.689,87.671,86.56700000000001,95.37899999999999,55.032,51.282,57.778,51.299
+60,60,SVC,Neuroticism,test throw median,pearson,solver,mean_FA,2.065,balanced_accuracy,72,89.834,90.12299999999999,88.889,6.327000000000001,54.15,51.111000000000004,45.0,43.32
+61,61,SVC,Openness,test throw median,pearson,solver,mean_strl,2.037,balanced_accuracy,71,64.64,65.82300000000001,55.738,79.73,44.375,41.667,27.586,35.312
+62,62,SVC,Extraversion,test throw median,pearson,solver,mean_FA,1.9509999999999998,balanced_accuracy,68,79.365,79.487,77.778,22.884,37.427,37.838,46.512,61.696000000000005
+63,63,SVC,Agreeableness,test throw median,pearson,solver,mean_FA,1.922,balanced_accuracy,67,81.36399999999999,82.19200000000001,78.689,95.303,59.74,46.153999999999996,43.243,52.597
+64,64,SVC,Openness,test throw median,pearson,solver,mean_FA,1.865,balanced_accuracy,65,64.801,65.82300000000001,57.143,69.015,43.75,41.667,32.258,41.25
+65,65,SVC,Agreeableness,test throw median,pearson,solver,mean_strl,1.8359999999999999,balanced_accuracy,64,100.0,100.0,100.0,0.0,49.675,43.59,47.619,50.974
+66,66,SVC,Conscientiousness,test throw median,pearson,solver,mean_FA,1.807,balanced_accuracy,63,84.586,85.0,82.85700000000001,91.165,54.762,54.286,50.0,44.898
+67,67,SVC,Neuroticism,test throw median,pearson,solver,mean_FA,1.7790000000000001,balanced_accuracy,62,78.317,79.012,75.362,23.894000000000002,52.733000000000004,51.111000000000004,50.0,46.356
+68,68,SVC,Neuroticism,test throw median,pearson,solver,num_streamlines,1.75,balanced_accuracy,61,76.904,76.543,75.949,82.74,48.684,48.888999999999996,53.06100000000001,47.571000000000005
+69,69,SVC,Extraversion,test throw median,pearson,solver,mean_strl,1.7209999999999999,balanced_accuracy,60,87.5,88.462,85.714,0.0,54.971000000000004,54.053999999999995,32.0,50.0
+70,70,SVC,Openness,test throw median,pearson,solver,mean_strl,1.692,balanced_accuracy,59,65.122,65.82300000000001,59.701,35.006,31.25,30.555999999999997,28.570999999999998,59.375
+71,71,SVC,Agreeableness,test throw median,pearson,solver,mean_FA,1.6640000000000001,balanced_accuracy,58,87.955,87.671,86.95700000000001,93.03,50.325,56.41,67.925,51.623000000000005
+72,72,SVC,Extraversion,test throw median,pearson,solver,mean_FA,1.578,balanced_accuracy,55,100.0,100.0,100.0,100.0,40.789,40.541,35.294000000000004,46.784
+73,73,SVC,Conscientiousness,test throw median,pearson,solver,mean_FA,1.5490000000000002,balanced_accuracy,54,50.0,52.5,0.0,36.153,50.0,60.0,0.0,74.49
+74,74,SVC,Openness,test throw median,pearson,solver,mean_strl,1.52,balanced_accuracy,53,76.641,77.215,73.529,12.999,51.875,50.0,43.75,52.188
+75,75,SVC,Openness,test throw median,pearson,solver,mean_FA,1.492,balanced_accuracy,52,68.694,69.62,62.5,84.71700000000001,43.75,41.667,32.258,42.5
+76,76,SVC,Agreeableness,test throw median,pearson,solver,mean_FA,1.463,balanced_accuracy,51,95.985,95.89,95.522,99.697,44.968,48.718,60.0,38.635999999999996
+77,77,SVC,Neuroticism,test throw median,pearson,solver,mean_strl,1.4340000000000002,balanced_accuracy,50,85.227,83.95100000000001,85.057,0.799,54.251000000000005,57.778,67.797,48.684
+78,78,SVC,Extraversion,test throw median,pearson,solver,mean_strl,1.406,balanced_accuracy,49,75.0,76.923,66.667,10.052999999999999,41.228,40.541,21.429000000000002,45.906000000000006
+79,79,SVC,Neuroticism,test throw median,pearson,solver,mean_strl,1.291,balanced_accuracy,45,50.0,54.321000000000005,0.0,29.484,50.0,42.222,0.0,63.765
+80,80,SVC,Openness,test throw median,pearson,solver,mean_FA,1.262,balanced_accuracy,44,100.0,100.0,100.0,100.0,49.375,50.0,55.0,54.688
+81,81,SVC,Extraversion,test throw median,pearson,solver,mean_FA,1.234,balanced_accuracy,43,96.23,96.154,95.89,98.38,65.205,64.865,60.606,63.012
+82,82,SVC,Agreeableness,test throw median,pearson,solver,mean_FA,1.205,balanced_accuracy,42,85.37899999999999,86.301,83.333,96.742,46.753,51.282,62.745,43.181999999999995
+83,83,SVC,Extraversion,test throw median,pearson,solver,mean_strl,1.176,balanced_accuracy,41,100.0,100.0,100.0,0.0,57.018,56.757,52.941,42.982
+84,84,SVC,Extraversion,test throw median,pearson,solver,num_streamlines,1.147,balanced_accuracy,40,50.0,53.846000000000004,0.0,17.394000000000002,50.0,48.648999999999994,0.0,47.076
+85,85,SVC,Conscientiousness,test throw median,pearson,solver,mean_FA,1.061,balanced_accuracy,37,64.66199999999999,65.0,61.111000000000004,66.35300000000001,41.667,45.714,24.0,34.694
+86,86,SVC,Conscientiousness,test throw median,pearson,solver,mean_FA,1.033,balanced_accuracy,36,50.0,52.5,0.0,36.591,50.0,60.0,0.0,72.789
+87,87,SVC,Agreeableness,test throw median,pearson,solver,mean_FA,1.004,balanced_accuracy,35,74.848,75.342,71.875,87.12100000000001,40.422,46.153999999999996,58.824,37.338
+88,88,SVC,Openness,test throw median,pearson,solver,mean_FA,0.975,balanced_accuracy,34,67.181,68.354,59.016000000000005,71.042,43.75,41.667,32.258,49.687
+89,89,SVC,Conscientiousness,test throw median,pearson,solver,mean_strl,0.9470000000000001,balanced_accuracy,33,76.128,76.25,74.667,25.94,48.81,48.571000000000005,43.75,57.483000000000004
+90,90,SVC,Neuroticism,test throw median,pearson,solver,mean_FA,0.9179999999999999,balanced_accuracy,32,78.041,77.778,76.923,77.58,31.883000000000003,31.111,31.111,34.413000000000004
+91,91,SVC,Openness,test throw median,pearson,solver,mean_FA,0.8029999999999999,balanced_accuracy,28,63.61,64.557,56.25,32.046,43.75,41.667,32.258,55.625
+92,92,SVC,Agreeableness,test throw median,pearson,solver,mean_FA,0.775,balanced_accuracy,27,79.39399999999999,79.452,77.612,89.92399999999999,42.37,41.026,48.888999999999996,32.143
+93,93,SVC,Neuroticism,test throw median,pearson,solver,mean_FA,0.746,balanced_accuracy,26,56.511,55.556000000000004,58.14,40.663000000000004,55.87,55.556000000000004,58.333,41.29600000000001
+94,94,SVC,Extraversion,test throw median,pearson,solver,mean_FA,0.7170000000000001,balanced_accuracy,25,84.921,84.615,84.211,89.41799999999999,48.684,48.648999999999994,48.648999999999994,52.047
+95,95,SVC,Openness,test throw median,pearson,solver,mean_FA,0.602,balanced_accuracy,21,63.771,64.557,57.576,67.439,43.75,41.667,32.258,42.812
+96,96,SVC,Agreeableness,test throw median,pearson,solver,mean_FA,0.574,balanced_accuracy,20,50.0,54.795,0.0,39.318000000000005,50.0,28.205,0.0,71.753
+97,97,SVC,Neuroticism,test throw median,pearson,solver,mean_FA,0.545,balanced_accuracy,19,74.20100000000001,74.074,72.727,78.256,43.623000000000005,42.222,40.909,42.105
+98,98,SVC,Agreeableness,test throw median,pearson,solver,num_streamlines,0.488,balanced_accuracy,17,78.14399999999999,78.082,76.471,81.288,49.513000000000005,51.282,61.224,48.701
+99,99,SVC,Agreeableness,test throw median,pearson,solver,mean_FA,0.43,balanced_accuracy,15,50.0,54.795,0.0,38.635999999999996,50.0,28.205,0.0,72.403
+100,100,SVC,Openness,test throw median,pearson,solver,mean_FA,0.402,balanced_accuracy,14,62.098,63.291000000000004,52.458999999999996,69.916,43.75,41.667,32.258,48.75
+101,101,SVC,Agreeableness,test throw median,pearson,solver,mean_FA,0.287,balanced_accuracy,10,50.0,54.795,0.0,49.015,50.0,28.205,0.0,36.525999999999996
+102,102,SVC,Conscientiousness,test throw median,pearson,solver,mean_strl,0.258,balanced_accuracy,9,61.842,63.75,38.298,21.741999999999997,57.143,62.857,38.095,44.558
+103,103,SVC,Extraversion,test throw median,pearson,solver,mean_strl,0.22899999999999998,balanced_accuracy,8,69.643,71.795,57.692,81.15100000000001,41.52,40.541,8.333,33.187
+104,104,SVC,Agreeableness,test throw median,pearson,solver,mean_FA,0.172,balanced_accuracy,6,50.0,54.795,0.0,46.97,50.0,28.205,0.0,50.0
+105,105,SVC,Conscientiousness,test throw median,pearson,solver,mean_strl,0.14300000000000002,balanced_accuracy,5,64.286,65.0,57.576,32.580999999999996,53.571000000000005,54.286,46.667,54.082
+106,106,SVC,Openness,keep median,pearson,solver,mean_FA,4.532,balanced_accuracy,158,63.771,64.557,57.576,32.497,62.222,59.574,55.81399999999999,33.889
+107,107,SVC,Extraversion,keep median,pearson,solver,num_streamlines,4.475,balanced_accuracy,156,100.0,100.0,100.0,0.0,45.879,44.681000000000004,40.909,59.707
+108,108,SVC,Extraversion,keep median,pearson,solver,mean_strl,4.418,balanced_accuracy,154,65.278,65.385,63.013999999999996,64.484,38.278,38.298,40.816,38.278
+109,109,SVC,Agreeableness,keep median,pearson,solver,mean_FA,4.388999999999999,balanced_accuracy,153,100.0,100.0,100.0,100.0,43.1,38.298,43.137,42.534
+110,110,SVC,Conscientiousness,keep median,pearson,solver,mean_strl,4.36,balanced_accuracy,152,59.085,58.75,60.24100000000001,48.872,49.004,48.93600000000001,50.0,53.803999999999995
+111,111,SVC,Neuroticism,keep median,pearson,solver,mean_FA,4.332,balanced_accuracy,151,92.322,92.59299999999999,91.667,98.15700000000001,51.667,48.93600000000001,42.857,45.185
+112,112,SVC,Openness,keep median,pearson,solver,mean_strl,4.303,balanced_accuracy,150,67.664,68.354,62.687,79.858,65.278,63.83,63.83,65.741
+113,113,SVC,Openness,keep median,pearson,solver,num_streamlines,4.274,balanced_accuracy,149,100.0,100.0,100.0,100.0,51.574,51.06399999999999,53.06100000000001,52.593
+114,114,SVC,Neuroticism,keep median,pearson,solver,mean_strl,4.188,balanced_accuracy,146,100.0,100.0,100.0,0.0,45.185,48.93600000000001,61.29,48.981
+115,115,SVC,Agreeableness,keep median,pearson,solver,mean_strl,4.131,balanced_accuracy,144,100.0,100.0,100.0,0.0,48.982,46.809,54.545,57.692
+116,116,SVC,Conscientiousness,keep median,pearson,solver,mean_FA,4.102,balanced_accuracy,143,100.0,100.0,100.0,100.0,57.518,57.446999999999996,58.333,58.876999999999995
+117,117,SVC,Openness,keep median,pearson,solver,mean_FA,4.073,balanced_accuracy,142,94.916,94.93700000000001,94.595,99.163,59.722,57.446999999999996,54.545,57.13
+118,118,SVC,Neuroticism,keep median,pearson,solver,mean_strl,4.016,balanced_accuracy,140,67.53699999999999,65.432,70.833,20.576999999999998,43.888999999999996,48.93600000000001,63.636,49.443999999999996
+119,119,SVC,Conscientiousness,keep median,pearson,solver,num_streamlines,3.987,balanced_accuracy,139,100.0,100.0,100.0,100.0,49.093999999999994,48.93600000000001,52.0,51.086999999999996
+120,120,SVC,Agreeableness,keep median,pearson,solver,mean_FA,3.9589999999999996,balanced_accuracy,138,100.0,100.0,100.0,100.0,51.357,46.809,52.83,48.19
+121,121,SVC,Conscientiousness,keep median,pearson,solver,mean_strl,3.9010000000000002,balanced_accuracy,136,56.328,56.25,55.696000000000005,47.713,53.08,53.191,50.0,51.268
+122,122,SVC,Openness,keep median,pearson,solver,mean_strl,3.844,balanced_accuracy,134,61.068000000000005,62.025,53.125,68.66199999999999,61.574,59.574,57.778,66.667
+123,123,SVC,Openness,keep median,pearson,solver,num_streamlines,3.787,balanced_accuracy,132,98.649,98.734,98.63,0.257,57.13,57.446999999999996,61.538000000000004,38.889
+124,124,SVC,Neuroticism,keep median,pearson,solver,mean_FA,3.758,balanced_accuracy,131,100.0,100.0,100.0,100.0,49.074,48.93600000000001,52.0,52.13
+125,125,SVC,Agreeableness,keep median,pearson,solver,mean_strl,3.7289999999999996,balanced_accuracy,130,100.0,100.0,100.0,100.0,52.828,48.93600000000001,55.556000000000004,54.977
+126,126,SVC,Conscientiousness,keep median,pearson,solver,mean_FA,3.701,balanced_accuracy,129,78.008,78.75,73.846,17.544,52.989,53.191,47.619,41.303999999999995
+127,127,SVC,Neuroticism,keep median,pearson,solver,mean_FA,3.6430000000000002,balanced_accuracy,127,100.0,100.0,100.0,100.0,49.815,46.809,39.024,45.185
+128,128,SVC,Agreeableness,keep median,pearson,solver,mean_strl,3.614,balanced_accuracy,126,98.75,98.63,98.507,0.152,45.136,44.681000000000004,53.571000000000005,52.715
+129,129,SVC,Extraversion,keep median,pearson,solver,mean_strl,3.557,balanced_accuracy,124,97.421,97.436,97.22200000000001,3.042,45.42100000000001,44.681000000000004,43.478,60.897
+130,130,SVC,Agreeableness,keep median,pearson,solver,mean_FA,3.528,balanced_accuracy,123,100.0,100.0,100.0,100.0,49.887,44.681000000000004,50.0,51.583999999999996
+131,131,SVC,Neuroticism,keep median,pearson,solver,num_streamlines,3.5,balanced_accuracy,122,76.96600000000001,77.778,73.529,82.432,51.574,51.06399999999999,53.06100000000001,54.074
+132,132,SVC,Conscientiousness,keep median,pearson,solver,mean_FA,3.4419999999999997,balanced_accuracy,120,53.946999999999996,56.25,14.634,29.761999999999997,54.348,55.318999999999996,16.0,33.876999999999995
+133,133,SVC,Agreeableness,keep median,pearson,solver,mean_strl,3.3280000000000003,balanced_accuracy,116,100.0,100.0,100.0,100.0,69.344,65.957,72.414,65.498
+134,134,SVC,Extraversion,keep median,pearson,solver,mean_FA,3.299,balanced_accuracy,115,98.611,98.71799999999999,98.59200000000001,0.0,51.648,51.06399999999999,51.06399999999999,50.183
+135,135,SVC,Openness,keep median,pearson,solver,mean_strl,3.27,balanced_accuracy,114,86.80799999999999,87.34200000000001,85.294,97.072,53.519,51.06399999999999,46.512,65.556
+136,136,SVC,Neuroticism,keep median,pearson,solver,mean_strl,3.242,balanced_accuracy,113,50.0,54.321000000000005,0.0,23.28,50.0,42.553000000000004,0.0,50.556000000000004
+137,137,SVC,Extraversion,keep median,pearson,solver,mean_FA,3.213,balanced_accuracy,112,97.22200000000001,97.436,97.14299999999999,0.066,45.42100000000001,44.681000000000004,43.478,51.556999999999995
+138,138,SVC,Conscientiousness,keep median,pearson,solver,mean_strl,3.1839999999999997,balanced_accuracy,111,50.0,52.5,0.0,37.845,50.0,51.06399999999999,0.0,40.217
+139,139,SVC,Neuroticism,keep median,pearson,solver,mean_FA,3.155,balanced_accuracy,110,85.074,85.185,83.78399999999999,94.41,42.963,40.426,33.333,44.443999999999996
+140,140,SVC,Openness,keep median,pearson,solver,mean_FA,3.127,balanced_accuracy,109,63.771,64.557,57.576,67.793,60.37,57.446999999999996,52.381,65.185
+141,141,SVC,Conscientiousness,keep median,pearson,solver,num_streamlines,3.0980000000000003,balanced_accuracy,108,100.0,100.0,100.0,100.0,52.989,53.191,47.619,50.361999999999995
+142,142,SVC,Openness,keep median,pearson,solver,num_streamlines,3.069,balanced_accuracy,107,70.84899999999999,70.88600000000001,69.333,63.803000000000004,53.519,51.06399999999999,46.512,56.852
+143,143,SVC,Agreeableness,keep median,pearson,solver,mean_FA,3.0410000000000004,balanced_accuracy,106,100.0,100.0,100.0,100.0,45.136,44.681000000000004,53.571000000000005,43.891000000000005
+144,144,SVC,Agreeableness,keep median,pearson,solver,num_streamlines,2.897,balanced_accuracy,101,50.0,54.795,0.0,24.090999999999998,50.0,27.66,0.0,28.281
+145,145,SVC,Conscientiousness,keep median,pearson,solver,num_streamlines,2.8689999999999998,balanced_accuracy,100,100.0,100.0,100.0,100.0,52.717,53.191,38.889,61.957
+146,146,SVC,Neuroticism,keep median,pearson,solver,mean_strl,2.84,balanced_accuracy,99,66.093,66.667,61.972,34.582,52.87,51.06399999999999,48.888999999999996,39.074
+147,147,SVC,Agreeableness,keep median,pearson,solver,mean_strl,2.8110000000000004,balanced_accuracy,98,100.0,100.0,100.0,0.0,48.643,53.191,64.516,49.321000000000005
+148,148,SVC,Extraversion,keep median,pearson,solver,mean_FA,2.783,balanced_accuracy,97,65.476,65.385,64.0,40.146,42.125,42.553000000000004,47.059,60.806000000000004
+149,149,SVC,Openness,keep median,pearson,solver,mean_FA,2.7539999999999996,balanced_accuracy,96,78.861,79.747,75.0,94.852,57.87,55.318999999999996,51.163000000000004,59.25899999999999
+150,150,SVC,Agreeableness,keep median,pearson,solver,mean_FA,2.725,balanced_accuracy,95,92.689,93.15100000000001,92.06299999999999,96.515,52.489,55.318999999999996,65.574,48.643
+151,151,SVC,Neuroticism,keep median,pearson,solver,mean_FA,2.697,balanced_accuracy,94,93.67299999999999,93.82700000000001,93.15100000000001,99.26299999999999,44.25899999999999,40.426,26.316,46.481
+152,152,SVC,Extraversion,keep median,pearson,solver,mean_strl,2.639,balanced_accuracy,92,50.0,53.846000000000004,0.0,30.159000000000002,50.0,44.681000000000004,0.0,60.989
+153,153,SVC,Conscientiousness,keep median,pearson,solver,mean_FA,2.61,balanced_accuracy,91,82.331,82.5,81.081,92.98200000000001,72.373,72.34,72.34,76.63
+154,154,SVC,Agreeableness,keep median,pearson,solver,mean_strl,2.524,balanced_accuracy,88,94.205,94.521,93.75,96.288,61.086000000000006,57.446999999999996,64.286,66.742
+155,155,SVC,Extraversion,keep median,pearson,solver,num_streamlines,2.496,balanced_accuracy,87,92.06299999999999,92.30799999999999,91.429,99.272,42.033,40.426,33.333,44.138999999999996
+156,156,SVC,Conscientiousness,keep median,pearson,solver,mean_FA,2.467,balanced_accuracy,86,97.619,97.5,97.436,99.875,40.308,40.426,36.364000000000004,41.123000000000005
+157,157,SVC,Openness,keep median,pearson,solver,mean_FA,2.438,balanced_accuracy,85,63.771,64.557,57.576,68.887,60.37,57.446999999999996,52.381,65.185
+158,158,SVC,Agreeableness,keep median,pearson,solver,num_streamlines,2.41,balanced_accuracy,84,78.86399999999999,79.452,76.19,82.87899999999999,46.606,46.809,56.14,44.343999999999994
+159,159,SVC,Agreeableness,keep median,pearson,solver,mean_FA,2.381,balanced_accuracy,83,90.189,90.411,89.23100000000001,97.803,59.05,51.06399999999999,54.902,58.824
+160,160,SVC,Extraversion,keep median,pearson,solver,mean_FA,2.324,balanced_accuracy,81,78.571,78.205,77.922,26.819000000000003,52.656000000000006,53.191,57.692,47.43600000000001
+161,161,SVC,Extraversion,keep median,pearson,solver,mean_strl,2.266,balanced_accuracy,79,95.833,96.154,95.652,0.0,44.413999999999994,42.553000000000004,34.146,57.50899999999999
+162,162,SVC,Openness,keep median,pearson,solver,mean_FA,2.18,balanced_accuracy,76,73.938,74.684,69.697,88.61,62.222,59.574,55.81399999999999,61.29600000000001
+163,163,SVC,Conscientiousness,keep median,pearson,solver,mean_strl,2.151,balanced_accuracy,75,76.128,76.25,74.667,32.957,50.725,51.06399999999999,41.026,47.011
+164,164,SVC,Conscientiousness,keep median,pearson,solver,mean_FA,2.123,balanced_accuracy,74,100.0,100.0,100.0,100.0,42.21,42.553000000000004,30.769000000000002,37.861999999999995
+165,165,SVC,Agreeableness,keep median,pearson,solver,mean_strl,2.094,balanced_accuracy,73,87.689,87.671,86.56700000000001,95.37899999999999,59.615,55.318999999999996,61.818000000000005,66.516
+166,166,SVC,Neuroticism,keep median,pearson,solver,mean_FA,2.065,balanced_accuracy,72,89.834,90.12299999999999,88.889,6.327000000000001,49.815,46.809,39.024,61.29600000000001
+167,167,SVC,Openness,keep median,pearson,solver,mean_strl,2.037,balanced_accuracy,71,64.64,65.82300000000001,55.738,20.335,61.019,57.446999999999996,50.0,27.963
+168,168,SVC,Extraversion,keep median,pearson,solver,mean_FA,1.9509999999999998,balanced_accuracy,68,79.365,79.487,77.778,22.884,48.901,51.06399999999999,61.016999999999996,44.872
+169,169,SVC,Agreeableness,keep median,pearson,solver,mean_FA,1.922,balanced_accuracy,67,81.36399999999999,82.19200000000001,78.689,95.303,53.167,42.553000000000004,42.553000000000004,51.131
+170,170,SVC,Openness,keep median,pearson,solver,mean_FA,1.865,balanced_accuracy,65,64.801,65.82300000000001,57.143,31.403000000000002,60.37,57.446999999999996,52.381,34.63
+171,171,SVC,Agreeableness,keep median,pearson,solver,mean_strl,1.8359999999999999,balanced_accuracy,64,100.0,100.0,100.0,100.0,64.367,55.318999999999996,58.824,57.24
+172,172,SVC,Conscientiousness,keep median,pearson,solver,mean_FA,1.807,balanced_accuracy,63,84.586,85.0,82.85700000000001,8.835,57.336999999999996,57.446999999999996,54.545,40.489000000000004
+173,173,SVC,Neuroticism,keep median,pearson,solver,mean_FA,1.7790000000000001,balanced_accuracy,62,78.317,79.012,75.362,23.894000000000002,48.519,46.809,44.443999999999996,57.407
+174,174,SVC,Neuroticism,keep median,pearson,solver,num_streamlines,1.75,balanced_accuracy,61,76.904,76.543,75.949,82.74,48.426,48.93600000000001,53.846000000000004,52.222
+175,175,SVC,Extraversion,keep median,pearson,solver,mean_strl,1.7209999999999999,balanced_accuracy,60,87.5,88.462,85.714,0.0,52.473,48.93600000000001,29.412,44.68899999999999
+176,176,SVC,Openness,keep median,pearson,solver,mean_strl,1.692,balanced_accuracy,59,65.122,65.82300000000001,59.701,35.135,60.926,59.574,59.574,33.241
+177,177,SVC,Agreeableness,keep median,pearson,solver,mean_FA,1.6640000000000001,balanced_accuracy,58,87.955,87.671,86.95700000000001,93.03,60.747,63.83,73.016,63.348
+178,178,SVC,Extraversion,keep median,pearson,solver,mean_FA,1.578,balanced_accuracy,55,100.0,100.0,100.0,0.0,65.018,63.83,62.222,35.714
+179,179,SVC,Conscientiousness,keep median,pearson,solver,mean_FA,1.5490000000000002,balanced_accuracy,54,50.0,52.5,0.0,36.153,50.0,51.06399999999999,0.0,35.87
+180,180,SVC,Openness,keep median,pearson,solver,mean_strl,1.52,balanced_accuracy,53,76.641,77.215,73.529,87.001,51.667,48.93600000000001,42.857,58.611000000000004
+181,181,SVC,Openness,keep median,pearson,solver,mean_FA,1.492,balanced_accuracy,52,68.694,69.62,62.5,84.71700000000001,60.37,57.446999999999996,52.381,60.37
+182,182,SVC,Agreeableness,keep median,pearson,solver,mean_FA,1.463,balanced_accuracy,51,95.985,95.89,95.522,99.697,65.498,63.83,71.186,65.385
+183,183,SVC,Neuroticism,keep median,pearson,solver,mean_strl,1.4340000000000002,balanced_accuracy,50,85.227,83.95100000000001,85.057,0.799,45.185,48.93600000000001,61.29,47.037
+184,184,SVC,Extraversion,keep median,pearson,solver,mean_strl,1.406,balanced_accuracy,49,75.0,76.923,66.667,10.847000000000001,49.176,46.809,35.897,46.703
+185,185,SVC,Neuroticism,keep median,pearson,solver,mean_strl,1.291,balanced_accuracy,45,50.0,54.321000000000005,0.0,29.484,50.0,42.553000000000004,0.0,40.37
+186,186,SVC,Openness,keep median,pearson,solver,mean_FA,1.262,balanced_accuracy,44,100.0,100.0,100.0,100.0,61.481,61.702,65.385,59.63
+187,187,SVC,Extraversion,keep median,pearson,solver,mean_FA,1.234,balanced_accuracy,43,96.23,96.154,95.89,98.38,43.956,42.553000000000004,37.209,48.81
+188,188,SVC,Agreeableness,keep median,pearson,solver,mean_FA,1.205,balanced_accuracy,42,85.37899999999999,86.301,83.333,96.742,41.855,46.809,59.016000000000005,36.425
+189,189,SVC,Extraversion,keep median,pearson,solver,mean_strl,1.176,balanced_accuracy,41,100.0,100.0,100.0,0.0,47.802,46.809,44.443999999999996,45.971000000000004
+190,190,SVC,Extraversion,keep median,pearson,solver,num_streamlines,1.147,balanced_accuracy,40,50.0,53.846000000000004,0.0,17.394000000000002,50.0,44.681000000000004,0.0,48.901
+191,191,SVC,Conscientiousness,keep median,pearson,solver,mean_FA,1.061,balanced_accuracy,37,64.66199999999999,65.0,61.111000000000004,33.177,72.192,72.34,69.767,28.441999999999997
+192,192,SVC,Conscientiousness,keep median,pearson,solver,mean_FA,1.033,balanced_accuracy,36,50.0,52.5,0.0,36.591,50.0,51.06399999999999,0.0,34.964
+193,193,SVC,Agreeableness,keep median,pearson,solver,mean_FA,1.004,balanced_accuracy,35,74.848,75.342,71.875,87.12100000000001,41.855,46.809,59.016000000000005,40.158
+194,194,SVC,Openness,keep median,pearson,solver,mean_FA,0.975,balanced_accuracy,34,67.181,68.354,59.016000000000005,71.01,57.87,55.318999999999996,51.163000000000004,67.407
+195,195,SVC,Conscientiousness,keep median,pearson,solver,mean_strl,0.9470000000000001,balanced_accuracy,33,76.128,76.25,74.667,73.997,53.17,53.191,52.174,57.156000000000006
+196,196,SVC,Neuroticism,keep median,pearson,solver,mean_FA,0.9179999999999999,balanced_accuracy,32,78.041,77.778,76.923,77.58,56.574,55.318999999999996,55.318999999999996,56.75899999999999
+197,197,SVC,Openness,keep median,pearson,solver,mean_FA,0.8029999999999999,balanced_accuracy,28,63.61,64.557,56.25,68.05,60.37,57.446999999999996,52.381,64.352
+198,198,SVC,Agreeableness,keep median,pearson,solver,mean_FA,0.775,balanced_accuracy,27,79.39399999999999,79.452,77.612,89.88600000000001,55.769,53.191,60.714,52.941
+199,199,SVC,Neuroticism,keep median,pearson,solver,mean_FA,0.746,balanced_accuracy,26,56.511,55.556000000000004,58.14,40.663000000000004,37.87,38.298,43.137,64.53699999999999
+200,200,SVC,Extraversion,keep median,pearson,solver,mean_FA,0.7170000000000001,balanced_accuracy,25,84.921,84.615,84.211,90.476,53.114,53.191,56.0,55.128
+201,201,SVC,Openness,keep median,pearson,solver,mean_FA,0.602,balanced_accuracy,21,63.771,64.557,57.576,67.375,57.87,55.318999999999996,51.163000000000004,66.111
+202,202,SVC,Agreeableness,keep median,pearson,solver,mean_FA,0.574,balanced_accuracy,20,50.0,54.795,0.0,39.318000000000005,50.0,27.66,0.0,53.394
+203,203,SVC,Neuroticism,keep median,pearson,solver,mean_FA,0.545,balanced_accuracy,19,74.20100000000001,74.074,72.727,78.194,59.074,57.446999999999996,56.522,57.037
+204,204,SVC,Agreeableness,keep median,pearson,solver,num_streamlines,0.488,balanced_accuracy,17,78.14399999999999,78.082,76.471,81.36399999999999,36.538000000000004,42.553000000000004,55.738,37.104
+205,205,SVC,Agreeableness,keep median,pearson,solver,mean_FA,0.43,balanced_accuracy,15,50.0,54.795,0.0,38.75,50.0,27.66,0.0,54.071999999999996
+206,206,SVC,Openness,keep median,pearson,solver,mean_FA,0.402,balanced_accuracy,14,62.098,63.291000000000004,52.458999999999996,69.884,57.87,55.318999999999996,51.163000000000004,65.0
+207,207,SVC,Agreeableness,keep median,pearson,solver,mean_FA,0.287,balanced_accuracy,10,50.0,54.795,0.0,51.06100000000001,50.0,27.66,0.0,54.977
+208,208,SVC,Conscientiousness,keep median,pearson,solver,mean_strl,0.258,balanced_accuracy,9,61.842,63.75,38.298,21.491,50.453,51.06399999999999,30.303,54.257
+209,209,SVC,Extraversion,keep median,pearson,solver,mean_strl,0.22899999999999998,balanced_accuracy,8,69.643,71.795,57.692,81.118,50.549,46.809,24.241999999999997,43.956
+210,210,SVC,Agreeableness,keep median,pearson,solver,mean_FA,0.172,balanced_accuracy,6,50.0,54.795,0.0,36.439,50.0,27.66,0.0,57.919
+211,211,SVC,Conscientiousness,keep median,pearson,solver,mean_strl,0.14300000000000002,balanced_accuracy,5,64.286,65.0,57.576,32.519,61.685,61.702,60.87,37.228
+212,212,RF,Openness,test throw median,pearson,solver,mean_FA,4.532,balanced_accuracy,158,98.649,98.734,98.63,100.0,40.625,38.889,31.25,45.312
+213,213,RF,Extraversion,test throw median,pearson,solver,num_streamlines,4.475,balanced_accuracy,156,100.0,100.0,100.0,100.0,49.415,48.648999999999994,29.63,52.632
+214,214,RF,Extraversion,test throw median,pearson,solver,mean_strl,4.418,balanced_accuracy,154,100.0,100.0,100.0,100.0,59.503,59.458999999999996,59.458999999999996,55.848
+215,215,RF,Agreeableness,test throw median,pearson,solver,mean_FA,4.388999999999999,balanced_accuracy,153,100.0,100.0,100.0,100.0,37.175,25.641,17.143,38.635999999999996
+216,216,RF,Conscientiousness,test throw median,pearson,solver,mean_strl,4.36,balanced_accuracy,152,100.0,100.0,100.0,100.0,52.381,51.428999999999995,48.485,47.788999999999994
+217,217,RF,Neuroticism,test throw median,pearson,solver,mean_FA,4.332,balanced_accuracy,151,100.0,100.0,100.0,100.0,50.81,48.888999999999996,46.512,51.417
+218,218,RF,Openness,test throw median,pearson,solver,mean_strl,4.303,balanced_accuracy,150,100.0,100.0,100.0,100.0,46.25,44.443999999999996,37.5,37.188
+219,219,RF,Openness,test throw median,pearson,solver,num_streamlines,4.274,balanced_accuracy,149,100.0,100.0,100.0,100.0,40.625,38.889,31.25,44.531000000000006
+220,220,RF,Neuroticism,test throw median,pearson,solver,mean_strl,4.188,balanced_accuracy,146,100.0,100.0,100.0,100.0,51.518,48.888999999999996,43.902,45.748999999999995
+221,221,RF,Agreeableness,test throw median,pearson,solver,mean_strl,4.131,balanced_accuracy,144,98.485,98.63,98.462,100.0,53.409,41.026,37.838,53.247
+222,222,RF,Conscientiousness,test throw median,pearson,solver,mean_FA,4.102,balanced_accuracy,143,100.0,100.0,100.0,100.0,53.571000000000005,54.286,46.667,45.918
+223,223,RF,Openness,test throw median,pearson,solver,mean_FA,4.073,balanced_accuracy,142,100.0,100.0,100.0,100.0,37.5,36.111,30.303,41.875
+224,224,RF,Neuroticism,test throw median,pearson,solver,mean_strl,4.016,balanced_accuracy,140,100.0,100.0,100.0,100.0,46.255,44.443999999999996,41.86,38.461999999999996
+225,225,RF,Conscientiousness,test throw median,pearson,solver,num_streamlines,3.987,balanced_accuracy,139,100.0,100.0,100.0,100.0,60.714,62.857,51.852,71.08800000000001
+226,226,RF,Agreeableness,test throw median,pearson,solver,mean_FA,3.9589999999999996,balanced_accuracy,138,100.0,100.0,100.0,100.0,45.292,33.333,27.778000000000002,55.195
+227,227,RF,Conscientiousness,test throw median,pearson,solver,mean_strl,3.9010000000000002,balanced_accuracy,136,100.0,100.0,100.0,100.0,51.19,48.571000000000005,50.0,45.918
+228,228,RF,Openness,test throw median,pearson,solver,mean_strl,3.844,balanced_accuracy,134,100.0,100.0,100.0,100.0,38.125,36.111,25.805999999999997,41.875
+229,229,RF,Openness,test throw median,pearson,solver,num_streamlines,3.787,balanced_accuracy,132,100.0,100.0,100.0,100.0,56.25,55.556000000000004,55.556000000000004,56.563
+230,230,RF,Neuroticism,test throw median,pearson,solver,mean_FA,3.758,balanced_accuracy,131,100.0,100.0,100.0,100.0,51.012,46.667,33.333,55.06100000000001
+231,231,RF,Agreeableness,test throw median,pearson,solver,mean_strl,3.7289999999999996,balanced_accuracy,130,100.0,100.0,100.0,100.0,47.89,41.026,43.902,44.156000000000006
+232,232,RF,Conscientiousness,test throw median,pearson,solver,mean_FA,3.701,balanced_accuracy,129,100.0,100.0,100.0,100.0,45.238,45.714,38.71,42.516999999999996
+233,233,RF,Neuroticism,test throw median,pearson,solver,mean_FA,3.6430000000000002,balanced_accuracy,127,98.649,98.765,98.63,99.87700000000001,51.012,46.667,33.333,49.798
+234,234,RF,Agreeableness,test throw median,pearson,solver,mean_strl,3.614,balanced_accuracy,126,100.0,100.0,100.0,100.0,62.338,53.846000000000004,57.143,47.727
+235,235,RF,Extraversion,test throw median,pearson,solver,mean_strl,3.557,balanced_accuracy,124,100.0,100.0,100.0,100.0,51.608000000000004,51.351000000000006,47.059,52.339
+236,236,RF,Agreeableness,test throw median,pearson,solver,mean_FA,3.528,balanced_accuracy,123,100.0,100.0,100.0,100.0,42.532,33.333,31.579,41.233999999999995
+237,237,RF,Neuroticism,test throw median,pearson,solver,num_streamlines,3.5,balanced_accuracy,122,100.0,100.0,100.0,100.0,44.838,44.443999999999996,46.809,43.117
+238,238,RF,Conscientiousness,test throw median,pearson,solver,mean_FA,3.4419999999999997,balanced_accuracy,120,100.0,100.0,100.0,100.0,46.428999999999995,48.571000000000005,35.714,51.02
+239,239,RF,Agreeableness,test throw median,pearson,solver,mean_strl,3.3280000000000003,balanced_accuracy,116,100.0,100.0,100.0,100.0,56.981,46.153999999999996,46.153999999999996,50.325
+240,240,RF,Extraversion,test throw median,pearson,solver,mean_FA,3.299,balanced_accuracy,115,98.81,98.71799999999999,98.63,100.0,40.789,40.541,35.294000000000004,38.012
+241,241,RF,Openness,test throw median,pearson,solver,mean_strl,3.27,balanced_accuracy,114,100.0,100.0,100.0,100.0,44.375,41.667,27.586,33.438
+242,242,RF,Neuroticism,test throw median,pearson,solver,mean_strl,3.242,balanced_accuracy,113,100.0,100.0,100.0,100.0,43.623000000000005,42.222,40.909,45.141999999999996
+243,243,RF,Extraversion,test throw median,pearson,solver,mean_FA,3.213,balanced_accuracy,112,100.0,100.0,100.0,100.0,49.123000000000005,48.648999999999994,38.71,48.246
+244,244,RF,Conscientiousness,test throw median,pearson,solver,mean_strl,3.1839999999999997,balanced_accuracy,111,97.619,97.5,97.436,99.875,51.19,51.428999999999995,45.161,46.25899999999999
+245,245,RF,Neuroticism,test throw median,pearson,solver,mean_FA,3.155,balanced_accuracy,110,100.0,100.0,100.0,100.0,46.457,42.222,27.778000000000002,48.381
+246,246,RF,Openness,test throw median,pearson,solver,mean_FA,3.127,balanced_accuracy,109,98.649,98.734,98.63,99.87100000000001,43.75,41.667,32.258,47.188
+247,247,RF,Conscientiousness,test throw median,pearson,solver,num_streamlines,3.0980000000000003,balanced_accuracy,108,98.684,98.75,98.667,100.0,58.333,60.0,50.0,68.707
+248,248,RF,Openness,test throw median,pearson,solver,num_streamlines,3.069,balanced_accuracy,107,100.0,100.0,100.0,100.0,48.125,47.222,45.714,43.593999999999994
+249,249,RF,Agreeableness,test throw median,pearson,solver,mean_FA,3.0410000000000004,balanced_accuracy,106,100.0,100.0,100.0,100.0,49.675,43.59,47.619,41.883
+250,250,RF,Agreeableness,test throw median,pearson,solver,num_streamlines,2.897,balanced_accuracy,101,100.0,100.0,100.0,100.0,41.558,35.897,39.024,44.156000000000006
+251,251,RF,Conscientiousness,test throw median,pearson,solver,num_streamlines,2.8689999999999998,balanced_accuracy,100,100.0,100.0,100.0,100.0,58.333,60.0,50.0,65.646
+252,252,RF,Neuroticism,test throw median,pearson,solver,mean_strl,2.84,balanced_accuracy,99,100.0,100.0,100.0,100.0,46.255,44.443999999999996,41.86,35.628
+253,253,RF,Agreeableness,test throw median,pearson,solver,mean_strl,2.8110000000000004,balanced_accuracy,98,100.0,100.0,100.0,100.0,32.468,30.769000000000002,37.209,22.726999999999997
+254,254,RF,Extraversion,test throw median,pearson,solver,mean_FA,2.783,balanced_accuracy,97,98.611,98.71799999999999,98.59200000000001,100.0,54.24,54.053999999999995,51.428999999999995,55.848
+255,255,RF,Openness,test throw median,pearson,solver,mean_FA,2.7539999999999996,balanced_accuracy,96,100.0,100.0,100.0,100.0,40.625,38.889,31.25,47.812
+256,256,RF,Agreeableness,test throw median,pearson,solver,mean_FA,2.725,balanced_accuracy,95,100.0,100.0,100.0,100.0,47.89,41.026,43.902,44.156000000000006
+257,257,RF,Neuroticism,test throw median,pearson,solver,mean_FA,2.697,balanced_accuracy,94,100.0,100.0,100.0,100.0,43.117,40.0,30.769000000000002,42.51
+258,258,RF,Extraversion,test throw median,pearson,solver,mean_strl,2.639,balanced_accuracy,92,98.81,98.71799999999999,98.63,99.934,46.345,45.946000000000005,37.5,52.047
+259,259,RF,Conscientiousness,test throw median,pearson,solver,mean_FA,2.61,balanced_accuracy,91,100.0,100.0,100.0,100.0,50.0,51.428999999999995,41.379,53.74100000000001
+260,260,RF,Agreeableness,test throw median,pearson,solver,mean_strl,2.524,balanced_accuracy,88,100.0,100.0,100.0,100.0,52.435,43.59,45.0,58.117
+261,261,RF,Extraversion,test throw median,pearson,solver,num_streamlines,2.496,balanced_accuracy,87,100.0,100.0,100.0,100.0,52.047,51.351000000000006,35.714,54.971000000000004
+262,262,RF,Conscientiousness,test throw median,pearson,solver,mean_FA,2.467,balanced_accuracy,86,97.619,97.5,97.436,100.0,44.048,45.714,34.483000000000004,47.278999999999996
+263,263,RF,Openness,test throw median,pearson,solver,mean_FA,2.438,balanced_accuracy,85,100.0,100.0,100.0,100.0,43.125,41.667,36.364000000000004,36.562
+264,264,RF,Agreeableness,test throw median,pearson,solver,num_streamlines,2.41,balanced_accuracy,84,100.0,100.0,100.0,100.0,39.61,41.026,51.06399999999999,42.532
+265,265,RF,Agreeableness,test throw median,pearson,solver,mean_FA,2.381,balanced_accuracy,83,100.0,100.0,100.0,100.0,37.013000000000005,33.333,38.095,32.792
+266,266,RF,Extraversion,test throw median,pearson,solver,mean_FA,2.324,balanced_accuracy,81,100.0,100.0,100.0,100.0,38.158,37.838,30.303,34.064
+267,267,RF,Extraversion,test throw median,pearson,solver,mean_strl,2.266,balanced_accuracy,79,100.0,100.0,100.0,100.0,56.871,56.757,55.556000000000004,50.876999999999995
+268,268,RF,Openness,test throw median,pearson,solver,mean_FA,2.18,balanced_accuracy,76,94.916,94.93700000000001,94.595,99.35600000000001,37.5,36.111,30.303,42.812
+269,269,RF,Conscientiousness,test throw median,pearson,solver,mean_strl,2.151,balanced_accuracy,75,100.0,100.0,100.0,100.0,50.0,51.428999999999995,41.379,50.85
+270,270,RF,Conscientiousness,test throw median,pearson,solver,mean_FA,2.123,balanced_accuracy,74,98.684,98.75,98.667,99.93700000000001,39.286,40.0,32.258,47.958999999999996
+271,271,RF,Agreeableness,test throw median,pearson,solver,mean_strl,2.094,balanced_accuracy,73,100.0,100.0,100.0,100.0,62.338,53.846000000000004,57.143,62.338
+272,272,RF,Neuroticism,test throw median,pearson,solver,mean_FA,2.065,balanced_accuracy,72,100.0,100.0,100.0,100.0,43.826,40.0,27.026999999999997,47.065
+273,273,RF,Openness,test throw median,pearson,solver,mean_strl,2.037,balanced_accuracy,71,100.0,100.0,100.0,100.0,51.25,50.0,47.059,51.406000000000006
+274,274,RF,Extraversion,test throw median,pearson,solver,mean_FA,1.9509999999999998,balanced_accuracy,68,100.0,100.0,100.0,100.0,26.901,27.026999999999997,30.769000000000002,26.608
+275,275,RF,Agreeableness,test throw median,pearson,solver,mean_FA,1.922,balanced_accuracy,67,100.0,100.0,100.0,100.0,46.104,38.461999999999996,40.0,38.961
+276,276,RF,Openness,test throw median,pearson,solver,mean_FA,1.865,balanced_accuracy,65,100.0,100.0,100.0,100.0,40.625,38.889,31.25,42.812
+277,277,RF,Agreeableness,test throw median,pearson,solver,mean_strl,1.8359999999999999,balanced_accuracy,64,100.0,100.0,100.0,100.0,50.648999999999994,41.026,41.026,55.195
+278,278,RF,Conscientiousness,test throw median,pearson,solver,mean_FA,1.807,balanced_accuracy,63,100.0,100.0,100.0,100.0,48.81,48.571000000000005,43.75,50.34
+279,279,RF,Neuroticism,test throw median,pearson,solver,mean_FA,1.7790000000000001,balanced_accuracy,62,100.0,100.0,100.0,100.0,60.83,55.556000000000004,41.176,62.652
+280,280,RF,Neuroticism,test throw median,pearson,solver,num_streamlines,1.75,balanced_accuracy,61,98.86399999999999,98.765,98.667,99.939,50.81,48.888999999999996,46.512,43.927
+281,281,RF,Extraversion,test throw median,pearson,solver,mean_strl,1.7209999999999999,balanced_accuracy,60,100.0,100.0,100.0,100.0,48.83,48.648999999999994,45.714,44.152
+282,282,RF,Openness,test throw median,pearson,solver,mean_strl,1.692,balanced_accuracy,59,100.0,100.0,100.0,100.0,31.875,30.555999999999997,24.241999999999997,37.812
+283,283,RF,Agreeableness,test throw median,pearson,solver,mean_FA,1.6640000000000001,balanced_accuracy,58,100.0,100.0,100.0,100.0,43.343999999999994,38.461999999999996,42.857,40.26
+284,284,RF,Extraversion,test throw median,pearson,solver,mean_FA,1.578,balanced_accuracy,55,100.0,100.0,100.0,100.0,35.38,35.135,29.412,30.409000000000002
+285,285,RF,Conscientiousness,test throw median,pearson,solver,mean_FA,1.5490000000000002,balanced_accuracy,54,100.0,100.0,100.0,100.0,44.048,42.857,41.176,49.83
+286,286,RF,Openness,test throw median,pearson,solver,mean_strl,1.52,balanced_accuracy,53,98.81,98.734,98.667,99.936,46.25,44.443999999999996,37.5,55.0
+287,287,RF,Openness,test throw median,pearson,solver,mean_FA,1.492,balanced_accuracy,52,100.0,100.0,100.0,100.0,42.5,41.667,40.0,44.218999999999994
+288,288,RF,Agreeableness,test throw median,pearson,solver,mean_FA,1.463,balanced_accuracy,51,100.0,100.0,100.0,100.0,34.253,33.333,40.909,37.662
+289,289,RF,Neuroticism,test throw median,pearson,solver,mean_strl,1.4340000000000002,balanced_accuracy,50,100.0,100.0,100.0,100.0,52.935,48.888999999999996,37.838,46.761
+290,290,RF,Extraversion,test throw median,pearson,solver,mean_strl,1.406,balanced_accuracy,49,100.0,100.0,100.0,100.0,51.754,51.351000000000006,43.75,51.754
+291,291,RF,Neuroticism,test throw median,pearson,solver,mean_strl,1.291,balanced_accuracy,45,93.243,93.82700000000001,92.75399999999999,99.693,52.023999999999994,51.111000000000004,52.174,47.166000000000004
+292,292,RF,Openness,test throw median,pearson,solver,mean_FA,1.262,balanced_accuracy,44,96.10700000000001,96.20299999999999,95.89,99.87100000000001,43.125,41.667,36.364000000000004,45.0
+293,293,RF,Extraversion,test throw median,pearson,solver,mean_FA,1.234,balanced_accuracy,43,98.81,98.71799999999999,98.63,100.0,48.977,48.648999999999994,42.424,50.585
+294,294,RF,Agreeableness,test throw median,pearson,solver,mean_FA,1.205,balanced_accuracy,42,100.0,100.0,100.0,100.0,44.318000000000005,35.897,35.897,37.662
+295,295,RF,Extraversion,test throw median,pearson,solver,mean_strl,1.176,balanced_accuracy,41,96.03200000000001,96.154,95.775,98.81,57.31,56.757,46.667,63.45
+296,296,RF,Extraversion,test throw median,pearson,solver,num_streamlines,1.147,balanced_accuracy,40,100.0,100.0,100.0,100.0,48.684,48.648999999999994,48.648999999999994,45.028999999999996
+297,297,RF,Conscientiousness,test throw median,pearson,solver,mean_FA,1.061,balanced_accuracy,37,97.368,97.5,97.29700000000001,99.81200000000001,41.667,42.857,33.333,44.558
+298,298,RF,Conscientiousness,test throw median,pearson,solver,mean_FA,1.033,balanced_accuracy,36,97.494,97.5,97.368,99.624,46.428999999999995,45.714,42.424,47.619
+299,299,RF,Agreeableness,test throw median,pearson,solver,mean_FA,1.004,balanced_accuracy,35,100.0,100.0,100.0,100.0,45.13,41.026,46.512,34.416
+300,300,RF,Openness,test throw median,pearson,solver,mean_FA,0.975,balanced_accuracy,34,96.10700000000001,96.20299999999999,95.89,99.87100000000001,37.5,36.111,30.303,49.375
+301,301,RF,Conscientiousness,test throw median,pearson,solver,mean_strl,0.9470000000000001,balanced_accuracy,33,100.0,100.0,100.0,100.0,44.048,45.714,34.483000000000004,47.788999999999994
+302,302,RF,Neuroticism,test throw median,pearson,solver,mean_FA,0.9179999999999999,balanced_accuracy,32,95.946,96.296,95.775,99.38600000000001,49.798,44.443999999999996,24.241999999999997,43.32
+303,303,RF,Openness,test throw median,pearson,solver,mean_FA,0.8029999999999999,balanced_accuracy,28,96.26799999999999,96.20299999999999,96.0,99.807,47.5,47.222,48.648999999999994,38.125
+304,304,RF,Agreeableness,test throw median,pearson,solver,mean_FA,0.775,balanced_accuracy,27,100.0,100.0,100.0,100.0,36.039,35.897,44.443999999999996,33.442
+305,305,RF,Neuroticism,test throw median,pearson,solver,mean_FA,0.746,balanced_accuracy,26,100.0,100.0,100.0,100.0,57.996,55.556000000000004,52.381,60.121
+306,306,RF,Extraversion,test throw median,pearson,solver,mean_FA,0.7170000000000001,balanced_accuracy,25,98.81,98.71799999999999,98.63,100.0,37.865,37.838,37.838,35.088
+307,307,RF,Openness,test throw median,pearson,solver,mean_FA,0.602,balanced_accuracy,21,91.023,91.139,90.411,98.391,48.125,47.222,45.714,41.562
+308,308,RF,Agreeableness,test throw median,pearson,solver,mean_FA,0.574,balanced_accuracy,20,100.0,100.0,100.0,100.0,29.708000000000002,30.769000000000002,40.0,28.570999999999998
+309,309,RF,Neuroticism,test throw median,pearson,solver,mean_FA,0.545,balanced_accuracy,19,97.29700000000001,97.531,97.22200000000001,99.939,46.457,42.222,27.778000000000002,53.239
+310,310,RF,Agreeableness,test throw median,pearson,solver,num_streamlines,0.488,balanced_accuracy,17,100.0,100.0,100.0,100.0,40.584,38.461999999999996,45.455,49.026
+311,311,RF,Agreeableness,test throw median,pearson,solver,mean_FA,0.43,balanced_accuracy,15,100.0,100.0,100.0,100.0,39.61,41.026,51.06399999999999,27.596999999999998
+312,312,RF,Openness,test throw median,pearson,solver,mean_FA,0.402,balanced_accuracy,14,94.755,94.93700000000001,94.444,98.005,43.125,41.667,36.364000000000004,51.562
+313,313,RF,Agreeableness,test throw median,pearson,solver,mean_FA,0.287,balanced_accuracy,10,98.485,98.63,98.462,100.0,43.343999999999994,38.461999999999996,42.857,41.233999999999995
+314,314,RF,Conscientiousness,test throw median,pearson,solver,mean_strl,0.258,balanced_accuracy,9,92.35600000000001,92.5,91.89200000000001,97.494,51.19,54.286,38.461999999999996,48.98
+315,315,RF,Extraversion,test throw median,pearson,solver,mean_strl,0.22899999999999998,balanced_accuracy,8,100.0,100.0,100.0,100.0,43.275,43.243,43.243,36.842
+316,316,RF,Agreeableness,test throw median,pearson,solver,mean_FA,0.172,balanced_accuracy,6,96.97,97.26,96.875,99.773,38.635999999999996,43.59,56.0,35.39
+317,317,RF,Conscientiousness,test throw median,pearson,solver,mean_strl,0.14300000000000002,balanced_accuracy,5,96.303,96.25,96.104,99.185,50.0,51.428999999999995,41.379,43.878
+318,318,RF,Openness,keep median,pearson,solver,mean_FA,4.532,balanced_accuracy,158,100.0,100.0,100.0,100.0,57.87,55.318999999999996,51.163000000000004,68.148
+319,319,RF,Extraversion,keep median,pearson,solver,num_streamlines,4.475,balanced_accuracy,156,100.0,100.0,100.0,100.0,41.483999999999995,38.298,17.143,47.802
+320,320,RF,Extraversion,keep median,pearson,solver,mean_strl,4.418,balanced_accuracy,154,100.0,100.0,100.0,100.0,53.114,53.191,56.0,51.282
+321,321,RF,Agreeableness,keep median,pearson,solver,mean_FA,4.388999999999999,balanced_accuracy,153,100.0,100.0,100.0,100.0,52.602,38.298,32.558,43.665
+322,322,RF,Conscientiousness,keep median,pearson,solver,mean_strl,4.36,balanced_accuracy,152,100.0,100.0,100.0,100.0,51.086999999999996,51.06399999999999,51.06399999999999,40.036
+323,323,RF,Neuroticism,keep median,pearson,solver,mean_FA,4.332,balanced_accuracy,151,100.0,100.0,100.0,100.0,51.667,48.93600000000001,42.857,49.537
+324,324,RF,Openness,keep median,pearson,solver,mean_strl,4.303,balanced_accuracy,150,98.649,98.734,98.63,100.0,65.926,63.83,62.222,69.815
+325,325,RF,Openness,keep median,pearson,solver,num_streamlines,4.274,balanced_accuracy,149,100.0,100.0,100.0,100.0,42.963,40.426,33.333,47.037
+326,326,RF,Neuroticism,keep median,pearson,solver,mean_strl,4.188,balanced_accuracy,146,97.29700000000001,97.531,97.22200000000001,99.939,49.167,46.809,41.86,51.29600000000001
+327,327,RF,Agreeableness,keep median,pearson,solver,mean_strl,4.131,balanced_accuracy,144,100.0,100.0,100.0,100.0,38.688,31.915,33.333,42.308
+328,328,RF,Conscientiousness,keep median,pearson,solver,mean_FA,4.102,balanced_accuracy,143,100.0,100.0,100.0,100.0,55.435,55.318999999999996,57.143,63.949
+329,329,RF,Openness,keep median,pearson,solver,mean_FA,4.073,balanced_accuracy,142,100.0,100.0,100.0,100.0,62.222,59.574,55.81399999999999,72.407
+330,330,RF,Neuroticism,keep median,pearson,solver,mean_strl,4.016,balanced_accuracy,140,97.29700000000001,97.531,97.22200000000001,100.0,52.87,51.06399999999999,48.888999999999996,45.74100000000001
+331,331,RF,Conscientiousness,keep median,pearson,solver,num_streamlines,3.987,balanced_accuracy,139,100.0,100.0,100.0,100.0,57.336999999999996,57.446999999999996,54.545,60.507
+332,332,RF,Agreeableness,keep median,pearson,solver,mean_FA,3.9589999999999996,balanced_accuracy,138,100.0,100.0,100.0,100.0,50.792,42.553000000000004,44.898,42.534
+333,333,RF,Conscientiousness,keep median,pearson,solver,mean_strl,3.9010000000000002,balanced_accuracy,136,100.0,100.0,100.0,100.0,49.185,48.93600000000001,53.846000000000004,46.376999999999995
+334,334,RF,Openness,keep median,pearson,solver,mean_strl,3.844,balanced_accuracy,134,98.649,98.734,98.63,99.936,55.37,53.191,50.0,65.556
+335,335,RF,Openness,keep median,pearson,solver,num_streamlines,3.787,balanced_accuracy,132,100.0,100.0,100.0,100.0,51.574,51.06399999999999,53.06100000000001,56.943999999999996
+336,336,RF,Neuroticism,keep median,pearson,solver,mean_FA,3.758,balanced_accuracy,131,100.0,100.0,100.0,100.0,51.75899999999999,46.809,28.570999999999998,46.667
+337,337,RF,Agreeableness,keep median,pearson,solver,mean_strl,3.7289999999999996,balanced_accuracy,130,100.0,100.0,100.0,100.0,45.475,38.298,40.816,44.118
+338,338,RF,Conscientiousness,keep median,pearson,solver,mean_FA,3.701,balanced_accuracy,129,100.0,100.0,100.0,100.0,59.601000000000006,59.574,59.574,65.942
+339,339,RF,Neuroticism,keep median,pearson,solver,mean_FA,3.6430000000000002,balanced_accuracy,127,100.0,100.0,100.0,100.0,52.315,48.93600000000001,40.0,50.926
+340,340,RF,Agreeableness,keep median,pearson,solver,mean_strl,3.614,balanced_accuracy,126,100.0,100.0,100.0,100.0,46.38,36.17,34.783,45.701
+341,341,RF,Extraversion,keep median,pearson,solver,mean_strl,3.557,balanced_accuracy,124,100.0,100.0,100.0,100.0,38.278,38.298,40.816,35.165
+342,342,RF,Agreeableness,keep median,pearson,solver,mean_FA,3.528,balanced_accuracy,123,100.0,100.0,100.0,100.0,50.792,42.553000000000004,44.898,44.118
+343,343,RF,Neuroticism,keep median,pearson,solver,num_streamlines,3.5,balanced_accuracy,122,98.649,98.765,98.63,100.0,51.667,48.93600000000001,42.857,51.667
+344,344,RF,Conscientiousness,keep median,pearson,solver,mean_FA,3.4419999999999997,balanced_accuracy,120,100.0,100.0,100.0,100.0,53.17,53.191,52.174,59.239
+345,345,RF,Agreeableness,keep median,pearson,solver,mean_strl,3.3280000000000003,balanced_accuracy,116,100.0,100.0,100.0,100.0,39.253,36.17,42.308,47.398
+346,346,RF,Extraversion,keep median,pearson,solver,mean_FA,3.299,balanced_accuracy,115,100.0,100.0,100.0,100.0,45.879,44.681000000000004,40.909,45.971000000000004
+347,347,RF,Openness,keep median,pearson,solver,mean_strl,3.27,balanced_accuracy,114,94.916,94.93700000000001,94.595,99.421,57.87,55.318999999999996,51.163000000000004,66.48100000000001
+348,348,RF,Neuroticism,keep median,pearson,solver,mean_strl,3.242,balanced_accuracy,113,98.649,98.765,98.63,100.0,49.167,46.809,41.86,48.333
+349,349,RF,Extraversion,keep median,pearson,solver,mean_FA,3.213,balanced_accuracy,112,100.0,100.0,100.0,100.0,43.498000000000005,42.553000000000004,40.0,53.297
+350,350,RF,Conscientiousness,keep median,pearson,solver,mean_strl,3.1839999999999997,balanced_accuracy,111,100.0,100.0,100.0,100.0,55.525,55.318999999999996,58.824,53.986000000000004
+351,351,RF,Neuroticism,keep median,pearson,solver,mean_FA,3.155,balanced_accuracy,110,100.0,100.0,100.0,100.0,49.815,46.809,39.024,51.852
+352,352,RF,Openness,keep median,pearson,solver,mean_FA,3.127,balanced_accuracy,109,100.0,100.0,100.0,100.0,59.722,57.446999999999996,54.545,71.111
+353,353,RF,Conscientiousness,keep median,pearson,solver,num_streamlines,3.0980000000000003,balanced_accuracy,108,100.0,100.0,100.0,100.0,54.801,55.318999999999996,40.0,57.971000000000004
+354,354,RF,Openness,keep median,pearson,solver,num_streamlines,3.069,balanced_accuracy,107,100.0,100.0,100.0,100.0,54.074,53.191,54.167,56.29600000000001
+355,355,RF,Agreeableness,keep median,pearson,solver,mean_FA,3.0410000000000004,balanced_accuracy,106,100.0,100.0,100.0,100.0,44.005,36.17,37.5,41.176
+356,356,RF,Agreeableness,keep median,pearson,solver,num_streamlines,2.897,balanced_accuracy,101,100.0,100.0,100.0,100.0,54.638000000000005,44.681000000000004,45.833,58.824
+357,357,RF,Conscientiousness,keep median,pearson,solver,num_streamlines,2.8689999999999998,balanced_accuracy,100,100.0,100.0,100.0,100.0,59.33,59.574,53.659,59.601000000000006
+358,358,RF,Neuroticism,keep median,pearson,solver,mean_strl,2.84,balanced_accuracy,99,100.0,100.0,100.0,100.0,47.87,46.809,46.809,44.722
+359,359,RF,Agreeableness,keep median,pearson,solver,mean_strl,2.8110000000000004,balanced_accuracy,98,100.0,100.0,100.0,100.0,40.158,34.043,36.735,32.126999999999995
+360,360,RF,Extraversion,keep median,pearson,solver,mean_FA,2.783,balanced_accuracy,97,100.0,100.0,100.0,100.0,45.42100000000001,44.681000000000004,43.478,45.238
+361,361,RF,Openness,keep median,pearson,solver,mean_FA,2.7539999999999996,balanced_accuracy,96,100.0,100.0,100.0,100.0,62.222,59.574,55.81399999999999,65.556
+362,362,RF,Agreeableness,keep median,pearson,solver,mean_FA,2.725,balanced_accuracy,95,100.0,100.0,100.0,100.0,32.466,29.787,35.294000000000004,32.353
+363,363,RF,Neuroticism,keep median,pearson,solver,mean_FA,2.697,balanced_accuracy,94,100.0,100.0,100.0,100.0,49.815,46.809,39.024,53.519
+364,364,RF,Extraversion,keep median,pearson,solver,mean_strl,2.639,balanced_accuracy,92,100.0,100.0,100.0,100.0,45.42100000000001,44.681000000000004,43.478,38.919000000000004
+365,365,RF,Conscientiousness,keep median,pearson,solver,mean_FA,2.61,balanced_accuracy,91,100.0,100.0,100.0,100.0,74.366,74.468,72.727,74.275
+366,366,RF,Agreeableness,keep median,pearson,solver,mean_strl,2.524,balanced_accuracy,88,100.0,100.0,100.0,100.0,50.792,42.553000000000004,44.898,55.43
+367,367,RF,Extraversion,keep median,pearson,solver,num_streamlines,2.496,balanced_accuracy,87,100.0,100.0,100.0,100.0,49.63399999999999,46.809,32.431999999999995,51.832
+368,368,RF,Conscientiousness,keep median,pearson,solver,mean_FA,2.467,balanced_accuracy,86,100.0,100.0,100.0,100.0,66.123,65.957,68.0,65.308
+369,369,RF,Openness,keep median,pearson,solver,mean_FA,2.438,balanced_accuracy,85,98.81,98.734,98.667,99.87100000000001,59.722,57.446999999999996,54.545,67.03699999999999
+370,370,RF,Agreeableness,keep median,pearson,solver,num_streamlines,2.41,balanced_accuracy,84,100.0,100.0,100.0,100.0,46.041000000000004,42.553000000000004,49.056999999999995,39.931999999999995
+371,371,RF,Agreeableness,keep median,pearson,solver,mean_FA,2.381,balanced_accuracy,83,100.0,100.0,100.0,100.0,53.733000000000004,46.809,50.98,43.326
+372,372,RF,Extraversion,keep median,pearson,solver,mean_FA,2.324,balanced_accuracy,81,100.0,100.0,100.0,100.0,48.26,46.809,41.86,43.681000000000004
+373,373,RF,Extraversion,keep median,pearson,solver,mean_strl,2.266,balanced_accuracy,79,100.0,100.0,100.0,100.0,53.114,53.191,56.0,51.465
+374,374,RF,Openness,keep median,pearson,solver,mean_FA,2.18,balanced_accuracy,76,100.0,100.0,100.0,100.0,62.222,59.574,55.81399999999999,59.815
+375,375,RF,Conscientiousness,keep median,pearson,solver,mean_strl,2.151,balanced_accuracy,75,100.0,100.0,100.0,100.0,55.343999999999994,55.318999999999996,55.318999999999996,59.783
+376,376,RF,Conscientiousness,keep median,pearson,solver,mean_FA,2.123,balanced_accuracy,74,100.0,100.0,100.0,100.0,51.268,51.06399999999999,54.902,61.232
+377,377,RF,Agreeableness,keep median,pearson,solver,mean_strl,2.094,balanced_accuracy,73,100.0,100.0,100.0,100.0,43.1,38.298,43.137,47.964
+378,378,RF,Neuroticism,keep median,pearson,solver,mean_FA,2.065,balanced_accuracy,72,100.0,100.0,100.0,100.0,44.907,40.426,22.221999999999998,38.796
+379,379,RF,Openness,keep median,pearson,solver,mean_strl,2.037,balanced_accuracy,71,96.10700000000001,96.20299999999999,95.89,99.807,64.722,61.702,57.143,74.815
+380,380,RF,Extraversion,keep median,pearson,solver,mean_FA,1.9509999999999998,balanced_accuracy,68,100.0,100.0,100.0,100.0,48.26,46.809,41.86,51.373999999999995
+381,381,RF,Agreeableness,keep median,pearson,solver,mean_FA,1.922,balanced_accuracy,67,100.0,100.0,100.0,100.0,52.262,44.681000000000004,48.0,57.353
+382,382,RF,Openness,keep median,pearson,solver,mean_FA,1.865,balanced_accuracy,65,95.07700000000001,94.93700000000001,94.73700000000001,99.485,62.222,59.574,55.81399999999999,62.222
+383,383,RF,Agreeableness,keep median,pearson,solver,mean_strl,1.8359999999999999,balanced_accuracy,64,100.0,100.0,100.0,100.0,49.321000000000005,40.426,41.667,50.678999999999995
+384,384,RF,Conscientiousness,keep median,pearson,solver,mean_FA,1.807,balanced_accuracy,63,100.0,100.0,100.0,100.0,63.858999999999995,63.83,63.83,64.312
+385,385,RF,Neuroticism,keep median,pearson,solver,mean_FA,1.7790000000000001,balanced_accuracy,62,97.29700000000001,97.531,97.22200000000001,99.939,42.407,38.298,21.622,34.815
+386,386,RF,Neuroticism,keep median,pearson,solver,num_streamlines,1.75,balanced_accuracy,61,97.29700000000001,97.531,97.22200000000001,99.509,49.167,46.809,41.86,48.888999999999996
+387,387,RF,Extraversion,keep median,pearson,solver,mean_strl,1.7209999999999999,balanced_accuracy,60,100.0,100.0,100.0,100.0,36.355,36.17,37.5,36.446999999999996
+388,388,RF,Openness,keep median,pearson,solver,mean_strl,1.692,balanced_accuracy,59,97.458,97.46799999999999,97.29700000000001,99.807,61.574,59.574,57.778,67.96300000000001
+389,389,RF,Agreeableness,keep median,pearson,solver,mean_FA,1.6640000000000001,balanced_accuracy,58,100.0,100.0,100.0,100.0,53.733000000000004,46.809,50.98,54.525
+390,390,RF,Extraversion,keep median,pearson,solver,mean_FA,1.578,balanced_accuracy,55,100.0,100.0,100.0,100.0,54.945,53.191,47.619,45.696000000000005
+391,391,RF,Conscientiousness,keep median,pearson,solver,mean_FA,1.5490000000000002,balanced_accuracy,54,100.0,100.0,100.0,100.0,61.957,61.702,65.385,71.92
+392,392,RF,Openness,keep median,pearson,solver,mean_strl,1.52,balanced_accuracy,53,98.649,98.734,98.63,99.61399999999999,62.222,59.574,55.81399999999999,65.926
+393,393,RF,Openness,keep median,pearson,solver,mean_FA,1.492,balanced_accuracy,52,96.10700000000001,96.20299999999999,95.89,99.292,67.778,65.957,65.217,65.37
+394,394,RF,Agreeableness,keep median,pearson,solver,mean_FA,1.463,balanced_accuracy,51,100.0,100.0,100.0,100.0,59.05,51.06399999999999,54.902,55.20399999999999
+395,395,RF,Neuroticism,keep median,pearson,solver,mean_strl,1.4340000000000002,balanced_accuracy,50,100.0,100.0,100.0,100.0,54.167,51.06399999999999,43.902,50.0
+396,396,RF,Extraversion,keep median,pearson,solver,mean_strl,1.406,balanced_accuracy,49,100.0,100.0,100.0,100.0,54.945,53.191,47.619,50.092
+397,397,RF,Neuroticism,keep median,pearson,solver,mean_strl,1.291,balanced_accuracy,45,100.0,100.0,100.0,100.0,41.75899999999999,38.298,25.641,39.815
+398,398,RF,Openness,keep median,pearson,solver,mean_FA,1.262,balanced_accuracy,44,97.619,97.46799999999999,97.368,100.0,59.722,57.446999999999996,54.545,66.296
+399,399,RF,Extraversion,keep median,pearson,solver,mean_FA,1.234,balanced_accuracy,43,96.03200000000001,96.154,95.775,99.471,47.343999999999994,46.809,46.809,44.68899999999999
+400,400,RF,Agreeableness,keep median,pearson,solver,mean_FA,1.205,balanced_accuracy,42,100.0,100.0,100.0,100.0,39.253,36.17,42.308,34.842
+401,401,RF,Extraversion,keep median,pearson,solver,mean_strl,1.176,balanced_accuracy,41,100.0,100.0,100.0,100.0,49.266999999999996,48.93600000000001,50.0,43.223
+402,402,RF,Extraversion,keep median,pearson,solver,num_streamlines,1.147,balanced_accuracy,40,100.0,100.0,100.0,100.0,58.333,57.446999999999996,56.522,60.623000000000005
+403,403,RF,Conscientiousness,keep median,pearson,solver,mean_FA,1.061,balanced_accuracy,37,100.0,100.0,100.0,100.0,61.775,61.702,62.5,63.225
+404,404,RF,Conscientiousness,keep median,pearson,solver,mean_FA,1.033,balanced_accuracy,36,100.0,100.0,100.0,100.0,55.254,55.318999999999996,53.333,63.225
+405,405,RF,Agreeableness,keep median,pearson,solver,mean_FA,1.004,balanced_accuracy,35,100.0,100.0,100.0,100.0,45.136,44.681000000000004,53.571000000000005,48.077
+406,406,RF,Openness,keep median,pearson,solver,mean_FA,0.975,balanced_accuracy,34,97.458,97.46799999999999,97.29700000000001,99.55,59.722,57.446999999999996,54.545,63.148
+407,407,RF,Conscientiousness,keep median,pearson,solver,mean_strl,0.9470000000000001,balanced_accuracy,33,100.0,100.0,100.0,100.0,55.343999999999994,55.318999999999996,55.318999999999996,53.08
+408,408,RF,Neuroticism,keep median,pearson,solver,mean_FA,0.9179999999999999,balanced_accuracy,32,93.243,93.82700000000001,92.75399999999999,99.38600000000001,47.407,42.553000000000004,22.857,52.593
+409,409,RF,Openness,keep median,pearson,solver,mean_FA,0.8029999999999999,balanced_accuracy,28,100.0,100.0,100.0,100.0,69.63,68.085,68.085,72.593
+410,410,RF,Agreeableness,keep median,pearson,solver,mean_FA,0.775,balanced_accuracy,27,100.0,100.0,100.0,100.0,42.76,44.681000000000004,55.172,57.692
+411,411,RF,Neuroticism,keep median,pearson,solver,mean_FA,0.746,balanced_accuracy,26,97.29700000000001,97.531,97.22200000000001,100.0,41.111000000000004,38.298,29.268,44.815
+412,412,RF,Extraversion,keep median,pearson,solver,mean_FA,0.7170000000000001,balanced_accuracy,25,100.0,100.0,100.0,100.0,41.575,40.426,36.364000000000004,39.376999999999995
+413,413,RF,Openness,keep median,pearson,solver,mean_FA,0.602,balanced_accuracy,21,89.833,89.87299999999999,89.189,98.456,59.074,57.446999999999996,56.522,68.889
+414,414,RF,Agreeableness,keep median,pearson,solver,mean_FA,0.574,balanced_accuracy,20,100.0,100.0,100.0,100.0,56.674,51.06399999999999,56.604,55.20399999999999
+415,415,RF,Neuroticism,keep median,pearson,solver,mean_FA,0.545,balanced_accuracy,19,97.29700000000001,97.531,97.22200000000001,99.75399999999999,54.815,51.06399999999999,41.026,55.74100000000001
+416,416,RF,Agreeableness,keep median,pearson,solver,num_streamlines,0.488,balanced_accuracy,17,100.0,100.0,100.0,100.0,30.656,34.043,45.614,28.506999999999998
+417,417,RF,Agreeableness,keep median,pearson,solver,mean_FA,0.43,balanced_accuracy,15,100.0,100.0,100.0,100.0,45.136,44.681000000000004,53.571000000000005,50.113
+418,418,RF,Openness,keep median,pearson,solver,mean_FA,0.402,balanced_accuracy,14,89.833,89.87299999999999,89.189,96.26799999999999,61.574,59.574,57.778,64.259
+419,419,RF,Agreeableness,keep median,pearson,solver,mean_FA,0.287,balanced_accuracy,10,100.0,100.0,100.0,100.0,55.20399999999999,48.93600000000001,53.846000000000004,61.086000000000006
+420,420,RF,Conscientiousness,keep median,pearson,solver,mean_strl,0.258,balanced_accuracy,9,89.975,90.0,89.47399999999999,98.05799999999999,36.051,36.17,31.818,37.5
+421,421,RF,Extraversion,keep median,pearson,solver,mean_strl,0.22899999999999998,balanced_accuracy,8,100.0,100.0,100.0,100.0,47.343999999999994,46.809,46.809,34.431999999999995
+422,422,RF,Agreeableness,keep median,pearson,solver,mean_FA,0.172,balanced_accuracy,6,97.235,97.26,96.97,99.92399999999999,40.385,44.681000000000004,56.667,40.498000000000005
+423,423,RF,Conscientiousness,keep median,pearson,solver,mean_strl,0.14300000000000002,balanced_accuracy,5,97.619,97.5,97.436,99.311,52.989,53.191,47.619,59.42
+424,424,MLP,Openness,test throw median,pearson,solver,mean_FA,4.532,balanced_accuracy,158,100.0,100.0,100.0,100.0,46.875,47.222,51.282,45.625
+425,425,MLP,Extraversion,test throw median,pearson,solver,num_streamlines,4.475,balanced_accuracy,156,100.0,100.0,100.0,100.0,51.754,51.351000000000006,43.75,51.461999999999996
+426,426,MLP,Extraversion,test throw median,pearson,solver,mean_strl,4.418,balanced_accuracy,154,79.563,80.76899999999999,75.41,90.807,46.199,45.946000000000005,41.176,52.047
+427,427,MLP,Agreeableness,test throw median,pearson,solver,mean_FA,4.388999999999999,balanced_accuracy,153,100.0,100.0,100.0,100.0,46.753,51.282,62.745,43.506
+428,428,MLP,Conscientiousness,test throw median,pearson,solver,mean_strl,4.36,balanced_accuracy,152,100.0,100.0,100.0,100.0,39.286,40.0,32.258,41.497
+429,429,MLP,Neuroticism,test throw median,pearson,solver,mean_FA,4.332,balanced_accuracy,151,89.34299999999999,88.889,88.60799999999999,93.305,42.915,42.222,43.478,40.283
+430,430,MLP,Openness,test throw median,pearson,solver,mean_strl,4.303,balanced_accuracy,150,100.0,100.0,100.0,100.0,40.0,38.889,35.294000000000004,48.75
+431,431,MLP,Openness,test throw median,pearson,solver,num_streamlines,4.274,balanced_accuracy,149,100.0,100.0,100.0,100.0,56.25,55.556000000000004,55.556000000000004,60.312
+432,432,MLP,Neuroticism,test throw median,pearson,solver,mean_strl,4.188,balanced_accuracy,146,81.51100000000001,82.71600000000001,78.125,91.27799999999999,50.303999999999995,46.667,36.842,44.332
+433,433,MLP,Agreeableness,test throw median,pearson,solver,mean_strl,4.131,balanced_accuracy,144,100.0,100.0,100.0,100.0,43.181999999999995,46.153999999999996,57.143,42.532
+434,434,MLP,Conscientiousness,test throw median,pearson,solver,mean_FA,4.102,balanced_accuracy,143,100.0,100.0,100.0,100.0,53.571000000000005,51.428999999999995,51.428999999999995,55.442
+435,435,MLP,Openness,test throw median,pearson,solver,mean_FA,4.073,balanced_accuracy,142,83.07600000000001,83.544,81.15899999999999,89.382,44.375,41.667,27.586,38.438
+436,436,MLP,Neuroticism,test throw median,pearson,solver,mean_strl,4.016,balanced_accuracy,140,100.0,100.0,100.0,100.0,44.13,44.443999999999996,48.98,48.381
+437,437,MLP,Conscientiousness,test throw median,pearson,solver,num_streamlines,3.987,balanced_accuracy,139,100.0,100.0,100.0,100.0,64.286,62.857,60.606,61.905
+438,438,MLP,Agreeableness,test throw median,pearson,solver,mean_FA,3.9589999999999996,balanced_accuracy,138,100.0,100.0,100.0,100.0,54.058,53.846000000000004,62.5,57.468
+439,439,MLP,Conscientiousness,test throw median,pearson,solver,mean_strl,3.9010000000000002,balanced_accuracy,136,100.0,100.0,100.0,100.0,41.667,40.0,40.0,46.25899999999999
+440,440,MLP,Openness,test throw median,pearson,solver,mean_strl,3.844,balanced_accuracy,134,79.02199999999999,79.747,75.758,88.61,50.0,47.222,34.483000000000004,52.812
+441,441,MLP,Openness,test throw median,pearson,solver,num_streamlines,3.787,balanced_accuracy,132,100.0,100.0,100.0,100.0,62.5,61.111000000000004,58.824,66.562
+442,442,MLP,Neuroticism,test throw median,pearson,solver,mean_FA,3.758,balanced_accuracy,131,85.565,86.42,83.58200000000001,94.103,44.028,37.778,6.667000000000001,44.332
+443,443,MLP,Agreeableness,test throw median,pearson,solver,mean_strl,3.7289999999999996,balanced_accuracy,130,88.40899999999999,89.041,87.09700000000001,96.818,56.006,48.718,52.381,65.584
+444,444,MLP,Conscientiousness,test throw median,pearson,solver,mean_FA,3.701,balanced_accuracy,129,100.0,100.0,100.0,100.0,55.952,54.286,52.941,51.701
+445,445,MLP,Neuroticism,test throw median,pearson,solver,mean_FA,3.6430000000000002,balanced_accuracy,127,87.131,87.654,85.714,94.53299999999999,50.303999999999995,46.667,36.842,53.441
+446,446,MLP,Agreeableness,test throw median,pearson,solver,mean_strl,3.614,balanced_accuracy,126,100.0,100.0,100.0,100.0,48.864,38.461999999999996,36.842,52.273
+447,447,MLP,Extraversion,test throw median,pearson,solver,mean_strl,3.557,balanced_accuracy,124,88.889,89.744,87.5,98.677,51.461999999999996,51.351000000000006,50.0,55.556000000000004
+448,448,MLP,Agreeableness,test throw median,pearson,solver,mean_FA,3.528,balanced_accuracy,123,95.985,95.89,95.522,98.561,40.584,38.461999999999996,45.455,40.26
+449,449,MLP,Neuroticism,test throw median,pearson,solver,num_streamlines,3.5,balanced_accuracy,122,85.995,86.42,84.507,91.89200000000001,54.656000000000006,53.333,53.333,52.428999999999995
+450,450,MLP,Conscientiousness,test throw median,pearson,solver,mean_FA,3.4419999999999997,balanced_accuracy,120,100.0,100.0,100.0,100.0,57.143,54.286,55.556000000000004,50.0
+451,451,MLP,Agreeableness,test throw median,pearson,solver,mean_strl,3.3280000000000003,balanced_accuracy,116,100.0,100.0,100.0,100.0,69.48100000000001,64.10300000000001,69.565,68.182
+452,452,MLP,Extraversion,test throw median,pearson,solver,mean_FA,3.299,balanced_accuracy,115,100.0,100.0,100.0,100.0,53.946999999999996,54.053999999999995,56.41,58.48
+453,453,MLP,Openness,test throw median,pearson,solver,mean_strl,3.27,balanced_accuracy,114,100.0,100.0,100.0,100.0,47.5,44.443999999999996,28.570999999999998,47.812
+454,454,MLP,Neuroticism,test throw median,pearson,solver,mean_strl,3.242,balanced_accuracy,113,88.698,88.889,87.671,96.68299999999999,44.332,42.222,38.095,42.915
+455,455,MLP,Extraversion,test throw median,pearson,solver,mean_FA,3.213,balanced_accuracy,112,100.0,100.0,100.0,100.0,54.24,54.053999999999995,51.428999999999995,59.648999999999994
+456,456,MLP,Conscientiousness,test throw median,pearson,solver,mean_strl,3.1839999999999997,balanced_accuracy,111,83.772,83.75,83.117,95.426,44.048,45.714,34.483000000000004,47.278999999999996
+457,457,MLP,Neuroticism,test throw median,pearson,solver,mean_FA,3.155,balanced_accuracy,110,100.0,100.0,100.0,100.0,45.04,42.222,35.0,46.761
+458,458,MLP,Openness,test throw median,pearson,solver,mean_FA,3.127,balanced_accuracy,109,71.718,72.152,68.571,82.046,51.25,50.0,47.059,49.062
+459,459,MLP,Conscientiousness,test throw median,pearson,solver,num_streamlines,3.0980000000000003,balanced_accuracy,108,93.67200000000001,93.75,93.333,97.619,57.143,57.143,51.613,59.184
+460,460,MLP,Openness,test throw median,pearson,solver,num_streamlines,3.069,balanced_accuracy,107,84.749,84.81,83.78399999999999,94.723,53.75,52.778,51.428999999999995,45.0
+461,461,MLP,Agreeableness,test throw median,pearson,solver,mean_FA,3.0410000000000004,balanced_accuracy,106,100.0,100.0,100.0,100.0,46.753,51.282,62.745,40.26
+462,462,MLP,Agreeableness,test throw median,pearson,solver,num_streamlines,2.897,balanced_accuracy,101,91.439,91.781,90.625,98.258,45.292,33.333,27.778000000000002,53.247
+463,463,MLP,Conscientiousness,test throw median,pearson,solver,num_streamlines,2.8689999999999998,balanced_accuracy,100,89.72399999999999,90.0,88.889,94.86200000000001,60.714,62.857,51.852,60.20399999999999
+464,464,MLP,Neuroticism,test throw median,pearson,solver,mean_strl,2.84,balanced_accuracy,99,80.098,80.247,78.378,89.681,43.623000000000005,42.222,40.909,35.628
+465,465,MLP,Agreeableness,test throw median,pearson,solver,mean_strl,2.8110000000000004,balanced_accuracy,98,87.42399999999999,87.671,86.154,92.652,56.006,48.718,52.381,42.857
+466,466,MLP,Extraversion,test throw median,pearson,solver,mean_FA,2.783,balanced_accuracy,97,100.0,100.0,100.0,100.0,40.789,40.541,35.294000000000004,47.661
+467,467,MLP,Openness,test throw median,pearson,solver,mean_FA,2.7539999999999996,balanced_accuracy,96,71.236,72.152,65.625,86.80799999999999,38.125,36.111,25.805999999999997,34.688
+468,468,MLP,Agreeableness,test throw median,pearson,solver,mean_FA,2.725,balanced_accuracy,95,100.0,100.0,100.0,100.0,56.656000000000006,61.538000000000004,71.69800000000001,46.753
+469,469,MLP,Neuroticism,test throw median,pearson,solver,mean_FA,2.697,balanced_accuracy,94,100.0,100.0,100.0,100.0,46.964,44.443999999999996,39.024,48.988
+470,470,MLP,Extraversion,test throw median,pearson,solver,mean_strl,2.639,balanced_accuracy,92,83.53200000000001,84.615,80.645,93.915,38.158,37.838,30.303,44.152
+471,471,MLP,Conscientiousness,test throw median,pearson,solver,mean_FA,2.61,balanced_accuracy,91,83.271,83.75,81.15899999999999,94.29799999999999,46.428999999999995,51.428999999999995,26.087,40.816
+472,472,MLP,Agreeableness,test throw median,pearson,solver,mean_strl,2.524,balanced_accuracy,88,100.0,100.0,100.0,100.0,62.175,61.538000000000004,69.388,65.90899999999999
+473,473,MLP,Extraversion,test throw median,pearson,solver,num_streamlines,2.496,balanced_accuracy,87,81.15100000000001,82.051,78.125,93.45200000000001,49.56100000000001,48.648999999999994,24.0,38.596
+474,474,MLP,Conscientiousness,test throw median,pearson,solver,mean_FA,2.467,balanced_accuracy,86,100.0,100.0,100.0,100.0,52.381,51.428999999999995,48.485,46.93899999999999
+475,475,MLP,Openness,test throw median,pearson,solver,mean_FA,2.438,balanced_accuracy,85,79.183,79.747,76.471,87.45200000000001,40.625,38.889,31.25,49.375
+476,476,MLP,Agreeableness,test throw median,pearson,solver,num_streamlines,2.41,balanced_accuracy,84,93.22,93.15100000000001,92.537,98.40899999999999,32.468,30.769000000000002,37.209,32.468
+477,477,MLP,Agreeableness,test throw median,pearson,solver,mean_FA,2.381,balanced_accuracy,83,88.40899999999999,89.041,87.09700000000001,96.59100000000001,53.247,48.718,54.545,53.247
+478,478,MLP,Extraversion,test throw median,pearson,solver,mean_FA,2.324,balanced_accuracy,81,100.0,100.0,100.0,100.0,56.57899999999999,56.757,60.0,54.093999999999994
+479,479,MLP,Extraversion,test throw median,pearson,solver,mean_strl,2.266,balanced_accuracy,79,75.794,76.923,70.968,85.251,43.275,43.243,43.243,48.246
+480,480,MLP,Openness,test throw median,pearson,solver,mean_FA,2.18,balanced_accuracy,76,69.015,69.62,64.706,76.19,43.75,41.667,32.258,46.562
+481,481,MLP,Conscientiousness,test throw median,pearson,solver,mean_strl,2.151,balanced_accuracy,75,100.0,100.0,100.0,100.0,52.381,51.428999999999995,48.485,42.177
+482,482,MLP,Conscientiousness,test throw median,pearson,solver,mean_FA,2.123,balanced_accuracy,74,82.581,82.5,82.051,94.361,46.428999999999995,45.714,42.424,47.278999999999996
+483,483,MLP,Agreeableness,test throw median,pearson,solver,mean_strl,2.094,balanced_accuracy,73,100.0,100.0,100.0,100.0,58.604,56.41,63.83,53.571000000000005
+484,484,MLP,Neuroticism,test throw median,pearson,solver,mean_FA,2.065,balanced_accuracy,72,100.0,100.0,100.0,100.0,47.47,46.667,47.826,51.215
+485,485,MLP,Openness,test throw median,pearson,solver,mean_strl,2.037,balanced_accuracy,71,100.0,100.0,100.0,100.0,45.0,44.443999999999996,44.443999999999996,39.375
+486,486,MLP,Extraversion,test throw median,pearson,solver,mean_FA,1.9509999999999998,balanced_accuracy,68,100.0,100.0,100.0,100.0,35.234,35.135,33.333,39.181
+487,487,MLP,Agreeableness,test throw median,pearson,solver,mean_FA,1.922,balanced_accuracy,67,86.17399999999999,86.301,84.848,94.318,36.039,35.897,44.443999999999996,35.065
+488,488,MLP,Openness,test throw median,pearson,solver,mean_FA,1.865,balanced_accuracy,65,72.426,73.418,66.667,83.719,43.75,41.667,32.258,45.0
+489,489,MLP,Agreeableness,test throw median,pearson,solver,mean_strl,1.8359999999999999,balanced_accuracy,64,100.0,100.0,100.0,100.0,41.558,35.897,39.024,44.156000000000006
+490,490,MLP,Conscientiousness,test throw median,pearson,solver,mean_FA,1.807,balanced_accuracy,63,100.0,100.0,100.0,100.0,54.762,54.286,50.0,51.701
+491,491,MLP,Neuroticism,test throw median,pearson,solver,mean_FA,1.7790000000000001,balanced_accuracy,62,79.668,80.247,77.143,82.555,56.073,53.333,48.78,55.06100000000001
+492,492,MLP,Neuroticism,test throw median,pearson,solver,num_streamlines,1.75,balanced_accuracy,61,75.829,76.543,72.464,87.715,42.409,40.0,34.146,46.964
+493,493,MLP,Extraversion,test throw median,pearson,solver,mean_strl,1.7209999999999999,balanced_accuracy,60,80.15899999999999,80.76899999999999,77.612,90.675,38.158,37.838,30.303,43.275
+494,494,MLP,Openness,test throw median,pearson,solver,mean_strl,1.692,balanced_accuracy,59,70.689,70.88600000000001,68.493,80.373,45.625,44.443999999999996,41.176,52.188
+495,495,MLP,Agreeableness,test throw median,pearson,solver,mean_FA,1.6640000000000001,balanced_accuracy,58,80.37899999999999,80.822,78.125,88.939,41.396,43.59,54.167,41.233999999999995
+496,496,MLP,Extraversion,test throw median,pearson,solver,mean_FA,1.578,balanced_accuracy,55,100.0,100.0,100.0,100.0,54.24,54.053999999999995,51.428999999999995,59.942
+497,497,MLP,Conscientiousness,test throw median,pearson,solver,mean_FA,1.5490000000000002,balanced_accuracy,54,77.569,77.5,76.923,86.02799999999999,48.81,51.428999999999995,37.037,42.857
+498,498,MLP,Openness,test throw median,pearson,solver,mean_strl,1.52,balanced_accuracy,53,81.885,82.27799999999999,80.0,88.16,45.625,44.443999999999996,41.176,51.875
+499,499,MLP,Openness,test throw median,pearson,solver,mean_FA,1.492,balanced_accuracy,52,100.0,100.0,100.0,100.0,48.125,47.222,45.714,53.438
+500,500,MLP,Agreeableness,test throw median,pearson,solver,mean_FA,1.463,balanced_accuracy,51,100.0,100.0,100.0,100.0,57.63,58.974,68.0,46.104
+501,501,MLP,Neuroticism,test throw median,pearson,solver,mean_strl,1.4340000000000002,balanced_accuracy,50,62.592,65.432,44.0,84.95100000000001,46.66,40.0,6.897,44.13
+502,502,MLP,Extraversion,test throw median,pearson,solver,mean_strl,1.406,balanced_accuracy,49,85.516,85.897,84.05799999999999,96.429,59.942,59.458999999999996,51.613,59.06399999999999
+503,503,MLP,Neuroticism,test throw median,pearson,solver,mean_strl,1.291,balanced_accuracy,45,77.181,77.778,74.286,85.811,45.547,44.443999999999996,44.443999999999996,38.056999999999995
+504,504,MLP,Openness,test throw median,pearson,solver,mean_FA,1.262,balanced_accuracy,44,100.0,100.0,100.0,100.0,56.875,55.556000000000004,52.941,54.375
+505,505,MLP,Extraversion,test throw median,pearson,solver,mean_FA,1.234,balanced_accuracy,43,71.825,73.077,65.574,83.929,43.567,43.243,36.364000000000004,45.614
+506,506,MLP,Agreeableness,test throw median,pearson,solver,mean_FA,1.205,balanced_accuracy,42,100.0,100.0,100.0,100.0,40.422,46.153999999999996,58.824,34.74
+507,507,MLP,Extraversion,test throw median,pearson,solver,mean_strl,1.176,balanced_accuracy,41,71.032,71.795,66.667,85.185,45.906000000000006,45.946000000000005,47.368,54.386
+508,508,MLP,Extraversion,test throw median,pearson,solver,num_streamlines,1.147,balanced_accuracy,40,72.024,73.077,66.667,87.566,56.871,56.757,55.556000000000004,46.49100000000001
+509,509,MLP,Conscientiousness,test throw median,pearson,solver,mean_FA,1.061,balanced_accuracy,37,100.0,100.0,100.0,100.0,47.619,48.571000000000005,40.0,45.918
+510,510,MLP,Conscientiousness,test throw median,pearson,solver,mean_FA,1.033,balanced_accuracy,36,68.484,68.75,65.753,76.128,45.238,45.714,38.71,40.816
+511,511,MLP,Agreeableness,test throw median,pearson,solver,mean_FA,1.004,balanced_accuracy,35,82.15899999999999,82.19200000000001,80.597,88.63600000000001,40.422,46.153999999999996,58.824,44.156000000000006
+512,512,MLP,Openness,test throw median,pearson,solver,mean_FA,0.975,balanced_accuracy,34,69.176,69.62,65.714,79.215,40.0,38.889,35.294000000000004,46.875
+513,513,MLP,Conscientiousness,test throw median,pearson,solver,mean_strl,0.9470000000000001,balanced_accuracy,33,76.003,76.25,73.973,80.702,40.476,40.0,36.364000000000004,44.218
+514,514,MLP,Neuroticism,test throw median,pearson,solver,mean_FA,0.9179999999999999,balanced_accuracy,32,64.373,66.667,50.909,83.6,53.138000000000005,46.667,20.0,45.748999999999995
+515,515,MLP,Openness,test throw median,pearson,solver,mean_FA,0.8029999999999999,balanced_accuracy,28,67.503,68.354,61.538000000000004,73.423,40.625,38.889,31.25,43.125
+516,516,MLP,Agreeableness,test throw median,pearson,solver,mean_FA,0.775,balanced_accuracy,27,80.64399999999999,80.822,78.788,89.242,26.948,30.769000000000002,42.553000000000004,24.675
+517,517,MLP,Neuroticism,test throw median,pearson,solver,mean_FA,0.746,balanced_accuracy,26,69.994,71.605,62.295,82.064,57.49,53.333,43.243,62.753
+518,518,MLP,Extraversion,test throw median,pearson,solver,mean_FA,0.7170000000000001,balanced_accuracy,25,100.0,100.0,100.0,100.0,51.023,51.351000000000006,57.143,45.906000000000006
+519,519,MLP,Openness,test throw median,pearson,solver,mean_FA,0.602,balanced_accuracy,21,67.503,68.354,61.538000000000004,72.65100000000001,43.75,41.667,32.258,36.25
+520,520,MLP,Agreeableness,test throw median,pearson,solver,mean_FA,0.574,balanced_accuracy,20,63.258,64.384,56.667,70.303,25.162,28.205,39.13,21.753
+521,521,MLP,Neuroticism,test throw median,pearson,solver,mean_FA,0.545,balanced_accuracy,19,100.0,100.0,100.0,100.0,56.073,53.333,48.78,53.239
+522,522,MLP,Agreeableness,test throw median,pearson,solver,num_streamlines,0.488,balanced_accuracy,17,78.598,79.452,75.41,85.682,54.058,53.846000000000004,62.5,52.597
+523,523,MLP,Agreeableness,test throw median,pearson,solver,mean_FA,0.43,balanced_accuracy,15,55.606,58.903999999999996,31.818,70.60600000000001,48.052,33.333,23.529,30.844
+524,524,MLP,Openness,test throw median,pearson,solver,mean_FA,0.402,balanced_accuracy,14,65.991,67.089,58.065,73.81,43.75,41.667,32.258,52.5
+525,525,MLP,Agreeableness,test throw median,pearson,solver,mean_FA,0.287,balanced_accuracy,10,100.0,100.0,100.0,100.0,38.799,35.897,41.86,42.532
+526,526,MLP,Conscientiousness,test throw median,pearson,solver,mean_strl,0.258,balanced_accuracy,9,64.286,65.0,57.576,71.241,54.762,57.143,44.443999999999996,49.32
+527,527,MLP,Extraversion,test throw median,pearson,solver,mean_strl,0.22899999999999998,balanced_accuracy,8,100.0,100.0,100.0,100.0,40.643,40.541,38.889,45.028999999999996
+528,528,MLP,Agreeableness,test throw median,pearson,solver,mean_FA,0.172,balanced_accuracy,6,56.931999999999995,58.903999999999996,44.443999999999996,71.742,37.013000000000005,33.333,38.095,29.221
+529,529,MLP,Conscientiousness,test throw median,pearson,solver,mean_strl,0.14300000000000002,balanced_accuracy,5,64.411,65.0,58.824,74.687,50.0,51.428999999999995,41.379,39.116
+530,530,MLP,Openness,keep median,pearson,solver,mean_FA,4.532,balanced_accuracy,158,95.07700000000001,94.93700000000001,94.73700000000001,96.84700000000001,49.074,48.93600000000001,52.0,52.593
+531,531,MLP,Extraversion,keep median,pearson,solver,num_streamlines,4.475,balanced_accuracy,156,94.84100000000001,94.87200000000001,94.444,99.603,62.088,59.574,51.282,60.989
+532,532,MLP,Extraversion,keep median,pearson,solver,mean_strl,4.418,balanced_accuracy,154,85.119,85.897,83.07700000000001,94.31200000000001,52.106,51.06399999999999,48.888999999999996,51.282
+533,533,MLP,Agreeableness,keep median,pearson,solver,mean_FA,4.388999999999999,balanced_accuracy,153,100.0,100.0,100.0,100.0,41.855,46.809,59.016000000000005,43.213
+534,534,MLP,Conscientiousness,keep median,pearson,solver,mean_strl,4.36,balanced_accuracy,152,100.0,100.0,100.0,100.0,46.739,46.809,44.443999999999996,43.11600000000001
+535,535,MLP,Neuroticism,keep median,pearson,solver,mean_FA,4.332,balanced_accuracy,151,79.238,80.247,75.758,90.971,38.704,34.043,11.429,37.963
+536,536,MLP,Openness,keep median,pearson,solver,mean_strl,4.303,balanced_accuracy,150,76.319,77.215,71.875,92.27799999999999,65.37,61.702,55.0,60.185
+537,537,MLP,Openness,keep median,pearson,solver,num_streamlines,4.274,balanced_accuracy,149,92.535,92.405,92.105,98.26299999999999,47.87,46.809,46.809,46.481
+538,538,MLP,Neuroticism,keep median,pearson,solver,mean_strl,4.188,balanced_accuracy,146,90.756,91.35799999999999,89.855,96.929,65.278,63.83,63.83,68.889
+539,539,MLP,Agreeableness,keep median,pearson,solver,mean_strl,4.131,balanced_accuracy,144,100.0,100.0,100.0,100.0,38.348,38.298,47.273,33.484
+540,540,MLP,Conscientiousness,keep median,pearson,solver,mean_FA,4.102,balanced_accuracy,143,100.0,100.0,100.0,100.0,59.692,59.574,61.224,61.232
+541,541,MLP,Openness,keep median,pearson,solver,mean_FA,4.073,balanced_accuracy,142,100.0,100.0,100.0,100.0,59.63,59.574,62.745,57.407
+542,542,MLP,Neuroticism,keep median,pearson,solver,mean_strl,4.016,balanced_accuracy,140,84.859,85.185,83.333,89.005,51.667,48.93600000000001,42.857,52.407
+543,543,MLP,Conscientiousness,keep median,pearson,solver,num_streamlines,3.987,balanced_accuracy,139,86.96700000000001,87.5,85.294,95.48899999999999,35.96,36.17,28.570999999999998,37.5
+544,544,MLP,Agreeableness,keep median,pearson,solver,mean_FA,3.9589999999999996,balanced_accuracy,138,95.0,94.521,94.286,98.03,59.615,55.318999999999996,61.818000000000005,62.443000000000005
+545,545,MLP,Conscientiousness,keep median,pearson,solver,mean_strl,3.9010000000000002,balanced_accuracy,136,84.461,85.0,82.353,95.73899999999999,48.732,48.93600000000001,42.857,53.08
+546,546,MLP,Openness,keep median,pearson,solver,mean_strl,3.844,balanced_accuracy,134,77.831,78.48100000000001,74.627,90.79799999999999,57.87,55.318999999999996,51.163000000000004,67.222
+547,547,MLP,Openness,keep median,pearson,solver,num_streamlines,3.787,balanced_accuracy,132,89.994,89.87299999999999,89.47399999999999,95.238,52.778,53.191,57.692,54.074
+548,548,MLP,Neuroticism,keep median,pearson,solver,mean_FA,3.758,balanced_accuracy,131,100.0,100.0,100.0,100.0,52.315,48.93600000000001,40.0,46.481
+549,549,MLP,Agreeableness,keep median,pearson,solver,mean_strl,3.7289999999999996,balanced_accuracy,130,95.985,95.89,95.522,99.318,54.638000000000005,44.681000000000004,45.833,60.407
+550,550,MLP,Conscientiousness,keep median,pearson,solver,mean_FA,3.701,balanced_accuracy,129,100.0,100.0,100.0,100.0,46.83,46.809,46.809,46.376999999999995
+551,551,MLP,Neuroticism,keep median,pearson,solver,mean_FA,3.6430000000000002,balanced_accuracy,127,100.0,100.0,100.0,100.0,44.167,42.553000000000004,40.0,49.63
+552,552,MLP,Agreeableness,keep median,pearson,solver,mean_strl,3.614,balanced_accuracy,126,100.0,100.0,100.0,100.0,44.57,40.426,46.153999999999996,40.498000000000005
+553,553,MLP,Extraversion,keep median,pearson,solver,mean_strl,3.557,balanced_accuracy,124,86.31,87.179,84.375,97.685,47.802,46.809,44.443999999999996,42.308
+554,554,MLP,Agreeableness,keep median,pearson,solver,mean_FA,3.528,balanced_accuracy,123,100.0,100.0,100.0,100.0,50.452,48.93600000000001,57.143,50.452
+555,555,MLP,Neuroticism,keep median,pearson,solver,num_streamlines,3.5,balanced_accuracy,122,100.0,100.0,100.0,100.0,53.981,55.318999999999996,61.818000000000005,51.481
+556,556,MLP,Conscientiousness,keep median,pearson,solver,mean_FA,3.4419999999999997,balanced_accuracy,120,78.258,78.75,75.362,86.779,57.608999999999995,57.446999999999996,60.0,60.145
+557,557,MLP,Agreeableness,keep median,pearson,solver,mean_strl,3.3280000000000003,balanced_accuracy,116,85.11399999999999,86.301,82.759,94.848,55.543,42.553000000000004,40.0,64.027
+558,558,MLP,Extraversion,keep median,pearson,solver,mean_FA,3.299,balanced_accuracy,115,100.0,100.0,100.0,100.0,53.571000000000005,53.191,54.167,54.028999999999996
+559,559,MLP,Openness,keep median,pearson,solver,mean_strl,3.27,balanced_accuracy,114,84.749,84.81,83.78399999999999,91.055,59.722,57.446999999999996,54.545,62.778
+560,560,MLP,Neuroticism,keep median,pearson,solver,mean_strl,3.242,balanced_accuracy,113,100.0,100.0,100.0,100.0,50.463,46.809,35.897,44.443999999999996
+561,561,MLP,Extraversion,keep median,pearson,solver,mean_FA,3.213,balanced_accuracy,112,100.0,100.0,100.0,100.0,53.114,53.191,56.0,54.028999999999996
+562,562,MLP,Conscientiousness,keep median,pearson,solver,mean_strl,3.1839999999999997,balanced_accuracy,111,76.128,76.25,74.667,86.404,61.957,61.702,65.385,56.703
+563,563,MLP,Neuroticism,keep median,pearson,solver,mean_FA,3.155,balanced_accuracy,110,100.0,100.0,100.0,100.0,41.111000000000004,38.298,29.268,41.111000000000004
+564,564,MLP,Openness,keep median,pearson,solver,mean_FA,3.127,balanced_accuracy,109,80.212,81.013,76.923,93.62899999999999,54.074,53.191,54.167,61.481
+565,565,MLP,Conscientiousness,keep median,pearson,solver,num_streamlines,3.0980000000000003,balanced_accuracy,108,100.0,100.0,100.0,100.0,53.08,53.191,50.0,58.152
+566,566,MLP,Openness,keep median,pearson,solver,num_streamlines,3.069,balanced_accuracy,107,92.535,92.405,92.105,97.49,57.778,57.446999999999996,60.0,59.074
+567,567,MLP,Agreeableness,keep median,pearson,solver,mean_FA,3.0410000000000004,balanced_accuracy,106,88.939,89.041,87.87899999999999,96.288,50.452,48.93600000000001,57.143,49.548
+568,568,MLP,Agreeableness,keep median,pearson,solver,num_streamlines,2.897,balanced_accuracy,101,92.955,93.15100000000001,92.30799999999999,97.42399999999999,44.57,40.426,46.153999999999996,55.43
+569,569,MLP,Conscientiousness,keep median,pearson,solver,num_streamlines,2.8689999999999998,balanced_accuracy,100,97.619,97.5,97.436,99.875,61.685,61.702,60.87,58.513999999999996
+570,570,MLP,Neuroticism,keep median,pearson,solver,mean_strl,2.84,balanced_accuracy,99,86.916,87.654,85.294,96.806,41.20399999999999,36.17,11.765,50.185
+571,571,MLP,Agreeableness,keep median,pearson,solver,mean_strl,2.8110000000000004,balanced_accuracy,98,83.67399999999999,83.56200000000001,82.353,92.87899999999999,37.783,34.043,39.216,36.878
+572,572,MLP,Extraversion,keep median,pearson,solver,mean_FA,2.783,balanced_accuracy,97,100.0,100.0,100.0,100.0,58.333,57.446999999999996,56.522,51.465
+573,573,MLP,Openness,keep median,pearson,solver,mean_FA,2.7539999999999996,balanced_accuracy,96,83.559,83.544,82.667,90.927,56.019,53.191,47.619,60.74100000000001
+574,574,MLP,Agreeableness,keep median,pearson,solver,mean_FA,2.725,balanced_accuracy,95,100.0,100.0,100.0,100.0,50.113,55.318999999999996,66.667,43.665
+575,575,MLP,Neuroticism,keep median,pearson,solver,mean_FA,2.697,balanced_accuracy,94,100.0,100.0,100.0,100.0,52.315,48.93600000000001,40.0,53.333
+576,576,MLP,Extraversion,keep median,pearson,solver,mean_strl,2.639,balanced_accuracy,92,85.714,85.897,84.507,92.39399999999999,32.967,31.915,27.273000000000003,27.473000000000003
+577,577,MLP,Conscientiousness,keep median,pearson,solver,mean_FA,2.61,balanced_accuracy,91,80.764,81.25,78.26100000000001,90.288,54.982,55.318999999999996,46.153999999999996,59.42
+578,578,MLP,Agreeableness,keep median,pearson,solver,mean_strl,2.524,balanced_accuracy,88,100.0,100.0,100.0,100.0,61.652,61.702,70.0,60.633
+579,579,MLP,Extraversion,keep median,pearson,solver,num_streamlines,2.496,balanced_accuracy,87,89.087,89.744,87.87899999999999,96.693,49.63399999999999,46.809,32.431999999999995,44.321999999999996
+580,580,MLP,Conscientiousness,keep median,pearson,solver,mean_FA,2.467,balanced_accuracy,86,79.574,80.0,77.143,88.65899999999999,59.692,59.574,61.224,60.145
+581,581,MLP,Openness,keep median,pearson,solver,mean_FA,2.438,balanced_accuracy,85,74.968,75.949,69.84100000000001,86.165,54.722,53.191,52.174,64.815
+582,582,MLP,Agreeableness,keep median,pearson,solver,num_streamlines,2.41,balanced_accuracy,84,100.0,100.0,100.0,100.0,53.394,53.191,62.068999999999996,54.299
+583,583,MLP,Agreeableness,keep median,pearson,solver,mean_FA,2.381,balanced_accuracy,83,100.0,100.0,100.0,100.0,55.43,59.574,69.84100000000001,59.729
+584,584,MLP,Extraversion,keep median,pearson,solver,mean_FA,2.324,balanced_accuracy,81,100.0,100.0,100.0,100.0,52.106,51.06399999999999,48.888999999999996,55.128
+585,585,MLP,Extraversion,keep median,pearson,solver,mean_strl,2.266,balanced_accuracy,79,83.73,84.615,81.25,93.32,54.486999999999995,53.191,50.0,50.916000000000004
+586,586,MLP,Openness,keep median,pearson,solver,mean_FA,2.18,balanced_accuracy,76,75.77199999999999,75.949,73.973,83.78399999999999,59.167,55.318999999999996,46.153999999999996,67.96300000000001
+587,587,MLP,Conscientiousness,keep median,pearson,solver,mean_strl,2.151,balanced_accuracy,75,100.0,100.0,100.0,100.0,57.246,57.446999999999996,52.381,58.876999999999995
+588,588,MLP,Conscientiousness,keep median,pearson,solver,mean_FA,2.123,balanced_accuracy,74,81.14,81.25,80.0,92.419,59.33,59.574,53.659,60.145
+589,589,MLP,Agreeableness,keep median,pearson,solver,mean_strl,2.094,balanced_accuracy,73,100.0,100.0,100.0,100.0,63.461999999999996,57.446999999999996,62.963,67.195
+590,590,MLP,Neuroticism,keep median,pearson,solver,mean_FA,2.065,balanced_accuracy,72,75.829,76.543,72.464,83.04700000000001,47.315,44.681000000000004,38.095,43.888999999999996
+591,591,MLP,Openness,keep median,pearson,solver,mean_strl,2.037,balanced_accuracy,71,68.694,69.62,62.5,75.29,64.722,61.702,57.143,65.0
+592,592,MLP,Extraversion,keep median,pearson,solver,mean_FA,1.9509999999999998,balanced_accuracy,68,100.0,100.0,100.0,100.0,58.333,57.446999999999996,56.522,55.128
+593,593,MLP,Agreeableness,keep median,pearson,solver,mean_FA,1.922,balanced_accuracy,67,84.92399999999999,84.932,83.58200000000001,95.53,59.615,55.318999999999996,61.818000000000005,57.919
+594,594,MLP,Openness,keep median,pearson,solver,mean_FA,1.865,balanced_accuracy,65,79.344,79.747,77.143,86.87299999999999,61.574,59.574,57.778,62.778
+595,595,MLP,Agreeableness,keep median,pearson,solver,mean_strl,1.8359999999999999,balanced_accuracy,64,100.0,100.0,100.0,100.0,64.027,61.702,68.96600000000001,66.968
+596,596,MLP,Conscientiousness,keep median,pearson,solver,mean_FA,1.807,balanced_accuracy,63,100.0,100.0,100.0,100.0,44.475,44.681000000000004,38.095,54.71
+597,597,MLP,Neuroticism,keep median,pearson,solver,mean_FA,1.7790000000000001,balanced_accuracy,62,76.10600000000001,77.778,70.0,88.45200000000001,57.963,53.191,38.889,48.333
+598,598,MLP,Neuroticism,keep median,pearson,solver,num_streamlines,1.75,balanced_accuracy,61,100.0,100.0,100.0,100.0,48.426,48.93600000000001,53.846000000000004,45.74100000000001
+599,599,MLP,Extraversion,keep median,pearson,solver,mean_strl,1.7209999999999999,balanced_accuracy,60,80.952,82.051,77.419,90.476,49.725,48.93600000000001,47.826,57.326
+600,600,MLP,Openness,keep median,pearson,solver,mean_strl,1.692,balanced_accuracy,59,64.64,65.82300000000001,55.738,78.829,63.426,61.702,60.87,60.185
+601,601,MLP,Agreeableness,keep median,pearson,solver,mean_FA,1.6640000000000001,balanced_accuracy,58,100.0,100.0,100.0,100.0,60.181000000000004,59.574,67.797,63.348
+602,602,MLP,Extraversion,keep median,pearson,solver,mean_FA,1.578,balanced_accuracy,55,100.0,100.0,100.0,100.0,53.022,51.06399999999999,43.902,53.114
+603,603,MLP,Conscientiousness,keep median,pearson,solver,mean_FA,1.5490000000000002,balanced_accuracy,54,75.627,76.25,71.642,87.594,55.071999999999996,55.318999999999996,48.78,65.399
+604,604,MLP,Openness,keep median,pearson,solver,mean_strl,1.52,balanced_accuracy,53,100.0,100.0,100.0,100.0,54.074,53.191,54.167,57.963
+605,605,MLP,Openness,keep median,pearson,solver,mean_FA,1.492,balanced_accuracy,52,72.748,73.418,68.657,79.858,61.574,59.574,57.778,62.778
+606,606,MLP,Agreeableness,keep median,pearson,solver,mean_FA,1.463,balanced_accuracy,51,100.0,100.0,100.0,100.0,58.71,57.446999999999996,65.517,64.48
+607,607,MLP,Neuroticism,keep median,pearson,solver,mean_strl,1.4340000000000002,balanced_accuracy,50,100.0,100.0,100.0,100.0,44.167,42.553000000000004,40.0,47.778
+608,608,MLP,Extraversion,keep median,pearson,solver,mean_strl,1.406,balanced_accuracy,49,74.80199999999999,75.641,70.76899999999999,83.598,42.125,42.553000000000004,47.059,37.546
+609,609,MLP,Neuroticism,keep median,pearson,solver,mean_strl,1.291,balanced_accuracy,45,71.837,74.074,61.818000000000005,85.68799999999999,41.20399999999999,36.17,11.765,38.519
+610,610,MLP,Openness,keep median,pearson,solver,mean_FA,1.262,balanced_accuracy,44,100.0,100.0,100.0,100.0,46.667,44.681000000000004,40.909,51.29600000000001
+611,611,MLP,Extraversion,keep median,pearson,solver,mean_FA,1.234,balanced_accuracy,43,72.024,73.077,66.667,77.249,36.355,36.17,37.5,41.758
+612,612,MLP,Agreeableness,keep median,pearson,solver,mean_FA,1.205,balanced_accuracy,42,100.0,100.0,100.0,100.0,41.855,46.809,59.016000000000005,30.543000000000003
+613,613,MLP,Extraversion,keep median,pearson,solver,mean_strl,1.176,balanced_accuracy,41,100.0,100.0,100.0,100.0,44.505,44.681000000000004,48.0,40.659
+614,614,MLP,Extraversion,keep median,pearson,solver,num_streamlines,1.147,balanced_accuracy,40,75.595,76.923,70.0,88.36,54.396,51.06399999999999,34.286,63.736000000000004
+615,615,MLP,Conscientiousness,keep median,pearson,solver,mean_FA,1.061,balanced_accuracy,37,73.49600000000001,73.75,71.233,84.712,46.648999999999994,46.809,41.86,54.167
+616,616,MLP,Conscientiousness,keep median,pearson,solver,mean_FA,1.033,balanced_accuracy,36,74.937,75.0,73.684,85.213,62.047,61.702,66.667,61.051
+617,617,MLP,Agreeableness,keep median,pearson,solver,mean_FA,1.004,balanced_accuracy,35,73.333,73.973,69.84100000000001,82.955,45.136,44.681000000000004,53.571000000000005,44.79600000000001
+618,618,MLP,Openness,keep median,pearson,solver,mean_FA,0.975,balanced_accuracy,34,68.694,69.62,62.5,74.903,60.37,57.446999999999996,52.381,67.407
+619,619,MLP,Conscientiousness,keep median,pearson,solver,mean_strl,0.9470000000000001,balanced_accuracy,33,100.0,100.0,100.0,100.0,42.663000000000004,42.553000000000004,44.898,43.297
+620,620,MLP,Neuroticism,keep median,pearson,solver,mean_FA,0.9179999999999999,balanced_accuracy,32,73.771,74.074,71.233,80.467,53.519,51.06399999999999,46.512,58.70399999999999
+621,621,MLP,Openness,keep median,pearson,solver,mean_FA,0.8029999999999999,balanced_accuracy,28,65.444,65.82300000000001,61.972,76.512,59.722,57.446999999999996,54.545,67.407
+622,622,MLP,Agreeableness,keep median,pearson,solver,mean_FA,0.775,balanced_accuracy,27,100.0,100.0,100.0,100.0,54.864,55.318999999999996,64.407,56.335
+623,623,MLP,Neuroticism,keep median,pearson,solver,mean_FA,0.746,balanced_accuracy,26,100.0,100.0,100.0,100.0,40.37,40.426,44.0,36.296
+624,624,MLP,Extraversion,keep median,pearson,solver,mean_FA,0.7170000000000001,balanced_accuracy,25,100.0,100.0,100.0,100.0,49.358999999999995,51.06399999999999,59.648999999999994,48.535
+625,625,MLP,Openness,keep median,pearson,solver,mean_FA,0.602,balanced_accuracy,21,63.771,64.557,57.576,71.042,64.074,61.702,59.091,64.815
+626,626,MLP,Agreeableness,keep median,pearson,solver,mean_FA,0.574,balanced_accuracy,20,63.446999999999996,65.753,50.98,75.0,43.1,38.298,43.137,47.285
+627,627,MLP,Neuroticism,keep median,pearson,solver,mean_FA,0.545,balanced_accuracy,19,100.0,100.0,100.0,100.0,51.667,48.93600000000001,42.857,55.185
+628,628,MLP,Agreeableness,keep median,pearson,solver,num_streamlines,0.488,balanced_accuracy,17,76.098,76.712,73.016,83.86399999999999,35.633,44.681000000000004,59.375,29.186
+629,629,MLP,Agreeableness,keep median,pearson,solver,mean_FA,0.43,balanced_accuracy,15,59.167,61.644,44.0,70.455,44.005,36.17,37.5,43.43899999999999
+630,630,MLP,Openness,keep median,pearson,solver,mean_FA,0.402,balanced_accuracy,14,64.961,65.82300000000001,58.461999999999996,72.523,52.87,51.06399999999999,48.888999999999996,64.815
+631,631,MLP,Agreeableness,keep median,pearson,solver,mean_FA,0.287,balanced_accuracy,10,100.0,100.0,100.0,100.0,49.887,44.681000000000004,50.0,41.855
+632,632,MLP,Conscientiousness,keep median,pearson,solver,mean_strl,0.258,balanced_accuracy,9,67.982,68.75,61.538000000000004,68.672,59.511,59.574,57.778,54.71
+633,633,MLP,Extraversion,keep median,pearson,solver,mean_strl,0.22899999999999998,balanced_accuracy,8,100.0,100.0,100.0,100.0,42.125,42.553000000000004,47.059,45.604
+634,634,MLP,Agreeableness,keep median,pearson,solver,mean_FA,0.172,balanced_accuracy,6,100.0,100.0,100.0,100.0,44.79600000000001,51.06399999999999,63.492,36.199
+635,635,MLP,Conscientiousness,keep median,pearson,solver,mean_strl,0.14300000000000002,balanced_accuracy,5,60.84,61.25,56.338,67.23100000000001,63.949,63.83,65.306,66.123
+0,0,SVC,Openness,test throw median,pearson,baseline,mean_FA,2.0,balanced_accuracy,70,92.535,92.405,92.105,97.104,61.25,61.111000000000004,63.158,57.812
+1,1,SVC,Openness,test throw median,pearson,baseline,mean_FA,5.0,balanced_accuracy,175,89.994,89.87299999999999,89.47399999999999,95.399,55.625,55.556000000000004,57.895,60.625
+5,5,SVC,Extraversion,test throw median,pearson,baseline,num_streamlines,2.0,balanced_accuracy,70,91.865,92.30799999999999,91.176,98.214,72.807,72.973,75.0,80.40899999999999
+6,6,SVC,Extraversion,test throw median,pearson,baseline,num_streamlines,5.0,balanced_accuracy,175,97.22200000000001,97.436,97.14299999999999,99.934,67.251,67.568,71.429,73.977
+10,10,SVC,Extraversion,test throw median,pearson,baseline,mean_strl,2.0,balanced_accuracy,70,85.31700000000001,85.897,83.58200000000001,92.92299999999999,62.427,62.162,58.824,59.648999999999994
+11,11,SVC,Extraversion,test throw median,pearson,baseline,mean_strl,5.0,balanced_accuracy,175,90.675,91.02600000000001,89.855,92.85700000000001,51.461999999999996,51.351000000000006,50.0,53.801
+15,15,SVC,Agreeableness,test throw median,pearson,baseline,mean_FA,2.0,balanced_accuracy,70,88.939,89.041,87.87899999999999,94.62100000000001,44.968,48.718,60.0,48.701
+16,16,SVC,Agreeableness,test throw median,pearson,baseline,mean_FA,5.0,balanced_accuracy,175,90.455,90.411,89.552,94.92399999999999,44.968,48.718,60.0,51.623000000000005
+20,20,SVC,Conscientiousness,test throw median,pearson,baseline,mean_strl,2.0,balanced_accuracy,70,96.303,96.25,96.104,99.624,50.0,51.428999999999995,41.379,55.782
+21,21,SVC,Conscientiousness,test throw median,pearson,baseline,mean_strl,5.0,balanced_accuracy,175,100.0,100.0,100.0,100.0,42.857,42.857,37.5,48.638999999999996
+25,25,SVC,Neuroticism,test throw median,pearson,baseline,mean_FA,2.0,balanced_accuracy,70,93.67299999999999,93.82700000000001,93.15100000000001,98.71,47.47,46.667,47.826,44.736999999999995
+26,26,SVC,Neuroticism,test throw median,pearson,baseline,mean_FA,5.0,balanced_accuracy,175,85.289,85.185,84.211,95.57700000000001,42.915,42.222,43.478,45.343999999999994
+30,30,SVC,Openness,test throw median,pearson,baseline,mean_strl,2.0,balanced_accuracy,70,92.535,92.405,92.105,97.104,61.25,61.111000000000004,63.158,57.968999999999994
+31,31,SVC,Openness,test throw median,pearson,baseline,mean_strl,5.0,balanced_accuracy,175,89.994,89.87299999999999,89.47399999999999,95.335,55.625,55.556000000000004,57.895,60.938
+35,35,SVC,Openness,test throw median,pearson,baseline,num_streamlines,2.0,balanced_accuracy,70,91.023,91.139,90.411,96.075,56.25,55.556000000000004,55.556000000000004,53.438
+36,36,SVC,Openness,test throw median,pearson,baseline,num_streamlines,5.0,balanced_accuracy,175,100.0,100.0,100.0,100.0,56.25,58.333,66.667,59.375
+40,40,SVC,Neuroticism,test throw median,pearson,baseline,mean_strl,2.0,balanced_accuracy,70,93.67299999999999,93.82700000000001,93.15100000000001,98.71,47.47,46.667,47.826,44.736999999999995
+41,41,SVC,Neuroticism,test throw median,pearson,baseline,mean_strl,5.0,balanced_accuracy,175,85.289,85.185,84.211,95.57700000000001,42.915,42.222,43.478,45.343999999999994
+45,45,SVC,Agreeableness,test throw median,pearson,baseline,mean_strl,2.0,balanced_accuracy,70,88.939,89.041,87.87899999999999,94.62100000000001,44.968,48.718,60.0,48.701
+46,46,SVC,Agreeableness,test throw median,pearson,baseline,mean_strl,5.0,balanced_accuracy,175,90.455,90.411,89.552,95.0,44.968,48.718,60.0,51.623000000000005
+50,50,SVC,Conscientiousness,test throw median,pearson,baseline,mean_FA,2.0,balanced_accuracy,70,96.303,96.25,96.104,99.561,50.0,51.428999999999995,41.379,55.782
+51,51,SVC,Conscientiousness,test throw median,pearson,baseline,mean_FA,5.0,balanced_accuracy,175,100.0,100.0,100.0,100.0,42.857,42.857,37.5,48.638999999999996
+55,55,SVC,Conscientiousness,test throw median,pearson,baseline,num_streamlines,2.0,balanced_accuracy,70,94.86200000000001,95.0,94.595,99.37299999999999,65.476,62.857,62.857,69.72800000000001
+56,56,SVC,Conscientiousness,test throw median,pearson,baseline,num_streamlines,5.0,balanced_accuracy,175,97.494,97.5,97.368,99.749,55.952,51.428999999999995,56.41,63.605
+60,60,SVC,Neuroticism,test throw median,pearson,baseline,num_streamlines,2.0,balanced_accuracy,70,97.29700000000001,97.531,97.22200000000001,99.939,46.255,44.443999999999996,41.86,38.866
+61,61,SVC,Neuroticism,test throw median,pearson,baseline,num_streamlines,5.0,balanced_accuracy,175,100.0,100.0,100.0,100.0,47.976000000000006,48.888999999999996,54.902,42.713
+65,65,SVC,Extraversion,test throw median,pearson,baseline,mean_FA,2.0,balanced_accuracy,70,85.31700000000001,85.897,83.58200000000001,92.92299999999999,62.427,62.162,58.824,59.503
+66,66,SVC,Extraversion,test throw median,pearson,baseline,mean_FA,5.0,balanced_accuracy,175,90.675,91.02600000000001,89.855,92.85700000000001,51.461999999999996,51.351000000000006,50.0,53.50899999999999
+70,70,SVC,Agreeableness,test throw median,pearson,baseline,num_streamlines,2.0,balanced_accuracy,70,91.17399999999999,91.781,90.323,98.788,44.156000000000006,43.59,52.174,43.506
+71,71,SVC,Agreeableness,test throw median,pearson,baseline,num_streamlines,5.0,balanced_accuracy,175,98.75,98.63,98.507,100.0,34.903,46.153999999999996,61.818000000000005,36.364000000000004
+75,75,SVC,Openness,keep median,pearson,baseline,mean_FA,2.0,balanced_accuracy,70,92.535,92.405,92.105,97.104,39.074,40.426,48.148,32.407
+76,76,SVC,Openness,keep median,pearson,baseline,mean_FA,5.0,balanced_accuracy,175,89.994,89.87299999999999,89.47399999999999,95.238,45.926,46.809,52.83,38.704
+80,80,SVC,Extraversion,keep median,pearson,baseline,num_streamlines,2.0,balanced_accuracy,70,91.865,92.30799999999999,91.176,98.214,47.894,48.93600000000001,55.556000000000004,54.396
+81,81,SVC,Extraversion,keep median,pearson,baseline,num_streamlines,5.0,balanced_accuracy,175,97.22200000000001,97.436,97.14299999999999,99.934,51.74,53.191,60.714,51.465
+85,85,SVC,Extraversion,keep median,pearson,baseline,mean_strl,2.0,balanced_accuracy,70,85.31700000000001,85.897,83.58200000000001,92.92299999999999,55.952,55.318999999999996,55.318999999999996,58.059
+86,86,SVC,Extraversion,keep median,pearson,baseline,mean_strl,5.0,balanced_accuracy,175,90.675,91.02600000000001,89.855,92.85700000000001,53.114,53.191,56.0,55.31100000000001
+90,90,SVC,Agreeableness,keep median,pearson,baseline,mean_FA,2.0,balanced_accuracy,70,88.939,89.041,87.87899999999999,94.62100000000001,58.71,57.446999999999996,65.517,60.86
+91,91,SVC,Agreeableness,keep median,pearson,baseline,mean_FA,5.0,balanced_accuracy,175,90.455,90.411,89.552,95.038,53.394,53.191,62.068999999999996,58.371
+95,95,SVC,Conscientiousness,keep median,pearson,baseline,mean_strl,2.0,balanced_accuracy,70,96.303,96.25,96.104,99.624,63.768,63.83,62.222,69.203
+96,96,SVC,Conscientiousness,keep median,pearson,baseline,mean_strl,5.0,balanced_accuracy,175,100.0,100.0,100.0,100.0,59.692,59.574,61.224,67.21
+100,100,SVC,Neuroticism,keep median,pearson,baseline,mean_FA,2.0,balanced_accuracy,70,93.67299999999999,93.82700000000001,93.15100000000001,98.71,51.574,51.06399999999999,53.06100000000001,51.852
+101,101,SVC,Neuroticism,keep median,pearson,baseline,mean_FA,5.0,balanced_accuracy,175,85.289,85.185,84.211,95.485,60.926,59.574,59.574,60.0
+105,105,SVC,Openness,keep median,pearson,baseline,mean_strl,2.0,balanced_accuracy,70,92.535,92.405,92.105,97.104,39.074,40.426,48.148,32.407
+106,106,SVC,Openness,keep median,pearson,baseline,mean_strl,5.0,balanced_accuracy,175,89.994,89.87299999999999,89.47399999999999,95.335,45.926,46.809,52.83,39.167
+110,110,SVC,Openness,keep median,pearson,baseline,num_streamlines,2.0,balanced_accuracy,70,91.023,91.139,90.411,96.075,44.722,44.681000000000004,48.0,50.37
+111,111,SVC,Openness,keep median,pearson,baseline,num_streamlines,5.0,balanced_accuracy,175,100.0,100.0,100.0,100.0,50.185,53.191,63.333,58.148
+115,115,SVC,Neuroticism,keep median,pearson,baseline,mean_strl,2.0,balanced_accuracy,70,93.67299999999999,93.82700000000001,93.15100000000001,98.71,51.574,51.06399999999999,53.06100000000001,51.852
+116,116,SVC,Neuroticism,keep median,pearson,baseline,mean_strl,5.0,balanced_accuracy,175,85.289,85.185,84.211,95.485,60.926,59.574,59.574,60.0
+120,120,SVC,Agreeableness,keep median,pearson,baseline,mean_strl,2.0,balanced_accuracy,70,88.939,89.041,87.87899999999999,94.62100000000001,58.71,57.446999999999996,65.517,60.86
+121,121,SVC,Agreeableness,keep median,pearson,baseline,mean_strl,5.0,balanced_accuracy,175,90.455,90.411,89.552,95.0,53.394,53.191,62.068999999999996,58.371
+125,125,SVC,Conscientiousness,keep median,pearson,baseline,mean_FA,2.0,balanced_accuracy,70,96.303,96.25,96.104,99.624,63.768,63.83,62.222,69.203
+126,126,SVC,Conscientiousness,keep median,pearson,baseline,mean_FA,5.0,balanced_accuracy,175,100.0,100.0,100.0,100.0,59.692,59.574,61.224,67.21
+130,130,SVC,Conscientiousness,keep median,pearson,baseline,num_streamlines,2.0,balanced_accuracy,70,94.86200000000001,95.0,94.595,99.37299999999999,59.783,59.574,62.745,62.318999999999996
+131,131,SVC,Conscientiousness,keep median,pearson,baseline,num_streamlines,5.0,balanced_accuracy,175,97.494,97.5,97.368,99.749,66.395,65.957,71.429,62.138000000000005
+135,135,SVC,Neuroticism,keep median,pearson,baseline,num_streamlines,2.0,balanced_accuracy,70,97.29700000000001,97.531,97.22200000000001,99.939,48.519,46.809,44.443999999999996,50.37
+136,136,SVC,Neuroticism,keep median,pearson,baseline,num_streamlines,5.0,balanced_accuracy,175,100.0,100.0,100.0,100.0,43.426,44.681000000000004,51.852,50.74100000000001
+140,140,SVC,Extraversion,keep median,pearson,baseline,mean_FA,2.0,balanced_accuracy,70,85.31700000000001,85.897,83.58200000000001,92.92299999999999,55.952,55.318999999999996,55.318999999999996,58.059
+141,141,SVC,Extraversion,keep median,pearson,baseline,mean_FA,5.0,balanced_accuracy,175,90.675,91.02600000000001,89.855,92.85700000000001,53.114,53.191,56.0,55.31100000000001
+145,145,SVC,Agreeableness,keep median,pearson,baseline,num_streamlines,2.0,balanced_accuracy,70,91.17399999999999,91.781,90.323,98.788,42.195,40.426,48.148,44.79600000000001
+146,146,SVC,Agreeableness,keep median,pearson,baseline,num_streamlines,5.0,balanced_accuracy,175,98.75,98.63,98.507,100.0,47.738,55.318999999999996,67.692,49.321000000000005
+150,150,RF,Openness,test throw median,pearson,baseline,mean_FA,2.0,balanced_accuracy,70,100.0,100.0,100.0,100.0,58.75,58.333,59.458999999999996,60.0
+151,151,RF,Openness,test throw median,pearson,baseline,mean_FA,5.0,balanced_accuracy,175,100.0,100.0,100.0,100.0,62.5,61.111000000000004,58.824,60.312
+155,155,RF,Extraversion,test throw median,pearson,baseline,num_streamlines,2.0,balanced_accuracy,70,100.0,100.0,100.0,100.0,57.018,56.757,52.941,61.988
+156,156,RF,Extraversion,test throw median,pearson,baseline,num_streamlines,5.0,balanced_accuracy,175,100.0,100.0,100.0,100.0,57.456,56.757,42.857,61.403999999999996
+160,160,RF,Extraversion,test throw median,pearson,baseline,mean_strl,2.0,balanced_accuracy,70,100.0,100.0,100.0,100.0,54.093999999999994,54.053999999999995,54.053999999999995,52.632
+161,161,RF,Extraversion,test throw median,pearson,baseline,mean_strl,5.0,balanced_accuracy,175,100.0,100.0,100.0,100.0,48.977,48.648999999999994,42.424,50.876999999999995
+165,165,RF,Agreeableness,test throw median,pearson,baseline,mean_FA,2.0,balanced_accuracy,70,100.0,100.0,100.0,100.0,56.818000000000005,53.846000000000004,60.87,47.565
+166,166,RF,Agreeableness,test throw median,pearson,baseline,mean_FA,5.0,balanced_accuracy,175,100.0,100.0,100.0,100.0,44.156000000000006,43.59,52.174,44.156000000000006
+170,170,RF,Conscientiousness,test throw median,pearson,baseline,mean_strl,2.0,balanced_accuracy,70,100.0,100.0,100.0,100.0,53.571000000000005,54.286,46.667,48.299
+171,171,RF,Conscientiousness,test throw median,pearson,baseline,mean_strl,5.0,balanced_accuracy,175,100.0,100.0,100.0,100.0,41.667,42.857,33.333,42.177
+175,175,RF,Neuroticism,test throw median,pearson,baseline,mean_FA,2.0,balanced_accuracy,70,100.0,100.0,100.0,100.0,36.437,35.556,35.556,34.211
+176,176,RF,Neuroticism,test throw median,pearson,baseline,mean_FA,5.0,balanced_accuracy,175,100.0,100.0,100.0,100.0,34.514,33.333,31.818,32.996
+180,180,RF,Openness,test throw median,pearson,baseline,mean_strl,2.0,balanced_accuracy,70,100.0,100.0,100.0,100.0,50.625,50.0,50.0,58.438
+181,181,RF,Openness,test throw median,pearson,baseline,mean_strl,5.0,balanced_accuracy,175,100.0,100.0,100.0,100.0,51.25,50.0,47.059,51.875
+185,185,RF,Openness,test throw median,pearson,baseline,num_streamlines,2.0,balanced_accuracy,70,100.0,100.0,100.0,100.0,55.0,52.778,45.161,48.438
+186,186,RF,Openness,test throw median,pearson,baseline,num_streamlines,5.0,balanced_accuracy,175,100.0,100.0,100.0,100.0,55.0,52.778,45.161,47.343999999999994
+190,190,RF,Neuroticism,test throw median,pearson,baseline,mean_strl,2.0,balanced_accuracy,70,97.29700000000001,97.531,97.22200000000001,99.75399999999999,28.745,26.666999999999998,19.512,27.935
+191,191,RF,Neuroticism,test throw median,pearson,baseline,mean_strl,5.0,balanced_accuracy,175,97.512,97.531,97.29700000000001,99.939,32.591,31.111,27.906999999999996,31.174
+195,195,RF,Agreeableness,test throw median,pearson,baseline,mean_strl,2.0,balanced_accuracy,70,100.0,100.0,100.0,100.0,51.461000000000006,46.153999999999996,51.163000000000004,50.325
+196,196,RF,Agreeableness,test throw median,pearson,baseline,mean_strl,5.0,balanced_accuracy,175,100.0,100.0,100.0,100.0,53.247,48.718,54.545,50.162
+200,200,RF,Conscientiousness,test throw median,pearson,baseline,mean_FA,2.0,balanced_accuracy,70,98.684,98.75,98.667,100.0,50.0,51.428999999999995,41.379,43.537
+201,201,RF,Conscientiousness,test throw median,pearson,baseline,mean_FA,5.0,balanced_accuracy,175,100.0,100.0,100.0,100.0,45.238,45.714,38.71,38.775999999999996
+205,205,RF,Conscientiousness,test throw median,pearson,baseline,num_streamlines,2.0,balanced_accuracy,70,98.81,98.75,98.70100000000001,99.93700000000001,59.523999999999994,60.0,53.333,59.864
+206,206,RF,Conscientiousness,test throw median,pearson,baseline,num_streamlines,5.0,balanced_accuracy,175,98.81,98.75,98.70100000000001,100.0,61.905,62.857,55.172,67.007
+210,210,RF,Neuroticism,test throw median,pearson,baseline,num_streamlines,2.0,balanced_accuracy,70,100.0,100.0,100.0,100.0,47.47,46.667,47.826,47.166000000000004
+211,211,RF,Neuroticism,test throw median,pearson,baseline,num_streamlines,5.0,balanced_accuracy,175,100.0,100.0,100.0,100.0,48.178000000000004,46.667,45.455,46.559
+215,215,RF,Extraversion,test throw median,pearson,baseline,mean_FA,2.0,balanced_accuracy,70,100.0,100.0,100.0,100.0,56.871,56.757,55.556000000000004,51.608000000000004
+216,216,RF,Extraversion,test throw median,pearson,baseline,mean_FA,5.0,balanced_accuracy,175,100.0,100.0,100.0,100.0,51.754,51.351000000000006,43.75,47.368
+220,220,RF,Agreeableness,test throw median,pearson,baseline,num_streamlines,2.0,balanced_accuracy,70,100.0,100.0,100.0,100.0,40.584,38.461999999999996,45.455,44.805
+221,221,RF,Agreeableness,test throw median,pearson,baseline,num_streamlines,5.0,balanced_accuracy,175,96.97,97.26,96.875,100.0,37.013000000000005,33.333,38.095,37.338
+225,225,RF,Openness,keep median,pearson,baseline,mean_FA,2.0,balanced_accuracy,70,100.0,100.0,100.0,100.0,37.222,38.298,45.283,29.444000000000003
+226,226,RF,Openness,keep median,pearson,baseline,mean_FA,5.0,balanced_accuracy,175,100.0,100.0,100.0,100.0,44.074,44.681000000000004,50.0,35.278
+230,230,RF,Extraversion,keep median,pearson,baseline,num_streamlines,2.0,balanced_accuracy,70,100.0,100.0,100.0,100.0,51.648,51.06399999999999,51.06399999999999,46.336999999999996
+231,231,RF,Extraversion,keep median,pearson,baseline,num_streamlines,5.0,balanced_accuracy,175,100.0,100.0,100.0,100.0,47.343999999999994,46.809,46.809,56.96
+235,235,RF,Extraversion,keep median,pearson,baseline,mean_strl,2.0,balanced_accuracy,70,100.0,100.0,100.0,100.0,57.875,57.446999999999996,58.333,65.934
+236,236,RF,Extraversion,keep median,pearson,baseline,mean_strl,5.0,balanced_accuracy,175,100.0,100.0,100.0,100.0,58.791000000000004,57.446999999999996,54.545,62.637
+240,240,RF,Agreeableness,keep median,pearson,baseline,mean_FA,2.0,balanced_accuracy,70,100.0,100.0,100.0,100.0,56.674,51.06399999999999,56.604,53.846000000000004
+241,241,RF,Agreeableness,keep median,pearson,baseline,mean_FA,5.0,balanced_accuracy,175,100.0,100.0,100.0,100.0,59.05,51.06399999999999,54.902,53.281000000000006
+245,245,RF,Conscientiousness,keep median,pearson,baseline,mean_strl,2.0,balanced_accuracy,70,96.053,96.25,95.89,99.68700000000001,66.033,65.957,66.667,77.355
+246,246,RF,Conscientiousness,keep median,pearson,baseline,mean_strl,5.0,balanced_accuracy,175,100.0,100.0,100.0,100.0,70.38,70.21300000000001,72.0,74.457
+250,250,RF,Neuroticism,keep median,pearson,baseline,mean_FA,2.0,balanced_accuracy,70,100.0,100.0,100.0,100.0,64.074,61.702,59.091,58.148
+251,251,RF,Neuroticism,keep median,pearson,baseline,mean_FA,5.0,balanced_accuracy,175,100.0,100.0,100.0,100.0,61.574,59.574,57.778,62.593
+255,255,RF,Openness,keep median,pearson,baseline,mean_strl,2.0,balanced_accuracy,70,100.0,100.0,100.0,100.0,32.87,34.043,41.50899999999999,28.704
+256,256,RF,Openness,keep median,pearson,baseline,mean_strl,5.0,balanced_accuracy,175,100.0,100.0,100.0,100.0,32.315,31.915,33.333,34.444
+260,260,RF,Openness,keep median,pearson,baseline,num_streamlines,2.0,balanced_accuracy,70,100.0,100.0,100.0,100.0,49.167,46.809,41.86,51.481
+261,261,RF,Openness,keep median,pearson,baseline,num_streamlines,5.0,balanced_accuracy,175,100.0,100.0,100.0,100.0,57.87,55.318999999999996,51.163000000000004,54.443999999999996
+265,265,RF,Neuroticism,keep median,pearson,baseline,mean_strl,2.0,balanced_accuracy,70,97.29700000000001,97.531,97.22200000000001,100.0,61.574,59.574,57.778,60.0
+266,266,RF,Neuroticism,keep median,pearson,baseline,mean_strl,5.0,balanced_accuracy,175,100.0,100.0,100.0,100.0,66.574,63.83,60.465,60.926
+270,270,RF,Agreeableness,keep median,pearson,baseline,mean_strl,2.0,balanced_accuracy,70,97.235,97.26,96.97,99.92399999999999,60.52,53.191,57.692,54.751000000000005
+271,271,RF,Agreeableness,keep median,pearson,baseline,mean_strl,5.0,balanced_accuracy,175,95.72,95.89,95.385,99.848,51.923,51.06399999999999,59.648999999999994,53.167
+275,275,RF,Conscientiousness,keep median,pearson,baseline,mean_FA,2.0,balanced_accuracy,70,100.0,100.0,100.0,100.0,72.373,72.34,72.34,80.25399999999999
+276,276,RF,Conscientiousness,keep median,pearson,baseline,mean_FA,5.0,balanced_accuracy,175,100.0,100.0,100.0,100.0,61.86600000000001,61.702,64.0,69.384
+280,280,RF,Conscientiousness,keep median,pearson,baseline,num_streamlines,2.0,balanced_accuracy,70,100.0,100.0,100.0,100.0,61.685,61.702,60.87,57.065
+281,281,RF,Conscientiousness,keep median,pearson,baseline,num_streamlines,5.0,balanced_accuracy,175,100.0,100.0,100.0,100.0,55.163000000000004,55.318999999999996,51.163000000000004,60.87
+285,285,RF,Neuroticism,keep median,pearson,baseline,num_streamlines,2.0,balanced_accuracy,70,100.0,100.0,100.0,100.0,54.074,53.191,54.167,52.593
+286,286,RF,Neuroticism,keep median,pearson,baseline,num_streamlines,5.0,balanced_accuracy,175,100.0,100.0,100.0,100.0,56.019,53.191,47.619,54.815
+290,290,RF,Extraversion,keep median,pearson,baseline,mean_FA,2.0,balanced_accuracy,70,98.611,98.71799999999999,98.59200000000001,100.0,64.10300000000001,63.83,65.306,64.469
+291,291,RF,Extraversion,keep median,pearson,baseline,mean_FA,5.0,balanced_accuracy,175,100.0,100.0,100.0,100.0,53.571000000000005,53.191,54.167,58.425
+295,295,RF,Agreeableness,keep median,pearson,baseline,num_streamlines,2.0,balanced_accuracy,70,100.0,100.0,100.0,100.0,36.878,36.17,44.443999999999996,35.747
+296,296,RF,Agreeableness,keep median,pearson,baseline,num_streamlines,5.0,balanced_accuracy,175,100.0,100.0,100.0,100.0,40.158,34.043,36.735,39.367
+300,300,MLP,Openness,test throw median,pearson,baseline,mean_FA,2.0,balanced_accuracy,70,100.0,100.0,100.0,100.0,56.25,55.556000000000004,55.556000000000004,55.937
+301,301,MLP,Openness,test throw median,pearson,baseline,mean_FA,5.0,balanced_accuracy,175,100.0,100.0,100.0,100.0,58.75,58.333,59.458999999999996,67.188
+305,305,MLP,Extraversion,test throw median,pearson,baseline,num_streamlines,2.0,balanced_accuracy,70,95.833,96.154,95.652,97.884,70.468,70.27,68.571,72.515
+306,306,MLP,Extraversion,test throw median,pearson,baseline,num_streamlines,5.0,balanced_accuracy,175,100.0,100.0,100.0,100.0,61.988,62.162,65.0,70.468
+310,310,MLP,Extraversion,test throw median,pearson,baseline,mean_strl,2.0,balanced_accuracy,70,94.84100000000001,94.87200000000001,94.444,99.272,62.427,62.162,58.824,66.667
+311,311,MLP,Extraversion,test throw median,pearson,baseline,mean_strl,5.0,balanced_accuracy,175,100.0,100.0,100.0,100.0,54.24,54.053999999999995,51.428999999999995,60.233999999999995
+315,315,MLP,Agreeableness,test throw median,pearson,baseline,mean_FA,2.0,balanced_accuracy,70,95.72,95.89,95.385,97.87899999999999,49.513000000000005,51.282,61.224,46.753
+316,316,MLP,Agreeableness,test throw median,pearson,baseline,mean_FA,5.0,balanced_accuracy,175,100.0,100.0,100.0,100.0,52.273,51.282,59.574,57.468
+320,320,MLP,Conscientiousness,test throw median,pearson,baseline,mean_strl,2.0,balanced_accuracy,70,100.0,100.0,100.0,100.0,50.0,51.428999999999995,41.379,61.905
+321,321,MLP,Conscientiousness,test throw median,pearson,baseline,mean_strl,5.0,balanced_accuracy,175,100.0,100.0,100.0,100.0,47.619,48.571000000000005,40.0,54.082
+325,325,MLP,Neuroticism,test throw median,pearson,baseline,mean_FA,2.0,balanced_accuracy,70,97.512,97.531,97.29700000000001,99.509,44.838,44.443999999999996,46.809,45.547
+326,326,MLP,Neuroticism,test throw median,pearson,baseline,mean_FA,5.0,balanced_accuracy,175,97.29700000000001,97.531,97.22200000000001,99.75399999999999,46.761,46.667,50.0,47.571000000000005
+330,330,MLP,Openness,test throw median,pearson,baseline,mean_strl,2.0,balanced_accuracy,70,100.0,100.0,100.0,100.0,49.375,50.0,55.0,47.812
+331,331,MLP,Openness,test throw median,pearson,baseline,mean_strl,5.0,balanced_accuracy,175,100.0,100.0,100.0,100.0,57.5,55.556000000000004,50.0,62.5
+335,335,MLP,Openness,test throw median,pearson,baseline,num_streamlines,2.0,balanced_accuracy,70,89.833,89.87299999999999,89.189,97.876,55.625,55.556000000000004,57.895,49.062
+336,336,MLP,Openness,test throw median,pearson,baseline,num_streamlines,5.0,balanced_accuracy,175,100.0,100.0,100.0,100.0,47.5,47.222,48.648999999999994,50.0
+340,340,MLP,Neuroticism,test throw median,pearson,baseline,mean_strl,2.0,balanced_accuracy,70,100.0,100.0,100.0,100.0,44.838,44.443999999999996,46.809,45.547
+341,341,MLP,Neuroticism,test throw median,pearson,baseline,mean_strl,5.0,balanced_accuracy,175,100.0,100.0,100.0,100.0,44.838,44.443999999999996,46.809,39.474000000000004
+345,345,MLP,Agreeableness,test throw median,pearson,baseline,mean_strl,2.0,balanced_accuracy,70,94.205,94.521,93.75,97.57600000000001,58.604,56.41,63.83,46.104
+346,346,MLP,Agreeableness,test throw median,pearson,baseline,mean_strl,5.0,balanced_accuracy,175,100.0,100.0,100.0,100.0,45.942,46.153999999999996,55.318999999999996,44.481
+350,350,MLP,Conscientiousness,test throw median,pearson,baseline,mean_FA,2.0,balanced_accuracy,70,100.0,100.0,100.0,100.0,60.714,62.857,51.852,67.347
+351,351,MLP,Conscientiousness,test throw median,pearson,baseline,mean_FA,5.0,balanced_accuracy,175,100.0,100.0,100.0,100.0,54.762,51.428999999999995,54.053999999999995,51.701
+355,355,MLP,Conscientiousness,test throw median,pearson,baseline,num_streamlines,2.0,balanced_accuracy,70,91.04,91.25,90.411,98.30799999999999,54.762,57.143,44.443999999999996,59.864
+356,356,MLP,Conscientiousness,test throw median,pearson,baseline,num_streamlines,5.0,balanced_accuracy,175,98.684,98.75,98.667,100.0,61.905,57.143,61.538000000000004,62.925
+360,360,MLP,Neuroticism,test throw median,pearson,baseline,num_streamlines,2.0,balanced_accuracy,70,93.67299999999999,93.82700000000001,93.15100000000001,97.17399999999999,41.498000000000005,42.222,48.0,42.713
+361,361,MLP,Neuroticism,test throw median,pearson,baseline,num_streamlines,5.0,balanced_accuracy,175,100.0,100.0,100.0,100.0,43.623000000000005,42.222,40.909,42.51
+365,365,MLP,Extraversion,test throw median,pearson,baseline,mean_FA,2.0,balanced_accuracy,70,97.22200000000001,97.436,97.14299999999999,99.802,65.058,64.865,62.857,67.251
+366,366,MLP,Extraversion,test throw median,pearson,baseline,mean_FA,5.0,balanced_accuracy,175,97.421,97.436,97.22200000000001,99.934,46.199,45.946000000000005,41.176,54.971000000000004
+370,370,MLP,Agreeableness,test throw median,pearson,baseline,num_streamlines,2.0,balanced_accuracy,70,92.955,93.15100000000001,92.30799999999999,98.712,53.083999999999996,56.41,66.667,40.26
+371,371,MLP,Agreeableness,test throw median,pearson,baseline,num_streamlines,5.0,balanced_accuracy,175,100.0,100.0,100.0,100.0,35.065,38.461999999999996,50.0,37.013000000000005
+375,375,MLP,Openness,keep median,pearson,baseline,mean_FA,2.0,balanced_accuracy,70,100.0,100.0,100.0,100.0,26.666999999999998,27.66,34.615,27.037
+376,376,MLP,Openness,keep median,pearson,baseline,mean_FA,5.0,balanced_accuracy,175,96.10700000000001,96.20299999999999,95.89,99.678,44.722,44.681000000000004,48.0,40.37
+380,380,MLP,Extraversion,keep median,pearson,baseline,num_streamlines,2.0,balanced_accuracy,70,100.0,100.0,100.0,100.0,49.358999999999995,51.06399999999999,59.648999999999994,55.495
+381,381,MLP,Extraversion,keep median,pearson,baseline,num_streamlines,5.0,balanced_accuracy,175,97.421,97.436,97.22200000000001,97.354,54.57899999999999,55.318999999999996,60.376999999999995,60.989
+385,385,MLP,Extraversion,keep median,pearson,baseline,mean_strl,2.0,balanced_accuracy,70,92.46,92.30799999999999,91.89200000000001,97.553,52.106,51.06399999999999,48.888999999999996,62.45399999999999
+386,386,MLP,Extraversion,keep median,pearson,baseline,mean_strl,5.0,balanced_accuracy,175,97.22200000000001,97.436,97.14299999999999,99.339,50.733000000000004,51.06399999999999,54.902,53.297
+390,390,MLP,Agreeableness,keep median,pearson,baseline,mean_FA,2.0,balanced_accuracy,70,100.0,100.0,100.0,100.0,52.828,48.93600000000001,55.556000000000004,53.62
+391,391,MLP,Agreeableness,keep median,pearson,baseline,mean_FA,5.0,balanced_accuracy,175,100.0,100.0,100.0,100.0,63.461999999999996,57.446999999999996,62.963,61.99100000000001
+395,395,MLP,Conscientiousness,keep median,pearson,baseline,mean_strl,2.0,balanced_accuracy,70,100.0,100.0,100.0,100.0,65.942,65.957,65.217,73.732
+396,396,MLP,Conscientiousness,keep median,pearson,baseline,mean_strl,5.0,balanced_accuracy,175,100.0,100.0,100.0,100.0,57.518,57.446999999999996,58.333,59.783
+400,400,MLP,Neuroticism,keep median,pearson,baseline,mean_FA,2.0,balanced_accuracy,70,100.0,100.0,100.0,100.0,52.778,53.191,57.692,52.222
+401,401,MLP,Neuroticism,keep median,pearson,baseline,mean_FA,5.0,balanced_accuracy,175,100.0,100.0,100.0,100.0,46.019,44.681000000000004,43.478,48.70399999999999
+405,405,MLP,Openness,keep median,pearson,baseline,mean_strl,2.0,balanced_accuracy,70,100.0,100.0,100.0,100.0,34.815,34.043,34.043,35.556
+406,406,MLP,Openness,keep median,pearson,baseline,mean_strl,5.0,balanced_accuracy,175,94.916,94.93700000000001,94.595,99.743,44.074,44.681000000000004,50.0,36.296
+410,410,MLP,Openness,keep median,pearson,baseline,num_streamlines,2.0,balanced_accuracy,70,100.0,100.0,100.0,100.0,58.981,59.574,64.15100000000001,59.25899999999999
+411,411,MLP,Openness,keep median,pearson,baseline,num_streamlines,5.0,balanced_accuracy,175,98.649,98.734,98.63,100.0,52.222,51.06399999999999,51.06399999999999,50.185
+415,415,MLP,Neuroticism,keep median,pearson,baseline,mean_strl,2.0,balanced_accuracy,70,100.0,100.0,100.0,100.0,46.574,46.809,50.98,48.333
+416,416,MLP,Neuroticism,keep median,pearson,baseline,mean_strl,5.0,balanced_accuracy,175,97.29700000000001,97.531,97.22200000000001,99.75399999999999,54.722,53.191,52.174,57.778
+420,420,MLP,Agreeableness,keep median,pearson,baseline,mean_strl,2.0,balanced_accuracy,70,95.72,95.89,95.385,98.40899999999999,64.932,59.574,65.455,59.05
+421,421,MLP,Agreeableness,keep median,pearson,baseline,mean_strl,5.0,balanced_accuracy,175,100.0,100.0,100.0,100.0,57.24,55.318999999999996,63.158,58.597
+425,425,MLP,Conscientiousness,keep median,pearson,baseline,mean_FA,2.0,balanced_accuracy,70,100.0,100.0,100.0,100.0,61.685,61.702,60.87,65.942
+426,426,MLP,Conscientiousness,keep median,pearson,baseline,mean_FA,5.0,balanced_accuracy,175,100.0,100.0,100.0,100.0,61.86600000000001,61.702,64.0,68.297
+430,430,MLP,Conscientiousness,keep median,pearson,baseline,num_streamlines,2.0,balanced_accuracy,70,100.0,100.0,100.0,100.0,59.873000000000005,59.574,64.15100000000001,65.58
+431,431,MLP,Conscientiousness,keep median,pearson,baseline,num_streamlines,5.0,balanced_accuracy,175,100.0,100.0,100.0,100.0,62.047,61.702,66.667,69.928
+435,435,MLP,Neuroticism,keep median,pearson,baseline,num_streamlines,2.0,balanced_accuracy,70,100.0,100.0,100.0,100.0,46.019,44.681000000000004,43.478,47.222
+436,436,MLP,Neuroticism,keep median,pearson,baseline,num_streamlines,5.0,balanced_accuracy,175,97.512,97.531,97.29700000000001,99.324,61.574,59.574,57.778,55.37
+440,440,MLP,Extraversion,keep median,pearson,baseline,mean_FA,2.0,balanced_accuracy,70,100.0,100.0,100.0,100.0,64.10300000000001,63.83,65.306,63.004
+441,441,MLP,Extraversion,keep median,pearson,baseline,mean_FA,5.0,balanced_accuracy,175,100.0,100.0,100.0,100.0,55.495,55.318999999999996,57.143,54.028999999999996
+445,445,MLP,Agreeableness,keep median,pearson,baseline,num_streamlines,2.0,balanced_accuracy,70,100.0,100.0,100.0,100.0,41.855,46.809,59.016000000000005,40.498000000000005
+446,446,MLP,Agreeableness,keep median,pearson,baseline,num_streamlines,5.0,balanced_accuracy,175,100.0,100.0,100.0,100.0,48.077,48.93600000000001,58.621,50.678999999999995
