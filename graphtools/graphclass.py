@@ -28,8 +28,11 @@ class BrainGraph(nx.Graph):  # inheriting from networkx graph package along with
     def subgraph(self):
         # create new graph and copy subgraph into it
         # pipeline changed
-        H = self.__class__(self.edge, self.feature_type, self.node_wts, self.target, self.val)
+        H = self.__class__(self.edge, self.feature_type, self.node_wts, self.target, self.max_num_nodes, self.val, self.thresh)
         # copy node and attribute dictionaries
+        for node in self.nodes:
+            if self.degree[node] >1:
+                self.connected_nodes.append(node)
         H.add_nodes_from(self.connected_nodes)
         subgr_edges = []
         for x in self.connected_nodes:
@@ -93,7 +96,7 @@ class BrainGraph(nx.Graph):  # inheriting from networkx graph package along with
         for n in self.nodes.keys():
             self.nodes[n]['label'] = self.node_labels[n]
 
-    def visualize_graph(self, mews, input_gr, plotting_options):
+    def visualize_graph(self, mews, input_gr, plotting_options, figs):
         # not using the subgraph extraction right now since we are not thresholding in any case
 
         if self.edge_weights != None and self.edge_weights != []:
@@ -108,26 +111,33 @@ class BrainGraph(nx.Graph):  # inheriting from networkx graph package along with
             fig, ax = plt.subplots()
             #print('minima and maxima', minima, maxima)
             if input_gr == True:
-                plt.title(f'input to the solver: {self.filename}\n '
+                plt.title(f'Input to the solver\n'
                           f'Number of edges {len(self.edges)}\n'
                           f' Target: {self.target}, Feature:{self.feature_type}\n'
                           f'Edge type:{self.edge}, Node weighting:{self.node_wts}')
                 if self.val != None:
                     #print('constant value has been given')
                     ax.annotate(f'Node weight={self.val}', xy=(0, 1))
-                nx.draw(self, **plotting_options, edge_color=color, edge_cmap=mapper.cmap, vmin=minima,
-                        vmax=maxima, with_labels=False)
+                nx.draw(self.subgraph(), **plotting_options, edge_color=color, edge_cmap=mapper.cmap, vmin=minima,
+                        vmax=maxima, with_labels=False, pos=nx.tight_layout())
                 plt.colorbar(mapper)
                 plt.savefig(f'{mews}/outputs/figs/{self.filename}.png')
 
             else:
-                plt.title(f'Output from the solver: {self.filename}\n Number of edges {len(self.edges)}\n'
-                          f' Target: {self.target}, Feature:{self.feature_type}\n'
-                          f'Edge type:{self.edge}, Node weighting: according to solver')
+                d1 = corresp_label_file('fs_default.txt')
+                d2 = dict()
+                for node in self.nodes:
+                    d2[node] = d1[node+1]
+                fig = plt.figure(figsize=figs)
+                plt.title(f' Number of nodes: {len(self.nodes)} Number of edges: {len(self.edges)}\n'
+                          f' Target: {self.target}, Feature: {self.feature_type}\n'
+                          f'Edge type: {self.edge}, Node weighting: according to solver')
                 nx.draw(self, **plotting_options, edge_color=color, edge_cmap=mapper.cmap, vmin=minima,
-                        vmax=maxima, with_labels=False)
+                        vmax=maxima, with_labels=True, pos=nx.spring_layout(self))
                 plt.colorbar(mapper)
+                plt.legend(d2.keys(),d2.values())
                 plt.savefig(f'{mews}/outputs/figs/{self.filename}_out.png')
+
             plt.show()
         else:
             print('No output produced by the solver')
@@ -203,7 +213,7 @@ class BrainGraph(nx.Graph):  # inheriting from networkx graph package along with
                 self.node_labels = []
                 for l in self.nodes.keys():
                     self.nodes[l]['label'] = dict_lut[l+1]
-                    self.node_labels.append(node_labels[l])
+                    self.node_labels.append(dict_lut[l+1])
 
             self.edge_weights = []
             for u, v in self.edges:
@@ -233,9 +243,12 @@ class BrainGraph(nx.Graph):  # inheriting from networkx graph package along with
         plt.show()
 
     def write_csv(self, mews):
-        a = np.zeros((len(self.nodes, self.nodes)))
+        a = np.zeros((len(self.nodes), len(self.nodes)))
+        mapp = {}
+        for node, i in zip(g.nodes, range(len(g.nodes))):
+            mapp[node] = i
         for u,v in self.edges:
-            a[u][v] = self[u][v]['weight']
+            a[mapp[u]][mapp[v]] = self[u][v]['weight']
         a = pd.DataFrame(a, index= self.nodes, columns=self.nodes)
         a.to_csv(f'{mews}/outputs/csvs/{self.filename}')
 

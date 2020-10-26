@@ -12,6 +12,7 @@ Starting from 3 nodes it actually gives us results so we can get iterative
 node importance
 '''
 mews = '/home/skapoor/Thesis/gmwcs-solver'
+#%%
 d1 = corresp_label_file('fs_default.txt')
 counter = np.zeros((84)) # counter increases as soon as the node is found in this case
 for max_num_nodes in range(4,31):
@@ -38,3 +39,15 @@ ax.set_xlabel('Importance')
 ax.set_title('Importance of nodes for Gender classification')
 plt.tight_layout(pad=1)
 plt.show()
+
+#%%
+'''
+Visualizing the Gender graph outputs
+'''
+from graphclass import BrainGraph
+from paramopt import graph_options
+mews = '/home/skapoor/Thesis/gmwcs-solver'
+ip = BrainGraph('t_test', 'num_streamlines', 'const', 'Gender', 10, -0.01, 0)
+ip.read_from_file(mews, False)
+ip.visualize_graph(mews, False, plotting_options=graph_options('red',10, 'yellow', 2, 3),
+                   figs=(8,6))

@@ -1,4 +1,4 @@
-'''
+
 import pandas as pd
 import copy
 from itertools import product
@@ -8,8 +8,6 @@ from readfiles import *
 from decision import filter_summary
 from subgraphclass import make_solver_summary
 from metrics import *
- Data computed for all 5 personality traits at once
-# labels for the computed subjects, data.index is the subject id
 num = 84  # number of nodes in the graph
 tri = int(num * (num + 1) * 0.5)  # we want only the upper diagonal parts since everything below diagonal is 0
 labels = ['NEOFAC_A', 'NEOFAC_O', 'NEOFAC_C', 'NEOFAC_N', 'NEOFAC_E']
@@ -24,19 +22,48 @@ metrics = ['balanced_accuracy', 'accuracy', 'f1_weighted', 'roc_auc_ovr_weighted
 y_train = computed_subjects()
 X_train = generate_combined_matrix(tri, list(
    y_train.index))  # need to check indices till here then convert to numpy array
-num_strls = X_train.iloc[:, 2 * tri:]
+
 # make_solver_summary(mapping, y_train, big5, mews, X_train, tri, num_strls, avg_thresh=False)
 # filter_summary()
 y_test = test_subjects()
 X_test = generate_test_data(tri, y_test.index)
+nondiag = list(set(range(3570)).difference(set(diag_flattened_indices(84))))
+
+from sklearn.preprocessing import StandardScaler
+s1 = StandardScaler()
+#X_train = pd.DataFrame(s1.fit_transform(X_train), index = X_train.index)
+y_train = y_train['Gender']
 mean_FA = X_train.iloc[:, :tri]
+num_strls = X_train.iloc[:, 2 * tri:]
+meanstrl = X_train.iloc[:,tri:2*tri]
+fig, ax = plt.subplots(1,3, figsize=(8,5))
+ax[0].hist(num_strls.iloc[:, nondiag].loc[y_train== 'M'].std(), label= 'Male', bins=20)
+ax[0].hist(num_strls.iloc[:, nondiag].loc[y_train== 'F'].std(), label= 'Female',bins=20)
+ax[0].set_yscale('log')
+ax[0].set_title('Number of streamlines')
+ax[1].hist(mean_FA.iloc[:, nondiag].loc[y_train== 'M'].std(), bins=20)
+ax[1].hist(mean_FA.iloc[:, nondiag].loc[y_train== 'F'].std(), bins=20)
+ax[1].set_yscale('log')
+ax[1].set_title('Mean FA')
+ax[2].hist(meanstrl.iloc[:, nondiag].loc[y_train== 'M'].std(), label= 'Male', bins=20)
+ax[2].hist(meanstrl.iloc[:, nondiag].loc[y_train== 'F'].std(), label='Female', bins=20)
+ax[2].set_yscale('log')
+ax[2].set_title('Mean streamline length')
+ax[2].legend()
+ax[1].set_xlabel('std dev')
+ax[0].set_ylabel('Number of between ROI connections')
+fig.suptitle(' Standard dev distribution based on training data')
+plt.savefig('outputs/figures/zscoredist.png')
+plt.show()
+
+#%%
 mean_FA[:, diag_flattened_indices(84)]
 mean_FA.iloc[:, diag_flattened_indices(84)].mean()
 mean_FA.iloc[:, set(range(3570)).difference(set(diag_flattened_indices(84)))].mean().mean()
 mean_FA.max().max()
 mean_FA.mean().max()
 #%%
-'''
+
 #%%
 import pandas as pd
 import numpy as np
@@ -163,9 +190,15 @@ for clf in ['SVC', 'RF', 'MLP']:
     g= (g.map(sns.scatterplot, 'Num edges','test_roc_auc_ovr_weighted')).add_legend()
     #[plt.setp(ax.texts, text="") for ax in g.axes.flat]
     # remove the original texts
-                                                        # important to add this before setting titles
+    for i in range(g.axes.shape[0]):
+        for j in range(g.axes.shape[1]):
+            g.axes[i][j].grid(which='minor')
+            g.axes[i][j].grid(which='major')
+    g.axes[0, 0].set_ylabel('Area under the curve')
+    g.axes[1, 0].set_ylabel('Area under the curve')
+            # important to add this before setting titles
     #g.set_titles(row_template = '{row_name}', col_template = '{col_name}')
-    g.fig.subplots_adjust(top=0.5)
+    g.fig.subplots_adjust(top=0.9)
     g.fig.suptitle(f'Gender classification- {clf}')
     plt.savefig(f'outputs/figures/comparison_roc_auc_{clf}.png')
     plt.show()
@@ -191,5 +224,4 @@ g.fig.suptitle(f'Gender classification  on test set with  {clf} ')
 plt.savefig(f'outputs/figures/comparison_roc_auc_{clf}.png')
 plt.show()
 #%%
-import pandas as pd
-df = pd.concat([y_train, y_test], )
+
