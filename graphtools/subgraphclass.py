@@ -101,9 +101,9 @@ def output_graph_processing(input_graph, edge, feature_type, node_wts, target, m
     print('Output graph')
     print(f'Number of edges:{len(output_graph.edge_weights)} and Number of nodes:{len(output_graph.nodes)}')
     if output_graph.node_labels != [] and output_graph.edge_weights != []:
-        print('Output graph\n', f'Nodes: {len(output_graph.nodes)}\n', f'Edges:{len(output_graph.edges)}\n',
+        '''print('Output graph\n', f'Nodes: {len(output_graph.nodes)}\n', f'Edges:{len(output_graph.edges)}\n',
               f'Edges description:{describe(output_graph.edge_weights)}\n',
-              f'Nodes description:{describe(output_graph.node_labels)}\n', file=output_file)
+               file=output_file)'''
         print(f'Percentage of features preserved {round(len(output_graph.edges) * 100 / len(input_graph.edges), 3)}',
               file=output_file)
         summary = [len(output_graph.nodes), len(output_graph.edges),
