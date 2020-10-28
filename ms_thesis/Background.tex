@@ -18,11 +18,11 @@ The axons, often termed as white matter tracts due to their myelination are on a
 \section{Magnetic Resonance Imaging}
 MRI is a non-invasive imaging technology that can produce 3-dimensional detailed anatomical images\citep{mcrobbie_moore_graves_prince_2006}. This technique is based on the Nuclear Magnetic Resonance(NMR) Imaging principle. NMR a physical phenomenon in which nuclei respond to a combination of a constant and weak oscillating magnetic field by producing a signal at the resonant frequency of the nucleus. The difference between the magnetic properties of different tissue types subjected to an external magnetic field is used to generate images. Such electromagnetic properties are used to form images since our body is 65\% water ($H_2O$), has a dipole moment and the hydrogen nuclei act like little magnets due to the fact that hydrogen nuclei have an odd number of protons and non-zero net spin. 
 
-In normal conditions (Fig. \ref{mriphysics} part a), i.e. in the absence of an external magnetic field the spins of the hydrogen nuclei are randomly oriented and cancel out each other when observed as an ensemble. Once the external field is applied, the hydrogen nuclei exhibit their paramagnetic nature and gain a net magnetization in the direction of the external magnetic field and transverse magnetization as the one perpendicular to it.  This can be represented using the equation
+In normal conditions (represented in \autoref{mriphysics}.a), i.e. in the absence of an external magnetic field the spins of the hydrogen nuclei are randomly oriented and cancel out each other when observed as an ensemble. Once the external field is applied, the hydrogen nuclei exhibit their paramagnetic nature and gain a net magnetization in the direction of the external magnetic field and transverse magnetization as the one perpendicular to it.  This can be represented using the equation
 \begin{equation}
        \Vec{M_o} = \mu \Vec{B_0}
 \end{equation}
-where M is the magnetization, $\mu$ is the magnetic permeability or the inertia of a material to get magnetized and $B_0$ is the external magnetic field. As per fig. \ref{mriphysics} part a, it can be seen that the direction of $B_0$ defines the coordinate system for the experiment. The transverse plane is defined as the plane perpendicular to the direction of $B_0$ whereas, the longitudinal magnetization is termed as the magnetization experienced in the direction of the static magnetic field. In the presence of the external static magnetic field the individual nuclei are precessing (rotating around their axis) with a frequency known as the Larmour frequency, which can be expressed by the equation
+where M is the magnetization, $\mu$ is the magnetic permeability or the inertia of a material to get magnetized and $B_0$ is the external magnetic field. As per  \autoref{mriphysics} part a, it can be seen that the direction of $B_0$ defines the coordinate system for the experiment. The transverse plane is defined as the plane perpendicular to the direction of $B_0$ whereas, the longitudinal magnetization is termed as the magnetization experienced in the direction of the static magnetic field. In the presence of the external static magnetic field the individual nuclei are precessing (rotating around their axis) with a frequency known as the Larmour frequency, which can be expressed by the equation
 \begin{equation}
     \omega_0 = \gamma B_0
     \label{larmour}
@@ -34,7 +34,7 @@ where $\omega_o$ represents the frequency, $\gamma$ represents the gyromagnetic 
 \label{mriphysics}
 \end{figure}
 
-When a radio wave is added to the static field using a radio frequency coil (RF coil) at the Larmour frequency (eqn. \ref{larmour}), termed as $B_1$ in \ref{mriphysics} part a, the direction of the magnetization vector gets altered i.e. ‘flipped’ or ‘tipped’ out of alignment with $B_0$ towards $B_1$ with the angle of rotation being termed as the flip angle. The RF pulse causes exerts torque. Mathematically, the torque can be expressed as
+When a radio wave is added to the static field using a radio frequency coil (RF coil) at the Larmour frequency (eqn. \autoref{larmour}), termed as $B_1$ in \autoref{mriphysics} part a, the direction of the magnetization vector gets altered i.e. ‘flipped’ or ‘tipped’ out of alignment with $B_0$ towards $B_1$ with the angle of rotation being termed as the flip angle. The RF pulse causes exerts torque. Mathematically, the torque can be expressed as
 \begin{equation}
     \Vec{\tau} = \Vec{m} \times \Vec{B_1}
 \end{equation}
@@ -43,9 +43,9 @@ where $\Vec{m}$ represents the magnetic moment and the $ \Vec{B_1}$ is the appli
 
 The net magnetization does not precess until an external force disturbs its equilibrium position of alignment with the static magnetic field. Thus, when the magnetization precesses, magnetic resonance is said to occur. The magnetization has an effect in which the frequency is proportional to the applied static magnetic field.
 
-After this, the RF pulse is switched off which causes the tissue molecules to return to their original state and is termed as the relaxation phase. The relaxation is due to the release of electromagnetic energy into the environment to attain thermal equilibrium. This release of electromagnetic energy is what forms the signal for the receiver coil. \cite{PhysRev.70.460} introduced two time constants to measure the relaxation phase, T1 and T2.
+After this, the RF pulse is switched off which causes the tissue molecules to return to their original state and is termed as the relaxation phase. The relaxation is due to the release of electromagnetic energy into the environment to attain thermal equilibrium. This release of electromagnetic energy is what forms the signal for the receiver coil (\cite{PhysRev.70.460}) introduced two time constants to measure the relaxation phase, T1 and T2.
 
-The constant T1  measures the growth of the longitudinal component  ($M_z$, Fig. \ref{mriphysics} part (b) with T1 relaxation being termed as the process by which the net magnetization aligns itself with the direction of the original magnetic field. The T2 constant measures the decay of the transverse component of the magnetization(Fig. \ref{mriphysics} part (c)). The value of T2 reflects the time required for the magentization to fall to $\frac{1}{e}$ or 37\% of its original value, reflected in fig. \ref{mriphysics} part e. Since inside the MRI scanner there can be imhomogneties, another constant $T2^*$ is measured as the T2 time observed while taking the recording.
+The constant T1  measures the growth of the longitudinal component  ($M_z$, \autoref{mriphysics}.b) with T1 relaxation being termed as the process by which the net magnetization aligns itself with the direction of the original magnetic field. The T2 constant measures the decay of the transverse component of the magnetization(\autoref{mriphysics}.c). The value of T2 reflects the time required for the magentization to fall to $\frac{1}{e}$ or 37\% of its original value, reflected in  \autoref{mriphysics} part e. Since inside the MRI scanner there can be imhomogneties, another constant $T2^*$ is measured as the T2 time observed while taking the recording.
 During the resonance phenomena, the magnetization has components in different directions which can be expressed in terms of the time constants and current time
 \begin{equation}
     M_x(t) = M_o e^{\frac{−t}{T2}} \sin{ \omega t}
@@ -59,7 +59,7 @@ During the resonance phenomena, the magnetization has components in different di
     M_z(t) = M_o (1 − e^{{\frac{−t}{T1}}})
     \label{mz}
 \end{equation}
-Where $M_x$ ,$M_y$, $M_z$ are the magnetizations along the x,y and z directions and $M_0$ is the magnetization induced by the applied static magnetic field $B_0$. From the equation \ref{mz} it is clear that the T1 constant measure the time required to gain the original magnetization, i.e. when $t=T1$
+Where $M_x$ ,$M_y$, $M_z$ are the magnetizations along the x,y and z directions and $M_0$ is the magnetization induced by the applied static magnetic field $B_0$. From the \autoref{mz} it is clear that the T1 constant measure the time required to gain the original magnetization, i.e. when $t=T1$
 $M_z = M_0$ and when $t=T2$, $M_{xy} = \frac{M_0}{\cos{\omega T2}}$
 
 
@@ -85,11 +85,11 @@ For the image formation, we know that the magnetic gradients are applied in the 
           \omega = \gamma(B_0 + G(x, y, z))
      \end{equation}
        
-According to this equation, it is prominent that there is a direct relation between the gradient field and the Larmour frequency. Usually the gradient for the slice selection is applied along the z-direction. For better understanding a simpler case of 2-dimensional image reconstruction has been explained in the figure \ref{fig:mri_img} where the phase encoding gradients are applied in a direction perpendicular to the frequency encoding gradients.
+According to this equation, it is prominent that there is a direct relation between the gradient field and the Larmour frequency. Usually the gradient for the slice selection is applied along the z-direction. For better understanding a simpler case of 2-dimensional image reconstruction has been explained in the figure \autoref{fig:mri_img} where the phase encoding gradients are applied in a direction perpendicular to the frequency encoding gradients.
 
-The RF coils in the MRI scanner detects a signal containing a mixture of frequencies specific for each slice and each pahse encoding step. The distribution of frequencies is determined using a Fourier transform. This distribution is then used to fill what is called as the k-space. The 2D k-space in fig. \ref{fig:mri_img} is used to elucidate the components of the frequency . The intensity of a point in the space represents the contribution of the frequency $(k_x,k_y)$ in the signal. For each combination of $(k_x, k_y)$ in the k-space the scanner camera takes only one picture (one filter per voxel) and then estimates the actual intensities at different locations using an inverse Fourier transform. There is a one-to-one correspondence of the pixel in the k-space to the image space, every pixel in the 2D k-space image maps to only one pixel in the reconstructed 2D image but it is not necessary that the locations in both the images are exactly the same. This method is then extrapolated in 3D in order to obtain the image of the whole organ such as the brain. Any weighting, T1 or T2 can then be given in order to generate the image.
+The RF coils in the MRI scanner detects a signal containing a mixture of frequencies specific for each slice and each pahse encoding step. The distribution of frequencies is determined using a Fourier transform. This distribution is then used to fill what is called as the k-space. The 2D k-space in  \autoref{fig:mri_img} is used to elucidate the components of the frequency . The intensity of a point in the space represents the contribution of the frequency $(k_x,k_y)$ in the signal. For each combination of $(k_x, k_y)$ in the k-space the scanner camera takes only one picture (one filter per voxel) and then estimates the actual intensities at different locations using an inverse Fourier transform. There is a one-to-one correspondence of the pixel in the k-space to the image space, every pixel in the 2D k-space image maps to only one pixel in the reconstructed 2D image but it is not necessary that the locations in both the images are exactly the same. This method is then extrapolated in 3D in order to obtain the image of the whole organ such as the brain. Any weighting, T1 or T2 can then be given in order to generate the image.
 
-Another important concept is that of Field of View (FOV) refers to the distance over which an MRI signal is acquired or displayed. The defined FOV determines the pixel width (determined by the phase encoding y-direction in Fig. \ref{fig:mri_img}), $\Delta k = 1/FOV$. 
+Another important concept is that of Field of View (FOV) refers to the distance over which an MRI signal is acquired or displayed. The defined FOV determines the pixel width (determined by the phase encoding y-direction in  \autoref{fig:mri_img}), $\Delta k = 1/FOV$. 
 
 
 
@@ -117,8 +117,8 @@ S = S_0 \exp^{-bD}
     \label{fig:diffmri}
 \end{figure}
 
-$S_0$ represents the original signal strength,  $S$ is the signal strength in a pulse sequence with the presence of diffusion gradients ($g_D$) and $D$ represents the diffusion coefficient. The the attenuation of the diffusion MRI signal by the diffusion gradients is represented in figure \ref{fig:diffmri}. The application of the Diffusion gradient results in a spatial encoding as the Larmour frequency is dependent on the net magnetic field (equation \ref{eq:larmour_grad}). In the figure \ref{fig:diffmri}, it is evident that the Diffusion gradients are magnetic field gradients along the x direction. 
-Here $\Delta B_(x) = g_D x$ which makes the Larmour frequency spatially dependent $\Delta \omega = \gamma \Delta B_(x)$ or $\Delta \omega = \gamma g_D x$. There is a phase shift introduced after the gradient pulse of time duration $\delta$. The the phase shift is also dependent on the x position due to the spatial dependence of $\Delta w(x)$  ,  the phase shift is $\Delta \phi (x) = \Delta w \delta = \gamma g_D x \delta$. This spatial dependence of the phase shift makes spins at different positions along the gradient axis "dephased" after the application of the gradient pulse. When the negative gradient is applied, the process of rephasing occurs. The dephasing and rephasing mechanisms result in the Diffusion weighting of the image, without any diffusion stationary spins would align along their equilibrium position (cancelling effect of the two Diffusion gradients) while with Diffusion weighting there is a signal attenuation explained by equation \ref{eq:Stetjskal}. 
+$S_0$ represents the original signal strength,  $S$ is the signal strength in a pulse sequence with the presence of diffusion gradients ($g_D$) and $D$ represents the diffusion coefficient. The the attenuation of the diffusion MRI signal by the diffusion gradients is represented in figure \autoref{fig:diffmri}. The application of the Diffusion gradient results in a spatial encoding as the Larmour frequency is dependent on the net magnetic field (\autoref{eq:larmour_grad}). In the figure \autoref{fig:diffmri}, it is evident that the Diffusion gradients are magnetic field gradients along the x direction. 
+Here $\Delta B_(x) = g_D x$ which makes the Larmour frequency spatially dependent $\Delta \omega = \gamma \Delta B_(x)$ or $\Delta \omega = \gamma g_D x$. There is a phase shift introduced after the gradient pulse of time duration $\delta$. The the phase shift is also dependent on the x position due to the spatial dependence of $\Delta w(x)$  ,  the phase shift is $\Delta \phi (x) = \Delta w \delta = \gamma g_D x \delta$. This spatial dependence of the phase shift makes spins at different positions along the gradient axis "dephased" after the application of the gradient pulse. When the negative gradient is applied, the process of rephasing occurs. The dephasing and rephasing mechanisms result in the Diffusion weighting of the image, without any diffusion stationary spins would align along their equilibrium position (cancelling effect of the two Diffusion gradients) while with Diffusion weighting there is a signal attenuation explained by \autoref{eq:Stetjskal}. 
 
 The where the b value of the sequence is defined in the units of $s/mm^2$ as
 \begin{equation}
@@ -143,11 +143,11 @@ D_{zx} & D_{zy} & D_{zz}
 \end{equation*}
 
 where $D_{xy} = D_{yx}$, $D_{zy}=D_{yz}$ and $D_{xz}=D_{zx}$
-In this case equation \ref{eq:Stetjskal} can be written as 
+In this case \autoref{eq:Stetjskal} can be written as 
 \begin{equation}
 \frac{S}{S_0} =  \exp^{-bg^T Dg}
 \end{equation}where $g^T$ is a 3x1 unit vector representing the gradient direction.
-The cellular environment is heterogeneous, so water molecules in certain parts undergo free diffusion while in others they undergo restricted diffusion. Due to this restricted diffusion the measured diffusion coefficient (of the water molecules) is different from the regular diffusion coefficient of water, it is termed as the “apparent diffusion coefficient”. Diffusion in complex environments cannot be explained by using diffusion gradients in one direction only. In fig \ref{fig:diffmri} of the Diffusion Weighted MRI, only the component along the gradient direction is detected. Therefore, it is required to apply diffusion gradients in three directions to get an estimate of anisotropy of water molecules hindered/interacting with cell membranes/extracellular environments. 
+The cellular environment is heterogeneous, so water molecules in certain parts undergo free diffusion while in others they undergo restricted diffusion. Due to this restricted diffusion the measured diffusion coefficient (of the water molecules) is different from the regular diffusion coefficient of water, it is termed as the “apparent diffusion coefficient”. Diffusion in complex environments cannot be explained by using diffusion gradients in one direction only. In fig \autoref{fig:diffmri} of the Diffusion Weighted MRI, only the component along the gradient direction is detected. Therefore, it is required to apply diffusion gradients in three directions to get an estimate of anisotropy of water molecules hindered/interacting with cell membranes/extracellular environments. 
 
 DTI images are usually represented by either encoding the tensor information using a scalar (for intensity values in a black and white image) or 4 numbers (R,G, B and brightness). Visually, the tensors can also be viewed as glyphs and very famously by tracing white matter tracts through a process known as tractography.
 
@@ -178,7 +178,7 @@ DTI is a popular method to study the orientation and organisation of white matte
 
 In order to solve the multiple fiber orientation problem in DTI, a number of approaches have been proposed to estimate the composition of fiber orientations inside a voxel. These models extract higher order structural information of tissues. They can help deal with problems such as kissing and crossing fibers. 
 
-High angular resolution imaging (HARDI) techniques enable the detection of multi-modal diffusion signals. It includes methods that incorporate the acquisition of diffusion data in more than 6 diffusion gradient directions. Q -ball imaging is one such technique but has its own limitations \cite{TOURNIER20041176}. These methods rely on the concept of an fiber orientation distribution function (fODF). An fODF is a symmetric probability distribution function describing the distribution of fiber orientations
+High angular resolution imaging (HARDI) techniques enable the detection of multi-modal diffusion signals. It includes methods that incorporate the acquisition of diffusion data in more than 6 diffusion gradient directions. Q -ball imaging is one such technique but has its own limitations \cite{TOURNIER20041176}. These methods rely on the concept of a fiber orientation distribution function (fODF). An fODF is a symmetric probability distribution function describing the distribution of fiber orientations
 \begin{align}
   F(\Theta, \phi) = \sum_{k=1}^{K} w_k \delta_{\theta_k, \phi_k}(\Theta, \phi) &
  & \Theta \in [0, \pi], \phi \in [0,2\pi]
@@ -193,20 +193,22 @@ Constrained Spherical Deconvolution (CSD) has gained recent attention as a metho
 \label{subsub:tractography}
 \begin{figure}
     \centering
-    \includegraphics[width=\textwidth]{images/A-Degree-of-anisotropy-B-Deterministic-fiber-tracking-the-fiber-path-across-voxels-is.png}
-    \caption{Image from \cite{muller2018clinically} depicting different types of fiber tracking techniques. (a) Depicts deterministic tracking where the largest eigenvector determines the direction of progression along adjacent voxels. (b) Probabilistic tractograph is depicted, in each voxel a probability distribution function represents multiple possible diffusion directions.}
+    \includegraphics[width=0.7\textwidth]{images/A-Degree-of-anisotropy-B-Deterministic-fiber-tracking-the-fiber-path-across-voxels-is.png}
+    \caption{Image from \cite{muller2018clinically} depicting different types of fiber tracking techniques. Red, green and blue indicate tracts runing along the x,y and z axis respectively. (a) Depicts deterministic tracking where the largest eigenvector determines the direction of progression along adjacent voxels. (b) Probabilistic tractograph is depicted, in each voxel a probability distribution function represents multiple possible diffusion directions.}
     \label{fig:tracking}
 \end{figure}
-Fiber tractography is a technique used to graphically construct  3 dimensional representations white matter pathways in the human brain.The technique uses the information about local fiber directions to trace streamlines that represent white matter tracts in the brain. It has become an important part of white matter disorder studies and has gained popularity because of its non-invasive nature. These advantages make it suitable for surgical targeting and planning \cite{romano2009pre}.
+Fiber tractography is a technique used to graphically construct  3 dimensional representations white matter pathways in the human brain. The technique uses the information about local fiber directions to trace streamlines that represent white matter tracts in the brain. It has become an important part of white matter disorder studies and has gained popularity because of its non-invasive nature. These advantages make it suitable for surgical targeting and planning (\cite{romano2009pre}).
 
 Tractography methods often use DTI in order to delineate the streamlines along the white matter tracts by getting the information about their progression from one voxel to the next. This methodology relies on the assumption that the direction of maximum diffusion(in the diffusion tensor) aligns with the direction of the white matter fiber within the voxel. 
 
 In deterministic tractography, the algorithm usually follows the direction of maximum diffusion from along the voxels by starting from a “seed” region. If the angle between two subsequent directions of maximum diffusion is less than predefined threshold then the algorithm proceeds tracking along the maximum diffusion direction of the second voxel and terminates when the condition is not met \cite{}.  Several other conditions can also be imposed on the basis tracking technique on the basis of investigator specific techniques. The deterministic tractography does not take into account any random or systematic errors that arise during signal acquisition, recording and transmission.
 
 Probabilistic tractography relies on estimation of a probability distribution function such as an fODF for the distribution of fiber orientations in each voxel. This helps to account for the possibility of crossing fibers and kissing fibers. The probability distribution functions and uncertainity are then used to build a path probability map corresponding to a seed point. Let's say N streamlines from a seed point a propagated by randomly using an orientation along the distribution functions. Betweem any to voxels 
-$P_{AB}= M/N$  defines the probability that a curve starting at voxel A passes through voxel B
-where M = Number of streamlines that go through B and A
-N = total number of streamlines generated from A
+\begin{align*}
+P_{AB}= \frac{M}{N} & \textrm{ probability that a curve starting at voxel A passes through voxel B} \\
+M = & \textrm{ number of streamlines that go through B and A} \\
+N = &\textrm{ total number of streamlines generated from A}
+\end{align*}
 Using this probability map the most probable fiber orientation can be determined. Multiple fiber orientaitons existing in a voxel, the one most compatible with the incoming trajectory is chosen\citep{behrens2003non}.
 \subsection{Analyzing the brain as a graph}
 \label{sec:braingraph}
@@ -233,7 +235,7 @@ The first complete structural connectome to be mapped at the synaptic level was 
 % is the anatomical connectivity in the brain
 Structural brain connectivity refers to the arrangement of anatomical connections in the brain. A model of the brain's structural connectivity can derived from whole brain tractography.In organisms such as humans with complex nervous systems, the structural brain connectivity can be visualized at different scales. It can be either at the level of synaptic connections (microscale), at the level of neuronal populations (meso-scale) or at macro scale in which fiber tracts run between different brain regions. At all these scales, the connectivity patterns of individuals from the same species exhibit different characteristics such as organization, topology and spatial extent (\cite{Sporns:2007}).
 
-Usually in Neuroimaging studies the connectivity is analyzed at the macroscopic scale, i.e. the running of the fibers between different brain regions.  From section \ref{subsub:tractography} it can be inferred that the streamlines traced using the tractography algorithms represent the structural connections between different Regions of Interest(ROIs) of the brain seen as brain nodes. The connections are usually represented using bio-physical parameters such as mean FA (mean fractional anisotropy), number of streamlines between the two nodes and the length of the streamlines connecting the two nodes.
+Usually in Neuroimaging studies the connectivity is analyzed at the macroscopic scale, i.e. the running of the fibers between different brain regions.  From section \autoref{subsub:tractography} it can be inferred that the streamlines traced using the tractography algorithms represent the structural connections between different Regions of Interest(ROIs) of the brain seen as brain nodes. The connections are usually represented using bio-physical parameters such as mean FA (mean fractional anisotropy), number of streamlines between the two nodes and the length of the streamlines connecting the two nodes.
 
 
 \section{Feature Selection Techniques}
@@ -280,13 +282,13 @@ Consider an un-directed, connected graph $G = (V,E)$ with weighted nodes and edg
     \Omega(\Tilde{G}) = \sum_{v \in \Tilde{V}} w_v + \sum_{e \in \Tilde{E}} w_e \longrightarrow max
 \end{equation}
 
-The generalized MWCS can be converted into the Maximum Edge Weight Subgraph(MEWS) problem by either considering the weights of all the nodes in the equation \ref{eq:sumfun} as zero or equivalently constant valued so that the subgraph which maximizes the following constraint can be found.
+The generalized MWCS can be converted into the Maximum Edge Weight Subgraph(MEWS) problem by either considering the weights of all the nodes in the  \autoref{eq:sumfun} as zero or equivalently constant valued so that the subgraph which maximizes the following constraint can be found.
 \begin{equation}
     \label{eq:sumews}
     \Phi(\Tilde{G}) = \sum_{e \in \Tilde{E}} w_e \longrightarrow max
 \end{equation}
 
-According to the conceptual framework in \cite{DBLP:journals/corr/LobodaAS16}, such a problem is formulated using a Mixed Integer Programming (MIP) formulation. By using  a mixture of integral and binary variables, the maximal value of the objective function (equation \ref{eq:sumfun}) can be optimally found using a set of constraints.
+According to the conceptual framework in \cite{DBLP:journals/corr/LobodaAS16}, such a problem is formulated using a Mixed Integer Programming (MIP) formulation. By using  a mixture of integral and binary variables, the maximal value of the objective function (\autoref{eq:sumfun}) can be optimally found using a set of constraints.
 
 The first step of formulating such a problem is to represent a candidate optimal subgraph. The membership of nodes and vertices in the subgraph represented using binary variables:
 \begin{align}
@@ -295,14 +297,14 @@ The first step of formulating such a problem is to represent a candidate optimal
     \label{eq:w_e}
     w_e =1  \iff e \in E  \textrm{  and }  e \in \Tilde{E}
 \end{align}
-Conceptually, an edge should be present in the subgraph only if both the end vertices are also present in the subgraph. In equation \ref{eq:memberconstraint} this condition is represented as an inequality.
+Conceptually, an edge should be present in the subgraph only if both the end vertices are also present in the subgraph. In \autoref{eq:memberconstraint} this condition is represented as an inequality.
 \begin{align}
     \label{eq:memberconstraint}
     w_e \leq y_v && \forall v \in V, e \in \delta_{v}
 \end{align}
 wehre $\delta_{v}$ represents the set of incoming edges on a node. Consider if $y_v = 0$, then $w_e$ has to be zero because an edge cannot be present without the node being present and if $y_v = 1$ then $w_e = 0$ or $w_e = 1$ because it is not necessary for an edge to be present if a node is present.
 
-After the subgraphbcan be represented, it is important to establish the validity of any subgraph. A valid MWCS needs to be connected and maximise the function \ref{eq:sumfun}. To establish the connectedness of the subgraph the concept of an arborescence needs to be introduced.
+After the subgraphbcan be represented, it is important to establish the validity of any subgraph. A valid MWCS needs to be connected and maximise the function \autoref{eq:sumfun}. To establish the connectedness of the subgraph the concept of an arborescence needs to be introduced.
 
 An arborescence is an acyclic directed graph in with a root node $v$, having exactly one path from $v$ to any other vertex $u$. The connectedness in a graph is defined as the existence of a simple path between any two nodes. So, for the valid connected subgraph each of it's traversal has to be a valid arborescence. The MWCS can be constructed in a bottom-up fashion by first determining the valid arboresnces and then combining them to form the optimal subgraph.
 
@@ -328,9 +330,8 @@ As pointed above a valid arborescence corresponds to the traversal of the connec
     \label{eq:dudv}
     d_u x_{vu} = (d_v + 1) x_{vu} && \forall e=(v, u) \in A
 \end{align}
-Equation \ref{eq:rv} ensures that there is only one root of the arborescence. Equation \ref{eq:dv} limits the path length from the root vertex to any other vertex in the arborescence if it is present in the subgraph. With equation \ref{eq:uvrv} it can be established if a vertex is a root then there are no incoming edges and that there is a maximum of one incoming edge on each node. The constraint \ref{eq:fronba} says that either the forward arc or the backward arc can be a part of the valid arborescence and not both. The last two constraint \ref{eq:dvrv}  and \ref{eq:dudv} imposes that the length of the path to the root is always 1 and the distance of the nodes correspond to the direction of the edges.
-
-It can be seen that equation \ref{eq:dvrv} and \ref{eq:dudv} are non-linear. Combining the above equations the linearization is as follows:
+ \autoref{eq:rv} ensures that there is only one root of the arborescence. \autoref{eq:dv} limits the path length from the root vertex to any other vertex in the arborescence if it is present in the subgraph. With \autoref{eq:uvrv} it can be established if a vertex is a root then there are no incoming edges and that there is a maximum of one incoming edge on each node. The constraint in \autoref{eq:fronba} says that either the forward arc or the backward arc can be a part of the valid arborescence and not both. The last two constraints in \autoref{eq:dvrv}  and \autoref{eq:dudv} imposes that the length of the path to the root is always 1 and the distance of the nodes correspond to the direction of the edges.
+It can be seen that  \autoref{eq:dvrv} and \autoref{eq:dudv} are non-linear. Combining the above equations the linearization is as follows:
 \begin{align}
     \label{eq:dvlin}
     d_v + n r_v \leq n && \forall v \in V\\
@@ -339,7 +340,7 @@ It can be seen that equation \ref{eq:dvrv} and \ref{eq:dudv} are non-linear. Com
     \label{eq:dvdulin}
     n + d_v - d_u \geq (n-1) x_{vu} && \forall (v,u) \in A
 \end{align}
-Equation \ref{eq:dvlin} combines equations \ref{eq:rv} and \ref{eq:dv}. Equation \ref{eq:nuvlin} and \ref{eq:dvdulin} can be justified with the fact that if a directed edge $(v.u)$ is present, then node $v$ is visited before node $u$ and $d_u - d_v = 1$. They hence represent the equation \ref{eq:dudv}.
+\autoref{eq:dvlin} combines \autoref{eq:rv} and \autoref{eq:dv}. \autoref{eq:nuvlin} and \autoref{eq:dvdulin} can be justified with the fact that if a directed edge $(v.u)$ is present, then node $v$ is visited before node $u$ and $d_u - d_v = 1$. They hence represent the \autoref{eq:dudv}.
 Any arbitrary node is considered to be the root of such an arborescence. The arborescence are then combined on the basis of the maximal edge and node weighhts to yield the final subgraph. 
 
 \section{Classification}
@@ -347,14 +348,14 @@ Any arbitrary node is considered to be the root of such an arborescence. The arb
 \begin{figure}
     \label{fig:svm}
     \centering
-    \includegraphics[width=0.8\textwidth]{images/SVM.png}
+    \includegraphics[width=0.75\textwidth]{images/SVM.png}
     \caption{Illustration of classification using support vector machines. The red line represents the decision boundary between the two classes.The algorithm maximizes the margin between the boundary for separate classes. The vectors lying on the hyperplanes depicted by the blue dashed lines are called as 'support vectors' and are the closest vectors to the decision boundary. Based on the values obtained by solving the L.H.S of the decision boundary for each data points, they are assigned to the corresponding classes.}
     \label{fig:my_label}
 \end{figure}
 
 Support Vector Classifiers (SVC) are classical machine learning algorithms based on Support Vector machines (SVMs). They are important since they have attained signifcant accuracy with different types of tasks such as a handwritten digits recognition, face detection in images, and text categorization\cite{burges1998a}. In Neuroimaging studies, SVCs are important for classification tasks since they are relatively robust to overfitting and more interpretable than Deep Learning classifiers.
 
-In the simplest, binary case the mathematical formulation of the SVM is as follows. Consider each observation \textbf{$x_i$}, $i\in {1...n}$ to be a vector in the \textit{d-dimensional} feature space with a target label  $y_i\in {[-1,1]}$. The classifier needs to find a boundary that separates \textit{n} such points present in the presented data within a small margin of error.  It does so by trying to find an optimally separating hyperplane that efficiently divides the input data according to the target labels. In figure \ref{fig:svm} the red line represents the optimally separating hyperplane that satisfies the equation
+In the simplest, binary case the mathematical formulation of the SVM is as follows. Consider each observation \textbf{$x_i$}, $i\in {1...n}$ to be a vector in the \textit{d-dimensional} feature space with a target label  $y_i\in {[-1,1]}$. The classifier needs to find a boundary that separates \textit{n} such points present in the presented data within a small margin of error.  It does so by trying to find an optimally separating hyperplane that efficiently divides the input data according to the target labels. In figure \autoref{fig:svm} the red line represents the optimally separating hyperplane that satisfies the equation
 $ \sum w_i x_i - b = 0$
  It is maximally distant to the nearest point belonging to either class (also termed as the support vectors). The maximally separating hyperplane is found by satisfying the following constraints for each data point i. 
 \begin{align}
@@ -379,20 +380,20 @@ The Random Forest is built in the following manner. A number of runs is specifie
     \item Split the node into daughter nodes
 
 \end{itemize}
-This method is repeated to obtain a decision tree for each time a bootstrapped sample is obtained. The individual trees are the aggregated to make an ensemble on the basis of the ensemble vote of each tree. As it is evident from the figure \ref{fig:random_forests}, the final classification of samples is based on the majority voting and hence a feature importance can be determined. The higher the position of a split in the random forest tree, the higher is it's discriminatory power. Random Forests are widely used used in Neuroimaging studies due to the interpretability of features which can be obtained using the feature ranking in terms of the feature importance. 
+This method is repeated to obtain a decision tree for each time a bootstrapped sample is obtained. The individual trees are the aggregated to make an ensemble on the basis of the ensemble vote of each tree. As it is evident from the figure \autoref{fig:random_forests}, the final classification of samples is based on the majority voting and hence a feature importance can be determined. The higher the position of a split in the random forest tree, the higher is it's discriminatory power. Random Forests are widely used used in Neuroimaging studies due to the interpretability of features which can be obtained using the feature ranking in terms of the feature importance. 
 
 
 
 \subsection{Multilayer Perceptron}
-A Multilayer Perceptron (MLP) is an Artificial Neural Network that is organized in the form of layers to mimic biological neural networks. The network consists of an input layer, an output layer as well as one or more hidden layers as shown in figure \ref{fig:mlp}(b). Each layer consists of one or more artificial neurons (also called as perceptrons) which are connected to neurons of the subsequent layers. 
+A Multilayer Perceptron (MLP) is an Artificial Neural Network that is organized in the form of layers to mimic biological neural networks. The network consists of an input layer, an output layer as well as one or more hidden layers as shown in figure \autoref{fig:mlp}(b). Each layer consists of one or more artificial neurons (also called as perceptrons) which are connected to neurons of the subsequent layers. 
 
 \begin{figure}
     \centering
     \includegraphics[width=0.5\textwidth]{images/tnn_ann.png}
-    \caption{(a) Visualization of an artificial neuron from \cite{vieira2017using} depicting the output as a function of weighted sum of the inputs (equation \ref{eq:op_neuron}) (b). The artificial neural network consisting of the input layer, hidden layers and the output layer.}
+    \caption{(a) Visualization of an artificial neuron from \cite{vieira2017using} depicting the output as a function of weighted sum of the inputs (\autoref{eq:op_neuron}) (b). The artificial neural network consisting of the input layer, hidden layers and the output layer.}
     \label{fig:mlp}
 \end{figure}
-The connections between the layers are feed-forward and uni-directional. The input layer serves as a buffer layer with no transformation of the input while in the other layers the neurons implement non-linear transfer functions on the weighted connections from the previous layer as shown in figure \ref{fig:mlp} (a), the output $y$ from the neuron can be expressed as:
+The connections between the layers are feed-forward and uni-directional. The input layer serves as a buffer layer with no transformation of the input while in the other layers the neurons implement non-linear transfer functions on the weighted connections from the previous layer as shown in figure \autoref{fig:mlp} (a), the output $y$ from the neuron can be expressed as:
 \begin{equation}
     \label{eq:op_neuron}
     y = g(\sum_{i=1}^{N} w_i x_i +b) 
