@@ -210,3 +210,29 @@ plt.legend()
 plt.tight_layout()
 plt.savefig('outputs/figures/Gender_nodes_preserved.png')
 plt.show()
+
+#%%
+df = pd.read_csv('outputs/csvs/summary.csv')
+fig = plt.figure(figsize=(6,5))
+target = 'Gender'
+df = df[(df['Feature_type']=='num_streamlines') & (df['Edge']=='fscores')]
+x = df['Output_Graph_nodes']
+y = df['Output_Graph_edges']
+plt.plot(x, y, linestyle='solid', marker='.', markersize=12, c='blue',
+              color='black', alpha=0.5, linewidth=2, label='observed')
+popt, _ = curve_fit(func, x, y)
+xnew = np.linspace(x.iloc[0], x.iloc[-1], 1000)
+plt.annotate(f'y= {popt[2].round(3)}x^2+{popt[1].round(3)}x  {popt[0].round(3)}',
+                  xy=(0, 0), xycoords='data',
+                  xytext=(0, 100), textcoords='offset points',
+                  horizontalalignment='left', verticalalignment='top', fontsize=12)
+plt.plot(xnew, func(xnew, *popt), 'r-', label='fitted curve')
+plt.xlabel('Number of nodes')
+plt.ylabel('Number of edges')
+plt.xlim(0,30)
+plt.grid(which='minor')
+plt.grid(which='major')
+plt.legend()
+plt.tight_layout()
+plt.savefig('outputs/figures/Gender_nodes_preserved.png')
+plt.show()

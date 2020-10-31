@@ -5,7 +5,8 @@ from sklearn.preprocessing import StandardScaler
 from graphclass import *
 from metrics import fscore, compute_scores, diag_flattened_indices
 from paramopt import get_distributions
-
+import warnings
+warnings.filterwarnings("ignore")
 # %%
 mews = "/home/skapoor/Thesis/gmwcs-solver"
 tri = len(np.triu_indices(84)[0])
@@ -105,6 +106,7 @@ def cross_validation(classifier, X_train, y_train, X_test, y_test, metrics, refi
     #print('starting to train')
     search = rcv.fit(X_train, y_train)
     clf_out = search.best_estimator_
+    print('Best estimator', search.best_params_)
     # plot_grid_search(search.cv_results_, refit_metric)  # need to see what we will plot or not
 
     clf_out.fit(X_train, y_train)
@@ -129,14 +131,13 @@ def edge_filtering(feature ,X_train,X_test):
     return X_train_l, X_test_l
 
 # %%
-def classify(l1, classifier, params, strls_num, feature_selection, choice, refit_metric, avg_thresh):
+def classify(l1, classifier, params, mapping, strls_num, feature_selection, choice, refit_metric, avg_thresh):
     # try making a csv file for the same
     X_train, X_test, y_train, y_test = l1
     labels = ['NEOFAC_A', 'NEOFAC_O', 'NEOFAC_C', 'NEOFAC_N', 'NEOFAC_E']
 
     big5 = ['Agreeableness', 'Openness', 'Conscientiousness', 'Neuroticism',
             'Extraversion']
-    mapping = {k: v for k, v in zip(big5, labels)}
     metrics = ['balanced_accuracy', 'accuracy', 'f1_weighted', 'roc_auc_ovr_weighted']
     percentages = [2, 5, 10, 50, 100]
     results_base = []
@@ -144,7 +145,7 @@ def classify(l1, classifier, params, strls_num, feature_selection, choice, refit
     baseline_cases = set()
 
     for i in range(len(params)):
-        par = params.iloc[i,:]
+        par = params.iloc[i, :]
         target = par['Target']
         feature = par['Feature_type']
         edge = par['Edge']
@@ -152,6 +153,7 @@ def classify(l1, classifier, params, strls_num, feature_selection, choice, refit
         thresh = par['ROI_strl_thresh']
         solver_node_wts = 'const'
         max_num_nodes = par['Output_Graph_nodes']
+
         print('-' * 100)
         # print('CSV parameter setting number')
         # why is it always stopping at the first row
@@ -213,40 +215,40 @@ def classify(l1, classifier, params, strls_num, feature_selection, choice, refit
 
         elif feature_selection == 'baseline':
             for per in percentages:
-                for self_loops in [True, False]:
-                    case = (classifier, target, choice, edge, feature_selection, feature, per, refit_metric, self_loops)
-                    if case not in baseline_cases:
-                        baseline_cases.add(case)
-                        print(case)
+                self_loops = False
+                case = (classifier, target, choice, edge, feature_selection, feature, per, refit_metric, self_loops)
+                if case not in baseline_cases:
+                    baseline_cases.add(case)
+                    print(case)
 
-                        if not self_loops:
-                            X_train_inl = X_train_l.drop(X_train_l.columns[diag_flattened_indices(84)], axis=1)
-                            X_test_inl = X_test_l.drop(X_test_l.columns[diag_flattened_indices(84)], axis=1)
-                        else:
-                            X_train_inl = X_train_l
-                            X_test_inl = X_test_l
-                        X_train_inl, X_test_inl, arr, index = transform_features(X_train_inl, X_test_inl, y_train_l, per,
-                                                                         edge)
-                        output_gr = BrainGraph(edge, f'{feature}_baseline', 'baseline', target, per, val, thresh)
-                        edges = []
-                        nodes = set()
-                        for ind in index:
-                            edges.append((np.triu_indices(84)[0][ind]+ 1, np.triu_indices(84)[1][ind]+ 1,1))
-                            nodes.add(np.triu_indices(84)[0][ind] + 1)
-                            nodes.add(np.triu_indices(84)[1][ind] + 1)
-                        output_gr.add_nodes_from(nodes)
-                        for node in nodes:
-                            output_gr.nodes[node]['label'] = 1
-                        output_gr.add_weighted_edges_from(edges)
-                        output_gr.savefiles(mews)
-                        train_res, test_res = cross_validation(classifier, X_train_inl, y_train_l, X_test_inl,
-                                                               y_test_l, metrics, refit_metric)
-                        results_base.append([classifier, target, choice, edge, feature_selection, feature,
-                                             per, refit_metric, X_train_inl.shape[1]])
-                        for metric in metrics:
-                            results_base[-1].extend([round(100 * train_res[metric], 3)])
-                        for metric in metrics:
-                            results_base[-1].extend([round(100*test_res[metric], 3)])
-                        results_base[-1].extend([self_loops, thresh])
+                    if not self_loops:
+                        X_train_inl = X_train_l.drop(X_train_l.columns[diag_flattened_indices(84)], axis=1)
+                        X_test_inl = X_test_l.drop(X_test_l.columns[diag_flattened_indices(84)], axis=1)
+                    else:
+                        X_train_inl = X_train_l
+                        X_test_inl = X_test_l
+                    X_train_inl, X_test_inl, arr, index = transform_features(X_train_inl, X_test_inl, y_train_l, per,
+                                                                     edge)
+                    output_gr = BrainGraph(edge, f'{feature}_baseline', 'baseline', target, per, val, thresh)
+                    edges = []
+                    nodes = set()
+                    for ind in index:
+                        edges.append((np.triu_indices(84)[0][ind]+ 1, np.triu_indices(84)[1][ind]+ 1,1))
+                        nodes.add(np.triu_indices(84)[0][ind] + 1)
+                        nodes.add(np.triu_indices(84)[1][ind] + 1)
+                    output_gr.add_nodes_from(nodes)
+                    for node in nodes:
+                        output_gr.nodes[node]['label'] = 1
+                    output_gr.add_weighted_edges_from(edges)
+                    output_gr.savefiles(mews)
+                    train_res, test_res = cross_validation(classifier, X_train_inl, y_train_l, X_test_inl,
+                                                           y_test_l, metrics, refit_metric)
+                    results_base.append([classifier, target, choice, edge, feature_selection, feature,
+                                         per, refit_metric, X_train_inl.shape[1]])
+                    for metric in metrics:
+                        results_base[-1].extend([round(100 * train_res[metric], 3)])
+                    for metric in metrics:
+                        results_base[-1].extend([round(100*test_res[metric], 3)])
+                    results_base[-1].extend([self_loops, thresh])
                         # make convert the output to edges in the baseline
     return results_base, results_solver

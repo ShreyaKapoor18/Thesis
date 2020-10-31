@@ -85,6 +85,7 @@ fig.suptitle('Gender Classification - Solver')
 plt.savefig(f'outputs/figures/{target}_nodes_preserved.png')
 plt.show()
 #%%
+#%%
 solver = pd.read_csv('outputs/csvs/solver.csv')
 s1 = solver.groupby(by=['Type of feature', 'Edge'])
 

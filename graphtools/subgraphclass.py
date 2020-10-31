@@ -85,8 +85,7 @@ def input_graph_processing(arr, edge, feature_type, node_wts, val, target,
             input_graph.set_node_labels(node_wts)
 
     print('Input graph\n', f'Nodes: {len(input_graph.nodes)}\n', f'Edges:{len(input_graph.edges)}\n',
-          f'Edges description:{describe(input_graph.edge_weights)}\n',
-          f'Nodes description:{describe(input_graph.node_labels)}\n', file=output_file)
+          f'Edges description:{describe(input_graph.edge_weights)}\n', file=output_file)
     summary = [len(input_graph.nodes), len(input_graph.edges),
                100 * sum([True for wt in input_graph.edge_weights if wt > 0]) / len(input_graph.edges)]
     # we want to calculate the strictly positive edges
@@ -101,9 +100,8 @@ def output_graph_processing(input_graph, edge, feature_type, node_wts, target, m
     print('Output graph')
     print(f'Number of edges:{len(output_graph.edge_weights)} and Number of nodes:{len(output_graph.nodes)}')
     if output_graph.node_labels != [] and output_graph.edge_weights != []:
-        '''print('Output graph\n', f'Nodes: {len(output_graph.nodes)}\n', f'Edges:{len(output_graph.edges)}\n',
-              f'Edges description:{describe(output_graph.edge_weights)}\n',
-               file=output_file)'''
+        print('Output graph\n', f'Nodes: {len(output_graph.nodes)}\n', f'Edges:{len(output_graph.edges)}\n',
+              f'Edges description:{describe(output_graph.edge_weights)}\n', file=output_file)
         print(f'Percentage of features preserved {round(len(output_graph.edges) * 100 / len(input_graph.edges), 3)}',
               file=output_file)
         summary = [len(output_graph.nodes), len(output_graph.edges),
@@ -186,7 +184,7 @@ def make_solver_summary(edges, mapping, data, targets, mews, whole, tri, num_str
         arr = arr.abs()
         arr = arr.round(3)
         #for num_nodes in [5, 10, 15, 20, 25, 30]:
-        for num_nodes in range(4,30):
+        for num_nodes in range(3,30):
             print('*' * 100)
             print('*' * 100, file=output_file)
             print(f'Case:feature_type, target,edge, Node weights, Num_nodes, Thresh', file=output_file)
