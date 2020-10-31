@@ -4,3 +4,4 @@
 .iml
 workspace.xml
 CoBundleMAP
+__pycache__/

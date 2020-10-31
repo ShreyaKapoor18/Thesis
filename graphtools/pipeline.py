@@ -31,8 +31,8 @@ if __name__ == '__main__':
     X_test = generate_test_data(tri, y_test.index)
     #X_train, X_test, y_train, y_test = train_test_split(
     #    X_train, y_train, test_size=0.33, random_state=42)
-    make_solver_summary(edges, mapping, y_train, labels, mews, X_train, tri, num_strls, avg_thresh=False, cat=False)
-    filter_summary()
+    #make_solver_summary(edges, mapping, y_train, labels, mews, X_train, tri, num_strls, avg_thresh=False, cat=False)
+    #filter_summary()
 
     classifiers = ['SVC', 'RF', 'MLP']
     cols_base = ['Classifier', 'Target', 'Choice', 'Edge', 'Feature Selection', 'Type of feature', 'Percentage',
@@ -56,9 +56,9 @@ if __name__ == '__main__':
 
     prod = product(classifiers, [s_params.loc[:, ['Target', 'Edge', 'Feature_type', 'Node_weights',
                                                   'Output_Graph_nodes', 'ROI_strl_thresh']]],
-                   feature_selections, choices, ['balanced_accuracy'])
+                   feature_selections, choices, ['roc_auc_ovr_weighted'])
     for classifier, params, feature_selection, choice, refit_metric in prod:
-        resb, ress = classify(l1, classifier, params, num_strls, feature_selection, choice, refit_metric, avg_thresh=False)
+        resb, ress = classify(l1, classifier, params, mapping, strls_num, feature_selection, choice, refit_metric, avg_thresh=False)
         results_solver.extend(ress)
         results_base.extend(resb)
 

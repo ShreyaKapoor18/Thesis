@@ -98,6 +98,10 @@ def solver(X_train, X_test, y_train, strls_num, feature, thresh, val, max_num_no
 
 
 def cross_validation(classifier, X_train, y_train, X_test, y_test, metrics, refit_metric):
+    if classifier == "MLP":
+        clf, distributions = get_distributions(classifier, False, {'solver': 'adam', 'learning_rate': 'adaptive',
+        'hidden_layer_sizes': (50, 100, 100, 50), 'alpha': 0.05,
+        'activation': 'relu'}) #give the best performing parameters for solver based classification?
     clf, distributions = get_distributions(classifier, True, None)
     rcv = RandomizedSearchCV(clf, distributions, random_state=55, scoring=metrics,
                              refit=refit_metric, cv=5, n_iter=100,
