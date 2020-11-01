@@ -7,7 +7,6 @@ column = 'Type of feature'
 row = 'Edge'
 hue = 'Feature Selection'
 label ='Area under ROC curve'
-filename = 'Gender_classification_comparison'
 base = pd.read_csv('outputs/csvs/base_personality.csv')
 #base = base[base['Num_features']<=250]
 solver = pd.read_csv('outputs/csvs/solver_personality.csv')
@@ -19,12 +18,44 @@ set(base.columns) == set(solver.columns)
 '''combined = pd.concat([solver, base], axis=0)
 combined.to_csv('outputs/csvs/combined_result_solver_base_personality.csv')
 combined = combined[combined['Choice']=='test throw median']'''
-combined = base
+#%%
+comb1 = base[(base['Target']=='Extraversion') & (base['Type of feature']=='num_streamlines') & (base['Choice']=='test throw median')]
+comb2 = base[(base['Target']=='Neuroticism') & (base['Type of feature']=='num_streamlines')& (base['Choice']=='test throw median')]
+fig,ax  = plt.subplots(2,1, sharey=True, sharex=True)
+
+for clf, color_line in zip(['SVC', 'RF', 'MLP'], ['blue', 'green', 'orange']):
+    sl = comb1[comb1['Classifier']==clf]
+    sl2 = comb2[comb2['Classifier']==clf]
+    ax[0].plot(sl['Num edges'], sl['test_roc_auc_ovr_weighted'], marker='.', markersize=12,
+                       label=f'{clf}', color=color_line, alpha=0.5)
+    ax[1].plot(sl2['Num edges'], sl2['test_roc_auc_ovr_weighted'], marker='.', markersize=12,
+                       label=f'{clf}', color=color_line, alpha=0.5)
+    ax[0].set_title('Extraversion | Number of streamlines')
+    ax[1].set_title('Neuroticism | Number of Streamlines')
+    ax[0].grid(which='minor')
+    ax[0].grid(which='major')
+    ax[1].grid(which='minor')
+    ax[1].grid(which='major')
+plt.xlabel('Percentage')
+#plt.ylabel('Area under ROC curve')
+fig.text(0.015, 0.3, 'Area under ROC curve', ha='center', fontsize=12, rotation='vertical')
+plt.legend()
+plt.tight_layout(pad=2)
+plt.savefig('outputs/figures/persona_2.png')
+plt.show()
+
+#%%
+# compare solver and base
+base = base[base['Num edges']<=250]
+combined = pd.concat([solver, base], axis=0)
+#combined.to_csv('outputs/csvs/combined_result_solver_base_personality.csv')
+combined = combined[combined['Choice']=='test throw median']
+
+#%%
 #sns_plot()
-fig, ax = plt.subplots(3,5, figsize=(20, 10))
-for (feature , i) in zip(combined['Type of feature'].unique(), range(3)):
-    for (target, j) in zip(combined['Target'].unique(), range(5)):
-        slice = combined[(combined['Type of feature']== feature) & (combined['Target']==target)&(combined['Choice']=='test throw median')]
+fig, ax = plt.subplots(2,1, figsize=(8, 10))
+for (target, feature), i  in zip([('Extraversion', 'num_streamlines'), ('Neuroticism', 'num_streamlines')], range(2)):
+        slice = combined[(combined['Type of feature']== feature) & (combined['Target']==target)]
         #ax[i][j].plot(slice['Num edges'], slice['test_roc_auc'])
         if feature  =='num_streamlines':
             f = 'Number of streamlines'
@@ -32,32 +63,32 @@ for (feature , i) in zip(combined['Type of feature'].unique(), range(3)):
             f = 'Mean streamline length'
         else:
             f = 'Mean FA'
-        ax[i][j].set_title(f'{f}, {target}')
+        ax[i].set_title(f'{f}, {target}')
         lines = []
         label = []
-        sel = 'baseline'
-        sl = slice[slice['Feature Selection']==sel]
-        if sel == 'solver':
-            linestyle = '-'
-            trans = 0.5
-            ll = 2
-        elif sel =='baseline':
-            linestyle = '-'
-            trans = 0.8
-            ll = 3
-        for clf, color_line  in zip(sl['Classifier'].unique(), ['blue', 'green', 'orange']):
-            sl2 = sl[sl['Classifier']==clf]
-            l1 = ax[i][j].plot(sl2['Num edges'],sl2['test_roc_auc_ovr_weighted'],
-                              linestyle=linestyle, marker = '.', markersize=12,
-                          label=f'{clf}_{sel}', color=color_line, alpha =trans, linewidth=ll)[0]
-            label.append(f'{clf}_{sel}')
-            lines.append(l1)
-        ax[i][j].grid(which='minor')
-        ax[i][j].grid(which='major')
+        for sel in ['baseline', 'solver']:
+            sl = slice[slice['Feature Selection']==sel]
+            if sel == 'solver':
+                linestyle = '-'
+                trans = 0.5
+                ll = 2
+            elif sel =='baseline':
+                linestyle = '-'
+                trans = 0.8
+                ll = 3
+            for clf, color_line in zip(sl['Classifier'].unique(), ['blue', 'green', 'orange']):
+                sl2 = sl[sl['Classifier']==clf]
+                l1 = ax[i].plot(sl2['Num edges'],sl2['test_roc_auc_ovr_weighted'],
+                                  linestyle=linestyle, marker = '.', markersize=12,
+                              label=f'{clf}_{sel}', color=color_line, alpha =trans, linewidth=ll)[0]
+                label.append(f'{clf}_{sel}')
+                lines.append(l1)
+        ax[i].grid(which='minor')
+        ax[i].grid(which='major')
 fig.subplots_adjust(top=0.95)
-ax[1,0].set_ylabel('Area under ROC curve', fontsize=16)
-ax[2,2].set_xlabel('Number of edges', fontsize=16)
+ax[0].set_ylabel('Area under ROC curve', fontsize=16)
+ax[1].set_xlabel('Number of edges', fontsize=16)
 plt.legend(handles=lines, bbox_to_anchor=(1,1), loc='upper left')
 fig.tight_layout()
-plt.savefig('outputs/figures/combined_clf_auc_base_personality.png')
+plt.savefig('outputs/figures/persona_comp.png')
 plt.show()

@@ -35,9 +35,9 @@ row = 'Edge'
 hue = 'Feature Selection'
 label ='Area under ROC curve'
 filename = 'Gender_classification_comparison'
-base = pd.read_csv('outputs/csvs/base.csv')
+base = pd.read_csv('outputs/csvs/base_gender.csv')
 base = base[base['Num_features']<=1000]
-solver = pd.read_csv('outputs/csvs/solver.csv')
+solver = pd.read_csv('outputs/csvs/solver_gender.csv')
 solver = solver.drop(columns=['Num_nodes', '% Positive edges', 'ROI_strl_thresh'])
 base = base.drop(columns=['Self_loops', 'ROI_strl_thresh'])
 base = base.rename(columns={'Num_features':'Num edges'})
@@ -95,35 +95,71 @@ fig.tight_layout(pad=1)
 plt.savefig('outputs/figures/combined_clf_auc_gender.png')
 plt.show()
 #%%
-fig = plt.figure(figsize=(8,6))
+fig , ax = plt.subplots(3,1, figsize=(10,10), sharex=True, sharey=True)
 slice = combined[(combined['Type of feature']== 'num_streamlines') & (combined['Edge']=='fscores')]
 f = 'number of streamlines'
-plt.title(f'Classification results based on {f} and fscores')
-lines = []
-label = []
+
+for clf,i in zip(combined['Classifier'].unique(), range(3)):
+    for sel in slice['Feature Selection'].unique():
+        sl = slice[slice['Feature Selection'] == sel]
+        if sel == 'solver':
+            linestyle = '-'
+            trans = 0.5
+            ll = 2
+            color_line = 'blue'
+        elif sel == 'baseline':
+            linestyle = ':'
+            trans = 0.8
+            ll = 3
+            color_line='orange'
+        sl2 = sl[sl['Classifier'] == clf]
+        l1 = ax[i].plot(sl2['Num edges'], sl2['test_roc_auc_ovr_weighted'],
+                           linestyle=linestyle, marker='.', markersize=12,
+                           label=f'{sel}', color=color_line, alpha=trans, linewidth=ll)[0]
+    ax[i].grid(which='minor')
+    ax[i].grid(which='major')
+    ax[i].set_title(f'{clf}')
+
+
+fig.suptitle(f'Classification results based on {f} and fscores')
+fig.text(0.5, 0.001, 'Number of edges', ha='center', fontsize=12)
+fig.text(0.001, 0.5, 'Area under ROC curve', va='center', rotation='vertical')
+fig.subplots_adjust(top=0.2)
+plt.tight_layout()
+plt.legend(['solver', 'baseline'], bbox_to_anchor=(1,1), loc='upper left')
+plt.savefig('outputs/figures/select_clf_auc_gender_2.png')
+plt.show()
+#%%
+fig = plt.figure()
+slice = combined[(combined['Type of feature']== 'num_streamlines') & (combined['Edge']=='fscores')]
+f = 'number of streamlines'
+
+clf = "SVC"
 for sel in slice['Feature Selection'].unique():
     sl = slice[slice['Feature Selection'] == sel]
     if sel == 'solver':
         linestyle = '-'
         trans = 0.5
         ll = 2
+        color_line = 'blue'
     elif sel == 'baseline':
         linestyle = ':'
         trans = 0.8
         ll = 3
-    for clf, color_line in zip(sl['Classifier'].unique(), ['blue', 'green', 'orange']):
-        sl2 = sl[sl['Classifier'] == clf]
-        l1 = plt.plot(sl2['Num edges'], sl2['test_roc_auc_ovr_weighted'],
-                           linestyle=linestyle, marker='.', markersize=12,
-                           label=f'{clf}_{sel}', color=color_line, alpha=trans, linewidth=ll)[0]
-        label.append(f'{clf}_{sel}')
-        lines.append(l1)
+        color_line='orange'
+    sl2 = sl[sl['Classifier'] == clf]
+    l1 = plt.plot(sl2['Num edges'], sl2['test_roc_auc_ovr_weighted'],
+                       linestyle=linestyle, marker='.', markersize=12,
+                       label=f'{sel}', color=color_line, alpha=trans, linewidth=ll)[0]
 plt.grid(which='minor')
 plt.grid(which='major')
-plt.ylabel('Area under ROC curve')
+
+plt.title(f'Classification results based on {f} and \n fscores with {clf}')
 plt.xlabel('Number of edges')
-plt.legend(handles=lines, bbox_to_anchor=(1,1), loc='upper left')
-plt.savefig('outputs/figures/select_clf_auc_gender.png')
+plt.ylabel('Area under ROC curve')
+plt.tight_layout()
+plt.legend(['solver', 'baseline'], bbox_to_anchor=(1,1), loc='upper left')
+plt.savefig('outputs/figures/select_clf_auc_gender_2_svc.png')
 plt.show()
 #%%
 from scipy.optimize import curve_fit
@@ -133,7 +169,7 @@ def func(x, a, b, c):
 #%%
 df = pd.read_csv('outputs/csvs/summary.csv')
 df.fillna(0, inplace=True)
-fig, ax = plt.subplots(3,2, figsize=(8, 9), sharex=True, sharey=True)
+fig, ax = plt.subplots(3,2, figsize=(8, 9), sharey=True)
 
 for (feature , i) in zip(df['Feature_type'].unique(), range(3)):
     for (edge, j) in zip(df['Edge'].unique(), range(2)):

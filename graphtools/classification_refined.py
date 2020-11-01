@@ -98,10 +98,7 @@ def solver(X_train, X_test, y_train, strls_num, feature, thresh, val, max_num_no
 
 
 def cross_validation(classifier, X_train, y_train, X_test, y_test, metrics, refit_metric):
-    if classifier == "MLP":
-        clf, distributions = get_distributions(classifier, False, {'solver': 'adam', 'learning_rate': 'adaptive',
-        'hidden_layer_sizes': (50, 100, 100, 50), 'alpha': 0.05,
-        'activation': 'relu'}) #give the best performing parameters for solver based classification?
+    #give the best performing parameters for solver based classification?
     clf, distributions = get_distributions(classifier, True, None)
     rcv = RandomizedSearchCV(clf, distributions, random_state=55, scoring=metrics,
                              refit=refit_metric, cv=5, n_iter=100,
@@ -157,6 +154,7 @@ def classify(l1, classifier, params, mapping, strls_num, feature_selection, choi
         thresh = par['ROI_strl_thresh']
         solver_node_wts = 'const'
         max_num_nodes = par['Output_Graph_nodes']
+
 
         print('-' * 100)
         # print('CSV parameter setting number')
@@ -218,7 +216,7 @@ def classify(l1, classifier, params, mapping, strls_num, feature_selection, choi
                     results_solver[-1].extend([round(100*test_res[metric],3)])
 
         elif feature_selection == 'baseline':
-            for per in percentages:
+                per = (100 * par['Output_Graph_edges']) / 3486
                 self_loops = False
                 case = (classifier, target, choice, edge, feature_selection, feature, per, refit_metric, self_loops)
                 if case not in baseline_cases:

@@ -55,10 +55,10 @@ if __name__ == '__main__':
     results_solver = []
 
     prod = product(classifiers, [s_params.loc[:, ['Target', 'Edge', 'Feature_type', 'Node_weights',
-                                                  'Output_Graph_nodes', 'ROI_strl_thresh']]],
+                                                  'Output_Graph_nodes', 'ROI_strl_thresh', 'Output_Graph_edges']]],
                    feature_selections, choices, ['roc_auc_ovr_weighted'])
     for classifier, params, feature_selection, choice, refit_metric in prod:
-        resb, ress = classify(l1, classifier, params, mapping, strls_num, feature_selection, choice, refit_metric, avg_thresh=False)
+        resb, ress = classify(l1, classifier, params, mapping, num_strls, feature_selection, choice, refit_metric, avg_thresh=False)
         results_solver.extend(ress)
         results_base.extend(resb)
 
