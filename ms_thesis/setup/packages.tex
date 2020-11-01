@@ -22,7 +22,6 @@ backend=biber,
 backref,
 hyperref]{biblatex} % advanced bibliography support
 \addbibresource{literature.bib} % Add a bibliography file. (\bibliography{bib file} is less flexible and should not be used anymore although its still supported by biblatex)
-
 \usepackage{subfiles} % Use this package if you want to seperately compile child documents
 
 % Create nice tables in your document
@@ -62,7 +61,8 @@ pdftitle=Extracting most predictive subgraphs from models of human brain connect
 \usepackage[capitalize,noabbrev]{cleveref}
 \usepackage{tcolorbox}
 \usepackage{csvsimple}
-\usepackage[acronym,nomain]{glossaries}
+%\usepackage[acronym,nomain]{glossaries}
+\usepackage[toc,acronym]{glossaries}
 \usepackage{ctable} % for \specialrule command
 \usepackage{multirow}
 %\usepackage{glossaries}

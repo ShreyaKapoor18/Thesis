@@ -2,14 +2,9 @@
 
 \begin{document}
 \chapter{Results}
-In this section, the quanutitative and visualization results from the methods presented in the chapter \ref{chap:methods} will be presented. 
+In this section, the quantitative and visualization results from the methods presented in the chapter \ref{chap:methods} will be presented. The first two sections will present results from preprocessing of the DWI images mentioned in \autoref{sec:connectome_generation} and subsequent connectivity matrices. The next sections will set to statistically describe the nature of the data as well as classification results based on the comprehensive classification parameters explained in \autoref{tab:classify_combo}.
+
 \section{Preprocessing Visualization}
-
-In the process of generating the connectome \autoref{subsec:connectome_generation}) visual inspection was required to understand and investigate the properties of different types of images produced. 
-
-In order to get an inspection of the working of the pipeline, the following results were obtained by visually inspecting the results. The 5TT image obtained was 4D and could not be easily displayed in 3D. Here it is displayed according to the grayscale mapping in 3D, it was observed that the 5TT images did not contain any errorneous labels. In this 4D image, each volume represents the corresponding tissue densities of WM, GM and CSF. The 4D image is then visualized as an RGB image with each volume getting its specific color (Fig. \ref{fig:preproc}(b)). With the help of the RGB image the alignment of the fODFs seemed sensible. 
-
-Further, the one million fibers tractography was obtained with correspondence to the color coding of the fibers that run along the x.y and z axes respectively. The nodes of the connectome were then represented by the center of mass in the parcellated regions, the intensity of the image does not represent signal intensity but different parcels. 
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{images/Preprocessing_pipeline.png}
@@ -19,96 +14,94 @@ Further, the one million fibers tractography was obtained with correspondence to
     \label{fig:preproc}
 \end{figure}
 
+During the process of generating the connectome (\autoref{subsec:connectomegeneration}) visual inspection was required to understand and investigate the properties of different types of images produced. The following results were obtained and anlayzed for adherence to conceptual the framework in \autoref{sec:creating_connectome}. 
+
+The 5TT image obtained was 4D and could not be easily displayed in 3D. In \autoref{fig:preproc}.a the 4D image is displayed according to the grayscale mapping in 3D. It was observed that the 5TT images did not contain any errorneous labels. In this 4D image, each volume represents the corresponding tissue densities of WM, GM and CSF. The 4D image is then visualized as an RGB image with each volume getting its specific color (\autoref{fig:preproc}.b). With the help of the RGB image the alignment of the fODFs seemed plausible on zooming.
+
+Further, the one million fibers tractography was obtained with correspondence to the color coding of the fibers that run along the x,y and z axes respectively. The nodes of the connectome were then represented by the center of mass in the parcellated regions, the intensity of the image does not represent signal intensity but different parcels. 
+
+
 \section{Connectome Visualization}
-
-The individual connectome can be visualized using the connectivity matrices
-
-In the chord plot represented in \autoref{fig:connectome_num_streamlines} the selection of the cortical region isthmus cingulate in the right hemisphere shows its prominent connections to the cortical regions inferior parietal, superior frontal, superior temporal in the left hemisphere as well as connections to the subcortical regions Hippocampus, Putamen and thalamus proper in the right hemisphere. Another weak connection is in right hemisphere cortical region fusiform. The interactive visualization helped determine the connections between brain regions. 
 \label{sec:connectome_generation}
 \begin{figure}
     \centering
     %\includegraphics[width=\textwidth]{images/brain-data-viewer_2.png}
     \includegraphics[width=\textwidth]{images/bokeh_plot_allsubjects.png}
-    \caption{A choord plot representing the group averaged connectome for all subjects. The arcs(edges) represent the number of streamlines between any two ROIS. The ROIs are represented as the nodes in the diagram at the end of the circle and are lablled according to the Desikan Killiany Atlas. Chord diagram using the tool library Edge bundling also takes place. In this interactive visualization the cortical region isthmusvingulate is selected as the source node and the all the edges convergent on this node are colored according to the terminal node. The number of edges between any two nodes is the number of streamlines, multiple edges get bundled here.}
+    \caption{A chord plot representing the group averaged connectome for all subjects. The number of arcs (edges) represent the number of streamlines between any two ROIS. The ROIs are represented as the nodes in the diagram at the end of the circle. They are labelled according to the Desikan Killiany Atlas. The presence of multiple arcs get bundled together and increased multiple arcs are represented by one arc with higher thickness. In this interactive visualization, the cortical region isthmus cingulate is selected as the source node and the all the edges convergent on this node are colored according to the terminal node.}
     \label{fig:connectome_num_streamlines}
 \end{figure}
 
+In the chord plot represented in \autoref{fig:connectome_num_streamlines} the cortical region isthmus cingulate in the right hemisphere is selected. Its has prominent connections to the cortical regions inferior parietal, superior frontal, superior temporal in the left hemisphere. It is also connected to the subcortical regions Hippocampus, Putamen and thalamus proper in the right hemisphere. A set of weak connections to the cortical region fusiform is also well represented by this diagram. This interactive visualization helped determine the connections between brain regions. 
+
+
 \section{Feature Analysis}
-\subsection{Differences in the type of feature}
-\iffalse
-To be included in the methods chapter: first the different types of features were considered separately. Using Standard scalar the features were standardized by removing the mean and scaling to unit variance. After scaling the feature value for each subject is represented by a z statistic. Now once the type of feature (such as mean FA) is selected, then the mean z statistic was taken. Each type of feature has the upper triangular features excluding the diagonal features. So for each type of feature there are 3570-84 features.  
-\fi
-The distribution for the number of streamlines for males and females in the training data are both non-overlapping and well-normally distributed. This could contribute towards the good performance of classifiers when training on the basis of number of streamlines. 
+From the preprocessing pipeline presented in \autoref{sec:connectome_generation} there were three types of features obtained for each subject. The number of streamlines, the mean streamline length and the mean FA. Each of these features encodes a different biological property of between ROI connections and could hold different results for the classification. There is no current consensus on which feature qualifies as an effective measure of 'connectivity' between any two nodes (\cite{yeh2020mapping}). Hence, it was required to determine which one of them is actually more interpretable as well as best performing for a generic implementation independent of the target label. Further, exclusion of self loops has also been experimentally justified to not provide any added benefit to classification accuracy. 
+\subsection{Differences in connectivity metric}
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{images/zscoredist.png}
     \caption{Histograms representing the frequency of mean z scores for different types of features.}
-    \label{fig:my_label}
-\end{figure}
+    \label{fig:hist_zscores}
+\end{figure} 
+As mentioned above, it was important to explore different types of connectivity metrics obtained from the connectivity matrices constructed using methodology \autoref{fig:hist_zscores}. The three types of metrics were the mean FA, mean streamline length and number of streamlines. The number of streamlines and the mean streamline length could have contained biases as they were constructed in the individual subject's space and hence comparing these numerical values for any two subjects did not seem a logically intuitive, but due to the informed filtering using the SIFT algorithm, these biases were well corrected for an these measure could be compared (\cite{yeh2020mapping}). 
+
+A histogram for the three different feature or connectivity types could help speculate which one performs better while classifying target variables.  Using Standard scalar each feature was standardized by removing the mean and scaling it to unit variance. After scaling the feature value for each subject is represented by a z statistic. The mean of the z statistic (of one feature) for all training subjects was then taken to form a histogram on the type of feature. So for each connectivity metric there are 3486 features.
+
+The distribution for the number of streamlines for males and females in the training data are both non-overlapping and well-normally distributed. This could contribute towards the good performance of classifiers when training on the basis of number of streamlines. Further on the basis of informed filtering of the fiber tracts, it is plausibe tha t
+
+The plot for the number of streamlines on the left shows that women have comparatively higher z scores as compared to men. This means that women have on an average more number of streamlines in the same between ROI connection. 
+
+The Mean FA feature for women is also showing higher Z score which means that women have higher mean FA as compared to the average when considering a mixture of males and females as the training set. 
+
+On the other hand, an opposite trend is seen in the case of mean streamline length. Women have lower z scores as compared to men, this means that they have shorter streamline lengths. Which seems plausible because generally the size of the brain in women is smaller. 
+
 \subsection{Self loops}
 \label{res:selfloops}
 
-The results for the experiment mentioned in section \ref{sec:exclusion} are presented in table \ref{table:selfloops}. For the independent test data all p-values are $p>0.05$ and the t statistic values represent the differences in the classification metrics with and without the inclusion of self loops, the low absolute values of the t-statistic further increased the evidence for insignificance of inclusion of self loops for classification accuracy.
-\begin{table}
-\label{table:selfloopsgender}
-\csvreader[
-  tabular=|c*{4}{|c}|,
-  table head= \hline Train & Metric & Feature & T test & P value\\ \hline,
-  late after last line=\\\hline,
-]{tables/self_loops_test_gender.csv}{}%
-{\csvcoli & \csvcolii & \csvcoliii & \csvcoliv & \csvcolv}
-\caption{Results for a paired samples t-test carried where paired samples are the classification metrics of the data with and without the inclusion of self loops. The corresponding p values are for two arrays for the same classification metric with each array representing classification metric for the five different personality traits.}
-\end{table}
-
+The results for the experiment mentioned in section \ref{sec:exclusion} are presented in table \ref{table:selfloops}. For the independent test data all p-values are $p>0.05$ and the t statistic values represent the differences in the classification metrics with and without the inclusion of self loops. The low absolute values of the t-statistic further increased the evidence for insignificance of inclusion of self loops for classification accuracy.
 
 \begin{table}
-\label{table:selfloops}
+\label{table:selfloops_combined}
 \csvreader[
-  tabular=|c*{4}{|c}|,
-  table head= \hline Train & Metric & Feature & T test & P value\\ \hline,
+  tabular=|p{0.13\textwidth}|p{0.15\textwidth}|p{0.29\textwidth}|p{0.08\textwidth}|p{0.09\textwidth}|,
+  table head= \specialrule{0.2em}{0.05em}{0.05em} Target Label & Metric & Feature & T test & P value\\ \hline,
   late after last line=\\\hline,
-]{tables/self_loops_test.csv}{}%
-{\csvcoli & \csvcolii & \csvcoliii & \csvcoliv & \csvcolv }
-\caption{Results for a paired samples t-test carried where paired samples are the classification metrics of the data with and without the inclusion of self loops. The corresponding p values are for two arrays for the same classification metric with each array representing classification metric for the five different personality traits.}
+]{tables/Combined_self_loops.csv}{}%
+{\csvcoli  & \csvcoliii & \csvcoliv & \csvcolv & \csvcolvi}
+\caption{Results for a paired samples t-test carried where paired samples are the classification metrics of the data with and without the inclusion of self loops. The corresponding p values are for two arrays for the same classification metric with each array representing classification metric for the five different personality traits. Based on test data only.}
 \end{table}
-\subsection{Statistical Feature representation}
 
-
-
-
-\section{Personality traits}
-
-\section{Gender Classification}
-In the baseline analysis it seems like choosing the number of streamlines with any type filter methods still retains most of the classification information. There is not much reduction in the AUC from using all the features until retaining only a small subset of features.
 \section{Baseline analysis}
-Comparing to no feature selection 100\% cases.
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{images/baseline_results_gender.png}
-    \caption{Baseline analysis for gender classification. The area under the curve represented as a function of percetange of features. }
+    \caption{Baseline analysis for gender classification. The area under the curve represented as a function of percentage of features. }
     \label{fig:my_label}
 \end{figure}
 \begin{figure}
     \centering
-    \includegraphics[width=\textwidth]{images/combined_clf_auc_base_personality.png}
-    \caption{Baseline analysis on the basis of personality traits. In a general trend it can be seen that doing some feature selection is beneficial for the classification.}
+    \includegraphics[width=0.8\textwidth]{images/persona_2.png}
+    \caption{Baseline analysis on the basis of personality traits using pearson correlation coefficient. In a general trend it can be seen that doing some feature selection is beneficial for the classification.}
     \label{fig:persona base}
 \end{figure}
-According to summary.csv,alyze how can we put it
-After filtering according to the edges being selected only when there is atleast one streamline per subject. On the basis of the training subjects, the number of features for which all the subjects have a atleast one streamline with them is 1150. The input graph is hence formed on the basis of this with this number determining the upper bound of the number of edges in our input graph. 
+In the baseline analysis choosing the number of streamlines with any type filter methods still retains most of the classification information. There is not much reduction in the AUC from using all the features until retaining only a small subset of features.
 
-\subsection{Output subgraphs}
+For both the personality traits and the gender based classification, feature selection seems profitable in terms of going towards interpretability. For the personality based classification which is a tough task doing this was difficult and hence....
 
-- they are preserving x edges based on y nodes (specified, our condition was given to be true)
-- connected
-- subnet scores
-- fscores and t-tests are giving similar results
+\subsection{Solver}
+After filtering according to the edges being selected only when there is at least one streamline per subject. On the basis of the training subjects, the number of features for which all the subjects have a at least one streamline with them is 1150. The input graph is hence formed on the basis of this with this number determining the upper bound of the number of edges in our input graph. 
+
+In Fig. \ref{fig:gender_num_strls_10} the MEWS solver based implementation reduces the input graph based on the fscores to infer the most important set of connections. In this graph the edges obtained from Fig. \ref{fig:solver_based_gender_10} were traced back to the original \textit{dataframe} containing the data about number of streamlines for all subjects. The number of streamlines between the regions delineated were determined to put together in the chord graph. From the thickness of the arcs in the chord graph the Left-Palladium and right thalamus proper seem to have the maximum number of connections between them. Further, the subcortical regions seem to have more number of streamlines between them than the cortical regions. 
+
+
 \begin{figure}
     \centering
     \includegraphics[width=0.8\textwidth]{images/Gender_nodes_preserved.png}
     \caption{Edges preserved as a function of nodes in the case of gender subgraph reduction}
     \label{fig:fun_num_edges}
 \end{figure}
+
+\iffalse
 \begin{figure}
     \centering
     \includegraphics[width=0.5\textwidth]{images/gender10nodes.png}
@@ -116,8 +109,8 @@ After filtering according to the edges being selected only when there is atleast
     \label{fig:solver_based_gender_10}
 \end{figure}
 
+\fi
 
-In Fig. \ref{fig:gender_num_strls_10} the MEWS solver based implementation reduces the input graph based on the fscores to infer the most important set of connections. In this graph the edges obtained from Fig. \ref{fig:solver_based_gender_10} were traced back to the original \textit{dataframe} containing the data about number of streamlines for all subjects. The number of streamlines between the regions delineated were determined to put together in the chord graph. From the thickness of the arcs in the chord graph the Left-Palladium and right thalamus proper seem to have the maximum number of connections between them. Further, the subcortical regions seem to have more number of streamlines between them than the cortical regions. 
 \begin{figure}
     \centering
     \includegraphics[width=0.9\textwidth]{images/gender10nodes_numstrls.png}
@@ -127,8 +120,10 @@ In Fig. \ref{fig:gender_num_strls_10} the MEWS solver based implementation reduc
 
 
 For the features determined by the subgraph. The reduced features were put through an independent samples t-test for gender differences. 
+
+\iffalse
 \begin{table}
-\label{table:selfloops}
+\label{table:10strls_gender}
 \csvreader[
   tabular=|c*{4}{|c}|,
   table head= \hline feature & ROI & ROI & P value\\ \hline,
@@ -137,6 +132,7 @@ For the features determined by the subgraph. The reduced features were put throu
 {\csvcoli & \csvcolii & \csvcoliii & \csvcoliv }
 \caption{Results for an independent samples t-test carried, The corresponding p values are for the different number of streamlines for males and femalestvod .}
 \end{table}
+\fi
 
 
 \iffalse
@@ -179,38 +175,44 @@ For the features determined by the subgraph. The reduced features were put throu
 
 
 
-\begin{figure}
-    \centering
-    \includegraphics[width=0.8\textwidth]{images/select_clf_auc_gender.png}
-    \caption{Comparison of area under the ROC curve for classification on the independent test set. The performance of three classifiers Support Vector Machines, Random Forest and Multilayer perceptron on the basis of features filtered according to the solver and baseline experiments respectively.}
-    \label{fig:clf_solver results}
-\end{figure}
 
-\iffalse
-\begin{figure}
-    \centering
-    \includegraphics[width=\textwidth]{images/combined_clf_auc_gender.png}
-    \caption{ Summary of Gender classification using baseline and solver techniques. In the figure with multiple subplots the rows represent the type of features used and the columns represent the type of edges used for feature ranking with the baseline analysis and as input graph representatives in the solver based approach. The y axis represents the area under the ROC curve for the classification on the test set as a function of the number of edges preserved by either techniques. Each time the number of nodes were specified in terms of percentages for the baseline implementation and as the number of nodes to be preserved for solver based implementation.}
-    \label{fig:my_label}
-\end{figure}
 
 Judging on the basis of the area under the curve for gender based classification, it is best to compare feature wise.
 
 Consider the mean FA feature first, for this feature the solver based approach does better than or equivalently well as the baseline when the number of edges preserved is small. This is not surprising since the number of edges preserved is a function of the number of nodes specified by the solver based technique. When a specified number of edges would be wanted to be preserved then the features corresponding to only those nodes will be preserved, this makes an inherent bias into which features will be preserved by the solver. Since all one node might have multiple highly relevant performance features but we want to preserve a given number of nodes, so the other less performing feature might be selected since a particular node has to be selected.
-\fi
+
 
 
 \section{Classification}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/select_clf_auc_gender.png}
+    \caption{Comparison of area under the ROC curve for gender classification on the independent test set. The performance of three classifiers Support Vector Machines, Random Forest and Multilayer perceptron on the basis of features filtered according to the solver and baseline experiments respectively.}
+    \label{fig:clf_solver results}
+\end{figure}
+
+\begin{figure}
+    \centering
+    %\includegraphics[width=0.8\textwidth]{images/select_clf_auc_gender_2_svc.png}
+    \includegraphics[width=0.8\textwidth]{images/select_clf_auf_gender_2_scaled.png}
+    \caption{Classification using solver and baseline for the exact same number of features selected in each case.}
+    \label{fig:svcgender}
+\end{figure}
+
+On closely analyzing the behaviour from the curve as viewed above. The SVM based classification produced more stable results. More data points were then sampled. This time the number of edges preserved by the solver was used to decide the parameter top $k$ percentile of features to be preserved in the baseline analysis. From the \autoref{fig:svcgender}, it became clear that after a cutoff number of edges, i.e. precisely 137 (obtained from the function in \autoref{fig:fun_num_edges} and the preprocessed files, the solver definitely does better than the baseline analysis. Even for the number of edges below 137, the results remain comparable but more interpretable. So for the solver, the number of nodes for gender classification that definitely yields better results than the baseline experiments after 137 edges. Corresponds to 20 nodes i.e. ($137 \approx 0.285* 400 + 1.467(20) - 3.888 = 114 + 29.34-3.88 = 139.46$). So for below 20 nodes there is a bit of a compromise for classifier performance but increased interpretability and ease of visualization. While for higher than 20 nodes, there is a decrease in interpretability but an increase in classifier performance.
+
 \subsection{Best parameters}
-For our configuration using Multilayer perceptron for the solver based reduction, classification of gender using the feature selection technique of fscores and refit metric balanced accuracy. Baseline based on 5\% of features.  The parameters for the best estimator of the cross validation turn out to be the same, this justifies that the solver based method works better than the baseline method when it comes to classification accuracy and also leads to an increase in the interpretability.
+For our configuration using Multilayer perceptron for the solver based reduction, classification of gender using the feature selection technique of fscores and refit metric balanced accuracy. Baseline based on 5\% of features. The parameters for the best estimator of the cross validation turn out to be the same, this justifies that the solver based method works better than the baseline method when it comes to classification accuracy and also leads to an increase in the interpretability.
 % Best estimator {'solver': 'adam', 'learning_rate': 'adaptive', 'hidden_layer_sizes': (50, 100, 100, 50), 'alpha': 0.05, 'activation': 'relu'}
 % ('MLP', 'Gender', 'random', 'fscores', 'baseline', 'num_streamlines', 5, 'balanced_accuracy', False)
 %Bet estimator {'solver': 'adam', 'learning_rate': 'adaptive', 'hidden_layer_sizes': (50, 100, 100, 50), 'alpha': 0.05, 'activation': 'tanh'}
-\begin{table}[]
+\begin{table}[b]
     \centering
     \begin{tabular}{|c|c|c|}
-        \hline
+        \specialrule{0.1em}{0.05em}{0.05em}
         Hyperparameter & Solver & baseline \\
+        \hline
         solver & adam & adam\\
         \hline
         hidden layer size &  50,100,100, 50 & 50,100,100,50\\
@@ -223,6 +225,29 @@ For our configuration using Multilayer perceptron for the solver based reduction
         \hline
     \end{tabular}
     \caption{Cross validation parameters for MLP trained for gender classification. The parameters which give the best area under the curve for the use case mentioned in the section above have been presented}
-    \label{tab:my_label}
+    \label{tab:MLP best params}
 \end{table}
+The SVM seemed to give most stable results and the maximum area under the curve given by the for gender classification is 95\% for number of nodes 26. These parameters are for the solver based experiments and classifier SVC. For the best estimator with the baseline experiments the around 138 edges does the best with 91\% AUC so the parameters for that are presented in the table. 
+%Best estimator {'C': 5.918565074193836, 'class_weight': 'balanced', 'gamma': 0.0004643818614121193, 'kernel': 'rbf'}
+%Best estimator basline {'C': 0.5229762127721259, 'class_weight': None, 'gamma': 0.008523831363402392, 'kernel': 'rbf'}
+
+\begin{table}[b]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \specialrule{0.1em}{0.05em}{0.05em}
+        Hyperparameter & Solver & baseline \\
+        \hline
+        C & 5.9 & 0.522\\
+        \hline
+        Gamma &  4e-4 &  8e-4\\
+        \hline
+        kernel &  rbf & rbf\\
+        \hline
+        class weight & balanced & None\\
+        \hline
+    \end{tabular}
+    \caption{Cross validation parameters for SVC trained for gender classification. The parameters which give the best area under the curve for the use case mentioned in the section above have been presented}
+    \label{tab:CSV best parameters}
+\end{table}
+
 \end{document}

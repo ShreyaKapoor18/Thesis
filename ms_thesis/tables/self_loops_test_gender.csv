@@ -1,10 +1,4 @@
-Train/Test,Metric,Feature,t_statstic,p_value
-Test data,Balanced Accuracy,Mean FA,0.396,0.695
-,,Mean streamline length,2.068,0.048
-,,Number of streamlines,0.98,0.335
-,Area under the curve,Mean FA,0.491,0.627
-,,Mean streamline length,3.875,0.001
-,,Number of streamlines,2.199,0.036
+Dataset,Metric,Feature,t_statstic,p_value
 Training data,Balanced Accuracy,Mean FA,-0.699,0.49
 ,,Mean streamline length,0.876,0.388
 ,,Number of streamlines,-0.524,0.604

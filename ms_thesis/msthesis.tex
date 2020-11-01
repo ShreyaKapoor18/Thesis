@@ -7,7 +7,6 @@ DIV=11,      % This parameter organizes the borders (detailed explanation at htt
 BCOR=8mm]{scrbook} % BCOR sets the space, used by the type of  book. (e.g. glued, hard cover..)
 %scrreprt is used for larger texts with chapters (Master or Bachelor Thesis)
 %scrartcl is used when there are no chapters ( for smaller paper)
-
 \input{setup/packages.tex}
 \input{setup/acronyms.tex}
 \setcounter{tocdepth}{3}
@@ -19,6 +18,7 @@ BCOR=8mm]{scrbook} % BCOR sets the space, used by the type of  book. (e.g. glued
 %\newcommand{\comment}[1]{}
 \DeclareUnicodeCharacter{2212}{-}
 \DeclareUnicodeCharacter{2002}{}
+
 \begin{document}
 \frontmatter
 		\input{setup/titlepage.tex}
@@ -28,8 +28,7 @@ BCOR=8mm]{scrbook} % BCOR sets the space, used by the type of  book. (e.g. glued
         \tableofcontents
         \listoffigures
         \listoftables
-        \listofalgorithms
-        \printglossary
+        \printglossary[type=\acronymtype, title={Acronyms}]
         \newpage
         
         
@@ -53,5 +52,10 @@ BCOR=8mm]{scrbook} % BCOR sets the space, used by the type of  book. (e.g. glued
             %\printbibliography[heading=bibintoc,title={References},nottype=misc]
     
         \end{singlespacing}
+   
+        %{%- else %}
+
+        %{%- if cookiecutter.include_glossary == "yes" %}
+        %\printglossary
 \end{document}
 
