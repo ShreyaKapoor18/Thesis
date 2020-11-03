@@ -2,7 +2,7 @@
 
 \begin{document}
 \chapter{Results}
-In this section, the quantitative and visualization results from the methods presented in the chapter \ref{chap:methods} will be presented. The first two sections will present results from preprocessing of the DWI images mentioned in \autoref{sec:connectome_generation} and subsequent connectivity matrices. The next sections will set to statistically describe the nature of the data as well as classification results based on the comprehensive classification parameters explained in \autoref{tab:classify_combo}.
+In this section, the quantitative and visualization results from the methods presented in the chapter \ref{chap:methods} will be presented. The first two sections will present results from preprocessing of the DWI images mentioned in \autoref{sec:Diffusionimgprepro} and extraction of connectivity matrices. The next sections will statistically describe the nature of the data as well as classification results based on the comprehensive classification parameters explained in \autoref{tab:classify_combo}.
 
 \section{Preprocessing Visualization}
 \begin{figure}
@@ -10,50 +10,61 @@ In this section, the quantitative and visualization results from the methods pre
     \includegraphics[width=\textwidth]{images/Preprocessing_pipeline.png}
     %\includegraphics[width=\textwidth]{images/connectome_creation_workflow.png}
     %\cite{gerhard2011connectome}
-    \caption{Visualization of pipeline used to create a connectome for each subject (a) Five tissue segmented image visualized in grayscale. (b) A slice of a 4D image mapped in 3D using RGB encoding tissue densities, CSF as red, GM as green and WM as blue. (c) Fiber tractography of one million fibers produced using probabilistic tractography overlaid on an axial slice of the brain. (d) The nodes of the connectome representing ROIs overlaid on an axial slice}
+    \caption{Visualization of pipeline used to create a connectome for each subject (a) Five tissue segmented image visualized in grayscale. (b) A slice of a 4D image mapped in 3D using RGB encoding tissue densities, CSF as red, GM as green and WM as blue. (c) Anatomically constrained tractography (ACT) of one million fibers overlaid on an axial slice of the brain. (d) The nodes of the connectome representing ROIs overlaid on an axial slice}
     \label{fig:preproc}
 \end{figure}
 
-During the process of generating the connectome (\autoref{subsec:connectomegeneration}) visual inspection was required to understand and investigate the properties of different types of images produced. The following results were obtained and anlayzed for adherence to conceptual the framework in \autoref{sec:creating_connectome}. 
+During the process of generating the connectome (\autoref{subsec:connectomegeneration}) visual inspection was required to investigate the properties of different types of images produced. The results illustrated in \autoref{fig:preproc} used to evaluate the adherence of the implementation to the conceptual framework mentioned \autoref{sec:creating_connectome}. 
 
-The 5TT image obtained was 4D and could not be easily displayed in 3D. In \autoref{fig:preproc}.a the 4D image is displayed according to the grayscale mapping in 3D. It was observed that the 5TT images did not contain any errorneous labels. In this 4D image, each volume represents the corresponding tissue densities of WM, GM and CSF. The 4D image is then visualized as an RGB image with each volume getting its specific color (\autoref{fig:preproc}.b). With the help of the RGB image the alignment of the fODFs seemed plausible on zooming.
+The 5TT image obtained after tissue segmentation (\autoref{subsec:struct_diff}) was 4D and could not be easily displayed in 3D. In \autoref{fig:preproc}.a, this 4D image is displayed according to gray-scale mapping in 3D. With the grayscale mapping it was viusally observed that the 5TT images did not contain any erroneous labels. The original 4D image contained three volumes with each one representing the corresponding tissue densities of WM, GM and CSF. In \autoref{fig:preproc}.b. the 5TT 4D image is visualized as an RGB image with each volume getting its specific color, i.e. WM as blue, GM as green and CSF as red. In interactive window from \textbf{\textit{mrview}} (\cite{tournier2019mrtrix3}) the RGB image can be zoomed in an checked for compliance of the response functions with the fODFs and tissue segmentations. 
 
-Further, the one million fibers tractography was obtained with correspondence to the color coding of the fibers that run along the x,y and z axes respectively. The nodes of the connectome were then represented by the center of mass in the parcellated regions, the intensity of the image does not represent signal intensity but different parcels. 
+After obtaining information about the tissue segmentations and fODFs, one million fibers whole brain tractography was generated (\autoref{fig:preproc}.c). In this tractogram, the red fibers run in right to left direction, green between anterior-posterior and blue in head-to-foot direction (\cite{obert2013evaluation}). Finally, the connectome could be visualized (\autoref{fig:preproc}.d) with the nodes representing the center of mass of grey matter regions and edges as the connections between them. The intensity of this image is not equal to the signal intensity but the number assigned to the ROI, so any parcellated region that has a higher numbering in the lookup table is shown brighter. However, the diagram still remains informative. 
 
+Overall, visualizing the preprocessing pipeline helped to evaluate the anatomical correspondence of the tractography. It also helps understand the relationship between the generated connectome and white matter connectivity.
 
 \section{Connectome Visualization}
-\label{sec:connectome_generation}
+
 \begin{figure}
     \centering
     %\includegraphics[width=\textwidth]{images/brain-data-viewer_2.png}
-    \includegraphics[width=\textwidth]{images/bokeh_plot_allsubjects.png}
-    \caption{A chord plot representing the group averaged connectome for all subjects. The number of arcs (edges) represent the number of streamlines between any two ROIS. The ROIs are represented as the nodes in the diagram at the end of the circle. They are labelled according to the Desikan Killiany Atlas. The presence of multiple arcs get bundled together and increased multiple arcs are represented by one arc with higher thickness. In this interactive visualization, the cortical region isthmus cingulate is selected as the source node and the all the edges convergent on this node are colored according to the terminal node.}
+    %\includegraphics[width=\textwidth]{images/bokeh_plot_allsubjects.png}
+    \includegraphics[width=\textwidth]{images/selected_view_all.png}
+    \caption{A chord plot representing the group averaged connectome for all subjects. The number of arcs (edges) represent the number of streamlines between any two ROIS. The ROIs are represented as the nodes in the diagram at the end of the circle. The presence of multiple arcs get bundled together and increased multiple arcs are represented by one arc with higher thickness. The middle frontal gyrus in the left hemisphere is selected as the source node and the all the edges convergent on this node are colored according to the terminal node.}
     \label{fig:connectome_num_streamlines}
 \end{figure}
 
-In the chord plot represented in \autoref{fig:connectome_num_streamlines} the cortical region isthmus cingulate in the right hemisphere is selected. Its has prominent connections to the cortical regions inferior parietal, superior frontal, superior temporal in the left hemisphere. It is also connected to the subcortical regions Hippocampus, Putamen and thalamus proper in the right hemisphere. A set of weak connections to the cortical region fusiform is also well represented by this diagram. This interactive visualization helped determine the connections between brain regions. 
+After the connectivity matrices for all subjects were generated using methods in \autoref{sec:creating_connectome}, the group averaged connectome was created. The raw connectivity matrix was dense, containing $n = 84$ nodes and $n_e = 3486$ edges. The edge weights were widely distributed for the different types of features. Visualizing the connectome as a simple connectivity matrix or a heatmap was hence not an effective strategy.
 
+A chord plot was chosen because of the organization and structure, ease of representing grey matter nodes. The number of streamlines served as a suitable connectivity metric to be encoded into a chord plot, the reason for the selection of the number of streamlines will be presented in \autoref{subsec:connmetric}. The detailed coloring scheme used for creating the chord plot gives added visual cues about the source and the target nodes.
+
+In the chord plot represented in \autoref{fig:connectome_num_streamlines} $n=65$ nodes are shown. The graph is obtained by thresholding the group averaged number of streamlines between any two ROIs. The threshold was selected to be $N=900$ and the value for thickness of the arc was deciding by dividing the preserved number of streamlines by a factor of 10. For interactive visualization, the cortical region caudal middle frontal in the left hemisphere is selected. Its has prominent connections to the cortical regions superior frontal, rostra middle frontal and precuneus in the left hemisphere. Weak connection to the cortical region parsopercularis is also well represented by this diagram. 
+
+Overall, this comprehensive diagram is a systematic representation of whole brain connectivity. It can be used to analyze brain connections at the subject level or the group level.
 
 \section{Feature Analysis}
-From the preprocessing pipeline presented in \autoref{sec:connectome_generation} there were three types of features obtained for each subject. The number of streamlines, the mean streamline length and the mean FA. Each of these features encodes a different biological property of between ROI connections and could hold different results for the classification. There is no current consensus on which feature qualifies as an effective measure of 'connectivity' between any two nodes (\cite{yeh2020mapping}). Hence, it was required to determine which one of them is actually more interpretable as well as best performing for a generic implementation independent of the target label. Further, exclusion of self loops has also been experimentally justified to not provide any added benefit to classification accuracy. 
+
+Once the connectivity matrices were ready, it was important to investigate an effective connectivity metric and determine importance of within ROI connections. From the preprocessing pipeline presented in \autoref{sec:connectome_generation} there were three types of connectivity metrics obtained for each subject. These were number of streamlines, the mean streamline length and the mean FA. Each of these features encodes a different biological property of between ROI connections and gave different classification results. There is no current consensus on which feature qualifies as an effective measure of connectivity between any two nodes (\cite{yeh2020mapping}). The number of streamlines was selected to be the major focus of the classification tasks due its superiority in classification performance, which will be illustrated subsequently. Further, exclusion of self loops from the connectivity matrices will be experimentally justified. 
+
 \subsection{Differences in connectivity metric}
+\label{subsec:connmetric}
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{images/zscoredist.png}
-    \caption{Histograms representing the frequency of mean z scores for different types of features.}
+    \caption{Three overlaid histograms representing the frequency of mean z scores for different types of features. The orange histograms are for females and blue ones are for males.the y axis represents the number of between ROI connections.}
     \label{fig:hist_zscores}
 \end{figure} 
-As mentioned above, it was important to explore different types of connectivity metrics obtained from the connectivity matrices constructed using methodology \autoref{fig:hist_zscores}. The three types of metrics were the mean FA, mean streamline length and number of streamlines. The number of streamlines and the mean streamline length could have contained biases as they were constructed in the individual subject's space and hence comparing these numerical values for any two subjects did not seem a logically intuitive, but due to the informed filtering using the SIFT algorithm, these biases were well corrected for an these measure could be compared (\cite{yeh2020mapping}). 
+As mentioned above, it was important to explore different types of connectivity metrics obtained from the connectivity matrices constructed using methodology \autoref{fig:hist_zscores}. Considering the z score distributions of ROI connections separately for males and females was taken as a method for data evaluation. A histogram for the three different feature or connectivity types could help speculate which one performs better while classifying target variables/ or how well they could separate between the two classes.
 
-A histogram for the three different feature or connectivity types could help speculate which one performs better while classifying target variables.  Using Standard scalar each feature was standardized by removing the mean and scaling it to unit variance. After scaling the feature value for each subject is represented by a z statistic. The mean of the z statistic (of one feature) for all training subjects was then taken to form a histogram on the type of feature. So for each connectivity metric there are 3486 features.
+The histograms were formed using data (containing both males and females) from the training set. Each feature was then standardized by removing the mean and scaling it to unit variance. After scaling the feature value for each subject is represented by a z statistic. The mean of the z statistic (of one feature) is zero for all training subjects. However, the differences are prevalent when separate means are taken for the two genders. For each connection, there was one z score for males and another for females depending on the connectivity metric. For each connectivity metric there are 3486 features which help form the distribution represented in \autoref{fig:hist_zscores}.
 
-The distribution for the number of streamlines for males and females in the training data are both non-overlapping and well-normally distributed. This could contribute towards the good performance of classifiers when training on the basis of number of streamlines. Further on the basis of informed filtering of the fiber tracts, it is plausibe tha t
+From the distributions, it is evident that the number of streamlines is a superior connectivity metric for gender classification. It's histogram is non-overlapping, shows a smooth Gaussian distribution for males and females, and has significantly higher peaks than those for the other two features. From the differences in z-score distribution, it can be inferred that women on an average have more number of streamlines as compared men, for the same connections. This observation is coherent with evidence in  \cite{szalkai2015graph} showing that women have more densely connected brains than men. Further, women have higher white matter to grey matter ratio and hence the number of streamlines detected for women is higher \cite{taki2011correlations}.
 
-The plot for the number of streamlines on the left shows that women have comparatively higher z scores as compared to men. This means that women have on an average more number of streamlines in the same between ROI connection. 
+Using the mean FA plots illustrate that women have higher mean FA values than men. Conversely, an opposite trend is seen in the case of mean streamline length. Women have lower z scores, which points that shorter streamline lengths. There are yet no conclusive results for benchmarking such a distribution as gender differences prevail depending on ROIs being considered (\cite{kanaan2012gender}).For the mean FA, it is difficult to conclude that female brains have higher FA values when considering whole brain connectivity existing studies do not provide conclusive results (\cite{ingalhalikar2014sex}). The shorter streamline lengths in women seem plausible since, on an average women's brains are smaller than that of men (\cite{ankney1992sex}).
 
-The Mean FA feature for women is also showing higher Z score which means that women have higher mean FA as compared to the average when considering a mixture of males and females as the training set. 
+The results for the number of streamlines and the mean streamline length are coherent with \textit{a priori} knowledge and evidence in literature. These features could have contained biases as the tractography was carried out in individual subject's space. Comparing the streamline count or length for different subjects was possible due to the informed filtering using the SIFT algorithm (\cite{yeh2020mapping}).
 
-On the other hand, an opposite trend is seen in the case of mean streamline length. Women have lower z scores as compared to men, this means that they have shorter streamline lengths. Which seems plausible because generally the size of the brain in women is smaller. 
+The experiments stated above help establish the effectiveness of streamline count as a connectivity metric. It can well discriminate between gender and gives a biologically coherent
+measure of brain connectivity.
 
 \subsection{Self loops}
 \label{res:selfloops}
@@ -121,7 +132,7 @@ In Fig. \ref{fig:gender_num_strls_10} the MEWS solver based implementation reduc
 
 For the features determined by the subgraph. The reduced features were put through an independent samples t-test for gender differences. 
 
-\iffalse
+
 \begin{table}
 \label{table:10strls_gender}
 \csvreader[
@@ -132,7 +143,7 @@ For the features determined by the subgraph. The reduced features were put throu
 {\csvcoli & \csvcolii & \csvcoliii & \csvcoliv }
 \caption{Results for an independent samples t-test carried, The corresponding p values are for the different number of streamlines for males and femalestvod .}
 \end{table}
-\fi
+
 
 
 \iffalse

@@ -201,7 +201,7 @@ After obtaining the 5TT images, the segmentation from the original FreeSurfer fo
 \fi
 
 \subsection{Diffusion Image Processing}
-
+\label{sec:Diffusionimgprepro}
 The first step of processing the diffusion images is to determine the fODF for probabilistic tractography. The fODFs were reconstructed using multi-shell, multi-tissue constrained spherical deconvolution (MSMT-CSD) based on the algorithm in \cite{jeurissen2014multi}. As mentioned in  \autoref{sec:highermodels} the CSD of response functions can determine the fODF distribution. Hence, CSD of the separate response functions from WM, GM and CSF was done in order to obtain the DWI signals of the three tissue types from the 5TT image.
 
 The probabilistic whole-brain tractography of five-million fiber tracts was generated using \textbf{\textit{Mrtrix3}}. The streamlines were computed on the basis of the algorithm iFOD2 (\cite{tournier2010improved}). This algorithm uses the fiber orientation Distribution (fODF) image and determines candidate streamline paths (arcs), which have greater fODF amplitudes along the paths. By sampling the underlying fODF amplitudes along these arcs , it makes the streamlines likely to follow most probable paths.
@@ -219,7 +219,7 @@ The tractography was then downsampled from five mullion fibers to one million fi
 \fi
 \subsection{Connectome Generation}
 \label{subsec:connectomegeneration}
-The connectome can be represented in the form of a graph as mentioned in \autoref{sec:connectomics}. After obtaining the streamline file and a parcellation image representing the subject specific node locations of the connectome, the connectome matrix was obtained in a .csv format. It was generated from the whole brain tractography of one million tracts using 84 relevant grey matter parcellations (in \textit{\textbf{Mrtrix3}}) from the default FreeSurfer segementation specified by the Desikan Killiany Atlas. 
+The connectome can be represented in the form of a graph as mentioned in \autoref{sec:connectomics}. After obtaining the streamline file and a parcellation image representing the subject specific node locations of the connectome, the connectome matrix was obtained in a \textit{.csv} format. It was generated from the whole brain tractography of one million tracts using 84 relevant grey matter parcellations (in \textit{\textbf{Mrtrix3}}) from the default FreeSurfer segementation specified by the Desikan Killiany Atlas. 
 
 Using different parameter settings three types of features were extracted. The mean fractional anisotropy of the streamlines that connect the two regions (or mean FA, equation \autoref{eq:meanFA}). The average length of streamlines connecting two regions and number of streamlines between any two regions. The visualization can be seen in the \autoref{fig:connectivity_matrix}. The connectome is represented as an upper triangular matrix($84 x 84$) considering that the connections between two ROIs are symmetric.
 
