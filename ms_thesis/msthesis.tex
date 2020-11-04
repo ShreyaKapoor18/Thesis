@@ -14,6 +14,10 @@ BCOR=8mm]{scrbook} % BCOR sets the space, used by the type of  book. (e.g. glued
 \newcommand{\shortarrow}[1]{%
   \mathrel{\text{\rotatebox[origin=c]{\numexpr#1*45}{\fixed@sra}}}
 }
+\newcommand{\thickhline}{%
+    \noalign {\ifnum 0=`}\fi \hrule height 1pt
+    \futurelet \reserved@a \@xhline
+}
 \makeatother
 %\newcommand{\comment}[1]{}
 \DeclareUnicodeCharacter{2212}{-}

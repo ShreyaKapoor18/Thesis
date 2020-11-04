@@ -18,7 +18,7 @@ During the process of generating the connectome (\autoref{subsec:connectomegener
 
 The 5TT image obtained after tissue segmentation (\autoref{subsec:struct_diff}) was 4D and could not be easily displayed in 3D. In \autoref{fig:preproc}.a, this 4D image is displayed according to gray-scale mapping in 3D. With the grayscale mapping it was viusally observed that the 5TT images did not contain any erroneous labels. The original 4D image contained three volumes with each one representing the corresponding tissue densities of WM, GM and CSF. In \autoref{fig:preproc}.b. the 5TT 4D image is visualized as an RGB image with each volume getting its specific color, i.e. WM as blue, GM as green and CSF as red. In interactive window from \textbf{\textit{mrview}} (\cite{tournier2019mrtrix3}) the RGB image can be zoomed in an checked for compliance of the response functions with the fODFs and tissue segmentations. 
 
-After obtaining information about the tissue segmentations and fODFs, one million fibers whole brain tractography was generated (\autoref{fig:preproc}.c). In this tractogram, the red fibers run in right to left direction, green between anterior-posterior and blue in head-to-foot direction (\cite{obert2013evaluation}). Finally, the connectome could be visualized (\autoref{fig:preproc}.d) with the nodes representing the center of mass of grey matter regions and edges as the connections between them. The intensity of this image is not equal to the signal intensity but the number assigned to the ROI, so any parcellated region that has a higher numbering in the lookup table is shown brighter. However, the diagram still remains informative. 
+After obtaining information about the tissue segmentations and fODFs, one million fibers whole brain tractography was generated (\autoref{fig:preproc}.c). In this tractogram, the red fibers run in right to left direction, green between anterior-posterior and blue in head-to-foot direction (\cite{obert2013evaluation}). Finally, the connectome could be visualized (\autoref{fig:preproc}.d) with the nodes representing the center of mass of grey matter regions and edges as the connections between them. The intensity of this image is not equal to the signal intensity but the number assigned to the ROI, so any parcellation region that has a higher numbering in the lookup table is shown brighter. However, the diagram still remains informative. 
 
 Overall, visualizing the preprocessing pipeline helped to evaluate the anatomical correspondence of the tractography. It also helps understand the relationship between the generated connectome and white matter connectivity.
 
@@ -69,18 +69,34 @@ measure of brain connectivity.
 \subsection{Self loops}
 \label{res:selfloops}
 
-The results for the experiment mentioned in section \ref{sec:exclusion} are presented in table \ref{table:selfloops}. For the independent test data all p-values are $p>0.05$ and the t statistic values represent the differences in the classification metrics with and without the inclusion of self loops. The low absolute values of the t-statistic further increased the evidence for insignificance of inclusion of self loops for classification accuracy.
-
 \begin{table}
+\begin{tabular}{|p{0.15\textwidth}|l|l|l|l|}
+\thickhline
+ \large \textbf{Label}&  \large \textbf{Metric}&  \large \textbf{Feature}&  \large \textbf{T statstic}&  \large \textbf{P value}\\
+\thickhline
+Personality&Balanced&Mean FA&-0.196&0.846\\
+Traits&accuracy&Mean streamling length&0.156&0.876\\
+&&Number of streamlines &-1.248&0.217\\
+&Area under &Mean FA&0.071&0.944\\
+&ROC curve&Mean streamling length&1.332&0.188\\
+&&Number of streamlines&-1.42&0.161\\
+\thickhline
+Gender&Balanced&Mean FA&0.396&0.695\\
+&accuracy&Mean streamline length&2.068&0.048\\
+&&Number of streamlines&0.98&0.335\\
+&Area under &Mean FA&0.491&0.627\\
+&ROC curve&Mean streamline length&3.875&0.001\\
+&&Number of streamlines&2.199&0.036\\
+\hline
+\end{tabular}
+\caption{Results for a paired samples t-test on the test set. The paired samples are the classification metrics of the data with and without the inclusion of self loops. The p values correspond to t-test of two arrays for the same classification metric constructed using methodology in \autoref{sec:exclusion}.}
 \label{table:selfloops_combined}
-\csvreader[
-  tabular=|p{0.13\textwidth}|p{0.15\textwidth}|p{0.29\textwidth}|p{0.08\textwidth}|p{0.09\textwidth}|,
-  table head= \specialrule{0.2em}{0.05em}{0.05em} Target Label & Metric & Feature & T test & P value\\ \hline,
-  late after last line=\\\hline,
-]{tables/Combined_self_loops.csv}{}%
-{\csvcoli  & \csvcoliii & \csvcoliv & \csvcolv & \csvcolvi}
-\caption{Results for a paired samples t-test carried where paired samples are the classification metrics of the data with and without the inclusion of self loops. The corresponding p values are for two arrays for the same classification metric with each array representing classification metric for the five different personality traits. Based on test data only.}
 \end{table}
+
+
+The results for the experiment mentioned in \autoref{sec:exclusion} are presented in  \autoref{table:selfloops_combined}. For the independent test data all p-values are $p>0.05$ and the t-statistic values represent the differences in the classification metrics with and without the inclusion of self loops. The low absolute values of the t-statistic further increased the evidence for insignificance of inclusion of self loops for classification accuracy.
+
+
 
 \section{Baseline analysis}
 \begin{figure}
@@ -132,7 +148,7 @@ In Fig. \ref{fig:gender_num_strls_10} the MEWS solver based implementation reduc
 
 For the features determined by the subgraph. The reduced features were put through an independent samples t-test for gender differences. 
 
-
+\iffalse
 \begin{table}
 \label{table:10strls_gender}
 \csvreader[
@@ -143,7 +159,7 @@ For the features determined by the subgraph. The reduced features were put throu
 {\csvcoli & \csvcolii & \csvcoliii & \csvcoliv }
 \caption{Results for an independent samples t-test carried, The corresponding p values are for the different number of streamlines for males and femalestvod .}
 \end{table}
-
+\fi
 
 
 \iffalse

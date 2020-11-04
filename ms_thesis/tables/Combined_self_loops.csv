@@ -4,7 +4,7 @@ Traits,,accuracy,Mean streamling length,0.156,0.876
 ,,,Number of streamlines ,-1.248,0.217
 ,,Area under ,Mean FA,0.071,0.944
 ,,ROC curve,Mean streamling length,1.332,0.188
-,,,number of streamlines,-1.42,0.161
+,,,Number of streamlines,-1.42,0.161
 Gender,Test data,Balanced,Mean FA,0.396,0.695
 ,,accuracy,Mean streamline length,2.068,0.048
 ,,,Number of streamlines,0.98,0.335
