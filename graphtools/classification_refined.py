@@ -14,8 +14,8 @@ tri = len(np.triu_indices(84)[0])
 
 def process_raw(X_train, X_test, y_train, edge):
     scalar2 = StandardScaler()
-    X_train = pd.DataFrame(scalar2.fit_transform(X_train), index=X_train.index)
-    X_test = pd.DataFrame(scalar2.transform(X_test), index=X_test.index)
+    X_train = pd.DataFrame(scalar2.fit_transform(X_train), index=X_train.index, columns=X_train.columns)
+    X_test = pd.DataFrame(scalar2.transform(X_test), index=X_test.index, columns=X_train.columns)
 
     stacked = pd.concat([X_train, y_train], axis=1)
     cols = []
@@ -49,7 +49,7 @@ def transform_features(X_train, X_test, y_train, per, edge):
     index = np.where(arr >= val)
     X_train = X_train.iloc[:, index[0]]
     X_test = X_test.iloc[:, index[0]]
-
+    print('Selected indices', index[0])
     assert list(X_train.index) == list(y_train.index)
     return X_train, X_test, arr, index[0]
 
@@ -137,8 +137,7 @@ def classify(l1, classifier, params, mapping, strls_num, feature_selection, choi
     X_train, X_test, y_train, y_test = l1
     labels = ['NEOFAC_A', 'NEOFAC_O', 'NEOFAC_C', 'NEOFAC_N', 'NEOFAC_E']
 
-    big5 = ['Agreeableness', 'Openness', 'Conscientiousness', 'Neuroticism',
-            'Extraversion']
+    big5 = [ 'Neuroticism', 'Extraversion']
     metrics = ['balanced_accuracy', 'accuracy', 'f1_weighted', 'roc_auc_ovr_weighted']
     percentages = [2, 5, 10, 50, 100]
     results_base = []

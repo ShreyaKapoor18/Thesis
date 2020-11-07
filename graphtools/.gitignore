@@ -6,3 +6,4 @@ workspace.xml
 CoBundleMAP
 __pycache__/
 nilearn_cache/
+reports/

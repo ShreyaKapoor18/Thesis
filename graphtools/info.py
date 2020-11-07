@@ -27,35 +27,32 @@ X_train = generate_combined_matrix(tri, list(
 # filter_summary()
 y_test = test_subjects()
 X_test = generate_test_data(tri, y_test.index)
-nondiag = list(set(range(3570)).difference(set(diag_flattened_indices(84))))
+X_train = pd.concat([X_train, X_test], axis=0)
 
 from sklearn.preprocessing import StandardScaler
 s1 = StandardScaler()
-#X_train = pd.DataFrame(s1.fit_transform(X_train), index = X_train.index)
-y_train = y_train['Gender']
+X_train = s1.fit_transform(X_train)
+X_train = pd.DataFrame(X_train)
 mean_FA = X_train.iloc[:, :tri]
 num_strls = X_train.iloc[:, 2 * tri:]
 meanstrl = X_train.iloc[:,tri:2*tri]
-fig, ax = plt.subplots(1,3, figsize=(8,5))
-ax[0].hist(num_strls.iloc[:, nondiag].loc[y_train== 'M'].std(), label= 'Male', bins=20)
-ax[0].hist(num_strls.iloc[:, nondiag].loc[y_train== 'F'].std(), label= 'Female',bins=20)
-ax[0].set_yscale('log')
-ax[0].set_title('Number of streamlines')
-ax[1].hist(mean_FA.iloc[:, nondiag].loc[y_train== 'M'].std(), bins=20)
-ax[1].hist(mean_FA.iloc[:, nondiag].loc[y_train== 'F'].std(), bins=20)
-ax[1].set_yscale('log')
-ax[1].set_title('Mean FA')
-ax[2].hist(meanstrl.iloc[:, nondiag].loc[y_train== 'M'].std(), label= 'Male', bins=20)
-ax[2].hist(meanstrl.iloc[:, nondiag].loc[y_train== 'F'].std(), label='Female', bins=20)
-ax[2].set_yscale('log')
-ax[2].set_title('Mean streamline length')
-ax[2].legend()
-ax[1].set_xlabel('std dev')
+fig, ax = plt.subplots(1,3, sharey=True)
+ax[0].hist(num_strls.mean())
 ax[0].set_ylabel('Number of between ROI connections')
-fig.suptitle(' Standard dev distribution based on training data')
+ax[0].set_title('Number of streamlines')
+ax[0].set_yscale('log')
+ax[1].hist(mean_FA.mean())
+ax[1].set_title('Mean FA')
+ax[1].set_yscale('log')
+ax[1].set_xlabel('z score')
+ax[2].hist(meanstrl.mean())
+ax[0].set_yscale('log')
+ax[2].set_title('Mean Streamline length')
+
+plt.subplots_adjust(top=0.8)
+fig.suptitle('Z score distribution based on training and test data')
 plt.savefig('outputs/figures/zscoredist.png')
 plt.show()
-
 #%%
 mean_FA[:, diag_flattened_indices(84)]
 mean_FA.iloc[:, diag_flattened_indices(84)].mean()
@@ -69,7 +66,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-
+#%%
 df = pd.read_csv('outputs/csvs/summary.csv')
 fig = plt.figure(figsize=(50,40))
 target = 'Gender'
@@ -84,7 +81,6 @@ g= (g.map(sns.scatterplot, 'Output_Graph_nodes', 'Output_Graph_edges')).add_lege
 fig.suptitle('Gender Classification - Solver')
 plt.savefig(f'outputs/figures/{target}_nodes_preserved.png')
 plt.show()
-#%%
 #%%
 solver = pd.read_csv('outputs/csvs/solver.csv')
 s1 = solver.groupby(by=['Type of feature', 'Edge'])
@@ -129,27 +125,31 @@ for clf in ['SVC' 'RF', 'MLP']:
     legends.append(f'test_{clf}')
 '''
 
-
-fig = plt.figure(figsize=(50,40))
-g = sns.FacetGrid(base, col='Type of feature', row ='Edge', sharex=True, margin_titles=True,
+fig = plt.figure(figsize=(50,50))
+g = sns.FacetGrid(base, col='Type of feature', sharex=True, row ='Edge', margin_titles=True,
                   legend_out=True,hue='Classifier',hue_kws=dict(color=['green','blue','orange', "1","2","3"]))
-g = (g.map(plt.plot, 'Percentage', 'test_accuracy', marker ='.',label = 'test', alpha = 0.5, markersize =12))
-
-g.axes[0, 0].set_ylabel('Balanced Accuracy')
-g.axes[1,0].set_ylabel('Balanced Accuracy')
+g = (g.map(plt.plot, 'Percentage', 'test_roc_auc_ovr_weighted', marker ='.',label = 'test', alpha = 0.5, markersize =12))
+g.axes[0,0].set_title('Number of streamlines')
+g.axes[0,1].set_title('Mean FA')
+g.axes[0,2].set_title('Mean streamline length')
+g.axes[0,0].set_ylabel('Area under ROC curve')
+g.axes[1,0].set_ylabel('Area under ROC curve')
 for i in range(g.axes.shape[0]):
     for j in range(g.axes.shape[1]):
         g.axes[i][j].grid(which='minor', alpha=0.2)
         g.axes[i][j].grid(which='major', alpha=0.5)
 #g.add_legend()
 g.add_legend()
+g.set(yticks=range(70,100,5))
+#fig.text(0.015, 0.3, 'Area under ROC curve', ha='center', fontsize=12, rotation='vertical')
 #[plt.setp(ax.texts, text="") for ax in g.axes.flat]
 # remove the original texts
 # important to add this before setting titles
 #g.set_titles(row_template = '{row_name}', col_template = '{col_name}')
-g.fig.subplots_adjust(top=0.9)
 g.fig.suptitle('Gender classification on test set with baseline')
-plt.savefig('outputs/figures/baseline_results.png')
+g.fig.subplots_adjust(top=0.35)
+
+plt.savefig('outputs/figures/baseline_results_gender.png')
 plt.show()
 #%%
 fig = plt.figure(figsize=(50,40))

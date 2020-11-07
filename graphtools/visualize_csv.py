@@ -153,7 +153,8 @@ for sel in slice['Feature Selection'].unique():
                        label=f'{sel}', color=color_line, alpha=trans, linewidth=ll)[0]
 plt.grid(which='minor')
 plt.grid(which='major')
-
+plt.yticks(range(82,96))
+plt.xticks(range(0,300,10), rotation=65)
 plt.title(f'Classification results based on {f} and \n fscores with {clf}')
 plt.xlabel('Number of edges')
 plt.ylabel('Area under ROC curve')

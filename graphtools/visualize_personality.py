@@ -7,9 +7,9 @@ column = 'Type of feature'
 row = 'Edge'
 hue = 'Feature Selection'
 label ='Area under ROC curve'
-base = pd.read_csv('outputs/csvs/base_personality.csv')
+base = pd.read_csv('outputs/csvs/base_personality_2.csv')
 #base = base[base['Num_features']<=250]
-solver = pd.read_csv('outputs/csvs/solver_personality.csv')
+solver = pd.read_csv('outputs/csvs/solver_personality_2.csv')
 solver = solver.drop(columns=['Num_nodes', '% Positive edges', 'ROI_strl_thresh'])
 base = base.drop(columns=['Self_loops', 'ROI_strl_thresh'])
 base = base.rename(columns={'Num_features':'Num edges'})
@@ -46,7 +46,6 @@ plt.show()
 
 #%%
 # compare solver and base
-base = base[base['Num edges']<=250]
 combined = pd.concat([solver, base], axis=0)
 #combined.to_csv('outputs/csvs/combined_result_solver_base_personality.csv')
 combined = combined[combined['Choice']=='test throw median']
@@ -73,7 +72,7 @@ for (target, feature), i  in zip([('Extraversion', 'num_streamlines'), ('Neuroti
                 trans = 0.5
                 ll = 2
             elif sel =='baseline':
-                linestyle = '-'
+                linestyle = ':'
                 trans = 0.8
                 ll = 3
             for clf, color_line in zip(sl['Classifier'].unique(), ['blue', 'green', 'orange']):
