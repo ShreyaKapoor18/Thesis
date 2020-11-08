@@ -5,7 +5,7 @@
 \usepackage{eurosym} %includes the euro symbol 
 \usepackage[dvipsnames, hyperref]{xcolor} % enables more advanced color support for hyperref
 
-\usepackage[list-name={List of Acronyms}]{acro}
+%\usepackage[list-name={List of Acronyms}]{acro}
 
 \usepackage{graphicx} % enables loading of graphics
 \graphicspath{ {images/}{../images/}{guidelines/images/}}
@@ -15,7 +15,7 @@ natbib,
 maxnames=2,
 maxbibnames=100,
 style=authoryear-comp,
-uniquename=full,
+%uniquename=full,
 giveninits,
 doi=False,
 backend=biber,
@@ -45,7 +45,7 @@ hyperref]{biblatex} % advanced bibliography support
 \usepackage{placeins} % provides FloatBarrier
 \usepackage[ruled,vlined]{algorithm2e} %algorithm package
 \linespread{1.1} % Definition of the linespread
-
+\usepackage{lipsum}
 \usepackage[tbtags]{mathtools}
 \DeclareMathOperator*{\somefunc}{somefunc}
      
@@ -58,14 +58,19 @@ urlcolor=magenta!35!black, %definition of the url color
 pdfauthor=Shreya Kapoor, % Optional: Specify the author of the pdf
 pdftitle=Extracting most predictive subgraphs from models of human brain connectivity   % Optional: Specify the title within the pdf
 } 
-\usepackage[capitalize,noabbrev]{cleveref}
+\usepackage[nameinlink,capitalize,noabbrev]{cleveref}
 \usepackage{tcolorbox}
 \usepackage{csvsimple}
 %\usepackage[acronym,nomain]{glossaries}
-\usepackage[toc,acronym]{glossaries}
+\usepackage[toc,nopostdot, nonumberlist,style=long,automake,acronym]{glossaries}
 \usepackage{ctable} % for \specialrule command
 \usepackage{multirow}
 \usepackage{tabularx}
+\usepackage{hyperref}
+\renewcommand{\equationautorefname}{Eq.}
 %\usepackage{glossaries}
 % Specify headers and footers in different file for better overview
 \input{setup/headfoot.tex}
+%\setacronymstyle{long-short}
+\loadglsentries{setup/acronyms.tex}
+\makeglossaries

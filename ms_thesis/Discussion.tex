@@ -16,7 +16,7 @@ There were numerous possibilities for the edge weights in the input graph for th
 
 The pearson correlation coefficient worked well as a filter method for the personality traits. This was because it considers the linear nature of the personality trait coefficients. This type of feature selection is well reported in literature for Neuroimaging data considering continuous variables. It performed well for the baseline experiments as well as the solver based feature selection. For both the cases the absolute value of the pearson correlation coefficient was taken because only the correlation was important, whether it is positive or negative correlation was not a matter of concern for the analysis. The f-score and the t-test were based on the binarization of the target variables according to the median values of the personality trait from the training set, this might lead to information loss and hence their lower numerical values. 
 
-For gender, which is already categorical, 
+For gender, which is already categorical, the t-test and the fscores fitted as a good scoring technique. There was not any information loss considering these two statistics measure similar attributes of a particular feature. They measure how well does a particular feature separate the two classses. This type of selection worked quite well with gender variables.
 
 \section{Node weights}
 Different types of node weightings were tried to form the subgraph besides from the values presented in the results. The nodes were given sets of random weights, average of all incoming edge weights, maximum of all incoming edge weights and constant values in different numerical ranges. 

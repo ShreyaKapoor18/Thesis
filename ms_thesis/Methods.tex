@@ -1,12 +1,10 @@
 \documentclass[msthesis.tex]{subfiles}
 \def\Arrow{\raisebox{0.3\height}{\scalebox{2}{$\Rightarrow$}}}
 \begin{document}
-
 \chapter{Methods}
 \label{chap:methods}
 \begin{figure}
-
-     \centering
+    \centering
      \begin{subfigure}[b]{0.4\textwidth}
          \centering
          \vspace{-2em}
@@ -29,7 +27,7 @@
         \begin{tcolorbox}[box align= center,coltitle=black!75!black, colback=yellow!5!white,colframe=yellow!50!black,
   colbacktitle=yellow!80!black,title=\centering \large Feature Representation]
         \centering
-        fscores, t-test, pearson correlation
+        f-scores, t-test, pearson correlation
         \end{tcolorbox}
         \caption{}
          \label{fig:feature extraction}
@@ -61,23 +59,23 @@
          \caption{Classification}
          \label{fig:three sin x}
          \end{subfigure}
-    \caption{(a) Whole brain, one million streamlines tractography computed for each subject. (b) Connectivity matrix encoding DWI information. In this case, the matrix represents the number of streamlines between any two regions of interest in the $log_{10}$ scale. (c) Different statistical measures used to represent the importance of the original features present in the dataset.(d) Ranking used to determine the most important features which are then fed to the classifier. Parallelly, the MEWS is extracted from an input graph of statistical coefficients and is fed to the classifier (e) Classification using machine learning algorithms, such as SVMs, Random forests and MLPs.}
+    \caption{(a) Whole brain, one million streamlines tractography computed for each subject. (b) Connectivity matrix encoding DWI information. In this case, the matrix represents the number of streamlines between any two regions of interest in the $log_{10}$ scale. (c) Different statistical measures used to represent the importance of the original features present in the dataset.(d) Ranking used to determine the most important features which are then fed to the classifier. Parallelly, the MEWS is extracted from an input graph of statistical coefficients and is fed to the classifier (e) Classification using machine learning algorithms, such as \gls{SVM}s, \gls{RF}s and \gls{MLP}s.}
     \label{fig:pipeline}
 \end{figure}
 
-A classification task was designed for the MRI data from the Human Connectome Project. The pipeline consisted of four major steps. First, a whole brain tractography was generated on the basis of DWI scans for each subject. Second,  three types of connectomes were created for each subject and represented in the form of connectivity matrices. Thirdly, two different feature selection techniques were deployed for classification of subjects based on the connectivity matrices. Finally, machine learning classifiers were used to test the effectiveness of these two feature selection techniques. The summary of the pipeline is presented in \autoref{fig:pipeline}
+A classification task was designed for the MRI data from the \gls{HCP}. The pipeline was designing this classification task consisted of four major steps. First, a whole brain tractography was generated on the basis of \gls{DWI} scans for each subject. Second,  three types of connectomes were created for each subject and represented in the form of connectivity matrices. Thirdly, two different feature selection techniques were deployed for classification of subjects based on the connectivity matrices. Finally, machine learning classifiers were used to test the effectiveness of these two feature selection techniques. The summary of the pipeline is presented in \autoref{fig:pipeline}.
 
-The implementation of this pipeline was scripted in \textit{Python}. The preprocessing of the HCP data to generate tractography was done with the help of \textit{MRtrix3} (\cite{tournier2019mrtrix3}).  Data was prepared in a classification ready format using \textit{Pandas} (\cite{mckinney2011pandas}) dataframes. The Maximum Edge Weight Subgraph problem was implemented in \text{Java} based on a modification from \cite{DBLP:journals/corr/LobodaAS16} (\href{https://github.com/ctlab/gmwcs-solver}{\textbf{github.com/ctlab/gmwcs-solver}}). The final classification was based on machine learning from \textit{scikit-learn}(\cite{sklearn_2012}). 
+The implementation of this pipeline was scripted in \textit{Python}. The preprocessing of the \gls{HCP} data to generate tractography was done with the help of \textit{MRtrix3} (\cite{tournier2019mrtrix3}).  Data was prepared in a classification ready format using \textit{Pandas} (\cite{mckinney2011pandas}) dataframes. The Maximum Edge Weight Subgraph problem was implemented in \text{Java} based on a modification from \cite{DBLP:journals/corr/LobodaAS16} (\href{https://github.com/ctlab/gmwcs-solver}{\textbf{\textit{github.com/ctlab/gmwcs-solver}}}). The final classification was based on machine learning from \textit{scikit-learn}(\cite{sklearn_2012}). 
 
 \section{Data Acquisition}
 \label{sec:acquisition}
-Structural and Diffusion MRI for 203 subjects was acquired from the s900 release of the HCP (\cite{hcp2015wu}). Out of the total, 101 subjects were females and 102 were males. 83 females and 58 males were aged 26-30 and while the 34 males and 28 females were aged 22-25. The demographic information along with other markers about the subjects' emotion and cognition were obtained from the unrestricted access data available on \href{https://db.humanconnectome.org/}{\textbf{\textit{https://db.humanconnectome.org/}}}.
+Structural and Diffusion MRI for 203 subjects was acquired from the s900 release of the \gls{HCP} (\cite{hcp2015wu}). Out of the total, 101 subjects were females and 102 were males. 83 females and 58 males were aged 26-30 and while the 34 males and 28 females were aged 22-25. The demographic information along with other markers about the subjects' emotion and cognition were obtained from the unrestricted access data available on \href{https://db.humanconnectome.org/}{\textbf{\textit{https://db.humanconnectome.org/}}}.
 
 \subsection{Imaging data}
-The structural and diffusion MRI files used for this project were obtained from the repositories containing volumes preprocessed using version 3 preprocessing pipelines of the HCP detailed in (\cite{GLASSER2013105}). A Siemens 3T Skyra system was used used to scan all subjects (starting in August 2012, housed at Washington University, St. Louis). The details of the acquisition protocol are mentioned in \cite{van2012human}.
+The structural and diffusion MRI files used for this project were obtained from the repositories containing volumes preprocessed using version 3 preprocessing pipelines of the \gls{HCP} detailed in \cite{GLASSER2013105}. A Siemens 3T Skyra system was used used to scan all subjects (starting in August 2012, housed at Washington University, St. Louis). The details of the acquisition protocol are can be obtained \cite{van2012human}.
 
 
-There were two types of structural data required from the HCP pipeline for each subject in order to proceed with the task of the project. The first was a parcellation image consisting of a segmentation volume and a cortical surface parcellation based on the Desikan Killinay Atlas (\cite{desikan2006automated}), provided as a default in FreeSurfer). The second type was the T1w scan in subject space. This anatomical images was aligned to the location at the interface of hemispheres: the anterior commisure and posterior commisure (ACPC). It is a rigid body rotation so that the image gets 'centered', this process can be termed as registration.\iffalse This was a T1w volume data in the subject's native space obtained after rigid-body rotation to AC-PC alignment (rigidly aligned to the native axis of MNI space, also termed as registration )\fi. It was sampled at the same resolution as the diffusion data (1.25 mm isotropic, originally 0.77 mm isotropic).The parameters of the T1w images are presented in the \autoref{tab:structuralmri}.
+There were two types of structural data required from the \gls{HCP} pipeline for each subject in order to proceed with the task of the project. The first was a parcellation image consisting of a segmentation volume and a cortical surface parcellation based on the Desikan Killinay Atlas (\cite{desikan2006automated}), which is provided as a default parcellation scheme in FreeSurfer \citep{fischl2012freesurfer}. The second type was the T1w scan in subject space. This anatomical images was aligned to the location at the interface of hemispheres: the anterior commisure and posterior commisure (ACPC). It is a rigid body rotation so that the image gets 'centered', this process can be termed as registration.\iffalse This was a T1w volume data in the subject's native space obtained after rigid-body rotation to AC-PC alignment (rigidly aligned to the native axis of MNI space, also termed as registration )\fi. It was sampled at the same resolution as the diffusion data (1.25 mm isotropic, originally 0.77 mm isotropic).The parameters of the T1w images are presented in the \autoref{tab:structuralmri}.
 
 
 \begin{table}[]
@@ -85,8 +83,8 @@ There were two types of structural data required from the HCP pipeline for each 
 \begin{tcolorbox}
 
     \centering
-    \begin{tabular}{|c|c|}
-    \hline
+    \begin{tabular}{!{\vrule width 2pt}c|c!{\vrule width 2pt}}
+    \specialrule{0.2em}{0.01em}{0.01em}
          TR (ms) & 2400\\
     \hline
          TE (ms) & 2.14 \\
@@ -98,7 +96,7 @@ There were two types of structural data required from the HCP pipeline for each 
          FOV & 224 x 224 \\
     \hline
          Voxel Size & 0.77 mm isotropic \\
-    \hline
+    \specialrule{0.2em}{0.01em}{0.01em}
     \end{tabular}
     \caption{Acquisition parameters for the structural image acquisition from the s900 release. }
     \label{tab:structuralmri}
@@ -110,8 +108,8 @@ There were two types of structural data required from the HCP pipeline for each 
 
 \begin{tcolorbox}
 \centering
-    \begin{tabular}{|c|c|}
-          \hline
+    \begin{tabular}{!{\vrule width 2pt}c|c!{\vrule width 2pt}}
+        \specialrule{0.2em}{0.01em}{0.01em}
          Sequence &  Spin-echo EPI \\
           \hline
          slice thickness & 1.25 mm, 1.25 mm isotropic voxels\\
@@ -129,9 +127,9 @@ There were two types of structural data required from the HCP pipeline for each 
         Voxel Size & 0.77 mm isotropic \\
          \hline
         b-values & 100,2000 and 3000 $s/mm^2$\\
-         \hline
+        \specialrule{0.2em}{0.01em}{0.01em}
     \end{tabular}
-    \caption{Parameters for the acquisition of the Diffusion MRI data acquired from the HCP.}
+    \caption{Parameters for the acquisition of the Diffusion MRI data acquired from the \gls{HCP}.}
     \label{tab:diffusionmripara}
 \end{tcolorbox}
 
@@ -171,10 +169,10 @@ max&45.0&45.0&48.0&43.0&46.0\\
 \begin{tcolorbox}
   
 
-\begin{tabularx}{\textwidth}{!{\vrule width 2pt}X|X|X|X|X|X !{\vrule width 2pt}} \specialrule{0.3em}{0.01em}{0.01em}
- Statistic& Agreeable-& Openness &Conscient-& Neurotic- & Extraver-\\
- &ness  & &uousness  & ism & sion \\
- \specialrule{0.3em}{0.01em}{0.01em}
+\begin{tabularx}{\textwidth}{!{\vrule width 2pt}X|X|X|X|X|X !{\vrule width 2pt}} \specialrule{0.2em}{0.01em}{0.01em}
+\textbf{ Statistic}& \textbf{Agreeable-}& \textbf{Openness} &C\textbf{onscient-}& \textbf{Neurotic- }& \textbf{Extraver-}\\
+ &\textbf{ness  }& &\textbf{uousness } & \textbf{ism} & \textbf{sion }\\
+ \specialrule{0.2em}{0.01em}{0.01em}
 count&141.0&141.0&141.0&141.0&141.0\\
 \hline
 mean&32.482&28.326&35.262&16.965&30.766\\
@@ -190,7 +188,7 @@ min&13.0&12.0&21.0&0.0&18.0\\
 75\%&36.0&32.0&39.0&21.0&34.0\\
 \hline
 max&44.0&43.0&47.0&43.0&46.0\\
- \specialrule{0.3em}{0.01em}{0.01em}
+ \specialrule{0.2em}{0.01em}{0.01em}
 \end{tabularx}
 \caption{Summary of personality traits for training data subjects.}
 \label{table:personality}
@@ -227,14 +225,14 @@ For this project, the structural images from subject's native space were taken d
 
 A connectome was generated on the basis of tractography as explained in \autoref{sec:connectomics}.The pipeline was implemented on the basis of the tutorial on Structural Connectome for Human Connectome from the software package \textbf{\textit{MRtrix3}}. The preparation of the structural connectivity matrices can be visualized in the figure \autoref{fig:connectome_pipeline}. This preparation mainly involves three steps which are explained in the following subsections.
 
-The structural and diffusion images available within the HCP data were used to prepare the data for probabilistic whole-brain tractography (\cite{parker2003framework}). The parcellation image was used to generate a volume delineating locations of the nodes of the connectome for each subject while the T1w image in a subject's native space were used to generate a five-tissue type (5TT) segmented image.
+The structural and diffusion images available within the \gls{HCP} data were used to prepare the data for probabilistic whole-brain tractography (\cite{parker2003framework}). The parcellation image was used to generate a volume delineating locations of the nodes of the connectome for each subject while the T1w image in a subject's native space were used to generate a \gls{5TT} segmented image.
 
 \subsection{Structural Image Processing}
 \label{subsec:struct_diff}
 
-The first three steps of the structural image processing were readily accomplished by the HCP preprocessing pipeline. The segmentation surface was available from the HCP data as mentioned in \autoref{sec:acquisition}. However, the data obtained had a parcellation mask based on the default FreeSurfer segmentation which did not contain the numbering of the ROIs starting from 1. The parcellation mask was converted from FreeSufer's estimates of sub-cortical grey matter structures with the estimates from FSL's FIRST tool. This made the numbering of the ROIs (also the nodes in this case) from 1. 
+The first three steps of the structural image processing were readily accomplished by the \gls{HCP} preprocessing pipeline. The segmentation surface was available from the \gls{HCP} data as mentioned in \autoref{sec:acquisition}. However, the data obtained had a parcellation mask based on the default FreeSurfer segmentation which did not contain the numbering of the ROIs starting from 1. The parcellation mask was converted from FreeSufer's estimates of sub-cortical grey matter structures with the estimates from FSL's FIRST tool. This made the numbering of the ROIs (also the nodes in this case) from 1. 
 
-In addition to creating the parcellation mass, a five tissue segmented image (5TT) was also generated. This was done on the basis of the T1w structural volume mentioned in \autoref{sec:acquisition} sampled at the same resolution as the diffusion data (1.25 mm isotropic). The 5TT image contained differentiation of brain regions into five tissue types, namely subcortical white matter, WM, cerebrospinal fluid (CSF) and optionally pathological tissue. The segmentation is based on FSL segmentation tools FIRST and FAST.This information about the location of different tissue types makes the tracking based on DWI images suitable for Anatomically constrained tractography.  (\cite{anattractsmith}). 
+In addition to creating the parcellation mass, a five tissue segmented image (5TT) was also generated. This was done on the basis of the T1w structural volume mentioned in \autoref{sec:acquisition} sampled at the same resolution as the diffusion data (1.25 mm isotropic). The 5TT image contained differentiation of brain regions into five tissue types, namely subcortical white matter, WM, cerebrospinal fluid (CSF) and optionally pathological tissue. The segmentation is based on FSL segmentation tools FIRST and FAST.This information about the location of different tissue types makes the tracking based on DWI images suitable for Anatomically constrained tractography \citep{anattractsmith}. 
 
 
 \iffalse
@@ -281,6 +279,14 @@ Using different parameter settings three types of features were extracted. The m
 In the  it can be seen that there is a need to decipher the streamlines which are terminating in the specified regions of interest
 \fi
 \section{Feature representation}
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{images/Graph_clf_possibilites.png}
+    \caption{Considerations for classification task. Each path along this graph represents a different possibility for a classifier to be trained on. The parameters for training the classifier are the type of feature, the target label and the feature selection technique.}
+    \label{tab:classify_combo}
+    %\label{fig:my_label}
+\end{figure}
+\iffalse
 \begin{table}[ht]
 \begin{tcolorbox}
 \centering
@@ -290,7 +296,7 @@ In the  it can be seen that there is a need to decipher the streamlines which ar
         \specialrule{.2em}{.05em}{.05em}
          Type of feature & Mean FA & Number of streamlines & Mean streamline length \\
          \specialrule{.1em}{.05em}{.05em}
-        Edge representations & pearson correlation coefficient &  t-test & fscores\\
+        Edge representations & pearson correlation coefficient &  t-test & f-scores\\
         \specialrule{.1em}{.05em}{.05em}
         Feature &  \multicolumn{3}{c}{Solver | Baseline}\\
         Selection & Number of nodes & Percentage of features\\
@@ -301,8 +307,9 @@ In the  it can be seen that there is a need to decipher the streamlines which ar
     \label{tab:classify_combo}
 \end{tcolorbox}
 \end{table}
+\fi
 
-Once the connectivity matrices for all the 201 subjects were computed and encoded in the format of a .csv file, a \textit{pandas} dataframe was prepared to serve as input to the classifier. Each row represented the data for an individual subject. Each column represented the connection between any two brain regions i.e. features in one cell of the connectivity matrix. Three different types of features obtained using the connectome files according to \autoref{subsec:connectomegeneration}. The design of the classification task was based on different attributes presented in \autoref{tab:classify_combo}. With one set of configurations for the two different techniques a classifier was trained for the solver based techniques as well as for the baseline experiments. The details will be discussed in the subsequent subsections.
+Once the connectivity matrices for all the 201 subjects were computed and encoded in the format of a .csv file, a \textit{pandas} \textit{dataframe} was prepared to serve as input to the classifier. Each row represented the data for an individual subject. Each column represented the connection between any two brain regions i.e. features in one cell of the connectivity matrix. Three different types of features obtained using the connectome files according to \autoref{subsec:connectomegeneration}. The design of the classification task was based on different attributes presented in \autoref{tab:classify_combo}. With one set of configurations for the two different techniques a classifier was trained for the solver based techniques as well as for the baseline experiments. The details will be discussed in the subsequent subsections.
 \iffalse In the \textit{dataframe} be separate so that at any time only the same type of features are used to be filtered.The exact structure varied according to the feature selection techniques employed\fi. 
 
 Self-loops were omitted from the analysis pipeline due to incompatibility with the solver based implementation and non-significant changes to classification accuracy based on the omission. Further, using the calculation of statistical coefficients on the raw data the importance of each feature was determined. 
@@ -313,9 +320,9 @@ The training set consisted of 141 subjects consisting of 83 females and 58 males
 \label{subsub:statcoef}
 The raw features were not representative of any information on a group level. To gain information about feature importance statistical coefficients were used. From the raw matrices, each column was be represented as a statistic and hence `group averaged' edge of the connectivity graph. 
 
-Statistical coefficients are effective feature filter methods for the classification from Neuroimaging data. Filter methods were used since they can be retraced to the original features. Mainly, three cofficients were used. The first two were the t-test and the fscores,which describe the discriminative power of a particular feature. The pearson correlation coefficient was used in the case of continuous variables to capture the linear relationships between the features and the target values. 
+Statistical coefficients are effective feature filter methods for the classification from Neuroimaging data. Filter methods were used since they can be retraced to the original features. Mainly, three cofficients were used. The first two were the t-test and the f-scores,which describe the discriminative power of a particular feature. The pearson correlation coefficient was used in the case of continuous variables to capture the linear relationships between the features and the target values. 
 
-The fscore used in the analysis is used to measure how well the particular feature distinguishes between the two classes labelled as 1 and 2. It was calculated according to the equation \autoref{eq:fscores}. For the pearson correlation coefficient, the absolute values were taken.
+The f-score used in the analysis is used to measure how well the particular feature distinguishes between the two classes labelled as 1 and 2. It was calculated according to the equation \autoref{eq:fscores}. For the pearson correlation coefficient, the absolute values were taken.
 
 The t-test was processed in a different manner as compared to the first two metrics, the training data was divided into two groups, one belonging to class 1 and the other belonging to class 2. The null-hypothesis remained that the means of the given feature for the two samples are identical i.e. $\overline{x_{1}} - \overline{x_{2}} = 0$. The p-value of the t-test was used to determine it's statistical significance by converting it into the $log_{10}$ scale. Each p-value $p_x$ was represented by $ f(p_{x}) = (-1) \times \log_{10} p_x$ so that a higher numerical value represents a higher statistical significance.  
 \subsection{Exclusion of self loops}
@@ -340,7 +347,7 @@ The results in \autoref{res:selfloops} help evaluate the importance of self loop
 
 The null hypothesis for classification of personality traits was that the average of a particular classification metric on the basis of one feature (such as mean FA, mean streamline length and number of streamlines) is the same. Including data for all five personality traits and one type of edge for arrays $a$ and $b$ had a size  $n=75$ i.e. $5\times 5 \times 3 \times 1$. 
 
-In a similar fashion, the null hypothesis for the gender based classification the same. However, instead of five personality traits there was one label used i.e. gender and two edge type (t-test and fscores). This resulted in $n=30$ i.e. $1 \times 5 \times 3 \times 2$.
+In a similar fashion, the null hypothesis for the gender based classification the same. However, instead of five personality traits there was one label used i.e. gender and two edge type (t-test and f-scores). This resulted in $n=30$ i.e. $1 \times 5 \times 3 \times 2$.
 
 The null hypothesis could not be rejected because for the test data, the p-values of these t-tests were high. This indicates that the difference between the classification on the data with and without the self loops is not statistically significant. Self loops could hence be safely eliminated and the results of these experiment are presented in \autoref{res:selfloops}. 
 
@@ -350,6 +357,7 @@ The motivation to perform feature selection from considerations of time complexi
 The MEWS technique produces more interpretable results as compared to filter methods due to incorporation of graph topology. It is proposed due to the fact that analyzing the inter-subject differences at the subnetwork level is easier than analyzing dense subgraph of whole brain connectivity. 
 
 \subsection{Baseline analysis}
+\label{subsec:Baseline_ana}
 % Question: which one do we report? Solver was working only with the pearson correlation coefficient.
 
 Baseline experiments were solely based on the filter methods mentioned in \autoref{subsec:filtermethods}. In this technique, there is no information about graph topology or the biological correspondence of the features. Feature importance is determined purely on numerical values.
@@ -359,9 +367,9 @@ For each of the structural connections, the statistical coefficient was calculat
 \iffalse
 The pearson correlation coefficient was computed between the values of the feature for the training subjects and their corresponding personality trait values. It was a trial to capture the linear relationship between a parameter (such as mean FA) representing a brain connection and the outcome label (i.e. personality trait).
 
-The fscore based selection was done by computing the fscore between the feature values for the training set and thresholded values of the target variables according to the median of the training data labels. 
+The f-score based selection was done by computing the f-score between the feature values for the training set and thresholded values of the target variables according to the median of the training data labels. 
 
-The fscores served as feature filtering step for the baseline experiments as they were used by dividing the f-score distribution into percentiles and then choosing the percentage of features we want in the specified top percentile. However, for the solver based experiments the fscores for each feature was (numerically) low which made the MIP problem hard to run computationally. Even multiplying the f-scores with an order of $10^3$ was not useful since the standard deviation of the f-scores was not too high (insert the standard deviation). 
+The f-scores served as feature filtering step for the baseline experiments as they were used by dividing the f-score distribution into percentiles and then choosing the percentage of features we want in the specified top percentile. However, for the solver based experiments the f-scores for each feature was (numerically) low which made the MIP problem hard to run computationally. Even multiplying the f-scores with an order of $10^3$ was not useful since the standard deviation of the f-scores was not too high (insert the standard deviation). 
 
 This feature selection was in fact quite useful for the feature selection in the baseline experiments. The p-value of the t-test could be divided into percentile distributions and the top percentiles could be chosen accordingly. However, for the solver based experiments this selection did not work well due to computational effort. 
 
@@ -373,11 +381,11 @@ The f-score and the t-test were based on the binarization of the target variable
 \subsection{Maximum Edge Weighted Subgraph}
 \label{method:MEWS}
 
-The special case of the MCWS (\autoref{sec:MEWS}), the MEWS was implemented because of no predefined node weighting for the regions of interest. The implementation was based on  the Java application from \cite{DBLP:journals/corr/LobodaAS16}. This application made use of the IBM ILOG CPLEX studio version 12.10 Java API. 
+The special case of the \gls{MCWS} (\autoref{sec:MEWS}), the \gls{MEWS} was implemented because of no predefined node weighting for the regions of interest. The implementation was based on  the Java application from \cite{DBLP:journals/corr/LobodaAS16}. This application made use of the IBM ILOG CPLEX studio version 12.10 Java \gls{API}. 
 
-For each type of feature a separate graph was created specific to the target label of interest. The nodes in this graph consisted of 84 nodes defined by the cortical parcellations based on the Desikan Killiany Atlas. The edges were the connections between the ROIs weighted by the statistical coefficients calculated for the training data with respect to the target variables.
+For each type of feature a separate graph was created specific to the target label of interest. The nodes in this graph consisted of 84 nodes defined by the cortical parcellations based on the Desikan Killiany Atlas. The edges were the connections between the ROIs weighted by the statistical coefficients calculated for the training data with respect to the target variables. Such a graph was termed as the input graph.
 
-All nodes were given a constant negative weighting of $\{-0.01\}$ to assure a negative penalty on the inclusion of an extra node. This ensured the conservation of a specified number of nodes alongside compatibility for MEWS  \autoref{eq:sumews}. Additionally, sparsity to the input graph was introduced using two constraints. The absolute value of the edge weights (raw features represented by statistical coefficients, \autoref{subsub:statcoef}) shall not be zero. Simultaneously, features are conserved if and only if the tractography of each subject contains at least one streamline between the two nodes. 
+All nodes in the input graph were given a constant negative weighting of $\{-0.01\}$. This was done to ensure a negative penalty on the inclusion of an extra node. This ensured the conservation of a specified number of nodes alongside compatibility for MEWS  \autoref{eq:sumews}. Additionally, sparsity to the input graph was introduced using two constraints. The absolute value of the edge weights (raw features represented by statistical coefficients, \autoref{subsub:statcoef}) shall not be zero. Simultaneously, features are conserved if and only if the tractography of each subject contains at least one streamline between the two nodes. 
 
 \iffalse
 Nodes could be given different types of weighting such as the maximum of the incoming edge weights, any numerical constant or the average of the incoming edge weights. Further the edges could be filtered on the basis of thresholds for the numerical features.
@@ -390,7 +398,7 @@ For creating the output graph, parts of the pipeline used in \cite{DBLP:journals
 \end{align}
 where m is a controllable parameter specifying the number of nodes needed to be preserved in the output graph and $y_v$ is the binary variable mentioned in equation \autoref{eq:y_v}. The preprocessing module of the MCWS Java solver was disabled due to it's incompatibility with the required constraint \autoref{eq:sum_constraints}.
 
-An object oriented approach was taken to implement a class derived from the \textit{networkx} (\cite{hagberg2008exploring}) for the different input graphs and their corresponding output graphs. At any time, the graphs created for a specific use case could be read from text files and their properties could be explored.
+An object oriented approach was taken to implement a class derived from the \textit{networkx} \citep{hagberg2008exploring} for the different input graphs and their corresponding output graphs. At any time, the graphs created for a specific use case could be read from text files and their properties could be explored.
 
 In order compare the features selected with this technique to the baseline experiments, it was important to infer the number of edges being preserved based on a specific input configuration. The output number of edges was then analyzed as function of the number of nodes. The results are presented in \autoref{fig:fun_num_edges}.
 
@@ -401,12 +409,12 @@ A Randomized Search 5 fold cross validation with implementation from \textit{sci
 
 The training set consisted of 141 subjects, 83 females and 58 males aged 26-30. The independent test set consisted of 62 subjects, 34 males and 28 females aged 22-25. The different age ranges for the training and the test set were chosen in to remove the confounding factors of age. Particularly when it came to personality traits which could be influenced by the age. If the training set consisted of different age ranges the algorithm could become biased by learning the age effects.
 
-One model was trained each time there was a different configuration of settings presented in \autoref{tab:classify_combo}. Classification performance was assessed using the metrics area under ROC curve, f1 score, accuracy and balanced accuracy. 
-\ifalse
+One model was trained each time there was a different configuration of settings presented in \autoref{tab:classify_combo}. Classification performance was assessed using the metrics area under \gls{ROC} curve, f1-score, accuracy and balanced accuracy. 
+\iffalse
 \begin{align}
     accuracy = \frac{TP + TN}{TP + TN}
     Balanced accuracy = \frac{\frac{TP}{TP + FN} + \frac{TN}{TN + FP}}{2} \\
-    F1 score = \frac{TP}{TP + \frac{TP + FN}{2}}
+    f1-score = \frac{TP}{TP + \frac{TP + FN}{2}}
 \end{align}
 \fi
 
@@ -415,9 +423,11 @@ One model was trained each time there was a different configuration of settings 
 Since the graphs included in the analysis for each subject were dense. It was important to design effective visualization techniques for intuitively interpreting the features selected by the baseline and solver based method. 
 
 \subsection{Chord Diagram}
-A chord diagram is an effective way of visualizing the flow between different nodes. The connectome containing the feature of the number of streamlines that connect any two ROIs was represented a chord diagram created with the help of package \cite{stevens2015holoviews}. Each ROI was represented as an entity or a fragment in the outer circle. The arcs drawn between the different node represent the connections and their thickness is proportional to the value of the number of streamlines in our case. 
+A chord diagram is an effective way of visualizing the flow between different nodes. The connectome containing the feature of the number of streamlines that connect any two ROIs was represented a chord diagram created with the help of package \textit{holoviews} \citep{stevens2015holoviews}. Each ROI was represented as an entity or a fragment in the outer circle. The arcs drawn between the different node represent the connections and their thickness is proportional to the value of the number of streamlines in our case. In \autoref{fig:connectome_num_streamlines} the average number of streamlines (for all subjects) between any two regions are visualized. There are multiple arcs connecting the two regions and these arcs get bundled and result in a thicker arc.
 
-In \autoref{fig:connectome_num_streamlines} the average number of streamlines (for all subjects) between any two regions are visualized. There are multiple arcs connecting the two regions and these arcs get bundled and result in a thicker arc. Similarly, the output graphs returned after the reduction from the solver is formed by determining the nodes and obtaining the group averaged number of streamlines between them. An example visualization is \autoref{fig:gender_num_strls_10}.
+\subsection{Circular Diagram}
+This visualization was specifically programmed illustrate different properties of the \gls{MEWS} solver based technique. At first the features selected by the solver were traced back to the original \textit{dataframe} mentioned in 
+visualization is \autoref{fig:gender_num_strls_10}.
 
 
 \end{document}
