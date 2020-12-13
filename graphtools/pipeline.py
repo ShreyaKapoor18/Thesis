@@ -45,7 +45,7 @@ if __name__ == '__main__':
     cols_solver.extend([f'test_{metric}' for metric in metrics])
     l1 = [X_train, X_test, y_train, y_test]
     feature_selections = ['baseline', 'solver']
-    choices = ['keep median']
+    choices = ['test throw median']
     #choices = ['test throw median', 'keep median']
     s_params = pd.read_csv('/home/skapoor/Thesis/graphtools/outputs/csvs/filtered.csv', index_col=None)
     if len(s_params.columns) > 11:
@@ -65,8 +65,8 @@ if __name__ == '__main__':
     results_base = results_base.round(3)
     results_solver = pd.DataFrame(results_solver, columns=cols_solver)
     results_solver = results_solver.round(3)
-    results_solver.to_csv('outputs/csvs/solver_personality_2.csv')
-    results_base.to_csv('outputs/csvs/base_personality_2.csv')
+    results_solver.to_csv('outputs/csvs/solver_personality_3.csv')
+    results_base.to_csv('outputs/csvs/base_personality_3.csv')
 
 '''
 Here we will need to take the threshold and degree as hyperparameters, change them and compute the result accordingly

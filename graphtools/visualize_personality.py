@@ -7,9 +7,9 @@ column = 'Type of feature'
 row = 'Edge'
 hue = 'Feature Selection'
 label ='Area under ROC curve'
-base = pd.read_csv('outputs/csvs/base_personality_2.csv')
+base = pd.read_csv('outputs/csvs/base_personality_3.csv')
 #base = base[base['Num_features']<=250]
-solver = pd.read_csv('outputs/csvs/solver_personality_2.csv')
+solver = pd.read_csv('outputs/csvs/solver_personality_3.csv')
 solver = solver.drop(columns=['Num_nodes', '% Positive edges', 'ROI_strl_thresh'])
 base = base.drop(columns=['Self_loops', 'ROI_strl_thresh'])
 base = base.rename(columns={'Num_features':'Num edges'})
@@ -52,7 +52,7 @@ combined = combined[combined['Choice']=='test throw median']
 
 #%%
 #sns_plot()
-fig, ax = plt.subplots(2,1, figsize=(8, 10))
+fig, ax = plt.subplots(2,1, figsize=(8, 9), constrained_layout=True)
 for (target, feature), i  in zip([('Extraversion', 'num_streamlines'), ('Neuroticism', 'num_streamlines')], range(2)):
         slice = combined[(combined['Type of feature']== feature) & (combined['Target']==target)]
         #ax[i][j].plot(slice['Num edges'], slice['test_roc_auc'])
@@ -71,23 +71,30 @@ for (target, feature), i  in zip([('Extraversion', 'num_streamlines'), ('Neuroti
                 linestyle = '-'
                 trans = 0.5
                 ll = 2
+                cl = 'blue'
             elif sel =='baseline':
                 linestyle = ':'
                 trans = 0.8
                 ll = 3
-            for clf, color_line in zip(sl['Classifier'].unique(), ['blue', 'green', 'orange']):
+                cl = 'orange'
+            for clf in ['SVC']:
                 sl2 = sl[sl['Classifier']==clf]
                 l1 = ax[i].plot(sl2['Num edges'],sl2['test_roc_auc_ovr_weighted'],
                                   linestyle=linestyle, marker = '.', markersize=12,
-                              label=f'{clf}_{sel}', color=color_line, alpha =trans, linewidth=ll)[0]
-                label.append(f'{clf}_{sel}')
+                              label=f'{sel}', color=cl, alpha =trans, linewidth=ll)[0]
+                label.append(f'{sel}')
                 lines.append(l1)
         ax[i].grid(which='minor')
         ax[i].grid(which='major')
-fig.subplots_adjust(top=0.95)
-ax[0].set_ylabel('Area under ROC curve', fontsize=16)
-ax[1].set_xlabel('Number of edges', fontsize=16)
-plt.legend(handles=lines, bbox_to_anchor=(1,1), loc='upper left')
-fig.tight_layout()
+        ax[i].set_xticks(range(20,320,10))
+        ax[i].tick_params(labelrotation=60)
+
+ax[1].set_xlabel('Number of edges', fontsize=12)
+fig.text(0.01, 0.5, 'Area under ROC curve', ha='center', fontsize=12, rotation='vertical')
+plt.suptitle('Classification based on number of streamlines and Pearson correlation with SVC')
+#plt.subplots_adjust(top=0.2)
+#fig.tight_layout(pad=0)
+plt.legend(handles=lines, bbox_to_anchor=(0.95,1.08), loc='upper left')
 plt.savefig('outputs/figures/persona_comp.png')
 plt.show()
+#%%
