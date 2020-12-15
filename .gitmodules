@@ -4,9 +4,6 @@
 [submodule "gmwcs-solver"]
 	path = gmwcs-solver
 	url = git@github.com:ShreyaKapoor18/gmwcs-solver.git
-[submodule "cookiecutter-latex-thesis"]
-	path = cookiecutter-latex-thesis
-	url = git@github.com:ShreyaKapoor18/cookiecutter-latex-thesis.git
 [submodule "preprocessing"]
 	path = preprocessing
 	url = git@github.com:ShreyaKapoor18/preprocessing.git
