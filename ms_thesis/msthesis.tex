@@ -21,7 +21,7 @@ BCOR=8mm]{scrbook} % BCOR sets the space, used by the type of  book. (e.g. glued
 \makeatother
 %\newcommand{\comment}[1]{}
 \DeclareUnicodeCharacter{2212}{-}
-%\DeclareUnicodeCharacter{2002}{}
+\DeclareUnicodeCharacter{2002}{}
 %\loadglsentries[\acronymtype]{setup/acronyms.tex}
 %\include{setup/acronyms}
 \begin{document}
@@ -29,13 +29,17 @@ BCOR=8mm]{scrbook} % BCOR sets the space, used by the type of  book. (e.g. glued
 \frontmatter
 		\input{setup/titlepage.tex}
         %\input{setup/declaration.tex}
-        
         \subfile{Abstract.tex}
         \tableofcontents
         \listoffigures
         \listoftables
+        \glossarystyle{list}
+        \setlength\LTleft{0pt}
+        \setlength\LTright{0pt}
+        \setlength\glsdescwidth{0.8\hsize}
+        \printglossary[type=\acronymtype, title={Acronyms}] 
         %\printglossary[type=\acronymtype, title={Acronyms}]
-
+        
         %\printglossary[type=\glsdefaulttype,style=long]% note that the type here matches the type of the entries, regardless of what \glsdefaulttype expands to
         %\printacronyms
         %\printglossaries
@@ -44,6 +48,7 @@ BCOR=8mm]{scrbook} % BCOR sets the space, used by the type of  book. (e.g. glued
         
 
 \mainmatter
+        \FloatBarrier
         \subfile{Introduction}
         \subfile{Background}
         \subfile{Methods}
@@ -51,27 +56,19 @@ BCOR=8mm]{scrbook} % BCOR sets the space, used by the type of  book. (e.g. glued
         \subfile{Discussion}
         \subfile{Conclusion}
 
-        \backmatter
+        %\backmatter
         %\subfile{Appendix}
         
-        \FloatBarrier
-
-
+        
+    \backmatter
         \begin{singlespacing}
             \printbibliography[heading=bibintoc,title={References}]
             %\printbibliography[heading=bibintoc,title={References},nottype=misc]
-    
         \end{singlespacing}
-   
-        %{%- else %}
-
-        %{%- if cookiecutter.include_glossary == "yes" %}
-        %\printglossary
-\backmatter
+        \subfile{setup/Appendix}
          %\glsaddall
         %\printglossary
-        \printglossary[type=\acronymtype, title={Acronyms}] 
         \input{setup/Acknowledgements.tex}
-        \input{setup/declaration}
+        \input{setup/declaration.tex}
 \end{document}
 

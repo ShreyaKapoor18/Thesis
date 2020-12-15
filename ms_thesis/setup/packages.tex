@@ -14,11 +14,13 @@
 natbib,
 maxnames=2,
 maxbibnames=100,
-style=authoryear-comp,
+%style=authoryear-comp,
+%style=apalike,
 %uniquename=full,
 giveninits,
 doi=False,
 backend=biber,
+citestyle=authoryear,
 backref,
 hyperref]{biblatex} % advanced bibliography support
 \addbibresource{literature.bib} % Add a bibliography file. (\bibliography{bib file} is less flexible and should not be used anymore although its still supported by biblatex)
@@ -58,16 +60,21 @@ urlcolor=magenta!35!black, %definition of the url color
 pdfauthor=Shreya Kapoor, % Optional: Specify the author of the pdf
 pdftitle=Extracting most predictive subgraphs from models of human brain connectivity   % Optional: Specify the title within the pdf
 } 
-\usepackage[nameinlink,capitalize,noabbrev]{cleveref}
+
 \usepackage{tcolorbox}
 \usepackage{csvsimple}
 %\usepackage[acronym,nomain]{glossaries}
-\usepackage[toc,nopostdot, nonumberlist,style=long,automake,acronym]{glossaries}
+\usepackage[toc,nopostdot,description,nonumberlist,style=long,automake,acronym]{glossaries}
+%\usepackage[toc,nopostdot,style=long,automake,acronym]{glossaries}
 \usepackage{ctable} % for \specialrule command
 \usepackage{multirow}
 \usepackage{tabularx}
 \usepackage{hyperref}
-\renewcommand{\equationautorefname}{Eq.}
+\usepackage{longtable}
+\usepackage{ragged2e}
+\usepackage[nameinlink,capitalise]{cleveref}
+%\renewcommand{\equationautorefname}{Eq.}
+%\usepackage[captialise]{cleveref}
 %\usepackage{glossaries}
 % Specify headers and footers in different file for better overview
 \input{setup/headfoot.tex}
