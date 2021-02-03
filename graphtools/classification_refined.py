@@ -13,6 +13,20 @@ tri = len(np.triu_indices(84)[0])
 
 
 def process_raw(X_train, X_test, y_train, edge):
+    """
+   Returns the standard scaled training set and test set along with array of edge scores
+   
+   Parameters:
+   X_train: the training DataFrame
+   X_test: the test DataFrame
+   y_train: the training labels
+   edge: the scoring of the edges i.e. fscore, t_test, pearson
+   
+   Returns:
+   X_train: in standard scaled format
+   X_test: in standard scaled format
+   arr: the array of edge representations
+    """
     scalar2 = StandardScaler()
     X_train = pd.DataFrame(scalar2.fit_transform(X_train), index=X_train.index, columns=X_train.columns)
     X_test = pd.DataFrame(scalar2.transform(X_test), index=X_test.index, columns=X_train.columns)
@@ -43,6 +57,23 @@ def process_raw(X_train, X_test, y_train, edge):
 
 
 def transform_features(X_train, X_test, y_train, per, edge):
+    """
+    Filter the features (in terms of top x%) in the original dataframe according to the 
+    edge scores. For example: filter top 5% edges according to fscores. This function is used
+    for the baseline experiments mostly.
+    
+    Parameters:
+    X_train:
+    X_test:
+    per: the percentage of features to be selected
+    edge: fscores, pearson or t_test
+    
+    Returns:
+    X_train: reduced size according to the filtered indices
+    X_test: reduced size, same as above
+    arr: the fscores for each feature
+    index: the indexes of the top x% features
+    """
     X_train, X_test, arr = process_raw(X_train, X_test, y_train, edge)
     arr = np.array(arr)
     val = np.nanpercentile(arr, 100 - per)
@@ -57,6 +88,7 @@ def transform_features(X_train, X_test, y_train, per, edge):
 def solver(X_train, X_test, y_train, strls_num, feature, thresh, val, max_num_nodes, avg_thresh,
            node_wts=None,
            target=None, edge=None):
+    
     X_train, X_test, arr = process_raw(X_train, X_test, y_train, edge)
     arr = arr.abs()
     arr = pd.DataFrame(arr, index=arr.index)
@@ -83,18 +115,61 @@ def solver(X_train, X_test, y_train, strls_num, feature, thresh, val, max_num_no
     print('The number of edges in the Input graph', len(input_graph.edges))
     print('The number of nodes in the output graph', len(output_graph.nodes))
     print('The number of edges in the output graph', len(output_graph.edges))
+    print('Nodes:', output_graph.nodes)
 
-    if output_graph.node_labels != [] and output_graph.edge_weights != []:
+    '''if output_graph.node_labels != [] and output_graph.edge_weights != []:
         X_train = X_train.iloc[:, reduced_feature_indices]
         X_test = X_test.iloc[:, reduced_feature_indices]
-    '''os.remove(f'{mews}/outputs/edges/{input_graph.filename}')
+    os.remove(f'{mews}/outputs/edges/{input_graph.filename}')
     #os.remove(f'{mews}/outputs/solver/{input_graph.filename}')
     if os.path.exists(f'{mews}/outputs/edges/{input_graph.filename}.out'):
         os.remove(f'{mews}/outputs/edges/{input_graph.filename}.out')
     os.remove(f'{mews}/outputs/nodes/{input_graph.filename}')
     if os.path.exists(f'{mews}/outputs/nodes/{input_graph.filename}.out'):
         os.remove(f'{mews}/outputs/nodes/{input_graph.filename}.out')'''
+    
     return X_train, X_test, output_graph.edge_weights, arr
+
+def solver_pub(X_train, X_test, y_train, strls_num, feature, thresh, val, max_num_nodes, avg_thresh,
+           node_wts=None,
+           target=None, edge=None, keep_files=False):
+    
+    X_train, X_test, arr = process_raw(X_train, X_test, y_train, edge)
+    arr = arr.abs()
+    arr = pd.DataFrame(arr, index=arr.index)
+    input_graph = BrainGraph(edge, feature, node_wts, target, max_num_nodes, val, thresh)
+    if not os.path.exists(f'{mews}/outputs/edges/{input_graph.filename}.out')\
+            and not os.path.exists(f'{mews}/outputs/nodes/{input_graph.filename}.out'):
+        input_graph.make_graph(arr, strls_num, thresh, avg_thresh)
+        if node_wts == 'const':
+            input_graph.set_node_labels(node_wts, const_val=val)
+        else:
+            input_graph.set_node_labels(node_wts)
+        input_graph.savefiles(mews)
+        input_graph.run_solver(mews, max_num_nodes=max_num_nodes)
+    else:
+        input_graph.read_from_file(mews, input_graph=True)
+        if node_wts == 'const':
+            input_graph.set_node_labels(node_wts, const_val=val)
+        else:
+            input_graph.set_node_labels(node_wts)
+
+    output_graph = BrainGraph(edge, feature,node_wts, target, max_num_nodes, val, thresh)
+    reduced_feature_indices = output_graph.read_from_file(mews, input_graph=False)
+    
+    if output_graph.node_labels != [] and output_graph.edge_weights != []:
+        X_train = X_train.iloc[:, reduced_feature_indices]
+        X_test = X_test.iloc[:, reduced_feature_indices]
+    if keep_files==False:
+        os.remove(f'{mews}/outputs/edges/{input_graph.filename}')
+        #os.remove(f'{mews}/outputs/solver/{input_graph.filename}')
+        if os.path.exists(f'{mews}/outputs/edges/{input_graph.filename}.out'):
+            os.remove(f'{mews}/outputs/edges/{input_graph.filename}.out')
+        os.remove(f'{mews}/outputs/nodes/{input_graph.filename}')
+        if os.path.exists(f'{mews}/outputs/nodes/{input_graph.filename}.out'):
+            os.remove(f'{mews}/outputs/nodes/{input_graph.filename}.out')
+    
+    return X_train, X_test, output_graph
 
 
 def cross_validation(classifier, X_train, y_train, X_test, y_test, metrics, refit_metric):
@@ -194,6 +269,7 @@ def classify(l1, classifier, params, mapping, strls_num, feature_selection, choi
             if avg_thresh == True:
                 strls_num_l = strls_num.mean(axis=0, skipna=True)
             else:
+                # to check if there is atleast one or more streamlines for that particular feature for all subjects
                 strls_num_l = strls_num_l.all()
             X_train_l, X_test_l, edge_wts, arr = solver(X_train_l, X_test_l, y_train_l, strls_num_l,feature, thresh,
                                                         val,
