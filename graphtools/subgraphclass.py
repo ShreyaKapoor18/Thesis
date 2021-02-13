@@ -69,7 +69,9 @@ def input_graph_processing(arr, edge, feature_type, node_wts, val, target,
                            output_file, mews, strls_num, max_num_nodes, thresh, avg_thresh):
     input_graph = BrainGraph(edge, feature_type, node_wts, target, max_num_nodes, val, thresh)
     if not os.path.exists(f'{mews}/outputs/edges/{input_graph.filename}.out')\
-            and not os.path.exists(f'{mews}/outputs/nodes/{input_graph.filename}.out'):
+            and not os.path.exists(f'{mews}/outputs/nodes/{input_graph.filename}.out')\
+            and not os.path.exists(f'{mews}/outputs/nodes/{input_graph.filename}')\
+            and not os.path.exists(f'{mews}/outputs/edges/{input_graph.filename}'):
         input_graph.make_graph(arr, strls_num, thresh, avg_thresh)
         if node_wts == 'const':
             input_graph.set_node_labels(node_wts, const_val=val)
@@ -84,8 +86,7 @@ def input_graph_processing(arr, edge, feature_type, node_wts, val, target,
         else:
             input_graph.set_node_labels(node_wts)
 
-    print('Input graph\n', f'Nodes: {len(input_graph.nodes)}\n', f'Edges:{len(input_graph.edges)}\n',
-          f'Edges description:{describe(input_graph.edge_weights)}\n', file=output_file)
+    print('Input graph\n', f'Nodes: {len(input_graph.nodes)}\n', f'Edges:{len(input_graph.edges)}\n', file=output_file)
     summary = [len(input_graph.nodes), len(input_graph.edges),
                100 * sum([True for wt in input_graph.edge_weights if wt > 0]) / len(input_graph.edges)]
     # we want to calculate the strictly positive edges
@@ -184,7 +185,7 @@ def make_solver_summary(edges, mapping, data, targets, mews, whole, tri, num_str
         arr = arr.abs()
         arr = arr.round(3)
         #for num_nodes in [5, 10, 15, 20, 25, 30]:
-        for num_nodes in range(3,30):
+        for num_nodes in range(5,11):
             print('*' * 100)
             print('*' * 100, file=output_file)
             print(f'Case:feature_type, target,edge, Node weights, Num_nodes, Thresh', file=output_file)
@@ -199,8 +200,10 @@ def make_solver_summary(edges, mapping, data, targets, mews, whole, tri, num_str
                                                                 output_file, num_nodes, val, thresh)
             summary_data[-1].extend(summary_out)
             summary_data[-1].append(thresh)
+
         # output_graph.visualize_graph(mews, False, sub_val, plotting_options)
-        # delete_files(mews, input_graph)
+        #delete_files(mews, input_graph)  # so that the files from the previous run can be deleted
+
 
     output_file.close()
     df = pd.DataFrame(summary_data, columns=columns)

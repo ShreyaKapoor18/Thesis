@@ -183,6 +183,7 @@ class BrainGraph(nx.Graph):  # inheriting from networkx graph package along with
                 if input_graph:
                     nodes = [x.split('   ') for x in nodes_file.read().split('\n')]
                     edges = [x.split('   ') for x in edges_file.read().split('\n')]
+                    print('nodes', nodes, '\n edges', edges)
                 else:
                     nodes = [x.split('\t') for x in nodes_file.read().split('\n')]
                     edges = [x.split('\t') for x in edges_file.read().split('\n')]
@@ -245,7 +246,7 @@ class BrainGraph(nx.Graph):  # inheriting from networkx graph package along with
     def write_csv(self, mews):
         a = np.zeros((len(self.nodes), len(self.nodes)))
         mapp = {}
-        for node, i in zip(g.nodes, range(len(g.nodes))):
+        for node, i in zip(self.nodes, range(len(self.nodes))):
             mapp[node] = i
         for u,v in self.edges:
             a[mapp[u]][mapp[v]] = self[u][v]['weight']

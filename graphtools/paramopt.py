@@ -5,6 +5,7 @@ from sklearn.svm import SVC
 from sklearn.utils.fixes import loguniform
 from sklearn.neural_network import MLPClassifier
 from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
+from sklearn.linear_model import LinearRegression
 
 
 def get_distributions(classifier, search, train_params):
@@ -40,7 +41,13 @@ def get_distributions(classifier, search, train_params):
                 'min_samples_split': [2, 5, 10],
                 # takes too long to converge if tolerance not specificied
             }
-        # multiclass cannot use loss exponential
+        elif classifier=='linear_reg':
+           clf = LinearRegression()
+           distributions = {
+               'fit_intercept': ['True', 'False']
+           }
+
+        #multiclass cannot use loss exponential
         else:
             clf = MLPClassifier()
             distributions = {'hidden_layer_sizes': [(50, 100, 100, 50), (50, 100, 50)],
@@ -58,6 +65,8 @@ def get_distributions(classifier, search, train_params):
         elif classifier == 'GB':
             clf = GradientBoostingClassifier(**train_params)
             # multiclass cannot use loss exponential
+        elif classifier == 'linear_reg':
+            clf = LinearRegression(**train_params)
         else:
             clf = MLPClassifier(**train_params)
         return clf
