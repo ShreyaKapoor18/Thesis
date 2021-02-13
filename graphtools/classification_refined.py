@@ -162,10 +162,11 @@ def solver_pub(X_train, X_test, y_train, strls_num, feature, thresh, val, max_nu
         X_test = X_test.iloc[:, reduced_feature_indices]
     if keep_files==False:
         os.remove(f'{mews}/outputs/edges/{input_graph.filename}')
+        os.remove(f'{mews}/outputs/nodes/{input_graph.filename}')
         #os.remove(f'{mews}/outputs/solver/{input_graph.filename}')
         if os.path.exists(f'{mews}/outputs/edges/{input_graph.filename}.out'):
             os.remove(f'{mews}/outputs/edges/{input_graph.filename}.out')
-        os.remove(f'{mews}/outputs/nodes/{input_graph.filename}')
+        
         if os.path.exists(f'{mews}/outputs/nodes/{input_graph.filename}.out'):
             os.remove(f'{mews}/outputs/nodes/{input_graph.filename}.out')
     
