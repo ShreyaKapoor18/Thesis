@@ -183,7 +183,7 @@ class BrainGraph(nx.Graph):  # inheriting from networkx graph package along with
                 if input_graph:
                     nodes = [x.split('   ') for x in nodes_file.read().split('\n')]
                     edges = [x.split('   ') for x in edges_file.read().split('\n')]
-                    p#rint('nodes', nodes, '\n edges', edges)
+                    #print('nodes', nodes, '\n edges', edges)
                 else:
                     nodes = [x.split('\t') for x in nodes_file.read().split('\n')]
                     edges = [x.split('\t') for x in edges_file.read().split('\n')]
