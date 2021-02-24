@@ -87,6 +87,7 @@ def transform_features(X_train, X_test, y_train, per, edge):
 def transform_array(X_train, X_test, y_train, per, edge):
     X_train, X_test, arr = process_raw(X_train, X_test, y_train, edge)
     #arr = np.array(arr)
+    arr = abs(arr)
     val = np.nanpercentile(arr, 100 - per)
     index = np.where(arr >= val)
     print('Selected indices', index[0])
