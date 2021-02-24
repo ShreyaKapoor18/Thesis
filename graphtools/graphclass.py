@@ -42,6 +42,30 @@ class BrainGraph(nx.Graph):  # inheriting from networkx graph package along with
                 subgr_edges.append((x, conn, self[x][conn]['weight']))
         H.add_weighted_edges_from(subgr_edges)
         return H
+    
+    def make_graph_pub(self, arr):
+        mat = np.triu_indices(84)
+        nodes = set()
+        edge_attributes = []
+        for j in range(len(mat[0])):
+            value = float(arr.iloc[j])
+            u = mat[0][j]
+            v = mat[1][j]
+            if value > 0 and u!=v: 
+                edge_attributes.append((mat[0][j], mat[1][j], value))
+                nodes.add(u)  # add only the nodes which have corresponding edges
+                nodes.add(v)
+            if u == v: 
+                self.self_loops.append(value)
+
+
+        # mean for the scores of three different labels
+        assert nodes is not None
+        self.add_nodes_from(nodes)
+        self.add_weighted_edges_from(edge_attributes)
+        self.edge_weights = []
+        for u, v in self.edges:
+            self.edge_weights.append(self[u][v]['weight'])
 
     def make_graph(self, arr, strls_num, thresh, avg_thresh):
         mat = np.triu_indices(84)
@@ -70,7 +94,7 @@ class BrainGraph(nx.Graph):  # inheriting from networkx graph package along with
                 else:
                     self.self_loops.append(value)
 
-            # mean for the scores of three different labels
+        # mean for the scores of three different labels
         assert nodes is not None
         self.add_nodes_from(nodes)
         self.add_weighted_edges_from(edge_attributes)
@@ -230,7 +254,7 @@ class BrainGraph(nx.Graph):  # inheriting from networkx graph package along with
     def hist(self, mews):
         """
         Plotting the histogram of the sum of incoming edge weights
-        @return:
+        @return: 
         """
         incoming_sums = []
         for node in self.nodes:
