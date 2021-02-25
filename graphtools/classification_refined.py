@@ -50,7 +50,8 @@ def process_raw(X_train, X_test, y_train, edge):
         group1 = stacked[stacked[name] == 1]
         arr = []
         for i in range(X_train.shape[1]):
-            arr.append((-1)*np.log10(ttest_ind(group0.iloc[:, i], group1.iloc[:, i]).pvalue))
+            #arr.append((-1)*np.log10(ttest_ind(group0.iloc[:, i], group1.iloc[:, i]).pvalue))
+            arr.append(abs(ttest_ind(group0.iloc[:, i], group1.iloc[:, i]).statistic))
     arr = pd.DataFrame(arr)
     arr.fillna(0, inplace=True)
     return X_train, X_test, arr
