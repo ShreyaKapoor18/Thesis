@@ -89,6 +89,7 @@ def transform_array(X_train, X_test, y_train, per, edge):
     #arr = np.array(arr)
     arr = abs(arr)
     val = np.nanpercentile(arr, 100 - per)
+    arr = arr - val
     index = np.where(arr >= val)
     print('Selected indices', index[0])
     assert list(X_train.index) == list(y_train.index)
