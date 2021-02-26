@@ -81,7 +81,7 @@ def transform_features(X_train, X_test, y_train, per, edge):
     index = np.where(arr >= val)
     X_train = X_train.iloc[:, index[0]]
     X_test = X_test.iloc[:, index[0]]
-    print('Selected indices', index[0])
+    #print('Selected indices', index[0])
     assert list(X_train.index) == list(y_train.index)
     return X_train, X_test, arr, index[0]
 
@@ -155,6 +155,7 @@ def solver_pub(X_train, X_test, y_train, arr, feature, thresh, val, max_num_node
         for path in [p1,p2,p3,p4]:
             if os.path.exists(path):
                 os.remove(path)
+    
     input_graph.savefiles(mews)    
     if not os.path.exists(f'{mews}/outputs/edges/{input_graph.filename}.out')\
             and not os.path.exists(f'{mews}/outputs/nodes/{input_graph.filename}.out'):
