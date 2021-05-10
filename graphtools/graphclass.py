@@ -43,12 +43,12 @@ class BrainGraph(nx.Graph):  # inheriting from networkx graph package along with
         H.add_weighted_edges_from(subgr_edges)
         return H
 
-    def make_graph(self, arr, strls_num, thresh, avg_thresh):
-        mat = np.triu_indices(84)
+    def make_graph(self, arr, strls_num, thresh, avg_thresh, num_nodes = 84):
+        mat = np.triu_indices(num_nodes)
         assert len(mat[0]) == len(strls_num)
         nodes = set()
         edge_attributes = []
-        strl = np.zeros((84, 84))
+        strl = np.zeros((num_nodes, num_nodes))
         for i in range(len(mat[0])):
             strl[mat[0][i], mat[1][i]] = strls_num.iloc[i]
         strl = strl + strl.T - np.diag(strl.diagonal())
@@ -69,8 +69,7 @@ class BrainGraph(nx.Graph):  # inheriting from networkx graph package along with
                     edge_attributes.append((mat[0][j], mat[1][j], value))
                 else:
                     self.self_loops.append(value)
-
-            # mean for the scores of three different labels
+        # mean for the scores of three different labels
         assert nodes is not None
         self.add_nodes_from(nodes)
         self.add_weighted_edges_from(edge_attributes)
@@ -78,7 +77,7 @@ class BrainGraph(nx.Graph):  # inheriting from networkx graph package along with
         for u, v in self.edges:
             self.edge_weights.append(self[u][v]['weight'])
 
-    def set_node_labels(self, node_wts, const_val=None):
+    def set_node_labels(self, node_wts, wts = None,const_val=None):
         node_labels = []
         for l in self.nodes.keys():
             if node_wts == 'max':
@@ -88,6 +87,8 @@ class BrainGraph(nx.Graph):  # inheriting from networkx graph package along with
                 self.nodes[l]['label'] = const_val
             elif node_wts == 'avg':
                 self.nodes[l]['label'] = np.mean([dict(self[l])[k]['weight'] for k in dict(self[l]).keys()])
+            elif node_wts == 'given_value':
+                self.nodes[l]['label'] = wts.loc[l]
             node_labels.append(self.nodes[l]['label'])
         self.node_labels = node_labels
 
@@ -160,15 +161,18 @@ class BrainGraph(nx.Graph):  # inheriting from networkx graph package along with
         os.chdir(mews)
         # print('Current directory', os.getcwd())
         cmd = (
-            f' java -Xss4M -Djava.library.path=/opt/ibm/ILOG/CPLEX_Studio1210/cplex/bin/x86-64_linux/ '
-            f'-cp /opt/ibm/ILOG/CPLEX_Studio1210/cplex/lib/cplex.jar:target/gmwcs-solver.jar '
+            f' java -Xss4M -Djava.library.path=/opt/ibm/ILOG/CPLEX_Studio_Community201/cplex/bin/x86-64_linux/ '
+            f'-cp /opt/ibm/ILOG/CPLEX_Studio_Community201/cplex/lib/cplex.jar:target/gmwcs-solver.jar '
             f'ru.ifmo.ctddev.gmwcs.Main -e outputs/edges/{self.filename} '
             f'-n outputs/nodes/{self.filename} > output'
             f's/solver/{self.filename} -nm {max_num_nodes}')  # training data into the solver
 
         # print(cmd)
         os.system(cmd)
-        os.chdir("/home/skapoor/Thesis/graphtools")
+        if os.path.exists('/home/shreya/git/Thesis/graphtools'):
+            os.chdir("/home/shreya/git/Thesis/graphtools")
+        #else:
+        #    os.chdir('/home/skapoor/Thesis/graphtools')
         # print('Current directory', os.getcwd())
 
     def read_from_file(self, mews, input_graph, mat=np.triu_indices(84)):

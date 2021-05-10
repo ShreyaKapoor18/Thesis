@@ -9,9 +9,9 @@ from sklearn.model_selection import train_test_split
 from classification_refined import *
 import networkx as nx
 #%%
-def find_indices(lin):
+def find_indices(lin, shape=84):
     d1 = {}
-    mat = np.triu_indices(84)
+    mat = np.triu_indices(shape)
     for idx in lin:
         for i in range(len(mat[0])):
             if i == idx:
