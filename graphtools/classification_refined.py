@@ -50,9 +50,12 @@ def process_raw(X_train, X_test, y_train, edge):
         group1 = stacked[stacked[name] == 1]
         arr = []
         for i in range(X_train.shape[1]):
-            arr.append((-1)*np.log10(ttest_ind(group0.iloc[:, i], group1.iloc[:, i]).pvalue))
+            #arr.append((-1)*np.log10(ttest_ind(group0.iloc[:, i], group1.iloc[:, i]).pvalue))
+            arr.append(abs(ttest_ind(group0.iloc[:, i], group1.iloc[:, i]).statistic))
     arr = pd.DataFrame(arr)
+    
     arr.fillna(0, inplace=True)
+    
     return X_train, X_test, arr
 
 
@@ -80,6 +83,17 @@ def transform_features(X_train, X_test, y_train, per, edge):
     index = np.where(arr >= val)
     X_train = X_train.iloc[:, index[0]]
     X_test = X_test.iloc[:, index[0]]
+    #print('Selected indices', index[0])
+    assert list(X_train.index) == list(y_train.index)
+    return X_train, X_test, arr, index[0]
+
+def transform_array(X_train, X_test, y_train, per, edge):
+    X_train, X_test, arr = process_raw(X_train, X_test, y_train, edge)
+    #arr = np.array(arr)
+    arr = abs(arr)
+    val = np.nanpercentile(arr, 100 - per)
+    arr = arr - val
+    index = np.where(arr >= val)
     print('Selected indices', index[0])
     assert list(X_train.index) == list(y_train.index)
     return X_train, X_test, arr, index[0]
@@ -130,17 +144,25 @@ def solver(X_train, X_test, y_train, strls_num, feature, thresh, val, max_num_no
     
     return X_train, X_test, output_graph.edge_weights, arr
 
-def solver_pub(X_train, X_test, y_train, strls_num, feature, thresh, val, max_num_nodes, avg_thresh,
-           node_wts=None,
-           target=None, edge=None, keep_files=False):
-    
-    X_train, X_test, arr = process_raw(X_train, X_test, y_train, edge)
-    arr = arr.abs()
-    arr = pd.DataFrame(arr, index=arr.index)
+def solver_pub(X_train, X_test, y_train, arr, feature, thresh, val, max_num_nodes, node_wts=None,
+           target=None, edge=None, keep_files=False, first_run=True):
+ 
     input_graph = BrainGraph(edge, feature, node_wts, target, max_num_nodes, val, thresh)
+    p1 = f'{mews}/outputs/edges/{input_graph.filename}'
+    p2 = f'{mews}/outputs/nodes/{input_graph.filename}'
+    p3 = f'{mews}/outputs/edges/{input_graph.filename}.out'
+    p4 = f'{mews}/outputs/nodes/{input_graph.filename}.out'
+    
+    if first_run == True:
+        for path in [p1,p2,p3,p4]:
+            if os.path.exists(path):
+                os.remove(path)
+    
+    input_graph.savefiles(mews)    
     if not os.path.exists(f'{mews}/outputs/edges/{input_graph.filename}.out')\
             and not os.path.exists(f'{mews}/outputs/nodes/{input_graph.filename}.out'):
-        input_graph.make_graph(arr, strls_num, thresh, avg_thresh)
+        #input_graph.make_graph(arr, strls_num, thresh, avg_thresh)
+        input_graph.make_graph_pub(arr)
         if node_wts == 'const':
             input_graph.set_node_labels(node_wts, const_val=val)
         else:
@@ -161,13 +183,9 @@ def solver_pub(X_train, X_test, y_train, strls_num, feature, thresh, val, max_nu
         X_train = X_train.iloc[:, reduced_feature_indices]
         X_test = X_test.iloc[:, reduced_feature_indices]
     if keep_files==False:
-        os.remove(f'{mews}/outputs/edges/{input_graph.filename}')
-        #os.remove(f'{mews}/outputs/solver/{input_graph.filename}')
-        if os.path.exists(f'{mews}/outputs/edges/{input_graph.filename}.out'):
-            os.remove(f'{mews}/outputs/edges/{input_graph.filename}.out')
-        os.remove(f'{mews}/outputs/nodes/{input_graph.filename}')
-        if os.path.exists(f'{mews}/outputs/nodes/{input_graph.filename}.out'):
-            os.remove(f'{mews}/outputs/nodes/{input_graph.filename}.out')
+        for path in [p1,p2,p3,p4]:
+            if os.path.exists(path):
+                os.remove(path)
     
     return X_train, X_test, output_graph
 
