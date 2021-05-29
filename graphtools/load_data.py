@@ -21,30 +21,6 @@ def make_hist(X_train, y_train, ax):
     ax.legend()
     return ax
 #%%
-names = ['FC_ad.npy', 'FC_hc.npy', 'FC_mci.npy', 'tau_ad.npy', 'tau_hc.npy', 'tau_mci.npy']
-dir = '/home/shreya/git/Thesis/data'
-
-for name in names:
-    var = np.load(f'{dir}/{name}', allow_pickle=True)
-    print(name)
-    print (var.shape)
-
-    # a few questions about the data
-    # How many subjects?
-    # Why are the shapes of the arrays different
-    # What does each array represent
-    # How many nodes were talked about? Maybe 52 nodes
-    # Some have the node weights and the others have the edge weights
-    # Maybe the node information is in the tau variables. 
-
-
-    # the shapes are corresponding for fc, ad, hc and mci types maybe a grouping needs to be established accordingly
-
-    # ad is for the alzheimer's patients
-    # hc is for the healthy controls
-    # mci is for? mild cognitive impairment (sort of the middle group for the onset of Alzheimer's disease)
-    # I have to prepare a label for these. Each of these three has a different label associated with the
-#%%
 def load_files():
     combined_edges = []
     combined_nodes = []
@@ -59,31 +35,36 @@ def load_files():
         combined_edges.extend(edges_l)
 
         nodes = np.load(f'{dir}/tau_{group}.npy', allow_pickle=True)
-        print(nodes.shape)
+        #print(nodes.shape)
         nodes = pd.DataFrame(nodes)
-        print(nodes.head())
+        #print(nodes.head())
         nodes['label'] = group
         nodes_l = np.array(nodes)
-        print(nodes_l.shape)
+        #print(nodes_l.shape)
         combined_nodes.extend(nodes_l)
-        print(len(combined_nodes), len(combined_nodes[0]))
+        #print(len(combined_nodes), len(combined_nodes[0]))
     mapping = {'ad': 2, 'hc': 0, 'mci': 1}
-    print(len(combined_nodes), len(combined_nodes[0]))
+    #print(len(combined_nodes), len(combined_nodes[0]))
 
     combined_edges, combined_nodes = pd.DataFrame(combined_edges), pd.DataFrame(combined_nodes, columns=range(len(combined_nodes[0])))
     combined_edges.iloc[:, -1] = combined_edges.iloc[:, -1].map(mapping)
     combined_nodes = combined_nodes.replace('m00', np.nan)
-    combined_nodes.fillna(combined_nodes.mean(), inplace=True)
-
+    #combined_nodes.fillna(combined_nodes.mean(), inplace=True)
+    combined_nodes.dropna(inplace=True)
+    combined_edges = combined_edges.iloc[combined_nodes.index, :]
+    print ('Nodes:', combined_nodes.shape)
+    print('Edges:', combined_edges.shape)
     return combined_edges, combined_nodes
 #%%
+dir = '/home/shreya/git/Thesis/data'
 combined_edges, combined_nodes = load_files()
 #%%
+scalar = StandardScaler()
 fscores = fscore(combined_edges, class_col=len(combined_edges.columns)-1)
 trans_edges = pd.DataFrame(scalar.fit_transform(combined_edges.iloc[:, :-1]))
-trans_fscores = fscore(pd.concat([trans_edges, combined_edges.iloc[:,-1]]),
-                class_col=len(combined_edges)-1)
-scalar = StandardScaler()
+trans_fscores = fscore(pd.concat([trans_edges, combined_edges.iloc[:,-1]], axis=1),
+                class_col=len(combined_edges.columns)-1)
+
 # has the data already been standardized, if so in which way?
 for log in [True, False]:
     plt.hist(sorted(fscores), label='before scaling', log=log, alpha=0.5)
@@ -99,7 +80,7 @@ for log in [True, False]:
 #%%
 fscores = fscore(combined_edges, class_col=len(combined_edges.columns)-1)
 trans_edges = pd.DataFrame(scalar.fit_transform(combined_edges.iloc[:, :-1]))
-trans_fscores = fscore(pd.concat([trans_edges, combined_edges.iloc[:,-1]]),
+trans_fscores = fscore(pd.concat([trans_edges, combined_edges.iloc[:,-1]], axis=1),
                 class_col=len(combined_edges)-1)
 plt.hist(fscores[fscores!=0], label='before scaling')
 plt.hist(trans_fscores[trans_fscores!=0], label='after scaling to unit variance')
