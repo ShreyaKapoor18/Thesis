@@ -154,8 +154,6 @@ for groups in [['hc', 'ad'], ['hc', 'mci']]:
             X_train_cv = pd.DataFrame(scalar.fit_transform(X_train_cv), columns=X_train_cv.columns)
             X_test_cv, y_test_cv = X_train.iloc[cv_idx, :], y_train.iloc[cv_idx]
             X_test_cv = pd.DataFrame(scalar.transform(X_test_cv), columns = X_test_cv.columns)
-            node_weights = combined_nodes.iloc[train_idx, :-1].mean(axis=0)
-            node_weights = round(node_weights, 3)
 
             #print('Shapes:', X_train.shape, y_train.shape, X_test.shape, y_test.shape)
              # select only the uppertriangular features due to symmetric matrix
