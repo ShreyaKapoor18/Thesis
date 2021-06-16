@@ -11,7 +11,7 @@ from readfiles import corresp_label_file
 
 
 class BrainGraph(nx.Graph):  # inheriting from networkx graph package along with the functionality we want
-    def __init__(self, edge, feature_type, node_wts, target, max_num_nodes, val, thresh):
+    def __init__(self, edge, feature_type, node_wts, target, max_num_nodes):
         # self.connected_subgraph = self.subgraph([0])
         """
 
@@ -21,8 +21,6 @@ class BrainGraph(nx.Graph):  # inheriting from networkx graph package along with
         @param node_wts: what type of node weightings are we supplying
         @param target: what is our target variable eg: personality scores/Alzheimer's
         @param max_num_nodes: the number of nodes we want to preserve in the output graph
-        @param val: what is the constant value that you have supplied, if need any constant value for the nodes
-        @param thresh: if you want the number of streamlines threshold as a proportion of the num
         streamlines incident on the node
         """
         super(BrainGraph, self).__init__()  # constructor of the base class
@@ -30,67 +28,27 @@ class BrainGraph(nx.Graph):  # inheriting from networkx graph package along with
         self.feature_type = feature_type
         self.node_wts = node_wts
         self.target = target
-        self.filename = f'{target}_{edge}_{max_num_nodes}_{feature_type}_{thresh}'
-        self.connected_nodes = []
-        self.connected_degree = 0
-        self.self_loops = []
+        self.filename = f'{target}_{edge}_{max_num_nodes}_{feature_type}'
         self.edge_weights = []
-        self.val = val
 
-    def subgraph(self):
-        # create new graph and copy subgraph into it
-        # pipeline changed
-        H = self.__class__(self.edge, self.feature_type, self.node_wts, self.target, self.max_num_nodes, self.val, self.thresh)
-        # copy node and attribute dictionaries
-        for node in self.nodes:
-            if self.degree[node] >1:
-                self.connected_nodes.append(node)
-        H.add_nodes_from(self.connected_nodes)
-        subgr_edges = []
-        for x in self.connected_nodes:
-            # if edge[0] in g1.nodes and edge[1] in g1.nodes:
-            H.nodes[x]['label'] = self.nodes[x]['label']
-            for conn in self[x]:
-                subgr_edges.append((x, conn, self[x][conn]['weight']))
-        H.add_weighted_edges_from(subgr_edges)
-        return H
 
-    def make_graph(self, arr, strls_num, thresh, avg_thresh, num_nodes = 84):
+    def make_graph(self, arr, num_nodes = 84):
         """
 
         @param arr: example: the array containing the fscores
-        @param strls_num: number of streamlines from the data: used for the HCP data
-        @param thresh: proportion of number of streamlines from a to b to the total number of streamlines on a or b
-        @param avg_thresh: if you want to enable average thresholding (average over vertex)
         @param num_nodes: number of nodes in the original graph
         """
         mat = np.triu_indices(num_nodes)
-        assert len(mat[0]) == len(strls_num)
-        nodes = set()
+        nodes = set(range(num_nodes))
         edge_attributes = []
-        strl = np.zeros((num_nodes, num_nodes))
-        for i in range(len(mat[0])):
-            strl[mat[0][i], mat[1][i]] = strls_num.iloc[i]
-        strl = strl + strl.T - np.diag(strl.diagonal())
-        strl = np.sum(strl, axis=0)
         for j in range(len(mat[0])):
             value = float(arr.iloc[j])
             u = mat[0][j]
             v = mat[1][j]
-            nodes.add(u)
-            nodes.add(v)
-            if avg_thresh:
-                if value > 0 and u != v and max(strls_num.iloc[j] / strl[u] ,strls_num.iloc[j] / strl[v]) >= thresh:
-                    edge_attributes.append((mat[0][j], mat[1][j], value))
-                else:
-                    self.self_loops.append(value)
-            else:
-                if value > 0 and u != v and strls_num.iloc[j] == True:
-                    edge_attributes.append((mat[0][j], mat[1][j], value))
-                else:
-                    self.self_loops.append(value)
+            if value > 0:
+                edge_attributes.append((u,v, value))
+
         # mean for the scores of three different labels
-        assert nodes is not None
         self.add_nodes_from(nodes)
         self.add_weighted_edges_from(edge_attributes)
         self.edge_weights = []
@@ -155,11 +113,9 @@ class BrainGraph(nx.Graph):  # inheriting from networkx graph package along with
                           f'Number of edges {len(self.edges)}\n'
                           f' Target: {self.target}, Feature:{self.feature_type}\n'
                           f'Edge type:{self.edge}, Node weighting:{self.node_wts}')
-                if self.val != None:
                     #print('constant value has been given')
-                    ax.annotate(f'Node weight={self.val}', xy=(0, 1))
-                nx.draw(self.subgraph(), **plotting_options, edge_color=color, edge_cmap=mapper.cmap, vmin=minima,
-                        vmax=maxima, with_labels=False, pos=nx.tight_layout())
+                nx.draw(self, **plotting_options, edge_color=color, edge_cmap=mapper.cmap, vmin=minima,
+                        vmax=maxima, with_labels=False) # pos=nx.tight_layout()
                 plt.colorbar(mapper)
                 plt.savefig(f'{mews}/outputs/figs/{self.filename}.png')
 
@@ -319,4 +275,17 @@ class BrainGraph(nx.Graph):  # inheriting from networkx graph package along with
             a[mapp[u]][mapp[v]] = self[u][v]['weight']
         a = pd.DataFrame(a, index= self.nodes, columns=self.nodes)
         a.to_csv(f'{mews}/outputs/csvs/{self.filename}')
+
+    def delete_per_edges(self, per):
+        """
+        Delete a percentage of edges to make the graph smaller in terms of number
+        of features
+        @param per: the bottom percentage of features you want to delete
+        @return:
+        """
+        val = np.percentile(self.edge_weights, per)
+        for u,v in self.edges:
+            if self[u][v]['weight'] < val:
+                self.remove_edge(u, v)
+
 

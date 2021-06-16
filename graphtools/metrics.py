@@ -120,11 +120,18 @@ def diag_flattened_indices(a):
         i -= 1
     return indices
 
-def find_indices(lin, shape=84):
+def find_indices(shape=84):
+    """
+
+    @param shape:
+    @return:
+    """
     d1 = {}
     mat = np.triu_indices(shape)
-    for idx in lin:
-        for i in range(len(mat[0])):
-            if i == idx:
-                d1[idx] = (mat[0][i], mat[1][i])
+    indices = []
+    for k in range(shape):
+        indices.extend(range(k*shape+k, (k+1)*shape))
+    for i in range(len(mat[0])):
+        d1[indices[i]] = (mat[0][i], mat[1][i])
+
     return d1

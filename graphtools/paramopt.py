@@ -72,7 +72,7 @@ def get_distributions(classifier, search, train_params):
         return clf
 
 
-def graph_options(color, node_size, line_color, linewidhts, width):
+def graph_options(color, node_size, linewidhts, width):
     """
     @param color: the color we want to give the nodes
     @param node_size: the size of the nodes
@@ -83,7 +83,6 @@ def graph_options(color, node_size, line_color, linewidhts, width):
     options = {
         'node_color': color,
         'node_size': node_size,
-        'line_color': line_color,
         'linewidths': linewidhts,
         'width': width,
     }

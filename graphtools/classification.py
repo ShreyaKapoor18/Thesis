@@ -243,7 +243,7 @@ def run_classification(X_train, X_test,y_train, y_test, metrics, target, feature
     for folder in ['figures', 'dicts', 'csvs']:
         if not os.path.exists(f'outputs/{folder}'):
             os.mkdir(f'outputs/{folder}')
-    classifiers  = ['RF', 'MLP', 'SVC']
+    classifiers = ['RF', 'MLP', 'SVC']
     for clf in classifiers:  # other ones are taking too long
         start = time.time()
         d1 = dict_classifier(clf, X_train,X_test, y_train, y_test, metrics, feature, [5,10,50,100])

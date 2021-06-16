@@ -100,7 +100,7 @@ X = X_tr.append(X_te)
 for target in labels:
     print(f'{target}')
     y_train_l, y_test_l = y_tr[target], y_te[target]
-    y =  y_train_l.append(y_test_l)
+    y = y_train_l.append(y_test_l)
 
     skf = StratifiedKFold(n_splits=5, shuffle=True, random_state = 22)
     y_binned = pd.qcut(y, 5, labels=False, retbins=True)[0]
@@ -116,7 +116,7 @@ for target in labels:
         print(f"Number of nodes {max_num_nodes}")
         i =0 
         for train_index, test_index in skf.split(X, y_binned):
-            i+=1
+            i += 1
             start = time.time()
             #print("TRAIN:",len(train_index), train_index, "TEST:", len(test_index),test_index)
             X_train, X_test = X.iloc[train_index], X.iloc[test_index]
