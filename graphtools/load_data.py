@@ -146,22 +146,23 @@ for groups in [['hc', 'ad'], ['hc', 'mci']]:
     indices = list(find_indices(shape=num_nodes).keys())
     X = combined_edges.iloc[:, indices]
     y = combined_edges.iloc[:, -1]
-    for train_idx, test_idx in skf.split(X,y):
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+    for train_idx, cv_idx in skf.split(X_train,y_train):
         if i < 5:
             scalar = StandardScaler()
-            X_train, y_train = X.iloc[train_idx, :],  y.iloc[train_idx]
-            X_train = pd.DataFrame(scalar.fit_transform(X_train), columns=X_train.columns)
-            X_test, y_test = X.iloc[test_idx, :], y.iloc[test_idx]
-            X_test = pd.DataFrame(scalar.transform(X_test), columns = X_test.columns)
+            X_train_cv, y_train_cv = X_train.iloc[train_idx, :],  y_train.iloc[train_idx]
+            X_train_cv = pd.DataFrame(scalar.fit_transform(X_train_cv), columns=X_train_cv.columns)
+            X_test_cv, y_test_cv = X_train.iloc[cv_idx, :], y_train.iloc[cv_idx]
+            X_test_cv = pd.DataFrame(scalar.transform(X_test_cv), columns = X_test_cv.columns)
             node_weights = combined_nodes.iloc[train_idx, :-1].mean(axis=0)
             node_weights = round(node_weights, 3)
 
             #print('Shapes:', X_train.shape, y_train.shape, X_test.shape, y_test.shape)
              # select only the uppertriangular features due to symmetric matrix
-            X_y_uppert = pd.concat([X_train, y_train], axis=1)
-            fscores = fscore(X_y_uppert, class_col=y_train.name)
+            X_y_uppert = pd.concat([X_train_cv, y_train_cv], axis=1)
+            fscores = fscore(X_y_uppert, class_col=y_train_cv.name)
             #print('Fscores shape', fscores.shape)
-            score, params = run_baseline(X_train, X_test, y_train, y_test, fscores[:-1], 20)
+            score, params = run_baseline(X_train_cv, X_test_cv, y_train_cv, y_test_cv, fscores[:-1], 20)
             base_scores.append(score)
             base_params.append(params)
 
@@ -173,11 +174,9 @@ for groups in [['hc', 'ad'], ['hc', 'mci']]:
     params = base_params[idx]
     print('The average score on k-fold', round(avg_score, 3))
     # now fit the best estimator from the above
-
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
     clf = SVC(**params)
     scalar = StandardScaler()
     X_train = scalar.fit_transform(X_train)
     X_test = scalar.transform(X_test)
     clf.fit(X_train, y_train)
-    print('Final score' , round(clf.score(X_test, y_test), 3))
+    print('Final scorea on independent test set' , round(clf.score(X_test, y_test), 3))
