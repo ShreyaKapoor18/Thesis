@@ -122,9 +122,17 @@ def diag_flattened_indices(a):
 
 def find_indices(shape=84):
     """
+    Map the flattened indexes to the coordinates in the upper triangular matrices!
+    Flattened indexes run from 0 to shape * shape
+    Let's say we have the following matrix in upper triangular form and shape = 5, then indices
+    0 1 2 3 4  when k = 0 --> range(0+0, (0+1) * 5)
+    x 6 7 8 9      k = 1 --> range(1*5 + 1, (1+1) * 5) = range(6, 10)
+    x x 12 13 14    k = 2 --> range(2*5 + 2, 3  * 5) = range(12, 15)
+    x x x 18 19     k = 3 --> range(18, 20)
+    x x x x 24      k = 4 --> range(24, 25)
 
-    @param shape:
-    @return:
+    @param shape: the shape of the diagonal matrix
+    @return: dictionary containing the mapping of the flattened indices to the upper triangular matrix
     """
     d1 = {}
     mat = np.triu_indices(shape)
