@@ -217,7 +217,7 @@ def plot_comparison():
     plt.xlabel('Percentage of fscores selected')
     plt.ylabel('Performance of classifier')
     plt.legend()
-    plt.savefig(os.path.join(dir1, 'outputs', 'baseline_performance_'+groups[0]+'_'+ groups[1]))
+    plt.savefig(os.path.join(dir1, 'outputs', 'comparison_performance_'+groups[0]+'_'+ groups[1]))
     plt.clf()
 
 def evaluate(index, X_train, X_test, y_train, y_test, clf):
