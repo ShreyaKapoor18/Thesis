@@ -9,7 +9,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split, StratifiedKFold, KFold, GridSearchCV
 from funcgraph import BrainGraph
 from paramopt import graph_options
-from sklearn.svm import SVC
+from sklearn.metrics import balanced_accuracy_score
 import logging
 import os
 import itertools as it
@@ -124,9 +124,9 @@ def fscore_hist(combined_edges):
     plt.show()
 
 def fit_classifier(X_train, X_test, y_train, y_test, n_fold, index):
-    cv_inner = KFold(n_splits=5, shuffle=True, random_state=1)
+    cv_inner = KFold(n_splits=3, shuffle=True, random_state=1)
     # define the model
-    clf = RandomForestClassifier(random_state=10)
+    clf = RandomForestClassifier(random_state=10, n_jobs=-1)
     # define search space
 
     space = {"max_features": [0.9, 1],
@@ -135,13 +135,16 @@ def fit_classifier(X_train, X_test, y_train, y_test, n_fold, index):
                 "random_state": [5, 6],
                 "criterion": ['gini', 'entropy']}
     # define search
-    search = GridSearchCV(clf, space, scoring='accuracy', cv=cv_inner, refit=True)
+    search = GridSearchCV(clf, space, scoring='balanced_accuracy', cv=cv_inner, refit=True)
     # execute search
     search.fit(X_train.loc[:, index], y_train)
     #print(X_train.shape, y_train.shape, X_test.shape, y_test.shape)
     best_model = search.best_estimator_
 
-    test_score = best_model.score(X_test.loc[:, index], y_test)
+    #test_score = best_model.score(X_test.loc[:, index], y_test)
+    y_pred = best_model.predict(X_test.loc[:, index])
+    test_score = balanced_accuracy_score(y_test, y_pred)
+
     params = search.best_params_
     logger.info(f'The score on the fold {n_fold} {round(test_score, 3)}')
     #print(f'The score on the fold {n_fold}:', round(test_score, 3))
@@ -238,7 +241,8 @@ def evaluate(index, X_train, X_test, y_train, y_test, clf):
     X_test = scalar.transform(X_test)
     clf.fit(X_train, y_train)
     logger.info(f'Final score on independent test set  {round(clf.score(X_test, y_test), 3)}')
-    return round(clf.score(X_test, y_test), 3)
+    y_pred = clf.predict(X_test)
+    return round(balanced_accuracy_score(y_test, y_pred), 3)
 
 
 def main():
@@ -311,9 +315,9 @@ def main():
             logger.info(f'The average score on k-fold baseline {round(avg_score_base, 3)}'
                         f' and greedy graph {round(avg_score_greedy, 3)}')
             # now fit the best estimator from the above
-            clf_base = RandomForestClassifier(**base_params)
+            clf_base = RandomForestClassifier(**base_params, n_jobs=-1)
             score_by_percentage[per] = evaluate(base_idxs, X_train, X_test, y_train, y_test, clf_base)
-            clf_greedy = RandomForestClassifier(**greedy_params)
+            clf_greedy = RandomForestClassifier(**greedy_params, n_jobs=-1)
             score_by_nodes[max_num_nodes] = evaluate(greedy_idxs, X_train, X_test, y_train, y_test, clf_greedy)
         plot_comparison()
 
