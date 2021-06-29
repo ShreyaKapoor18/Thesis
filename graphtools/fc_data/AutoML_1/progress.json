@@ -1,0 +1,3684 @@
+{
+    "fit_level": "finished",
+    "time_controller": {
+        "total_time_limit": 3600,
+        "model_time_limit": null,
+        "steps": [
+            "simple_algorithms",
+            "default_algorithms",
+            "ensemble"
+        ],
+        "algorithms": [
+            "Baseline",
+            "Decision Tree",
+            "Random Forest",
+            "Xgboost",
+            "Neural Network"
+        ],
+        "spend": [
+            {
+                "model_name": "prepare_data",
+                "model_type": "prepare_data",
+                "fit_level": "prepare_data",
+                "train_time": 284.81308913230896
+            },
+            {
+                "model_name": "1_Baseline",
+                "model_type": "Baseline",
+                "fit_level": "simple_algorithms",
+                "train_time": 0.6491363048553467
+            },
+            {
+                "model_name": "2_DecisionTree",
+                "model_type": "Decision Tree",
+                "fit_level": "simple_algorithms",
+                "train_time": 23.037866592407227
+            },
+            {
+                "model_name": "3_Default_Xgboost",
+                "model_type": "Xgboost",
+                "fit_level": "default_algorithms",
+                "train_time": 334.56091833114624
+            },
+            {
+                "model_name": "4_Default_NeuralNetwork",
+                "model_type": "Neural Network",
+                "fit_level": "default_algorithms",
+                "train_time": 16.377429246902466
+            },
+            {
+                "model_name": "5_Default_RandomForest",
+                "model_type": "Random Forest",
+                "fit_level": "default_algorithms",
+                "train_time": 82.22099423408508
+            },
+            {
+                "model_name": "Ensemble",
+                "model_type": "Ensemble",
+                "fit_level": "ensemble",
+                "train_time": 0.4031379222869873
+            }
+        ],
+        "is_hill_climbing": false,
+        "is_stacking": false
+    },
+    "all_params": {
+        "simple_algorithms": [
+            {
+                "additional": {
+                    "max_steps": 1,
+                    "max_rows_limit": null,
+                    "max_cols_limit": null
+                },
+                "preprocessing": {
+                    "columns_preprocessing": {},
+                    "target_preprocessing": [
+                        "na_exclude",
+                        "categorical_to_int"
+                    ],
+                    "ml_task": "binary_classification"
+                },
+                "validation_strategy": {
+                    "validation_type": "split",
+                    "train_ratio": 0.75,
+                    "shuffle": true,
+                    "stratify": true,
+                    "X_path": "AutoML_1/X.data",
+                    "y_path": "AutoML_1/y.data",
+                    "results_path": "AutoML_1"
+                },
+                "learner": {
+                    "model_type": "Baseline",
+                    "ml_task": "binary_classification",
+                    "n_jobs": -1,
+                    "seed": 1235,
+                    "explain_level": 2
+                },
+                "automl_random_state": 1234,
+                "ml_task": "binary_classification",
+                "explain_level": 2,
+                "name": "1_Baseline",
+                "status": "trained",
+                "final_loss": 0.47933049387015586,
+                "train_time": 1.5345168113708496,
+                "data_type": "original",
+                "max_time_for_learner": 360.0
+            },
+            {
+                "additional": {
+                    "trees_in_step": 1,
+                    "train_cant_improve_limit": 0,
+                    "max_steps": 1,
+                    "max_rows_limit": null,
+                    "max_cols_limit": null
+                },
+                "preprocessing": {
+                    "columns_preprocessing": {},
+                    "target_preprocessing": [
+                        "na_exclude",
+                        "categorical_to_int"
+                    ],
+                    "ml_task": "binary_classification"
+                },
+                "validation_strategy": {
+                    "validation_type": "split",
+                    "train_ratio": 0.75,
+                    "shuffle": true,
+                    "stratify": true,
+                    "X_path": "AutoML_1/X.data",
+                    "y_path": "AutoML_1/y.data",
+                    "results_path": "AutoML_1"
+                },
+                "learner": {
+                    "model_type": "Decision Tree",
+                    "ml_task": "binary_classification",
+                    "n_jobs": -1,
+                    "seed": 1235,
+                    "criterion": "gini",
+                    "max_depth": 3,
+                    "explain_level": 2
+                },
+                "automl_random_state": 1234,
+                "ml_task": "binary_classification",
+                "explain_level": 2,
+                "name": "2_DecisionTree",
+                "status": "trained",
+                "final_loss": 2.1960270110186535,
+                "train_time": 24.064170122146606,
+                "data_type": "original",
+                "max_time_for_learner": 360.0
+            }
+        ],
+        "default_algorithms": [
+            {
+                "additional": {
+                    "max_rounds": 10000,
+                    "early_stopping_rounds": 50,
+                    "max_rows_limit": null,
+                    "max_cols_limit": null
+                },
+                "preprocessing": {
+                    "columns_preprocessing": {},
+                    "target_preprocessing": [
+                        "na_exclude",
+                        "categorical_to_int"
+                    ],
+                    "ml_task": "binary_classification"
+                },
+                "validation_strategy": {
+                    "validation_type": "split",
+                    "train_ratio": 0.75,
+                    "shuffle": true,
+                    "stratify": true,
+                    "X_path": "AutoML_1/X.data",
+                    "y_path": "AutoML_1/y.data",
+                    "results_path": "AutoML_1"
+                },
+                "learner": {
+                    "model_type": "Xgboost",
+                    "ml_task": "binary_classification",
+                    "n_jobs": -1,
+                    "objective": "binary:logistic",
+                    "eta": 0.075,
+                    "max_depth": 6,
+                    "min_child_weight": 1,
+                    "subsample": 1.0,
+                    "colsample_bytree": 1.0,
+                    "seed": 3,
+                    "eval_metric": "logloss",
+                    "explain_level": 2
+                },
+                "automl_random_state": 1234,
+                "ml_task": "binary_classification",
+                "explain_level": 2,
+                "name": "3_Default_Xgboost",
+                "status": "trained",
+                "final_loss": 0.20091969054192305,
+                "train_time": 335.6056911945343,
+                "data_type": "original",
+                "max_time_for_learner": 360.0
+            },
+            {
+                "additional": {
+                    "max_rows_limit": null,
+                    "max_cols_limit": null
+                },
+                "preprocessing": {
+                    "columns_preprocessing": {
+                        "0": [
+                            "scale_normal"
+                        ],
+                        "2": [
+                            "scale_normal"
+                        ],
+                        "4": [
+                            "scale_normal"
+                        ],
+                        "5": [
+                            "scale_normal"
+                        ],
+                        "6": [
+                            "scale_normal"
+                        ],
+                        "7": [
+                            "scale_normal"
+                        ],
+                        "8": [
+                            "scale_normal"
+                        ],
+                        "9": [
+                            "scale_normal"
+                        ],
+                        "10": [
+                            "scale_normal"
+                        ],
+                        "11": [
+                            "scale_normal"
+                        ],
+                        "12": [
+                            "scale_normal"
+                        ],
+                        "13": [
+                            "scale_normal"
+                        ],
+                        "14": [
+                            "scale_normal"
+                        ],
+                        "15": [
+                            "scale_normal"
+                        ],
+                        "16": [
+                            "scale_normal"
+                        ],
+                        "17": [
+                            "scale_normal"
+                        ],
+                        "18": [
+                            "scale_normal"
+                        ],
+                        "20": [
+                            "scale_normal"
+                        ],
+                        "21": [
+                            "scale_normal"
+                        ],
+                        "22": [
+                            "scale_normal"
+                        ],
+                        "23": [
+                            "scale_normal"
+                        ],
+                        "25": [
+                            "scale_normal"
+                        ],
+                        "26": [
+                            "scale_normal"
+                        ],
+                        "28": [
+                            "scale_normal"
+                        ],
+                        "30": [
+                            "scale_normal"
+                        ],
+                        "31": [
+                            "scale_normal"
+                        ],
+                        "32": [
+                            "scale_normal"
+                        ],
+                        "33": [
+                            "scale_normal"
+                        ],
+                        "34": [
+                            "scale_normal"
+                        ],
+                        "35": [
+                            "scale_normal"
+                        ],
+                        "36": [
+                            "scale_normal"
+                        ],
+                        "37": [
+                            "scale_normal"
+                        ],
+                        "38": [
+                            "scale_normal"
+                        ],
+                        "40": [
+                            "scale_normal"
+                        ],
+                        "41": [
+                            "scale_normal"
+                        ],
+                        "42": [
+                            "scale_normal"
+                        ],
+                        "43": [
+                            "scale_normal"
+                        ],
+                        "44": [
+                            "scale_normal"
+                        ],
+                        "46": [
+                            "scale_normal"
+                        ],
+                        "47": [
+                            "scale_normal"
+                        ],
+                        "48": [
+                            "scale_normal"
+                        ],
+                        "49": [
+                            "scale_normal"
+                        ],
+                        "51": [
+                            "scale_normal"
+                        ],
+                        "53": [
+                            "scale_normal"
+                        ],
+                        "54": [
+                            "scale_normal"
+                        ],
+                        "56": [
+                            "scale_normal"
+                        ],
+                        "57": [
+                            "scale_normal"
+                        ],
+                        "58": [
+                            "scale_normal"
+                        ],
+                        "59": [
+                            "scale_normal"
+                        ],
+                        "60": [
+                            "scale_normal"
+                        ],
+                        "61": [
+                            "scale_normal"
+                        ],
+                        "62": [
+                            "scale_normal"
+                        ],
+                        "63": [
+                            "scale_normal"
+                        ],
+                        "64": [
+                            "scale_normal"
+                        ],
+                        "66": [
+                            "scale_normal"
+                        ],
+                        "67": [
+                            "scale_normal"
+                        ],
+                        "68": [
+                            "scale_normal"
+                        ],
+                        "69": [
+                            "scale_normal"
+                        ],
+                        "70": [
+                            "scale_normal"
+                        ],
+                        "71": [
+                            "scale_normal"
+                        ],
+                        "72": [
+                            "scale_normal"
+                        ],
+                        "73": [
+                            "scale_normal"
+                        ],
+                        "74": [
+                            "scale_normal"
+                        ],
+                        "75": [
+                            "scale_normal"
+                        ],
+                        "77": [
+                            "scale_normal"
+                        ],
+                        "78": [
+                            "scale_normal"
+                        ],
+                        "79": [
+                            "scale_normal"
+                        ],
+                        "80": [
+                            "scale_normal"
+                        ],
+                        "82": [
+                            "scale_normal"
+                        ],
+                        "83": [
+                            "scale_normal"
+                        ],
+                        "84": [
+                            "scale_normal"
+                        ],
+                        "85": [
+                            "scale_normal"
+                        ],
+                        "86": [
+                            "scale_normal"
+                        ],
+                        "87": [
+                            "scale_normal"
+                        ],
+                        "88": [
+                            "scale_normal"
+                        ],
+                        "89": [
+                            "scale_normal"
+                        ],
+                        "90": [
+                            "scale_normal"
+                        ],
+                        "92": [
+                            "scale_normal"
+                        ],
+                        "93": [
+                            "scale_normal"
+                        ],
+                        "94": [
+                            "scale_normal"
+                        ],
+                        "95": [
+                            "scale_normal"
+                        ],
+                        "96": [
+                            "scale_normal"
+                        ],
+                        "97": [
+                            "scale_normal"
+                        ],
+                        "98": [
+                            "scale_normal"
+                        ],
+                        "99": [
+                            "scale_normal"
+                        ],
+                        "100": [
+                            "scale_normal"
+                        ],
+                        "101": [
+                            "scale_normal"
+                        ],
+                        "103": [
+                            "scale_normal"
+                        ],
+                        "106": [
+                            "scale_normal"
+                        ],
+                        "108": [
+                            "scale_normal"
+                        ],
+                        "109": [
+                            "scale_normal"
+                        ],
+                        "110": [
+                            "scale_normal"
+                        ],
+                        "111": [
+                            "scale_normal"
+                        ],
+                        "112": [
+                            "scale_normal"
+                        ],
+                        "113": [
+                            "scale_normal"
+                        ],
+                        "114": [
+                            "scale_normal"
+                        ],
+                        "115": [
+                            "scale_normal"
+                        ],
+                        "116": [
+                            "scale_normal"
+                        ],
+                        "117": [
+                            "scale_normal"
+                        ],
+                        "118": [
+                            "scale_normal"
+                        ],
+                        "119": [
+                            "scale_normal"
+                        ],
+                        "120": [
+                            "scale_normal"
+                        ],
+                        "121": [
+                            "scale_normal"
+                        ],
+                        "122": [
+                            "scale_normal"
+                        ],
+                        "124": [
+                            "scale_normal"
+                        ],
+                        "125": [
+                            "scale_normal"
+                        ],
+                        "126": [
+                            "scale_normal"
+                        ],
+                        "127": [
+                            "scale_normal"
+                        ],
+                        "129": [
+                            "scale_normal"
+                        ],
+                        "130": [
+                            "scale_normal"
+                        ],
+                        "131": [
+                            "scale_normal"
+                        ],
+                        "132": [
+                            "scale_normal"
+                        ],
+                        "134": [
+                            "scale_normal"
+                        ],
+                        "135": [
+                            "scale_normal"
+                        ],
+                        "136": [
+                            "scale_normal"
+                        ],
+                        "137": [
+                            "scale_normal"
+                        ],
+                        "138": [
+                            "scale_normal"
+                        ],
+                        "139": [
+                            "scale_normal"
+                        ],
+                        "140": [
+                            "scale_normal"
+                        ],
+                        "141": [
+                            "scale_normal"
+                        ],
+                        "142": [
+                            "scale_normal"
+                        ],
+                        "143": [
+                            "scale_normal"
+                        ],
+                        "144": [
+                            "scale_normal"
+                        ],
+                        "145": [
+                            "scale_normal"
+                        ],
+                        "146": [
+                            "scale_normal"
+                        ],
+                        "147": [
+                            "scale_normal"
+                        ],
+                        "148": [
+                            "scale_normal"
+                        ],
+                        "150": [
+                            "scale_normal"
+                        ],
+                        "151": [
+                            "scale_normal"
+                        ],
+                        "152": [
+                            "scale_normal"
+                        ],
+                        "153": [
+                            "scale_normal"
+                        ],
+                        "155": [
+                            "scale_normal"
+                        ],
+                        "159": [
+                            "scale_normal"
+                        ],
+                        "160": [
+                            "scale_normal"
+                        ],
+                        "162": [
+                            "scale_normal"
+                        ],
+                        "169": [
+                            "scale_normal"
+                        ],
+                        "180": [
+                            "scale_normal"
+                        ],
+                        "185": [
+                            "scale_normal"
+                        ],
+                        "186": [
+                            "scale_normal"
+                        ],
+                        "188": [
+                            "scale_normal"
+                        ],
+                        "206": [
+                            "scale_normal"
+                        ],
+                        "212": [
+                            "scale_normal"
+                        ],
+                        "213": [
+                            "scale_normal"
+                        ],
+                        "214": [
+                            "scale_normal"
+                        ],
+                        "215": [
+                            "scale_normal"
+                        ],
+                        "216": [
+                            "scale_normal"
+                        ],
+                        "217": [
+                            "scale_normal"
+                        ],
+                        "218": [
+                            "scale_normal"
+                        ],
+                        "219": [
+                            "scale_normal"
+                        ],
+                        "220": [
+                            "scale_normal"
+                        ],
+                        "221": [
+                            "scale_normal"
+                        ],
+                        "222": [
+                            "scale_normal"
+                        ],
+                        "223": [
+                            "scale_normal"
+                        ],
+                        "224": [
+                            "scale_normal"
+                        ],
+                        "225": [
+                            "scale_normal"
+                        ],
+                        "226": [
+                            "scale_normal"
+                        ],
+                        "228": [
+                            "scale_normal"
+                        ],
+                        "229": [
+                            "scale_normal"
+                        ],
+                        "230": [
+                            "scale_normal"
+                        ],
+                        "231": [
+                            "scale_normal"
+                        ],
+                        "232": [
+                            "scale_normal"
+                        ],
+                        "233": [
+                            "scale_normal"
+                        ],
+                        "234": [
+                            "scale_normal"
+                        ],
+                        "235": [
+                            "scale_normal"
+                        ],
+                        "236": [
+                            "scale_normal"
+                        ],
+                        "237": [
+                            "scale_normal"
+                        ],
+                        "238": [
+                            "scale_normal"
+                        ],
+                        "239": [
+                            "scale_normal"
+                        ],
+                        "240": [
+                            "scale_normal"
+                        ],
+                        "241": [
+                            "scale_normal"
+                        ],
+                        "242": [
+                            "scale_normal"
+                        ],
+                        "243": [
+                            "scale_normal"
+                        ],
+                        "244": [
+                            "scale_normal"
+                        ],
+                        "245": [
+                            "scale_normal"
+                        ],
+                        "246": [
+                            "scale_normal"
+                        ],
+                        "247": [
+                            "scale_normal"
+                        ],
+                        "248": [
+                            "scale_normal"
+                        ],
+                        "249": [
+                            "scale_normal"
+                        ],
+                        "250": [
+                            "scale_normal"
+                        ],
+                        "251": [
+                            "scale_normal"
+                        ],
+                        "252": [
+                            "scale_normal"
+                        ],
+                        "254": [
+                            "scale_normal"
+                        ],
+                        "255": [
+                            "scale_normal"
+                        ],
+                        "256": [
+                            "scale_normal"
+                        ],
+                        "257": [
+                            "scale_normal"
+                        ],
+                        "258": [
+                            "scale_normal"
+                        ],
+                        "259": [
+                            "scale_normal"
+                        ],
+                        "265": [
+                            "scale_normal"
+                        ],
+                        "266": [
+                            "scale_normal"
+                        ],
+                        "267": [
+                            "scale_normal"
+                        ],
+                        "268": [
+                            "scale_normal"
+                        ],
+                        "269": [
+                            "scale_normal"
+                        ],
+                        "270": [
+                            "scale_normal"
+                        ],
+                        "271": [
+                            "scale_normal"
+                        ],
+                        "272": [
+                            "scale_normal"
+                        ],
+                        "273": [
+                            "scale_normal"
+                        ],
+                        "274": [
+                            "scale_normal"
+                        ],
+                        "275": [
+                            "scale_normal"
+                        ],
+                        "276": [
+                            "scale_normal"
+                        ],
+                        "277": [
+                            "scale_normal"
+                        ],
+                        "278": [
+                            "scale_normal"
+                        ],
+                        "279": [
+                            "scale_normal"
+                        ],
+                        "280": [
+                            "scale_normal"
+                        ],
+                        "281": [
+                            "scale_normal"
+                        ],
+                        "282": [
+                            "scale_normal"
+                        ],
+                        "283": [
+                            "scale_normal"
+                        ],
+                        "285": [
+                            "scale_normal"
+                        ],
+                        "286": [
+                            "scale_normal"
+                        ],
+                        "287": [
+                            "scale_normal"
+                        ],
+                        "288": [
+                            "scale_normal"
+                        ],
+                        "290": [
+                            "scale_normal"
+                        ],
+                        "291": [
+                            "scale_normal"
+                        ],
+                        "292": [
+                            "scale_normal"
+                        ],
+                        "293": [
+                            "scale_normal"
+                        ],
+                        "294": [
+                            "scale_normal"
+                        ],
+                        "295": [
+                            "scale_normal"
+                        ],
+                        "296": [
+                            "scale_normal"
+                        ],
+                        "297": [
+                            "scale_normal"
+                        ],
+                        "298": [
+                            "scale_normal"
+                        ],
+                        "299": [
+                            "scale_normal"
+                        ],
+                        "300": [
+                            "scale_normal"
+                        ],
+                        "301": [
+                            "scale_normal"
+                        ],
+                        "302": [
+                            "scale_normal"
+                        ],
+                        "303": [
+                            "scale_normal"
+                        ],
+                        "304": [
+                            "scale_normal"
+                        ],
+                        "306": [
+                            "scale_normal"
+                        ],
+                        "307": [
+                            "scale_normal"
+                        ],
+                        "308": [
+                            "scale_normal"
+                        ],
+                        "309": [
+                            "scale_normal"
+                        ],
+                        "311": [
+                            "scale_normal"
+                        ],
+                        "318": [
+                            "scale_normal"
+                        ],
+                        "319": [
+                            "scale_normal"
+                        ],
+                        "320": [
+                            "scale_normal"
+                        ],
+                        "321": [
+                            "scale_normal"
+                        ],
+                        "322": [
+                            "scale_normal"
+                        ],
+                        "323": [
+                            "scale_normal"
+                        ],
+                        "325": [
+                            "scale_normal"
+                        ],
+                        "326": [
+                            "scale_normal"
+                        ],
+                        "327": [
+                            "scale_normal"
+                        ],
+                        "328": [
+                            "scale_normal"
+                        ],
+                        "329": [
+                            "scale_normal"
+                        ],
+                        "330": [
+                            "scale_normal"
+                        ],
+                        "332": [
+                            "scale_normal"
+                        ],
+                        "333": [
+                            "scale_normal"
+                        ],
+                        "334": [
+                            "scale_normal"
+                        ],
+                        "335": [
+                            "scale_normal"
+                        ],
+                        "336": [
+                            "scale_normal"
+                        ],
+                        "337": [
+                            "scale_normal"
+                        ],
+                        "338": [
+                            "scale_normal"
+                        ],
+                        "339": [
+                            "scale_normal"
+                        ],
+                        "340": [
+                            "scale_normal"
+                        ],
+                        "342": [
+                            "scale_normal"
+                        ],
+                        "343": [
+                            "scale_normal"
+                        ],
+                        "344": [
+                            "scale_normal"
+                        ],
+                        "345": [
+                            "scale_normal"
+                        ],
+                        "346": [
+                            "scale_normal"
+                        ],
+                        "347": [
+                            "scale_normal"
+                        ],
+                        "348": [
+                            "scale_normal"
+                        ],
+                        "349": [
+                            "scale_normal"
+                        ],
+                        "351": [
+                            "scale_normal"
+                        ],
+                        "352": [
+                            "scale_normal"
+                        ],
+                        "354": [
+                            "scale_normal"
+                        ],
+                        "355": [
+                            "scale_normal"
+                        ],
+                        "356": [
+                            "scale_normal"
+                        ],
+                        "358": [
+                            "scale_normal"
+                        ],
+                        "359": [
+                            "scale_normal"
+                        ],
+                        "360": [
+                            "scale_normal"
+                        ],
+                        "361": [
+                            "scale_normal"
+                        ],
+                        "362": [
+                            "scale_normal"
+                        ],
+                        "371": [
+                            "scale_normal"
+                        ],
+                        "372": [
+                            "scale_normal"
+                        ],
+                        "373": [
+                            "scale_normal"
+                        ],
+                        "374": [
+                            "scale_normal"
+                        ],
+                        "375": [
+                            "scale_normal"
+                        ],
+                        "376": [
+                            "scale_normal"
+                        ],
+                        "377": [
+                            "scale_normal"
+                        ],
+                        "378": [
+                            "scale_normal"
+                        ],
+                        "379": [
+                            "scale_normal"
+                        ],
+                        "380": [
+                            "scale_normal"
+                        ],
+                        "381": [
+                            "scale_normal"
+                        ],
+                        "382": [
+                            "scale_normal"
+                        ],
+                        "383": [
+                            "scale_normal"
+                        ],
+                        "384": [
+                            "scale_normal"
+                        ],
+                        "385": [
+                            "scale_normal"
+                        ],
+                        "386": [
+                            "scale_normal"
+                        ],
+                        "387": [
+                            "scale_normal"
+                        ],
+                        "389": [
+                            "scale_normal"
+                        ],
+                        "390": [
+                            "scale_normal"
+                        ],
+                        "391": [
+                            "scale_normal"
+                        ],
+                        "392": [
+                            "scale_normal"
+                        ],
+                        "394": [
+                            "scale_normal"
+                        ],
+                        "395": [
+                            "scale_normal"
+                        ],
+                        "396": [
+                            "scale_normal"
+                        ],
+                        "397": [
+                            "scale_normal"
+                        ],
+                        "398": [
+                            "scale_normal"
+                        ],
+                        "399": [
+                            "scale_normal"
+                        ],
+                        "400": [
+                            "scale_normal"
+                        ],
+                        "401": [
+                            "scale_normal"
+                        ],
+                        "402": [
+                            "scale_normal"
+                        ],
+                        "403": [
+                            "scale_normal"
+                        ],
+                        "404": [
+                            "scale_normal"
+                        ],
+                        "405": [
+                            "scale_normal"
+                        ],
+                        "406": [
+                            "scale_normal"
+                        ],
+                        "407": [
+                            "scale_normal"
+                        ],
+                        "408": [
+                            "scale_normal"
+                        ],
+                        "409": [
+                            "scale_normal"
+                        ],
+                        "410": [
+                            "scale_normal"
+                        ],
+                        "411": [
+                            "scale_normal"
+                        ],
+                        "412": [
+                            "scale_normal"
+                        ],
+                        "413": [
+                            "scale_normal"
+                        ],
+                        "415": [
+                            "scale_normal"
+                        ],
+                        "424": [
+                            "scale_normal"
+                        ],
+                        "425": [
+                            "scale_normal"
+                        ],
+                        "426": [
+                            "scale_normal"
+                        ],
+                        "427": [
+                            "scale_normal"
+                        ],
+                        "428": [
+                            "scale_normal"
+                        ],
+                        "429": [
+                            "scale_normal"
+                        ],
+                        "430": [
+                            "scale_normal"
+                        ],
+                        "431": [
+                            "scale_normal"
+                        ],
+                        "432": [
+                            "scale_normal"
+                        ],
+                        "433": [
+                            "scale_normal"
+                        ],
+                        "434": [
+                            "scale_normal"
+                        ],
+                        "435": [
+                            "scale_normal"
+                        ],
+                        "436": [
+                            "scale_normal"
+                        ],
+                        "437": [
+                            "scale_normal"
+                        ],
+                        "438": [
+                            "scale_normal"
+                        ],
+                        "439": [
+                            "scale_normal"
+                        ],
+                        "441": [
+                            "scale_normal"
+                        ],
+                        "442": [
+                            "scale_normal"
+                        ],
+                        "443": [
+                            "scale_normal"
+                        ],
+                        "444": [
+                            "scale_normal"
+                        ],
+                        "446": [
+                            "scale_normal"
+                        ],
+                        "447": [
+                            "scale_normal"
+                        ],
+                        "448": [
+                            "scale_normal"
+                        ],
+                        "449": [
+                            "scale_normal"
+                        ],
+                        "450": [
+                            "scale_normal"
+                        ],
+                        "451": [
+                            "scale_normal"
+                        ],
+                        "452": [
+                            "scale_normal"
+                        ],
+                        "453": [
+                            "scale_normal"
+                        ],
+                        "454": [
+                            "scale_normal"
+                        ],
+                        "455": [
+                            "scale_normal"
+                        ],
+                        "456": [
+                            "scale_normal"
+                        ],
+                        "457": [
+                            "scale_normal"
+                        ],
+                        "458": [
+                            "scale_normal"
+                        ],
+                        "459": [
+                            "scale_normal"
+                        ],
+                        "460": [
+                            "scale_normal"
+                        ],
+                        "461": [
+                            "scale_normal"
+                        ],
+                        "462": [
+                            "scale_normal"
+                        ],
+                        "463": [
+                            "scale_normal"
+                        ],
+                        "464": [
+                            "scale_normal"
+                        ],
+                        "465": [
+                            "scale_normal"
+                        ],
+                        "467": [
+                            "scale_normal"
+                        ],
+                        "477": [
+                            "scale_normal"
+                        ],
+                        "478": [
+                            "scale_normal"
+                        ],
+                        "479": [
+                            "scale_normal"
+                        ],
+                        "480": [
+                            "scale_normal"
+                        ],
+                        "481": [
+                            "scale_normal"
+                        ],
+                        "482": [
+                            "scale_normal"
+                        ],
+                        "483": [
+                            "scale_normal"
+                        ],
+                        "484": [
+                            "scale_normal"
+                        ],
+                        "485": [
+                            "scale_normal"
+                        ],
+                        "486": [
+                            "scale_normal"
+                        ],
+                        "488": [
+                            "scale_normal"
+                        ],
+                        "489": [
+                            "scale_normal"
+                        ],
+                        "490": [
+                            "scale_normal"
+                        ],
+                        "491": [
+                            "scale_normal"
+                        ],
+                        "493": [
+                            "scale_normal"
+                        ],
+                        "494": [
+                            "scale_normal"
+                        ],
+                        "495": [
+                            "scale_normal"
+                        ],
+                        "496": [
+                            "scale_normal"
+                        ],
+                        "498": [
+                            "scale_normal"
+                        ],
+                        "499": [
+                            "scale_normal"
+                        ],
+                        "500": [
+                            "scale_normal"
+                        ],
+                        "501": [
+                            "scale_normal"
+                        ],
+                        "502": [
+                            "scale_normal"
+                        ],
+                        "503": [
+                            "scale_normal"
+                        ],
+                        "504": [
+                            "scale_normal"
+                        ],
+                        "505": [
+                            "scale_normal"
+                        ],
+                        "506": [
+                            "scale_normal"
+                        ],
+                        "507": [
+                            "scale_normal"
+                        ],
+                        "508": [
+                            "scale_normal"
+                        ],
+                        "509": [
+                            "scale_normal"
+                        ],
+                        "510": [
+                            "scale_normal"
+                        ],
+                        "511": [
+                            "scale_normal"
+                        ],
+                        "512": [
+                            "scale_normal"
+                        ],
+                        "514": [
+                            "scale_normal"
+                        ],
+                        "515": [
+                            "scale_normal"
+                        ],
+                        "516": [
+                            "scale_normal"
+                        ],
+                        "517": [
+                            "scale_normal"
+                        ],
+                        "530": [
+                            "scale_normal"
+                        ],
+                        "531": [
+                            "scale_normal"
+                        ],
+                        "532": [
+                            "scale_normal"
+                        ],
+                        "533": [
+                            "scale_normal"
+                        ],
+                        "534": [
+                            "scale_normal"
+                        ],
+                        "535": [
+                            "scale_normal"
+                        ],
+                        "536": [
+                            "scale_normal"
+                        ],
+                        "537": [
+                            "scale_normal"
+                        ],
+                        "538": [
+                            "scale_normal"
+                        ],
+                        "540": [
+                            "scale_normal"
+                        ],
+                        "541": [
+                            "scale_normal"
+                        ],
+                        "542": [
+                            "scale_normal"
+                        ],
+                        "543": [
+                            "scale_normal"
+                        ],
+                        "545": [
+                            "scale_normal"
+                        ],
+                        "546": [
+                            "scale_normal"
+                        ],
+                        "547": [
+                            "scale_normal"
+                        ],
+                        "548": [
+                            "scale_normal"
+                        ],
+                        "550": [
+                            "scale_normal"
+                        ],
+                        "551": [
+                            "scale_normal"
+                        ],
+                        "552": [
+                            "scale_normal"
+                        ],
+                        "553": [
+                            "scale_normal"
+                        ],
+                        "554": [
+                            "scale_normal"
+                        ],
+                        "555": [
+                            "scale_normal"
+                        ],
+                        "556": [
+                            "scale_normal"
+                        ],
+                        "557": [
+                            "scale_normal"
+                        ],
+                        "558": [
+                            "scale_normal"
+                        ],
+                        "559": [
+                            "scale_normal"
+                        ],
+                        "560": [
+                            "scale_normal"
+                        ],
+                        "561": [
+                            "scale_normal"
+                        ],
+                        "562": [
+                            "scale_normal"
+                        ],
+                        "563": [
+                            "scale_normal"
+                        ],
+                        "564": [
+                            "scale_normal"
+                        ],
+                        "566": [
+                            "scale_normal"
+                        ],
+                        "567": [
+                            "scale_normal"
+                        ],
+                        "568": [
+                            "scale_normal"
+                        ],
+                        "569": [
+                            "scale_normal"
+                        ],
+                        "571": [
+                            "scale_normal"
+                        ],
+                        "583": [
+                            "scale_normal"
+                        ],
+                        "585": [
+                            "scale_normal"
+                        ],
+                        "586": [
+                            "scale_normal"
+                        ],
+                        "587": [
+                            "scale_normal"
+                        ],
+                        "588": [
+                            "scale_normal"
+                        ],
+                        "589": [
+                            "scale_normal"
+                        ],
+                        "590": [
+                            "scale_normal"
+                        ],
+                        "591": [
+                            "scale_normal"
+                        ],
+                        "592": [
+                            "scale_normal"
+                        ],
+                        "593": [
+                            "scale_normal"
+                        ],
+                        "594": [
+                            "scale_normal"
+                        ],
+                        "595": [
+                            "scale_normal"
+                        ],
+                        "596": [
+                            "scale_normal"
+                        ],
+                        "597": [
+                            "scale_normal"
+                        ],
+                        "598": [
+                            "scale_normal"
+                        ],
+                        "600": [
+                            "scale_normal"
+                        ],
+                        "602": [
+                            "scale_normal"
+                        ],
+                        "603": [
+                            "scale_normal"
+                        ],
+                        "604": [
+                            "scale_normal"
+                        ],
+                        "605": [
+                            "scale_normal"
+                        ],
+                        "606": [
+                            "scale_normal"
+                        ],
+                        "607": [
+                            "scale_normal"
+                        ],
+                        "608": [
+                            "scale_normal"
+                        ],
+                        "609": [
+                            "scale_normal"
+                        ],
+                        "611": [
+                            "scale_normal"
+                        ],
+                        "612": [
+                            "scale_normal"
+                        ],
+                        "614": [
+                            "scale_normal"
+                        ],
+                        "616": [
+                            "scale_normal"
+                        ],
+                        "618": [
+                            "scale_normal"
+                        ],
+                        "619": [
+                            "scale_normal"
+                        ],
+                        "620": [
+                            "scale_normal"
+                        ],
+                        "621": [
+                            "scale_normal"
+                        ],
+                        "623": [
+                            "scale_normal"
+                        ],
+                        "636": [
+                            "scale_normal"
+                        ],
+                        "638": [
+                            "scale_normal"
+                        ],
+                        "639": [
+                            "scale_normal"
+                        ],
+                        "640": [
+                            "scale_normal"
+                        ],
+                        "641": [
+                            "scale_normal"
+                        ],
+                        "642": [
+                            "scale_normal"
+                        ],
+                        "644": [
+                            "scale_normal"
+                        ],
+                        "645": [
+                            "scale_normal"
+                        ],
+                        "646": [
+                            "scale_normal"
+                        ],
+                        "647": [
+                            "scale_normal"
+                        ],
+                        "649": [
+                            "scale_normal"
+                        ],
+                        "650": [
+                            "scale_normal"
+                        ],
+                        "651": [
+                            "scale_normal"
+                        ],
+                        "652": [
+                            "scale_normal"
+                        ],
+                        "654": [
+                            "scale_normal"
+                        ],
+                        "655": [
+                            "scale_normal"
+                        ],
+                        "657": [
+                            "scale_normal"
+                        ],
+                        "658": [
+                            "scale_normal"
+                        ],
+                        "659": [
+                            "scale_normal"
+                        ],
+                        "660": [
+                            "scale_normal"
+                        ],
+                        "662": [
+                            "scale_normal"
+                        ],
+                        "664": [
+                            "scale_normal"
+                        ],
+                        "665": [
+                            "scale_normal"
+                        ],
+                        "666": [
+                            "scale_normal"
+                        ],
+                        "667": [
+                            "scale_normal"
+                        ],
+                        "668": [
+                            "scale_normal"
+                        ],
+                        "670": [
+                            "scale_normal"
+                        ],
+                        "671": [
+                            "scale_normal"
+                        ],
+                        "672": [
+                            "scale_normal"
+                        ],
+                        "673": [
+                            "scale_normal"
+                        ],
+                        "689": [
+                            "scale_normal"
+                        ],
+                        "690": [
+                            "scale_normal"
+                        ],
+                        "692": [
+                            "scale_normal"
+                        ],
+                        "693": [
+                            "scale_normal"
+                        ],
+                        "694": [
+                            "scale_normal"
+                        ],
+                        "697": [
+                            "scale_normal"
+                        ],
+                        "698": [
+                            "scale_normal"
+                        ],
+                        "699": [
+                            "scale_normal"
+                        ],
+                        "700": [
+                            "scale_normal"
+                        ],
+                        "701": [
+                            "scale_normal"
+                        ],
+                        "702": [
+                            "scale_normal"
+                        ],
+                        "704": [
+                            "scale_normal"
+                        ],
+                        "706": [
+                            "scale_normal"
+                        ],
+                        "707": [
+                            "scale_normal"
+                        ],
+                        "708": [
+                            "scale_normal"
+                        ],
+                        "709": [
+                            "scale_normal"
+                        ],
+                        "710": [
+                            "scale_normal"
+                        ],
+                        "711": [
+                            "scale_normal"
+                        ],
+                        "712": [
+                            "scale_normal"
+                        ],
+                        "713": [
+                            "scale_normal"
+                        ],
+                        "715": [
+                            "scale_normal"
+                        ],
+                        "716": [
+                            "scale_normal"
+                        ],
+                        "718": [
+                            "scale_normal"
+                        ],
+                        "720": [
+                            "scale_normal"
+                        ],
+                        "723": [
+                            "scale_normal"
+                        ],
+                        "724": [
+                            "scale_normal"
+                        ],
+                        "742": [
+                            "scale_normal"
+                        ],
+                        "743": [
+                            "scale_normal"
+                        ],
+                        "744": [
+                            "scale_normal"
+                        ],
+                        "745": [
+                            "scale_normal"
+                        ],
+                        "746": [
+                            "scale_normal"
+                        ],
+                        "748": [
+                            "scale_normal"
+                        ],
+                        "749": [
+                            "scale_normal"
+                        ],
+                        "750": [
+                            "scale_normal"
+                        ],
+                        "751": [
+                            "scale_normal"
+                        ],
+                        "753": [
+                            "scale_normal"
+                        ],
+                        "754": [
+                            "scale_normal"
+                        ],
+                        "755": [
+                            "scale_normal"
+                        ],
+                        "756": [
+                            "scale_normal"
+                        ],
+                        "758": [
+                            "scale_normal"
+                        ],
+                        "759": [
+                            "scale_normal"
+                        ],
+                        "760": [
+                            "scale_normal"
+                        ],
+                        "761": [
+                            "scale_normal"
+                        ],
+                        "762": [
+                            "scale_normal"
+                        ],
+                        "763": [
+                            "scale_normal"
+                        ],
+                        "764": [
+                            "scale_normal"
+                        ],
+                        "765": [
+                            "scale_normal"
+                        ],
+                        "766": [
+                            "scale_normal"
+                        ],
+                        "767": [
+                            "scale_normal"
+                        ],
+                        "768": [
+                            "scale_normal"
+                        ],
+                        "769": [
+                            "scale_normal"
+                        ],
+                        "770": [
+                            "scale_normal"
+                        ],
+                        "771": [
+                            "scale_normal"
+                        ],
+                        "772": [
+                            "scale_normal"
+                        ],
+                        "774": [
+                            "scale_normal"
+                        ],
+                        "775": [
+                            "scale_normal"
+                        ],
+                        "776": [
+                            "scale_normal"
+                        ],
+                        "777": [
+                            "scale_normal"
+                        ],
+                        "779": [
+                            "scale_normal"
+                        ],
+                        "795": [
+                            "scale_normal"
+                        ],
+                        "796": [
+                            "scale_normal"
+                        ],
+                        "797": [
+                            "scale_normal"
+                        ],
+                        "798": [
+                            "scale_normal"
+                        ],
+                        "799": [
+                            "scale_normal"
+                        ],
+                        "800": [
+                            "scale_normal"
+                        ],
+                        "801": [
+                            "scale_normal"
+                        ],
+                        "802": [
+                            "scale_normal"
+                        ],
+                        "803": [
+                            "scale_normal"
+                        ],
+                        "805": [
+                            "scale_normal"
+                        ],
+                        "806": [
+                            "scale_normal"
+                        ],
+                        "807": [
+                            "scale_normal"
+                        ],
+                        "808": [
+                            "scale_normal"
+                        ],
+                        "810": [
+                            "scale_normal"
+                        ],
+                        "811": [
+                            "scale_normal"
+                        ],
+                        "812": [
+                            "scale_normal"
+                        ],
+                        "813": [
+                            "scale_normal"
+                        ],
+                        "814": [
+                            "scale_normal"
+                        ],
+                        "815": [
+                            "scale_normal"
+                        ],
+                        "816": [
+                            "scale_normal"
+                        ],
+                        "817": [
+                            "scale_normal"
+                        ],
+                        "818": [
+                            "scale_normal"
+                        ],
+                        "820": [
+                            "scale_normal"
+                        ],
+                        "821": [
+                            "scale_normal"
+                        ],
+                        "822": [
+                            "scale_normal"
+                        ],
+                        "823": [
+                            "scale_normal"
+                        ],
+                        "824": [
+                            "scale_normal"
+                        ],
+                        "826": [
+                            "scale_normal"
+                        ],
+                        "827": [
+                            "scale_normal"
+                        ],
+                        "828": [
+                            "scale_normal"
+                        ],
+                        "829": [
+                            "scale_normal"
+                        ],
+                        "831": [
+                            "scale_normal"
+                        ],
+                        "848": [
+                            "scale_normal"
+                        ],
+                        "849": [
+                            "scale_normal"
+                        ],
+                        "850": [
+                            "scale_normal"
+                        ],
+                        "851": [
+                            "scale_normal"
+                        ],
+                        "852": [
+                            "scale_normal"
+                        ],
+                        "853": [
+                            "scale_normal"
+                        ],
+                        "854": [
+                            "scale_normal"
+                        ],
+                        "855": [
+                            "scale_normal"
+                        ],
+                        "857": [
+                            "scale_normal"
+                        ],
+                        "858": [
+                            "scale_normal"
+                        ],
+                        "859": [
+                            "scale_normal"
+                        ],
+                        "860": [
+                            "scale_normal"
+                        ],
+                        "862": [
+                            "scale_normal"
+                        ],
+                        "863": [
+                            "scale_normal"
+                        ],
+                        "864": [
+                            "scale_normal"
+                        ],
+                        "865": [
+                            "scale_normal"
+                        ],
+                        "866": [
+                            "scale_normal"
+                        ],
+                        "867": [
+                            "scale_normal"
+                        ],
+                        "868": [
+                            "scale_normal"
+                        ],
+                        "869": [
+                            "scale_normal"
+                        ],
+                        "870": [
+                            "scale_normal"
+                        ],
+                        "871": [
+                            "scale_normal"
+                        ],
+                        "872": [
+                            "scale_normal"
+                        ],
+                        "873": [
+                            "scale_normal"
+                        ],
+                        "874": [
+                            "scale_normal"
+                        ],
+                        "875": [
+                            "scale_normal"
+                        ],
+                        "876": [
+                            "scale_normal"
+                        ],
+                        "877": [
+                            "scale_normal"
+                        ],
+                        "878": [
+                            "scale_normal"
+                        ],
+                        "879": [
+                            "scale_normal"
+                        ],
+                        "880": [
+                            "scale_normal"
+                        ],
+                        "881": [
+                            "scale_normal"
+                        ],
+                        "883": [
+                            "scale_normal"
+                        ],
+                        "901": [
+                            "scale_normal"
+                        ],
+                        "902": [
+                            "scale_normal"
+                        ],
+                        "903": [
+                            "scale_normal"
+                        ],
+                        "904": [
+                            "scale_normal"
+                        ],
+                        "905": [
+                            "scale_normal"
+                        ],
+                        "906": [
+                            "scale_normal"
+                        ],
+                        "907": [
+                            "scale_normal"
+                        ],
+                        "909": [
+                            "scale_normal"
+                        ],
+                        "910": [
+                            "scale_normal"
+                        ],
+                        "911": [
+                            "scale_normal"
+                        ],
+                        "912": [
+                            "scale_normal"
+                        ],
+                        "914": [
+                            "scale_normal"
+                        ],
+                        "915": [
+                            "scale_normal"
+                        ],
+                        "916": [
+                            "scale_normal"
+                        ],
+                        "917": [
+                            "scale_normal"
+                        ],
+                        "918": [
+                            "scale_normal"
+                        ],
+                        "919": [
+                            "scale_normal"
+                        ],
+                        "920": [
+                            "scale_normal"
+                        ],
+                        "921": [
+                            "scale_normal"
+                        ],
+                        "922": [
+                            "scale_normal"
+                        ],
+                        "924": [
+                            "scale_normal"
+                        ],
+                        "925": [
+                            "scale_normal"
+                        ],
+                        "926": [
+                            "scale_normal"
+                        ],
+                        "927": [
+                            "scale_normal"
+                        ],
+                        "928": [
+                            "scale_normal"
+                        ],
+                        "929": [
+                            "scale_normal"
+                        ],
+                        "930": [
+                            "scale_normal"
+                        ],
+                        "931": [
+                            "scale_normal"
+                        ],
+                        "932": [
+                            "scale_normal"
+                        ],
+                        "933": [
+                            "scale_normal"
+                        ],
+                        "935": [
+                            "scale_normal"
+                        ],
+                        "954": [
+                            "scale_normal"
+                        ],
+                        "955": [
+                            "scale_normal"
+                        ],
+                        "956": [
+                            "scale_normal"
+                        ],
+                        "957": [
+                            "scale_normal"
+                        ],
+                        "958": [
+                            "scale_normal"
+                        ],
+                        "959": [
+                            "scale_normal"
+                        ],
+                        "961": [
+                            "scale_normal"
+                        ],
+                        "962": [
+                            "scale_normal"
+                        ],
+                        "963": [
+                            "scale_normal"
+                        ],
+                        "964": [
+                            "scale_normal"
+                        ],
+                        "966": [
+                            "scale_normal"
+                        ],
+                        "967": [
+                            "scale_normal"
+                        ],
+                        "968": [
+                            "scale_normal"
+                        ],
+                        "969": [
+                            "scale_normal"
+                        ],
+                        "970": [
+                            "scale_normal"
+                        ],
+                        "971": [
+                            "scale_normal"
+                        ],
+                        "972": [
+                            "scale_normal"
+                        ],
+                        "973": [
+                            "scale_normal"
+                        ],
+                        "974": [
+                            "scale_normal"
+                        ],
+                        "975": [
+                            "scale_normal"
+                        ],
+                        "976": [
+                            "scale_normal"
+                        ],
+                        "977": [
+                            "scale_normal"
+                        ],
+                        "978": [
+                            "scale_normal"
+                        ],
+                        "979": [
+                            "scale_normal"
+                        ],
+                        "980": [
+                            "scale_normal"
+                        ],
+                        "981": [
+                            "scale_normal"
+                        ],
+                        "982": [
+                            "scale_normal"
+                        ],
+                        "983": [
+                            "scale_normal"
+                        ],
+                        "984": [
+                            "scale_normal"
+                        ],
+                        "985": [
+                            "scale_normal"
+                        ],
+                        "987": [
+                            "scale_normal"
+                        ],
+                        "1007": [
+                            "scale_normal"
+                        ],
+                        "1008": [
+                            "scale_normal"
+                        ],
+                        "1010": [
+                            "scale_normal"
+                        ],
+                        "1011": [
+                            "scale_normal"
+                        ],
+                        "1013": [
+                            "scale_normal"
+                        ],
+                        "1015": [
+                            "scale_normal"
+                        ],
+                        "1019": [
+                            "scale_normal"
+                        ],
+                        "1021": [
+                            "scale_normal"
+                        ],
+                        "1022": [
+                            "scale_normal"
+                        ],
+                        "1025": [
+                            "scale_normal"
+                        ],
+                        "1030": [
+                            "scale_normal"
+                        ],
+                        "1031": [
+                            "scale_normal"
+                        ],
+                        "1032": [
+                            "scale_normal"
+                        ],
+                        "1033": [
+                            "scale_normal"
+                        ],
+                        "1034": [
+                            "scale_normal"
+                        ],
+                        "1036": [
+                            "scale_normal"
+                        ],
+                        "1037": [
+                            "scale_normal"
+                        ],
+                        "1039": [
+                            "scale_normal"
+                        ],
+                        "1060": [
+                            "scale_normal"
+                        ],
+                        "1061": [
+                            "scale_normal"
+                        ],
+                        "1062": [
+                            "scale_normal"
+                        ],
+                        "1063": [
+                            "scale_normal"
+                        ],
+                        "1065": [
+                            "scale_normal"
+                        ],
+                        "1066": [
+                            "scale_normal"
+                        ],
+                        "1067": [
+                            "scale_normal"
+                        ],
+                        "1068": [
+                            "scale_normal"
+                        ],
+                        "1070": [
+                            "scale_normal"
+                        ],
+                        "1071": [
+                            "scale_normal"
+                        ],
+                        "1072": [
+                            "scale_normal"
+                        ],
+                        "1073": [
+                            "scale_normal"
+                        ],
+                        "1074": [
+                            "scale_normal"
+                        ],
+                        "1075": [
+                            "scale_normal"
+                        ],
+                        "1076": [
+                            "scale_normal"
+                        ],
+                        "1077": [
+                            "scale_normal"
+                        ],
+                        "1078": [
+                            "scale_normal"
+                        ],
+                        "1080": [
+                            "scale_normal"
+                        ],
+                        "1081": [
+                            "scale_normal"
+                        ],
+                        "1082": [
+                            "scale_normal"
+                        ],
+                        "1083": [
+                            "scale_normal"
+                        ],
+                        "1084": [
+                            "scale_normal"
+                        ],
+                        "1085": [
+                            "scale_normal"
+                        ],
+                        "1086": [
+                            "scale_normal"
+                        ],
+                        "1087": [
+                            "scale_normal"
+                        ],
+                        "1088": [
+                            "scale_normal"
+                        ],
+                        "1089": [
+                            "scale_normal"
+                        ],
+                        "1091": [
+                            "scale_normal"
+                        ],
+                        "1113": [
+                            "scale_normal"
+                        ],
+                        "1114": [
+                            "scale_normal"
+                        ],
+                        "1115": [
+                            "scale_normal"
+                        ],
+                        "1117": [
+                            "scale_normal"
+                        ],
+                        "1118": [
+                            "scale_normal"
+                        ],
+                        "1119": [
+                            "scale_normal"
+                        ],
+                        "1120": [
+                            "scale_normal"
+                        ],
+                        "1122": [
+                            "scale_normal"
+                        ],
+                        "1123": [
+                            "scale_normal"
+                        ],
+                        "1124": [
+                            "scale_normal"
+                        ],
+                        "1125": [
+                            "scale_normal"
+                        ],
+                        "1126": [
+                            "scale_normal"
+                        ],
+                        "1127": [
+                            "scale_normal"
+                        ],
+                        "1128": [
+                            "scale_normal"
+                        ],
+                        "1129": [
+                            "scale_normal"
+                        ],
+                        "1130": [
+                            "scale_normal"
+                        ],
+                        "1131": [
+                            "scale_normal"
+                        ],
+                        "1132": [
+                            "scale_normal"
+                        ],
+                        "1133": [
+                            "scale_normal"
+                        ],
+                        "1134": [
+                            "scale_normal"
+                        ],
+                        "1135": [
+                            "scale_normal"
+                        ],
+                        "1136": [
+                            "scale_normal"
+                        ],
+                        "1138": [
+                            "scale_normal"
+                        ],
+                        "1139": [
+                            "scale_normal"
+                        ],
+                        "1140": [
+                            "scale_normal"
+                        ],
+                        "1141": [
+                            "scale_normal"
+                        ],
+                        "1143": [
+                            "scale_normal"
+                        ],
+                        "1166": [
+                            "scale_normal"
+                        ],
+                        "1167": [
+                            "scale_normal"
+                        ],
+                        "1168": [
+                            "scale_normal"
+                        ],
+                        "1169": [
+                            "scale_normal"
+                        ],
+                        "1170": [
+                            "scale_normal"
+                        ],
+                        "1171": [
+                            "scale_normal"
+                        ],
+                        "1172": [
+                            "scale_normal"
+                        ],
+                        "1174": [
+                            "scale_normal"
+                        ],
+                        "1175": [
+                            "scale_normal"
+                        ],
+                        "1176": [
+                            "scale_normal"
+                        ],
+                        "1177": [
+                            "scale_normal"
+                        ],
+                        "1178": [
+                            "scale_normal"
+                        ],
+                        "1179": [
+                            "scale_normal"
+                        ],
+                        "1180": [
+                            "scale_normal"
+                        ],
+                        "1181": [
+                            "scale_normal"
+                        ],
+                        "1182": [
+                            "scale_normal"
+                        ],
+                        "1183": [
+                            "scale_normal"
+                        ],
+                        "1184": [
+                            "scale_normal"
+                        ],
+                        "1185": [
+                            "scale_normal"
+                        ],
+                        "1186": [
+                            "scale_normal"
+                        ],
+                        "1187": [
+                            "scale_normal"
+                        ],
+                        "1188": [
+                            "scale_normal"
+                        ],
+                        "1190": [
+                            "scale_normal"
+                        ],
+                        "1191": [
+                            "scale_normal"
+                        ],
+                        "1192": [
+                            "scale_normal"
+                        ],
+                        "1193": [
+                            "scale_normal"
+                        ],
+                        "1194": [
+                            "scale_normal"
+                        ],
+                        "1195": [
+                            "scale_normal"
+                        ],
+                        "1219": [
+                            "scale_normal"
+                        ],
+                        "1221": [
+                            "scale_normal"
+                        ],
+                        "1222": [
+                            "scale_normal"
+                        ],
+                        "1223": [
+                            "scale_normal"
+                        ],
+                        "1224": [
+                            "scale_normal"
+                        ],
+                        "1226": [
+                            "scale_normal"
+                        ],
+                        "1227": [
+                            "scale_normal"
+                        ],
+                        "1228": [
+                            "scale_normal"
+                        ],
+                        "1229": [
+                            "scale_normal"
+                        ],
+                        "1230": [
+                            "scale_normal"
+                        ],
+                        "1231": [
+                            "scale_normal"
+                        ],
+                        "1232": [
+                            "scale_normal"
+                        ],
+                        "1233": [
+                            "scale_normal"
+                        ],
+                        "1234": [
+                            "scale_normal"
+                        ],
+                        "1236": [
+                            "scale_normal"
+                        ],
+                        "1237": [
+                            "scale_normal"
+                        ],
+                        "1238": [
+                            "scale_normal"
+                        ],
+                        "1239": [
+                            "scale_normal"
+                        ],
+                        "1240": [
+                            "scale_normal"
+                        ],
+                        "1242": [
+                            "scale_normal"
+                        ],
+                        "1243": [
+                            "scale_normal"
+                        ],
+                        "1244": [
+                            "scale_normal"
+                        ],
+                        "1245": [
+                            "scale_normal"
+                        ],
+                        "1247": [
+                            "scale_normal"
+                        ],
+                        "1272": [
+                            "scale_normal"
+                        ],
+                        "1277": [
+                            "scale_normal"
+                        ],
+                        "1278": [
+                            "scale_normal"
+                        ],
+                        "1280": [
+                            "scale_normal"
+                        ],
+                        "1285": [
+                            "scale_normal"
+                        ],
+                        "1296": [
+                            "scale_normal"
+                        ],
+                        "1298": [
+                            "scale_normal"
+                        ],
+                        "1325": [
+                            "scale_normal"
+                        ],
+                        "1326": [
+                            "scale_normal"
+                        ],
+                        "1327": [
+                            "scale_normal"
+                        ],
+                        "1328": [
+                            "scale_normal"
+                        ],
+                        "1330": [
+                            "scale_normal"
+                        ],
+                        "1331": [
+                            "scale_normal"
+                        ],
+                        "1332": [
+                            "scale_normal"
+                        ],
+                        "1333": [
+                            "scale_normal"
+                        ],
+                        "1334": [
+                            "scale_normal"
+                        ],
+                        "1335": [
+                            "scale_normal"
+                        ],
+                        "1336": [
+                            "scale_normal"
+                        ],
+                        "1337": [
+                            "scale_normal"
+                        ],
+                        "1339": [
+                            "scale_normal"
+                        ],
+                        "1340": [
+                            "scale_normal"
+                        ],
+                        "1341": [
+                            "scale_normal"
+                        ],
+                        "1342": [
+                            "scale_normal"
+                        ],
+                        "1343": [
+                            "scale_normal"
+                        ],
+                        "1344": [
+                            "scale_normal"
+                        ],
+                        "1346": [
+                            "scale_normal"
+                        ],
+                        "1347": [
+                            "scale_normal"
+                        ],
+                        "1348": [
+                            "scale_normal"
+                        ],
+                        "1349": [
+                            "scale_normal"
+                        ],
+                        "1351": [
+                            "scale_normal"
+                        ],
+                        "1378": [
+                            "scale_normal"
+                        ],
+                        "1379": [
+                            "scale_normal"
+                        ],
+                        "1380": [
+                            "scale_normal"
+                        ],
+                        "1382": [
+                            "scale_normal"
+                        ],
+                        "1383": [
+                            "scale_normal"
+                        ],
+                        "1384": [
+                            "scale_normal"
+                        ],
+                        "1385": [
+                            "scale_normal"
+                        ],
+                        "1386": [
+                            "scale_normal"
+                        ],
+                        "1387": [
+                            "scale_normal"
+                        ],
+                        "1388": [
+                            "scale_normal"
+                        ],
+                        "1389": [
+                            "scale_normal"
+                        ],
+                        "1390": [
+                            "scale_normal"
+                        ],
+                        "1391": [
+                            "scale_normal"
+                        ],
+                        "1392": [
+                            "scale_normal"
+                        ],
+                        "1393": [
+                            "scale_normal"
+                        ],
+                        "1394": [
+                            "scale_normal"
+                        ],
+                        "1395": [
+                            "scale_normal"
+                        ],
+                        "1396": [
+                            "scale_normal"
+                        ],
+                        "1398": [
+                            "scale_normal"
+                        ],
+                        "1399": [
+                            "scale_normal"
+                        ],
+                        "1400": [
+                            "scale_normal"
+                        ],
+                        "1401": [
+                            "scale_normal"
+                        ],
+                        "1403": [
+                            "scale_normal"
+                        ],
+                        "1431": [
+                            "scale_normal"
+                        ],
+                        "1432": [
+                            "scale_normal"
+                        ],
+                        "1434": [
+                            "scale_normal"
+                        ],
+                        "1435": [
+                            "scale_normal"
+                        ],
+                        "1436": [
+                            "scale_normal"
+                        ],
+                        "1437": [
+                            "scale_normal"
+                        ],
+                        "1438": [
+                            "scale_normal"
+                        ],
+                        "1439": [
+                            "scale_normal"
+                        ],
+                        "1440": [
+                            "scale_normal"
+                        ],
+                        "1441": [
+                            "scale_normal"
+                        ],
+                        "1442": [
+                            "scale_normal"
+                        ],
+                        "1444": [
+                            "scale_normal"
+                        ],
+                        "1445": [
+                            "scale_normal"
+                        ],
+                        "1446": [
+                            "scale_normal"
+                        ],
+                        "1447": [
+                            "scale_normal"
+                        ],
+                        "1448": [
+                            "scale_normal"
+                        ],
+                        "1449": [
+                            "scale_normal"
+                        ],
+                        "1450": [
+                            "scale_normal"
+                        ],
+                        "1451": [
+                            "scale_normal"
+                        ],
+                        "1452": [
+                            "scale_normal"
+                        ],
+                        "1453": [
+                            "scale_normal"
+                        ],
+                        "1455": [
+                            "scale_normal"
+                        ],
+                        "1484": [
+                            "scale_normal"
+                        ],
+                        "1486": [
+                            "scale_normal"
+                        ],
+                        "1487": [
+                            "scale_normal"
+                        ],
+                        "1488": [
+                            "scale_normal"
+                        ],
+                        "1489": [
+                            "scale_normal"
+                        ],
+                        "1490": [
+                            "scale_normal"
+                        ],
+                        "1491": [
+                            "scale_normal"
+                        ],
+                        "1492": [
+                            "scale_normal"
+                        ],
+                        "1493": [
+                            "scale_normal"
+                        ],
+                        "1494": [
+                            "scale_normal"
+                        ],
+                        "1495": [
+                            "scale_normal"
+                        ],
+                        "1496": [
+                            "scale_normal"
+                        ],
+                        "1497": [
+                            "scale_normal"
+                        ],
+                        "1498": [
+                            "scale_normal"
+                        ],
+                        "1499": [
+                            "scale_normal"
+                        ],
+                        "1500": [
+                            "scale_normal"
+                        ],
+                        "1502": [
+                            "scale_normal"
+                        ],
+                        "1503": [
+                            "scale_normal"
+                        ],
+                        "1504": [
+                            "scale_normal"
+                        ],
+                        "1505": [
+                            "scale_normal"
+                        ],
+                        "1507": [
+                            "scale_normal"
+                        ],
+                        "1537": [
+                            "scale_normal"
+                        ],
+                        "1538": [
+                            "scale_normal"
+                        ],
+                        "1540": [
+                            "scale_normal"
+                        ],
+                        "1558": [
+                            "scale_normal"
+                        ],
+                        "1590": [
+                            "scale_normal"
+                        ],
+                        "1591": [
+                            "scale_normal"
+                        ],
+                        "1592": [
+                            "scale_normal"
+                        ],
+                        "1593": [
+                            "scale_normal"
+                        ],
+                        "1594": [
+                            "scale_normal"
+                        ],
+                        "1595": [
+                            "scale_normal"
+                        ],
+                        "1596": [
+                            "scale_normal"
+                        ],
+                        "1597": [
+                            "scale_normal"
+                        ],
+                        "1598": [
+                            "scale_normal"
+                        ],
+                        "1599": [
+                            "scale_normal"
+                        ],
+                        "1600": [
+                            "scale_normal"
+                        ],
+                        "1601": [
+                            "scale_normal"
+                        ],
+                        "1602": [
+                            "scale_normal"
+                        ],
+                        "1603": [
+                            "scale_normal"
+                        ],
+                        "1604": [
+                            "scale_normal"
+                        ],
+                        "1606": [
+                            "scale_normal"
+                        ],
+                        "1607": [
+                            "scale_normal"
+                        ],
+                        "1608": [
+                            "scale_normal"
+                        ],
+                        "1609": [
+                            "scale_normal"
+                        ],
+                        "1610": [
+                            "scale_normal"
+                        ],
+                        "1611": [
+                            "scale_normal"
+                        ],
+                        "1643": [
+                            "scale_normal"
+                        ],
+                        "1644": [
+                            "scale_normal"
+                        ],
+                        "1645": [
+                            "scale_normal"
+                        ],
+                        "1646": [
+                            "scale_normal"
+                        ],
+                        "1647": [
+                            "scale_normal"
+                        ],
+                        "1648": [
+                            "scale_normal"
+                        ],
+                        "1649": [
+                            "scale_normal"
+                        ],
+                        "1650": [
+                            "scale_normal"
+                        ],
+                        "1651": [
+                            "scale_normal"
+                        ],
+                        "1652": [
+                            "scale_normal"
+                        ],
+                        "1653": [
+                            "scale_normal"
+                        ],
+                        "1654": [
+                            "scale_normal"
+                        ],
+                        "1655": [
+                            "scale_normal"
+                        ],
+                        "1656": [
+                            "scale_normal"
+                        ],
+                        "1657": [
+                            "scale_normal"
+                        ],
+                        "1658": [
+                            "scale_normal"
+                        ],
+                        "1659": [
+                            "scale_normal"
+                        ],
+                        "1660": [
+                            "scale_normal"
+                        ],
+                        "1661": [
+                            "scale_normal"
+                        ],
+                        "1663": [
+                            "scale_normal"
+                        ],
+                        "1696": [
+                            "scale_normal"
+                        ],
+                        "1697": [
+                            "scale_normal"
+                        ],
+                        "1698": [
+                            "scale_normal"
+                        ],
+                        "1699": [
+                            "scale_normal"
+                        ],
+                        "1700": [
+                            "scale_normal"
+                        ],
+                        "1701": [
+                            "scale_normal"
+                        ],
+                        "1702": [
+                            "scale_normal"
+                        ],
+                        "1703": [
+                            "scale_normal"
+                        ],
+                        "1704": [
+                            "scale_normal"
+                        ],
+                        "1705": [
+                            "scale_normal"
+                        ],
+                        "1706": [
+                            "scale_normal"
+                        ],
+                        "1707": [
+                            "scale_normal"
+                        ],
+                        "1708": [
+                            "scale_normal"
+                        ],
+                        "1710": [
+                            "scale_normal"
+                        ],
+                        "1711": [
+                            "scale_normal"
+                        ],
+                        "1712": [
+                            "scale_normal"
+                        ],
+                        "1713": [
+                            "scale_normal"
+                        ],
+                        "1714": [
+                            "scale_normal"
+                        ],
+                        "1715": [
+                            "scale_normal"
+                        ],
+                        "1749": [
+                            "scale_normal"
+                        ],
+                        "1750": [
+                            "scale_normal"
+                        ],
+                        "1751": [
+                            "scale_normal"
+                        ],
+                        "1752": [
+                            "scale_normal"
+                        ],
+                        "1753": [
+                            "scale_normal"
+                        ],
+                        "1754": [
+                            "scale_normal"
+                        ],
+                        "1755": [
+                            "scale_normal"
+                        ],
+                        "1756": [
+                            "scale_normal"
+                        ],
+                        "1757": [
+                            "scale_normal"
+                        ],
+                        "1758": [
+                            "scale_normal"
+                        ],
+                        "1759": [
+                            "scale_normal"
+                        ],
+                        "1760": [
+                            "scale_normal"
+                        ],
+                        "1761": [
+                            "scale_normal"
+                        ],
+                        "1762": [
+                            "scale_normal"
+                        ],
+                        "1763": [
+                            "scale_normal"
+                        ],
+                        "1764": [
+                            "scale_normal"
+                        ],
+                        "1765": [
+                            "scale_normal"
+                        ],
+                        "1767": [
+                            "scale_normal"
+                        ],
+                        "1802": [
+                            "scale_normal"
+                        ],
+                        "1803": [
+                            "scale_normal"
+                        ],
+                        "1804": [
+                            "scale_normal"
+                        ],
+                        "1805": [
+                            "scale_normal"
+                        ],
+                        "1806": [
+                            "scale_normal"
+                        ],
+                        "1807": [
+                            "scale_normal"
+                        ],
+                        "1808": [
+                            "scale_normal"
+                        ],
+                        "1809": [
+                            "scale_normal"
+                        ],
+                        "1810": [
+                            "scale_normal"
+                        ],
+                        "1811": [
+                            "scale_normal"
+                        ],
+                        "1812": [
+                            "scale_normal"
+                        ],
+                        "1813": [
+                            "scale_normal"
+                        ],
+                        "1814": [
+                            "scale_normal"
+                        ],
+                        "1815": [
+                            "scale_normal"
+                        ],
+                        "1816": [
+                            "scale_normal"
+                        ],
+                        "1817": [
+                            "scale_normal"
+                        ],
+                        "1819": [
+                            "scale_normal"
+                        ],
+                        "1855": [
+                            "scale_normal"
+                        ],
+                        "1856": [
+                            "scale_normal"
+                        ],
+                        "1857": [
+                            "scale_normal"
+                        ],
+                        "1858": [
+                            "scale_normal"
+                        ],
+                        "1859": [
+                            "scale_normal"
+                        ],
+                        "1860": [
+                            "scale_normal"
+                        ],
+                        "1861": [
+                            "scale_normal"
+                        ],
+                        "1862": [
+                            "scale_normal"
+                        ],
+                        "1863": [
+                            "scale_normal"
+                        ],
+                        "1864": [
+                            "scale_normal"
+                        ],
+                        "1866": [
+                            "scale_normal"
+                        ],
+                        "1867": [
+                            "scale_normal"
+                        ],
+                        "1868": [
+                            "scale_normal"
+                        ],
+                        "1869": [
+                            "scale_normal"
+                        ],
+                        "1871": [
+                            "scale_normal"
+                        ],
+                        "1908": [
+                            "scale_normal"
+                        ],
+                        "1909": [
+                            "scale_normal"
+                        ],
+                        "1910": [
+                            "scale_normal"
+                        ],
+                        "1911": [
+                            "scale_normal"
+                        ],
+                        "1912": [
+                            "scale_normal"
+                        ],
+                        "1913": [
+                            "scale_normal"
+                        ],
+                        "1914": [
+                            "scale_normal"
+                        ],
+                        "1915": [
+                            "scale_normal"
+                        ],
+                        "1916": [
+                            "scale_normal"
+                        ],
+                        "1918": [
+                            "scale_normal"
+                        ],
+                        "1919": [
+                            "scale_normal"
+                        ],
+                        "1920": [
+                            "scale_normal"
+                        ],
+                        "1921": [
+                            "scale_normal"
+                        ],
+                        "1923": [
+                            "scale_normal"
+                        ],
+                        "1961": [
+                            "scale_normal"
+                        ],
+                        "1962": [
+                            "scale_normal"
+                        ],
+                        "1963": [
+                            "scale_normal"
+                        ],
+                        "1964": [
+                            "scale_normal"
+                        ],
+                        "1965": [
+                            "scale_normal"
+                        ],
+                        "1966": [
+                            "scale_normal"
+                        ],
+                        "1967": [
+                            "scale_normal"
+                        ],
+                        "1968": [
+                            "scale_normal"
+                        ],
+                        "1969": [
+                            "scale_normal"
+                        ],
+                        "1970": [
+                            "scale_normal"
+                        ],
+                        "1971": [
+                            "scale_normal"
+                        ],
+                        "1972": [
+                            "scale_normal"
+                        ],
+                        "1973": [
+                            "scale_normal"
+                        ],
+                        "1974": [
+                            "scale_normal"
+                        ],
+                        "1975": [
+                            "scale_normal"
+                        ],
+                        "2014": [
+                            "scale_normal"
+                        ],
+                        "2016": [
+                            "scale_normal"
+                        ],
+                        "2017": [
+                            "scale_normal"
+                        ],
+                        "2018": [
+                            "scale_normal"
+                        ],
+                        "2019": [
+                            "scale_normal"
+                        ],
+                        "2020": [
+                            "scale_normal"
+                        ],
+                        "2022": [
+                            "scale_normal"
+                        ],
+                        "2023": [
+                            "scale_normal"
+                        ],
+                        "2024": [
+                            "scale_normal"
+                        ],
+                        "2025": [
+                            "scale_normal"
+                        ],
+                        "2067": [
+                            "scale_normal"
+                        ],
+                        "2068": [
+                            "scale_normal"
+                        ],
+                        "2069": [
+                            "scale_normal"
+                        ],
+                        "2070": [
+                            "scale_normal"
+                        ],
+                        "2071": [
+                            "scale_normal"
+                        ],
+                        "2072": [
+                            "scale_normal"
+                        ],
+                        "2074": [
+                            "scale_normal"
+                        ],
+                        "2075": [
+                            "scale_normal"
+                        ],
+                        "2076": [
+                            "scale_normal"
+                        ],
+                        "2077": [
+                            "scale_normal"
+                        ],
+                        "2079": [
+                            "scale_normal"
+                        ],
+                        "2120": [
+                            "scale_normal"
+                        ],
+                        "2121": [
+                            "scale_normal"
+                        ],
+                        "2122": [
+                            "scale_normal"
+                        ],
+                        "2123": [
+                            "scale_normal"
+                        ],
+                        "2124": [
+                            "scale_normal"
+                        ],
+                        "2126": [
+                            "scale_normal"
+                        ],
+                        "2127": [
+                            "scale_normal"
+                        ],
+                        "2128": [
+                            "scale_normal"
+                        ],
+                        "2129": [
+                            "scale_normal"
+                        ],
+                        "2131": [
+                            "scale_normal"
+                        ],
+                        "2173": [
+                            "scale_normal"
+                        ],
+                        "2174": [
+                            "scale_normal"
+                        ],
+                        "2175": [
+                            "scale_normal"
+                        ],
+                        "2176": [
+                            "scale_normal"
+                        ],
+                        "2177": [
+                            "scale_normal"
+                        ],
+                        "2178": [
+                            "scale_normal"
+                        ],
+                        "2179": [
+                            "scale_normal"
+                        ],
+                        "2180": [
+                            "scale_normal"
+                        ],
+                        "2181": [
+                            "scale_normal"
+                        ],
+                        "2183": [
+                            "scale_normal"
+                        ],
+                        "2226": [
+                            "scale_normal"
+                        ],
+                        "2227": [
+                            "scale_normal"
+                        ],
+                        "2228": [
+                            "scale_normal"
+                        ],
+                        "2229": [
+                            "scale_normal"
+                        ],
+                        "2230": [
+                            "scale_normal"
+                        ],
+                        "2231": [
+                            "scale_normal"
+                        ],
+                        "2232": [
+                            "scale_normal"
+                        ],
+                        "2233": [
+                            "scale_normal"
+                        ],
+                        "2235": [
+                            "scale_normal"
+                        ],
+                        "2279": [
+                            "scale_normal"
+                        ],
+                        "2280": [
+                            "scale_normal"
+                        ],
+                        "2281": [
+                            "scale_normal"
+                        ],
+                        "2282": [
+                            "scale_normal"
+                        ],
+                        "2283": [
+                            "scale_normal"
+                        ],
+                        "2284": [
+                            "scale_normal"
+                        ],
+                        "2285": [
+                            "scale_normal"
+                        ],
+                        "2287": [
+                            "scale_normal"
+                        ],
+                        "2332": [
+                            "scale_normal"
+                        ],
+                        "2333": [
+                            "scale_normal"
+                        ],
+                        "2334": [
+                            "scale_normal"
+                        ],
+                        "2335": [
+                            "scale_normal"
+                        ],
+                        "2336": [
+                            "scale_normal"
+                        ],
+                        "2337": [
+                            "scale_normal"
+                        ],
+                        "2339": [
+                            "scale_normal"
+                        ],
+                        "2385": [
+                            "scale_normal"
+                        ],
+                        "2386": [
+                            "scale_normal"
+                        ],
+                        "2388": [
+                            "scale_normal"
+                        ],
+                        "2389": [
+                            "scale_normal"
+                        ],
+                        "2391": [
+                            "scale_normal"
+                        ],
+                        "2438": [
+                            "scale_normal"
+                        ],
+                        "2439": [
+                            "scale_normal"
+                        ],
+                        "2440": [
+                            "scale_normal"
+                        ],
+                        "2441": [
+                            "scale_normal"
+                        ],
+                        "2443": [
+                            "scale_normal"
+                        ],
+                        "2491": [
+                            "scale_normal"
+                        ],
+                        "2492": [
+                            "scale_normal"
+                        ],
+                        "2493": [
+                            "scale_normal"
+                        ],
+                        "2495": [
+                            "scale_normal"
+                        ],
+                        "2544": [
+                            "scale_normal"
+                        ],
+                        "2545": [
+                            "scale_normal"
+                        ],
+                        "2546": [
+                            "scale_normal"
+                        ],
+                        "2547": [
+                            "scale_normal"
+                        ],
+                        "2597": [
+                            "scale_normal"
+                        ],
+                        "2599": [
+                            "scale_normal"
+                        ],
+                        "2650": [
+                            "scale_normal"
+                        ],
+                        "2703": [
+                            "scale_normal"
+                        ]
+                    },
+                    "target_preprocessing": [
+                        "na_exclude",
+                        "categorical_to_int"
+                    ],
+                    "ml_task": "binary_classification"
+                },
+                "validation_strategy": {
+                    "validation_type": "split",
+                    "train_ratio": 0.75,
+                    "shuffle": true,
+                    "stratify": true,
+                    "X_path": "AutoML_1/X.data",
+                    "y_path": "AutoML_1/y.data",
+                    "results_path": "AutoML_1"
+                },
+                "learner": {
+                    "model_type": "Neural Network",
+                    "ml_task": "binary_classification",
+                    "n_jobs": -1,
+                    "dense_1_size": 32,
+                    "dense_2_size": 16,
+                    "learning_rate": 0.05,
+                    "seed": 4,
+                    "explain_level": 2
+                },
+                "automl_random_state": 1234,
+                "ml_task": "binary_classification",
+                "explain_level": 2,
+                "name": "4_Default_NeuralNetwork",
+                "status": "trained",
+                "final_loss": 0.4195150315043919,
+                "train_time": 17.449641704559326,
+                "data_type": "original",
+                "max_time_for_learner": 360.0
+            },
+            {
+                "additional": {
+                    "trees_in_step": 100,
+                    "train_cant_improve_limit": 1,
+                    "min_steps": 1,
+                    "max_steps": 50,
+                    "early_stopping_rounds": 50,
+                    "max_rows_limit": null,
+                    "max_cols_limit": null
+                },
+                "preprocessing": {
+                    "columns_preprocessing": {},
+                    "target_preprocessing": [
+                        "na_exclude",
+                        "categorical_to_int"
+                    ],
+                    "ml_task": "binary_classification"
+                },
+                "validation_strategy": {
+                    "validation_type": "split",
+                    "train_ratio": 0.75,
+                    "shuffle": true,
+                    "stratify": true,
+                    "X_path": "AutoML_1/X.data",
+                    "y_path": "AutoML_1/y.data",
+                    "results_path": "AutoML_1"
+                },
+                "learner": {
+                    "model_type": "Random Forest",
+                    "ml_task": "binary_classification",
+                    "n_jobs": -1,
+                    "criterion": "gini",
+                    "max_features": 0.9,
+                    "min_samples_split": 30,
+                    "max_depth": 4,
+                    "seed": 5,
+                    "eval_metric_name": "logloss",
+                    "explain_level": 2
+                },
+                "automl_random_state": 1234,
+                "ml_task": "binary_classification",
+                "explain_level": 2,
+                "name": "5_Default_RandomForest",
+                "status": "trained",
+                "final_loss": 0.27381050187032846,
+                "train_time": 83.27554512023926,
+                "data_type": "original",
+                "max_time_for_learner": 360.0
+            }
+        ],
+        "ensemble": [
+            {
+                "model_type": "ensemble",
+                "is_stacked": false,
+                "name": "Ensemble",
+                "status": "trained",
+                "final_loss": 0.20091969054192305,
+                "train_time": 0.4031379222869873
+            }
+        ]
+    },
+    "adjust_validation": false
+}

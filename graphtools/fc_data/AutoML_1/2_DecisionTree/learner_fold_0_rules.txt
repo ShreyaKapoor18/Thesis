@@ -1,0 +1,12 @@
+if (1027 > 0.065) and (757 > -0.033) and (1015 > 0.187) then class: 0 (proba: 96.83%) | based on 63 samples
+
+if (1027 <= 0.065) and (29 <= 0.565) then class: 2 (proba: 100.0%) | based on 8 samples
+
+if (1027 > 0.065) and (757 <= -0.033) and (1922 <= 0.448) then class: 2 (proba: 100.0%) | based on 3 samples
+
+if (1027 > 0.065) and (757 > -0.033) and (1015 <= 0.187) then class: 2 (proba: 100.0%) | based on 2 samples
+
+if (1027 > 0.065) and (757 <= -0.033) and (1922 > 0.448) then class: 0 (proba: 100.0%) | based on 1 samples
+
+if (1027 <= 0.065) and (29 > 0.565) then class: 0 (proba: 100.0%) | based on 1 samples
+
