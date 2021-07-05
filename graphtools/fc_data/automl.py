@@ -3,10 +3,12 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from supervised.automl import AutoML
 from sklearn.metrics import log_loss, roc_auc_score, balanced_accuracy_score
+import autosklearn.classification
+
 
 dir = '/home/shreya/git/Thesis/graphtools/fc_data/data'
 j = 1
-f = open('../outputs/test_results.txt', 'w')
+f = open('fc_data/outputs/test_results.txt', 'w')
 for groups in [['hc', 'ad'], ['hc', 'mci']]:
     print('Performance for groups', groups, file=f)
     combined_edges, combined_nodes = load_files(dir, groups=groups)
@@ -25,7 +27,8 @@ for groups in [['hc', 'ad'], ['hc', 'mci']]:
     y = combined_edges.iloc[:, -1]
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, stratify=y, random_state=22)
 
-    automl = AutoML()
+    #automl = AutoML()
+    automl = autosklearn.classification.AutoSklearnClassifier()
     automl.fit(X_train, y_train)
 
     predictions = automl.predict(X_test)

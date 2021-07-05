@@ -1,4 +1,5 @@
 import sys
+
 sys.path.append('..')
 import numpy as np
 import pandas as pd
@@ -6,23 +7,30 @@ from metrics import fscore
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.model_selection import train_test_split, StratifiedKFold, KFold, GridSearchCV
+from sklearn.svm import SVC
+from sklearn.model_selection import train_test_split, StratifiedKFold, KFold, RandomizedSearchCV
 from funcgraph import BrainGraph
 from paramopt import graph_options
-from sklearn.metrics import balanced_accuracy_score
+from sklearn.metrics import balanced_accuracy_score, make_scorer, log_loss
 import logging
 import os
 import itertools as it
 from metrics import diag_flattened_indices, find_indices
+
 global dir1
+from sklearn.utils.fixes import loguniform
+import autosklearn.classification
+
 dir1 = '/home/shreya/git/Thesis/graphtools/fc_data/'
 handler = logging.handlers.WatchedFileHandler(
-os.environ.get("LOGFILE", f"{dir1}/outputs/sample.log"))
+    os.environ.get("LOGFILE", f"{dir1}/outputs/sample.log"))
 formatter = logging.Formatter(logging.BASIC_FORMAT)
 handler.setFormatter(formatter)
 logger = logging.getLogger('info')
 logger.setLevel(os.environ.get("LOGLEVEL", "INFO"))
 logger.addHandler(handler)
+
+
 # %%
 def make_hist(X_train, y_train, ax):
     """
@@ -42,6 +50,8 @@ def make_hist(X_train, y_train, ax):
             alpha=0.5)
     ax.legend()
     return ax
+
+
 # %%
 def load_files(dir, groups):
     combined_edges = []
@@ -59,57 +69,51 @@ def load_files(dir, groups):
         # print(nodes.shape)
         nodes = pd.DataFrame(nodes)
         # print(nodes.head())
-        nodes['label'] = group
-        nodes_l = np.array(nodes)
+        #nodes['label'] = group
+        #nodes_l = np.array(nodes)
         # print(nodes_l.shape)
-        combined_nodes.extend(nodes_l)
+        combined_nodes.extend(np.array(nodes))
         # print(len(combined_nodes), len(combined_nodes[0]))
     mapping = {'ad': 2, 'hc': 0, 'mci': 1}
     # print(len(combined_nodes), len(combined_nodes[0]))
 
     combined_edges, combined_nodes = pd.DataFrame(combined_edges), pd.DataFrame(combined_nodes,
-                                                                                columns=range(len(combined_nodes[0])))
+                                                                                columns=range(num_nodes))
     combined_edges.iloc[:, -1] = combined_edges.iloc[:, -1].map(mapping)
     combined_nodes = combined_nodes.replace('m00', np.nan)
-    #print(combined_nodes.isna().any(axis=1))
+    # print(combined_nodes.isna().any(axis=1))
     combined_nodes.dropna(axis=0, inplace=True)
+    combined_nodes.columns = [f'nodes_{i}' for i in range(num_nodes)]
     combined_edges = combined_edges.loc[combined_nodes.index, :]
     # Number of subjects in each group
-    #print(combined_edges.isna().any(axis=1))
+    # print(combined_edges.isna().any(axis=1))
     combined_edges.dropna(axis=0, inplace=True)
     combined_nodes = combined_nodes.loc[combined_edges.index]
-    print('Nodes:', combined_nodes.shape)
     logger.info(f'Nodes: {combined_nodes.shape}')
-    print('Edges:', combined_edges.shape)
     logger.info(f'Edges: {combined_edges.shape}')
-    print(mapping)
     logger.info(f'{mapping}')
-    print('Number of subjects in each group:\n', combined_edges.iloc[:, -1].value_counts())
     logger.info(f'Number of subjects in each group:\n {combined_edges.iloc[:, -1].value_counts()}s')
     return combined_edges, combined_nodes
 
 
 def graph_processing(fscores, num_nodes, node_weights, preserved_nodes):
-
     input_graph = BrainGraph(edge='fscores', feature_type='FC', node_wts='given_value',
                              target='AD', max_num_nodes=preserved_nodes)
 
     input_graph.make_graph(fscores, num_nodes=num_nodes)
-    input_graph.delete_per_edges(20) # delete bottom 10% of the edges
+    input_graph.delete_per_edges(20)  # delete bottom 10% of the edges
     input_graph.set_node_labels(node_wts='given_value',
                                 wts=node_weights)  # set the node weights as the mean for the training subjects
 
     input_graph.savefiles('/home/shreya/git/Thesis/gmwcs-solver')
     input_graph.visualize_graph('/home/shreya/git/Thesis/gmwcs-solver', True,
                                 graph_options(color='red', node_size=5, linewidhts=0.1, width=1),
-                                figs=(20,20))
+                                figs=(20, 20))
     input_graph.run_solver('/home/shreya/git/Thesis/gmwcs-solver', max_num_nodes=preserved_nodes)
     print('Nodes in input graph', input_graph.nodes)
 
 
-
 def fscore_hist(combined_edges):
-
     scalar = StandardScaler()
     fscores = fscore(combined_edges, class_col=len(combined_edges.columns) - 1)
     trans_edges = pd.DataFrame(scalar.fit_transform(combined_edges.iloc[:, :-1]))
@@ -123,32 +127,51 @@ def fscore_hist(combined_edges):
     plt.legend()
     plt.show()
 
+
 def fit_classifier(X_train, X_test, y_train, y_test, n_fold, index):
-    cv_inner = KFold(n_splits=3, shuffle=True, random_state=1)
+    cv_inner = KFold(n_splits=5, shuffle=True, random_state=10)
+
     # define the model
-    clf = RandomForestClassifier(random_state=10, n_jobs=-1)
+    clf = SVC(probability=True)
+    space = {'C': loguniform(1e-4, 1, 1e-2, 100),
+             'gamma': loguniform(1e-4, 1e-2, 1e-3),
+             'kernel': ['rbf', 'poly', 'sigmoid', 'linear'],
+             'class_weight': ['balanced', None]}
+    # clf = RandomForestClassifier(random_state=10, n_jobs=-1)
     # define search space
 
-    space = {"max_features": [0.9, 1],
+    '''space = {"max_features": [0.9, 1],
                 "min_samples_split": [30, 40],
                 "max_depth": [4, 5],
                 "random_state": [5, 6],
-                "criterion": ['gini', 'entropy']}
+                "criterion": ['gini', 'entropy']}'''
     # define search
-    search = GridSearchCV(clf, space, scoring='balanced_accuracy', cv=cv_inner, refit=True)
+    search = RandomizedSearchCV(clf, space, scoring=make_scorer(balanced_accuracy_score), cv=cv_inner, refit=True)
     # execute search
     search.fit(X_train.loc[:, index], y_train)
-    #print(X_train.shape, y_train.shape, X_test.shape, y_test.shape)
+    # print(X_train.shape, y_train.shape, X_test.shape, y_test.shape)
     best_model = search.best_estimator_
 
-    #test_score = best_model.score(X_test.loc[:, index], y_test)
+    # test_score = best_model.score(X_test.loc[:, index], y_test)
     y_pred = best_model.predict(X_test.loc[:, index])
-    test_score = balanced_accuracy_score(y_test, y_pred)
+    y_pred = pd.Series(y_pred, X_test.index)
+    # maybe this always gives a 0-1 answer
+    # if 2 in y_test:
+    #    y_pred = y_pred.map({0:0, 1: 2, 1:1})
+    # test_score = balanced_accuracy_score(y_test, y_pred)
 
+    # clf = autosklearn.classification.AutoSklearnClassifier()
+
+    # clf.fit(X_train, y_train)
+
+    # y_pred = clf.predict(X_test)
+    test_score = balanced_accuracy_score(y_test, y_pred)
+    # params = clf.ensemble_nbest
     params = search.best_params_
     logger.info(f'The score on the fold {n_fold} {round(test_score, 3)}')
-    #print(f'The score on the fold {n_fold}:', round(test_score, 3))
+    # print(f'The score on the fold {n_fold}:', round(test_score, 3))
     return test_score, params
+
 
 # %%
 def run_baseline(X_train, X_test, y_train, y_test, fscores, per, n_fold):
@@ -157,25 +180,28 @@ def run_baseline(X_train, X_test, y_train, y_test, fscores, per, n_fold):
     index = []
 
     for i in fscores.index:
-        if fscores[i] >= val:
-
+        if fscores.loc[i] >= val:
             index.append(i)
     test_score, params = fit_classifier(X_train, X_test, y_train, y_test, n_fold, index)
     return test_score, params, index
 
+
 def cv_split(X_train, y_train, train_idx, test_cv_idx):
     scalar = StandardScaler()
+
     x_train_cv, y_train_cv = X_train.iloc[train_idx, :], y_train.iloc[train_idx]
-    x_train_cv = pd.DataFrame(scalar.fit_transform(x_train_cv), columns=x_train_cv.columns)
+    x_train_cv = pd.DataFrame(scalar.fit_transform(x_train_cv), columns=x_train_cv.columns, index=x_train_cv.index)
     x_test_cv, y_test_cv = X_train.iloc[test_cv_idx, :], y_train.iloc[test_cv_idx]
-    x_test_cv = pd.DataFrame(scalar.transform(x_test_cv), columns=x_test_cv.columns)
+    x_test_cv = pd.DataFrame(scalar.transform(x_test_cv), columns=x_test_cv.columns, index=x_test_cv.index)
 
     # print('Shapes:', X_train.shape, y_train.shape, X_test.shape, y_test.shape)
     # select only the upper triangular features due to symmetric matrix
     X_y_uppert = pd.concat([x_train_cv, y_train_cv], axis=1)
-    fscores = fscore(X_y_uppert, class_col=y_train_cv.name)
+    fscores = fscore(X_y_uppert, class_col=X_y_uppert.columns[-1])
+    fscores = fscores.drop(X_y_uppert.columns[-1])
     # print('Fscores shape', fscores.shape)
     return x_train_cv, y_train_cv, x_test_cv, y_test_cv, fscores
+
 
 def find_greedy_features(X_train, X_test, y_train, y_test, n_fold, fscores, max_num_nodes):
     """
@@ -192,9 +218,10 @@ def find_greedy_features(X_train, X_test, y_train, y_test, n_fold, fscores, max_
     # graph is currently upper triangular and needs to be converted into full matrix
     graph = graph + graph.transpose() - 2 * np.diag(graph.diagonal())  # excluding the diagonal
     graph = pd.DataFrame(graph)
-
+    deleted_nodes = []
     while len(graph.iloc[0]) > max_num_nodes:
         node = graph.sum(axis=1).argmin()
+        deleted_nodes.append(node)
         graph = graph.drop([graph.iloc[node].name], axis=0)  # returns the row as series
         graph = graph.drop(graph.iloc[:, node].name, axis=1)  # graph.loc[:, node].name
 
@@ -203,25 +230,29 @@ def find_greedy_features(X_train, X_test, y_train, y_test, n_fold, fscores, max_
         for key in dict_idx.keys():
             if dict_idx[key] == (u, v):
                 graph_idxs.append(key)
+    #init_node_idxs = num_nodes * 0.5 * (num_nodes + 1)  # where the node indices start from
+    for j in range(num_nodes):
+        if j not in deleted_nodes:
+            graph_idxs.append(f'nodes_{j}')
+
     test_score, params = fit_classifier(X_train, X_test, y_train, y_test, n_fold, graph_idxs)
 
     return test_score, params, graph_idxs
 
 
-
-
 def plot_comparison():
     plt.plot(percentages, list(score_by_percentage.values()))
     plt.scatter(percentages, list(score_by_percentage.values()), label='baseline', alpha=0.5)
-    #num_edges = np.array([0.5*(n*(n+1)) for n in num_nodes_preserved])
-    #total_edges = (num_edges**2 + num_edges) * 0.5 * 0.01
+    # num_edges = np.array([0.5*(n*(n+1)) for n in num_nodes_preserved])
+    # total_edges = (num_edges**2 + num_edges) * 0.5 * 0.01
     plt.plot(percentages, list(score_by_nodes.values()))
     plt.scatter(percentages, list(score_by_nodes.values()), label='greedy approach', alpha=0.5)
     plt.xlabel('Percentage of fscores selected')
     plt.ylabel('Performance of classifier')
     plt.legend()
-    plt.savefig(os.path.join(dir1, 'outputs', 'comparison_performance_'+groups[0]+'_'+ groups[1]))
+    plt.savefig(os.path.join(dir1, 'outputs', 'comparison_performance_' + groups[0] + '_' + groups[1]))
     plt.clf()
+
 
 def evaluate(index, X_train, X_test, y_train, y_test, clf):
     """
@@ -249,35 +280,37 @@ def main():
     global i, score_by_percentage, data_dir, num_nodes, dict_idx
     global groups, num_nodes_preserved, score_by_nodes
     data_dir = '/home/shreya/git/Thesis/graphtools/fc_data/data'
+    num_nodes = 52
     for groups in [['hc', 'ad'], ['hc', 'mci']]:
 
         print('Performance for groups', groups)
         combined_edges, combined_nodes = load_files(data_dir, groups=groups)
-        #fscore_hist(combined_edges)  # fscores of the edges
-        #fscore_hist(combined_nodes)  # fscores of the node features
-        num_nodes = len(combined_nodes.columns) - 1  # because there is one column for the label here
+        # fscore_hist(combined_edges)  # fscores of the edges
+        # fscore_hist(combined_nodes)  # fscores of the node features
         assert not sum(combined_edges.isna().any())
-        skf = StratifiedKFold(n_splits=5)
+        skf = StratifiedKFold(n_splits=5, random_state=25, shuffle=True)
 
         dict_idx = find_indices(shape=num_nodes)
         indices = list(dict_idx.keys())
-        X = combined_edges.iloc[:, indices] # removing the redunance of the features
+        X = combined_edges.iloc[:, indices]  # removing the redundance of the features
+        X = pd.concat([X, combined_nodes], axis=1)  # not having the last column with the labels
         y = combined_edges.iloc[:, -1]
-        fscores_all = fscore(pd.concat([X, y], axis=1), class_col=y.name)[:-1]
+        conx = pd.concat([X, y], axis=1)
+        fscores_all = fscore(conx, class_col=conx.columns[-1])[:-1]
         # we do not need the fscores of label with itself
 
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, stratify=y)
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, stratify=y, random_state=22)
         X_test = pd.DataFrame(X_test, columns=X.columns)
         X_train = pd.DataFrame(X_train, columns=X.columns)
         y_train = pd.Series(y_train, name=y.name)
         y_test = pd.Series(y_test, name=y.name)
 
         global percentages
-        percentages = [2, 5, 10, 50, 100]
+        percentages = [2, 5, 10, 40, 50, 60, 100]
         num_nodes_preserved = []
         for per in percentages:
-            coeff = [1, 1, (-0.01)*(num_nodes**2 + num_nodes)*per]
-            r = abs(round(np.roots(coeff)[1]))//1  #get the positive root
+            coeff = [1, 1, (-0.01) * (num_nodes ** 2 + num_nodes) * per]
+            r = abs(round(np.roots(coeff)[1])) // 1  # get the positive root
             num_nodes_preserved.append(r)
         score_by_percentage = {key: None for key in percentages}
         score_by_nodes = {node: None for node in num_nodes_preserved}
@@ -294,20 +327,20 @@ def main():
                                                                                      train_idx, test_cv_idx)
                     # To do: ensure the train and test are split in a stratified way
                     score, params, base_idxs = run_baseline(x_train_cv, x_test_cv, y_train_cv,
-                                                        y_test_cv, fscores[:-1], per, i)
+                                                            y_test_cv, fscores, per, i)
 
                     base_scores.append(score)
                     base_params.append(params)
                     greedy_score, greedy_param, greedy_idxs = find_greedy_features(x_train_cv,
                                                                                    x_test_cv, y_train_cv, y_test_cv, i,
-                                                                                    fscores_all, max_num_nodes)
+                                                                                   fscores_all, max_num_nodes)
                     # Number of features in max number of nodes
                     logger.info(f'The number of nodes {max_num_nodes} \n The number of edges preserved: '
                                 f'{len(np.triu_indices(max_num_nodes)[0])}')
                     greedy_scores.append(greedy_score)
                     greedy_params.append(greedy_param)
                     # only the diagonal indices since we are considering the matrix to be symmetric
-                    #graph_processing(fscores[:-1], num_nodes, node_weights, preserved_nodes=20)
+                    # graph_processing(fscores[:-1], num_nodes, node_weights, preserved_nodes=20)
                     i += 1
             avg_score_base, avg_score_greedy = np.mean(np.array(base_scores)), np.mean(np.array(greedy_scores))
             idx_base, idx_greedy = np.argmax(np.array(base_scores)), np.argmax(np.array(greedy_scores))
@@ -315,15 +348,17 @@ def main():
             logger.info(f'The average score on k-fold baseline {round(avg_score_base, 3)}'
                         f' and greedy graph {round(avg_score_greedy, 3)}')
             # now fit the best estimator from the above
-            clf_base = RandomForestClassifier(**base_params, n_jobs=-1)
+            # clf_base = RandomForestClassifier(**base_params, n_jobs=-1)
+            clf_base = SVC(**base_params)
+            # clf_base = base_params
             score_by_percentage[per] = evaluate(base_idxs, X_train, X_test, y_train, y_test, clf_base)
-            clf_greedy = RandomForestClassifier(**greedy_params, n_jobs=-1)
+            # clf_greedy = RandomForestClassifier(**greedy_params, n_jobs=-1)
+            # clf_greedy = greedy_params
+            clf_greedy = SVC(**greedy_params)
             score_by_nodes[max_num_nodes] = evaluate(greedy_idxs, X_train, X_test, y_train, y_test, clf_greedy)
         plot_comparison()
-
 
 
 # %%
 if __name__ == '__main__':
     main()
-
