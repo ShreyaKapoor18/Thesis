@@ -1,5 +1,5 @@
 import sys
-
+from imblearn.over_sampling import RandomOverSampler
 sys.path.append('..')
 import numpy as np
 import pandas as pd
@@ -300,15 +300,17 @@ def main():
         conx = pd.concat([X, y], axis=1)
         fscores_all = fscore(conx, class_col=conx.columns[-1])[:-1]
         # we do not need the fscores of label with itself
+        oversample = RandomOverSampler(sampling_strategy='minority')
 
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.30, stratify=y, random_state=20)
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20, stratify=y, random_state=20)
+        X_train, y_train = oversample.fit_resample(X_train, y_train)
         X_test = pd.DataFrame(X_test, columns=X.columns)
         X_train = pd.DataFrame(X_train, columns=X.columns)
         y_train = pd.Series(y_train, name=y.name)
         y_test = pd.Series(y_test, name=y.name)
 
         global percentages
-        percentages = [2, 5, 10, 15, 18,  20, 40, 50, 60, 100]
+        percentages = [2, 5, 10, 50, 60, 100]
         num_nodes_preserved = []
         for per in percentages:
             coeff = [1, 1, (-0.01) * (num_nodes ** 2 + num_nodes) * per]
