@@ -129,7 +129,7 @@ def fscore_hist(combined_edges):
 
 
 def fit_classifier(X_train, X_test, y_train, y_test, n_fold, index):
-    cv_inner = KFold(n_splits=5, shuffle=True, random_state=10)
+    cv_inner = KFold(n_splits=3, shuffle=True, random_state=35)
 
     # define the model
     clf = SVC(probability=True)
@@ -163,7 +163,9 @@ def fit_classifier(X_train, X_test, y_train, y_test, n_fold, index):
     # clf = autosklearn.classification.AutoSklearnClassifier()
 
     # clf.fit(X_train, y_train)
-
+    print("unique values \n", "y_test \n", y_test.unique(), '\n', y_test.value_counts(), '\n'
+          "y_pred \n", y_pred.unique(), '\n', y_pred.value_counts())
+    # according to this the classes in y_pred shall be the same as y_test this is what is being shown
     # y_pred = clf.predict(X_test)
     test_score = balanced_accuracy_score(y_test, y_pred)
     # params = clf.ensemble_nbest
@@ -299,14 +301,14 @@ def main():
         fscores_all = fscore(conx, class_col=conx.columns[-1])[:-1]
         # we do not need the fscores of label with itself
 
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, stratify=y, random_state=22)
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.30, stratify=y, random_state=20)
         X_test = pd.DataFrame(X_test, columns=X.columns)
         X_train = pd.DataFrame(X_train, columns=X.columns)
         y_train = pd.Series(y_train, name=y.name)
         y_test = pd.Series(y_test, name=y.name)
 
         global percentages
-        percentages = [2, 5, 10, 40, 50, 60, 100]
+        percentages = [2, 5, 10, 15, 18,  20, 40, 50, 60, 100]
         num_nodes_preserved = []
         for per in percentages:
             coeff = [1, 1, (-0.01) * (num_nodes ** 2 + num_nodes) * per]
