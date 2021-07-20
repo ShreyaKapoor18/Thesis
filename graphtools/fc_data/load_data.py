@@ -16,6 +16,7 @@ import logging
 import os
 import itertools as it
 from metrics import diag_flattened_indices, find_indices
+from sklearn.model_selection import LeaveOneOut
 
 global dir1
 from sklearn.utils.fixes import loguniform
@@ -132,7 +133,7 @@ def fit_classifier(X_train, X_test, y_train, y_test, n_fold, index):
     cv_inner = KFold(n_splits=3, shuffle=True, random_state=35)
 
     # define the model
-    clf = SVC(probability=True)
+    clf = SVC()
     space = {'C': loguniform(1e-4, 1, 1e-2, 100),
              'gamma': loguniform(1e-4, 1e-2, 1e-3),
              'kernel': ['rbf', 'poly', 'sigmoid', 'linear'],
@@ -290,7 +291,8 @@ def main():
         # fscore_hist(combined_edges)  # fscores of the edges
         # fscore_hist(combined_nodes)  # fscores of the node features
         assert not sum(combined_edges.isna().any())
-        skf = StratifiedKFold(n_splits=5, random_state=25, shuffle=True)
+        #skf = StratifiedKFold(n_splits=5, random_state=25, shuffle=True)
+        skf = LeaveOneOut()
 
         dict_idx = find_indices(shape=num_nodes)
         indices = list(dict_idx.keys())
@@ -300,7 +302,7 @@ def main():
         conx = pd.concat([X, y], axis=1)
         fscores_all = fscore(conx, class_col=conx.columns[-1])[:-1]
         # we do not need the fscores of label with itself
-        oversample = RandomOverSampler(sampling_strategy=0.9)
+        oversample = RandomOverSampler(sampling_strategy='minority')
 
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20, stratify=y, random_state=20)
         X_train, y_train = oversample.fit_resample(X_train, y_train)
