@@ -40,3 +40,6 @@ Thumbs.db
 
 # IDE specific XML
 *.xml
+
+# PDF files - store separately for privacy
+*.pdf
