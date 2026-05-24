@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-## Core latex/pdflatex auxiliary files:
+# LaTeX
 *.aux
 *.lof
 *.log
@@ -8,3 +7,36 @@
 *.out
 *.toc
 
+# IDE
+.idea/
+*.iml
+.vscode/
+workspace.xml
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+*.egg-info/
+dist/
+build/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# Data and cache
+nilearn_cache/
+reports/
+CoBundleMAP
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE specific XML
+*.xml
